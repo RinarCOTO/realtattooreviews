@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# private planning docs
+ARCHITECTURE.md
+
+# claude
+CLAUDE.md
+AGENTS.md
+.claude/
