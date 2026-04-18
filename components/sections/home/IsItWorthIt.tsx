@@ -3,6 +3,7 @@ import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
 import { guides } from "@/lib/mock-data/guides";
+import { assetPath } from "@/lib/utils/asset";
 
 const guidesListSchema = {
   "@context": "https://schema.org",
@@ -59,7 +60,7 @@ export default function IsItWorthIt() {
               {/* Image — z-0 */}
               <div className="absolute inset-0" style={{ zIndex: 0 }}>
                 <Image
-                  src={guide.image}
+                  src={assetPath(guide.image)}
                   alt={guide.title}
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
@@ -119,7 +120,7 @@ export default function IsItWorthIt() {
               {/* Image — z-0 */}
               <div className="absolute inset-0" style={{ zIndex: 0 }}>
                 <Image
-                  src={guide.image}
+                  src={assetPath(guide.image)}
                   alt={guide.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

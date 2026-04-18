@@ -1,11 +1,25 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import { PortableText, type PortableTextBlock } from "@portabletext/react";
 
-const steps = [
+// What this component can receive from the outside
+type Props = {
+  steps?: Array<{ stepNumber: string; title: string; body: PortableTextBlock[] }>;
+  //  ↑                   ↑               ↑              ↑
+  //  optional       "01","02","03"    card title     rich text (supports bold, italic)
+};
+
+// Fallback content — plain strings, used when Sanity has nothing published yet
+type FallbackStep = { stepNumber: string; title: string; body: string };
+const DEFAULT_STEPS: FallbackStep[] = [
+  { stepNumber: "01", title: "We collect public Google reviews",  body: "We gather publicly available reviews across the tattoo removal providers and locations we track." },
+  { stepNumber: "02", title: "We tag the patterns that matter",   body: "Each review is structured around signals like pain, healing, scarring, staff experience, pricing, and complaints." },
+  { stepNumber: "03", title: "You compare before you book",       body: "See ratings, read review excerpts, and compare providers side by side with more context." },
+];
+
+// Visual decoration per step — stays hardcoded, never comes from Sanity
+const STEP_DECORATIONS = [
   {
-    number: "01",
-    title: "Patients submit reviews",
-    body: "Verified patients submit structured reviews covering outcomes, session consistency, pricing transparency, and communication quality.",
     color: "text-accent",
     iconBg: "bg-accent-light",
     icon: (
@@ -15,9 +29,6 @@ const steps = [
     ),
   },
   {
-    number: "02",
-    title: "We verify and score",
-    body: "Each review is cross-referenced and scored independently. Providers cannot edit, remove, or influence their ratings — including negative ones.",
     color: "text-secondary",
     iconBg: "bg-secondary-soft",
     icon: (
@@ -27,9 +38,6 @@ const steps = [
     ),
   },
   {
-    number: "03",
-    title: "You compare and decide",
-    body: "Browse side-by-side ratings, read real patient accounts, and use our comparison tools to find the right clinic before you book anything.",
     color: "text-primary",
     iconBg: "bg-primary/10",
     icon: (
@@ -40,7 +48,11 @@ const steps = [
   },
 ];
 
-export default function HowItWorks() {
+export default function HowItWorks({ steps }: Props) {
+  // If Sanity sent steps → use them. Otherwise → use plain-string defaults.
+  const activeSteps: Array<{ stepNumber: string; title: string; body: PortableTextBlock[] | string }> =
+    steps && steps.length > 0 ? steps : DEFAULT_STEPS;
+
   return (
     <section className="bg-bg border-y border-border py-16">
       <Container>
@@ -48,39 +60,48 @@ export default function HowItWorks() {
           <div>
             <h2 className="text-[28px] font-bold text-primary">How reviews work</h2>
             <p className="mt-1 text-sm text-muted">
-              Independent, structured, and transparent by design.
+              Google reviews, structured for faster clinic comparison.
             </p>
           </div>
           <Link href="/methodology" className="hidden text-sm font-medium text-secondary hover:underline sm:block">
-            Full methodology →
+            Our methodology →
           </Link>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-3">
-          {steps.map((step, i) => (
-            <div
-              key={step.number}
-              className="relative rounded-2xl border border-border bg-surface p-6"
-            >
-              {/* Connector line */}
-              {i < steps.length - 1 && (
-                <div className="absolute right-0 top-8 hidden h-px w-6 bg-border sm:block translate-x-full" />
-              )}
+          {activeSteps.map((step, i) => {
+            // i = 0, 1, 2 — matches the step to its decoration by position
+            const decor = STEP_DECORATIONS[i] ?? STEP_DECORATIONS[0];
+            return (
+              <div
+                key={step.stepNumber}
+                className="relative rounded-2xl border border-border bg-surface p-6"
+              >
+                {/* Connector line between cards */}
+                {i < activeSteps.length - 1 && (
+                  <div className="absolute right-0 top-8 hidden h-px w-6 bg-border sm:block translate-x-full" />
+                )}
 
-              {/* Icon */}
-              <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${step.iconBg} ${step.color}`}>
-                {step.icon}
+                {/* Icon */}
+                <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${decor.iconBg} ${decor.color}`}>
+                  {decor.icon}
+                </div>
+
+                {/* Step number */}
+                <span className={`mt-4 block text-xs font-semibold uppercase tracking-widest ${decor.color}`}>
+                  Step {step.stepNumber}
+                </span>
+
+                <h3 className="mt-1.5 text-base font-semibold text-heading">{step.title}</h3>
+                <div className="mt-2 text-sm leading-relaxed text-muted">
+                  {typeof step.body === 'string'
+                    ? step.body
+                    : <PortableText value={step.body} />
+                  }
+                </div>
               </div>
-
-              {/* Step number */}
-              <span className={`mt-4 block text-xs font-semibold uppercase tracking-widest ${step.color}`}>
-                Step {step.number}
-              </span>
-
-              <h3 className="mt-1.5 text-base font-semibold text-heading">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Editorial note */}
@@ -89,7 +110,7 @@ export default function HowItWorks() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <p className="text-sm text-muted">
-            We publish negative findings without exception. No provider pays for coverage, placement, or ratings. —{" "}
+            No paid placement. No hidden negatives. —{" "}
             <Link href="/editorial-policy" className="font-medium text-accent hover:underline">
               Read our editorial policy
             </Link>

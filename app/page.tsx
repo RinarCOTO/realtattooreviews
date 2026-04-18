@@ -1,5 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Container from "@/components/layout/Container";
+import Button from "@/components/ui/Button";
+import BrandCard from "@/components/cards/BrandCard";
+import CityCard from "@/components/cards/CityCard";
+import Hero from "@/components/sections/home/Hero";
+import StatsRow from "@/components/sections/home/StatsRow";
+import CategoryTabs from "@/components/sections/home/CategoryTabs";
+import HowItWorks from "@/components/sections/home/HowItWorks";
+import IsItWorthIt from "@/components/sections/home/IsItWorthIt";
+import CTASection from "@/components/sections/home/CTASection";
+import HorizontalScroll from "@/components/ui/HorizontalScroll";
+import FAQSection from "@/components/sections/home/FAQSection";
+import RecentReviewsSection from "@/components/reviews/RecentReviewsSection";
+import { brands } from "@/lib/mock-data/brands";
+import { cities } from "@/lib/mock-data/cities";
+import { getRecentReviews } from "@/lib/data/reviews";
+import { getHomepageCMS } from "@/lib/page-data/homepage-cms";
 
 export const metadata: Metadata = {
   title: "RealTattooReviews — Compare Tattoo Removal Clinics Before You Book",
@@ -14,53 +31,28 @@ export const metadata: Metadata = {
     canonical: "https://realtattooreviews.com",
   },
 };
-import Container from "@/components/layout/Container";
-import Button from "@/components/ui/Button";
-import BrandCard from "@/components/cards/BrandCard";
-import CityCard from "@/components/cards/CityCard";
-import ReviewCardGrid from "@/components/reviews/ReviewCardGrid";
-import Hero from "@/components/sections/home/Hero";
-import StatsRow from "@/components/sections/home/StatsRow";
-import CategoryTabs from "@/components/sections/home/CategoryTabs";
-import HowItWorks from "@/components/sections/home/HowItWorks";
-import IsItWorthIt from "@/components/sections/home/IsItWorthIt";
-import CTASection from "@/components/sections/home/CTASection";
-import HorizontalScroll from "@/components/ui/HorizontalScroll";
-import FAQSection from "@/components/sections/home/FAQSection";
-import { brands } from "@/lib/mock-data/brands";
-import { cities } from "@/lib/mock-data/cities";
-import { reviews } from "@/lib/mock-data/reviews";
+export default async function HomePage() {
+  const [recentReviews, cms] = await Promise.all([
+    getRecentReviews(6),
+    getHomepageCMS(),
+  ]);
 
-export default function HomePage() {
   return (
     <>
       {/* ── 1. Hero ─────────────────────────────────── */}
-      <Hero />
+      <Hero headline={cms?.heroHeadline} subheadline={cms?.heroSubheadline} />
 
       {/* ── 2. Stats ────────────────────────────────── */}
       <StatsRow />
 
       {/* ── 3. How it works ─────────────────────────── */}
-      <HowItWorks />
+      <HowItWorks steps={cms?.howItWorksSteps} />
 
       {/* ── 4. Category tabs ────────────────────────── */}
       <CategoryTabs />
 
       {/* ── 5. Recent reviews ───────────────────────── */}
-      {reviews.length > 0 && (
-        <section className="py-14">
-          <Container>
-            <div className="mb-8 flex items-end justify-between">
-              <div>
-                <h2 className="text-[28px] font-bold text-heading">Recently reviewed</h2>
-                <p className="mt-1 text-sm text-muted">Latest submissions from verified patients.</p>
-              </div>
-              <Button href="/reviews" variant="secondary" size="sm">All reviews →</Button>
-            </div>
-            <ReviewCardGrid reviews={reviews} columns={2} />
-          </Container>
-        </section>
-      )}
+      <RecentReviewsSection reviews={recentReviews} />
 
       {/* ── 6. Featured providers ───────────────────── */}
       <section className="py-14">
@@ -125,7 +117,7 @@ export default function HomePage() {
 
       {/* ── 10. FAQ ─────────────────────────────────── */}
       <section className="border-t border-border bg-surface">
-        <FAQSection />
+        <FAQSection items={cms?.faqItems} />
       </section>
 
       {/* ── 11. Final CTA banner ────────────────────── */}

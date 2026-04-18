@@ -70,3 +70,28 @@ export function getFeaturedProviders(limit = 6): Provider[] {
     .sort((a, b) => (b.featuredScore ?? 0) - (a.featuredScore ?? 0))
     .slice(0, limit);
 }
+
+/**
+ * Return the canonical href for a review card CTA.
+ *
+ * Multi-location:  /providers/{providerSlug}/{locationId}
+ * Single-location: /providers/{providerSlug}
+ *
+ * providerSlug should be the brand-level slug (e.g. "removery", "inkout").
+ * locationId should be the location segment (e.g. "bucktown", "austin").
+ */
+export function resolveProviderHref({
+  providerSlug,
+  providerType,
+  locationId,
+}: {
+  providerSlug?: string;
+  providerType?: "multi-location" | "single-location";
+  locationId?: string;
+}): string {
+  if (!providerSlug) return "/providers";
+  if (providerType === "multi-location" && locationId) {
+    return `/providers/${providerSlug}/${locationId}`;
+  }
+  return `/providers/${providerSlug}`;
+}
