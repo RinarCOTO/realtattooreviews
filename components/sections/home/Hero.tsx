@@ -28,14 +28,21 @@ export default function Hero({headline, subheadline}: Props) {
 
   return (
     <section
-      className="border-b border-border py-20 sm:py-28"
+      className="border-b border-border py-24 sm:py-32"
       style={{
-        backgroundImage: [
-          "radial-gradient(ellipse 55% 60% at 0% 0%, #F1DFD7 0%, transparent 70%)",
-          "radial-gradient(ellipse 50% 55% at 100% 0%, #DCEBE8 0%, transparent 70%)",
-          "radial-gradient(ellipse 80% 45% at 50% 100%, #F5E8C8 0%, transparent 70%)",
-        ].join(", "),
         backgroundColor: "#FFFDFC",
+        backgroundImage: [
+          // dot grid texture
+          "url(\"data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23C8C2B8' fill-opacity='0.35'/%3E%3C/svg%3E\")",
+          // top-left terracotta bloom — starts outside viewport
+          "radial-gradient(ellipse 70% 75% at -10% -5%, #E8C8BB 0%, transparent 62%)",
+          // top-right teal bloom — starts outside viewport
+          "radial-gradient(ellipse 65% 70% at 110% -5%, #BDD6D3 0%, transparent 62%)",
+          // bottom amber undertone
+          "radial-gradient(ellipse 100% 55% at 50% 115%, #EDE3C4 0%, transparent 55%)",
+          // center spotlight — keeps text area bright and crisp
+          "radial-gradient(ellipse 55% 50% at 50% 32%, rgba(255,254,252,1) 0%, transparent 70%)",
+        ].join(", "),
       }}
     >
       <div className="mx-auto max-w-3xl px-4 text-center">
@@ -51,12 +58,12 @@ export default function Hero({headline, subheadline}: Props) {
         </span>
 
         {/* Heading */}
-        <h1 className="mt-6 text-[42px] font-bold leading-[1.1] tracking-tight text-heading sm:text-[52px]">
+        <h1 className="mt-6 text-[42px] font-bold leading-[1.1] tracking-tight text-heading sm:text-[60px]">
           {headline ?? "Compare Tattoo Removal Clinics Before You Book"}
         </h1>
 
         {/* Subheading */}
-        <div className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-body">
+        <div className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-body">
           {subheadline
             ? <PortableText value={subheadline} />
             : "Read real reviews, compare clear ratings, and explore provider and city pages built to help you choose with more confidence."
@@ -95,7 +102,7 @@ export default function Hero({headline, subheadline}: Props) {
             <Link
               key={term}
               href={`/reviews?q=${encodeURIComponent(term)}`}
-              className="rounded-full border border-border bg-surface px-3 py-1 text-xs text-body transition-colors hover:border-accent hover:text-accent"
+              className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs text-body transition-colors hover:border-accent hover:text-accent"
             >
               {term}
             </Link>
