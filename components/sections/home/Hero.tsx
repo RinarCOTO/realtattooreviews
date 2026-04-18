@@ -3,7 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { PortableText, type PortableTextBlock } from "@portabletext/react";
 
+type Props = {
+  headline?:    string | null;
+  subheadline?: PortableTextBlock[] | null;
+}
 const popular = [
   "Complete removal",
   "Color ink removal",
@@ -12,7 +17,7 @@ const popular = [
   "Microblading removal",
 ];
 
-export default function Hero() {
+export default function Hero({headline, subheadline}: Props) {
   const router = useRouter();
   const [query, setQuery] = useState("");
 
@@ -22,25 +27,41 @@ export default function Hero() {
   }
 
   return (
-    <section className="bg-surface border-b border-border py-20 sm:py-28">
+    <section
+      className="border-b border-border py-20 sm:py-28"
+      style={{
+        backgroundImage: [
+          "radial-gradient(ellipse 55% 60% at 0% 0%, #F1DFD7 0%, transparent 70%)",
+          "radial-gradient(ellipse 50% 55% at 100% 0%, #DCEBE8 0%, transparent 70%)",
+          "radial-gradient(ellipse 80% 45% at 50% 100%, #F5E8C8 0%, transparent 70%)",
+        ].join(", "),
+        backgroundColor: "#FFFDFC",
+      }}
+    >
       <div className="mx-auto max-w-3xl px-4 text-center">
 
         {/* Eyebrow */}
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-bg px-3.5 py-1 text-xs font-medium text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          Independent reviews · Verified patients · No paid placements
+        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-bg px-3.5 py-1 text-xs font-medium text-muted">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <span>Independent reviews</span>
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <span>Verified patients</span>
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <span>No paid placements</span>
         </span>
 
         {/* Heading */}
         <h1 className="mt-6 text-[42px] font-bold leading-[1.1] tracking-tight text-heading sm:text-[52px]">
-          Compare Tattoo Removal<br className="hidden sm:block" /> Clinics Before You Book
+          {headline ?? "Compare Tattoo Removal Clinics Before You Book"}
         </h1>
 
         {/* Subheading */}
-        <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-body">
-          Read independent patient reviews, see transparent ratings, and explore
-          provider and city pages built to help you choose with more confidence.
-        </p>
+        <div className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-body">
+          {subheadline
+            ? <PortableText value={subheadline} />
+            : "Read real reviews, compare clear ratings, and explore provider and city pages built to help you choose with more confidence."
+          }
+        </div>
 
         {/* Search bar */}
         <form
