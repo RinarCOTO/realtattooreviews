@@ -17,7 +17,7 @@ export default function ProsCons({ pros, cons }: ProsConsProps) {
       <div className="border border-(--line) bg-white p-5 rounded-xl">
         <div className="flex items-center gap-2 mb-4">
           <DotGreen />
-          <span className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">Positives</span>
+          <span className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">What They Do Well</span>
         </div>
         {pros.length === 0 ? (
           <p className="text-[13px] text-(--muted)">Not enough review data to identify consistent positives.</p>
@@ -36,7 +36,7 @@ export default function ProsCons({ pros, cons }: ProsConsProps) {
       <div className="border border-(--line) bg-white p-5 rounded-xl">
         <div className="flex items-center gap-2 mb-4">
           <DotRed />
-          <span className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">Cautions</span>
+          <span className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">Where Users Hesitate</span>
         </div>
         {cons.length === 0 ? (
           <p className="text-[13px] text-(--muted)">No consistent negative signals in the current review dataset.</p>

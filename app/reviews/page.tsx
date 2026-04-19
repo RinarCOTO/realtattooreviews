@@ -28,28 +28,24 @@ const TECH_TAGS = [
 
 const FAQ_ITEMS = [
   {
-    q: "Are these reviews independent?",
-    a: "Yes. We do not accept payment from providers for reviews or rankings. All reviews are collected from public sources, verified for legitimacy, and analyzed using a consistent methodology. Providers cannot remove or alter their reviews.",
-  },
-  {
-    q: "How do you evaluate providers?",
-    a: "We analyze sourced public reviews for outcome quality, session experience, pain reports, staff communication, and aftercare support. We also track scarring mentions, refund disputes, and incomplete removal patterns. Providers are scored on review volume, consistency, and outcome signals.",
-  },
-  {
-    q: "How many reviews are enough to trust a clinic?",
-    a: "We consider 15 or more sourced reviews a meaningful sample for most clinics. Below 10, patterns are difficult to confirm. Providers with 30 or more reviews are given higher confidence scores in our analysis.",
+    q: "Are tattoo removal reviews trustworthy?",
+    a: "They can be, if you look for patterns rather than isolated praise or complaints. This page is designed to make that easier by comparing public review signals, clinic ratings, and repeated patient experience themes in one place.",
   },
   {
     q: "What should I look for in tattoo removal reviews?",
-    a: "Look for reviews that mention specific outcomes rather than just general satisfaction. Pay attention to session count, fading progress, pain descriptions, and how the clinic handled complications. Avoid clinics where reviews are vague, clustered in a short time window, or lack detail.",
+    a: "Look for review count, complaint patterns, safety and aftercare reputation, pricing transparency, session count expectations, technology mentioned, and whether patient experiences stay consistent across locations.",
   },
   {
-    q: "What is the difference between laser and non-laser removal?",
-    a: "Laser removal uses targeted light energy to break down ink particles. Non-laser methods like TEPR use a different mechanism to draw ink to the surface. Each has trade-offs in pain, session count, scarring risk, and ink types. Our comparisons page covers this in detail.",
+    q: "How many reviews are enough to trust a clinic?",
+    a: "There is no perfect number, but more review volume gives you better context. A high average rating based on very few reviews is less persuasive than strong ratings supported by a large review count and consistent feedback themes.",
   },
   {
-    q: "How do I know if a provider's results are real?",
-    a: "Public-source Google reviews are harder to fabricate at scale than isolated testimonials. We cross-reference review patterns, flag sudden rating spikes, and note when review language is unusually uniform. Providers with longer review histories and more diverse reviewer profiles get higher credibility scores.",
+    q: "How do I compare tattoo removal clinics?",
+    a: "Start with ratings, review volume, treatment reputation, technology, and complaint patterns. Then open the full provider page to check safety signals and whether the provider fits your situation.",
+  },
+  {
+    q: "Does tattoo removal really work?",
+    a: "Often yes, but results vary by ink, skin, provider skill, treatment plan, and technology used. Reviews help you judge whether a clinic sets realistic expectations and delivers a consistent patient experience.",
   },
 ];
 
@@ -64,14 +60,14 @@ const TRUST_ITEMS = [
   {
     num: "01",
     title: "How reviews are collected",
-    body: "Sourced from public platforms, screened for duplication patterns, and tagged with structured signals: outcome, pain level, session count, and complication flags.",
+    body: "We track average rating and review count so you can judge both score and confidence. We summarize recurring patient experiences rather than relying on one-off comments.",
     href: "#methodology",
     link: "Collection methodology",
   },
   {
     num: "02",
     title: "How providers are evaluated",
-    body: "Each provider is scored on review volume, outcome consistency, communication quality, and complication rate. Scores update weekly.",
+    body: "We flag complaint patterns, especially when they appear across multiple reviews or locations. We note session count expectations, safety and aftercare reputation, and pricing clarity.",
     href: "#methodology",
     link: "Read the full methodology",
   },
@@ -159,21 +155,18 @@ export default async function ReviewsPage() {
         <Container>
           <MonoLabel color="accent" size="sm" className="mb-6 flex items-center gap-2.5">
             <span className="inline-block w-6 h-px bg-(--accent)" />
-            Independent reviews · Updated weekly
+            Independent Provider Reviews
           </MonoLabel>
 
           <h1 className="font-sans font-bold text-[clamp(48px,7.5vw,92px)] leading-[0.98] tracking-[-0.035em] m-0 text-(--ink) max-w-[14ch]">
-            Tattoo removal,{" "}
-            <em className="italic text-(--accent)">reviewed</em>{" "}
-            with receipts.
+            Tattoo Removal Reviews
           </h1>
 
           <p className="mt-7 font-sans font-normal text-[19px] leading-normal text-(--muted) max-w-160">
-            <span className="text-(--ink) font-medium">
-              {stats.totalReviews.toLocaleString()} sourced reviews
-            </span>{" "}
-            across {stats.totalProviders} providers in {stats.totalCities} cities.
-            Compare outcomes, methods, pain signals, sessions, and cost before you book.
+            Compare tattoo removal providers in one place. Clinic ratings, review counts, patient experience patterns, and direct links to full provider pages.
+          </p>
+          <p className="mt-4 font-sans font-normal text-[15px] leading-relaxed text-(--muted) max-w-160">
+            If you are researching tattoo removal clinics before booking, start here. This page is built to help you compare providers at a high level, spot trust signals and complaint patterns, and move into deeper research when one stands out. No promotional rankings. No guesswork.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2.5">
@@ -181,13 +174,13 @@ export default async function ReviewsPage() {
               href="#featured"
               className="inline-flex items-center px-6 py-3 bg-(--ink) text-(--bg) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full"
             >
-              Browse reviews →
+              Compare Providers →
             </Link>
             <Link
               href="/methodology"
               className="inline-flex items-center px-6 py-3 border border-(--line) text-(--ink) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full"
             >
-              How we review
+              How We Evaluate Clinics
             </Link>
           </div>
 
@@ -242,9 +235,9 @@ export default async function ReviewsPage() {
       {/* ── 3. Featured snapshots ─────────────────────────────────────────── */}
       <PageSection id="featured">
         <SectionHeader
-          eyebrow="03 · Featured"
-          title="Review snapshots, fresh off the clinic chair."
-          description="Start with recent sourced review excerpts, then move into full provider review pages for deeper research."
+          eyebrow="03 · Top-Rated"
+          title="Top-Rated Tattoo Removal Clinics"
+          description="These featured summaries highlight the providers showing the strongest current review signals. The focus is on what users actually need before booking: clinic ratings, review volume, treatment reputation, safety record, and location consistency."
           right={
             <Link href="#providers" className="text-[13px] text-(--accent) font-medium no-underline whitespace-nowrap">
               Jump to provider index →
@@ -262,8 +255,8 @@ export default async function ReviewsPage() {
       <PageSection id="providers" bg="surface">
         <SectionHeader
           eyebrow="04 · Provider index"
-          title="Compare providers side by side."
-          description="Filter by method, sort by review volume or rating, then open the dedicated review page for pricing context and outcome synthesis."
+          title="Compare Tattoo Removal Providers"
+          description="Start with the providers people research most. Each summary is designed to help you compare the signals that matter before booking: average rating, review count, location coverage, treatment reputation, and complaint themes. The goal is not to declare a universal winner. It is to help you narrow your shortlist faster."
         />
         <ProviderIndexWithFilters brands={brandSummaries} independents={independents} />
       </PageSection>
@@ -272,8 +265,8 @@ export default async function ReviewsPage() {
       <PageSection>
         <SectionHeader
           eyebrow="05 · Recent coverage"
-          title="Latest review activity."
-          description="Every new sourced review we have analyzed across the providers we cover. Pattern changes and anomalies surface here first."
+          title="Latest Review Coverage"
+          description="This section highlights recently added or updated provider pages. If you are comparing national chains or fast-growing clinics, checking the latest coverage helps you spot where the strongest new signals are appearing."
           right={
             <Link href="#providers" className="text-[13px] text-(--accent) font-medium no-underline whitespace-nowrap">
               Browse provider pages →
@@ -290,9 +283,9 @@ export default async function ReviewsPage() {
       {/* ── 6. Reviews by brand ──────────────────────────────────────────── */}
       <PageSection bg="surface">
         <SectionHeader
-          eyebrow="06 · Reviews by brand"
-          title="Know the name? Start there."
-          description="The biggest branded review paths, with location-level follow-through. Averages reflect all sourced reviews across all locations of that brand."
+          eyebrow="06 · Reviews by provider"
+          title="Reviews by Provider"
+          description="If you already know which brand you want to research, go directly to its full provider page. These pages are built for branded review intent and go deeper than the summary cards on this hub."
         />
         <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] border border-(--line) bg-white rounded-xl overflow-hidden">
           {featuredBrands.map((brand, i) => (
@@ -399,9 +392,9 @@ export default async function ReviewsPage() {
       {/* ── 8. Research links ────────────────────────────────────────────── */}
       <PageSection bg="surface">
         <SectionHeader
-          eyebrow="08 · Research"
-          title="Before you book."
-          description="Pricing context, method trade-offs, and what to actually expect between sessions."
+          eyebrow="08 · Where to go next"
+          title="Where to Go Next"
+          description="Pricing context, method comparisons, and what to expect between sessions. Use these when you are ready to go deeper than reviews."
         />
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
           {RESEARCH_LINKS.map((link, i) => (
@@ -429,11 +422,29 @@ export default async function ReviewsPage() {
       </PageSection>
 
       {/* ── 9. FAQ ───────────────────────────────────────────────────────── */}
+      {/* ── 9. Is tattoo removal worth it? ──────────────────────────────── */}
+      <PageSection bg="surface">
+        <SectionHeader
+          eyebrow="09 · Worth it?"
+          title="Is Tattoo Removal Worth It?"
+          description="For many people, yes. But the answer depends heavily on the provider, the tattoo, the treatment plan, and how realistic the clinic is about session count, pain, healing, cost, and expected results."
+        />
+        <div className="max-w-prose">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
+            Reviews matter because they show what happens after the consultation pitch. They help you judge whether patients felt informed, safe, and satisfied with the actual experience, not just the sales process.
+          </p>
+          <p className="mt-4 font-sans text-[14px] leading-relaxed text-(--muted)">
+            If you want proof beyond ratings, move next to a full provider review page or a treatment comparison page.
+          </p>
+        </div>
+      </PageSection>
+
+      {/* ── 10. FAQ ──────────────────────────────────────────────────────── */}
       <PageSection>
         <SectionHeader
-          eyebrow="09 · Frequently asked"
-          title="Questions we get."
-          description="Collected from reader feedback and search patterns. Anything missing? Write to us."
+          eyebrow="10 · Frequently asked"
+          title="Frequently Asked Questions"
+          description="Common questions about how to read and use tattoo removal reviews before choosing a clinic."
         />
         <FAQAccordion items={FAQ_ITEMS} />
       </PageSection>

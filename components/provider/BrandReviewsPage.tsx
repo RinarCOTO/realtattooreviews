@@ -72,7 +72,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
             {locations.length} {locations.length === 1 ? "location" : "locations"}.
           </em></>
         }
-        body={`across ${locations.length} ${locations.length === 1 ? "location" : "locations"}. Compare outcomes, pricing context, and treatment approach before booking.`}
+        body={`across ${locations.length} ${locations.length === 1 ? "location" : "locations"}. See how ${brand} compares on ratings, pricing, treatment approach, and overall reputation before you book.`}
         tags={brandTags}
         reviewCount={totalReviews}
         reviewsHref="#results"
@@ -91,7 +91,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
 
       <section id="overview" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <BlockHeading title="Overview" body="Quick verdict and the most meaningful positives and cautions from the review data." />
+          <BlockHeading title={`Is ${brand} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and location consistency make it a good fit for your tattoo, budget, and goals." />
           <VerdictSidebar rows={buildOverviewStats(reviews)} />
           <ProsCons pros={pros} cons={cons} />
         </Container>
@@ -99,7 +99,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
 
       <section id="reviews" className="border-b border-(--line) bg-bg py-22">
         <Container>
-          <BlockHeading title="Review-Source Summary" body="Where reviews come from and how the signal splits across positive, mixed, and negative experiences." />
+          <BlockHeading title="What Reviews Say" body="Public reviews are most useful when they are treated as patterns, not as isolated quotes. Here is what appears most often in the feedback." />
           <SourceSummary reviews={reviews} />
         </Container>
       </section>
@@ -107,7 +107,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       <section id="results" className="border-b border-(--line) bg-(--wash) py-22">
         <Container className="grid gap-6 lg:grid-cols-[minmax(0,1fr),280px]">
           <div>
-            <BlockHeading title="Results and Review Evidence" body="Sourced review excerpts alongside an outcome signal count, showing how often fading results, pain, or scarring come up." />
+            <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
             <ReviewCardGrid reviews={reviews.slice(0, 6)} columns={2} showProvider={false} />
             <ReviewsMoreLink total={reviews.length} />
           </div>
@@ -126,21 +126,21 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
 
       <section id="pricing" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
-          <BlockHeading title="Pricing Context" body="How this provider's pricing compares to typical session costs and what factors drive the difference." />
+          <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
           <InfoCard label="Pricing signal" body={buildPricingContext(locations)} link="Compare against the national cost guide" linkHref="/cost" />
         </Container>
       </section>
 
       <section id="treatment" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <BlockHeading title="Treatment and Technology Overview" body="The removal method and technology this provider uses, based on review signals and profile data." />
+          <BlockHeading title="Treatment Approach and Technology" body="Brand reputation matters, but treatment fit matters more. A provider can look strong overall and still be a weak fit for a specific tattoo or skin profile." />
           <InfoCard label="Method and technology" body={buildTreatmentOverview(locations)} link="See our method comparison guide" linkHref="/comparisons/best-tattoo-removal-method" />
         </Container>
       </section>
 
       <section id="locations" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
-          <BlockHeading title="City and Location Summary" body="How each location performs individually, based on market and rating signals from the review data." />
+          <BlockHeading title={`${brand} by Location`} body="Large brands often perform unevenly by city. A national reputation can be directionally useful, but local execution still matters." />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {locations.map((location) => (
               <Link
@@ -168,14 +168,14 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
 
       <section id="alternatives" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <BlockHeading title="Alternatives and Comparisons" body={`Compare ${brand} against nearby and method-adjacent providers before making a decision.`} />
+          <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${brand}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
         </Container>
       </section>
 
       <section id="faq" className="bg-(--surface) py-22">
         <Container>
-          <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${brand} before booking.`} />
+          <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${brand} before making a booking decision.`} />
           <div className="grid gap-4 sm:grid-cols-3">
             {faqItems.map((item) => (
               <div key={item.q} className="border border-(--line) bg-white p-5 rounded-xl">
