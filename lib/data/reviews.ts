@@ -57,6 +57,20 @@ function resolveProviderMeta(dbSlug: string, citySlug: string): ProviderResoluti
 
 // ── Mapper ───────────────────────────────────────────────────────────────────
 
+function formatReviewerName(name: string | null): string | null {
+  if (!name) return null;
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0];
+  return `${parts[0]} ${parts[parts.length - 1][0].toUpperCase()}.`;
+}
+
+function formatReviewDate(isoDate: string | null): string | undefined {
+  if (!isoDate) return undefined;
+  const d = new Date(isoDate);
+  if (Number.isNaN(d.getTime())) return undefined;
+  return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
+
 export function dbReviewToReview(r: DbReview): Review {
   const { providerType, providerSlug, locationId } = resolveProviderMeta(
     r.provider_slug,
@@ -73,6 +87,7 @@ export function dbReviewToReview(r: DbReview): Review {
 
   return {
     id: r.id,
+    reviewer: formatReviewerName(r.reviewer_name),
     provider: r.provider_name,
     providerSlug,
     providerType,
@@ -82,7 +97,7 @@ export function dbReviewToReview(r: DbReview): Review {
     state: r.location_state,
     rating: r.star_rating,
     source: r.verified_source,
-    date: r.review_date ?? undefined,
+    date: formatReviewDate(r.review_date_at) ?? r.review_date ?? undefined,
     excerpt: r.review_text,   // cards use CSS line-clamp; excerpt = full text
     fullText: r.review_text,
     reviewUrl: r.source_review_url ?? undefined,
@@ -187,12 +202,19 @@ export async function getRecentReviews(limit = 6): Promise<Review[]> {
   return selectDiverseReviews(pool, limit);
 }
 
-/** Fetch all reviews for a given provider slug, mapped to Review. */
+/**
+ * Fetch all reviews for a given provider slug, mapped to Review.
+ *
+ * Handles two patterns:
+ *   - Single-location and brand-only slugs: exact match on provider_slug.
+ *   - Multi-location brand slugs (e.g. "removery"): also matches sub-location
+ *     slugs like "removery-bucktown" via a prefix filter.
+ */
 export async function getReviewsByProvider(providerSlug: string): Promise<Review[]> {
   const { data, error } = await supabase
     .from("reviews")
     .select("*")
-    .eq("provider_slug", providerSlug)
+    .or(`provider_slug.eq.${providerSlug},provider_slug.ilike.${providerSlug}-%`)
     .order("star_rating", { ascending: false });
 
   if (error) {
@@ -200,6 +222,31 @@ export async function getReviewsByProvider(providerSlug: string): Promise<Review
     return [];
   }
   return (data ?? []).map(dbReviewToReview);
+}
+
+/**
+ * Return all unique canonical page slugs present in the reviews table.
+ * Multi-location sub-slugs (e.g. "removery-bucktown") are collapsed to the
+ * brand slug ("removery"). Single-location slugs are returned as-is.
+ */
+export async function getUniqueProviderSlugs(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("provider_slug");
+
+  if (error || !data) return [];
+
+  const rawSlugs = [...new Set(data.map((r) => r.provider_slug as string))];
+
+  const canonical = rawSlugs.map((slug) => {
+    // Collapse brand+location slugs (e.g. "removery-bucktown") → brand slug
+    const matchingBrand = MULTI_LOCATION_BRAND_SLUGS.find(
+      (bs) => slug.startsWith(bs + "-") || slug === bs
+    );
+    return matchingBrand ?? slug;
+  });
+
+  return [...new Set(canonical)];
 }
 
 /** Fetch all reviews for a given city slug, mapped to Review. */
@@ -215,6 +262,51 @@ export async function getReviewsByCity(citySlug: string): Promise<Review[]> {
     return [];
   }
   return (data ?? []).map(dbReviewToReview);
+}
+
+/** Fetch every review, sorted best rating first. */
+export async function getAllReviews(): Promise<Review[]> {
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("*")
+    .order("star_rating", { ascending: false })
+    .order("imported_at", { ascending: false });
+
+  if (error) {
+    console.error("getAllReviews error:", error.message);
+    return [];
+  }
+  return (data ?? []).map(dbReviewToReview);
+}
+
+/** Scar mention count and review total per brand slug. */
+export async function getBrandStats(
+  brandSlugs: string[]
+): Promise<Record<string, { scarMentions: number; totalReviews: number }>> {
+  if (brandSlugs.length === 0) return {};
+
+  const orFilter = brandSlugs
+    .flatMap((slug) => [`provider_slug.eq.${slug}`, `provider_slug.ilike.${slug}-%`])
+    .join(",");
+
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("provider_slug, scarring_mentioned")
+    .or(orFilter);
+
+  if (error || !data) return {};
+
+  const result: Record<string, { scarMentions: number; totalReviews: number }> = {};
+  for (const slug of brandSlugs) {
+    const rows = data.filter(
+      (r) => r.provider_slug === slug || r.provider_slug.startsWith(slug + "-")
+    );
+    result[slug] = {
+      scarMentions: rows.filter((r) => r.scarring_mentioned === "Yes").length,
+      totalReviews: rows.length,
+    };
+  }
+  return result;
 }
 
 /** Aggregate stats: total reviews, unique providers, unique cities. */

@@ -114,9 +114,9 @@ export const reviews: Review[] = [
     source: "Google",
     date: "2025-01-30",
     fullText:
-      "Transparent pricing model — paid per session and knew exactly what I was getting. Slower fading on the red ink but overall happy with the process.",
+      "Transparent pricing model. Paid per session and knew exactly what I was getting. Slower fading on the red ink but overall happy with the process.",
     excerpt:
-      "Transparent pricing model — paid per session and knew exactly what I was getting.",
+      "Transparent pricing model. Paid per session and knew exactly what I was getting.",
     sessions: 8,
     tags: ["Color Ink", "Transparent Pricing"],
     costMentioned: true,

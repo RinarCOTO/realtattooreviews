@@ -2,7 +2,7 @@ export const comparisons = [
   {
     slug: "removery-vs-laseraway",
     title: "Removery vs LaserAway",
-    description: "Side-by-side comparison of two national chains — pricing, session spacing, patient outcomes, and which performs better by market.",
+    description: "Side-by-side comparison of two national chains: pricing, session spacing, patient outcomes, and which performs better by market.",
   },
   {
     slug: "inkout-vs-removery",
@@ -27,6 +27,6 @@ export const comparisons = [
   {
     slug: "best-tattoo-removal-method",
     title: "Best Tattoo Removal Method",
-    description: "Review-backed breakdown of removal methods by tattoo type, skin tone, and budget. No single best method — but clear patterns in real outcomes.",
+    description: "Review-backed breakdown of removal methods by tattoo type, skin tone, and budget. No single best method, but clear patterns in real outcomes.",
   },
 ];

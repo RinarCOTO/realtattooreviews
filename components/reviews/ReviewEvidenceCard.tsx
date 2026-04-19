@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Stars from "@/components/reviews/ui/Stars";
-import SourceBadge from "@/components/reviews/ui/SourceBadge";
 import type { Review } from "@/types/review";
 
 type Props = {
@@ -8,79 +7,64 @@ type Props = {
   showProvider?: boolean;
 };
 
-// ── Numeric rating badge (detail pages only) ─────────────────────────────────
-
-function RatingBadge({ rating }: { rating: number }) {
-  const className =
-    rating >= 4.5
-      ? "bg-secondary-soft text-secondary border-secondary/20"
-      : rating >= 3.5
-      ? "bg-warning-soft text-warning border-warning/20"
-      : "bg-danger-soft text-danger border-danger/20";
-
-  return (
-    <span className={`inline-flex items-center rounded-md border px-2.5 py-1 text-sm font-semibold ${className}`}>
-      {rating.toFixed(1)}
-      <span className="ml-1 text-xs font-normal opacity-60">/ 5</span>
-    </span>
-  );
-}
-
-// ── Component ────────────────────────────────────────────────────────────────
-
 export default function ReviewEvidenceCard({ review, showProvider = true }: Props) {
-  const providerHref = review.providerSlug ? `/providers/${review.providerSlug}` : "/providers";
+  const providerHref = review.providerSlug ? `/reviews/${review.providerSlug}` : "/reviews";
   const displayText = review.fullText ?? review.excerpt ?? "";
-  const locationLine = review.locationName ?? review.city ?? null;
+
+  const byline = review.reviewer ?? null;
 
   return (
-    <article className="flex flex-col rounded-lg border border-border bg-surface p-5 transition-shadow hover:shadow-sm">
+    <article className="flex flex-col border border-(--line) bg-white p-5 rounded-xl">
 
-      {/* Header */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-col gap-1">
-          {showProvider && (
-            <Link
-              href={providerHref}
-              className="text-sm font-semibold text-heading hover:text-accent"
-            >
-              {review.provider}
-              {review.providerType === "multi-location" && review.locationName && (
-                <span className="ml-1.5 font-normal text-muted">· {review.locationName}</span>
-              )}
-            </Link>
+      {/* Stars + rating / source badge */}
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          {review.rating !== undefined && (
+            <>
+              <Stars rating={Math.round(review.rating)} size="sm" />
+              <span className="text-[14px] font-semibold text-(--ink)">{review.rating.toFixed(1)}</span>
+            </>
           )}
-          <div className="flex items-center gap-2">
-            {review.rating !== undefined && <Stars rating={Math.round(review.rating)} />}
-            {locationLine && <span className="text-xs text-muted">{locationLine}</span>}
-          </div>
         </div>
-        {review.rating !== undefined && <RatingBadge rating={review.rating} />}
+        {review.source && (
+          <span className="border border-(--accent) px-2 py-0.5 font-mono text-[10px] tracking-widest uppercase text-(--accent)">
+            {review.source}
+          </span>
+        )}
       </div>
 
-      {/* Body */}
-      <p className="mt-4 text-sm leading-relaxed text-muted line-clamp-3">
-        {displayText}
-      </p>
+      {/* Reviewer + date */}
+      {byline && (
+        <p className="mt-1.5 text-[12px] text-(--ink)">
+          {byline}
+        </p>
+      )}
 
-      {/* Footer */}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-divider pt-4">
-        <div className="flex flex-wrap gap-1.5">
-          {review.tags?.map((tag) => (
+      {/* Provider link (optional) */}
+      {showProvider && review.providerSlug && (
+        <Link href={providerHref} className="mt-3 text-[12px] font-medium text-(--accent) hover:underline">
+          {review.provider}
+        </Link>
+      )}
+
+      {/* Quote */}
+      <blockquote className="mt-4 m-0 text-[14px] leading-[1.6] text-(--ink) flex-1">
+        &ldquo;{displayText}&rdquo;
+      </blockquote>
+
+      {/* Tags */}
+      {(review.tags ?? []).length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-1.5 border-t border-(--line) pt-3">
+          {(review.tags ?? []).slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-bg px-2 py-0.5 text-xs text-muted"
+              className="border border-(--line) px-2.5 py-0.5 font-mono text-[11px] tracking-widest uppercase text-(--ink)"
             >
               {tag}
             </span>
           ))}
         </div>
-        <div className="flex items-center gap-3 text-xs text-subtle">
-          {review.sessions != null && <span>{review.sessions} sessions</span>}
-          {review.date && <span>{review.date}</span>}
-          {review.source && <SourceBadge source={review.source} />}
-        </div>
-      </div>
+      )}
     </article>
   );
 }

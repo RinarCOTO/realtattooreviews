@@ -2,10 +2,14 @@
 
 /* ── Design tokens ──────────────────────────────────────── */
 :root {
-  --bg:               #F7F4EE;
-  --surface:          #FFFDFC;
-  --text:             #1F272E;
-  --text-soft:        #55606A;
+  --serif: var(--font-instrument-serif), 'Instrument Serif', Georgia, serif;
+  --sans:  var(--font-inter-tight), 'Inter Tight', sans-serif;
+  --mono:  'Space Mono', monospace;
+
+  --bg:               oklch(0.99 0.002 60);
+  --surface:          oklch(0.965 0.003 60);
+  --text:             oklch(0.28 0.006 60);
+  --text-soft:        oklch(0.52 0.005 60);
 
   --primary:          #243746;
   --primary-strong:   #1C2C38;
@@ -13,8 +17,8 @@
   --secondary:        #2F6F6D;
   --secondary-soft:   #DCEBE8;
 
-  --accent:           #B5654A;
-  --accent-soft:      #F1DFD7;
+  --accent:           oklch(0.52 0.12 32);
+  --accent-soft:      oklch(0.93 0.03 35);
 
   --warning:          #C58A2A;
   --warning-soft:     #F5E8C8;
@@ -22,21 +26,22 @@
   --danger:           #A34A3C;
   --danger-soft:      #F0D9D4;
 
-  --border:           #D8D2C8;
+  --border:           oklch(0.91 0.004 60);
 }
 
 @theme inline {
   /* Backgrounds */
-  --color-bg:              #F7F4EE;
-  --color-surface:         #FFFDFC;
-  --color-background:      #F7F4EE;
-  --color-foreground:      #55606A;
+  --color-bg:              oklch(0.99 0.002 60);
+  --color-surface:         oklch(0.965 0.003 60);
+  --color-surface-2:       oklch(0.94 0.003 60);
+  --color-background:      oklch(0.99 0.002 60);
+  --color-foreground:      oklch(0.52 0.005 60);
 
   /* Text */
-  --color-heading:         #1F272E;
-  --color-body:            #55606A;
-  --color-muted:           #55606A;
-  --color-subtle:          #8A939C;
+  --color-heading:         oklch(0.28 0.006 60);
+  --color-body:            oklch(0.52 0.005 60);
+  --color-muted:           oklch(0.52 0.005 60);
+  --color-subtle:          oklch(0.62 0.004 60);
 
   /* Primary (dark navy) */
   --color-primary:         #243746;
@@ -46,11 +51,11 @@
   --color-secondary:       #2F6F6D;
   --color-secondary-soft:  #DCEBE8;
 
-  /* Accent (terracotta) */
-  --color-accent:          #B5654A;
-  --color-accent-hover:    #243746;
-  --color-accent-light:    #F1DFD7;
-  --color-accent-muted:    #DCEBE8;
+  /* Accent (deep terracotta) */
+  --color-accent:          oklch(0.52 0.12 32);
+  --color-accent-hover:    oklch(0.28 0.006 60);
+  --color-accent-light:    oklch(0.93 0.03 35);
+  --color-accent-muted:    oklch(0.93 0.03 35);
 
   /* Status */
   --color-warning:         #C58A2A;
@@ -59,22 +64,27 @@
   --color-danger-soft:     #F0D9D4;
 
   /* Border / dividers */
-  --color-border:          #D8D2C8;
-  --color-divider:         #E8E4DC;
+  --color-border:          oklch(0.91 0.004 60);
+  --color-divider:         oklch(0.91 0.004 60);
+
+  /* Wash (editorial accent bg) */
+  --color-hero-bg:         oklch(0.945 0.012 35);
 
   /* Dark card background */
   --color-card-dark:       #243746;
 
   /* Fonts */
-  --font-sans:    var(--font-inter);
-  --font-display: var(--font-dm-sans);
+  --font-sans:    var(--font-inter-tight);
+  --font-display: var(--font-inter-tight);
+  --font-serif:   var(--font-instrument-serif);
+  --font-mono:    'Space Mono', monospace;
 }
 
 /* ── Base ───────────────────────────────────────────────── */
 body {
   background: var(--bg);
   color: var(--text-soft);
-  font-family: var(--font-inter), Inter, sans-serif;
+  font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
@@ -82,49 +92,66 @@ body {
 }
 
 /* ── Type scale ─────────────────────────────────────────── */
-h1 {
-  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: 60px;
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
+@layer base {
+  h1 {
+    font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
 
-h2 {
-  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
+  h2 {
+    font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
 
-h3 {
-  font-family: var(--font-inter), Inter, sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--text);
-}
+  h3 {
+    font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text);
+  }
 
-p {
-  color: var(--text-soft);
-}
+  p {
+    color: var(--text-soft);
+  }
 
-small {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--text-soft);
+  small {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-soft);
+  }
 }
 
 button, [role="button"], a.btn {
-  font-family: var(--font-inter), Inter, sans-serif;
+  font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
 
 /* ── Utilities ──────────────────────────────────────────── */
+/* ── Reviews page design tokens ─────────────────────────────────────────── */
+.reviews-page {
+  --bg:          oklch(0.99 0.002 60);
+  --surface:     oklch(0.965 0.003 60);
+  --surface-2:   oklch(0.94 0.003 60);
+  --wash:        oklch(0.945 0.012 35);
+  --ink:         oklch(0.28 0.006 60);
+  --muted:       oklch(0.52 0.005 60);
+  --line:        oklch(0.91 0.004 60);
+  --accent:      oklch(0.52 0.12 32);
+  --accent-soft: oklch(0.93 0.03 35);
+  background:    oklch(0.99 0.002 60);
+  color:         oklch(0.28 0.006 60);
+}
+
 .scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;

@@ -14,28 +14,37 @@ const nav = [
         {
           heading: "By Provider",
           links: [
-            { label: "Removery", href: "/reviews/removery" },
-            { label: "LaserAway", href: "/reviews/laseraway" },
-            { label: "Tatt2Away", href: "/reviews/tatt2away" },
+            { label: "All Providers", href: "/reviews" },
             { label: "inkOUT", href: "/reviews/inkout" },
+            { label: "Tatt2Away", href: "/reviews/tatt2away" },
+            { label: "Removery", href: "/reviews/removery" },
+            { label: "InkFree, MD", href: "/reviews/inkfree-md" },
+            { label: "MEDermis Laser Clinic", href: "/reviews/medermis-laser-clinic" },
+            { label: "DermSurgery Associates", href: "/reviews/dermsurgery-associates" },
           ],
         },
         {
           heading: "By City",
           links: [
+            { label: "All Cities", href: "/cities" },
             { label: "Austin", href: "/cities/austin" },
             { label: "Chicago", href: "/cities/chicago" },
-            { label: "Tampa", href: "/cities/tampa" },
             { label: "Houston", href: "/cities/houston" },
+            { label: "Tampa", href: "/cities/tampa" },
+            { label: "Draper", href: "/cities/draper" },
+            { label: "Pleasant Grove", href: "/cities/pleasant-grove" },
           ],
         },
         {
           heading: "By Category",
           links: [
+            { label: "All Categories", href: "/categories" },
             { label: "Complete Removal", href: "/categories/complete-removal" },
             { label: "Color Ink Removal", href: "/categories/color-ink-removal" },
-            { label: "Dark Skin Tattoo Removal", href: "/categories/dark-skin-tattoo-removal" },
+            { label: "Dark Skin Removal", href: "/categories/dark-skin-removal" },
             { label: "Microblading Removal", href: "/categories/microblading-removal" },
+            { label: "Permanent Makeup Removal", href: "/categories/permanent-makeup-removal" },
+            { label: "Cover-Up Prep", href: "/categories/cover-up-prep" },
           ],
         },
       ],
@@ -125,8 +134,30 @@ const nav = [
       ],
       featured: {
         label: "How we rate clinics",
-        description: "Our scoring methodology explained — no affiliate deals.",
+        description: "Our scoring methodology explained, no affiliate deals.",
         href: "/methodology",
+      },
+    },
+  },
+  {
+    label: "Blog",
+    href: "/blog",
+    mega: {
+      sections: [
+        {
+          heading: "Latest Posts",
+          links: [
+            { label: "All Posts", href: "/blog" },
+            { label: "How Many Sessions Does Removal Take?", href: "/blog/how-many-sessions-does-tattoo-removal-take" },
+            { label: "Q-Switch vs Picosecond Lasers", href: "/blog/q-switch-vs-picosecond-lasers" },
+            { label: "Tattoo Removal on Dark Skin", href: "/blog/tattoo-removal-on-dark-skin" },
+          ],
+        },
+      ],
+      featured: {
+        label: "Browse all posts",
+        description: "Research, provider trends, and editorial coverage on tattoo removal.",
+        href: "/blog",
       },
     },
   },

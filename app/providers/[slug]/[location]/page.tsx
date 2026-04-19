@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const provider = getProviderByBrandAndLocation(slug, location);
   if (!provider) return {};
   return {
-    title: `${provider.brand} ${provider.market} Reviews — ${provider.reviewCount} Patients | RealTattooReviews`,
+    title: `${provider.brand} ${provider.market} Reviews: ${provider.reviewCount} Patients | RealTattooReviews`,
     description: `${provider.reviewCount} verified patient reviews for ${provider.brand} in ${provider.market}. ${provider.rating} avg rating. ${provider.summary}`,
     openGraph: {
       title: `${provider.brand} ${provider.market} Reviews`,
@@ -71,7 +71,7 @@ export default async function BrandLocationPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ldBreadcrumb) }}
       />
       {/* Header */}
-      <section className="border-b border-border bg-surface py-14">
+      <section className="border-b border-border bg-hero-bg py-14">
         <Container>
           {/* Breadcrumb */}
           <p className="mb-2 text-sm text-muted">
@@ -90,7 +90,7 @@ export default async function BrandLocationPage({ params }: Props) {
           </p>
 
           <h1 className="text-[36px] font-bold text-heading">
-            {brandName} — {provider.market}
+            {brandName}: {provider.market}
           </h1>
           <p className="mt-1 text-[15px] text-muted">
             {provider.reviewCount} reviews · {provider.rating} avg rating · {provider.specialty}

@@ -2,36 +2,43 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import { comparisons } from "@/lib/mock-data/comparisons";
+import { getAllComparisons, getComparison, getAllComparisonSlugs } from "@/lib/page-data/comparisons";
+import { comparisons as mockComparisons } from "@/lib/mock-data/comparisons";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  return comparisons.map((c) => ({ slug: c.slug }));
+  const sanitySlugs = await getAllComparisonSlugs();
+  if (sanitySlugs.length > 0) return sanitySlugs.map((slug) => ({ slug }));
+  return mockComparisons.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const comparison = comparisons.find((c) => c.slug === slug);
+  const comparison = (await getComparison(slug)) ?? mockComparisons.find((c) => c.slug === slug);
   if (!comparison) return {};
+  const title = (comparison as any).seoTitle ?? `${comparison.title}: Side-by-Side Comparison | RealTattooReviews`;
+  const description = (comparison as any).seoDescription ?? comparison.description;
+  const seoImage = (comparison as any).seoImage;
   return {
-    title: `${comparison.title} — Side-by-Side Comparison | RealTattooReviews`,
-    description: comparison.description,
+    title,
+    description,
     openGraph: {
-      title: `${comparison.title} — Side-by-Side Comparison`,
-      description: comparison.description,
+      title: `${comparison.title}: Side-by-Side Comparison`,
+      description,
+      ...(seoImage ? { images: [{ url: seoImage.url, alt: seoImage.alt }] } : {}),
     },
   };
 }
 
 export default async function ComparisonPage({ params }: Props) {
   const { slug } = await params;
-  const comparison = comparisons.find((c) => c.slug === slug);
+  const comparison = (await getComparison(slug)) ?? mockComparisons.find((c) => c.slug === slug);
   if (!comparison) notFound();
 
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-surface py-14">
+      <section className="border-b border-border bg-hero-bg py-14">
         <Container>
           <p className="mb-2 text-sm text-muted">
             <Link href="/comparisons" className="hover:text-accent">Comparisons</Link>

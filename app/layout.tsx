@@ -1,19 +1,34 @@
 import type { Metadata } from "next";
-import { DM_Sans, Inter } from "next/font/google";
+import { Inter, Inter_Tight, Instrument_Serif, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+});
+
+const dmMono = Space_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal"],
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+});
+
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  style: ["normal", "italic"],
 });
 
 const siteUrl = "https://realtattooreviews.com";
@@ -38,7 +53,7 @@ export const metadata: Metadata = {
         url: "/images/image-test.jpg",
         width: 1200,
         height: 630,
-        alt: "RealTattooReviews — Compare Tattoo Removal Clinics",
+        alt: "RealTattooReviews: Compare Tattoo Removal Clinics",
       },
     ],
   },
@@ -64,7 +79,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${instrumentSerif.variable} ${dmMono.variable} ${inter.variable} ${interTight.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-bg text-body">
         <Header />
         <main className="flex-1">{children}</main>

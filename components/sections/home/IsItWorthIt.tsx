@@ -37,7 +37,7 @@ export default function IsItWorthIt() {
               Treatment Guides
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
-              What to expect before, during, and after tattoo removal — written
+              What to expect before, during, and after tattoo removal, written
               from real patient experiences, not clinic marketing.
             </p>
           </div>

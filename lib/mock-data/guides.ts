@@ -8,7 +8,7 @@ export const guides = [
   {
     slug: "tattoo-removal-healing-process",
     title: "The Tattoo Removal Healing Process",
-    description: "A timeline of what to expect after each session — blistering, scabbing, fading, and how long full healing takes between treatments.",
+    description: "A timeline of what to expect after each session: blistering, scabbing, fading, and how long full healing takes between treatments.",
     image: "/images/image-test.jpg",
   },
   {
