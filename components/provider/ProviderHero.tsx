@@ -65,13 +65,13 @@ export default function ProviderHero({
                 href={reviewsHref}
                 className="inline-flex items-center px-6 py-3 bg-(--ink) text-(--bg) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full"
               >
-                Read {reviewCount} reviews →
+                See Reviews and Complaints →
               </Link>
               <Link
                 href="#alternatives"
                 className="inline-flex items-center px-6 py-3 border border-(--line) text-(--ink) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full"
               >
-                Compare alternatives
+                Compare Alternatives
               </Link>
             </div>
           </div>

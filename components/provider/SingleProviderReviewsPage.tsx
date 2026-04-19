@@ -64,7 +64,7 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
       <ProviderHero
         breadcrumb={["Reviews", provider.name, city]}
         nameNode={<>{provider.name},{" "}<em className="italic text-[oklch(0.55_0.15_35)]">{city}.</em></>}
-        body={`from ${provider.market}. Compare outcomes, session experience, and pricing context before deciding.`}
+        body={`in ${provider.market}. See how ${provider.name} compares on ratings, pricing, treatment approach, and overall reputation before you book.`}
         tags={provider.tags ?? []}
         reviewCount={realCount}
         reviewsHref="#results"
@@ -89,14 +89,14 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
 
       <section id="overview" className="border-b border-(--line) bg-hero-bg py-22">
         <Container>
-          <BlockHeading title="Overview" body="Quick verdict first, then the biggest positives and the biggest cautions before someone reads deeper." />
+          <BlockHeading title={`Is ${provider.name} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and local consistency make it a good fit for your tattoo, budget, and goals." />
           <ProsCons pros={pros} cons={cons} />
         </Container>
       </section>
 
       <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <BlockHeading title="Review-Source Summary" body="Where reviews come from and how the signal splits across positive, mixed, and negative experiences." />
+          <BlockHeading title="What Reviews Say" body="Public reviews are most useful when they are treated as patterns, not as isolated quotes. Here is what appears most often in the feedback." />
           <SourceSummary reviews={reviews} />
         </Container>
       </section>
@@ -104,7 +104,7 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
       <section id="results" className="border-b border-(--line) bg-(--wash) py-22">
         <Container className="grid gap-6 lg:grid-cols-[minmax(0,1fr),280px]">
           <div>
-            <BlockHeading title="Results and Review Evidence" body="Sourced review excerpts alongside an outcome signal count, showing how often fading results, pain, or scarring come up." />
+            <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
             <ReviewCardGrid reviews={reviews.slice(0, 6)} columns={2} showProvider={false} />
             <ReviewsMoreLink total={reviews.length} />
           </div>
@@ -123,14 +123,14 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
 
       <section id="pricing" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <BlockHeading title="Pricing Context" body="How this provider's pricing compares to typical session costs in the area." />
+          <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
           <InfoCard label="Pricing signal" body={buildPricingContext([provider])} link="Compare against the cost guide" linkHref="/cost" />
         </Container>
       </section>
 
       <section id="treatment" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
-          <BlockHeading title="Treatment and Technology Overview" body="The removal method and technology this provider uses, based on review signals and profile data." />
+          <BlockHeading title="Treatment Approach and Technology" body="Brand reputation matters, but treatment fit matters more. A provider can look strong overall and still be a weak fit for a specific tattoo or skin profile." />
           <InfoCard label="Method and technology" body={buildTreatmentOverview([provider])} link="See our method comparison guide" linkHref="/comparisons/best-tattoo-removal-method" />
         </Container>
       </section>
@@ -139,10 +139,10 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         <Container className="grid gap-6 lg:grid-cols-2">
           <div className="border border-(--line) bg-white p-6 rounded-xl">
             <p className="font-sans font-semibold text-[22px] leading-[1.1] tracking-[-0.02em] text-(--ink) mb-3">
-              City and Local Context
+              Local and City Context
             </p>
             <p className="text-[14px] leading-relaxed text-(--muted)">
-              {provider.name} operates in {provider.market}. Users comparing local options should read this page alongside the city page to see how it stacks up against nearby alternatives.
+              {provider.name} operates in {provider.market}. If you already know your city, move next to the local comparison page before making a decision. A national reputation can be directionally useful, but local execution still matters.
             </p>
             <Link href={`/cities/${citySlug}`} className="mt-4 inline-block text-[13px] font-medium text-(--accent) hover:underline">
               See local comparison coverage →
@@ -164,7 +164,7 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
 
       <section id="alternatives" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
-          <BlockHeading title="Alternatives and Comparisons" body={`Compare ${provider.name} against nearby and method-adjacent providers before making a decision.`} />
+          <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${provider.name}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
         </Container>
       </section>
