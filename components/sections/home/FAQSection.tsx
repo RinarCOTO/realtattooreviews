@@ -22,7 +22,7 @@ const DEFAULT_FAQS: FallbackFaq[] = [
   },
   {
     question: "Why do some providers have low ratings?",
-    answer: "We publish findings as they are — including negative ones. A low rating reflects consistent patterns across multiple reviews, not a single complaint. We do not suppress unfavorable results.",
+    answer: "We publish findings as they are, including negative ones. A low rating reflects consistent patterns across multiple reviews, not a single complaint. We do not suppress unfavorable results.",
   },
   {
     question: "How often is coverage updated?",

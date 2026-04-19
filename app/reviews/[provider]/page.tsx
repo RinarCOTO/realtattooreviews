@@ -1,59 +1,100 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
-import Container from "@/components/layout/Container";
-import { providers } from "@/lib/mock-data/providers";
+import BrandReviewsPage from "@/components/provider/BrandReviewsPage";
+import SingleProviderReviewsPage from "@/components/provider/SingleProviderReviewsPage";
+import DBOnlyProviderPage from "@/components/provider/DBOnlyProviderPage";
+import {
+  brandToSlug,
+  getMultiLocationBrands,
+  getProviderBySlug,
+  getProvidersByBrand,
+  getSingleLocationProviders,
+} from "@/lib/providers";
+import { getReviewsByProvider, getUniqueProviderSlugs } from "@/lib/data/reviews";
 
 type Props = { params: Promise<{ provider: string }> };
 
 export async function generateStaticParams() {
-  return providers.map((p) => ({ provider: p.slug }));
+  const mockSlugs = new Set<string>([
+    ...getMultiLocationBrands().map(brandToSlug),
+    ...getSingleLocationProviders().map((p) => p.slug),
+  ]);
+  const dbSlugs = await getUniqueProviderSlugs();
+  return [...new Set([...mockSlugs, ...dbSlugs])].map((slug) => ({ provider: slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { provider: slug } = await params;
-  const provider = providers.find((p) => p.slug === slug);
-  if (!provider) return {};
+
+  const matchedBrand = getMultiLocationBrands().find((b) => brandToSlug(b) === slug);
+  if (matchedBrand) {
+    const [locations, reviews] = await Promise.all([
+      Promise.resolve(getProvidersByBrand(matchedBrand)),
+      getReviewsByProvider(slug),
+    ]);
+    const count = reviews.length || locations.reduce((s, l) => s + l.reviewCount, 0);
+    const avg = reviews.length > 0
+      ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1)
+      : (locations.reduce((s, l) => s + l.rating, 0) / locations.length).toFixed(1);
+    return {
+      title: `${matchedBrand} Reviews: ${locations.length} Locations | RealTattooReviews`,
+      description: `${count} sourced reviews across ${locations.length} ${matchedBrand} locations. ${avg} average rating with location-by-location review coverage.`,
+      alternates: { canonical: `/reviews/${slug}/` },
+      openGraph: {
+        title: `${matchedBrand} Reviews`,
+        description: `${count} sourced reviews across ${locations.length} locations. ${avg} average rating.`,
+      },
+    };
+  }
+
+  const singleProvider = getProviderBySlug(slug);
+  const reviews = await getReviewsByProvider(slug);
+
+  if (!singleProvider) {
+    if (reviews.length === 0) return {};
+    const name = reviews[0].provider;
+    const market = `${reviews[0].city ?? ""}${reviews[0].state ? `, ${reviews[0].state}` : ""}`.trim();
+    const avg = (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1);
+    return {
+      title: `${name} Reviews${market ? `: ${market}` : ""} | RealTattooReviews`,
+      description: `${reviews.length} sourced reviews for ${name}${market ? ` in ${market}` : ""}. ${avg} average rating.`,
+      alternates: { canonical: `/reviews/${slug}/` },
+    };
+  }
+
+  const count = reviews.length || singleProvider.reviewCount;
+  const avg = reviews.length > 0
+    ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1)
+    : singleProvider.rating.toFixed(1);
+
   return {
-    title: `${provider.name} Reviews — ${provider.market} | RealTattooReviews`,
-    description: `${provider.reviewCount} verified patient reviews for ${provider.name} in ${provider.market}. ${provider.rating} avg rating. ${provider.summary}`,
+    title: `${singleProvider.name} Reviews: ${singleProvider.market} | RealTattooReviews`,
+    description: `${count} sourced reviews for ${singleProvider.name} in ${singleProvider.market}. ${avg} average rating. ${singleProvider.summary}`,
+    alternates: { canonical: `/reviews/${slug}/` },
     openGraph: {
-      title: `${provider.name} Reviews — ${provider.market}`,
-      description: `${provider.reviewCount} verified patient reviews for ${provider.name}. ${provider.rating} avg rating.`,
+      title: `${singleProvider.name} Reviews: ${singleProvider.market}`,
+      description: `${count} sourced reviews for ${singleProvider.name}. ${avg} average rating.`,
     },
   };
 }
 
 export default async function ProviderReviewsPage({ params }: Props) {
   const { provider: slug } = await params;
-  const provider = providers.find((p) => p.slug === slug);
-  if (!provider) notFound();
 
-  return (
-    <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-surface py-14">
-        <Container>
-          <p className="mb-2 text-sm text-muted">
-            <Link href="/reviews" className="hover:text-accent">Reviews</Link>
-            {" / "}
-            <span className="text-heading">{provider.name}</span>
-          </p>
-          <h1 className="text-[36px] font-bold text-heading">
-            {provider.name} Reviews
-          </h1>
-          <p className="mt-2 text-[15px] text-muted">
-            {provider.market} · {provider.reviewCount} verified reviews · {provider.rating} avg rating
-          </p>
-        </Container>
-      </section>
+  const matchedBrand = getMultiLocationBrands().find((b) => brandToSlug(b) === slug);
+  if (matchedBrand) {
+    const locations = getProvidersByBrand(matchedBrand);
+    const reviews = await getReviewsByProvider(slug);
+    return <BrandReviewsPage brand={matchedBrand} slug={slug} locations={locations} reviews={reviews} />;
+  }
 
-      <section className="py-12">
-        <Container>
-          <p className="max-w-2xl text-[15px] leading-relaxed text-body">
-            {provider.summary}
-          </p>
-        </Container>
-      </section>
-    </main>
-  );
+  const singleProvider = getProviderBySlug(slug);
+  const reviews = await getReviewsByProvider(slug);
+
+  if (!singleProvider) {
+    if (reviews.length === 0) notFound();
+    return <DBOnlyProviderPage slug={slug} reviews={reviews} />;
+  }
+
+  return <SingleProviderReviewsPage provider={singleProvider} reviews={reviews} />;
 }

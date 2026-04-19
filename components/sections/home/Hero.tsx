@@ -30,7 +30,7 @@ export default function Hero({headline, subheadline}: Props) {
     <section
       className="border-b border-border py-24 sm:py-32"
       style={{
-        backgroundColor: "#FFFDFC",
+        backgroundColor: "oklch(0.985 0.004 230)",
         backgroundImage: [
           // dot grid texture
           "url(\"data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23C8C2B8' fill-opacity='0.35'/%3E%3C/svg%3E\")",

@@ -74,24 +74,17 @@ export function getFeaturedProviders(limit = 6): Provider[] {
 /**
  * Return the canonical href for a review card CTA.
  *
- * Multi-location:  /providers/{providerSlug}/{locationId}
- * Single-location: /providers/{providerSlug}
+ * Multi-location:  /reviews/{providerSlug}
+ * Single-location: /reviews/{providerSlug}
  *
- * providerSlug should be the brand-level slug (e.g. "removery", "inkout").
- * locationId should be the location segment (e.g. "bucktown", "austin").
+ * Reviews hub cards and sourced review cards should route into branded review pages,
+ * not provider directory pages.
  */
 export function resolveProviderHref({
   providerSlug,
-  providerType,
-  locationId,
 }: {
   providerSlug?: string;
-  providerType?: "multi-location" | "single-location";
-  locationId?: string;
 }): string {
-  if (!providerSlug) return "/providers";
-  if (providerType === "multi-location" && locationId) {
-    return `/providers/${providerSlug}/${locationId}`;
-  }
-  return `/providers/${providerSlug}`;
+  if (!providerSlug) return "/reviews";
+  return `/reviews/${providerSlug}`;
 }

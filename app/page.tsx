@@ -19,11 +19,11 @@ import { getRecentReviews } from "@/lib/data/reviews";
 import { getHomepageCMS } from "@/lib/page-data/homepage-cms";
 
 export const metadata: Metadata = {
-  title: "RealTattooReviews — Compare Tattoo Removal Clinics Before You Book",
+  title: "RealTattooReviews: Compare Tattoo Removal Clinics Before You Book",
   description:
-    "848 verified patient reviews across 22 tattoo removal providers in 6 markets. Compare clinics by rating, city, ink type, and outcome — before you book.",
+    "848 verified patient reviews across 22 tattoo removal providers in 6 markets. Compare clinics by rating, city, ink type, and outcome before you book.",
   openGraph: {
-    title: "RealTattooReviews — Compare Tattoo Removal Clinics Before You Book",
+    title: "RealTattooReviews: Compare Tattoo Removal Clinics Before You Book",
     description:
       "848 verified patient reviews across 22 providers. Compare clinics by rating, city, and outcome.",
   },
@@ -129,7 +129,7 @@ export default async function HomePage() {
             </h2>
             <p className="max-w-md text-sm leading-relaxed text-subtle">
               Browse independent reviews, compare providers side by side, and make
-              an informed decision — completely free.
+              an informed decision, completely free.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link

@@ -2,41 +2,52 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import { cities } from "@/lib/mock-data/cities";
+import { getAllCities, getCity } from "@/lib/page-data/cities";
+import { cities as mockCities } from "@/lib/mock-data/cities";
 import { providers } from "@/lib/mock-data/providers";
+import { getReviewsByCity } from "@/lib/data/reviews";
+import ReviewCardGrid from "@/components/reviews/ReviewCardGrid";
 
 type Props = { params: Promise<{ city: string }> };
 
 export async function generateStaticParams() {
-  return cities.map((c) => ({ city: c.slug }));
+  const sanityCities = await getAllCities();
+  if (sanityCities.length > 0) return sanityCities.map((c) => ({ city: c.slug }));
+  return mockCities.map((c) => ({ city: c.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city: citySlug } = await params;
-  const city = cities.find((c) => c.slug === citySlug);
+  const city = (await getCity(citySlug)) ?? mockCities.find((c) => c.slug === citySlug);
   if (!city) return {};
+  const title = (city as any).seoTitle ?? `Tattoo Removal in ${city.name}: Reviews & Provider Ratings | RealTattooReviews`;
+  const description = (city as any).seoDescription ?? `Compare ${city.providerCount} tattoo removal providers in ${city.name}. ${city.reviewCount} verified patient reviews covering outcomes, pricing, and session experience.`;
+  const seoImage = (city as any).seoImage;
   return {
-    title: `Tattoo Removal in ${city.name} — Reviews & Provider Ratings | RealTattooReviews`,
-    description: `Compare ${city.providerCount} tattoo removal providers in ${city.name}. ${city.reviewCount} verified patient reviews covering outcomes, pricing, and session experience.`,
+    title,
+    description,
     openGraph: {
-      title: `Tattoo Removal in ${city.name} — Reviews & Provider Ratings`,
-      description: `Compare ${city.providerCount} tattoo removal providers in ${city.name}. ${city.reviewCount} verified patient reviews.`,
+      title: `Tattoo Removal in ${city.name}: Reviews & Provider Ratings`,
+      description,
+      ...(seoImage ? { images: [{ url: seoImage.url, alt: seoImage.alt }] } : {}),
     },
   };
 }
 
 export default async function CityPage({ params }: Props) {
   const { city: citySlug } = await params;
-  const city = cities.find((c) => c.slug === citySlug);
+  const city = (await getCity(citySlug)) ?? mockCities.find((c) => c.slug === citySlug);
   if (!city) notFound();
 
   const cityProviders = providers.filter((p) =>
     p.market.toLowerCase().includes(city.name.toLowerCase())
   );
 
+  const cityReviews = await getReviewsByCity(citySlug);
+
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-surface py-14">
+      <section className="border-b border-border bg-hero-bg py-14">
         <Container>
           <p className="mb-2 text-sm text-muted">
             <Link href="/cities" className="hover:text-accent">Cities</Link>
@@ -83,6 +94,27 @@ export default async function CityPage({ params }: Props) {
           )}
         </Container>
       </section>
+
+      {cityReviews.length > 0 && (
+        <section className="border-t border-border py-12">
+          <Container>
+            <h2 className="mb-6 text-[20px] font-bold text-heading">
+              Patient Reviews in {city.name}
+            </h2>
+            <ReviewCardGrid reviews={cityReviews.slice(0, 6)} columns={2} />
+            {cityReviews.length > 6 && (
+              <div className="mt-6">
+                <Link
+                  href="/reviews"
+                  className="text-sm font-medium text-accent hover:underline"
+                >
+                  View all {cityReviews.length} reviews in {city.name} →
+                </Link>
+              </div>
+            )}
+          </Container>
+        </section>
+      )}
     </main>
   );
 }

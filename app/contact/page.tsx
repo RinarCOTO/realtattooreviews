@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-surface py-14">
+      <section className="border-b border-border bg-hero-bg py-14">
         <Container>
           <h1 className="text-[36px] font-bold text-heading">Contact Us</h1>
           <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted">

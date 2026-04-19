@@ -354,7 +354,7 @@ export const providers: Provider[] = [
     featured: false,
     featuredScore: 58,
     summary:
-      "Second Chicago Removery location. Review patterns are similar to Bucktown — reliable process, mixed feedback on aftercare communication.",
+      "Second Chicago Removery location. Review patterns are similar to Bucktown. Reliable process, mixed feedback on aftercare communication.",
     tags: ["National Chain", "Laser", "PicoWay"],
   },
   {

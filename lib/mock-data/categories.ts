@@ -10,14 +10,19 @@ export const categories = [
     description: "Greens, yellows, and blues are the hardest to clear. Real reviews on what worked, what didn't, and how many sessions it took.",
   },
   {
-    slug: "dark-skin-tattoo-removal",
-    title: "Dark Skin Tattoo Removal",
+    slug: "dark-skin-removal",
+    title: "Dark Skin Removal",
     description: "Provider and outcome reviews focused on patients with deeper skin tones. Covers pigmentation risk, technique, and results.",
   },
   {
     slug: "microblading-removal",
     title: "Microblading Removal",
     description: "Permanent makeup and eyebrow tattoo removal. Reviews cover provider experience with PMU and how outcomes differ from standard tattoo removal.",
+  },
+  {
+    slug: "permanent-makeup-removal",
+    title: "Permanent Makeup Removal",
+    description: "Reviews covering removal of permanent makeup including lip liner, eyeliner, and brow tattoos. Covers technique, session count, and provider experience.",
   },
   {
     slug: "cover-up-prep",

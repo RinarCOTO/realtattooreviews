@@ -10,11 +10,11 @@ import {
 } from "@/lib/providers";
 
 export const metadata: Metadata = {
-  title: "All Tattoo Removal Providers — 22 Clinics Reviewed",
+  title: "All Tattoo Removal Providers: 22 Clinics Reviewed",
   description:
     "Browse all 22 tattoo removal providers across 6 markets. Compare ratings, review counts, and specialties across laser and non-laser removal clinics.",
   openGraph: {
-    title: "All Tattoo Removal Providers — 22 Clinics Reviewed",
+    title: "All Tattoo Removal Providers: 22 Clinics Reviewed",
     description: "Compare 22 tattoo removal providers across 6 markets. Ratings based on 848 verified patient reviews.",
   },
 };
@@ -25,7 +25,7 @@ export default function ProvidersPage() {
 
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-surface py-14">
+      <section className="border-b border-border bg-hero-bg py-14">
         <Container>
           <h1 className="text-[36px] font-bold text-heading">
             All Providers

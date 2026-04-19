@@ -18,6 +18,9 @@ export type Review = {
   city?: string;
   state?: string;
 
+  // ── Reviewer ─────────────────────────────────────────────────────────────
+  reviewer?: string | null;                        // e.g. "Anastasia P."
+
   // ── Review content ───────────────────────────────────────────────────────
   rating?: number;
   source?: string;                               // e.g. "Google"

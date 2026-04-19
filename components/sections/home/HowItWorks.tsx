@@ -110,7 +110,7 @@ export default function HowItWorks({ steps }: Props) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <p className="text-sm text-muted">
-            No paid placement. No hidden negatives. —{" "}
+            No paid placement. No hidden negatives.{" "}
             <Link href="/editorial-policy" className="font-medium text-accent hover:underline">
               Read our editorial policy
             </Link>
