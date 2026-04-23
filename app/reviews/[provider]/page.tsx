@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import BrandReviewsPage from "@/components/provider/BrandReviewsPage";
 import SingleProviderReviewsPage from "@/components/provider/SingleProviderReviewsPage";
 import DBOnlyProviderPage from "@/components/provider/DBOnlyProviderPage";
+import ProviderReviewPage from "@/components/provider/ProviderReviewPage";
 import {
   brandToSlug,
   getMultiLocationBrands,
@@ -11,6 +12,7 @@ import {
   getSingleLocationProviders,
 } from "@/lib/providers";
 import { getReviewsByProvider, getUniqueProviderSlugs } from "@/lib/data/reviews";
+import { getProviderReview } from "@/lib/page-data/reviews";
 
 type Props = { params: Promise<{ provider: string }> };
 
@@ -26,16 +28,43 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { provider: slug } = await params;
 
+  const [sanityReview, reviews] = await Promise.all([
+    getProviderReview(slug),
+    getReviewsByProvider(slug),
+  ]);
+
+  if (sanityReview) {
+    const matchedBrand = getMultiLocationBrands().find((b) => brandToSlug(b) === slug);
+    const singleProvider = getProviderBySlug(slug);
+    const locations = matchedBrand
+      ? getProvidersByBrand(matchedBrand)
+      : singleProvider
+        ? [singleProvider]
+        : [];
+    const count =
+      reviews.length || locations.reduce((s, l) => s + l.reviewCount, 0);
+    const title =
+      sanityReview.seoTitle ??
+      `${sanityReview.providerName} Review: Method, Pricing, and Results | RealTattooReviews`;
+    const description =
+      sanityReview.seoDescription ??
+      `${count} sourced reviews for ${sanityReview.providerName}. Full breakdown of method, technology, pricing, and what to expect before you book.`;
+    return {
+      title,
+      description,
+      alternates: { canonical: `/reviews/${slug}/` },
+      openGraph: { title, description },
+    };
+  }
+
   const matchedBrand = getMultiLocationBrands().find((b) => brandToSlug(b) === slug);
   if (matchedBrand) {
-    const [locations, reviews] = await Promise.all([
-      Promise.resolve(getProvidersByBrand(matchedBrand)),
-      getReviewsByProvider(slug),
-    ]);
+    const locations = getProvidersByBrand(matchedBrand);
     const count = reviews.length || locations.reduce((s, l) => s + l.reviewCount, 0);
-    const avg = reviews.length > 0
-      ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1)
-      : (locations.reduce((s, l) => s + l.rating, 0) / locations.length).toFixed(1);
+    const avg =
+      reviews.length > 0
+        ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1)
+        : (locations.reduce((s, l) => s + l.rating, 0) / locations.length).toFixed(1);
     return {
       title: `${matchedBrand} Reviews: ${locations.length} Locations | RealTattooReviews`,
       description: `${count} sourced reviews across ${locations.length} ${matchedBrand} locations. ${avg} average rating with location-by-location review coverage.`,
@@ -48,7 +77,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const singleProvider = getProviderBySlug(slug);
-  const reviews = await getReviewsByProvider(slug);
 
   if (!singleProvider) {
     if (reviews.length === 0) return {};
@@ -63,9 +91,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const count = reviews.length || singleProvider.reviewCount;
-  const avg = reviews.length > 0
-    ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1)
-    : singleProvider.rating.toFixed(1);
+  const avg =
+    reviews.length > 0
+      ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1)
+      : singleProvider.rating.toFixed(1);
 
   return {
     title: `${singleProvider.name} Reviews: ${singleProvider.market} | RealTattooReviews`,
@@ -81,15 +110,43 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProviderReviewsPage({ params }: Props) {
   const { provider: slug } = await params;
 
+  const [sanityReview, reviews] = await Promise.all([
+    getProviderReview(slug),
+    getReviewsByProvider(slug),
+  ]);
+
+  if (sanityReview) {
+    const matchedBrand = getMultiLocationBrands().find((b) => brandToSlug(b) === slug);
+    const singleProvider = getProviderBySlug(slug);
+    const locations = matchedBrand
+      ? getProvidersByBrand(matchedBrand)
+      : singleProvider
+        ? [singleProvider]
+        : [];
+    return (
+      <ProviderReviewPage
+        review={sanityReview}
+        locations={locations}
+        reviews={reviews}
+        slug={slug}
+      />
+    );
+  }
+
   const matchedBrand = getMultiLocationBrands().find((b) => brandToSlug(b) === slug);
   if (matchedBrand) {
     const locations = getProvidersByBrand(matchedBrand);
-    const reviews = await getReviewsByProvider(slug);
-    return <BrandReviewsPage brand={matchedBrand} slug={slug} locations={locations} reviews={reviews} />;
+    return (
+      <BrandReviewsPage
+        brand={matchedBrand}
+        slug={slug}
+        locations={locations}
+        reviews={reviews}
+      />
+    );
   }
 
   const singleProvider = getProviderBySlug(slug);
-  const reviews = await getReviewsByProvider(slug);
 
   if (!singleProvider) {
     if (reviews.length === 0) notFound();

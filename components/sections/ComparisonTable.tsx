@@ -12,38 +12,38 @@ export default function ComparisonTable({
   rows,
 }: ComparisonTableProps) {
   return (
-    <div className="overflow-hidden rounded-3xl border border-border bg-surface shadow-sm">
+    <div className="overflow-hidden rounded-xl border border-(--line) bg-white">
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse">
           <thead>
             <tr className="bg-hero-bg text-left">
-              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-subtle">
+              <th className="px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
                 Criteria
               </th>
-              <th className="px-5 py-4 text-sm font-semibold text-heading">
+              <th className="px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--ink)">
                 {leftLabel}
               </th>
-              <th className="px-5 py-4 text-sm font-semibold text-heading">
+              <th className="px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--ink)">
                 {rightLabel}
               </th>
-              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-subtle">
+              <th className="px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
                 Why it matters
               </th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row) => (
-              <tr key={row.criterion} className="border-t border-border align-top">
-                <th className="w-44 px-5 py-4 text-left text-sm font-semibold text-heading">
+              <tr key={row.criterion} className="border-t border-(--line) align-top">
+                <th className="w-44 px-5 py-4 text-left text-[13px] font-semibold text-(--ink)">
                   {row.criterion}
                 </th>
-                <td className="min-w-60 px-5 py-4 text-sm leading-relaxed text-muted">
+                <td className="min-w-60 px-5 py-4 text-[13px] leading-relaxed text-(--muted)">
                   {row.left}
                 </td>
-                <td className="min-w-60 px-5 py-4 text-sm leading-relaxed text-muted">
+                <td className="min-w-60 px-5 py-4 text-[13px] leading-relaxed text-(--muted)">
                   {row.right}
                 </td>
-                <td className="min-w-64 px-5 py-4 text-sm leading-relaxed text-muted">
+                <td className="min-w-64 px-5 py-4 text-[13px] leading-relaxed text-(--muted)">
                   {row.takeaway ?? "Compare this against your tattoo type, skin tone, and expected session count."}
                 </td>
               </tr>

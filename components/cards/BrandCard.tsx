@@ -72,7 +72,7 @@ export default function BrandCard({ brand }: Props) {
           {brand.method}
         </span>
         <Link
-          href={`/providers/${brand.slug}`}
+          href={`/reviews/${brand.slug}`}
           className="rounded-full bg-accent px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           View reviews →

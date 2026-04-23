@@ -1,0 +1,500 @@
+import Link from "next/link";
+import Container from "@/components/layout/Container";
+import AlternativesSection from "./AlternativesSection";
+import BlockHeading from "./BlockHeading";
+import JumpNav from "./JumpNav";
+import ProviderHero from "./ProviderHero";
+import VerdictCard from "./VerdictCard";
+import MonoLabel from "@/components/reviews/MonoLabel";
+import type { SanityProviderReview } from "@/lib/page-data/reviews";
+import type { Provider } from "@/types/provider";
+import type { Review } from "@/types/review";
+import {
+  getAlternativeProviders,
+  getVerdictFromRating,
+  summarizeSources,
+} from "@/lib/provider-analysis";
+import { getLocationSlug } from "@/lib/providers";
+
+interface Props {
+  review: SanityProviderReview;
+  locations: Provider[];
+  reviews: Review[];
+  slug: string;
+}
+
+function VerdictTable({ review }: { review: SanityProviderReview }) {
+  const rows = [
+    { label: "Method",                   value: review.method },
+    { label: "Technology",               value: review.technology },
+    { label: "Locations",                value: review.locationsValue },
+    { label: "Typical sessions",         value: review.typicalSessions },
+    { label: "Typical timeline",         value: review.typicalTimeline },
+    { label: "Healing per session",      value: review.healingPerSession },
+    { label: "Pricing model",            value: review.pricingModel },
+    { label: "Years operating",          value: review.yearsOperating },
+    { label: "Public reviews analyzed",  value: review.publicReviewsAnalyzed },
+    { label: "Best for",                 value: review.bestFor?.join(", ") },
+    { label: "Less ideal for",           value: review.lessIdealFor?.join(", ") },
+  ];
+
+  return (
+    <div className="overflow-x-auto border border-(--line) rounded-xl">
+      <table className="w-full border-collapse text-[13px]">
+        <tbody>
+          {rows.map(({ label, value }) =>
+            value ? (
+              <tr key={label} className="border-b border-(--line) last:border-0">
+                <td className="py-3 px-5 font-mono text-[11px] uppercase tracking-widest text-(--muted) whitespace-nowrap w-[220px] bg-(--surface)">
+                  {label}
+                </td>
+                <td className="py-3 px-5 text-(--ink) leading-relaxed">{value}</td>
+              </tr>
+            ) : null
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default function ProviderReviewPage({ review, locations, reviews, slug }: Props) {
+  const avgRatingValue =
+    reviews.length > 0
+      ? reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length
+      : locations.length > 0
+        ? locations.reduce((s, l) => s + l.rating, 0) / locations.length
+        : 4.5;
+  const avgRating = avgRatingValue.toFixed(1);
+  const totalReviews =
+    reviews.length || locations.reduce((s, l) => s + l.reviewCount, 0);
+  const verdict = getVerdictFromRating(avgRatingValue);
+  const alternatives = getAlternativeProviders(locations, slug);
+  const providerTags = locations
+    .flatMap((l) => l.tags ?? [])
+    .filter((v, i, a) => a.indexOf(v) === i)
+    .slice(0, 6);
+
+  const jumpItems = [
+    { label: "Verdict",     href: "#verdict" },
+    { label: "Does well",   href: "#does-well" },
+    { label: "Hesitations", href: "#hesitations" },
+    { label: "Different",   href: "#different" },
+    { label: "Pricing",     href: "#pricing" },
+    { label: "Compares",    href: "#comparison" },
+    { label: "Locations",   href: "#locations" },
+    { label: "Best for",    href: "#best-for" },
+    { label: "FAQ",         href: "#faq" },
+    { label: "Methodology", href: "#methodology" },
+  ];
+
+  return (
+    <main className="reviews-page min-h-screen bg-(--bg)">
+      <ProviderHero
+        breadcrumb={["Reviews", review.providerName]}
+        nameNode={<>{review.providerName}</>}
+        body={`See how ${review.providerName} compares on method, technology, pricing, and real user feedback before you book.`}
+        tags={providerTags}
+        reviewCount={totalReviews}
+        reviewsHref="#verdict"
+        card={
+          <VerdictCard
+            verdictLabel={verdict.label}
+            avgRating={avgRating}
+            avgRatingValue={avgRatingValue}
+            reviewCount={totalReviews}
+            sourcesSummary={summarizeSources(reviews)}
+            verdictSummary={verdict.summary}
+            bestFor={review.bestFor?.[0]}
+            lessIdealFor={review.lessIdealFor?.[0]}
+          />
+        }
+      />
+
+      <JumpNav items={jumpItems} />
+
+      {/* Verdict */}
+      <section id="verdict" className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <BlockHeading
+            title={`${review.providerName} Verdict`}
+            body={review.verdictLead ?? ""}
+          />
+          <VerdictTable review={review} />
+          {locations.length > 1 && (
+            <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-(--muted)">
+              Aggregate rating is a weighted composite across{" "}
+              {locations.length} Google Business locations. Individual location ratings
+              range from{" "}
+              {Math.min(...locations.map((l) => l.rating)).toFixed(1)} to{" "}
+              {Math.max(...locations.map((l) => l.rating)).toFixed(1)}.
+            </p>
+          )}
+        </Container>
+      </section>
+
+      {/* What the Provider Does Well */}
+      <section id="does-well" className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <BlockHeading title={`What ${review.providerName} Does Well`} body="" />
+          <ul className="flex flex-col gap-3 mt-2">
+            {review.doesWell?.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 text-[14px] leading-relaxed text-(--ink)"
+              >
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-2 shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* Where Users Hesitate */}
+      <section id="hesitations" className="border-b border-(--line) bg-(--wash) py-22">
+        <Container>
+          <BlockHeading title="Where Users Hesitate" body="" />
+          <ul className="flex flex-col gap-3 mt-2">
+            {review.usersHesitate?.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 text-[14px] leading-relaxed text-(--ink)"
+              >
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-2 shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* What Makes Different */}
+      <section id="different" className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <BlockHeading
+            title={`What Makes ${review.providerName} Different`}
+            body=""
+          />
+          <div className="max-w-prose">
+            {review.whatMakesDifferent
+              ?.split("\n\n")
+              .map((para, i) => (
+                <p key={i} className="text-[14px] leading-relaxed text-(--muted) mb-4">
+                  {para}
+                </p>
+              ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <BlockHeading title={`${review.providerName} Pricing`} body="" />
+          <div className="max-w-prose">
+            {review.pricingBody
+              ?.split("\n\n")
+              .map((para, i) => (
+                <p key={i} className="text-[14px] leading-relaxed text-(--muted) mb-4">
+                  {para}
+                </p>
+              ))}
+          </div>
+          <p className="mt-2 text-[13px] text-(--muted)">
+            <Link href="/cost" className="text-(--accent) hover:underline">
+              Compare against the national cost guide
+            </Link>
+          </p>
+        </Container>
+      </section>
+
+      {/* Comparison */}
+      <section id="comparison" className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <BlockHeading
+            title={`How ${review.providerName} Compares`}
+            body=""
+          />
+          <div className="max-w-prose mb-10">
+            {review.comparisonBody
+              ?.split("\n\n")
+              .map((para, i) => (
+                <p key={i} className="text-[14px] leading-relaxed text-(--muted) mb-4">
+                  {para}
+                </p>
+              ))}
+          </div>
+          <AlternativesSection alternatives={alternatives} />
+        </Container>
+      </section>
+
+      {/* Locations */}
+      {locations.length > 0 && (
+        <section id="locations" className="border-b border-(--line) bg-(--surface) py-22">
+          <Container>
+            <BlockHeading
+              title={`${review.providerName} Locations`}
+              body={
+                locations.length === 1
+                  ? "This provider operates at a single location."
+                  : `${review.providerName} has ${locations.length} locations. Individual location ratings differ from the aggregate shown above — see each location below.`
+              }
+            />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {locations.map((location) => (
+                <div
+                  key={location.id}
+                  className="flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="font-semibold text-(--ink) text-[15px]">
+                        {location.market}
+                      </p>
+                      <MonoLabel className="mt-0.5">{location.location}</MonoLabel>
+                    </div>
+                    <span className="font-mono font-semibold text-[13px] text-(--accent)">
+                      {location.rating}
+                    </span>
+                  </div>
+                  <p className="text-[13px] leading-relaxed text-(--muted) line-clamp-3">
+                    {location.summary}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between border-t border-(--line) pt-3">
+                    <MonoLabel>{location.reviewCount} reviews</MonoLabel>
+                    {location.googleBusinessUrl ? (
+                      <a
+                        href={location.googleBusinessUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[12px] font-medium text-(--accent) hover:underline"
+                      >
+                        Google reviews →
+                      </a>
+                    ) : (
+                      <Link
+                        href={`/reviews/${slug}#${getLocationSlug(location)}`}
+                        className="text-[12px] font-medium text-(--accent) hover:underline"
+                      >
+                        View location →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Who It Is Best For */}
+      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <BlockHeading
+            title={`Who ${review.providerName} Is Best For`}
+            body="Use this section to quickly judge whether this provider fits your situation before going deeper."
+          />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-4">
+                {review.providerName} is most likely the right fit if you:
+              </p>
+              <ul className="flex flex-col gap-2">
+                {(review.bestForDetails ?? review.bestFor)?.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)"
+                  >
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-4">
+                Compare more carefully if you:
+              </p>
+              <ul className="flex flex-col gap-2">
+                {(review.lessIdealForDetails ?? review.lessIdealFor)?.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)"
+                  >
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <BlockHeading
+            title={`${review.providerName} Frequently Asked Questions`}
+            body={`Common questions from people researching ${review.providerName} before making a booking decision.`}
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {review.faqItems?.map((item) => (
+              <div
+                key={item.question}
+                className="border border-(--line) bg-white p-5 rounded-xl"
+              >
+                <p className="font-semibold text-(--ink) text-[14px] mb-2">
+                  {item.question}
+                </p>
+                <p className="text-[13px] leading-relaxed text-(--muted)">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* How We Reviewed */}
+      <section id="methodology" className="bg-(--bg) py-22">
+        <Container>
+          <BlockHeading title={`How We Reviewed ${review.providerName}`} body="" />
+          <div className="max-w-prose border border-(--line) bg-(--surface) rounded-xl p-6">
+            {review.publicReviewsAnalyzed && locations.length > 0 && (
+              <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+                This review draws on {review.publicReviewsAnalyzed} patient reviews publicly
+                posted on Google Business listings for all {locations.length}{" "}
+                {review.providerName}{" "}
+                {locations.length === 1 ? "location" : "locations"}.
+              </p>
+            )}
+            {locations.length > 1 && (
+              <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+                The aggregate rating shown on this page is a weighted composite across all{" "}
+                {locations.length} locations, calculated from the total review pool across
+                all Google Business listings. Individual location ratings differ from the
+                aggregate. The per-location breakdown is in the Locations section above.
+              </p>
+            )}
+            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+              We excluded non-English reviews and reviews referring to unrelated services at
+              the same business address.
+            </p>
+            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+              These reviews are publicly posted by patients on Google. RealTattooReviews does
+              not host, collect, or claim ownership of the underlying review content. We
+              analyze publicly available review patterns as part of our editorial review
+              process.
+            </p>
+            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+              Provider data is verified against {review.providerName}&apos;s website and
+              public sources. This review was prepared by the RealTattooReviews editorial
+              team.
+            </p>
+            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+              We do not accept payment from {review.providerName} or any other provider for
+              inclusion, placement, or favorable coverage. Providers cannot edit, remove, or
+              pre-approve their reviews on RealTattooReviews.
+            </p>
+            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+              This review will be updated as new public review data becomes available, as{" "}
+              {review.providerName} adds or closes locations, or as the provider&apos;s
+              methods or supporting clinical evidence changes.
+            </p>
+            <p className="text-[13px] text-(--muted)">
+              Read more in our{" "}
+              <Link href="/methodology" className="text-(--accent) hover:underline">
+                methodology
+              </Link>{" "}
+              and{" "}
+              <Link href="/editorial-policy" className="text-(--accent) hover:underline">
+                editorial policy
+              </Link>
+              .{" "}
+              <Link href="/contact" className="text-(--accent) hover:underline">
+                To request a correction, contact us
+              </Link>
+              .
+            </p>
+            {review.lastReviewed && (
+              <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-(--muted)">
+                Last reviewed:{" "}
+                {new Date(review.lastReviewed).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </p>
+            )}
+          </div>
+        </Container>
+      </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            articleSection: "Reviews",
+            about: { "@type": "Organization", name: review.providerName },
+            headline: `${review.providerName} Review`,
+            publisher: {
+              "@type": "Organization",
+              name: "RealTattooReviews",
+              url: "https://realtattooreviews.com",
+            },
+            ...(review.lastReviewed ? { dateModified: review.lastReviewed } : {}),
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://realtattooreviews.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Reviews",
+                item: "https://realtattooreviews.com/reviews/",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: review.providerName,
+                item: `https://realtattooreviews.com/reviews/${slug}/`,
+              },
+            ],
+          }),
+        }}
+      />
+
+      {review.faqItems && review.faqItems.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: review.faqItems.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: { "@type": "Answer", text: item.answer },
+              })),
+            }),
+          }}
+        />
+      )}
+    </main>
+  );
+}

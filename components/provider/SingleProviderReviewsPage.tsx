@@ -16,6 +16,8 @@ import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
 import {
+  buildBestFor,
+  buildBottomLine,
   buildFAQ,
   buildOverviewStats,
   buildPricingContext,
@@ -43,6 +45,8 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
   const resultsSummary = buildResultsSummary(reviews);
   const alternatives = getAlternativeProviders([provider], provider.slug);
   const faqItems = buildFAQ(provider.name, provider.market);
+  const bestForData = buildBestFor([provider], reviews);
+  const bottomLine = buildBottomLine(provider.name, [provider], reviews, alternatives);
   const city = provider.market.split(",")[0].trim();
   const citySlug = city.toLowerCase().replace(/\s+/g, "-");
   const hasMoreReviews = reviews.length > 6;
@@ -56,7 +60,9 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
     { label: "Treatment",     href: "#treatment" },
     { label: "Local context", href: "#local-context" },
     { label: "Alternatives",  href: "#alternatives" },
+    { label: "Who it fits",   href: "#best-for" },
     { label: "FAQ",           href: "#faq" },
+    { label: "Bottom line",   href: "#bottom-line" },
   ];
 
   return (
@@ -75,6 +81,9 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
             avgRatingValue={realAvgRating}
             reviewCount={realCount}
             sourcesSummary={summarizeSources(reviews)}
+            verdictSummary={verdict.summary}
+            bestFor={bestForData.bestFor[0]}
+            lessIdealFor={bestForData.lessIdealFor[0]}
           />
         }
       />
@@ -90,7 +99,13 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
       <section id="overview" className="border-b border-(--line) bg-hero-bg py-22">
         <Container>
           <BlockHeading title={`Is ${provider.name} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and local consistency make it a good fit for your tattoo, budget, and goals." />
+          <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
+            If you are already researching {provider.name} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common patient patterns look like, and which alternatives are worth comparing before you commit.
+          </p>
           <ProsCons pros={pros} cons={cons} />
+          <p className="mt-6 font-sans text-[13px] leading-relaxed text-(--muted) border-t border-(--line) pt-5">
+            The important question is not whether every review is positive. It is whether the negatives feel isolated or repeated.
+          </p>
         </Container>
       </section>
 
@@ -125,6 +140,9 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         <Container>
           <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
           <InfoCard label="Pricing signal" body={buildPricingContext([provider])} link="Compare against the cost guide" linkHref="/cost" />
+          <p className="mt-6 font-sans text-[13px] leading-relaxed text-(--muted) border border-(--line) bg-(--surface) p-4 rounded-xl">
+            <span className="font-medium text-(--ink)">Before booking, ask:</span> how many sessions are realistic for your tattoo, what is included in the quoted price, and what happens if the tattoo fades more slowly than expected.
+          </p>
         </Container>
       </section>
 
@@ -166,19 +184,72 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${provider.name}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
+          <p className="mt-8 font-sans text-[14px] leading-relaxed text-(--muted)">
+            The right outcome is not choosing the most familiar brand. It is choosing the provider whose strengths match your case most closely.
+          </p>
         </Container>
       </section>
 
-      <section id="faq" className="bg-(--bg) py-22">
+      {/* ── Who it fits ──────────────────────────────────────────────────── */}
+      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <BlockHeading title={`Who ${provider.name} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-4">{provider.name} may be a strong option if you:</p>
+              <ul className="flex flex-col gap-2">
+                {bestForData.bestFor.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-4">You should compare more carefully if you:</p>
+              <ul className="flex flex-col gap-2">
+                {bestForData.lessIdealFor.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── FAQ ──────────────────────────────────────────────────────────── */}
+      <section id="faq" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${provider.name} before making a booking decision.`} />
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {faqItems.map((item) => (
               <div key={item.q} className="border border-(--line) bg-white p-5 rounded-xl">
                 <p className="font-semibold text-(--ink) text-[14px] mb-2">{item.q}</p>
                 <p className="text-[13px] leading-relaxed text-(--muted)">{item.a}</p>
               </div>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Bottom line ──────────────────────────────────────────────────── */}
+      <section id="bottom-line" className="bg-(--bg) py-22">
+        <Container>
+          <BlockHeading title={`Bottom Line on ${provider.name}`} body={bottomLine.copy} />
+          <p className="-mt-4 mb-10 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
+            {bottomLine.actionLine}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="#alternatives" className="inline-flex items-center px-5 py-2.5 bg-(--ink) text-(--bg) font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full">
+              Compare {provider.name} Alternatives
+            </Link>
+            <Link href="/reviews" className="inline-flex items-center px-5 py-2.5 border border-(--line) text-(--ink) font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full">
+              Read Tattoo Removal Reviews
+            </Link>
           </div>
         </Container>
       </section>

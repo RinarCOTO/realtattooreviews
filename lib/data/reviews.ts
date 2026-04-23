@@ -309,23 +309,39 @@ export async function getBrandStats(
   return result;
 }
 
-/** Aggregate stats: total reviews, unique providers, unique cities. */
+/** Aggregate stats: total reviews, unique providers, unique cities, scarring mentions, last updated date. */
 export async function getReviewStats(): Promise<{
   totalReviews: number;
   totalProviders: number;
   totalCities: number;
+  scarringMentions: number;
+  lastUpdated: string;
 }> {
   const { data, error } = await supabase
     .from("reviews")
-    .select("provider_name, location_city");
+    .select("provider_name, location_city, scarring_mentioned, review_date_at");
 
   if (error || !data) {
-    return { totalReviews: 0, totalProviders: 0, totalCities: 0 };
+    return { totalReviews: 0, totalProviders: 0, totalCities: 0, scarringMentions: 0, lastUpdated: "" };
   }
+
+  const scarringMentions = data.filter((r) => r.scarring_mentioned === "Yes").length;
+
+  const dates = data
+    .map((r) => r.review_date_at)
+    .filter(Boolean)
+    .map((d) => new Date(d as string))
+    .filter((d) => !Number.isNaN(d.getTime()));
+  const mostRecent = dates.length > 0 ? new Date(Math.max(...dates.map((d) => d.getTime()))) : null;
+  const lastUpdated = mostRecent
+    ? mostRecent.toLocaleDateString("en-US", { month: "short", year: "numeric" })
+    : "";
 
   return {
     totalReviews: data.length,
     totalProviders: new Set(data.map((r) => r.provider_name)).size,
     totalCities: new Set(data.map((r) => r.location_city)).size,
+    scarringMentions,
+    lastUpdated,
   };
 }

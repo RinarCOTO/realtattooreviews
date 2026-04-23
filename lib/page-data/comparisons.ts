@@ -1,12 +1,31 @@
 import { sanity } from '@/lib/sanity'
 import type { PortableTextBlock } from '@portabletext/react'
 
+export type SanityComparisonTableRow = {
+    criteria: string
+    valueA: string
+    valueB: string
+    whyItMatters?: string | null
+}
+
+export type SanityComparisonFAQ = {
+    question: string
+    answer: string
+}
+
 export type SanityComparison = {
     title: string
     slug: string
     description: string
     providerA?: string | null
     providerB?: string | null
+    verdict?: string | null
+    tableRows?: SanityComparisonTableRow[] | null
+    prosA?: string[] | null
+    consA?: string[] | null
+    prosB?: string[] | null
+    consB?: string[] | null
+    faq?: SanityComparisonFAQ[] | null
     body?: PortableTextBlock[]
     seoTitle?: string | null
     seoDescription?: string | null
@@ -27,6 +46,21 @@ const SINGLE_COMPARISON_QUERY = `*[_type == "comparison" && slug.current == $slu
     description,
     providerA,
     providerB,
+    verdict,
+    tableRows[] {
+        criteria,
+        valueA,
+        valueB,
+        whyItMatters
+    },
+    prosA,
+    consA,
+    prosB,
+    consB,
+    faq[] {
+        question,
+        answer
+    },
     body,
     seoTitle,
     seoDescription,

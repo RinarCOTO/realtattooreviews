@@ -1,105 +1,49 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import ProviderIndexWithFilters, {
-  type BrandSummary,
-} from "@/components/reviews/ProviderIndexWithFilters";
-import FAQAccordion from "@/components/reviews/FAQAccordion";
 import MonoLabel from "@/components/reviews/MonoLabel";
 import PageSection from "@/components/reviews/PageSection";
 import ReviewCard from "@/components/reviews/ReviewCard";
-import SectionHeader from "@/components/reviews/SectionHeader";
-import { getRecentReviews, getReviewStats } from "@/lib/data/reviews";
-import { getAllProviders } from "@/lib/page-data/providers";
-import {
-  brandToSlug,
-  getMultiLocationBrands,
-  getSingleLocationProviders,
-} from "@/lib/providers";
+import ProvidersTable from "@/components/reviews/ProvidersTable";
+import { getRecentReviews, getReviewStats, selectDiverseReviews } from "@/lib/data/reviews";
+import { getAllProviders, type SanityProvider } from "@/lib/page-data/providers";
+import { brandToSlug } from "@/lib/providers";
 import { providers as mockProviders } from "@/lib/mock-data/providers";
+import type { Provider } from "@/types/provider";
 import { cities } from "@/lib/mock-data/cities";
+
+function sanityToProvider(p: SanityProvider): Provider {
+  return {
+    id: p.slug,
+    name: p.name,
+    slug: p.slug,
+    brand: p.brand ?? undefined,
+    market: p.market ?? "",
+    rating: p.rating ?? 0,
+    reviewCount: p.reviewCount ?? 0,
+    summary: p.summary ?? "",
+    tags: p.tags ?? [],
+    specialty: p.specialty ?? undefined,
+    yearsActive: p.yearsActive ?? undefined,
+    featured: p.featured ?? undefined,
+  };
+}
 
 // ── Static data ───────────────────────────────────────────────────────────────
 
-const TECH_TAGS = [
-  "TEPR", "PicoWay", "PicoSure", "Q-Switch",
-  "Fotona", "Spectra", "Laser (multiple)", "Medical", "Medical Spa",
-];
-
-const FAQ_ITEMS = [
-  {
-    q: "Are tattoo removal reviews trustworthy?",
-    a: "They can be, if you look for patterns rather than isolated praise or complaints. This page is designed to make that easier by comparing public review signals, clinic ratings, and repeated patient experience themes in one place.",
-  },
-  {
-    q: "What should I look for in tattoo removal reviews?",
-    a: "Look for review count, complaint patterns, safety and aftercare reputation, pricing transparency, session count expectations, technology mentioned, and whether patient experiences stay consistent across locations.",
-  },
-  {
-    q: "How many reviews are enough to trust a clinic?",
-    a: "There is no perfect number, but more review volume gives you better context. A high average rating based on very few reviews is less persuasive than strong ratings supported by a large review count and consistent feedback themes.",
-  },
-  {
-    q: "How do I compare tattoo removal clinics?",
-    a: "Start with ratings, review volume, treatment reputation, technology, and complaint patterns. Then open the full provider page to check safety signals and whether the provider fits your situation.",
-  },
-  {
-    q: "Does tattoo removal really work?",
-    a: "Often yes, but results vary by ink, skin, provider skill, treatment plan, and technology used. Reviews help you judge whether a clinic sets realistic expectations and delivers a consistent patient experience.",
-  },
-];
-
 const RESEARCH_LINKS = [
-  { label: "How much does removal cost?", href: "/cost", desc: "Price ranges by method and city", meta: "Cost guide" },
-  { label: "Before and after results", href: "/before-and-after", desc: "Multi-provider outcome examples", meta: "Visual guide" },
-  { label: "Laser vs non-laser compared", href: "/comparisons/best-tattoo-removal-method", desc: "Method comparison guide", meta: "Comparison" },
-  { label: "Healing and aftercare", href: "/guides/tattoo-removal-aftercare", desc: "What to expect between sessions", meta: "Aftercare guide" },
+  { label: "How much does removal cost?", href: "/cost" },
+  { label: "Before and after results", href: "/before-and-after" },
+  { label: "Laser vs non-laser compared", href: "/comparisons/best-tattoo-removal-method" },
+  { label: "Healing and aftercare", href: "/guides/tattoo-removal-aftercare" },
 ];
-
-const TRUST_ITEMS = [
-  {
-    num: "01",
-    title: "How reviews are collected",
-    body: "We track average rating and review count so you can judge both score and confidence. We summarize recurring patient experiences rather than relying on one-off comments.",
-    href: "#methodology",
-    link: "Collection methodology",
-  },
-  {
-    num: "02",
-    title: "How providers are evaluated",
-    body: "We flag complaint patterns, especially when they appear across multiple reviews or locations. We note session count expectations, safety and aftercare reputation, and pricing clarity.",
-    href: "#methodology",
-    link: "Read the full methodology",
-  },
-  {
-    num: "03",
-    title: "Independent, no paid placements",
-    body: "No provider pays to appear here. Rankings reflect sourced review evidence and RTR analysis, nothing else.",
-    href: "#editorial",
-    link: "Editorial policy",
-  },
-];
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-function brandWhyLine(brand: BrandSummary): string {
-  const m = brand.method === "Non-Laser" ? "non-laser" : "laser";
-  const r = brand.avgRating.toFixed(1);
-  if (brand.totalReviews >= 150)
-    return `Largest ${m} review base in our index, across ${brand.locationCount} markets.`;
-  if (Number(r) >= 4.2)
-    return `Highest-rated ${m} brand with ${brand.totalReviews} sourced reviews.`;
-  if (brand.locationCount >= 3)
-    return `${brand.locationCount}-city ${m} chain with ${brand.totalReviews} sourced reviews.`;
-  return `${brand.totalReviews} sourced reviews across ${brand.locationCount} ${m} ${brand.locationCount === 1 ? "location" : "locations"}.`;
-}
 
 // ── SEO ───────────────────────────────────────────────────────────────────────
 
 export async function generateMetadata(): Promise<Metadata> {
   const stats = await getReviewStats();
   const title = `Tattoo Removal Reviews: ${stats.totalReviews} Sourced Reviews Across ${stats.totalProviders} Providers`;
-  const description = `Compare tattoo removal providers using ${stats.totalReviews} sourced reviews across ${stats.totalCities} cities. Compare methods, outcomes, pain signals, sessions, and cost before you book.`;
+  const description = `Compare tattoo removal providers using ${stats.totalReviews} sourced reviews across ${stats.totalCities} cities. Ratings, complaint patterns, session expectations, and cost signals before you book.`;
   return {
     title,
     description,
@@ -110,52 +54,71 @@ export async function generateMetadata(): Promise<Metadata> {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ReviewsPage() {
-  const [stats, recentReviews] = await Promise.all([
+  const [stats, allReviewsPool] = await Promise.all([
     getReviewStats(),
-    getRecentReviews(9),
+    getRecentReviews(60),
   ]);
 
   const sanityProviders = await getAllProviders();
-  const allProviders = sanityProviders.length > 0 ? sanityProviders : mockProviders;
+  const allProviders: Provider[] = sanityProviders.length > 0
+    ? sanityProviders.map(sanityToProvider)
+    : mockProviders;
 
-  const brandNames = getMultiLocationBrands();
-  const brandSummaries: BrandSummary[] = brandNames.map((brand) => {
-    const locs = allProviders.filter(
-      (p) => p.brand?.toLowerCase() === brand.toLowerCase()
-    );
-    const totalReviews = locs.reduce((s: number, p) => s + (p.reviewCount ?? 0), 0);
-    const avgRating = locs.reduce((s: number, p) => s + (p.rating ?? 0), 0) / locs.length;
-    const techTags: string[] = [
-      ...new Set(locs.flatMap((p) => p.tags ?? []).filter((t: string) => TECH_TAGS.includes(t))),
-    ];
-    const method: "Non-Laser" | "Laser" = locs[0]?.specialty
-      ?.toLowerCase()
-      .includes("non-laser")
-      ? "Non-Laser"
-      : "Laser";
-    return { name: brand, slug: brandToSlug(brand), locationCount: locs.length, totalReviews, avgRating, techTags, method };
-  });
+  // Mixed reviews: sort pool by rating alternating high/low for natural interleaving
+  const highRated = allReviewsPool.filter((r) => (r.rating ?? 0) >= 4);
+  const lowRated  = allReviewsPool.filter((r) => (r.rating ?? 0) <= 3);
+  const interleaved = highRated.flatMap((h, i) => (lowRated[i] ? [h, lowRated[i]] : [h]));
+  const mixedReviews = selectDiverseReviews(interleaved, 6);
 
-  const independents = getSingleLocationProviders().sort(
-    (a, b) => (b.featuredScore ?? 0) - (a.featuredScore ?? 0)
+  // inkOUT stats for FAQ answer
+  const inkoutLocs = allProviders.filter(
+    (p) => brandToSlug(p.brand ?? "") === "inkout"
   );
+  const inkoutReviews = inkoutLocs.reduce((s, p) => s + (p.reviewCount ?? 0), 0);
+  const inkoutLocCount = inkoutLocs.length;
+  const inkoutAvg =
+    inkoutLocs.length > 0
+      ? (inkoutLocs.reduce((s, p) => s + (p.rating ?? 0), 0) / inkoutLocs.length).toFixed(1)
+      : "4.4";
 
-  const featuredSnapshots = recentReviews.slice(0, 3);
-  const recentCoverage = recentReviews.slice(3);
-  const featuredBrands = [...brandSummaries]
-    .sort((a, b) => b.totalReviews - a.totalReviews)
-    .slice(0, 4);
-
+  // FAQ items built with live DB numbers
+  const faqItems = [
+    {
+      q: "Are tattoo removal reviews trustworthy?",
+      a: `They can be, if you read patterns rather than single quotes. One glowing review and one complaint both tell you almost nothing. ${stats.totalReviews} sourced reviews across ${stats.totalProviders} providers tell you a great deal. This page is designed to surface those patterns, not promote individual clinics.`,
+    },
+    {
+      q: "What should I look for in tattoo removal reviews?",
+      a: "Look for: review count (more volume means more signal), complaint patterns (especially scarring, session count underestimates, and billing disputes), whether positive experiences are consistent or isolated, and whether the provider sets realistic expectations about pain and sessions. Single five-star reviews are easy to post. Consistent patterns across dozens of reviews are harder to fake.",
+    },
+    {
+      q: `Is inkOUT worth it?`,
+      a: `inkOUT is the most-reviewed provider in our index: ${inkoutReviews} sourced reviews across ${inkoutLocCount} locations with a ${inkoutAvg} average. That volume makes it one of the more reliable providers to evaluate. Whether it is the right fit depends on your city, tattoo, and budget. Read the full inkOUT brand page to see location-level patterns before deciding.`,
+    },
+    {
+      q: "Are tattoo removal clinics safe?",
+      a: `Most are, when operated correctly. Of ${stats.totalReviews} reviews in our index, ${stats.scarringMentions} mention scarring or skin damage. That is a small percentage, but it is not zero. Scarring risk increases with undertrained operators, overly aggressive settings, and poor aftercare. Look for providers who discuss aftercare explicitly and have consistent safety signals across their reviews.`,
+    },
+    {
+      q: "How many sessions does tattoo removal take?",
+      a: "Most professional tattoos require 5 to 10 sessions with a quality laser. Amateur tattoos and lighter inks often clear faster. Colors other than black (especially greens and blues) take longer. Clinics that quote 3 sessions without examining your tattoo are not giving you an honest answer. Use session count expectations in reviews as a trust signal.",
+    },
+  ];
 
   return (
     <div className="reviews-page">
 
       {/* ── 1. Hero ──────────────────────────────────────────────────────── */}
-      <section className="border-b border-(--line) pt-24 pb-20 bg-(--bg)">
+      <section className="border-b border-(--line) pt-24 pb-20 bg-(--feathering-mist)">
         <Container>
           <MonoLabel color="accent" size="sm" className="mb-6 flex items-center gap-2.5">
             <span className="inline-block w-6 h-px bg-(--accent)" />
             Independent Provider Reviews
+            {stats.lastUpdated && (
+              <span className="text-(--muted) font-normal normal-case tracking-normal">
+                · Updated {stats.lastUpdated}
+              </span>
+            )}
           </MonoLabel>
 
           <h1 className="font-sans font-bold text-[clamp(48px,7.5vw,92px)] leading-[0.98] tracking-[-0.035em] m-0 text-(--ink) max-w-[14ch]">
@@ -163,15 +126,12 @@ export default async function ReviewsPage() {
           </h1>
 
           <p className="mt-7 font-sans font-normal text-[19px] leading-normal text-(--muted) max-w-160">
-            Compare tattoo removal providers in one place. Clinic ratings, review counts, patient experience patterns, and direct links to full provider pages.
-          </p>
-          <p className="mt-4 font-sans font-normal text-[15px] leading-relaxed text-(--muted) max-w-160">
-            If you are researching tattoo removal clinics before booking, start here. This page is built to help you compare providers at a high level, spot trust signals and complaint patterns, and move into deeper research when one stands out. No promotional rankings. No guesswork.
+            {stats.totalReviews.toLocaleString()} sourced reviews across {stats.totalProviders} providers in {stats.totalCities} cities. Brand sites hide negative reviews. Yelp won't synthesize them across providers. This page does both.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2.5">
             <Link
-              href="#featured"
+              href="#providers"
               className="inline-flex items-center px-6 py-3 bg-(--ink) text-(--bg) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full"
             >
               Compare Providers →
@@ -210,159 +170,88 @@ export default async function ReviewsPage() {
       {/* ── 2. Trust strip ───────────────────────────────────────────────── */}
       <PageSection id="methodology" bg="surface" className="py-18">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-12">
-          {TRUST_ITEMS.map((item) => (
-            <div key={item.num} className="flex flex-col">
-              <MonoLabel color="accent" size="sm" className="mb-4">
-                {item.num} /
-              </MonoLabel>
-              <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
-                {item.title}
-              </h3>
-              <p className="text-[14px] text-(--muted) m-0 mb-4 flex-1">
-                {item.body}
-              </p>
-              <Link
-                href={item.href}
-                className="text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start"
-              >
-                {item.link} →
-              </Link>
-            </div>
-          ))}
+          <div className="flex flex-col">
+            <MonoLabel color="accent" size="sm" className="mb-4">01 /</MonoLabel>
+            <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
+              Negative reviews are included, not filtered
+            </h3>
+            <p className="text-[14px] text-(--muted) m-0 mb-4 flex-1">
+              Every sourced review in our index is public record from Google Business Profile. We do not remove low ratings, hide complaints, or rank providers who pay us. If {stats.scarringMentions > 0 ? `${stats.scarringMentions} reviews across our index mention scarring` : "reviews mention scarring"}, that stays in.
+            </p>
+            <Link href="/methodology" className="text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+              Collection methodology →
+            </Link>
+          </div>
+          <div className="flex flex-col">
+            <MonoLabel color="accent" size="sm" className="mb-4">02 /</MonoLabel>
+            <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
+              Complaint patterns are flagged, not buried
+            </h3>
+            <p className="text-[14px] text-(--muted) m-0 mb-4 flex-1">
+              We flag when the same complaint appears across multiple reviews or locations. Scarring mentions, billing disputes, session count underestimates, and aftercare failures all surface in provider pages. A single complaint is noise. A pattern is a signal.
+            </p>
+            <Link href="/methodology" className="text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+              Read the full methodology →
+            </Link>
+          </div>
+          <div className="flex flex-col">
+            <MonoLabel color="accent" size="sm" className="mb-4">03 /</MonoLabel>
+            <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
+              No paid placements, no affiliate rankings
+            </h3>
+            <p className="text-[14px] text-(--muted) m-0 mb-4 flex-1">
+              No provider pays to appear here or to rank higher. Provider order in the table below defaults to review count, not revenue. We do not accept sponsored placements.
+            </p>
+            <Link href="/editorial" className="text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+              Editorial policy →
+            </Link>
+          </div>
         </div>
       </PageSection>
 
-      {/* ── 3. Featured snapshots ─────────────────────────────────────────── */}
-      <PageSection id="featured">
-        <SectionHeader
-          eyebrow="03 · Top-Rated"
-          title="Top-Rated Tattoo Removal Clinics"
-          description="These featured summaries highlight the providers showing the strongest current review signals. The focus is on what users actually need before booking: clinic ratings, review volume, treatment reputation, safety record, and location consistency."
-          right={
-            <Link href="#providers" className="text-[13px] text-(--accent) font-medium no-underline whitespace-nowrap">
-              Jump to provider index →
-            </Link>
-          }
-        />
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4">
-          {featuredSnapshots.map((r) => (
-            <ReviewCard key={r.id} review={r} featured />
-          ))}
+      {/* ── 3. Recent reviews (mixed positive + negative) ────────────────── */}
+      <PageSection id="reviews">
+        <div className="mb-10">
+          <MonoLabel color="accent" size="sm" className="mb-4">03 · Recent reviews</MonoLabel>
+          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
+            What Patients Are Actually Saying
+          </h2>
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted) max-w-prose m-0">
+            Positive and negative reviews side by side. One high-rated clinic and one complaint-flagged clinic appearing in the same section is intentional.
+          </p>
         </div>
-      </PageSection>
-
-      {/* ── 4. Provider index ─────────────────────────────────────────────── */}
-      <PageSection id="providers" bg="surface">
-        <SectionHeader
-          eyebrow="04 · Provider index"
-          title="Compare Tattoo Removal Providers"
-          description="Start with the providers people research most. Each summary is designed to help you compare the signals that matter before booking: average rating, review count, location coverage, treatment reputation, and complaint themes. The goal is not to declare a universal winner. It is to help you narrow your shortlist faster."
-        />
-        <ProviderIndexWithFilters brands={brandSummaries} independents={independents} />
-      </PageSection>
-
-      {/* ── 5. Recent coverage ───────────────────────────────────────────── */}
-      <PageSection>
-        <SectionHeader
-          eyebrow="05 · Recent coverage"
-          title="Latest Review Coverage"
-          description="This section highlights recently added or updated provider pages. If you are comparing national chains or fast-growing clinics, checking the latest coverage helps you spot where the strongest new signals are appearing."
-          right={
-            <Link href="#providers" className="text-[13px] text-(--accent) font-medium no-underline whitespace-nowrap">
-              Browse provider pages →
-            </Link>
-          }
-        />
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
-          {recentCoverage.map((r) => (
+          {mixedReviews.map((r) => (
             <ReviewCard key={r.id} review={r} />
           ))}
         </div>
       </PageSection>
 
-      {/* ── 6. Reviews by brand ──────────────────────────────────────────── */}
-      <PageSection bg="surface">
-        <SectionHeader
-          eyebrow="06 · Reviews by provider"
-          title="Reviews by Provider"
-          description="If you already know which brand you want to research, go directly to its full provider page. These pages are built for branded review intent and go deeper than the summary cards on this hub."
-        />
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] border border-(--line) bg-white rounded-xl overflow-hidden">
-          {featuredBrands.map((brand, i) => (
-            <Link
-              key={brand.slug}
-              href={`/reviews/${brand.slug}`}
-              className="flex flex-col p-7 no-underline text-inherit"
-              style={{ borderLeft: i === 0 ? "none" : "1px solid var(--line)" }}
-            >
-              {/* Eyebrow row */}
-              <div className="flex justify-between items-center mb-5">
-                <MonoLabel>0{i + 1}</MonoLabel>
-                <span
-                  className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium tracking-[0.03em]"
-                  style={
-                    brand.method === "Non-Laser"
-                      ? { background: "oklch(0.93 0.06 30)", color: "oklch(0.42 0.12 30)" }
-                      : { background: "oklch(0.93 0.05 200)", color: "oklch(0.35 0.08 200)" }
-                  }
-                >
-                  {brand.method}
-                </span>
-              </div>
-
-              {/* Brand name */}
-              <h3 className="font-bold text-[26px] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0">
-                {brand.name}
-              </h3>
-
-              {/* Rating */}
-              <div className="flex items-baseline gap-1.5 mt-3">
-                <span className="font-sans font-bold text-[42px] leading-none tracking-[-0.03em] text-(--ink)">
-                  {brand.avgRating.toFixed(1)}
-                </span>
-                <span className="text-[13px] text-(--muted)">/ 5</span>
-              </div>
-              <div className="flex items-center gap-0.5 mt-1.5">
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <svg key={s} className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      style={{ fill: s <= Math.round(brand.avgRating) ? "var(--warning)" : "var(--line)" }}
-                    />
-                  </svg>
-                ))}
-              </div>
-
-              {/* Stats */}
-              <div className="flex gap-4 mt-2 text-[12px] text-(--muted)">
-                <span>{brand.totalReviews.toLocaleString()} reviews</span>
-                <span>{brand.locationCount} locations</span>
-              </div>
-
-              {/* Divider */}
-              <div className="my-5 h-px bg-(--line)" />
-
-              {/* Why start here */}
-              <p className="font-sans text-[14px] leading-[1.45] text-(--muted) m-0 flex-1">
-                {brandWhyLine(brand)}
-              </p>
-
-              {/* CTA */}
-              <div className="mt-5 text-[12px] text-(--accent) font-medium">
-                Open brand reviews →
-              </div>
-            </Link>
-          ))}
+      {/* ── 4. All providers table ───────────────────────────────────────── */}
+      <PageSection id="providers" bg="surface">
+        <div className="mb-10">
+          <MonoLabel color="accent" size="sm" className="mb-4">04 · All providers</MonoLabel>
+          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
+            Compare Tattoo Removal Providers
+          </h2>
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted) max-w-prose m-0">
+            Every provider in our index. Sort by rating, review count, or city. Click a provider name to open the full review page.
+          </p>
         </div>
+        <ProvidersTable providers={allProviders} />
       </PageSection>
 
-      {/* ── 7. Reviews by city ───────────────────────────────────────────── */}
-      <PageSection>
-        <SectionHeader
-          eyebrow="07 · Reviews by city"
-          title="Looking local? Start here."
-          description="Every city we cover at review-count depth. Entries update as new sourced reviews come in."
-        />
+      {/* ── 5. Browse by city ───────────────────────────────────────────── */}
+      <PageSection id="cities">
+        <div className="mb-10">
+          <MonoLabel color="accent" size="sm" className="mb-4">05 · By city</MonoLabel>
+          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
+            Browse by City
+          </h2>
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted) max-w-prose m-0">
+            National brand ratings are a starting point. Local execution still matters. Each city page shows which providers operate there and how their reviews compare locally.
+          </p>
+        </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] border border-(--line)">
           {cities.map((city, i) => (
             <Link
@@ -389,66 +278,90 @@ export default async function ReviewsPage() {
         </div>
       </PageSection>
 
-      {/* ── 8. Research links ────────────────────────────────────────────── */}
-      <PageSection bg="surface">
-        <SectionHeader
-          eyebrow="08 · Where to go next"
-          title="Where to Go Next"
-          description="Pricing context, method comparisons, and what to expect between sessions. Use these when you are ready to go deeper than reviews."
-        />
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
-          {RESEARCH_LINKS.map((link, i) => (
+      {/* ── 6. FAQ ──────────────────────────────────────────────────────── */}
+      <PageSection id="faq" bg="surface">
+        <div className="mb-10">
+          <MonoLabel color="accent" size="sm" className="mb-4">06 · FAQ</MonoLabel>
+          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
+            Frequently Asked Questions
+          </h2>
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted) max-w-prose m-0">
+            Common questions from people researching tattoo removal clinics before making a booking decision.
+          </p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {faqItems.map((item) => (
+            <div key={item.q} className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-3 leading-snug">{item.q}</p>
+              <p className="text-[13px] leading-relaxed text-(--muted)">{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </PageSection>
+
+      {/* ── 7. Where to go next ─────────────────────────────────────────── */}
+      <PageSection id="guides">
+        <div className="mb-8">
+          <MonoLabel color="accent" size="sm" className="mb-4">07 · Where to go next</MonoLabel>
+          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0">
+            Go Deeper
+          </h2>
+        </div>
+        <div className="flex flex-col divide-y divide-(--line) border border-(--line) rounded-xl overflow-hidden bg-white">
+          {RESEARCH_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="flex flex-col gap-2 p-6 bg-(--bg) border border-(--line) no-underline text-inherit min-h-40"
+              className="flex items-center justify-between px-6 py-4 no-underline text-inherit hover:bg-(--wash) transition-colors"
             >
-              <MonoLabel color="accent" className="mb-auto">
-                0{i + 1}
-              </MonoLabel>
-              <div className="flex flex-col gap-2 mt-auto">
-                <div className="font-serif text-[22px] leading-[1.2] tracking-[-0.015em] text-(--ink)">
-                  {link.label}
-                </div>
-                <div className="text-[12px] text-(--muted)">{link.desc}</div>
-              </div>
-              <div className="mt-2.5 font-mono font-medium text-[12px] tracking-widest text-(--muted) uppercase flex justify-between">
-                <span>{link.meta}</span>
-                <span className="text-(--accent)">Read →</span>
-              </div>
+              <span className="font-medium text-(--ink) text-[15px]">{link.label}</span>
+              <span className="text-(--accent) text-[14px] font-medium">→</span>
             </Link>
           ))}
         </div>
       </PageSection>
 
-      {/* ── 9. FAQ ───────────────────────────────────────────────────────── */}
-      {/* ── 9. Is tattoo removal worth it? ──────────────────────────────── */}
-      <PageSection bg="surface">
-        <SectionHeader
-          eyebrow="09 · Worth it?"
-          title="Is Tattoo Removal Worth It?"
-          description="For many people, yes. But the answer depends heavily on the provider, the tattoo, the treatment plan, and how realistic the clinic is about session count, pain, healing, cost, and expected results."
-        />
-        <div className="max-w-prose">
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
-            Reviews matter because they show what happens after the consultation pitch. They help you judge whether patients felt informed, safe, and satisfied with the actual experience, not just the sales process.
+      {/* ── 8. Footer disclosure ────────────────────────────────────────── */}
+      <section className="border-t border-(--line) bg-(--surface) py-12">
+        <Container>
+          <p className="font-mono text-[11px] tracking-widest uppercase text-(--muted) mb-4">
+            Disclosure
           </p>
-          <p className="mt-4 font-sans text-[14px] leading-relaxed text-(--muted)">
-            If you want proof beyond ratings, move next to a full provider review page or a treatment comparison page.
+          <p className="font-sans text-[12px] leading-relaxed text-(--muted) max-w-3xl">
+            realtattooreviews.com is operated by {process.env.LEGAL_ENTITY_NAME ?? "[operator]"}.
+            Reviews are sourced from public Google Business Profile listings and reflect the opinions of individual patients, not RTR editorial opinion.
+            RTR does not verify individual review claims and is not responsible for the accuracy of third-party reviews.
+            This site does not provide medical advice. Consult a licensed provider before undergoing any tattoo removal procedure.
+            To request removal of a review you believe is inaccurate or defamatory, contact{" "}
+            <a
+              href={`mailto:${process.env.TAKEDOWN_EMAIL ?? "legal@realtattooreviews.com"}`}
+              className="underline hover:text-(--ink)"
+            >
+              {process.env.TAKEDOWN_EMAIL ?? "legal@realtattooreviews.com"}
+            </a>.
+            {stats.lastUpdated && ` Reviews last pulled: ${stats.lastUpdated}.`}
           </p>
-        </div>
-      </PageSection>
+        </Container>
+      </section>
 
-      {/* ── 10. FAQ ──────────────────────────────────────────────────────── */}
-      <PageSection>
-        <SectionHeader
-          eyebrow="10 · Frequently asked"
-          title="Frequently Asked Questions"
-          description="Common questions about how to read and use tattoo removal reviews before choosing a clinic."
-        />
-        <FAQAccordion items={FAQ_ITEMS} />
-      </PageSection>
-
+      {/* FAQPage JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((item) => ({
+              "@type": "Question",
+              name: item.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.a,
+              },
+            })),
+          }),
+        }}
+      />
     </div>
   );
 }

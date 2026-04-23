@@ -24,7 +24,7 @@ export function localBusinessSchema(provider: {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: provider.name,
-    url: `${siteUrl}/providers/${provider.slug}`,
+    url: `${siteUrl}/reviews/${provider.slug}`,
     address: {
       "@type": "PostalAddress",
       addressLocality: provider.market,

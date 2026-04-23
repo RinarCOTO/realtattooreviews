@@ -17,6 +17,8 @@ import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
 import { getLocationSlug } from "@/lib/providers";
 import {
+  buildBestFor,
+  buildBottomLine,
   buildFAQ,
   buildOverviewStats,
   buildPricingContext,
@@ -48,6 +50,8 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   const resultsSummary = buildResultsSummary(reviews);
   const alternatives = getAlternativeProviders(locations, slug);
   const faqItems = buildFAQ(brand);
+  const bestForData = buildBestFor(locations, reviews);
+  const bottomLine = buildBottomLine(brand, locations, reviews, alternatives);
   const brandTags = unique(locations.flatMap((l) => l.tags ?? [])).slice(0, 6);
   const hasMoreReviews = reviews.length > 6;
   const jumpItems = [
@@ -59,7 +63,9 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
     { label: "Treatment",    href: "#treatment" },
     { label: "Locations",    href: "#locations" },
     { label: "Alternatives", href: "#alternatives" },
+    { label: "Who it fits",  href: "#best-for" },
     { label: "FAQ",          href: "#faq" },
+    { label: "Bottom line",  href: "#bottom-line" },
   ];
 
   return (
@@ -83,6 +89,9 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
             avgRatingValue={avgRatingValue}
             reviewCount={totalReviews}
             sourcesSummary={summarizeSources(reviews)}
+            verdictSummary={verdict.summary}
+            bestFor={bestForData.bestFor[0]}
+            lessIdealFor={bestForData.lessIdealFor[0]}
           />
         }
       />
@@ -92,8 +101,14 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       <section id="overview" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title={`Is ${brand} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and location consistency make it a good fit for your tattoo, budget, and goals." />
+          <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
+            If you are already researching {brand} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common patient patterns look like, and which alternatives are worth comparing before you commit.
+          </p>
           <VerdictSidebar rows={buildOverviewStats(reviews)} />
           <ProsCons pros={pros} cons={cons} />
+          <p className="mt-6 font-sans text-[13px] leading-relaxed text-(--muted) border-t border-(--line) pt-5">
+            The important question is not whether every review is positive. It is whether the negatives feel isolated or repeated.
+          </p>
         </Container>
       </section>
 
@@ -128,6 +143,9 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         <Container>
           <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
           <InfoCard label="Pricing signal" body={buildPricingContext(locations)} link="Compare against the national cost guide" linkHref="/cost" />
+          <p className="mt-6 font-sans text-[13px] leading-relaxed text-(--muted) border border-(--line) bg-(--surface) p-4 rounded-xl">
+            <span className="font-medium text-(--ink)">Before booking, ask:</span> how many sessions are realistic for your tattoo, what is included in the quoted price, and what happens if the tattoo fades more slowly than expected.
+          </p>
         </Container>
       </section>
 
@@ -145,7 +163,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
             {locations.map((location) => (
               <Link
                 key={location.id}
-                href={`/providers/${slug}/${getLocationSlug(location)}`}
+                href={`/reviews/${slug}#${getLocationSlug(location)}`}
                 className="group flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl transition-colors hover:border-(--accent)/30"
               >
                 <div className="flex items-start justify-between">
@@ -170,19 +188,72 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${brand}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
+          <p className="mt-8 font-sans text-[14px] leading-relaxed text-(--muted)">
+            The right outcome is not choosing the most familiar brand. It is choosing the provider whose strengths match your case most closely.
+          </p>
         </Container>
       </section>
 
-      <section id="faq" className="bg-(--surface) py-22">
+      {/* ── Who it fits ──────────────────────────────────────────────────── */}
+      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <BlockHeading title={`Who ${brand} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-4">{brand} may be a strong option if you:</p>
+              <ul className="flex flex-col gap-2">
+                {bestForData.bestFor.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-4">You should compare more carefully if you:</p>
+              <ul className="flex flex-col gap-2">
+                {bestForData.lessIdealFor.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── FAQ ──────────────────────────────────────────────────────────── */}
+      <section id="faq" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${brand} before making a booking decision.`} />
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {faqItems.map((item) => (
               <div key={item.q} className="border border-(--line) bg-white p-5 rounded-xl">
                 <p className="font-semibold text-(--ink) text-[14px] mb-2">{item.q}</p>
                 <p className="text-[13px] leading-relaxed text-(--muted)">{item.a}</p>
               </div>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Bottom line ──────────────────────────────────────────────────── */}
+      <section id="bottom-line" className="bg-(--bg) py-22">
+        <Container>
+          <BlockHeading title={`Bottom Line on ${brand}`} body={bottomLine.copy} />
+          <p className="-mt-4 mb-10 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
+            {bottomLine.actionLine}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="#alternatives" className="inline-flex items-center px-5 py-2.5 bg-(--ink) text-(--bg) font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full">
+              Compare {brand} Alternatives
+            </Link>
+            <Link href="/reviews" className="inline-flex items-center px-5 py-2.5 border border-(--line) text-(--ink) font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full">
+              Read Tattoo Removal Reviews
+            </Link>
           </div>
         </Container>
       </section>

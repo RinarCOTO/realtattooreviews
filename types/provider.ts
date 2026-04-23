@@ -14,4 +14,7 @@ export type Provider = {
   location?: string;    // full address or neighborhood
   featured?: boolean;
   featuredScore?: number;
+  website?: string;
+  webSummary?: string;
+  googleBusinessUrl?: string;
 };

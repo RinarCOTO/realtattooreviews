@@ -70,7 +70,7 @@ export default async function CityPage({ params }: Props) {
               {cityProviders.map((provider) => (
                 <Link
                   key={provider.id}
-                  href={`/providers/${provider.slug}`}
+                  href={`/reviews/${provider.slug}`}
                   className="group flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-md"
                 >
                   <div className="flex items-start justify-between">

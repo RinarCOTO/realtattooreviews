@@ -25,8 +25,8 @@ function outcomeBadge(rating?: number, resultsMentioned?: boolean | null) {
  * ReviewCardCompact — homepage variant.
  *
  * Compact excerpt (line-clamp-2). City/location is the differentiator.
- * CTA routes to /providers/{brand}/{location} for multi-location,
- * /providers/{slug} for single-location.
+ * CTA routes to /reviews/{slug}#{location} for multi-location,
+ * /reviews/{slug} for single-location.
  */
 export default function ReviewCardCompact({ review }: Props) {
   const providerHref = resolveProviderHref(review);
