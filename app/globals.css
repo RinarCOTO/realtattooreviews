@@ -34,6 +34,8 @@
   --color-bg:              oklch(0.99 0.002 60);
   --color-surface:         oklch(0.965 0.003 60);
   --color-surface-2:       oklch(0.94 0.003 60);
+  --color-cloud-gray:      oklch(0.972 0.004 240);
+  --color-feathering-mist: oklch(0.976 0.008 268);
   --color-background:      oklch(0.99 0.002 60);
   --color-foreground:      oklch(0.52 0.005 60);
 
@@ -142,6 +144,8 @@ button, [role="button"], a.btn {
   --bg:          oklch(0.99 0.002 60);
   --surface:     oklch(0.965 0.003 60);
   --surface-2:   oklch(0.94 0.003 60);
+  --cloud-gray:        oklch(0.972 0.004 240);
+  --feathering-mist:   oklch(0.976 0.008 268);
   --wash:        oklch(0.945 0.012 35);
   --ink:         oklch(0.28 0.006 60);
   --muted:       oklch(0.52 0.005 60);

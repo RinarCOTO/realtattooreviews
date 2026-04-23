@@ -105,7 +105,7 @@ export default function ProviderCard({ provider }: Props) {
           Reviews
         </Link>
         <Link
-          href={`/providers/${provider.slug}`}
+          href={`/reviews/${provider.slug}`}
           className="flex-1 rounded-full bg-accent py-2 text-xs font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           Profile

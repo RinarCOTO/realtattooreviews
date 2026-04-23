@@ -7,74 +7,48 @@ import Container from "./Container";
 
 const nav = [
   {
-    label: "Reviews",
-    href: "/reviews",
-    mega: {
-      sections: [
-        {
-          heading: "By Provider",
-          links: [
-            { label: "All Providers", href: "/reviews" },
-            { label: "inkOUT", href: "/reviews/inkout" },
-            { label: "Tatt2Away", href: "/reviews/tatt2away" },
-            { label: "Removery", href: "/reviews/removery" },
-            { label: "InkFree, MD", href: "/reviews/inkfree-md" },
-            { label: "MEDermis Laser Clinic", href: "/reviews/medermis-laser-clinic" },
-            { label: "DermSurgery Associates", href: "/reviews/dermsurgery-associates" },
-          ],
-        },
-        {
-          heading: "By City",
-          links: [
-            { label: "All Cities", href: "/cities" },
-            { label: "Austin", href: "/cities/austin" },
-            { label: "Chicago", href: "/cities/chicago" },
-            { label: "Houston", href: "/cities/houston" },
-            { label: "Tampa", href: "/cities/tampa" },
-            { label: "Draper", href: "/cities/draper" },
-            { label: "Pleasant Grove", href: "/cities/pleasant-grove" },
-          ],
-        },
-        {
-          heading: "By Category",
-          links: [
-            { label: "All Categories", href: "/categories" },
-            { label: "Complete Removal", href: "/categories/complete-removal" },
-            { label: "Color Ink Removal", href: "/categories/color-ink-removal" },
-            { label: "Dark Skin Removal", href: "/categories/dark-skin-removal" },
-            { label: "Microblading Removal", href: "/categories/microblading-removal" },
-            { label: "Permanent Makeup Removal", href: "/categories/permanent-makeup-removal" },
-            { label: "Cover-Up Prep", href: "/categories/cover-up-prep" },
-          ],
-        },
-      ],
-      featured: {
-        label: "Browse all reviews",
-        description: "Independent ratings across every provider we cover.",
-        href: "/reviews",
-      },
-    },
-  },
-  {
     label: "Providers",
     href: "/providers",
     mega: {
       sections: [
         {
-          heading: "National brands",
+          heading: "By Provider",
           links: [
             { label: "All Providers", href: "/providers" },
-            { label: "Removery", href: "/providers/removery" },
-            { label: "LaserAway", href: "/providers/laseraway" },
-            { label: "Tatt2Away", href: "/providers/tatt2away" },
-            { label: "inkOUT", href: "/providers/inkout" },
+            { label: "inkOUT", href: "/reviews/inkout" },
+            { label: "Removery", href: "/reviews/removery" },
+            { label: "MEDermis Laser Clinic", href: "/reviews/medermis-laser-clinic" },
+            { label: "DermSurgery Associates", href: "/reviews/dermsurgery-associates" },
+            { label: "InkFree, MD", href: "/reviews/inkfree-md" },
+          ],
+        },
+        {
+          heading: "By City",
+          links: [
+            { label: "Austin, TX", href: "/cities/austin" },
+            { label: "Chicago, IL", href: "/cities/chicago" },
+            { label: "Houston, TX", href: "/cities/houston" },
+            { label: "Tampa, FL", href: "/cities/tampa" },
+            { label: "Draper, UT", href: "/cities/draper" },
+            { label: "All Cities", href: "/cities" },
+          ],
+        },
+        {
+          heading: "By Need",
+          links: [
+            { label: "Complete Removal", href: "/categories/complete-removal" },
+            { label: "Dark Skin", href: "/categories/dark-skin-removal" },
+            { label: "Color Ink", href: "/categories/color-ink-removal" },
+            { label: "Cover-Up Prep", href: "/categories/cover-up-prep" },
+            { label: "Microblading Removal", href: "/categories/microblading-removal" },
+            { label: "All Categories", href: "/categories" },
           ],
         },
       ],
       featured: {
-        label: "Browse providers",
-        description: "Coverage across national brands and independent clinics.",
-        href: "/providers",
+        label: "What does it cost?",
+        description: "Average session pricing, package deals, and what affects your total.",
+        href: "/cost",
       },
     },
   },
@@ -87,9 +61,9 @@ const nav = [
           heading: "Provider vs Provider",
           links: [
             { label: "All Comparisons", href: "/comparisons" },
-            { label: "Removery vs LaserAway", href: "/comparisons/removery-vs-laseraway" },
             { label: "inkOUT vs Removery", href: "/comparisons/inkout-vs-removery" },
             { label: "inkOUT vs LaserAway", href: "/comparisons/inkout-vs-laseraway" },
+            { label: "Removery vs LaserAway", href: "/comparisons/removery-vs-laseraway" },
           ],
         },
         {
@@ -102,9 +76,9 @@ const nav = [
         },
       ],
       featured: {
-        label: "Compare providers",
-        description: "Side-by-side ratings, pricing, and patient outcomes.",
-        href: "/comparisons",
+        label: "inkOUT vs Removery",
+        description: "The most-compared matchup on the site: TEPR vs PicoWay, price vs session count.",
+        href: "/comparisons/inkout-vs-removery",
       },
     },
   },
@@ -117,7 +91,7 @@ const nav = [
           heading: "Treatment Guides",
           links: [
             { label: "All Guides", href: "/guides" },
-            { label: "Tattoo Removal Aftercare", href: "/guides/tattoo-removal-aftercare" },
+            { label: "Aftercare", href: "/guides/tattoo-removal-aftercare" },
             { label: "Healing Process", href: "/guides/tattoo-removal-healing-process" },
             { label: "Side Effects", href: "/guides/tattoo-removal-side-effects" },
             { label: "Scarring", href: "/guides/tattoo-removal-scarring" },
@@ -125,44 +99,23 @@ const nav = [
           ],
         },
         {
-          heading: "About",
+          heading: "About This Site",
           links: [
-            { label: "Methodology", href: "/methodology" },
+            { label: "How We Rate Providers", href: "/methodology" },
             { label: "Editorial Policy", href: "/editorial-policy" },
+            { label: "About", href: "/about" },
           ],
         },
       ],
       featured: {
-        label: "How we rate clinics",
-        description: "Our scoring methodology explained, no affiliate deals.",
-        href: "/methodology",
-      },
-    },
-  },
-  {
-    label: "Blog",
-    href: "/blog",
-    mega: {
-      sections: [
-        {
-          heading: "Latest Posts",
-          links: [
-            { label: "All Posts", href: "/blog" },
-            { label: "How Many Sessions Does Removal Take?", href: "/blog/how-many-sessions-does-tattoo-removal-take" },
-            { label: "Q-Switch vs Picosecond Lasers", href: "/blog/q-switch-vs-picosecond-lasers" },
-            { label: "Tattoo Removal on Dark Skin", href: "/blog/tattoo-removal-on-dark-skin" },
-          ],
-        },
-      ],
-      featured: {
-        label: "Browse all posts",
-        description: "Research, provider trends, and editorial coverage on tattoo removal.",
-        href: "/blog",
+        label: "Before and after photos",
+        description: "Real patient results across laser and non-laser methods.",
+        href: "/before-and-after",
       },
     },
   },
   { label: "Cost", href: "/cost" },
-  { label: "Before & After", href: "/before-and-after" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Header() {
@@ -223,20 +176,17 @@ export default function Header() {
             href="/"
             className="shrink-0 text-sm font-bold tracking-tight text-heading rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
-            RealTattoo<span className="text-muted">Reviews</span>
+            RealTattooReviews
           </Link>
 
-          {/* Desktop nav — hidden below lg (1024px) */}
+          {/* Desktop nav */}
           <nav aria-label="Main navigation" className="hidden items-center gap-0.5 lg:flex">
             {nav.map((item) => {
               const active = isSectionActive(item);
               const open = openMega === item.label;
 
               return item.mega ? (
-                <div
-                  key={item.label}
-                  onMouseEnter={() => setOpenMega(item.label)}
-                >
+                <div key={item.label} onMouseEnter={() => setOpenMega(item.label)}>
                   <button
                     aria-expanded={open}
                     aria-haspopup="true"
@@ -265,6 +215,7 @@ export default function Header() {
                       <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-accent" />
                     )}
                   </button>
+
                   {open && (
                     <div
                       className="absolute top-full left-0 w-full border-b border-border bg-surface shadow-lg"
@@ -304,6 +255,8 @@ export default function Header() {
                               </div>
                             ))}
                           </div>
+
+                          {/* Featured card — always a different destination than the nav label */}
                           <div className="w-56 shrink-0">
                             <Link
                               href={item.mega.featured.href}
@@ -314,12 +267,12 @@ export default function Header() {
                                 <p className="text-sm font-semibold text-heading group-hover:text-white">
                                   {item.mega.featured.label}
                                 </p>
-                                <p className="mt-1.5 text-xs leading-relaxed text-muted group-hover:text-muted">
+                                <p className="mt-1.5 text-xs leading-relaxed text-muted group-hover:text-white/70">
                                   {item.mega.featured.description}
                                 </p>
                               </div>
-                              <span className="mt-4 text-xs font-medium text-heading group-hover:text-white">
-                                Browse →
+                              <span className="mt-4 text-xs font-medium text-accent group-hover:text-white">
+                                Go →
                               </span>
                             </Link>
                           </div>
@@ -351,14 +304,14 @@ export default function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:block">
             <Link
-              href="/reviews"
+              href="/providers"
               className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
-              Browse Reviews
+              Find a Provider
             </Link>
           </div>
 
-          {/* Mobile/tablet toggle — visible below lg */}
+          {/* Mobile toggle */}
           <button
             className="flex items-center justify-center rounded-md p-2 text-muted hover:bg-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 lg:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -379,7 +332,7 @@ export default function Header() {
         </div>
       </Container>
 
-      {/* Mobile/tablet menu */}
+      {/* Mobile menu */}
       {mobileOpen && (
         <div id="mobile-menu" className="border-t border-border bg-surface lg:hidden">
           <Container>
@@ -391,14 +344,11 @@ export default function Header() {
                 return (
                   <div key={item.label}>
                     {item.mega ? (
-                      /* Item with sub-links: link + separate expand toggle */
                       <div className="flex items-center">
                         <Link
                           href={item.href}
                           className={`flex-1 rounded-md px-3 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
-                            active
-                              ? "text-accent"
-                              : "text-body hover:text-accent"
+                            active ? "text-accent" : "text-body hover:text-accent"
                           }`}
                           onClick={closeMobile}
                         >
@@ -407,9 +357,7 @@ export default function Header() {
                         <button
                           aria-expanded={sectionOpen}
                           aria-label={`${sectionOpen ? "Collapse" : "Expand"} ${item.label} links`}
-                          onClick={() =>
-                            setOpenMobileSection(sectionOpen ? null : item.label)
-                          }
+                          onClick={() => setOpenMobileSection(sectionOpen ? null : item.label)}
                           className="flex h-9 w-9 items-center justify-center rounded-md text-muted transition-colors hover:bg-accent-light hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                         >
                           <svg
@@ -427,9 +375,7 @@ export default function Header() {
                       <Link
                         href={item.href}
                         className={`block rounded-md px-3 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
-                          active
-                            ? "text-accent"
-                            : "text-body hover:text-accent"
+                          active ? "text-accent" : "text-body hover:text-accent"
                         }`}
                         onClick={closeMobile}
                       >
@@ -437,7 +383,6 @@ export default function Header() {
                       </Link>
                     )}
 
-                    {/* Accordion sub-sections */}
                     {item.mega && sectionOpen && (
                       <div className="mb-1 ml-3 border-l-2 border-border pl-3">
                         {item.mega.sections.map((section) => (
@@ -472,11 +417,11 @@ export default function Header() {
 
               <div className="mt-2 border-t border-border pt-3 pb-1">
                 <Link
-                  href="/reviews"
+                  href="/providers"
                   className="block rounded-md bg-primary px-4 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   onClick={closeMobile}
                 >
-                  Browse Reviews
+                  Find a Provider
                 </Link>
               </div>
             </nav>

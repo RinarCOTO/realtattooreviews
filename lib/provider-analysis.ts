@@ -172,16 +172,92 @@ export function buildFAQ(providerName: string, marketLine?: string) {
   const suffix = marketLine ? ` in ${marketLine}` : "";
   return [
     {
-      q: `How strong is the review evidence for ${providerName}${suffix}?`,
-      a: `${providerName} should be evaluated on review consistency, pricing fit, treatment approach, and how it compares against alternatives in the same market. This page consolidates those signals from public sources rather than provider marketing.`,
-    },
-    {
       q: `Is ${providerName} legit?`,
-      a: `The question is less about brand claims and more about whether public-source reviews show consistent outcomes, clear communication, and believable treatment expectations. The review-source summary and review evidence sections are the key parts to check.`,
+      a: `${providerName} appears to be a real, established operator, but legitimacy is not the only question. Users should still compare review patterns, pricing clarity, treatment fit, and local consistency before booking.`,
     },
     {
-      q: `How should I compare ${providerName} against alternatives?`,
-      a: `Look at technology or method fit, pricing context, complaint patterns, and whether competing providers in the same city or treatment category show stronger signals. A provider should not be judged in isolation.`,
+      q: `Is ${providerName} worth it?`,
+      a: `It depends on your tattoo, budget, and priorities. ${providerName} looks strongest for users whose needs match its core strengths. The better test is whether its review patterns, pricing, and treatment approach match what matters most to you.`,
+    },
+    {
+      q: `How expensive is ${providerName}${suffix}?`,
+      a: `That depends on tattoo size, session count, location, and treatment plan. The right comparison is total path cost, not just the first quoted session. Use the pricing section above and the cost guide for calibration.`,
+    },
+    {
+      q: `Does ${providerName} have good reviews?`,
+      a: `The answer depends on both rating and pattern. Look at review count, repeated positives, repeated complaints, and whether the experience appears consistent across locations. The review-source summary and evidence sections above cover this in detail.`,
     },
   ];
+}
+
+export function buildBestFor(
+  providers: Provider[],
+  reviews: Review[]
+): { bestFor: string[]; lessIdealFor: string[] } {
+  const tags = unique(providers.flatMap((p) => p.tags));
+  const specialties = unique(providers.map((p) => p.specialty).filter(Boolean)) as string[];
+  const total = reviews.length;
+  const avgRating =
+    total > 0
+      ? reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / total
+      : providers.reduce((s, p) => s + p.rating, 0) / providers.length;
+  const { cons } = buildProsConsFromReviews(reviews);
+  const isNonLaser = specialties.some((s) => s.toLowerCase().includes("non-laser"));
+  const isMedical = tags.some((t) => ["Medical", "Medical Spa"].includes(t));
+  const isChain = tags.includes("National Chain");
+  const isAffordable = tags.includes("Affordable");
+  const lowRated = reviews.filter((r) => (r.rating ?? 0) <= 2).length;
+
+  const bestFor: string[] = [];
+  const lessIdealFor: string[] = [];
+
+  if (isChain) bestFor.push("users who want a structured, multi-location provider with an established process");
+  if (isMedical) bestFor.push("users who prefer a clinical or medically supervised setting");
+  if (isAffordable) bestFor.push("users comparing on price who want a more accessible entry point");
+  if (avgRating >= 4.4) bestFor.push("users who want a provider with a strong overall review record");
+  if (isNonLaser) bestFor.push("users open to non-laser removal methods");
+  if (bestFor.length < 2) bestFor.push("users comparing a known provider against local alternatives");
+
+  if (total < 15) lessIdealFor.push("users who want a large volume of consistent public reviews before deciding");
+  if (total > 0 && lowRated / total > 0.1)
+    lessIdealFor.push("users highly sensitive to recurring negative review patterns");
+  if (!isAffordable && !isMedical)
+    lessIdealFor.push("users comparing primarily on price without a firm budget in mind");
+  if (!isChain && providers.length === 1)
+    lessIdealFor.push("users who want multi-location national coverage");
+  if (cons.length > 0 && lessIdealFor.length < 3)
+    lessIdealFor.push(
+      "users for whom " +
+        cons[0]
+          .toLowerCase()
+          .replace(/^\d+\s+reviews?\s+(report|flag|mention)\s+/i, "")
+          .replace(/\.$/, "") +
+        " is the deciding factor"
+    );
+  if (lessIdealFor.length < 2) lessIdealFor.push("users who need more location-specific data before committing");
+
+  return { bestFor: bestFor.slice(0, 4), lessIdealFor: lessIdealFor.slice(0, 4) };
+}
+
+export function buildBottomLine(
+  providerName: string,
+  providers: Provider[],
+  reviews: Review[],
+  alternatives: Provider[]
+): { copy: string; actionLine: string } {
+  const { bestFor, lessIdealFor } = buildBestFor(providers, reviews);
+  const alt1 = alternatives[0]?.name;
+  const alt2 = alternatives[1]?.name;
+  const altText = alt1 && alt2 ? `${alt1} and ${alt2}` : alt1 ?? "local alternatives";
+
+  const copy = `${providerName} is not an automatic yes or no. It looks strongest for ${
+    bestFor[0] ?? "users who match its core strengths"
+  }, weaker for ${
+    lessIdealFor[0] ?? "users with different priorities"
+  }, and worth comparing directly against ${altText} before you choose.`;
+
+  const actionLine =
+    "If the overall pattern looks close to what you want, read the city-level section and compare alternatives next. If the weak points are the same ones you care about most, keep looking.";
+
+  return { copy, actionLine };
 }

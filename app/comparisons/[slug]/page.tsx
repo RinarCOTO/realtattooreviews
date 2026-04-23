@@ -2,14 +2,16 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import Button from "@/components/ui/Button";
+import BlockHeading from "@/components/provider/BlockHeading";
+import JumpNav from "@/components/provider/JumpNav";
 import ComparisonTable from "@/components/sections/ComparisonTable";
 import { getComparison, getAllComparisonSlugs } from "@/lib/page-data/comparisons";
+import type { SanityComparison } from "@/lib/page-data/comparisons";
 import { comparisons as mockComparisons } from "@/lib/mock-data/comparisons";
 import { comparisonPages } from "@/lib/mock-data/comparison-pages";
 import { providers as mockProviders } from "@/lib/mock-data/providers";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
-import type { ComparisonFAQ } from "@/types/comparison";
+import type { ComparisonFAQ, ComparisonTableRow, ComparisonProsCons } from "@/types/comparison";
 
 type Props = { params: Promise<{ slug: string }> };
 type ComparisonSeoFields = {
@@ -58,6 +60,34 @@ function buildComparisonArticleSchema(
     ],
     mentions: faqs.map((faq) => faq.question),
   };
+}
+
+function mapSanityTableRows(rows: SanityComparison["tableRows"]): ComparisonTableRow[] {
+  if (!rows?.length) return [];
+  return rows.map((r) => ({
+    criterion: r.criteria,
+    left: r.valueA,
+    right: r.valueB,
+    takeaway: r.whyItMatters ?? undefined,
+  }));
+}
+
+function mapSanityProsCons(comparison: SanityComparison): ComparisonProsCons[] | null {
+  const hasA = comparison.prosA?.length || comparison.consA?.length;
+  const hasB = comparison.prosB?.length || comparison.consB?.length;
+  if (!hasA && !hasB) return null;
+  return [
+    {
+      label: comparison.providerA ?? "Provider A",
+      pros: comparison.prosA ?? [],
+      cons: comparison.consA ?? [],
+    },
+    {
+      label: comparison.providerB ?? "Provider B",
+      pros: comparison.prosB ?? [],
+      cons: comparison.consB ?? [],
+    },
+  ];
 }
 
 export async function generateStaticParams() {
@@ -126,6 +156,17 @@ export default async function ComparisonPage({ params }: Props) {
     );
   }
 
+  const sanityComparison = comparison as SanityComparison;
+
+  const activeVerdict = sanityComparison.verdict ?? detailedPage.verdict;
+  const activeTableRows = mapSanityTableRows(sanityComparison.tableRows).length
+    ? mapSanityTableRows(sanityComparison.tableRows)
+    : detailedPage.tableRows;
+  const activeProsCons = mapSanityProsCons(sanityComparison) ?? detailedPage.prosCons;
+  const activeFaqs: ComparisonFAQ[] = sanityComparison.faq?.length
+    ? sanityComparison.faq
+    : detailedPage.faqs;
+
   const picoCoverage = getTechnologyCoverage("PicoWay");
   const qSwitchCoverage = getTechnologyCoverage("Q-Switch");
   const breadcrumbJsonLd = breadcrumbSchema([
@@ -133,7 +174,7 @@ export default async function ComparisonPage({ params }: Props) {
     { name: comparison.title, href: `/comparisons/${slug}` },
   ]);
   const faqJsonLd = faqSchema(
-    detailedPage.faqs.map((faq) => ({
+    activeFaqs.map((faq) => ({
       question: faq.question,
       answer: faq.answer,
     })),
@@ -142,11 +183,22 @@ export default async function ComparisonPage({ params }: Props) {
     comparison.title,
     detailedPage.metaDescription,
     slug,
-    detailedPage.faqs,
+    activeFaqs,
   );
 
+  const jumpItems = [
+    { label: "Verdict",    href: "#verdict" },
+    { label: "Table",      href: "#comparison-table" },
+    { label: "When to choose", href: "#when-to-choose" },
+    { label: "What matters", href: "#criteria" },
+    { label: "Pros and cons", href: "#pros-cons" },
+    { label: "Questions",  href: "#questions" },
+    { label: "Next steps", href: "#next-steps" },
+    { label: "FAQ",        href: "#faq" },
+  ];
+
   return (
-    <main className="min-h-screen bg-bg">
+    <main className="min-h-screen bg-(--bg)">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -160,73 +212,79 @@ export default async function ComparisonPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
 
-      <section className="border-b border-border bg-hero-bg py-16">
+      {/* Hero */}
+      <section className="border-b border-(--line) bg-hero-bg py-22">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.75fr)_minmax(280px,1fr)] lg:items-start">
             <div>
-              <p className="mb-3 text-sm text-muted">
-                <Link href="/comparisons" className="hover:text-accent">Comparisons</Link>
+              <p className="mb-3 font-mono text-[11px] tracking-widest uppercase text-(--muted)">
+                <Link href="/comparisons" className="hover:text-(--accent)">Comparisons</Link>
                 {" / "}
-                <span className="text-heading">{comparison.title}</span>
+                <span className="text-(--ink)">{comparison.title}</span>
               </p>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+              <p className="mb-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
                 {detailedPage.eyebrow}
               </p>
-              <h1 className="max-w-3xl text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.03em] text-heading">
+              <h1 className="max-w-3xl text-[clamp(2.2rem,5vw,4rem)] font-bold leading-none tracking-[-0.03em] text-(--ink)">
                 {comparison.title}
               </h1>
-              <p className="mt-4 max-w-3xl text-[17px] leading-relaxed text-muted">
+              <p className="mt-5 max-w-2xl text-[15px] font-medium leading-[1.55] text-(--ink)">
+                {activeVerdict}
+              </p>
+              <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-(--muted)">
                 {comparison.description}
               </p>
-              <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-heading">
-                {detailedPage.verdict}
-              </p>
-
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="#comparison-table" size="md">
+                <a
+                  href="#comparison-table"
+                  className="inline-flex items-center px-5 py-2.5 bg-(--ink) text-(--bg) font-sans text-[13px] font-medium tracking-[-0.01em] rounded-full"
+                >
                   Jump to table
-                </Button>
-                <Button href="/cost" variant="secondary" size="md">
+                </a>
+                <a
+                  href="/cost"
+                  className="inline-flex items-center px-5 py-2.5 border border-(--line) text-(--ink) font-sans text-[13px] font-medium tracking-[-0.01em] rounded-full"
+                >
                   See cost guide
-                </Button>
+                </a>
               </div>
             </div>
 
-            <aside className="rounded-3xl border border-border bg-surface p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-subtle">
+            <aside id="verdict" className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
                 The short answer
               </p>
-              <p className="mt-3 text-lg font-semibold leading-snug text-heading">
+              <p className="mt-3 text-[15px] font-semibold leading-snug text-(--ink)">
                 {detailedPage.summary}
               </p>
-              <div className="mt-6 space-y-4 border-t border-border pt-5">
+              <div className="mt-6 space-y-4 border-t border-(--line) pt-5">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-subtle">
+                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
                     Site coverage
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    Current mock index includes {picoCoverage.count} clinics tagged{" "}
-                    <span className="font-medium text-heading">PicoWay</span> and{" "}
+                  <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">
+                    Current index includes {picoCoverage.count} clinics tagged{" "}
+                    <span className="font-medium text-(--ink)">PicoWay</span> and{" "}
                     {qSwitchCoverage.count} tagged{" "}
-                    <span className="font-medium text-heading">Q-Switch</span>.
+                    <span className="font-medium text-(--ink)">Q-Switch</span>.
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-subtle">
+                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
                     PicoWay examples
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {picoCoverage.providers.slice(0, 3).map((provider) => provider.name).join(", ")}
+                  <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">
+                    {picoCoverage.providers.slice(0, 3).map((p) => p.name).join(", ")}
                     {" "}and other clinics in{" "}
                     {picoCoverage.markets.slice(0, 3).join(", ")}.
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-subtle">
+                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
                     Q-switch examples
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {qSwitchCoverage.providers.map((provider) => provider.name).join(" and ")}
+                  <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">
+                    {qSwitchCoverage.providers.map((p) => p.name).join(" and ")}
                     {" "}in {qSwitchCoverage.markets.join(" and ")}.
                   </p>
                 </div>
@@ -236,20 +294,24 @@ export default async function ComparisonPage({ params }: Props) {
         </Container>
       </section>
 
-      <section className="py-14">
+      <JumpNav items={jumpItems} />
+
+      {/* When to choose */}
+      <section id="when-to-choose" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
+          <BlockHeading title="When to choose" body="Use these three frames to decide which option fits your case before going deeper into providers." />
           <div className="grid gap-4 md:grid-cols-3">
             {detailedPage.choiceCards.map((card) => (
               <article
                 key={card.title}
-                className="rounded-3xl border border-border bg-surface p-6"
+                className="border border-(--line) bg-white p-6 rounded-xl"
               >
-                <h2 className="text-xl font-semibold text-heading">{card.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{card.body}</p>
-                <ul className="mt-5 space-y-3 text-sm leading-relaxed text-muted">
+                <p className="text-[15px] font-semibold text-(--ink)">{card.title}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">{card.body}</p>
+                <ul className="mt-5 flex flex-col gap-2">
                   {card.bullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-3">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                    <li key={bullet} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
                       <span>{bullet}</span>
                     </li>
                   ))}
@@ -260,115 +322,68 @@ export default async function ComparisonPage({ params }: Props) {
         </Container>
       </section>
 
-      <section id="comparison-table" className="border-y border-border bg-surface py-16">
+      {/* Comparison table */}
+      <section id="comparison-table" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
-          <div className="mb-7 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-              Side-by-side
-            </p>
-            <h2 className="mt-3 text-[30px] font-bold leading-tight text-heading">
-              PicoWay vs Q-switch, row by row
-            </h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-muted">
-              This page follows the comparison-page brief for individual head-to-head pages:
-              one direct decision query, one structured table, and clear routing into cost,
-              results, reviews, and guide follow-ups instead of trying to own every adjacent intent.
-            </p>
-          </div>
-
+          <BlockHeading title="Side by side" body="Use this table to compare the technology itself, then pressure-test the provider using it." />
           <ComparisonTable
-            leftLabel="PicoWay"
-            rightLabel="Q-Switch"
-            rows={detailedPage.tableRows}
+            leftLabel={sanityComparison.providerA ?? "PicoWay"}
+            rightLabel={sanityComparison.providerB ?? "Q-Switch"}
+            rows={activeTableRows}
           />
         </Container>
       </section>
 
-      <section className="py-16">
+      {/* What matters more */}
+      <section id="criteria" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)]">
-            <article className="rounded-3xl border border-border bg-bg p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                Decision criteria
-              </p>
-              <h2 className="mt-3 text-[30px] font-bold leading-tight text-heading">
-                {detailedPage.criteriaTitle}
-              </h2>
-              <div className="mt-6 space-y-4">
-                {detailedPage.criteriaPoints.map((point) => {
-                  const [label, ...rest] = point.split(". ");
-                  const body = rest.join(". ");
-
-                  return (
-                    <div key={point} className="rounded-2xl border border-border bg-surface p-5">
-                      <h3 className="text-base font-semibold text-heading">{label}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </article>
-
-            <article className="rounded-3xl border border-border bg-hero-bg p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                Build brief
-              </p>
-              <div className="mt-4 space-y-5">
-                <div>
-                  <h2 className="text-base font-semibold text-heading">Intent summary</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {detailedPage.intentSummary}
-                  </p>
+          <BlockHeading title={detailedPage.criteriaTitle} body="Device name is one factor. These are the others that tend to matter just as much." />
+          <div className="grid gap-4 sm:grid-cols-2">
+            {detailedPage.criteriaPoints.map((point) => {
+              const [label, ...rest] = point.split(". ");
+              const body = rest.join(". ");
+              return (
+                <div key={point} className="border border-(--line) bg-white p-5 rounded-xl">
+                  <p className="text-[14px] font-semibold text-(--ink)">{label}</p>
+                  <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">{body}</p>
                 </div>
-                <div>
-                  <h2 className="text-base font-semibold text-heading">Keyword summary</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {detailedPage.keywordSummary}
-                  </p>
-                </div>
-                <div>
-                  <h2 className="text-base font-semibold text-heading">Internal-link next steps</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    Keep direct-comparison intent here, then route users into reviews, cost,
-                    results, and safety guides once they decide what kind of clinic or method
-                    they want to evaluate next.
-                  </p>
-                </div>
-              </div>
-            </article>
+              );
+            })}
           </div>
         </Container>
       </section>
 
-      <section className="border-y border-border bg-surface py-16">
+      {/* Pros and cons */}
+      <section id="pros-cons" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
+          <BlockHeading title="Pros and cons" body="A quick read on where each technology looks stronger and where it comes up short." />
           <div className="grid gap-5 md:grid-cols-2">
-            {detailedPage.prosCons.map((block) => (
-              <article key={block.label} className="rounded-3xl border border-border bg-bg p-6">
-                <h2 className="text-2xl font-semibold text-heading">{block.label}</h2>
+            {activeProsCons.map((block) => (
+              <article key={block.label} className="border border-(--line) bg-white p-6 rounded-xl">
+                <p className="text-[15px] font-semibold text-(--ink)">{block.label}</p>
 
-                <div className="mt-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                <div className="mt-5">
+                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
                     Pros
                   </p>
-                  <ul className="mt-3 space-y-3 text-sm leading-relaxed text-muted">
+                  <ul className="mt-3 flex flex-col gap-2">
                     {block.pros.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="mt-6 border-t border-border pt-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-subtle">
+                <div className="mt-5 border-t border-(--line) pt-5">
+                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
                     Cons
                   </p>
-                  <ul className="mt-3 space-y-3 text-sm leading-relaxed text-muted">
+                  <ul className="mt-3 flex flex-col gap-2">
                     {block.cons.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-heading" />
+                      <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warning" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -380,106 +395,74 @@ export default async function ComparisonPage({ params }: Props) {
         </Container>
       </section>
 
-      <section className="py-16">
+      {/* Questions + source note */}
+      <section id="questions" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-            <article>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                Consultation checklist
-              </p>
-              <h2 className="mt-3 text-[30px] font-bold leading-tight text-heading">
-                Questions to ask before you let anyone treat your tattoo
-              </h2>
-              <ol className="mt-7 space-y-4">
+            <div>
+              <BlockHeading title="Consultation checklist" body="Questions to ask before you let anyone treat your tattoo." />
+              <ol className="flex flex-col gap-3">
                 {detailedPage.consultQuestions.map((question, index) => (
                   <li
                     key={question}
-                    className="rounded-2xl border border-border bg-surface p-5 text-sm leading-relaxed text-muted"
+                    className="border border-(--line) bg-white p-5 rounded-xl text-[13px] leading-relaxed text-(--muted)"
                   >
-                    <span className="mr-3 font-semibold text-heading">
-                      {index + 1}.
-                    </span>
+                    <span className="mr-2 font-semibold text-(--ink)">{index + 1}.</span>
                     {question}
                   </li>
                 ))}
               </ol>
-            </article>
+            </div>
 
-            <aside className="rounded-3xl border border-border bg-hero-bg p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            <aside className="border border-(--line) bg-white p-6 rounded-xl self-start">
+              <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
                 Source transparency
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted">
+              <p className="mt-4 text-[13px] leading-relaxed text-(--muted)">
                 {detailedPage.sourceNote}
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted">
-                For this specific page, the user intent is comparison-first, not gallery,
-                price-guide, or review-hub intent. That is why the page gives a verdict,
-                a structured table, and clear follow-up links instead of trying to become
-                a catch-all explainer.
               </p>
             </aside>
           </div>
         </Container>
       </section>
 
-      <section className="border-y border-border bg-surface py-16">
+      {/* Related links */}
+      <section id="next-steps" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
-          <div className="mb-7 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-              Keep researching
-            </p>
-            <h2 className="mt-3 text-[30px] font-bold leading-tight text-heading">
-              Where users usually go next
-            </h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-muted">
-              These links follow the keyword-ownership plan from the strategy docs:
-              comparison intent stays here, then users branch into the page type that owns
-              reviews, pricing, results, or risk questions.
-            </p>
-          </div>
+          <BlockHeading title="Where to go next" body="Comparison intent stays here. Once you know which type of clinic or method you want to evaluate, move into the page that owns that question." />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {detailedPage.relatedLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-3xl border border-border bg-bg p-6 transition hover:border-accent"
+                className="group border border-(--line) bg-white p-6 rounded-xl transition-colors hover:border-(--accent)/30"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
                   {link.meta}
                 </p>
-                <h3 className="mt-3 text-xl font-semibold text-heading">{link.label}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
+                <p className="mt-3 text-[15px] font-semibold text-(--ink)">{link.label}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">
                   {link.description}
                 </p>
-                <p className="mt-5 text-sm font-medium text-accent">Open page →</p>
+                <p className="mt-4 text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">
+                  Open page →
+                </p>
               </Link>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="py-16">
+      {/* FAQ */}
+      <section id="faq" className="bg-(--bg) py-22">
         <Container>
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-              FAQ
-            </p>
-            <h2 className="mt-3 text-[30px] font-bold leading-tight text-heading">
-              PicoWay vs Q-switch, answered directly
-            </h2>
-          </div>
-          <div className="mt-8 divide-y divide-border rounded-3xl border border-border bg-surface">
-            {detailedPage.faqs.map((faq) => (
-              <details key={faq.question} className="group px-6 py-1">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg font-semibold text-heading">
-                  <span>{faq.question}</span>
-                  <span className="text-2xl text-accent transition group-open:rotate-45">+</span>
-                </summary>
-                <p className="pb-5 text-sm leading-relaxed text-muted">
-                  {faq.answer}
-                </p>
-              </details>
+          <BlockHeading title="Frequently asked questions" body="Common questions from people comparing PicoWay and Q-switch before making a booking decision." />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {activeFaqs.map((faq) => (
+              <div key={faq.question} className="border border-(--line) bg-white p-5 rounded-xl">
+                <p className="text-[14px] font-semibold text-(--ink) mb-2">{faq.question}</p>
+                <p className="text-[13px] leading-relaxed text-(--muted)">{faq.answer}</p>
+              </div>
             ))}
           </div>
         </Container>
