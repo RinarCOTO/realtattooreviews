@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import { breadcrumbSchema } from "@/lib/seo/schema";
+
+const siteUrl = "https://realtattooreviews.com";
 
 type FAQ = { question: string; answer: string };
 
@@ -10,6 +13,7 @@ type Props = {
   description: string;
   faqs?: FAQ[];
   sources?: string;
+  path?: string;
   children: React.ReactNode;
 };
 
@@ -19,8 +23,28 @@ export default function GuideLayout({
   description,
   faqs,
   sources,
+  path,
   children,
 }: Props) {
+  const breadcrumbJsonLd = path
+    ? breadcrumbSchema([
+        { name: "Guides", href: "/guides" },
+        { name: breadcrumb, href: path },
+      ])
+    : null;
+
+  const articleJsonLd = path
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: breadcrumb,
+        description,
+        mainEntityOfPage: `${siteUrl}${path}`,
+        author: { "@type": "Organization", name: "RealTattooReviews" },
+        publisher: { "@type": "Organization", name: "RealTattooReviews" },
+      }
+    : null;
+
   const faqJsonLd = faqs
     ? {
         "@context": "https://schema.org",
@@ -35,6 +59,18 @@ export default function GuideLayout({
 
   return (
     <div className="reviews-page">
+      {breadcrumbJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+      )}
+      {articleJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
+      )}
       {/* Hero */}
       <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
         <Container>
@@ -48,7 +84,7 @@ export default function GuideLayout({
             </span>
           </MonoLabel>
 
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-[1.0] tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
+          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
             {h1}
           </h1>
 
@@ -69,7 +105,7 @@ export default function GuideLayout({
 
       {/* FAQ */}
       {faqs && faqs.length > 0 && (
-        <section className="border-t border-(--line) border-b border-(--line) bg-(--surface) py-20">
+        <section className="border-y border-(--line) bg-(--surface) py-20">
           {faqJsonLd && (
             <script
               type="application/ld+json"

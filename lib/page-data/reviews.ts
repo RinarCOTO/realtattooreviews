@@ -30,6 +30,8 @@ export type SanityProviderReview = {
   // SEO overrides
   seoTitle?: string;
   seoDescription?: string;
+  seoImage?: { url: string; alt: string } | null;
+  datePublished?: string | null;
 };
 
 const PROVIDER_REVIEW_QUERY = `*[_type == "providerReview" && slug.current == $slug][0] {
@@ -60,7 +62,12 @@ const PROVIDER_REVIEW_QUERY = `*[_type == "providerReview" && slug.current == $s
     answer
   },
   seoTitle,
-  seoDescription
+  seoDescription,
+  seoImage {
+    "url": asset->url,
+    alt
+  },
+  datePublished
 }`;
 
 export async function getProviderReview(slug: string): Promise<SanityProviderReview | null> {

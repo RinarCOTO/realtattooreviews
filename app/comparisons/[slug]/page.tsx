@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PortableText } from "@portabletext/react";
 import Container from "@/components/layout/Container";
 import BlockHeading from "@/components/provider/BlockHeading";
 import JumpNav from "@/components/provider/JumpNav";
@@ -38,6 +39,7 @@ function buildComparisonArticleSchema(
   description: string,
   slug: string,
   faqs: ComparisonFAQ[],
+  topics: string[],
 ) {
   return {
     "@context": "https://schema.org",
@@ -53,11 +55,7 @@ function buildComparisonArticleSchema(
       "@type": "Organization",
       name: "RealTattooReviews",
     },
-    about: [
-      "Tattoo removal comparison",
-      "PicoWay",
-      "Q-switch laser",
-    ],
+    about: topics,
     mentions: faqs.map((faq) => faq.question),
   };
 }
@@ -163,8 +161,8 @@ export default async function ComparisonPage({ params }: Props) {
     ? mapSanityTableRows(sanityComparison.tableRows)
     : detailedPage.tableRows;
   const activeProsCons = mapSanityProsCons(sanityComparison) ?? detailedPage.prosCons;
-  const activeFaqs: ComparisonFAQ[] = sanityComparison.faq?.length
-    ? sanityComparison.faq
+  const activeFaqs: ComparisonFAQ[] = sanityComparison.faqItems?.length
+    ? sanityComparison.faqItems
     : detailedPage.faqs;
 
   const picoCoverage = getTechnologyCoverage("PicoWay");
@@ -184,6 +182,11 @@ export default async function ComparisonPage({ params }: Props) {
     detailedPage.metaDescription,
     slug,
     activeFaqs,
+    [
+      "Tattoo removal comparison",
+      sanityComparison.providerA ?? "",
+      sanityComparison.providerB ?? "",
+    ].filter(Boolean),
   );
 
   const jumpItems = [
@@ -452,6 +455,17 @@ export default async function ComparisonPage({ params }: Props) {
           </div>
         </Container>
       </section>
+
+      {/* Editorial body */}
+      {sanityComparison.body && sanityComparison.body.length > 0 && (
+        <section className="border-b border-(--line) bg-(--bg) py-22">
+          <Container>
+            <div className="mx-auto max-w-2xl prose prose-neutral text-[15px] leading-relaxed text-(--muted)">
+              <PortableText value={sanityComparison.body} />
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* FAQ */}
       <section id="faq" className="bg-(--bg) py-22">

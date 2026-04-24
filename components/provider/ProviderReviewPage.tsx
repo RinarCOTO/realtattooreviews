@@ -444,6 +444,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               name: "RealTattooReviews",
               url: "https://realtattooreviews.com",
             },
+            ...(review.datePublished ? { datePublished: review.datePublished } : {}),
             ...(review.lastReviewed ? { dateModified: review.lastReviewed } : {}),
           }),
         }}

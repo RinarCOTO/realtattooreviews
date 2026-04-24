@@ -81,7 +81,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       },
       {
         criterion: "Typical sessions",
-        left: "3 to 6 sessions per area",
+        left: "3 to 5 per area (complete removal)",
         right: "6 to 15 sessions depending on tattoo",
         takeaway: "Fewer sessions per course can offset comparable per-session pricing.",
       },
@@ -175,7 +175,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         question: "Is TEPR better than PicoSure?",
         answer:
-          "TEPR and PicoSure are not directly comparable technologies. TEPR is a non-laser method that physically draws ink out through the skin. PicoSure is a laser that fragments ink for immune system clearance. TEPR is the more appropriate method for darker skin, PMU pigments, and color ink. PicoSure performs well on standard dark-ink body tattoos in patients with lighter skin.",
+          "TEPR and PicoSure use fundamentally different mechanisms. TEPR uses precision dermabrasion to disrupt ink, which the body then expels through the skin surface. PicoSure is a laser that fragments ink into particles cleared by the immune system via the lymphatic system.",
       },
       {
         question: "Is inkOUT cheaper than LaserAway?",
@@ -185,7 +185,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         question: "How many sessions does inkOUT take vs LaserAway?",
         answer:
-          "inkOUT typically requires 3 to 6 TEPR sessions depending on the tattoo. LaserAway typically requires 6 to 15 laser sessions for the same tattoo. Session counts vary by ink density, color, skin type, and individual response.",
+          "inkOUT typically requires 3 to 5 TEPR sessions for complete removal, 1 to 3 for cover-up prep, and 1 to 2 for PMU and microblading. LaserAway typically requires 6 to 15 laser sessions for the same tattoo. Session counts vary by ink density, color, skin type, and individual response.",
       },
       {
         question: "Which is better for dark skin?",

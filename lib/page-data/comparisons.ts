@@ -25,7 +25,7 @@ export type SanityComparison = {
     consA?: string[] | null
     prosB?: string[] | null
     consB?: string[] | null
-    faq?: SanityComparisonFAQ[] | null
+    faqItems?: SanityComparisonFAQ[] | null
     body?: PortableTextBlock[]
     seoTitle?: string | null
     seoDescription?: string | null
@@ -57,7 +57,7 @@ const SINGLE_COMPARISON_QUERY = `*[_type == "comparison" && slug.current == $slu
     consA,
     prosB,
     consB,
-    faq[] {
+    faqItems[] {
         question,
         answer
     },

@@ -18,19 +18,33 @@ import { cities } from "@/lib/mock-data/cities";
 import { getRecentReviews } from "@/lib/data/reviews";
 import { getHomepageCMS } from "@/lib/page-data/homepage-cms";
 
-export const metadata: Metadata = {
-  title: "RealTattooReviews: Compare Tattoo Removal Clinics Before You Book",
-  description:
-    "848 verified patient reviews across 22 tattoo removal providers in 6 markets. Compare clinics by rating, city, ink type, and outcome before you book.",
-  openGraph: {
-    title: "RealTattooReviews: Compare Tattoo Removal Clinics Before You Book",
-    description:
-      "848 verified patient reviews across 22 providers. Compare clinics by rating, city, and outcome.",
-  },
-  alternates: {
-    canonical: "https://realtattooreviews.com",
-  },
+const FALLBACK_TITLE = "RealTattooReviews: Compare Tattoo Removal Clinics Before You Book";
+const FALLBACK_DESC = "848 verified patient reviews across 22 tattoo removal providers in 6 markets. Compare clinics by rating, city, ink type, and outcome before you book.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cms = await getHomepageCMS();
+  const title = cms?.seoTitle ?? FALLBACK_TITLE;
+  const description = cms?.seoDescription ?? FALLBACK_DESC;
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description: cms?.seoDescription ?? "848 verified patient reviews across 22 providers. Compare clinics by rating, city, and outcome.",
+      ...(cms?.seoImage?.url ? { images: [{ url: cms.seoImage.url, alt: cms.seoImage.alt ?? "" }] } : {}),
+    },
+    alternates: {
+      canonical: "https://realtattooreviews.com",
+    },
+  };
+}
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "RealTattooReviews",
+  url: "https://realtattooreviews.com",
 };
+
 export default async function HomePage() {
   const [recentReviews, cms] = await Promise.all([
     getRecentReviews(6),
@@ -39,6 +53,10 @@ export default async function HomePage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       {/* ── 1. Hero ─────────────────────────────────── */}
       <Hero headline={cms?.heroHeadline} subheadline={cms?.heroSubheadline} />
 
