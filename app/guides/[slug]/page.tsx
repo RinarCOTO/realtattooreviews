@@ -1,62 +1,67 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
-import Container from "@/components/layout/Container";
-import { getAllGuides, getGuide, getAllGuideSlugs } from "@/lib/page-data/guides";
+import { PortableText } from "@portabletext/react";
+import GuideLayout from "@/components/guide/GuideLayout";
+import { getGuide, getAllGuideSlugs } from "@/lib/page-data/guides";
 import { guides as mockGuides } from "@/lib/mock-data/guides";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const sanitySlug = await getAllGuideSlugs();
-  if (sanitySlug.length > 0) return sanitySlug.map((slug) => ({ slug }));
+  const sanitySlugs = await getAllGuideSlugs();
+  if (sanitySlugs.length > 0) return sanitySlugs.map((slug) => ({ slug }));
   return mockGuides.map((g) => ({ slug: g.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const guide = (await getGuide(slug)) ?? mockGuides.find((g) => g.slug === slug);
+  const guide = await getGuide(slug);
   if (!guide) return {};
-  const title = (guide as any).seoTitle ?? `${guide.title} | RealTattooReviews`;
-  const description = (guide as any).seoDescription ?? guide.description;
-  const seoImage = (guide as any).seoImage;
+  const title = guide.seoTitle ?? `${guide.title} | RealTattooReviews`;
+  const description = guide.seoDescription ?? guide.description;
   return {
     title,
     description,
+    alternates: { canonical: `https://realtattooreviews.com/guides/${slug}` },
     openGraph: {
       title: guide.title,
       description,
-      ...(seoImage ? { images: [{ url: seoImage.url, alt: seoImage.alt }] } : {}),
+      ...(guide.seoImage?.url ? { images: [{ url: guide.seoImage.url, alt: guide.seoImage.alt ?? "" }] } : {}),
     },
   };
 }
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params;
-  const guide = (await getGuide(slug)) ?? mockGuides.find((g) => g.slug === slug);
+  const guide = await getGuide(slug);
   if (!guide) notFound();
 
-  return (
-    <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-hero-bg py-14">
-        <Container>
-          <p className="mb-2 text-sm text-muted">
-            <Link href="/guides" className="hover:text-accent">Guides</Link>
-            {" / "}
-            <span className="text-heading">{guide.title}</span>
-          </p>
-          <h1 className="text-[36px] font-bold text-heading">{guide.title}</h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
-            {guide.description}
-          </p>
-        </Container>
-      </section>
+  const faqs = guide.faqItems && guide.faqItems.length > 0 ? guide.faqItems : undefined;
 
-      <section className="py-12">
-        <Container>
-          <p className="text-sm text-subtle">Full guide content coming soon.</p>
-        </Container>
-      </section>
-    </main>
+  return (
+    <GuideLayout
+      breadcrumb={guide.title}
+      h1={guide.title}
+      description={guide.description}
+      faqs={faqs}
+      path={`/guides/${slug}`}
+    >
+      {guide.author && (
+        <div className="py-5 border-b border-(--line)">
+          <p className="font-mono text-[11px] tracking-widest uppercase text-(--muted)">
+            By {guide.author}
+          </p>
+        </div>
+      )}
+      {guide.body && guide.body.length > 0 ? (
+        <div className="py-10 prose prose-neutral max-w-none text-[15px] leading-relaxed text-(--muted) [&_h2]:font-sans [&_h2]:font-semibold [&_h2]:text-(--ink) [&_h3]:font-sans [&_h3]:font-semibold [&_h3]:text-(--ink) [&_a]:text-(--accent) [&_a]:underline">
+          <PortableText value={guide.body} />
+        </div>
+      ) : (
+        <div className="py-10">
+          <p className="text-(--muted) text-[14px] italic">Content coming soon.</p>
+        </div>
+      )}
+    </GuideLayout>
   );
 }

@@ -53,7 +53,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       alternates: { canonical: `/reviews/${slug}/` },
-      openGraph: { title, description },
+      openGraph: {
+        title,
+        description,
+        ...(sanityReview.seoImage ? { images: [{ url: sanityReview.seoImage.url, alt: sanityReview.seoImage.alt ?? "" }] } : {}),
+      },
     };
   }
 

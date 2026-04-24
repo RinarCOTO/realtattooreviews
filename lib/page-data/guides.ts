@@ -5,8 +5,10 @@ export type SanityGuide = {
     title: string
     slug: string
     description: string
+    author?: string | null
     image?: { url: string; alt: string } | null
     body?: PortableTextBlock[]
+    faqItems?: { question: string; answer: string }[] | null
     seoTitle?: string | null
     seoDescription?: string | null
     seoImage?: { url: string; alt: string } | null
@@ -26,7 +28,12 @@ const SINGLE_GUIDE_QUERY = `*[_type == "guide" && slug.current == $slug][0] {
     title,
     "slug": slug.current,
     description,
+    author,
     body,
+    faqItems[] {
+        question,
+        answer
+    },
     image {
         "url": asset->url,
         alt

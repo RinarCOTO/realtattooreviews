@@ -17,8 +17,6 @@ export function localBusinessSchema(provider: {
   name: string;
   slug: string;
   market: string;
-  rating: number;
-  reviewCount: number;
 }) {
   return {
     "@context": "https://schema.org",
@@ -28,13 +26,6 @@ export function localBusinessSchema(provider: {
     address: {
       "@type": "PostalAddress",
       addressLocality: provider.market,
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: provider.rating,
-      reviewCount: provider.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
     },
   };
 }
