@@ -14,7 +14,7 @@ const links = [
   { label: "Contact", href: "/contact" },
 ];
 
-export default function Footer() {
+export default function Footer({ dataLastUpdated }: { dataLastUpdated?: string }) {
   return (
     <footer className="border-t border-border bg-surface py-10">
       <Container>
@@ -44,8 +44,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border pt-6 text-xs text-subtle">
-          © {new Date().getFullYear()} RealTattooReviews. Independent and editorially autonomous.
+        <div className="mt-8 border-t border-border pt-6 flex flex-wrap items-center justify-between gap-y-1 text-xs text-subtle">
+          <span>© {new Date().getFullYear()} RealTattooReviews. Independent and editorially autonomous.</span>
+          {dataLastUpdated && (
+            <span>Data last updated: {dataLastUpdated}</span>
+          )}
         </div>
       </Container>
     </footer>
