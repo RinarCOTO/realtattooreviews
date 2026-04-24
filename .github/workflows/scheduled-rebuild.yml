@@ -1,0 +1,69 @@
+name: Scheduled Rebuild
+
+# Rebuilds and deploys RTR every two weeks so data changes in Supabase
+# (from scraper pipeline runs) are reflected on the live site without a
+# manual git push.
+#
+# Schedule: 2nd and 16th of each month at 09:00 UTC.
+#   - US Central Daylight Time (CDT, UTC-5): 4:00 am  [Mar - Nov]
+#   - US Central Standard Time (CST, UTC-6): 3:00 am  [Nov - Mar]
+# A 3am winter fire is fine for a background build job.
+#
+# Manual trigger: use the "Run workflow" button in the GitHub Actions UI
+# to kick off an on-demand rebuild after any scraper pipeline run.
+
+on:
+  schedule:
+    - cron: "0 9 2,16 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Share the concurrency group with deploy.yml so a scheduled rebuild and a
+# push-triggered deploy cannot run in parallel against GitHub Pages.
+# cancel-in-progress: false means the later run waits instead of cancelling.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v4
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

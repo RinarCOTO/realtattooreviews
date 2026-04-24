@@ -3,6 +3,8 @@ import { Inter, Inter_Tight, Instrument_Serif, Space_Mono } from "next/font/goog
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { organizationSchema } from "@/lib/seo/schema";
+import { getDataFreshness } from "@/lib/data/reviews";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -73,17 +75,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const dataLastUpdated = await getDataFreshness();
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${dmMono.variable} ${inter.variable} ${interTight.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-bg text-body">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer dataLastUpdated={dataLastUpdated} />
       </body>
     </html>
   );

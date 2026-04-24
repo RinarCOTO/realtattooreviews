@@ -34,7 +34,7 @@ export type Review = {
 
   // ── Derived structured signals ───────────────────────────────────────────
   sessions?: number | null;
-  painLevel?: number | null;                     // 1–5, derived from pain_level field
+  painLevel?: number | null;                     // 1–5
   scarringReported?: boolean | null;
   healingIssues?: boolean | null;
   costMentioned?: boolean | null;
@@ -43,30 +43,45 @@ export type Review = {
   refundIssue?: boolean | null;
 };
 
-/** Row shape from the Supabase reviews table (matches actual column names). */
+/**
+ * Row shape from the Supabase competitor_reviews table.
+ *
+ * Key differences from the old `reviews` table shape:
+ *   - review_date_iso replaces review_date_at
+ *   - pain_level is a number (not a string "1"–"5")
+ *   - sessions_completed is a number (not a string)
+ *   - provider_slug and city_slug do not exist; derived in application code
+ *   - source_review_url does not exist in this table
+ *   - bucket, is_tattoo_removal, status, reviewed_decision, etc. are new filter columns
+ */
 export type DbReview = {
   id: string;
   provider_name: string;
   location_city: string;
   location_state: string;
   method_used: string | null;
-  review_text: string;
+  review_text: string | null;
   star_rating: number;
   review_date: string | null;
-  review_date_at: string | null;
+  review_date_iso: string | null;               // ISO timestamp; replaces review_date_at
   reviewer_name: string | null;
   verified_source: string;
   _place_title: string | null;
-  source_review_url: string | null;
-  pain_level: "1" | "2" | "3" | "4" | "5" | "unknown" | null;
-  scarring_mentioned: "Yes" | "No" | "Positive" | null;
-  sessions_completed: string | null;
+  pain_level: number | "unknown" | null;        // already a number, not a string
+  scarring_mentioned: "Yes" | "No" | null;
+  sessions_completed: number | "unknown" | null; // already a number, not a string
   skin_type: "Light" | "Medium" | "Dark" | "unknown" | null;
   use_case: "Complete" | "Cover-up" | "Microblading" | "Color" | "Other" | "unknown" | null;
   result_rating: "Positive" | "Neutral" | "Mixed" | "Negative" | "unknown" | null;
-  provider_slug: string;
-  city_slug: string;
-  imported_at: string;
-  created_at: string;
-  updated_at: string;
+  // ── Pipeline filter columns ──────────────────────────────────────────────
+  // inkOUT reviews: bucket = 'inkout' | 'tatt2away' | 'review_required'
+  // Competitor reviews: bucket = null (never processed by separator pipeline)
+  bucket: "inkout" | "tatt2away" | "review_required" | "competitor" | null;
+  is_tattoo_removal: boolean | null;
+  status: "published" | "pending" | "rejected" | "draft" | null;
+  reviewed_decision: string | null;
+  reviewed_at: string | null;
+  routing_reason: string | null;
+  relevance_reason: string | null;
+  last_analyzed_at: string | null;
 };

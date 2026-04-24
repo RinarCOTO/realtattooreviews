@@ -1,13 +1,45 @@
 import { supabase } from "@/lib/supabase";
-import { getMultiLocationBrands, brandToSlug } from "@/lib/providers";
+import {
+  getMultiLocationBrands,
+  brandToSlug,
+  getProvidersByBrand,
+  getSingleLocationProviders,
+} from "@/lib/providers";
 import { buildReviewTags } from "@/lib/tagging";
 import type { DbReview, Review } from "@/types/review";
 
-// ── Multi-location brand slugs (computed once at module load) ────────────────
-// e.g. ["inkout", "tatt2away", "removery"]
+// ── Table ────────────────────────────────────────────────────────────────────
+
+const TABLE = "competitor_reviews";
+
+// ── Constants ────────────────────────────────────────────────────────────────
+
+// Computed once at module load. e.g. ["inkout", "tatt2away", "removery"]
 const MULTI_LOCATION_BRAND_SLUGS: string[] = getMultiLocationBrands().map(brandToSlug);
 
-// ── Provider-type resolution ─────────────────────────────────────────────────
+// Maps RTR city slugs to the location_city / location_state values in competitor_reviews.
+const CITY_SLUG_TO_LOCATION: Record<string, { city: string; state: string }> = {
+  "austin-tx":         { city: "Austin",         state: "TX" },
+  "chicago-il":        { city: "Chicago",         state: "IL" },
+  "draper-ut":         { city: "Draper",          state: "UT" },
+  "houston-tx":        { city: "Houston",         state: "TX" },
+  "pleasant-grove-ut": { city: "Pleasant Grove",  state: "UT" },
+  "tampa-fl":          { city: "Tampa",           state: "FL" },
+};
+
+// ── Provider helpers ─────────────────────────────────────────────────────────
+
+// Normalize a DB provider_name to a URL-safe slug.
+// "inkOUT" → "inkout"   "Removery (Bucktown)" → "removery-bucktown"
+function providerNameToSlug(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+// Derive a city slug from DB columns.
+// "Austin", "TX" → "austin-tx"   "Pleasant Grove", "UT" → "pleasant-grove-ut"
+function deriveCitySlug(city: string, state: string): string {
+  return `${city.toLowerCase().replace(/\s+/g, "-")}-${state.toLowerCase()}`;
+}
 
 type ProviderResolution = {
   providerType: "multi-location" | "single-location";
@@ -16,46 +48,66 @@ type ProviderResolution = {
 };
 
 /**
- * Determine providerType, providerSlug (brand-level), and locationId from a
- * raw DB provider_slug and city_slug.
+ * Resolve the canonical RTR providerSlug and providerType from a DB provider_name.
  *
- * Two multi-location patterns exist in the data:
- *
- *   1. Brand-only slug — provider_name is just the brand, so provider_slug
- *      equals the brand slug exactly.
- *      Example: "inkOUT" → provider_slug "inkout" === brandToSlug("inkOUT")
- *      Location derived from city_slug ("austin", "chicago", …).
- *
- *   2. Brand+neighbourhood slug — provider_name includes the location.
- *      Example: "Removery (Bucktown)" → provider_slug "removery-bucktown"
- *      Location derived by stripping the brand prefix.
+ * Replaces the old resolveProviderMeta() which relied on a pre-computed provider_slug
+ * column that does not exist in competitor_reviews.
  */
-function resolveProviderMeta(dbSlug: string, citySlug: string): ProviderResolution {
-  // Pattern 1: exact match on a known brand slug
-  if (MULTI_LOCATION_BRAND_SLUGS.includes(dbSlug)) {
+function resolveProviderMeta(providerName: string, city: string): ProviderResolution {
+  const derived = providerNameToSlug(providerName);
+
+  // Exact match on brand slug → brand-level multi-location (e.g. "inkout")
+  if (MULTI_LOCATION_BRAND_SLUGS.includes(derived)) {
     return {
       providerType: "multi-location",
-      providerSlug: dbSlug,
-      locationId: citySlug,
+      providerSlug: derived,
+      locationId: city.toLowerCase().replace(/\s+/g, "-"),
     };
   }
 
-  // Pattern 2: starts with a known brand slug followed by "-"
+  // Prefix match → sub-location slug (e.g. "removery-bucktown" → brand "removery")
   const matchingBrand = MULTI_LOCATION_BRAND_SLUGS.find(
-    (bs) => dbSlug.startsWith(bs + "-")
+    (bs) => derived.startsWith(bs + "-")
   );
   if (matchingBrand) {
     return {
       providerType: "multi-location",
       providerSlug: matchingBrand,
-      locationId: dbSlug.slice(matchingBrand.length + 1),
+      locationId: derived.slice(matchingBrand.length + 1),
     };
   }
 
-  return { providerType: "single-location", providerSlug: dbSlug };
+  return { providerType: "single-location", providerSlug: derived };
 }
 
-// ── Mapper ───────────────────────────────────────────────────────────────────
+/**
+ * Return the provider_name values in competitor_reviews that correspond to an RTR slug,
+ * plus whether this slug is the inkOUT brand (which requires a stricter bucket filter).
+ *
+ * Uses mock-data as the source of truth for name-to-slug mapping. All providers in
+ * competitor_reviews are also in mock-data, so the lookup is reliable.
+ */
+function getProviderNamesForSlug(
+  slug: string
+): { names: string[]; isInkout: boolean } {
+  const isInkout = slug === "inkout";
+
+  // Multi-location brand slug (e.g. "inkout", "removery", "tatt2away")
+  const brand = getMultiLocationBrands().find((b) => brandToSlug(b) === slug);
+  if (brand) {
+    // Deduplicate: inkOUT locations all share name "inkOUT", etc.
+    const names = [...new Set(getProvidersByBrand(brand).map((p) => p.name))];
+    return { names, isInkout };
+  }
+
+  // Single-location provider slug (e.g. "arviv-medical-aesthetics")
+  const provider = getSingleLocationProviders().find((p) => p.slug === slug);
+  if (provider) return { names: [provider.name], isInkout: false };
+
+  return { names: [], isInkout: false };
+}
+
+// ── Formatter helpers ────────────────────────────────────────────────────────
 
 function formatReviewerName(name: string | null): string | null {
   if (!name) return null;
@@ -71,19 +123,18 @@ function formatReviewDate(isoDate: string | null): string | undefined {
   return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
 
+// ── Mapper ───────────────────────────────────────────────────────────────────
+
 export function dbReviewToReview(r: DbReview): Review {
   const { providerType, providerSlug, locationId } = resolveProviderMeta(
-    r.provider_slug,
-    r.city_slug
+    r.provider_name,
+    r.location_city
   );
 
-  const painRaw = r.pain_level && r.pain_level !== "unknown"
-    ? parseInt(r.pain_level, 10)
-    : null;
-
-  const sessions = r.sessions_completed
-    ? parseInt(r.sessions_completed, 10) || null
-    : null;
+  // pain_level is a number in competitor_reviews (not a string "1"–"5")
+  const painRaw = typeof r.pain_level === "number" ? r.pain_level : null;
+  // sessions_completed is a number in competitor_reviews (not a string)
+  const sessions = typeof r.sessions_completed === "number" ? r.sessions_completed : null;
 
   return {
     id: r.id,
@@ -91,27 +142,28 @@ export function dbReviewToReview(r: DbReview): Review {
     provider: r.provider_name,
     providerSlug,
     providerType,
-    locationId,
+    // locationId: brand-derived (e.g. "austin") or full city-state slug fallback
+    locationId: locationId ?? deriveCitySlug(r.location_city, r.location_state),
     locationName: `${r.location_city}, ${r.location_state}`,
     city: r.location_city,
     state: r.location_state,
     rating: r.star_rating,
     source: r.verified_source,
-    date: formatReviewDate(r.review_date_at) ?? r.review_date ?? undefined,
-    excerpt: r.review_text,   // cards use CSS line-clamp; excerpt = full text
-    fullText: r.review_text,
-    reviewUrl: r.source_review_url ?? undefined,
-    tags: buildReviewTags(r.review_text),
+    // Use ISO timestamp (review_date_iso) for formatting; fall back to raw date string
+    date: formatReviewDate(r.review_date_iso) ?? r.review_date ?? undefined,
+    excerpt: r.review_text ?? undefined,
+    fullText: r.review_text ?? undefined,
+    reviewUrl: undefined,
+    tags: buildReviewTags(r.review_text ?? ""),
     sessions,
-    painLevel: Number.isNaN(painRaw) ? null : painRaw,
+    painLevel: painRaw,
     scarringReported: r.scarring_mentioned === "Yes"
       ? true
       : r.scarring_mentioned === "No"
       ? false
       : null,
-    resultsMentioned:
-      r.result_rating != null && r.result_rating !== "unknown",
-    // Fields not yet captured in Supabase schema — set to null until added
+    resultsMentioned: r.result_rating != null && r.result_rating !== "unknown",
+    // Fields not captured in competitor_reviews — kept for type compatibility
     healingIssues: null,
     costMentioned: null,
     staffMentioned: null,
@@ -123,17 +175,8 @@ export function dbReviewToReview(r: DbReview): Review {
 
 /**
  * Select up to `maxCards` reviews from a pool, enforcing editorial diversity:
- *
- * - Never show the same provider+location combo twice.
- * - Default: max 1 card per provider brand.
- * - If the pool doesn't have enough distinct brands to fill `maxCards`, a second
- *   card from the same brand is allowed only when it comes from a different
- *   city/location.
- * - Returns fewer than `maxCards` when diversity genuinely runs out — never
- *   pads with repetitive brand/location combinations.
- *
- * `providerSlug` is used as the brand key (it is the brand-level slug for
- * multi-location providers; a unique per-location slug for single-location ones).
+ * never the same provider+location twice; max 1 per brand in first pass;
+ * allows a second card from the same brand only if from a different location.
  */
 export function selectDiverseReviews(reviews: Review[], maxCards = 6): Review[] {
   const selected: Review[] = [];
@@ -160,8 +203,7 @@ export function selectDiverseReviews(reviews: Review[], maxCards = 6): Review[] 
     seenBrandLocation.add(blKey);
   }
 
-  // Second pass: allow a 2nd from the same brand only from a different location,
-  // to fill remaining slots if strict diversity falls short.
+  // Second pass: allow a 2nd from the same brand only from a different location
   if (selected.length < maxCards) {
     for (const review of reviews) {
       if (selected.length >= maxCards) break;
@@ -178,21 +220,64 @@ export function selectDiverseReviews(reviews: Review[], maxCards = 6): Review[] 
   return selected;
 }
 
+// ── Public filter gatekeeper ─────────────────────────────────────────────────
+//
+// ALL queries against competitor_reviews must pass through applyPublicFilters.
+// Never write a bare supabase.from(TABLE) call that bypasses these conditions.
+//
+// Bucket logic (verified from actual data in competitor_reviews, April 2026):
+//   inkOUT reviews:     bucket = 'inkout'     (approved inkOUT reviews)
+//   Competitor reviews: bucket = 'competitor' (Removery, Arviv, Clean Slate, etc.)
+//   Tatt2Away method:   bucket = 'tatt2away'  (inkOUT sessions using Tatt2Away tech — NOT shown on RTR public pages)
+//   review_required:    bucket = 'review_required' (flagged for manual review — not published)
+//
+// BucketScope controls how the bucket column is filtered:
+//   "inkout"     — strict: only bucket = 'inkout'
+//   "competitor" — only bucket = 'competitor'
+//   "any"        — bucket = 'competitor' OR bucket = 'inkout' (excludes tatt2away)
+
+type BucketScope = "inkout" | "competitor" | "any";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function applyPublicFilters(query: any, bucketScope: BucketScope): any {
+  // Only publicly-released rows
+  query = query.eq("status", "published");
+
+  // Bucket gate: prevent tatt2away and review_required from reaching public pages
+  if (bucketScope === "inkout") {
+    // inkOUT pages: only reviews the separator explicitly approved for inkOUT
+    query = query.eq("bucket", "inkout");
+  } else if (bucketScope === "competitor") {
+    // Competitor pages: reviews stamped 'competitor' by the separator pipeline
+    query = query.eq("bucket", "competitor");
+  } else {
+    // Site-wide (homepage, city pages, stats): both inkOUT-approved and competitor reviews
+    // tatt2away bucket is intentionally excluded from all public RTR pages
+    query = query.or("bucket.eq.competitor,bucket.eq.inkout");
+  }
+
+  // Manual review gate: include unreviewed (null) and explicitly approved; exclude rejected
+  query = query.or("reviewed_decision.is.null,reviewed_decision.eq.approved");
+
+  return query;
+}
+
 // ── Supabase queries ─────────────────────────────────────────────────────────
 
 /**
  * Fetch recent reviews for the homepage.
- *
- * Pulls a larger pool from Supabase so the diversity selector has room to work,
- * then trims down to `limit` cards with `selectDiverseReviews`.
+ * Pulls a wider pool so diversity selection has meaningful choices.
  */
 export async function getRecentReviews(limit = 6): Promise<Review[]> {
-  const { data, error } = await supabase
-    .from("reviews")
-    .select("*")
-    .order("review_date_at", { ascending: false, nullsFirst: false })
-    .order("imported_at", { ascending: false })
-    .limit(limit * 5); // wider pool so diversity selection has meaningful choices
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("*")
+      .order("review_date_iso", { ascending: false, nullsFirst: false })
+      .order("last_analyzed_at", { ascending: false })
+      .limit(limit * 5),
+    "any"
+  );
 
   if (error) {
     console.error("getRecentReviews error:", error.message);
@@ -203,19 +288,23 @@ export async function getRecentReviews(limit = 6): Promise<Review[]> {
 }
 
 /**
- * Fetch all reviews for a given provider slug, mapped to Review.
+ * Fetch all public reviews for a given RTR provider slug.
  *
- * Handles two patterns:
- *   - Single-location and brand-only slugs: exact match on provider_slug.
- *   - Multi-location brand slugs (e.g. "removery"): also matches sub-location
- *     slugs like "removery-bucktown" via a prefix filter.
+ * inkOUT pages use bucket = 'inkout' (strict safety filter).
+ * Competitor pages use bucket IS NULL (they were never processed by the separator).
  */
 export async function getReviewsByProvider(providerSlug: string): Promise<Review[]> {
-  const { data, error } = await supabase
-    .from("reviews")
-    .select("*")
-    .or(`provider_slug.eq.${providerSlug},provider_slug.ilike.${providerSlug}-%`)
-    .order("star_rating", { ascending: false });
+  const { names, isInkout } = getProviderNamesForSlug(providerSlug);
+  if (names.length === 0) return [];
+
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("*")
+      .in("provider_name", [...new Set(names)])
+      .order("star_rating", { ascending: false }),
+    isInkout ? "inkout" : "competitor"
+  );
 
   if (error) {
     console.error("getReviewsByProvider error:", error.message);
@@ -225,37 +314,36 @@ export async function getReviewsByProvider(providerSlug: string): Promise<Review
 }
 
 /**
- * Return all unique canonical page slugs present in the reviews table.
- * Multi-location sub-slugs (e.g. "removery-bucktown") are collapsed to the
- * brand slug ("removery"). Single-location slugs are returned as-is.
+ * Return all unique canonical page slugs present in the published review set.
+ * Multi-location sub-names collapse to the brand slug (e.g. "Removery (Bucktown)" → "removery").
  */
 export async function getUniqueProviderSlugs(): Promise<string[]> {
-  const { data, error } = await supabase
-    .from("reviews")
-    .select("provider_slug");
+  const { data, error } = await applyPublicFilters(
+    supabase.from(TABLE).select("provider_name"),
+    "any"
+  );
 
   if (error || !data) return [];
 
-  const rawSlugs = [...new Set(data.map((r) => r.provider_slug as string))];
-
-  const canonical = rawSlugs.map((slug) => {
-    // Collapse brand+location slugs (e.g. "removery-bucktown") → brand slug
-    const matchingBrand = MULTI_LOCATION_BRAND_SLUGS.find(
-      (bs) => slug.startsWith(bs + "-") || slug === bs
-    );
-    return matchingBrand ?? slug;
-  });
-
+  const rawNames = (data as { provider_name: string }[]).map((r) => r.provider_name);
+  const canonical = [...new Set(rawNames)].map((name) => resolveProviderMeta(name, "").providerSlug);
   return [...new Set(canonical)];
 }
 
-/** Fetch all reviews for a given city slug, mapped to Review. */
+/** Fetch all public reviews for a given city slug. */
 export async function getReviewsByCity(citySlug: string): Promise<Review[]> {
-  const { data, error } = await supabase
-    .from("reviews")
-    .select("*")
-    .eq("city_slug", citySlug)
-    .order("star_rating", { ascending: false });
+  const loc = CITY_SLUG_TO_LOCATION[citySlug];
+  if (!loc) return [];
+
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("*")
+      .eq("location_city", loc.city)
+      .eq("location_state", loc.state)
+      .order("star_rating", { ascending: false }),
+    "any"
+  );
 
   if (error) {
     console.error("getReviewsByCity error:", error.message);
@@ -264,13 +352,16 @@ export async function getReviewsByCity(citySlug: string): Promise<Review[]> {
   return (data ?? []).map(dbReviewToReview);
 }
 
-/** Fetch every review, sorted best rating first. */
+/** Fetch every public review, sorted best rating first. */
 export async function getAllReviews(): Promise<Review[]> {
-  const { data, error } = await supabase
-    .from("reviews")
-    .select("*")
-    .order("star_rating", { ascending: false })
-    .order("imported_at", { ascending: false });
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("*")
+      .order("star_rating", { ascending: false })
+      .order("last_analyzed_at", { ascending: false }),
+    "any"
+  );
 
   if (error) {
     console.error("getAllReviews error:", error.message);
@@ -285,31 +376,146 @@ export async function getBrandStats(
 ): Promise<Record<string, { scarMentions: number; totalReviews: number }>> {
   if (brandSlugs.length === 0) return {};
 
-  const orFilter = brandSlugs
-    .flatMap((slug) => [`provider_slug.eq.${slug}`, `provider_slug.ilike.${slug}-%`])
-    .join(",");
+  // Build a flat list of all provider_name values needed, keyed back to slug
+  const slugForName = new Map<string, string>();
+  const allNames: string[] = [];
 
-  const { data, error } = await supabase
-    .from("reviews")
-    .select("provider_slug, scarring_mentioned")
-    .or(orFilter);
+  for (const slug of brandSlugs) {
+    const { names } = getProviderNamesForSlug(slug);
+    for (const name of names) {
+      if (!slugForName.has(name)) slugForName.set(name, slug);
+      allNames.push(name);
+    }
+  }
+
+  const uniqueNames = [...new Set(allNames)];
+  if (uniqueNames.length === 0) return {};
+
+  // Fetch with site-wide public filters; refine per-provider in application code
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("provider_name, scarring_mentioned, bucket, is_tattoo_removal")
+      .in("provider_name", uniqueNames),
+    "any"
+  );
 
   if (error || !data) return {};
 
+  type StatRow = {
+    provider_name: string;
+    scarring_mentioned: string | null;
+    bucket: string | null;
+    is_tattoo_removal: boolean | null;
+  };
+
   const result: Record<string, { scarMentions: number; totalReviews: number }> = {};
+
   for (const slug of brandSlugs) {
-    const rows = data.filter(
-      (r) => r.provider_slug === slug || r.provider_slug.startsWith(slug + "-")
-    );
+    const { names, isInkout } = getProviderNamesForSlug(slug);
+    const rows = (data as StatRow[]).filter((r) => {
+      if (!names.includes(r.provider_name)) return false;
+      // Apply per-provider bucket restriction on top of the base "any" filter
+      if (isInkout) return r.bucket === "inkout";
+      return r.bucket === "competitor";
+    });
     result[slug] = {
       scarMentions: rows.filter((r) => r.scarring_mentioned === "Yes").length,
       totalReviews: rows.length,
     };
   }
+
   return result;
 }
 
-/** Aggregate stats: total reviews, unique providers, unique cities, scarring mentions, last updated date. */
+/**
+ * Compute live avg rating and review count per individual provider location slug.
+ *
+ * Return keys match the `slug` field in lib/mock-data/providers.ts exactly
+ * (e.g. "inkout-austin", "removery-bucktown", "arviv-medical-aesthetics").
+ *
+ * Uses the "any" scope filter so inkOUT and competitor aggregates are both
+ * included in one query. Each provider_name only carries one bucket type in the
+ * DB, so grouping by (provider_name + location_city) naturally gives the correct
+ * per-provider-scope counts without additional filtering.
+ *
+ * Option B pattern: pages call this function and overlay the live values onto
+ * mock-data provider objects. The providers.ts file is never modified.
+ */
+export async function getAllProviderAggregates(): Promise<
+  Record<string, { rating: number; reviewCount: number }>
+> {
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("provider_name, location_city, location_state, star_rating"),
+    "any"
+  );
+
+  if (error || !data) return {};
+
+  const acc: Record<string, { sum: number; count: number }> = {};
+
+  for (const row of data as Array<{
+    provider_name: string;
+    location_city: string;
+    location_state: string;
+    star_rating: number;
+  }>) {
+    if (row.star_rating == null) continue;
+
+    const { providerSlug, locationId } = resolveProviderMeta(
+      row.provider_name,
+      row.location_city
+    );
+    const locationSlug = locationId ? `${providerSlug}-${locationId}` : providerSlug;
+
+    if (!acc[locationSlug]) acc[locationSlug] = { sum: 0, count: 0 };
+    acc[locationSlug].sum += row.star_rating;
+    acc[locationSlug].count += 1;
+  }
+
+  const result: Record<string, { rating: number; reviewCount: number }> = {};
+  for (const [slug, { sum, count }] of Object.entries(acc)) {
+    result[slug] = {
+      rating: count > 0 ? Math.round((sum / count) * 10) / 10 : 0,
+      reviewCount: count,
+    };
+  }
+  return result;
+}
+
+/**
+ * Return the most recent last_analyzed_at timestamp across all public reviews,
+ * formatted as "April 24, 2026". Used by the site footer to show data freshness.
+ * Falls back to the current date (build date for static export) if the column
+ * is null on all rows.
+ */
+export async function getDataFreshness(): Promise<string> {
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("last_analyzed_at")
+      .order("last_analyzed_at", { ascending: false, nullsFirst: false })
+      .limit(1),
+    "any"
+  );
+
+  const isoDate =
+    !error && data && data.length > 0
+      ? (data[0] as { last_analyzed_at: string | null }).last_analyzed_at
+      : null;
+
+  const date = isoDate ? new Date(isoDate) : new Date();
+  const valid = !Number.isNaN(date.getTime()) ? date : new Date();
+  return valid.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+/** Aggregate site-wide stats used on the reviews hub page. */
 export async function getReviewStats(): Promise<{
   totalReviews: number;
   totalProviders: number;
@@ -317,30 +523,38 @@ export async function getReviewStats(): Promise<{
   scarringMentions: number;
   lastUpdated: string;
 }> {
-  const { data, error } = await supabase
-    .from("reviews")
-    .select("provider_name, location_city, scarring_mentioned, review_date_at");
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("provider_name, location_city, scarring_mentioned, review_date_iso"),
+    "any"
+  );
 
   if (error || !data) {
     return { totalReviews: 0, totalProviders: 0, totalCities: 0, scarringMentions: 0, lastUpdated: "" };
   }
 
-  const scarringMentions = data.filter((r) => r.scarring_mentioned === "Yes").length;
+  const scarringMentions = data.filter(
+    (r: { scarring_mentioned: string | null }) => r.scarring_mentioned === "Yes"
+  ).length;
 
   const dates = data
-    .map((r) => r.review_date_at)
+    .map((r: { review_date_iso: string | null }) => r.review_date_iso)
     .filter(Boolean)
-    .map((d) => new Date(d as string))
-    .filter((d) => !Number.isNaN(d.getTime()));
-  const mostRecent = dates.length > 0 ? new Date(Math.max(...dates.map((d) => d.getTime()))) : null;
+    .map((d: string) => new Date(d))
+    .filter((d: Date) => !Number.isNaN(d.getTime()));
+
+  const mostRecent =
+    dates.length > 0 ? new Date(Math.max(...dates.map((d: Date) => d.getTime()))) : null;
+
   const lastUpdated = mostRecent
     ? mostRecent.toLocaleDateString("en-US", { month: "short", year: "numeric" })
     : "";
 
   return {
     totalReviews: data.length,
-    totalProviders: new Set(data.map((r) => r.provider_name)).size,
-    totalCities: new Set(data.map((r) => r.location_city)).size,
+    totalProviders: new Set(data.map((r: { provider_name: string }) => r.provider_name)).size,
+    totalCities: new Set(data.map((r: { location_city: string }) => r.location_city)).size,
     scarringMentions,
     lastUpdated,
   };

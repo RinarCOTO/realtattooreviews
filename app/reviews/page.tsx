@@ -5,7 +5,7 @@ import MonoLabel from "@/components/reviews/MonoLabel";
 import PageSection from "@/components/reviews/PageSection";
 import ReviewCard from "@/components/reviews/ReviewCard";
 import ProvidersTable from "@/components/reviews/ProvidersTable";
-import { getRecentReviews, getReviewStats, selectDiverseReviews } from "@/lib/data/reviews";
+import { getRecentReviews, getReviewStats, selectDiverseReviews, getAllProviderAggregates } from "@/lib/data/reviews";
 import { getAllProviders, type SanityProvider } from "@/lib/page-data/providers";
 import { brandToSlug } from "@/lib/providers";
 import { providers as mockProviders } from "@/lib/mock-data/providers";
@@ -54,15 +54,24 @@ export async function generateMetadata(): Promise<Metadata> {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ReviewsPage() {
-  const [stats, allReviewsPool] = await Promise.all([
+  const [stats, allReviewsPool, liveAggregates] = await Promise.all([
     getReviewStats(),
     getRecentReviews(60),
+    getAllProviderAggregates(),
   ]);
 
   const sanityProviders = await getAllProviders();
-  const allProviders: Provider[] = sanityProviders.length > 0
+  const baseProviders: Provider[] = sanityProviders.length > 0
     ? sanityProviders.map(sanityToProvider)
     : mockProviders;
+
+  // Overlay live DB aggregates onto every provider object so the table and
+  // inkOUT FAQ stats reflect the filtered review pool, not hardcoded values.
+  const allProviders: Provider[] = baseProviders.map((p) => ({
+    ...p,
+    rating: liveAggregates[p.slug]?.rating ?? p.rating,
+    reviewCount: liveAggregates[p.slug]?.reviewCount ?? p.reviewCount,
+  }));
 
   // Mixed reviews: sort pool by rating alternating high/low for natural interleaving
   const highRated = allReviewsPool.filter((r) => (r.rating ?? 0) >= 4);

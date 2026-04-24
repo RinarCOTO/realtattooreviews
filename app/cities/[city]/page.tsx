@@ -5,7 +5,7 @@ import Container from "@/components/layout/Container";
 import { getAllCities, getCity } from "@/lib/page-data/cities";
 import { cities as mockCities } from "@/lib/mock-data/cities";
 import { providers } from "@/lib/mock-data/providers";
-import { getReviewsByCity } from "@/lib/data/reviews";
+import { getReviewsByCity, getAllProviderAggregates } from "@/lib/data/reviews";
 import ReviewCardGrid from "@/components/reviews/ReviewCardGrid";
 
 type Props = { params: Promise<{ city: string }> };
@@ -18,16 +18,25 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city: citySlug } = await params;
-  const city = (await getCity(citySlug)) ?? mockCities.find((c) => c.slug === citySlug);
-  if (!city) return {};
-  const title = (city as any).seoTitle ?? `Tattoo Removal in ${city.name}: Reviews & Provider Ratings | RealTattooReviews`;
-  const description = (city as any).seoDescription ?? `Compare ${city.providerCount} tattoo removal providers in ${city.name}. ${city.reviewCount} verified patient reviews covering outcomes, pricing, and session experience.`;
-  const seoImage = (city as any).seoImage;
+  const [city, cityReviews] = await Promise.all([
+    getCity(citySlug),
+    getReviewsByCity(citySlug),
+  ]);
+  const cityData = city ?? mockCities.find((c) => c.slug === citySlug);
+  if (!cityData) return {};
+  const cityProviders = providers.filter((p) =>
+    p.market.toLowerCase().includes(cityData.name.toLowerCase())
+  );
+  const providerCount = cityProviders.length;
+  const reviewCount = cityReviews.length;
+  const title = (cityData as any).seoTitle ?? `Tattoo Removal in ${cityData.name}: Reviews & Provider Ratings | RealTattooReviews`;
+  const description = (cityData as any).seoDescription ?? `Compare ${providerCount} tattoo removal providers in ${cityData.name}. ${reviewCount} verified patient reviews covering outcomes, pricing, and session experience.`;
+  const seoImage = (cityData as any).seoImage;
   return {
     title,
     description,
     openGraph: {
-      title: `Tattoo Removal in ${city.name}: Reviews & Provider Ratings`,
+      title: `Tattoo Removal in ${cityData.name}: Reviews & Provider Ratings`,
       description,
       ...(seoImage ? { images: [{ url: seoImage.url, alt: seoImage.alt }] } : {}),
     },
@@ -43,7 +52,12 @@ export default async function CityPage({ params }: Props) {
     p.market.toLowerCase().includes(city.name.toLowerCase())
   );
 
-  const cityReviews = await getReviewsByCity(citySlug);
+  const [cityReviews, liveAggregates] = await Promise.all([
+    getReviewsByCity(citySlug),
+    getAllProviderAggregates(),
+  ]);
+  const providerCount = cityProviders.length;
+  const reviewCount = cityReviews.length;
 
   return (
     <main className="min-h-screen bg-bg">
@@ -58,7 +72,7 @@ export default async function CityPage({ params }: Props) {
             Tattoo Removal in {city.name}
           </h1>
           <p className="mt-2 text-[15px] text-muted">
-            {city.providerCount} providers · {city.reviewCount} verified reviews
+            {providerCount} providers · {reviewCount} verified reviews
           </p>
         </Container>
       </section>
@@ -76,14 +90,14 @@ export default async function CityPage({ params }: Props) {
                   <div className="flex items-start justify-between">
                     <p className="font-semibold text-heading">{provider.name}</p>
                     <span className="rounded-full bg-accent-light px-2.5 py-1 text-xs font-bold text-accent">
-                      {provider.rating}
+                      {(liveAggregates[provider.slug]?.rating ?? provider.rating).toFixed(1)}
                     </span>
                   </div>
                   <p className="text-[13px] leading-relaxed text-muted line-clamp-2">
                     {provider.summary}
                   </p>
                   <div className="mt-auto flex items-center justify-between border-t border-divider pt-3">
-                    <span className="text-xs text-subtle">{provider.reviewCount} reviews</span>
+                    <span className="text-xs text-subtle">{liveAggregates[provider.slug]?.reviewCount ?? provider.reviewCount} reviews</span>
                     <span className="text-xs font-medium text-accent">View reviews →</span>
                   </div>
                 </Link>
