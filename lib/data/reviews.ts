@@ -559,3 +559,275 @@ export async function getReviewStats(): Promise<{
     lastUpdated,
   };
 }
+
+// ── City provider aggregates ──────────────────────────────────────────────────
+
+export interface CityProviderRow {
+  providerName: string;
+  methodUsed: string | null;
+  isInkout: boolean;
+  sampleSize: number;
+  avgStars: number | null;
+  positives: number;
+  negatives: number;
+  scarringPositive: number;
+  useCaseComplete: number;
+  useCaseMicroblading: number;
+  pctPositive: number | null;
+}
+
+/**
+ * Aggregate review stats per provider for a given city.
+ * Client-side aggregation mirrors the Notion-specified SQL GROUP BY query.
+ * See app/cities/chicago/page.tsx for the canonical SQL reference.
+ */
+export async function getCityProviderAggregates(
+  locationCity: string
+): Promise<CityProviderRow[]> {
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("provider_name, method_used, bucket, star_rating, result_rating, scarring_mentioned, use_case")
+      .ilike("location_city", locationCity),
+    "any"
+  );
+
+  if (error || !data) return [];
+
+  type Row = {
+    provider_name: string;
+    method_used: string | null;
+    bucket: string | null;
+    star_rating: number | null;
+    result_rating: string | null;
+    scarring_mentioned: string | null;
+    use_case: string | null;
+  };
+
+  const acc: Record<string, {
+    methodUsed: string | null;
+    isInkout: boolean;
+    ratings: number[];
+    positives: number;
+    negatives: number;
+    scarringPositive: number;
+    useCaseComplete: number;
+    useCaseMicroblading: number;
+  }> = {};
+
+  for (const row of data as Row[]) {
+    const key = row.provider_name;
+    if (!acc[key]) {
+      acc[key] = {
+        methodUsed: row.method_used ?? null,
+        isInkout: row.bucket === "inkout",
+        ratings: [],
+        positives: 0,
+        negatives: 0,
+        scarringPositive: 0,
+        useCaseComplete: 0,
+        useCaseMicroblading: 0,
+      };
+    }
+    if (!acc[key].methodUsed && row.method_used) acc[key].methodUsed = row.method_used;
+    if (row.bucket === "inkout") acc[key].isInkout = true;
+    if (row.star_rating != null) acc[key].ratings.push(row.star_rating);
+    if (row.result_rating === "Positive") acc[key].positives++;
+    if (row.result_rating === "Negative") acc[key].negatives++;
+    if (row.scarring_mentioned === "Positive") acc[key].scarringPositive++;
+    if (row.use_case === "Complete" && row.result_rating === "Positive") acc[key].useCaseComplete++;
+    if (row.use_case === "Microblading" && row.result_rating === "Positive") acc[key].useCaseMicroblading++;
+  }
+
+  return Object.entries(acc)
+    .map(([providerName, v]) => {
+      const sampleSize = v.ratings.length;
+      const avgStars =
+        sampleSize > 0
+          ? Math.round((v.ratings.reduce((a, b) => a + b, 0) / sampleSize) * 100) / 100
+          : null;
+      const pctPositive = sampleSize > 0 ? Math.round((v.positives / sampleSize) * 100) : null;
+      return {
+        providerName,
+        methodUsed: v.methodUsed,
+        isInkout: v.isInkout,
+        sampleSize,
+        avgStars,
+        positives: v.positives,
+        negatives: v.negatives,
+        scarringPositive: v.scarringPositive,
+        useCaseComplete: v.useCaseComplete,
+        useCaseMicroblading: v.useCaseMicroblading,
+        pctPositive,
+      };
+    })
+    .sort((a, b) => b.sampleSize - a.sampleSize);
+}
+
+// ── Cross-brand comparison aggregates ────────────────────────────────────────
+
+export interface BrandComparisonRow {
+  brand: string;
+  city: string;
+  sampleSize: number;
+  avgStars: number | null;
+  positives: number;
+  negatives: number;
+  pctPositive: number | null;
+  scarringPositive: number;
+  scarringYes: number;
+  useCaseComplete: number;
+  useCaseMicroblading: number;
+  useCaseColor: number;
+  useCaseCoverup: number;
+}
+
+export interface BrandComparisonResult {
+  rows: BrandComparisonRow[];
+  lastRefreshed: string | null;
+}
+
+/**
+ * Aggregate cross-city review stats for two competing brands.
+ *
+ * When inkOUT is one of the brands, it is identified via bucket='inkout' (the reliable
+ * DB signal) rather than provider_name. All other brands are matched by provider_name
+ * containing the brand string (case-insensitive), e.g. "Removery (Bucktown)" → "Removery".
+ *
+ * This makes the function work for any two-brand pair:
+ *   getBrandComparisonAggregates("inkOUT", "Removery")   — inkOUT vs Removery
+ *   getBrandComparisonAggregates("Removery", "LaserAway") — laser-vs-laser comparisons
+ */
+export async function getBrandComparisonAggregates(
+  brandA: string,
+  brandB: string
+): Promise<BrandComparisonResult> {
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select(
+        "provider_name, bucket, location_city, star_rating, result_rating, scarring_mentioned, use_case, last_analyzed_at"
+      ),
+    "any"
+  );
+
+  if (error || !data) return { rows: [], lastRefreshed: null };
+
+  type Row = {
+    provider_name: string;
+    bucket: string | null;
+    location_city: string;
+    star_rating: number | null;
+    result_rating: string | null;
+    scarring_mentioned: string | null;
+    use_case: string | null;
+    last_analyzed_at: string | null;
+  };
+
+  const SEP = "\x00";
+  const acc: Record<
+    string,
+    {
+      positives: number;
+      negatives: number;
+      ratings: number[];
+      scarringPositive: number;
+      scarringYes: number;
+      useCaseComplete: number;
+      useCaseMicroblading: number;
+      useCaseColor: number;
+      useCaseCoverup: number;
+    }
+  > = {};
+
+  let latestTs: number | null = null;
+  const brandALower = brandA.toLowerCase();
+  const brandBLower = brandB.toLowerCase();
+  // Which brand (if any) is inkOUT — identified by bucket rather than provider_name
+  const inkoutLabel =
+    brandALower === "inkout" ? brandA : brandBLower === "inkout" ? brandB : null;
+
+  for (const row of data as Row[]) {
+    if (row.last_analyzed_at) {
+      const ts = new Date(row.last_analyzed_at).getTime();
+      if (!Number.isNaN(ts) && (latestTs === null || ts > latestTs)) latestTs = ts;
+    }
+
+    let brand: string | null = null;
+    if (inkoutLabel && row.bucket === "inkout") {
+      // inkOUT rows are reliably identified by bucket, not provider_name
+      brand = inkoutLabel;
+    } else {
+      // All other brands matched by provider_name substring
+      const pnLower = (row.provider_name ?? "").toLowerCase();
+      if (pnLower.includes(brandALower)) brand = brandA;
+      else if (pnLower.includes(brandBLower)) brand = brandB;
+    }
+    if (!brand) continue;
+
+    const key = `${brand}${SEP}${row.location_city}`;
+    if (!acc[key]) {
+      acc[key] = {
+        positives: 0,
+        negatives: 0,
+        ratings: [],
+        scarringPositive: 0,
+        scarringYes: 0,
+        useCaseComplete: 0,
+        useCaseMicroblading: 0,
+        useCaseColor: 0,
+        useCaseCoverup: 0,
+      };
+    }
+    const a = acc[key];
+    if (row.star_rating != null) a.ratings.push(row.star_rating);
+    if (row.result_rating === "Positive") a.positives++;
+    if (row.result_rating === "Negative") a.negatives++;
+    if (row.scarring_mentioned === "Positive") a.scarringPositive++;
+    if (row.scarring_mentioned === "Yes") a.scarringYes++;
+    if (row.use_case === "Complete" && row.result_rating === "Positive") a.useCaseComplete++;
+    if (row.use_case === "Microblading" && row.result_rating === "Positive") a.useCaseMicroblading++;
+    if (row.use_case === "Color" && row.result_rating === "Positive") a.useCaseColor++;
+    if (row.use_case === "Cover-up" && row.result_rating === "Positive") a.useCaseCoverup++;
+  }
+
+  const rows = Object.entries(acc)
+    .map(([key, v]) => {
+      const [brand, city] = key.split(SEP);
+      const sampleSize = v.ratings.length;
+      const avgStars =
+        sampleSize > 0
+          ? Math.round((v.ratings.reduce((a, b) => a + b, 0) / sampleSize) * 100) / 100
+          : null;
+      const pctPositive = sampleSize > 0 ? Math.round((v.positives / sampleSize) * 100) : null;
+      return {
+        brand,
+        city,
+        sampleSize,
+        avgStars,
+        positives: v.positives,
+        negatives: v.negatives,
+        pctPositive,
+        scarringPositive: v.scarringPositive,
+        scarringYes: v.scarringYes,
+        useCaseComplete: v.useCaseComplete,
+        useCaseMicroblading: v.useCaseMicroblading,
+        useCaseColor: v.useCaseColor,
+        useCaseCoverup: v.useCaseCoverup,
+      };
+    })
+    .sort((a, b) => {
+      if (a.brand !== b.brand) return a.brand.localeCompare(b.brand);
+      return b.sampleSize - a.sampleSize;
+    });
+
+  const lastRefreshed = latestTs
+    ? new Date(latestTs).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      })
+    : null;
+
+  return { rows, lastRefreshed };
+}
