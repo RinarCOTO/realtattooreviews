@@ -34,7 +34,6 @@ import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
-import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import MonoLabel from "@/components/reviews/MonoLabel";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
 
@@ -83,7 +82,7 @@ const faqs = [
   {
     question: "Is LaserAway worth it?",
     answer:
-      "For users with standard body tattoos in markets where LaserAway is conveniently located, it is a reasonable mainstream option. PicoSure has strong clinical evidence. The chain's broad service mix means tattoo removal is one of many offerings. For edge cases, a specialist may be a better fit.",
+      "For users with standard body tattoos in markets where LaserAway is conveniently located, it is a reasonable mainstream option. PicoSure has strong clinical evidence. The chain's broad service mix means tattoo removal is one of many offerings. For edge cases, a specialist may be a better fit. See /reviews/laseraway for the full picture.",
   },
   {
     question: "Is LaserAway legit?",
@@ -652,35 +651,26 @@ export default function InkoutVsLaserawayPage() {
               </GuideCallout>
             </div>
 
-            <GuideRelatedLinks
-              links={[
-                {
-                  href: "/comparisons/best-tattoo-removal-method",
-                  title: "Best Tattoo Removal Method",
-                  desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
-                },
-                {
-                  href: "/comparisons/inkout-vs-removery",
-                  title: "inkOUT vs Removery",
-                  desc: "TEPR vs PicoWay comparison for users choosing between inkOUT and the other major laser chain.",
-                },
-                {
-                  href: "/comparisons/removery-vs-laseraway",
-                  title: "Removery vs LaserAway",
-                  desc: "Chain-versus-chain comparison for users choosing between the two largest laser removal brands.",
-                },
-                {
-                  href: "/reviews/inkout",
-                  title: "inkOUT Reviews",
-                  desc: "Full review sample and provider profiles for inkOUT across all markets.",
-                },
-                {
-                  href: "/reviews/laseraway",
-                  title: "LaserAway Reviews",
-                  desc: "Full review sample and provider profiles for LaserAway across all markets.",
-                },
-              ]}
-            />
+            <div className="py-12 border-t border-(--line)">
+              <p className="font-sans text-[12px] font-semibold uppercase tracking-wider text-(--muted) mb-4">
+                Related Pages
+              </p>
+              <div className="space-y-2">
+                {[
+                  { href: "/comparisons/best-tattoo-removal-method", title: "Best Tattoo Removal Method" },
+                  { href: "/comparisons/inkout-vs-removery", title: "inkOUT vs Removery" },
+                  { href: "/comparisons/removery-vs-laseraway", title: "Removery vs LaserAway" },
+                  { href: "/reviews/inkout", title: "inkOUT Reviews" },
+                  { href: "/reviews/laseraway", title: "LaserAway Reviews" },
+                ].map((link) => (
+                  <div key={link.href}>
+                    <Link href={link.href} className="font-sans text-[14px] text-(--accent) hover:underline">
+                      {link.title}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </Container>
       </section>
