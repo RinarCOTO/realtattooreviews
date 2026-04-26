@@ -25,7 +25,7 @@ const categories = [
   {
     label: "Dark Skin Tattoo Removal",
     slug: "dark-skin-tattoo-removal",
-    description: "Clinics with verified experience on deeper skin tones.",
+    description: "Clinics with sourced review data for deeper skin tones.",
     count: 17,
   },
   {

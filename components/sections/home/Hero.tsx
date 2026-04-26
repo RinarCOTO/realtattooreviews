@@ -52,21 +52,21 @@ export default function Hero({headline, subheadline}: Props) {
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
           <span>Independent reviews</span>
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-          <span>Verified patients</span>
+          <span>Sourced from Google</span>
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-          <span>No paid placements</span>
+          <span>Multiple US markets</span>
         </span>
 
         {/* Heading */}
         <h1 className="mt-6 text-[42px] font-bold leading-[1.1] tracking-tight text-heading sm:text-[60px]">
-          {headline ?? "Compare Tattoo Removal Clinics Before You Book"}
+          {headline ?? "Compare Tattoo Removal Providers Before You Book"}
         </h1>
 
         {/* Subheading */}
         <div className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-body">
           {subheadline
             ? <PortableText value={subheadline} />
-            : "Read real reviews, compare clear ratings, and explore provider and city pages built to help you choose with more confidence."
+            : "See how clinics differ on method, technology, pricing, and review patterns. Built from sourced Google reviews across multiple US markets."
           }
         </div>
 
@@ -95,13 +95,29 @@ export default function Hero({headline, subheadline}: Props) {
           </button>
         </form>
 
-        {/* Popular links */}
+        {/* Primary CTAs */}
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <Link
+            href="/cities"
+            className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-white hover:bg-accent-hover transition-colors"
+          >
+            Find providers in your city
+          </Link>
+          <Link
+            href="/comparisons/best-tattoo-removal-method"
+            className="rounded-full border border-border bg-surface px-6 py-3 text-sm font-medium text-body hover:border-accent hover:text-accent transition-colors"
+          >
+            Compare methods
+          </Link>
+        </div>
+
+        {/* Browse by case type */}
         <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-          <span className="text-xs text-muted">Popular:</span>
+          <span className="text-xs text-muted">Browse by case:</span>
           {popular.map((term) => (
             <Link
               key={term}
-              href={`/reviews?q=${encodeURIComponent(term)}`}
+              href={`/categories/${term.toLowerCase().replace(/\s+/g, "-")}`}
               className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs text-body transition-colors hover:border-accent hover:text-accent"
             >
               {term}

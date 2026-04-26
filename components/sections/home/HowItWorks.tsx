@@ -12,9 +12,9 @@ type Props = {
 // Fallback content: plain strings, used when Sanity has nothing published yet
 type FallbackStep = { stepNumber: string; title: string; body: string };
 const DEFAULT_STEPS: FallbackStep[] = [
-  { stepNumber: "01", title: "We collect public Google reviews",  body: "We gather publicly available reviews across the tattoo removal providers and locations we track." },
-  { stepNumber: "02", title: "We tag the patterns that matter",   body: "Each review is structured around signals like pain, healing, scarring, staff experience, pricing, and complaints." },
-  { stepNumber: "03", title: "You compare before you book",       body: "See ratings, read review excerpts, and compare providers side by side with more context." },
+  { stepNumber: "01", title: "We source public Google reviews",             body: "Reviews are collected from Google business listings for every provider and location we track. We do not accept reviews submitted to us. We do not use provider-owned testimonials." },
+  { stepNumber: "02", title: "We classify each review for signals that matter", body: "Every review is tagged for sentiment (positive, negative, mixed), use case (complete removal, cover-up, microblading, color), and scarring mentions. This turns a star rating into a structured comparison." },
+  { stepNumber: "03", title: "You compare before you book",                  body: "City pages rank providers. Comparison pages put methods and brands side by side. Category pages filter by your specific case. Guides cover healing, aftercare, and scarring. You make the decision." },
 ];
 
 // Visual decoration per step: stays hardcoded, never comes from Sanity

@@ -12,25 +12,23 @@ import IsItWorthIt from "@/components/sections/home/IsItWorthIt";
 import CTASection from "@/components/sections/home/CTASection";
 import HorizontalScroll from "@/components/ui/HorizontalScroll";
 import FAQSection from "@/components/sections/home/FAQSection";
-import RecentReviewsSection from "@/components/reviews/RecentReviewsSection";
 import { brands } from "@/lib/mock-data/brands";
 import { cities } from "@/lib/mock-data/cities";
-import { getRecentReviews } from "@/lib/data/reviews";
 import { getHomepageCMS } from "@/lib/page-data/homepage-cms";
 
 const FALLBACK_TITLE = "RealTattooReviews: Compare Tattoo Removal Clinics Before You Book";
-const FALLBACK_DESC = "848 verified patient reviews across 22 tattoo removal providers in 6 markets. Compare clinics by rating, city, ink type, and outcome before you book.";
+const FALLBACK_DESC = "Compare tattoo removal providers by method, technology, city, and review evidence. Sourced from public Google reviews across multiple US markets.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const cms = await getHomepageCMS();
   const title = cms?.seoTitle ?? FALLBACK_TITLE;
   const description = cms?.seoDescription ?? FALLBACK_DESC;
   return {
-    title,
+    title: { absolute: title },
     description,
     openGraph: {
       title,
-      description: cms?.seoDescription ?? "848 verified patient reviews across 22 providers. Compare clinics by rating, city, and outcome.",
+      description: cms?.seoDescription ?? FALLBACK_DESC,
       ...(cms?.seoImage?.url ? { images: [{ url: cms.seoImage.url, alt: cms.seoImage.alt ?? "" }] } : {}),
     },
     alternates: {
@@ -38,6 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
+
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -45,11 +44,12 @@ const websiteJsonLd = {
   url: "https://realtattooreviews.com",
 };
 
+const FEATURED_BRANDS = brands
+  .filter((b) => b.id !== "tatt2away")
+  .sort((a, b) => a.name.localeCompare(b.name));
+
 export default async function HomePage() {
-  const [recentReviews, cms] = await Promise.all([
-    getRecentReviews(6),
-    getHomepageCMS(),
-  ]);
+  const cms = await getHomepageCMS();
 
   return (
     <>
@@ -63,23 +63,74 @@ export default async function HomePage() {
       {/* ── 2. Stats ────────────────────────────────── */}
       <StatsRow />
 
-      {/* ── 3. How it works ─────────────────────────── */}
+      {/* ── 3. The Problem ──────────────────────────── */}
+      <section className="border-b border-border bg-surface py-16">
+        <Container>
+          <div className="max-w-prose">
+            <h2 className="text-[28px] font-bold text-heading mb-6">
+              The Problem This Site Solves
+            </h2>
+            <p className="text-[15px] leading-relaxed text-body mb-5">
+              Most people researching tattoo removal start with a Google search and end up on provider websites. Provider websites are designed to book appointments, not to help you decide. They show their own best cases. They do not compare themselves to alternatives. They do not tell you which method fits your skin type or your tattoo colors.
+            </p>
+            <p className="text-[15px] leading-relaxed text-body mb-5">
+              Google reviews help, but a star rating does not tell you whether a clinic is good at complete removal or just good at fading. It does not tell you whether the 5-star reviews are about tattoo removal or about the clinic's other services. It does not distinguish between a laser clinic and a non-laser provider.
+            </p>
+            <p className="text-[15px] leading-relaxed text-body">
+              RealTattooReviews fills the gap between provider marketing and raw review data. The site takes public Google reviews, classifies them for outcome patterns (not just stars), and organizes them so you can compare providers on what actually matters for your case.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── 4. How it works ─────────────────────────── */}
       <HowItWorks steps={cms?.howItWorksSteps} />
 
-      {/* ── 4. Category tabs ────────────────────────── */}
+      {/* ── 5. Category tabs ────────────────────────── */}
       <CategoryTabs />
 
-      {/* ── 5. Recent reviews ───────────────────────── */}
-      <RecentReviewsSection reviews={recentReviews} />
+      {/* ── 6. Compare methods and brands ───────────── */}
+      <section className="border-b border-border bg-bg py-16">
+        <Container>
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <h2 className="text-[28px] font-bold text-heading">Compare Methods and Brands</h2>
+              <p className="mt-1 text-sm text-muted">Not sure which method is right? Start here.</p>
+            </div>
+            <Link href="/comparisons" className="hidden text-sm font-medium text-accent hover:underline sm:block">
+              All comparisons →
+            </Link>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { href: "/comparisons/best-tattoo-removal-method", title: "Best Tattoo Removal Method", desc: "Side-by-side method comparison across laser, non-laser, and saline." },
+              { href: "/comparisons/picoway-vs-q-switch", title: "Pico Laser vs Q-Switch", desc: "How the two most common laser technologies compare for tattoo removal." },
+              { href: "/comparisons/saline-vs-laser-tattoo-removal", title: "Saline vs Laser", desc: "Non-laser saline removal compared to standard laser treatment." },
+              { href: "/comparisons/inkout-vs-removery", title: "inkOUT vs Removery", desc: "TEPR vs PicoWay: the two largest dedicated removal brands compared." },
+              { href: "/comparisons/inkout-vs-laseraway", title: "inkOUT vs LaserAway", desc: "TEPR specialist vs laser chain, with pricing and technology breakdown." },
+              { href: "/comparisons/removery-vs-laseraway", title: "Removery vs LaserAway", desc: "Two national laser chains compared on method, locations, and pricing." },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="group flex flex-col gap-2 rounded-xl border border-border bg-surface p-5 transition-colors hover:border-accent/40"
+              >
+                <p className="font-semibold text-heading text-[14px] group-hover:text-accent transition-colors">{link.title}</p>
+                <p className="text-[13px] leading-relaxed text-muted">{link.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
 
-      {/* ── 6. Featured providers ───────────────────── */}
+      {/* ── 7. Featured providers ───────────────────── */}
       <section className="py-14">
         <Container>
           <div className="mb-8 flex items-end justify-between">
             <div>
               <h2 className="text-[28px] font-bold text-heading">Featured providers</h2>
               <p className="mt-1 text-sm text-muted">
-                Ratings reflect all verified patient reviews. Not a ranked endorsement list.
+                Ratings reflect all sourced patient reviews. Not a ranked endorsement list.
               </p>
             </div>
             <Button href="/providers" variant="secondary" size="sm">View all →</Button>
@@ -87,7 +138,7 @@ export default async function HomePage() {
         </Container>
         <div className="pl-4 sm:pl-6 lg:pl-8 xl:pl-[max(2rem,calc((100vw-72rem)/2+2rem))]">
           <HorizontalScroll>
-            {brands.map((brand) => (
+            {FEATURED_BRANDS.map((brand) => (
               <div key={brand.id} className="w-72 shrink-0">
                 <BrandCard brand={brand} />
               </div>
@@ -97,14 +148,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 7. Browse by city ───────────────────────── */}
+      {/* ── 8. Browse by city ───────────────────────── */}
       <section className="border-t border-border bg-surface py-14">
         <Container>
           <div className="mb-8 flex items-end justify-between">
             <div>
               <h2 className="text-[28px] font-bold text-heading">Browse by city</h2>
               <p className="mt-1 text-sm text-muted">
-                Clinic coverage and patient reviews organized by location.
+                Provider availability varies by metro. Each city page ranks every tracked provider using the same scoring framework.
               </p>
             </div>
             <Link href="/cities" className="hidden text-sm font-medium text-accent hover:underline sm:block">
@@ -119,10 +170,10 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* ── 8. Treatment guides ─────────────────────── */}
+      {/* ── 9. Treatment guides ─────────────────────── */}
       <IsItWorthIt />
 
-      {/* ── 9. Research before you book ─────────────── */}
+      {/* ── 10. Research before you book ────────────── */}
       <section className="border-t border-border py-14">
         <Container>
           <div className="mb-8">
@@ -133,12 +184,12 @@ export default async function HomePage() {
         <CTASection />
       </section>
 
-      {/* ── 10. FAQ ─────────────────────────────────── */}
+      {/* ── 11. FAQ ─────────────────────────────────── */}
       <section className="border-t border-border bg-surface">
         <FAQSection items={cms?.faqItems} />
       </section>
 
-      {/* ── 11. Final CTA banner ────────────────────── */}
+      {/* ── 12. Final CTA banner ────────────────────── */}
       <section className="border-t border-border bg-heading py-16">
         <Container>
           <div className="flex flex-col items-center gap-6 text-center">
