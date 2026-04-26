@@ -190,22 +190,7 @@ export default function SalineVsLaserPage() {
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
                   This page is a head-to-head comparison covering saline vs laser across the
                   dimensions that matter most: PMU and microblading fit, color performance, dark
-                  skin safety, scarring risk, pain, downtime, sessions, and cost. For the broader
-                  method overview, see the{" "}
-                  <Link
-                    href="/comparisons/best-tattoo-removal-method"
-                    className="text-(--accent) hover:underline"
-                  >
-                    best tattoo removal method comparison
-                  </Link>
-                  . For microblading-specific guidance, see the{" "}
-                  <Link
-                    href="/categories/microblading-removal"
-                    className="text-(--accent) hover:underline"
-                  >
-                    microblading removal category page
-                  </Link>
-                  .
+                  skin safety, scarring risk, pain, downtime, sessions, and cost.
                 </p>
               </div>
             </div>

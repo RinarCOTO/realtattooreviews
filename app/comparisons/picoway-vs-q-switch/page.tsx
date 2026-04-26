@@ -200,34 +200,6 @@ export default function PicoLaserVsQSwitchPage() {
                   PicoSure (Cynosure) and PiQo4 (Lumenis) versus other Q-switch platforms like
                   RevLite and MedLite.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
-                  If you are choosing between providers rather than technologies, see the{" "}
-                  <Link href="/cities/austin" className="text-(--accent) hover:underline">
-                    city comparison pages
-                  </Link>{" "}
-                  or the{" "}
-                  <Link
-                    href="/comparisons/best-tattoo-removal-method"
-                    className="text-(--accent) hover:underline"
-                  >
-                    best tattoo removal method overview
-                  </Link>
-                  . For non-laser versus laser, see the{" "}
-                  <Link
-                    href="/comparisons/inkout-vs-removery"
-                    className="text-(--accent) hover:underline"
-                  >
-                    inkOUT vs Removery
-                  </Link>{" "}
-                  or{" "}
-                  <Link
-                    href="/comparisons/inkout-vs-laseraway"
-                    className="text-(--accent) hover:underline"
-                  >
-                    inkOUT vs LaserAway
-                  </Link>{" "}
-                  comparisons.
-                </p>
               </div>
             </div>
 
@@ -586,6 +558,11 @@ export default function PicoLaserVsQSwitchPage() {
                   href: "/comparisons/saline-vs-laser-tattoo-removal",
                   title: "Saline vs Laser Removal",
                   desc: "For cosmetic tattoos where a non-laser alternative is part of the comparison.",
+                },
+                {
+                  href: "/comparisons/inkout-vs-laseraway",
+                  title: "inkOUT vs LaserAway",
+                  desc: "Non-laser TEPR versus PicoSure laser for users comparing methods and chains.",
                 },
               ]}
             />
