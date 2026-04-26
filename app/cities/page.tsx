@@ -79,7 +79,7 @@ const HOW_IT_WORKS = [
   },
   {
     title: "Provider profiles",
-    body: "Static prose describing what each clinic is, where it is located, what technology it uses, and who it serves best. Every profile includes a "best for" and a "less ideal for" section.",
+    body: "Static prose describing what each clinic is, where it is located, what technology it uses, and who it serves best. Every profile includes a best-for and a less-ideal-for section.",
   },
   {
     title: "Comparison table",
