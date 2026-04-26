@@ -1,15 +1,12 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import ReviewCardGrid from "@/components/reviews/ReviewCardGrid";
 import AlternativesSection from "./AlternativesSection";
 import BlockHeading from "./BlockHeading";
 import InfoCard from "./InfoCard";
 import JumpNav from "./JumpNav";
 import ProsCons from "./ProsCons";
 import ProviderHero from "./ProviderHero";
-import ProviderReviewsArchive from "./ProviderReviewsArchive";
 import ResultsSnapshot from "./ResultsSnapshot";
-import ReviewsMoreLink from "./ReviewsMoreLink";
 import SourceSummary from "./SourceSummary";
 import VerdictCard from "./VerdictCard";
 import VerdictSidebar from "./VerdictSidebar";
@@ -49,13 +46,11 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
   const bottomLine = buildBottomLine(provider.name, [provider], reviews, alternatives);
   const city = provider.market.split(",")[0].trim();
   const citySlug = city.toLowerCase().replace(/\s+/g, "-");
-  const hasMoreReviews = reviews.length > 6;
 
   const jumpItems = [
     { label: "Overview",      href: "#overview" },
     { label: "Reviews",       href: "#reviews" },
     { label: "Results",       href: "#results" },
-    ...(hasMoreReviews ? [{ label: "All reviews", href: "#all-reviews" }] : []),
     { label: "Pricing",       href: "#pricing" },
     { label: "Treatment",     href: "#treatment" },
     { label: "Local context", href: "#local-context" },
@@ -117,24 +112,11 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
       </section>
 
       <section id="results" className="border-b border-(--line) bg-(--wash) py-22">
-        <Container className="grid gap-6 lg:grid-cols-[minmax(0,1fr),280px]">
-          <div>
-            <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
-            <ReviewCardGrid reviews={reviews.slice(0, 6)} columns={2} showProvider={false} />
-            <ReviewsMoreLink total={reviews.length} />
-          </div>
+        <Container>
+          <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
         </Container>
       </section>
-
-      {hasMoreReviews && (
-        <section id="all-reviews" className="border-b border-(--line) bg-(--bg) py-22">
-          <Container>
-            <BlockHeading title="All Reviews" body={`Browse the remaining sourced reviews for ${provider.name}, loaded in batches so the page stays readable.`} />
-            <ProviderReviewsArchive reviews={reviews} />
-          </Container>
-        </section>
-      )}
 
       <section id="pricing" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>

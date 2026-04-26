@@ -9,9 +9,6 @@ type Props = {
 
 export default function ReviewEvidenceCard({ review, showProvider = true }: Props) {
   const providerHref = review.providerSlug ? `/reviews/${review.providerSlug}` : "/reviews";
-  const displayText = review.fullText ?? review.excerpt ?? "";
-
-  const byline = review.reviewer ?? null;
 
   return (
     <article className="flex flex-col border border-(--line) bg-white p-5 rounded-xl">
@@ -33,24 +30,12 @@ export default function ReviewEvidenceCard({ review, showProvider = true }: Prop
         )}
       </div>
 
-      {/* Reviewer + date */}
-      {byline && (
-        <p className="mt-1.5 text-[12px] text-(--ink)">
-          {byline}
-        </p>
-      )}
-
       {/* Provider link (optional) */}
       {showProvider && review.providerSlug && (
         <Link href={providerHref} className="mt-3 text-[12px] font-medium text-(--accent) hover:underline">
           {review.provider}
         </Link>
       )}
-
-      {/* Quote */}
-      <blockquote className="mt-4 m-0 text-[14px] leading-[1.6] text-(--ink) flex-1">
-        &ldquo;{displayText}&rdquo;
-      </blockquote>
 
       {/* Tags */}
       {(review.tags ?? []).length > 0 && (
