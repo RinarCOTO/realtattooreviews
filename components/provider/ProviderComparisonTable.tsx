@@ -174,10 +174,10 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
                 <td className="px-4 py-3 text-muted">{p.technology}</td>
                 <td className="px-4 py-3 text-muted">{p.locations}</td>
                 <td className="px-4 py-3 text-muted">
-                  {p.reviews != null ? p.reviews : <span className="text-subtle">—</span>}
+                  {p.reviews != null ? p.reviews : <span className="text-subtle">-</span>}
                 </td>
                 <td className="px-4 py-3 text-muted">
-                  {p.yearsActive != null ? `${p.yearsActive} yrs` : <span className="text-subtle">—</span>}
+                  {p.yearsActive != null ? `${p.yearsActive} yrs` : <span className="text-subtle">-</span>}
                 </td>
                 <td className="px-4 py-3 text-muted">{p.bestFor}</td>
                 <td className="px-4 py-3">
@@ -192,7 +192,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
       </div>
       <div className="mt-4 flex items-center justify-between">
         <p className="text-[11px] text-subtle">
-          Review counts marked — are pending verification. Years active blanks indicate unverified founding dates. Default sort: alphabetical.
+          Review counts marked - are pending verification. Years active blanks indicate unverified founding dates. Default sort: alphabetical.
         </p>
         <Link
           href="/reviews"

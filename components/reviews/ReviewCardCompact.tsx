@@ -22,7 +22,7 @@ function outcomeBadge(rating?: number, resultsMentioned?: boolean | null) {
 // ── Component ────────────────────────────────────────────────────────────────
 
 /**
- * ReviewCardCompact — homepage variant.
+ * ReviewCardCompact: homepage variant.
  *
  * Compact excerpt (line-clamp-2). City/location is the differentiator.
  * CTA routes to /reviews/{slug}#{location} for multi-location,

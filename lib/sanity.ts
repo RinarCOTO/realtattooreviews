@@ -4,6 +4,6 @@ export const sanity = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset:   process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
   apiVersion: "2024-01-01",
-  useCdn:    true,   // cached reads — fine for static builds
+  useCdn:    true,   // cached reads, fine for static builds
   token:     process.env.SANITY_API_TOKEN, // only needed for drafts/mutations
 });

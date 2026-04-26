@@ -1,7 +1,7 @@
 /*
  * DYNAMIC DATA NOTE FOR CLAUDE CODE:
  * One dynamic component renders live cross-city evidence from Supabase.
- * The prose is intentionally GENERIC and STATIC — no hardcoded numbers, ratings,
+ * The prose is intentionally GENERIC and STATIC: no hardcoded numbers, ratings,
  * or counts. All quantitative data is rendered by BrandComparisonEvidence.
  *
  * COMPONENT: <BrandComparisonEvidence brand_a="Removery" brand_b="LaserAway" />
@@ -17,10 +17,10 @@
  * SQL CASE expression for brand detection:
  *   WHEN provider_name ILIKE '%Removery%' THEN 'Removery'
  *   WHEN provider_name ILIKE '%LaserAway%' THEN 'LaserAway'
- * (inkOUT bucket not relevant — neither brand is inkOUT)
+ * (inkOUT bucket not relevant; neither brand is inkOUT)
  *
  * Sources: Candela (PicoWay specs), Cynosure (PicoSure specs),
- * PMC4859414 (Torbeck et al 2016 — PicoSure FDA clearance reference).
+ * PMC4859414 (Torbeck et al 2016, PicoSure FDA clearance reference).
  */
 
 import type { Metadata } from "next";
@@ -101,7 +101,7 @@ const faqs = [
   {
     question: "Which is better for dark skin?",
     answer:
-      "Both platforms can treat darker Fitzpatrick skin types. The 1064nm wavelength is safest for darker skin. PicoWay includes 1064nm as standard. PicoSure Pro offers it as an optional handpiece — confirm availability at your LaserAway location. For users who want to avoid laser-melanin interaction entirely, non-laser options exist. See the best tattoo removal method overview.",
+      "Both platforms can treat darker Fitzpatrick skin types. The 1064nm wavelength is safest for darker skin. PicoWay includes 1064nm as standard. PicoSure Pro offers it as an optional handpiece, so confirm availability at your LaserAway location. For users who want to avoid laser-melanin interaction entirely, non-laser options exist. See the best tattoo removal method overview.",
   },
 ];
 
@@ -534,8 +534,7 @@ export default function RemoveryVsLaserawayPage() {
                 This comparison synthesizes brand-published technology and pricing material with
                 our internal review-sample evidence dataset. Both brands have coverage gaps in the
                 current dataset. PicoWay specs from Candela. PicoSure specs from Cynosure and
-                PMC4859414 (Torbeck et al 2016). inkOUT is a current advertising client of
-                RealTattooReviews; this page does not directly evaluate inkOUT. See our{" "}
+                PMC4859414 (Torbeck et al 2016). See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}
@@ -552,7 +551,7 @@ export default function RemoveryVsLaserawayPage() {
                 {
                   href: "/comparisons/inkout-vs-removery",
                   title: "inkOUT vs Removery",
-                  desc: "Compare non-laser TEPR against Removery's PicoWay — method, pricing, and use-case fit.",
+                  desc: "Compare non-laser TEPR against Removery's PicoWay: method, pricing, and use-case fit.",
                 },
                 {
                   href: "/comparisons/best-tattoo-removal-method",

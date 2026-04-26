@@ -235,6 +235,9 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
         meta: "Reviews hub",
       },
     ],
+    brandA: "inkOUT",
+    brandB: "LaserAway",
+    brandBPendingCities: ["Austin", "Chicago", "Houston", "Tampa"],
   },
 
   "picoway-vs-q-switch": {

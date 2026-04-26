@@ -87,7 +87,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
                   Positive
                 </p>
                 <p className="font-sans text-[18px] font-bold text-(--ink) leading-none">
-                  {row.pctPositive != null ? `${row.pctPositive}%` : "—"}
+                  {row.pctPositive != null ? `${row.pctPositive}%` : "-"}
                 </p>
               </div>
               <div className="rounded-lg bg-(--bg) border border-(--line) p-3 text-center">

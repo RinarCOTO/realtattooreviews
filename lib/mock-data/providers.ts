@@ -417,7 +417,7 @@ export const providers: Provider[] = [
     webSummary: "Removery performs laser tattoo removal exclusively using PicoWay picosecond devices, with more than 1.6 million treatments completed across its studio network. The company operates a dedicated Clinical Advisory Board of physicians and requires its specialists to complete over 160 hours of training. Its commercial model centers on unlimited-session Complete Removal Packages sold at a single flat price rather than per-session billing, and the brand runs the INK-nitiative program offering free removal for formerly incarcerated individuals, domestic violence survivors, and those removing hate symbols.",
   },
 
-  // ── Removery expansion — Austin TX ──
+  // Removery expansion: Austin TX
   {
     id: "removery-round-rock",
     name: "Removery (Round Rock)",
@@ -438,7 +438,7 @@ export const providers: Provider[] = [
     webSummary: "Removery performs laser tattoo removal exclusively using PicoWay picosecond devices, with more than 1.6 million treatments completed across its studio network. The company operates a dedicated Clinical Advisory Board of physicians and requires its specialists to complete over 160 hours of training. Its commercial model centers on unlimited-session Complete Removal Packages sold at a single flat price rather than per-session billing, and the brand runs the INK-nitiative program offering free removal for formerly incarcerated individuals, domestic violence survivors, and those removing hate symbols.",
   },
 
-  // ── Removery expansion — Houston TX ──
+  // Removery expansion: Houston TX
   {
     id: "removery-hedwig-village",
     name: "Removery (Hedwig Village)",
@@ -573,7 +573,7 @@ export const providers: Provider[] = [
     webSummary: "Removery performs laser tattoo removal exclusively using PicoWay picosecond devices, with more than 1.6 million treatments completed across its studio network. The company operates a dedicated Clinical Advisory Board of physicians and requires its specialists to complete over 160 hours of training. Its commercial model centers on unlimited-session Complete Removal Packages sold at a single flat price rather than per-session billing, and the brand runs the INK-nitiative program offering free removal for formerly incarcerated individuals, domestic violence survivors, and those removing hate symbols.",
   },
 
-  // ── Removery expansion — Tampa FL ──
+  // Removery expansion: Tampa FL
   {
     id: "removery-westshore",
     name: "Removery (Westshore)",

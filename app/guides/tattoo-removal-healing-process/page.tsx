@@ -81,7 +81,7 @@ const STAGES = [
     step: 1,
     title: "Frosting and Immediate Reaction",
     duration: "Minutes 0 to 60",
-    body: "Tattoo removal frosting is the first visible reaction. Immediately after laser treatment, the treated skin turns white or grayish. This is caused by gas bubbles (carbon dioxide and steam) released when the laser interacts with ink particles. Frosting is temporary — it typically fades within 10 to 30 minutes.",
+    body: "Tattoo removal frosting is the first visible reaction. Immediately after laser treatment, the treated skin turns white or grayish. This is caused by gas bubbles (carbon dioxide and steam) released when the laser interacts with ink particles. Frosting is temporary. It typically fades within 10 to 30 minutes.",
     normal: [
       "White or gray discoloration over the treated area",
       "Mild pinpoint bleeding",
@@ -98,7 +98,7 @@ const STAGES = [
     step: 2,
     title: "Redness, Swelling, and Inflammation",
     duration: "Hours 1 to 48",
-    body: "Tattoo removal redness and swelling begin within the first hour and typically peak within 24 hours. The treated area will look red, feel warm, and may be mildly swollen. This is a standard inflammatory response — the body is sending blood and immune cells to the treatment site.",
+    body: "Tattoo removal redness and swelling begin within the first hour and typically peak within 24 hours. The treated area will look red, feel warm, and may be mildly swollen. This is a standard inflammatory response. The body is sending blood and immune cells to the treatment site.",
     normal: [
       "Redness (erythema) ranging from mild pink to deep red",
       "Edema (swelling) making the treated area feel slightly raised or puffy",
@@ -215,7 +215,7 @@ const HEALED_STAGES = [
 ];
 
 const WARNING_SIGNS = [
-  "Infection signs: increasing pain after 48 hours, yellow or green discharge, warmth spreading beyond the treatment area, red streaks, fever — contact your provider or a medical professional immediately",
+  "Infection signs: increasing pain after 48 hours, yellow or green discharge, warmth spreading beyond the treatment area, red streaks, fever. Contact your provider or a medical professional immediately.",
   "Excessive blistering: blisters continuing to grow beyond 72 hours, covering a much larger area than the treated tattoo, or filling with cloudy fluid",
   "Scarring signs: raised, firm tissue persisting beyond 8 to 12 weeks; thickened tissue extending beyond the treatment area (keloid); depressed skin texture",
   "Prolonged pigment changes: hyperpigmentation or hypopigmentation that has not begun to improve after 3 to 6 months",
@@ -283,8 +283,8 @@ export default function TattooRemovalHealingProcessPage() {
           </h1>
 
           <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            Stage-by-stage breakdown of what happens to your skin after each session — from frosting
-            and blistering through full recovery — and how to tell normal healing from warning signs.
+            Stage-by-stage breakdown of what happens to your skin after each session, from frosting
+            and blistering through full recovery, and how to tell normal healing from warning signs.
           </p>
         </Container>
       </section>
@@ -463,7 +463,7 @@ export default function TattooRemovalHealingProcessPage() {
               </p>
               <GuideBulletList variant="warning" items={WARNING_SIGNS} />
               <GuideCallout label="What to do">
-                Contact your tattoo removal provider first — they can assess whether the reaction is
+                Contact your tattoo removal provider first. They can assess whether the reaction is
                 within expected range or needs medical attention. If you suspect infection, do not
                 wait. Seek medical care promptly. For deeper scarring guidance, see the{" "}
                 <Link

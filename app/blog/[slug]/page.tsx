@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: Props) {
           },
           {
             question: "How much does tattoo removal cost?",
-            answer: "Per-session costs typically range from $150–$300 at national chains. Multiply by your estimated session count for a realistic total. Unlimited packages ($500–$800 flat) are worth considering for complex tattoos.",
+            answer: "Per-session costs typically range from $150 to $300 at national chains. Multiply by your estimated session count for a realistic total. Unlimited packages ($500 to $800 flat) are worth considering for complex tattoos.",
           },
           {
             question: "What's the difference between Q-switch and picosecond lasers?",

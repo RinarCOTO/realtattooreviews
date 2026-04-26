@@ -47,4 +47,8 @@ export type DetailedComparisonPage = {
   sourceNote: string;
   faqs: ComparisonFAQ[];
   relatedLinks: ComparisonResearchLink[];
+  brandA?: string;
+  brandB?: string;
+  brandAPendingCities?: string[];
+  brandBPendingCities?: string[];
 };

@@ -156,6 +156,7 @@ button, [role="button"], a.btn {
   color:         oklch(0.28 0.006 60);
 }
 
+
 .scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;

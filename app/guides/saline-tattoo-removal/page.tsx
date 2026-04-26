@@ -62,7 +62,7 @@ const faqs = [
   {
     question: "What is saline tattoo removal healing time?",
     answer:
-      "The scab typically forms within 24 to 72 hours and sheds naturally within 7 to 14 days. Full healing between sessions takes 6 to 8 weeks. During the scab phase, the area should be kept dry and the scab must not be picked, peeled, or pulled — premature removal of the scab reduces results and increases scarring risk.",
+      "The scab typically forms within 24 to 72 hours and sheds naturally within 7 to 14 days. Full healing between sessions takes 6 to 8 weeks. During the scab phase, the area should be kept dry and the scab must not be picked, peeled, or pulled. Premature removal of the scab reduces results and increases scarring risk.",
   },
   {
     question: "Is saline better than laser for microblading removal?",
@@ -93,7 +93,7 @@ const PROCESS_STEPS = [
   {
     step: 3,
     title: "Saline implantation",
-    body: "The technician uses a tattoo machine or manual tool to implant the saline solution into the tattooed skin. The saline solution is hypertonic — its salt concentration is higher than the surrounding tissue — which creates the osmotic gradient needed for lift.",
+    body: "The technician uses a tattoo machine or manual tool to implant the saline solution into the tattooed skin. The saline solution is hypertonic (its salt concentration is higher than the surrounding tissue), which creates the osmotic gradient needed for lift.",
   },
   {
     step: 4,
@@ -292,7 +292,7 @@ export default function SalineTattooRemovalGuidePage() {
                   <GuideBulletList
                     items={[
                       "Redness and swelling in the first 24 to 48 hours",
-                      "Dark scab formation — expected and desired",
+                      "Dark scab formation (expected and desired)",
                       "Mild tenderness during healing",
                       "Temporary hyperpigmentation or hypopigmentation that typically resolves",
                     ]}
@@ -329,11 +329,11 @@ export default function SalineTattooRemovalGuidePage() {
                   },
                   {
                     title: "How to minimize risk",
-                    body: "Choose a conservative technician who does not overwork the skin in a single session. Follow aftercare instructions strictly — no picking, no sun, keep the area dry. Wait the full 6 to 8 weeks between sessions. Do not rush the process.",
+                    body: "Choose a conservative technician who does not overwork the skin in a single session. Follow aftercare instructions strictly: no picking, no sun, keep the area dry. Wait the full 6 to 8 weeks between sessions. Do not rush the process.",
                   },
                   {
                     title: "No thermal scarring risk",
-                    body: "Saline removal does not use heat or light energy. Thermal scarring — the risk category associated with aggressive laser settings — is not a saline removal risk. This is one structural advantage saline has over laser modalities for skin-sensitive users.",
+                    body: "Saline removal does not use heat or light energy. Thermal scarring (the risk category associated with aggressive laser settings) is not a saline removal risk. This is one structural advantage saline has over laser modalities for skin-sensitive users.",
                   },
                 ].map((item) => (
                   <div
@@ -371,7 +371,7 @@ export default function SalineTattooRemovalGuidePage() {
                 {[
                   {
                     title: "Iron oxide pigment safety",
-                    body: "Most PMU pigments contain iron oxides. Under laser energy, iron oxide can oxidize and darken — a phenomenon called paradoxical darkening. The treated area turns gray or black instead of fading. Saline does not use light, so no oxidation occurs. Iron oxide pigment lifts out intact through osmosis.",
+                    body: "Most PMU pigments contain iron oxides. Under laser energy, iron oxide can oxidize and darken, a phenomenon called paradoxical darkening. The treated area turns gray or black instead of fading. Saline does not use light, so no oxidation occurs. Iron oxide pigment lifts out intact through osmosis.",
                   },
                   {
                     title: "Titanium dioxide pigment safety",
@@ -410,8 +410,8 @@ export default function SalineTattooRemovalGuidePage() {
               <div className="space-y-3">
                 {[
                   {
-                    label: "During the scab phase (days 1–14)",
-                    body: "The treated area will look darker while the scab is sitting. This is normal. The scab contains concentrated lifted pigment and will appear more saturated than the original tattoo. Do not be alarmed — this is how the process works.",
+                    label: "During the scab phase (days 1 to 14)",
+                    body: "The treated area will look darker while the scab is sitting. This is normal. The scab contains concentrated lifted pigment and will appear more saturated than the original tattoo. Do not be alarmed. This is how the process works.",
                   },
                   {
                     label: "After session 1 scab sheds",
@@ -456,11 +456,11 @@ export default function SalineTattooRemovalGuidePage() {
               </p>
               <div className="space-y-3">
                 {[
-                  { label: "Per session (typical)", price: "$100 – $350 (most: $150 – $250)" },
-                  { label: "Microblading removal (total)", price: "$300 – $1,200" },
-                  { label: "Lip liner removal (total)", price: "$300 – $1,000" },
-                  { label: "Eyeliner removal (total)", price: "$400 – $1,400" },
-                  { label: "Small body tattoo (total)", price: "$450 – $1,800" },
+                  { label: "Per session (typical)", price: "$100 to $350 (most: $150 to $250)" },
+                  { label: "Microblading removal (total)", price: "$300 to $1,200" },
+                  { label: "Lip liner removal (total)", price: "$300 to $1,000" },
+                  { label: "Eyeliner removal (total)", price: "$400 to $1,400" },
+                  { label: "Small body tattoo (total)", price: "$450 to $1,800" },
                 ].map((tier) => (
                   <div
                     key={tier.label}
@@ -488,7 +488,7 @@ export default function SalineTattooRemovalGuidePage() {
             <GuideSection heading="Saline Tattoo Removal Aftercare and Healing">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Aftercare directly affects both the result of each session and the risk of
-                scarring. The scab is the vehicle for pigment removal — protecting it is the
+                scarring. The scab is the vehicle for pigment removal. Protecting it is the
                 most important aftercare task.
               </p>
               <div className="space-y-3">
@@ -504,7 +504,7 @@ export default function SalineTattooRemovalGuidePage() {
                   {
                     phase: "Scab phase (days 3 to 14)",
                     instructions: [
-                      "Do not pick, peel, or pull the scab — this is critical",
+                      "Do not pick, peel, or pull the scab. This is critical.",
                       "Apply only the aftercare product recommended by your technician",
                       "Avoid sun exposure, swimming, saunas, and sweating",
                       "Keep the area dry where possible",
@@ -615,7 +615,7 @@ export default function SalineTattooRemovalGuidePage() {
                 {
                   href: "/guides/tattoo-removal-scarring",
                   title: "Tattoo Removal Scarring",
-                  desc: "Scarring risk by method, skin type, and provider — and what to do if scarring occurs.",
+                  desc: "Scarring risk by method, skin type, and provider, and what to do if scarring occurs.",
                 },
                 {
                   href: "/cost",

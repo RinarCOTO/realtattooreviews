@@ -114,18 +114,18 @@ const CAUSES = [
 ];
 
 const HEALING_NORMAL = [
-  "Redness and mild swelling for 24 to 48 hours — standard inflammatory response",
+  "Redness and mild swelling for 24 to 48 hours (standard inflammatory response)",
   "Frosting (whitening) immediately after treatment from gas bubbles; fades within minutes to hours",
-  "Blistering within 24 to 72 hours — common, especially with Q-switched lasers; part of healing, not scarring",
+  "Blistering within 24 to 72 hours (common, especially with Q-switched lasers; part of healing, not scarring)",
   "Scabbing as blisters dry; scabs typically shed within one to two weeks",
-  "Temporary darkening or lightening of skin (hyperpigmentation or hypopigmentation) — resolves within weeks to months",
+  "Temporary darkening or lightening of skin (hyperpigmentation or hypopigmentation), resolves within weeks to months",
   "Mild itching during healing",
 ];
 
 const HEALING_SCAR = [
-  "Raised, firm tissue that persists beyond 3 months — hypertrophic scarring",
-  "Thickened, raised tissue extending beyond the original treatment area — keloid scarring",
-  "Depressed (sunken) skin texture in the treated area — atrophic scarring",
+  "Raised, firm tissue that persists beyond 3 months: hypertrophic scarring",
+  "Thickened, raised tissue extending beyond the original treatment area: keloid scarring",
+  "Depressed (sunken) skin texture in the treated area: atrophic scarring",
   "Persistent textural change (rough, bumpy, or leathery skin) that does not improve with time",
 ];
 
@@ -151,7 +151,7 @@ const PIGMENT_CARDS = [
   },
   {
     title: "Hypopigmentation",
-    body: "Lightening of the skin in the treated area. Occurs when the laser damages melanocytes (the cells that produce melanin). More common after aggressive treatment. Takes longer to resolve than hyperpigmentation — sometimes 6 to 12 months or more. In rare cases it can be permanent.",
+    body: "Lightening of the skin in the treated area. Occurs when the laser damages melanocytes (the cells that produce melanin). More common after aggressive treatment. Takes longer to resolve than hyperpigmentation, sometimes 6 to 12 months or more. In rare cases it can be permanent.",
   },
 ];
 
@@ -314,7 +314,7 @@ export default function TattooRemovalScarringGuidePage() {
                 </p>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
                   The confusion around tattoo removal scars comes from three sources. First, normal
-                  healing reactions — redness, blistering, scabbing, temporary pigment changes —
+                  healing reactions (redness, blistering, scabbing, temporary pigment changes)
                   are often mistaken for scarring. Second, low-quality providers using aggressive
                   settings or outdated equipment produce more scar cases than experienced providers
                   using modern technology. Third, poor aftercare by the patient (picking blisters,
@@ -541,9 +541,7 @@ export default function TattooRemovalScarringGuidePage() {
                 Nd:YAG), and PMC4411590 (Kazandjieva-Tsankov on tattoo complications). Scar
                 treatment recommendations follow American Academy of Dermatology guidelines. This
                 page is an educational guide and does not replace medical advice. Consult a
-                qualified dermatologist for any persistent scar. inkOUT is a current advertising
-                client of RealTattooReviews; this page is a scarring guide and does not promote
-                inkOUT. See our{" "}
+                qualified dermatologist for any persistent scar. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}
@@ -575,7 +573,7 @@ export default function TattooRemovalScarringGuidePage() {
                 {
                   href: "/comparisons/best-tattoo-removal-method",
                   title: "Best Tattoo Removal Method",
-                  desc: "Which method fits your case — laser, saline, TEPR — compared across skin type, use case, and cost.",
+                  desc: "Which method fits your case: laser, saline, or TEPR, compared across skin type, use case, and cost.",
                 },
               ]}
             />

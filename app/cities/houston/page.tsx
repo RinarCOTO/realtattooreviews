@@ -8,11 +8,11 @@
  * model, pricing structure, who they serve). Profiles do NOT describe how each clinic is
  * RANKED or PERFORMING in current data. The components handle that.
  *
- * Same SQL spec as Austin/Chicago — see app/cities/austin/page.tsx for full reference.
+ * Same SQL spec as Austin/Chicago. See app/cities/austin/page.tsx for full reference.
  *
  * INKOUT BUCKET AGGREGATION:
  * inkOUT Houston (place_id ChIJNRyaQj2_QIYRFM2uE3nbCx0) appears under bucket='inkout'
- * only — no historical Tatt2Away phase since this is a newer location. No special
+ * only. No historical Tatt2Away phase since this is a newer location. No special
  * aggregation needed beyond the standard applyPublicFilters("any") scope.
  *
  * PROVIDERS WITHOUT SUPABASE DATA YET:
@@ -429,7 +429,7 @@ export default function HoustonPage() {
                   },
                   {
                     title: "Pain experience",
-                    body: "Varies more by method than by clinic. Most Houston laser providers describe sensations similar to a thick rubber band snapping against the skin. Picosecond systems (Removery's PicoWay, LaserAway's PicoSure) deliver shorter pulses and tend to feel less intense per pulse than older Q-switched systems. Non-laser TEPR (inkOUT) has a different pain profile entirely — users typically describe it as moderate, similar to a tattoo session, rather than sharp.",
+                    body: "Varies more by method than by clinic. Most Houston laser providers describe sensations similar to a thick rubber band snapping against the skin. Picosecond systems (Removery's PicoWay, LaserAway's PicoSure) deliver shorter pulses and tend to feel less intense per pulse than older Q-switched systems. Non-laser TEPR (inkOUT) has a different pain profile entirely. Users typically describe it as moderate, similar to a tattoo session, rather than sharp.",
                   },
                   {
                     title: "Scarring risk",
@@ -494,9 +494,9 @@ export default function HoustonPage() {
 
               <div className="space-y-3">
                 {[
-                  { label: "Small (postage stamp to poker chip)", price: "$100 – $250 per session" },
-                  { label: "Medium (business card to palm)", price: "$250 – $400 per session" },
-                  { label: "Large (postcard to half-sleeve+)", price: "$400 – $600+ per session" },
+                  { label: "Small (postage stamp to poker chip)", price: "$100 to $250 per session" },
+                  { label: "Medium (business card to palm)", price: "$250 to $400 per session" },
+                  { label: "Large (postcard to half-sleeve+)", price: "$400 to $600+ per session" },
                 ].map((tier) => (
                   <div
                     key={tier.label}
@@ -569,14 +569,8 @@ export default function HoustonPage() {
                 as new reviews are scraped. Sample sizes are capped at 50 per provider; total
                 lifetime Google review counts are higher. Sentiment classifications and use-case
                 tags are derived from review text analysis. Pricing ranges reflect published
-                Houston provider rates where public. inkOUT is a current advertising client of
-                RealTattooReviews and is operated by Rejuvatek Medical; this relationship is
-                disclosed on the{" "}
-                <Link href="/editorial-policy" className="text-(--accent) hover:underline">
-                  editorial policy page
-                </Link>{" "}
-                and inkOUT is evaluated on the same criteria as every other provider. Consult a
-                qualified provider before proceeding. See our{" "}
+                Houston provider rates where public. Consult a qualified provider before
+                proceeding. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}

@@ -131,7 +131,7 @@ export function dbReviewToReview(r: DbReview): Review {
     r.location_city
   );
 
-  // pain_level is a number in competitor_reviews (not a string "1"–"5")
+  // pain_level is a number in competitor_reviews (not a string "1" to "5")
   const painRaw = typeof r.pain_level === "number" ? r.pain_level : null;
   // sessions_completed is a number in competitor_reviews (not a string)
   const sessions = typeof r.sessions_completed === "number" ? r.sessions_completed : null;
@@ -163,7 +163,7 @@ export function dbReviewToReview(r: DbReview): Review {
       ? false
       : null,
     resultsMentioned: r.result_rating != null && r.result_rating !== "unknown",
-    // Fields not captured in competitor_reviews — kept for type compatibility
+    // Fields not captured in competitor_reviews, kept for type compatibility
     healingIssues: null,
     costMentioned: null,
     staffMentioned: null,
@@ -228,13 +228,13 @@ export function selectDiverseReviews(reviews: Review[], maxCards = 6): Review[] 
 // Bucket logic (verified from actual data in competitor_reviews, April 2026):
 //   inkOUT reviews:     bucket = 'inkout'     (approved inkOUT reviews)
 //   Competitor reviews: bucket = 'competitor' (Removery, Arviv, Clean Slate, etc.)
-//   Tatt2Away method:   bucket = 'tatt2away'  (inkOUT sessions using Tatt2Away tech — NOT shown on RTR public pages)
-//   review_required:    bucket = 'review_required' (flagged for manual review — not published)
+//   Tatt2Away method:   bucket = 'tatt2away'  (inkOUT sessions using Tatt2Away tech, NOT shown on RTR public pages)
+//   review_required:    bucket = 'review_required' (flagged for manual review, not published)
 //
 // BucketScope controls how the bucket column is filtered:
-//   "inkout"     — strict: only bucket = 'inkout'
-//   "competitor" — only bucket = 'competitor'
-//   "any"        — bucket = 'competitor' OR bucket = 'inkout' (excludes tatt2away)
+//   "inkout"     -- strict: only bucket = 'inkout'
+//   "competitor" -- only bucket = 'competitor'
+//   "any"        -- bucket = 'competitor' OR bucket = 'inkout' (excludes tatt2away)
 
 type BucketScope = "inkout" | "competitor" | "any";
 
@@ -423,6 +423,80 @@ export async function getBrandStats(
       scarMentions: rows.filter((r) => r.scarring_mentioned === "Yes").length,
       totalReviews: rows.length,
     };
+  }
+
+  return result;
+}
+
+export type DirectoryAggregate = {
+  totalReviews: number;
+  avgStars: number | null;
+  cityList: string[];
+};
+
+/**
+ * Brand-level aggregates for the /providers directory page.
+ * Returns review count, average star rating, and distinct tracked cities per brand slug.
+ * Structurally the same as getBrandStats but also computes avgStars and cityList.
+ */
+export async function getProviderDirectoryAggregates(
+  brandSlugs: string[]
+): Promise<Record<string, DirectoryAggregate>> {
+  if (brandSlugs.length === 0) return {};
+
+  const slugForName = new Map<string, string>();
+  const allNames: string[] = [];
+
+  for (const slug of brandSlugs) {
+    const { names } = getProviderNamesForSlug(slug);
+    for (const name of names) {
+      if (!slugForName.has(name)) slugForName.set(name, slug);
+      allNames.push(name);
+    }
+  }
+
+  const uniqueNames = [...new Set(allNames)];
+  if (uniqueNames.length === 0) return {};
+
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("provider_name, bucket, star_rating, location_city")
+      .in("provider_name", uniqueNames),
+    "any"
+  );
+
+  if (error || !data) return {};
+
+  type Row = {
+    provider_name: string;
+    bucket: string | null;
+    star_rating: number | null;
+    location_city: string | null;
+  };
+
+  const result: Record<string, DirectoryAggregate> = {};
+
+  for (const slug of brandSlugs) {
+    const { names, isInkout } = getProviderNamesForSlug(slug);
+    const rows = (data as Row[]).filter((r) => {
+      if (!names.includes(r.provider_name)) return false;
+      if (isInkout) return r.bucket === "inkout";
+      return r.bucket === "competitor";
+    });
+
+    const stars = rows
+      .map((r) => r.star_rating)
+      .filter((s): s is number => s != null);
+    const avgStars =
+      stars.length > 0
+        ? Math.round((stars.reduce((a, b) => a + b, 0) / stars.length) * 10) / 10
+        : null;
+    const cities = [
+      ...new Set(rows.map((r) => r.location_city).filter((c): c is string => c != null)),
+    ].sort();
+
+    result[slug] = { totalReviews: rows.length, avgStars, cityList: cities };
   }
 
   return result;
@@ -695,8 +769,8 @@ export interface BrandComparisonResult {
  * containing the brand string (case-insensitive), e.g. "Removery (Bucktown)" → "Removery".
  *
  * This makes the function work for any two-brand pair:
- *   getBrandComparisonAggregates("inkOUT", "Removery")   — inkOUT vs Removery
- *   getBrandComparisonAggregates("Removery", "LaserAway") — laser-vs-laser comparisons
+ *   getBrandComparisonAggregates("inkOUT", "Removery")   // inkOUT vs Removery
+ *   getBrandComparisonAggregates("Removery", "LaserAway") // laser-vs-laser comparisons
  */
 export async function getBrandComparisonAggregates(
   brandA: string,
@@ -743,7 +817,7 @@ export async function getBrandComparisonAggregates(
   let latestTs: number | null = null;
   const brandALower = brandA.toLowerCase();
   const brandBLower = brandB.toLowerCase();
-  // Which brand (if any) is inkOUT — identified by bucket rather than provider_name
+  // Which brand (if any) is inkOUT, identified by bucket rather than provider_name
   const inkoutLabel =
     brandALower === "inkout" ? brandA : brandBLower === "inkout" ? brandB : null;
 

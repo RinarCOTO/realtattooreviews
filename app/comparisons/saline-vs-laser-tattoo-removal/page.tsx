@@ -531,9 +531,7 @@ export default function SalineVsLaserPage() {
                 2021 (Bennardo), PMC4859414 (Torbeck et al 2016), and PMC4928479 (JCAD 2016).
                 Iron-oxide paradoxical darkening under laser is documented in dermatology consensus
                 literature. This page is a method comparison and does not directly evaluate any
-                single provider. inkOUT is a current advertising client of RealTattooReviews; this
-                page supports the broader method-comparison framework but does not promote inkOUT
-                directly. See our{" "}
+                single provider. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}
@@ -555,7 +553,7 @@ export default function SalineVsLaserPage() {
                 {
                   href: "/comparisons/inkout-vs-removery",
                   title: "inkOUT vs Removery",
-                  desc: "Compare non-laser TEPR against Removery's PicoWay — for users evaluating the full non-laser range.",
+                  desc: "Compare non-laser TEPR against Removery's PicoWay, for users evaluating the full non-laser range.",
                 },
                 {
                   href: "/categories/microblading-removal",

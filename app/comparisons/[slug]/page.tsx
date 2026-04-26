@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import Container from "@/components/layout/Container";
+import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
 import BlockHeading from "@/components/provider/BlockHeading";
 import JumpNav from "@/components/provider/JumpNav";
 import ComparisonTable from "@/components/sections/ComparisonTable";
@@ -164,6 +166,10 @@ export default async function ComparisonPage({ params }: Props) {
   const activeFaqs: ComparisonFAQ[] = sanityComparison.faqItems?.length
     ? sanityComparison.faqItems
     : detailedPage.faqs;
+  const activeBrandA = sanityComparison.providerA ?? detailedPage.brandA ?? null;
+  const activeBrandB = sanityComparison.providerB ?? detailedPage.brandB ?? null;
+  const activeBrandAPendingCities = detailedPage.brandAPendingCities ?? [];
+  const activeBrandBPendingCities = detailedPage.brandBPendingCities ?? [];
 
   const picoCoverage = getTechnologyCoverage("PicoWay");
   const qSwitchCoverage = getTechnologyCoverage("Q-Switch");
@@ -194,6 +200,7 @@ export default async function ComparisonPage({ params }: Props) {
     { label: "Table",      href: "#comparison-table" },
     { label: "When to choose", href: "#when-to-choose" },
     { label: "What matters", href: "#criteria" },
+    ...(activeBrandA && activeBrandB ? [{ label: "Evidence", href: "#evidence" }] : []),
     { label: "Pros and cons", href: "#pros-cons" },
     { label: "Questions",  href: "#questions" },
     { label: "Next steps", href: "#next-steps" },
@@ -355,6 +362,35 @@ export default async function ComparisonPage({ params }: Props) {
           </div>
         </Container>
       </section>
+
+      {/* Cross-city review evidence */}
+      {activeBrandA && activeBrandB && (
+        <section id="evidence" className="border-b border-(--line) bg-(--bg) py-22">
+          <Container>
+            <BlockHeading
+              title="Cross-city review evidence"
+              body="How each brand's review sample compares across the cities where we have data. Sample sizes reflect reviews captured per provider location in our internal dataset."
+            />
+            <Suspense
+              fallback={
+                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                  <p className="font-sans text-[14px] text-(--muted) m-0">Loading evidence table&hellip;</p>
+                </div>
+              }
+            >
+              <BrandComparisonEvidence
+                brandA={activeBrandA}
+                brandB={activeBrandB}
+                brandAPendingCities={activeBrandAPendingCities}
+                brandBPendingCities={activeBrandBPendingCities}
+              />
+            </Suspense>
+            <p className="font-sans text-[13px] text-(--muted) mt-4">
+              The table updates as our scrape refreshes. Use the cross-city evidence as a reference, not a verdict.
+            </p>
+          </Container>
+        </section>
+      )}
 
       {/* Pros and cons */}
       <section id="pros-cons" className="border-b border-(--line) bg-(--surface) py-22">

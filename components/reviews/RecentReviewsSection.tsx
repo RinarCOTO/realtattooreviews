@@ -9,7 +9,7 @@ type Props = {
 };
 
 /**
- * RecentReviewsSection — homepage review section.
+ * RecentReviewsSection: homepage review section.
  *
  * Renders up to 6 ReviewCardCompact cards in a responsive grid.
  * Section heading, editorial note, and a CTA row are included.
@@ -33,7 +33,7 @@ export default function RecentReviewsSection({ reviews }: Props) {
               Recent sourced reviews
             </h2>
             <p className="mt-1 max-w-lg text-sm text-muted">
-              Sourced from public platforms. Not curated for sentiment — positive, mixed,
+              Sourced from public platforms. Not curated for sentiment: positive, mixed,
               and negative submissions are all included.
             </p>
           </div>

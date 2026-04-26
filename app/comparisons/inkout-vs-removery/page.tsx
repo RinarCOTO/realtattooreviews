@@ -1,7 +1,7 @@
 /*
  * DYNAMIC DATA NOTE FOR CLAUDE CODE:
  * One dynamic component on this page renders live cross-city evidence from Supabase.
- * The prose is intentionally GENERIC and STATIC — no hardcoded numbers, ratings, win
+ * The prose is intentionally GENERIC and STATIC: no hardcoded numbers, ratings, win
  * counts, or rankings. All quantitative data is rendered by BrandComparisonEvidence.
  *
  * PROSE RULE: The page describes WHAT each brand IS (technology, business model, pricing
@@ -123,12 +123,12 @@ const faqs = [
   {
     question: "Is inkOUT worth it?",
     answer:
-      "For users in inkOUT's structural fit zone — non-laser preference, cosmetic tattoo removal, darker skin avoiding laser-melanin interaction, complete-removal focus — yes. For users with standard body tattoos in markets without inkOUT access, the answer is to compare to local laser providers including Removery rather than a default yes.",
+      "For users in inkOUT's structural fit zone (non-laser preference, cosmetic tattoo removal, darker skin avoiding laser-melanin interaction, complete-removal focus): yes. For users with standard body tattoos in markets without inkOUT access, the answer is to compare to local laser providers including Removery rather than a default yes.",
   },
   {
     question: "Is Removery worth it?",
     answer:
-      "For users who fit Removery's structural strength — national chain access, package pricing on standard body tattoos, mainstream laser preference — yes. For users with cosmetic tattoos, scarring sensitivity beyond what conservative laser protocols can address, or strong non-laser preference, inkOUT or another non-laser provider may be a better fit.",
+      "For users who fit Removery's structural strength (national chain access, package pricing on standard body tattoos, mainstream laser preference): yes. For users with cosmetic tattoos, scarring sensitivity beyond what conservative laser protocols can address, or strong non-laser preference, inkOUT or another non-laser provider may be a better fit.",
   },
   {
     question: "How many sessions does inkOUT take vs Removery?",
@@ -144,7 +144,7 @@ const GLANCE_ROWS: [string, string, string][] = [
   ["Method", "TEPR (Trans-Epidermal Pigment Release)", "Candela PicoWay (picosecond laser)"],
   ["Modality category", "Non-laser", "Laser"],
   ["Ink interaction", "Lifts pigment out through the skin surface", "Shatters ink particles for body to clear"],
-  ["Wavelength dependency", "None — mechanism does not depend on light absorption by ink color", "Yes — different wavelengths handle different colors"],
+  ["Wavelength dependency", "None. The mechanism does not depend on light absorption by ink color.", "Yes. Different wavelengths handle different colors."],
   ["Skin tone interaction", "Mechanism does not interact with melanin", "Wavelength-versus-melanin interaction is a known consideration"],
   ["Pricing model", "Per-session and package options", "Complete Removal Package (capped total cost) and per-session"],
   ["Footprint", "Smaller, focused locations", "National chain with multi-city coverage"],
@@ -389,7 +389,7 @@ export default function InkoutVsRemoveryPage() {
                   },
                   {
                     title: "Scarring risk",
-                    body: "Scarring is method-sensitive and skin-sensitive. Removery's PicoWay is on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by using a non-laser mechanical mechanism — a structural difference relevant to scarring risk. Provider conservatism with intensity, technique, and session spacing matters more than the brand label. Both brands offer free consultations where you can ask about starting intensity, scarring rate, and what the studio does when a tattoo responds aggressively.",
+                    body: "Scarring is method-sensitive and skin-sensitive. Removery's PicoWay is on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by using a non-laser mechanical mechanism, a structural difference relevant to scarring risk. Provider conservatism with intensity, technique, and session spacing matters more than the brand label. Both brands offer free consultations where you can ask about starting intensity, scarring rate, and what the studio does when a tattoo responds aggressively.",
                   },
                   {
                     title: "Pain",
@@ -445,7 +445,7 @@ export default function InkoutVsRemoveryPage() {
                   },
                   {
                     title: "PMU and microblading removal",
-                    body: "Cosmetic tattoo removal (microblading, powder brows, lip blush, eyeliner) is harder than body tattoo removal. Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser — a known consideration for any laser removal of cosmetic tattoos. TEPR avoids this risk because it does not use light. inkOUT is structurally well-suited to PMU and microblading cases. Removery handles cosmetic cases as well. Ask specifically about the studio's cosmetic-tattoo experience at consultation.",
+                    body: "Cosmetic tattoo removal (microblading, powder brows, lip blush, eyeliner) is harder than body tattoo removal. Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser, a known consideration for any laser removal of cosmetic tattoos. TEPR avoids this risk because it does not use light. inkOUT is structurally well-suited to PMU and microblading cases. Removery handles cosmetic cases as well. Ask specifically about the studio's cosmetic-tattoo experience at consultation.",
                   },
                 ].map((item) => (
                   <div
@@ -635,15 +635,9 @@ export default function InkoutVsRemoveryPage() {
                 as new reviews are scraped. Sample sizes are capped at 50 per provider location;
                 total lifetime Google review counts are higher. Sentiment classifications and
                 use-case tags are derived from review text analysis. Method and technology details
-                are drawn from each brand&rsquo;s published materials. inkOUT is a current
-                advertising client of RealTattooReviews and is the corporate brand operated by
-                Rejuvatek Medical; this relationship is disclosed on the{" "}
-                <Link href="/editorial-policy" className="text-(--accent) hover:underline">
-                  editorial policy page
-                </Link>{" "}
-                and inkOUT is included in this comparison on the same evaluation criteria as
-                Removery. Individual outcomes vary by tattoo, skin type, ink density, and provider
-                skill. Consult both providers before deciding. See our{" "}
+                are drawn from each brand&rsquo;s published materials. Individual outcomes vary by
+                tattoo, skin type, ink density, and provider skill. Consult both providers before
+                deciding. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}
