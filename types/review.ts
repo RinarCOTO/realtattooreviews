@@ -36,11 +36,17 @@ export type Review = {
   sessions?: number | null;
   painLevel?: number | null;                     // 1 to 5
   scarringReported?: boolean | null;
+  scarringPraised?: boolean | null;              // reviewer explicitly praised minimal scarring
   healingIssues?: boolean | null;
   costMentioned?: boolean | null;
   resultsMentioned?: boolean | null;
   staffMentioned?: boolean | null;
   refundIssue?: boolean | null;
+
+  // ── Classification fields (from DB pipeline) ─────────────────────────────
+  useCase?: "Complete" | "Cover-up" | "Microblading" | "Color" | "Other" | null;
+  resultRating?: "Positive" | "Neutral" | "Mixed" | "Negative" | null;
+  methodUsed?: string | null;
 };
 
 /**
@@ -68,7 +74,7 @@ export type DbReview = {
   verified_source: string;
   _place_title: string | null;
   pain_level: number | "unknown" | null;        // already a number, not a string
-  scarring_mentioned: "Yes" | "No" | null;
+  scarring_mentioned: "Yes" | "No" | "Positive" | null;
   sessions_completed: number | "unknown" | null; // already a number, not a string
   skin_type: "Light" | "Medium" | "Dark" | "unknown" | null;
   use_case: "Complete" | "Cover-up" | "Microblading" | "Color" | "Other" | "unknown" | null;

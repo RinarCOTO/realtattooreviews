@@ -8,6 +8,8 @@ import ProsCons from "./ProsCons";
 import ProviderHero from "./ProviderHero";
 import ResultsSnapshot from "./ResultsSnapshot";
 import SourceSummary from "./SourceSummary";
+import EvidenceCard from "@/components/reviews/EvidenceCard";
+import { selectEvidenceReviews } from "@/lib/review-evidence";
 import VerdictCard from "./VerdictCard";
 import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
@@ -50,6 +52,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   const bestForData = buildBestFor(locations, reviews);
   const bottomLine = buildBottomLine(brand, locations, reviews, alternatives);
   const brandTags = unique(locations.flatMap((l) => l.tags ?? [])).slice(0, 6);
+  const evidenceCards = selectEvidenceReviews(reviews, 10);
   const jumpItems = [
     { label: "Overview",     href: "#overview" },
     { label: "Reviews",      href: "#reviews" },
@@ -118,6 +121,18 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
+          {evidenceCards.length > 0 && (
+            <div className="mt-10">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-(--muted) mb-4">
+                Review Evidence
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {evidenceCards.map((r) => (
+                  <EvidenceCard key={r.id} review={r} />
+                ))}
+              </div>
+            </div>
+          )}
         </Container>
       </section>
 
