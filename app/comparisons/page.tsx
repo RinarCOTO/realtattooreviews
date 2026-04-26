@@ -55,9 +55,9 @@ const BRAND_COMPARISONS = [
   {
     title: "inkOUT vs LaserAway",
     description:
-      "Non-laser saline removal compared against the largest laser chain in the US. Coming soon.",
-    href: null,
-    live: false,
+      "TEPR vs PicoSure comparison. Specialist vs chain framing, dark skin safety, color ink, and use-case fit side by side.",
+    href: "/comparisons/inkout-vs-laseraway",
+    live: true,
   },
 ];
 
