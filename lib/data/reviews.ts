@@ -162,7 +162,11 @@ export function dbReviewToReview(r: DbReview): Review {
       : r.scarring_mentioned === "No"
       ? false
       : null,
+    scarringPraised: r.scarring_mentioned === "Positive" ? true : null,
     resultsMentioned: r.result_rating != null && r.result_rating !== "unknown",
+    useCase: (r.use_case && r.use_case !== "unknown") ? r.use_case : null,
+    resultRating: (r.result_rating && r.result_rating !== "unknown") ? r.result_rating as Review["resultRating"] : null,
+    methodUsed: r.method_used ?? null,
     // Fields not captured in competitor_reviews, kept for type compatibility
     healingIssues: null,
     costMentioned: null,

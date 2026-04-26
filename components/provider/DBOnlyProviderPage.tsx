@@ -5,6 +5,8 @@ import JumpNav from "./JumpNav";
 import ProsCons from "./ProsCons";
 import ResultsSnapshot from "./ResultsSnapshot";
 import SourceSummary from "./SourceSummary";
+import EvidenceCard from "@/components/reviews/EvidenceCard";
+import { selectEvidenceReviews } from "@/lib/review-evidence";
 import StarsFull from "./StarsFull";
 import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
@@ -35,6 +37,7 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
   const resultsSummary = buildResultsSummary(reviews);
   const faqItems = buildFAQ(providerName, market || undefined);
   const bestForData = buildBestFor([], reviews);
+  const evidenceCards = selectEvidenceReviews(reviews, 10);
 
   return (
     <main className="reviews-page min-h-screen bg-(--bg)">
@@ -107,6 +110,18 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
+          {evidenceCards.length > 0 && (
+            <div className="mt-10">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-(--muted) mb-4">
+                Review Evidence
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {evidenceCards.map((r) => (
+                  <EvidenceCard key={r.id} review={r} />
+                ))}
+              </div>
+            </div>
+          )}
         </Container>
       </section>
 
