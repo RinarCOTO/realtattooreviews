@@ -31,7 +31,7 @@ const faqs = [
   {
     question: "How many providers do you track per city?",
     answer:
-      "It varies. Each city page tracks every provider in our review dataset for that metro, plus prose mentions of additional providers verified through Google Places but not yet in our dataset. Those providers appear with a "Review sample pending" badge.",
+      "It varies. Each city page tracks every provider in our review dataset for that metro, plus prose mentions of additional providers verified through Google Places but not yet in our dataset. Those providers appear with a Review sample pending badge.",
   },
   {
     question: "Are city rankings the same as national rankings?",

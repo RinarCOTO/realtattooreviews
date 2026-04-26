@@ -168,7 +168,7 @@ export default function AboutPage() {
                   },
                   {
                     title: "No pay-for-placement",
-                    body: "No provider can pay to be listed, ranked higher, or given favorable coverage. Negative findings are published when the evidence supports them. Every provider profile includes a "best for" and a "less ideal for" section.",
+                    body: "No provider can pay to be listed, ranked higher, or given favorable coverage. Negative findings are published when the evidence supports them. Every provider profile includes a best-for and a less-ideal-for section.",
                   },
                 ].map((item) => (
                   <div
