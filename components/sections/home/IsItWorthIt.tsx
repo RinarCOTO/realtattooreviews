@@ -166,7 +166,7 @@ export default function IsItWorthIt() {
 
         {/* Footer note */}
         <p className="mt-8 text-center text-xs text-subtle">
-          Guides are based on patterns from verified patient reviews, not clinical claims.{" "}
+          Guides are based on patterns from sourced patient reviews, not clinical claims.{" "}
           <Link href="/methodology" className="text-accent hover:underline">
             How we evaluate outcomes →
           </Link>

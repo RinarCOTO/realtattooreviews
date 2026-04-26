@@ -10,7 +10,7 @@ type FallbackFaq = { question: string; answer: string };
 const DEFAULT_FAQS: FallbackFaq[] = [
   {
     question: "How are reviews collected?",
-    answer: "We source reviews from verified patients through direct submission and cross-reference public accounts. We do not accept reviews from clinics or their staff.",
+    answer: "We source reviews from public Google business listings for every provider and location we track. We do not accept reviews submitted directly to us. We do not use provider-owned testimonials.",
   },
   {
     question: "Does RealTattooReviews accept payment from providers?",
