@@ -203,24 +203,7 @@ export default function RemoveryVsLaserawayPage() {
                   pricing.
                 </p>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  This page covers the head-to-head decision without forcing a universal winner. For
-                  non-laser alternatives, see the{" "}
-                  <Link href="/comparisons/inkout-vs-removery" className="text-(--accent) hover:underline">
-                    inkOUT vs Removery
-                  </Link>{" "}
-                  comparison. For the broader method overview, see{" "}
-                  <Link href="/comparisons/best-tattoo-removal-method" className="text-(--accent) hover:underline">
-                    best tattoo removal method
-                  </Link>
-                  . For brand reviews, see{" "}
-                  <Link href="/reviews/removery" className="text-(--accent) hover:underline">
-                    /reviews/removery
-                  </Link>{" "}
-                  and{" "}
-                  <Link href="/reviews/laseraway" className="text-(--accent) hover:underline">
-                    /reviews/laseraway
-                  </Link>
-                  .
+                  This page covers the head-to-head decision without forcing a universal winner.
                 </p>
               </div>
             </div>

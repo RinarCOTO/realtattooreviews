@@ -223,8 +223,7 @@ export default function InkoutVsRemoveryPage() {
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
                   inkOUT and Removery are two of the most-asked-about tattoo removal brands today.
                   They are also two of the most different. Removery is a national tattoo-removal-only
-                  chain. It uses the Candela PicoWay laser. inkOUT is a non-laser brand operated by
-                  Rejuvatek Medical. It uses TEPR (Trans-Epidermal Pigment Release). TEPR lifts ink
+                  chain. It uses the Candela PicoWay laser. inkOUT is a non-laser brand. It uses TEPR (Trans-Epidermal Pigment Release). TEPR lifts ink
                   out of the skin instead of using light to fragment it. The decision is rarely about
                   which brand is bigger. It is about which method fits your tattoo, your skin type,
                   and your removal goal.
@@ -235,31 +234,6 @@ export default function InkoutVsRemoveryPage() {
                   approaches in markets where both are available. The page does not pretend either
                   brand wins universally. It explains the real differences clearly, then identifies
                   who each brand serves best.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  For broader method context, see the{" "}
-                  <Link
-                    href="/comparisons/best-tattoo-removal-method"
-                    className="text-(--accent) hover:underline"
-                  >
-                    best tattoo removal method overview
-                  </Link>
-                  . For deeper laser comparison, see{" "}
-                  <Link
-                    href="/comparisons/picoway-vs-q-switch"
-                    className="text-(--accent) hover:underline"
-                  >
-                    PicoWay vs Q-switch
-                  </Link>
-                  . For brand-specific reviews, see{" "}
-                  <Link href="/reviews/inkout" className="text-(--accent) hover:underline">
-                    /reviews/inkout
-                  </Link>{" "}
-                  and{" "}
-                  <Link href="/reviews/removery" className="text-(--accent) hover:underline">
-                    /reviews/removery
-                  </Link>
-                  .
                 </p>
               </div>
             </div>
@@ -670,6 +644,11 @@ export default function InkoutVsRemoveryPage() {
                   href: "/cost",
                   title: "Tattoo Removal Cost",
                   desc: "National pricing breakdown by method, size, and provider type.",
+                },
+                {
+                  href: "/comparisons/picoway-vs-q-switch",
+                  title: "Pico Laser vs Q-Switch",
+                  desc: "Deep-dive into picosecond vs Q-switched laser technology for tattoo removal.",
                 },
               ]}
             />
