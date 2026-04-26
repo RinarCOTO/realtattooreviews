@@ -390,9 +390,9 @@ export default function CoverUpPrepPage() {
               </p>
               <GuideBulletList
                 items={[
-                  "Bring the artist's target to a removal consultation — the provider can then estimate sessions for your specific tattoo",
+                  "Bring the artist's target to a removal consultation. The provider can then estimate sessions for your specific tattoo.",
                   "Without the artist's input, removal becomes a guessing game, and many users either over-remove or under-remove",
-                  "If you do not yet have a cover-up artist, choose one before starting removal — their style and specialization directly affect how much fading you need",
+                  "If you do not yet have a cover-up artist, choose one before starting removal. Their style and specialization directly affect how much fading you need.",
                 ]}
               />
             </GuideSection>

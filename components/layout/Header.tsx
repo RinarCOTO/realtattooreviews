@@ -12,6 +12,17 @@ const nav = [
     mega: {
       sections: [
         {
+          heading: "By Need",
+          links: [
+            { label: "Complete Removal", href: "/categories/complete-removal" },
+            { label: "Dark Skin", href: "/categories/dark-skin-removal" },
+            { label: "Color Ink", href: "/categories/color-ink-removal" },
+            { label: "Cover-Up Prep", href: "/categories/cover-up-prep" },
+            { label: "Microblading Removal", href: "/categories/microblading-removal" },
+            { label: "All Categories", href: "/categories" },
+          ],
+        },
+        {
           heading: "By Provider",
           links: [
             { label: "All Providers", href: "/providers" },
@@ -31,17 +42,6 @@ const nav = [
             { label: "Tampa, FL", href: "/cities/tampa" },
             { label: "Draper, UT", href: "/cities/draper" },
             { label: "All Cities", href: "/cities" },
-          ],
-        },
-        {
-          heading: "By Need",
-          links: [
-            { label: "Complete Removal", href: "/categories/complete-removal" },
-            { label: "Dark Skin", href: "/categories/dark-skin-removal" },
-            { label: "Color Ink", href: "/categories/color-ink-removal" },
-            { label: "Cover-Up Prep", href: "/categories/cover-up-prep" },
-            { label: "Microblading Removal", href: "/categories/microblading-removal" },
-            { label: "All Categories", href: "/categories" },
           ],
         },
       ],
@@ -184,6 +184,7 @@ export default function Header() {
             {nav.map((item) => {
               const active = isSectionActive(item);
               const open = openMega === item.label;
+              const isCompareMenu = item.label === "Compare";
 
               return item.mega ? (
                 <div key={item.label} onMouseEnter={() => setOpenMega(item.label)}>
@@ -222,29 +223,44 @@ export default function Header() {
                       onKeyDown={handleEscapeClose}
                     >
                       <Container>
-                        <div className="flex gap-8 py-8">
+                        <div className="flex gap-8 py-10">
                           <div className="flex flex-1 gap-8">
                             {item.mega.sections.map((section) => (
                               <div key={section.heading} className="min-w-0 flex-1">
-                                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">
+                                <p className="mb-5 text-[13px] font-bold uppercase tracking-wider text-heading">
                                   {section.heading}
                                 </p>
-                                <ul className="space-y-1.5">
+                                <ul className="space-y-1">
                                   {section.links.map((link) => {
                                     const linkActive = isActive(link.href);
+                                    const isNeedSection = section.heading === "By Need";
+                                    const isBestRemovalMethod =
+                                      isCompareMenu && link.label === "Best Removal Method";
                                     return (
-                                      <li key={link.href}>
+                                      <li
+                                        key={link.href}
+                                        className={
+                                          isBestRemovalMethod
+                                            ? "mt-2 border-t border-[#E8E4E0] pt-3"
+                                            : undefined
+                                        }
+                                      >
                                         <Link
                                           href={link.href}
-                                          className={`block rounded text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
+                                          className={`-ml-2 block rounded border-l-2 border-transparent py-0.5 pl-2 text-sm leading-[1.8] transition-all duration-150 hover:translate-x-[3px] hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
                                             linkActive
                                               ? "font-semibold text-accent"
+                                              : isNeedSection
+                                              ? "font-medium text-heading hover:text-accent"
                                               : "text-muted hover:text-accent"
                                           }`}
                                           onClick={() => setOpenMega(null)}
                                         >
                                           {linkActive && (
                                             <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
+                                          )}
+                                          {isBestRemovalMethod && (
+                                            <span className="mr-1 text-accent">→</span>
                                           )}
                                           {link.label}
                                         </Link>
@@ -256,22 +272,35 @@ export default function Header() {
                             ))}
                           </div>
 
-                          {/* Featured card — always a different destination than the nav label */}
+                          {/* Featured card: always a different destination than the nav label */}
                           <div className="w-56 shrink-0">
                             <Link
                               href={item.mega.featured.href}
-                              className="group flex h-full flex-col justify-between rounded-lg border border-border bg-bg p-5 transition-colors hover:border-primary hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                              className={`group flex h-full flex-col justify-between rounded-lg bg-[#FAF7F4] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+                                isCompareMenu
+                                  ? "border-l-[3px] border-l-accent"
+                                  : "border border-[#E8D8D0]"
+                              }`}
                               onClick={() => setOpenMega(null)}
                             >
                               <div>
-                                <p className="text-sm font-semibold text-heading group-hover:text-white">
+                                {isCompareMenu && (
+                                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-accent">
+                                    MOST COMPARED
+                                  </p>
+                                )}
+                                <p className="text-sm font-semibold text-heading">
                                   {item.mega.featured.label}
                                 </p>
-                                <p className="mt-1.5 text-xs leading-relaxed text-muted group-hover:text-white/70">
+                                <p className="mt-1.5 text-xs leading-relaxed text-muted">
                                   {item.mega.featured.description}
                                 </p>
                               </div>
-                              <span className="mt-4 text-xs font-medium text-accent group-hover:text-white">
+                              <span
+                                className={`mt-4 text-xs font-medium text-accent ${
+                                  isCompareMenu ? "group-hover:underline" : ""
+                                }`}
+                              >
                                 Go →
                               </span>
                             </Link>

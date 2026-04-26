@@ -234,7 +234,7 @@ export default function ScarringConcernsPage() {
               />
 
               <h3 className="font-sans text-[16px] font-semibold text-(--ink)">
-                Not normal — contact the provider:
+                Not normal: contact the provider
               </h3>
               <GuideBulletList
                 variant="warning"

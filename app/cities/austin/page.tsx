@@ -32,7 +32,7 @@
  * by provider_name and tracks isInkout=true when any row has bucket='inkout'.
  *
  * PROVIDERS WITHOUT SUPABASE DATA YET:
- * UNBRANDED Austin, Pigment, Think Again, Austin Laser Solutions — real Austin providers
+ * UNBRANDED Austin, Pigment, Think Again, Austin Laser Solutions: real Austin providers
  * with strong Google ratings but no rows in competitor_reviews yet. CityProviderRanking
  * renders them with a "Review sample pending" notice. Static prose mentions them by name
  * for SEO content preservation.
@@ -475,9 +475,9 @@ export default function AustinPage() {
 
               <div className="space-y-3">
                 {[
-                  { label: "Small (postage stamp to poker chip)", price: "$90 – $250 per session" },
-                  { label: "Medium (business card to palm)", price: "$275 – $400 per session" },
-                  { label: "Large (postcard to half-sleeve+)", price: "$400 – $600+ per session" },
+                  { label: "Small (postage stamp to poker chip)", price: "$90 to $250 per session" },
+                  { label: "Medium (business card to palm)", price: "$275 to $400 per session" },
+                  { label: "Large (postcard to half-sleeve+)", price: "$400 to $600+ per session" },
                 ].map((tier) => (
                   <div
                     key={tier.label}
@@ -540,13 +540,7 @@ export default function AustinPage() {
                 are scraped. Sample sizes are capped at 50 per provider; total lifetime Google
                 review counts are higher. Sentiment classifications and use-case tags are derived
                 from review text analysis. Pricing ranges reflect published Austin provider rates
-                where public. inkOUT is a current advertising client of RealTattooReviews and is
-                operated by Rejuvatek Medical; this relationship is disclosed on the{" "}
-                <Link href="/editorial-policy" className="text-(--accent) hover:underline">
-                  editorial policy page
-                </Link>{" "}
-                and inkOUT is evaluated on the same criteria as every other provider. Consult a
-                qualified provider before proceeding. See our{" "}
+                where public. Consult a qualified provider before proceeding. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}

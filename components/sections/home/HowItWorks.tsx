@@ -9,7 +9,7 @@ type Props = {
   //  optional       "01","02","03"    card title     rich text (supports bold, italic)
 };
 
-// Fallback content — plain strings, used when Sanity has nothing published yet
+// Fallback content: plain strings, used when Sanity has nothing published yet
 type FallbackStep = { stepNumber: string; title: string; body: string };
 const DEFAULT_STEPS: FallbackStep[] = [
   { stepNumber: "01", title: "We collect public Google reviews",  body: "We gather publicly available reviews across the tattoo removal providers and locations we track." },
@@ -17,7 +17,7 @@ const DEFAULT_STEPS: FallbackStep[] = [
   { stepNumber: "03", title: "You compare before you book",       body: "See ratings, read review excerpts, and compare providers side by side with more context." },
 ];
 
-// Visual decoration per step — stays hardcoded, never comes from Sanity
+// Visual decoration per step: stays hardcoded, never comes from Sanity
 const STEP_DECORATIONS = [
   {
     color: "text-accent",
@@ -70,7 +70,7 @@ export default function HowItWorks({ steps }: Props) {
 
         <div className="grid gap-6 sm:grid-cols-3">
           {activeSteps.map((step, i) => {
-            // i = 0, 1, 2 — matches the step to its decoration by position
+            // i = 0, 1, 2: matches the step to its decoration by position
             const decor = STEP_DECORATIONS[i] ?? STEP_DECORATIONS[0];
             return (
               <div

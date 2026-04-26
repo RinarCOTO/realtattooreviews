@@ -34,7 +34,7 @@ export type Review = {
 
   // ── Derived structured signals ───────────────────────────────────────────
   sessions?: number | null;
-  painLevel?: number | null;                     // 1–5
+  painLevel?: number | null;                     // 1 to 5
   scarringReported?: boolean | null;
   healingIssues?: boolean | null;
   costMentioned?: boolean | null;
@@ -48,7 +48,7 @@ export type Review = {
  *
  * Key differences from the old `reviews` table shape:
  *   - review_date_iso replaces review_date_at
- *   - pain_level is a number (not a string "1"–"5")
+ *   - pain_level is a number (not a string "1" to "5")
  *   - sessions_completed is a number (not a string)
  *   - provider_slug and city_slug do not exist; derived in application code
  *   - source_review_url does not exist in this table

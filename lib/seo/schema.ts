@@ -1,6 +1,6 @@
 const siteUrl = "https://realtattooreviews.com";
 
-/** Organisation schema — add to root layout or homepage */
+/** Organisation schema: add to root layout or homepage */
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",

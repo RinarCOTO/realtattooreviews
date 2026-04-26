@@ -238,7 +238,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               body={
                 locations.length === 1
                   ? "This provider operates at a single location."
-                  : `${review.providerName} has ${locations.length} locations. Individual location ratings differ from the aggregate shown above — see each location below.`
+                  : `${review.providerName} has ${locations.length} locations. Individual location ratings differ from the aggregate shown above. See each location below.`
               }
             />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

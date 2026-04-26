@@ -8,7 +8,7 @@
  * model, pricing structure, who they serve). Profiles do NOT describe how each clinic is
  * RANKED or PERFORMING in current data. The components handle that.
  *
- * Same SQL spec as Austin/Chicago/Houston — see app/cities/austin/page.tsx for full reference.
+ * Same SQL spec as Austin/Chicago/Houston. See app/cities/austin/page.tsx for full reference.
  *
  * INKOUT _PLACE_ID NULL ISSUE:
  * inkOUT Tampa rows in competitor_reviews have _place_id = null. Google Places search did
@@ -16,7 +16,7 @@
  * Possible causes: scrape captured reviews before a Google Business listing existed; Tampa
  * footprint operates through a partner clinic; location is delivered through a non-Google-
  * listed channel (concierge or by-appointment). Component should aggregate inkOUT rows by
- * brand_name='inkOUT' for Tampa specifically — not by place_id — until the data team
+ * brand_name='inkOUT' for Tampa specifically (not by place_id) until the data team
  * confirms the physical address and backfills a place_id. The inkOUT card renders with
  * "Tampa Bay metro (by appointment)" as the placeholder address until clarified.
  *
@@ -29,7 +29,7 @@
  * them with "Review sample pending". Static prose preserves SEO content by name.
  *
  * SKINTELLECT USE-CASE TAGS:
- * Skintellect's review rows have most use_case fields null — the classifier may have missed
+ * Skintellect's review rows have most use_case fields null. The classifier may have missed
  * this provider or all 50 reviews lacked specific use-case signals. Flagged for re-
  * classification at next scrape.
  *
@@ -128,7 +128,7 @@ const PAGE_PATH = "/cities/tampa";
 const SITE_URL = "https://realtattooreviews.com";
 
 // Provider names must match competitor_reviews.provider_name exactly for live data merge.
-// inkOUT Tampa uses brand_name='inkOUT' aggregation (place_id is null — see comment block above).
+// inkOUT Tampa uses brand_name='inkOUT' aggregation (place_id is null; see comment block above).
 // Pending providers listed last so components render them with "Review sample pending".
 const TAMPA_PROVIDERS: StaticProviderProfile[] = [
   {
@@ -587,9 +587,9 @@ export default function TampaPage() {
 
               <div className="space-y-3">
                 {[
-                  { label: "Small (postage stamp to poker chip)", price: "$100 – $250 per session" },
-                  { label: "Medium (business card to palm)", price: "$250 – $400 per session" },
-                  { label: "Large (postcard to half-sleeve+)", price: "$400 – $600+ per session" },
+                  { label: "Small (postage stamp to poker chip)", price: "$100 to $250 per session" },
+                  { label: "Medium (business card to palm)", price: "$250 to $400 per session" },
+                  { label: "Large (postcard to half-sleeve+)", price: "$400 to $600+ per session" },
                 ].map((tier) => (
                   <div
                     key={tier.label}
@@ -670,15 +670,9 @@ export default function TampaPage() {
                 counts are higher. Sentiment classifications and use-case tags are derived from
                 review text analysis. Pricing ranges reflect industry averages and published Tampa
                 Bay provider rates where pricing is public. Method and technology details are
-                drawn from each provider&rsquo;s published materials. inkOUT is a current
-                advertising client of RealTattooReviews and is the corporate brand operated by
-                Rejuvatek Medical; this relationship is disclosed on the{" "}
-                <Link href="/editorial-policy" className="text-(--accent) hover:underline">
-                  editorial policy page
-                </Link>{" "}
-                and inkOUT is included in this comparison on the same evaluation criteria as every
-                other provider. Individual outcomes vary by tattoo, skin type, ink density, and
-                provider skill. Consult a qualified provider before proceeding. See our{" "}
+                drawn from each provider&rsquo;s published materials. Individual outcomes vary by
+                tattoo, skin type, ink density, and provider skill. Consult a qualified provider
+                before proceeding. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}

@@ -65,15 +65,15 @@ export default async function CityProviderComparisonTable({ city, staticProvider
                       {live.sampleSize}
                     </td>
                     <td className="px-4 py-3 text-(--ink) font-medium whitespace-nowrap">
-                      {live.avgStars != null ? live.avgStars.toFixed(2) : "—"}
+                      {live.avgStars != null ? live.avgStars.toFixed(2) : "-"}
                     </td>
                     <td className="px-4 py-3 text-(--ink) font-medium whitespace-nowrap">
-                      {live.pctPositive != null ? `${live.pctPositive}%` : "—"}
+                      {live.pctPositive != null ? `${live.pctPositive}%` : "-"}
                     </td>
                   </>
                 )}
                 <td className="px-4 py-3 text-(--muted) whitespace-nowrap">
-                  {live ? computeStandoutFit(live) : "—"}
+                  {live ? computeStandoutFit(live) : "-"}
                 </td>
               </tr>
             );

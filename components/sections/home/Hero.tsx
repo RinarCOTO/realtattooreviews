@@ -34,13 +34,13 @@ export default function Hero({headline, subheadline}: Props) {
         backgroundImage: [
           // dot grid texture
           "url(\"data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23C8C2B8' fill-opacity='0.35'/%3E%3C/svg%3E\")",
-          // top-left terracotta bloom — starts outside viewport
+          // top-left terracotta bloom, starts outside viewport
           "radial-gradient(ellipse 70% 75% at -10% -5%, #E8C8BB 0%, transparent 62%)",
-          // top-right teal bloom — starts outside viewport
+          // top-right teal bloom, starts outside viewport
           "radial-gradient(ellipse 65% 70% at 110% -5%, #BDD6D3 0%, transparent 62%)",
           // bottom amber undertone
           "radial-gradient(ellipse 100% 55% at 50% 115%, #EDE3C4 0%, transparent 55%)",
-          // center spotlight — keeps text area bright and crisp
+          // center spotlight, keeps text area bright and crisp
           "radial-gradient(ellipse 55% 50% at 50% 32%, rgba(255,254,252,1) 0%, transparent 70%)",
         ].join(", "),
       }}

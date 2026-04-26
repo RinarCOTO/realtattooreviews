@@ -49,7 +49,7 @@ export default function IsItWorthIt() {
           </Link>
         </div>
 
-        {/* Top row — 2 hero cards */}
+        {/* Top row: 2 hero cards */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {guides.slice(0, 2).map((guide) => (
             <Link
@@ -57,7 +57,7 @@ export default function IsItWorthIt() {
               href={`/guides/${guide.slug}`}
               className="group relative flex aspect-3/2 w-full overflow-hidden rounded-xl bg-card-dark"
             >
-              {/* Image — z-0 */}
+              {/* Image z-0 */}
               <div className="absolute inset-0" style={{ zIndex: 0 }}>
                 <Image
                   src={assetPath(guide.image)}
@@ -68,7 +68,7 @@ export default function IsItWorthIt() {
                 />
               </div>
 
-              {/* Gradient + text — always on top */}
+              {/* Gradient + text, always on top */}
               <div
                 className="absolute inset-0 flex flex-col justify-between p-6"
                 style={{
@@ -76,14 +76,14 @@ export default function IsItWorthIt() {
                   background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.08) 100%)",
                 }}
               >
-                {/* Guide badge — top right */}
+                {/* Guide badge, top right */}
                 <div className="ml-auto rounded-full bg-black/60 px-3 py-1 backdrop-blur-sm">
                   <span className="text-xs font-semibold uppercase tracking-wider text-white/80">
                     Guide
                   </span>
                 </div>
 
-                {/* Text — bottom */}
+                {/* Text, bottom */}
                 <div>
                   <h3
                     className="text-xl font-bold leading-snug tracking-wide uppercase"
@@ -109,7 +109,7 @@ export default function IsItWorthIt() {
           ))}
         </div>
 
-        {/* Bottom row — 3 secondary cards */}
+        {/* Bottom row: 3 secondary cards */}
         <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {guides.slice(2).map((guide) => (
             <Link
@@ -117,7 +117,7 @@ export default function IsItWorthIt() {
               href={`/guides/${guide.slug}`}
               className="group relative flex aspect-4/3 w-full overflow-hidden rounded-xl bg-card-dark"
             >
-              {/* Image — z-0 */}
+              {/* Image z-0 */}
               <div className="absolute inset-0" style={{ zIndex: 0 }}>
                 <Image
                   src={assetPath(guide.image)}
@@ -128,7 +128,7 @@ export default function IsItWorthIt() {
                 />
               </div>
 
-              {/* Gradient + text — always on top */}
+              {/* Gradient + text, always on top */}
               <div
                 className="absolute inset-0 flex flex-col justify-between p-5"
                 style={{
@@ -136,14 +136,14 @@ export default function IsItWorthIt() {
                   background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.08) 100%)",
                 }}
               >
-                {/* Guide badge — top right */}
+                {/* Guide badge, top right */}
                 <div className="ml-auto rounded-full bg-black/60 px-3 py-1 backdrop-blur-sm">
                   <span className="text-xs font-semibold uppercase tracking-wider text-white/80">
                     Guide
                   </span>
                 </div>
 
-                {/* Text — bottom */}
+                {/* Text, bottom */}
                 <div>
                   <h3
                     className="text-base font-bold leading-snug tracking-wide uppercase"
