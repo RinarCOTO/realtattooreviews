@@ -43,14 +43,14 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "inkOUT vs LaserAway: TEPR vs PicoSure Compared (2026) | RealTattooReviews",
   description:
-    "Compare inkOUT and LaserAway side by side, including TEPR vs PicoSure, specialist vs chain differences, pricing, dark skin safety, color ink, and which option fits your removal goal.",
+    "Compare inkOUT and LaserAway side by side. TEPR vs PicoSure, specialist vs chain, pricing, pain, scarring risk, and which provider fits your tattoo removal needs.",
   alternates: {
     canonical: "https://realtattooreviews.com/comparisons/inkout-vs-laseraway",
   },
   openGraph: {
     title: "inkOUT vs LaserAway: TEPR vs PicoSure Compared (2026)",
     description:
-      "Compare inkOUT and LaserAway side by side, including TEPR vs PicoSure, specialist vs chain differences, pricing, dark skin safety, color ink, and which option fits your removal goal.",
+      "Compare inkOUT and LaserAway side by side. TEPR vs PicoSure, specialist vs chain, pricing, pain, scarring risk, and which provider fits your tattoo removal needs.",
   },
 };
 
@@ -58,62 +58,62 @@ const faqs = [
   {
     question: "Is inkOUT better than LaserAway?",
     answer:
-      "Neither brand is universally better. inkOUT is structurally better suited for users who want a non-laser method, have cosmetic tattoos with iron-oxide pigments, have darker skin tones and want to avoid laser-melanin interaction, or prioritize complete removal as a primary outcome. LaserAway is structurally better suited for users who want a large national chain, prefer PicoSure laser, want access to multiple aesthetic services in one location, or are in a market where LaserAway is the most accessible option.",
+      "Neither is universally better. inkOUT is better suited for non-laser preference, cosmetic tattoo removal, darker skin tones avoiding laser-melanin interaction, and users wanting a specialist provider. LaserAway is better suited for users wanting a mainstream aesthetics chain with wide access and the ability to bundle services. Match the provider to your case.",
   },
   {
     question: "Is inkOUT cheaper than LaserAway?",
     answer:
-      "Pricing is consultation-set at both brands, so a real comparison requires quotes from both. inkOUT offers free consultations. LaserAway consultation policy varies by location. Per-session and package pricing depend on tattoo size, ink density, and complexity. The most reliable cost comparison is two consultations.",
+      "Neither publishes pricing online. A real comparison requires quotes at both providers. Total cost depends on session count, which depends on the tattoo. inkOUT offers free consultations. LaserAway consultation policies vary by location. Two consultations produce two comparable quotes.",
   },
   {
     question: "Which has better tattoo removal results, inkOUT or LaserAway?",
     answer:
-      "Both brands target clearance. PicoSure has peer-reviewed evidence supporting greater than 75% clearance in an average of 4.25 treatments (Torbeck et al 2016). TEPR targets complete removal as a primary outcome. Individual results depend on the tattoo, the skin, the ink composition, and the provider's protocol more than the brand label.",
+      "Both target clearance. Results depend on the tattoo, the ink, the skin, and the provider's protocol more than the brand name. PicoSure has peer-reviewed evidence showing strong clearance rates. TEPR targets complete removal as the default goal. The cross-city evidence table on this page will show outcome data for both brands once LaserAway review data enters our dataset.",
   },
   {
     question: "What laser does LaserAway use?",
     answer:
-      "LaserAway uses Cynosure PicoSure. PicoSure is a picosecond laser with a primary 755nm alexandrite wavelength. PicoSure Pro adds optional 532nm and 1064nm wavelengths. It was the first picosecond aesthetic laser to receive FDA clearance, in December 2012. LaserAway also offers other aesthetic services using different devices.",
+      "LaserAway uses Cynosure PicoSure, a picosecond laser. The primary wavelength is 755nm (alexandrite). PicoSure Pro adds optional 532nm and 1064nm wavelengths for broader color and skin-type coverage.",
   },
   {
-    question: "What type of laser does LaserAway use?",
+    question: "What type of laser does LaserAway use for tattoo removal?",
     answer:
-      "LaserAway uses picosecond laser technology. Specifically Cynosure PicoSure, which uses PressureWave technology to deliver ultra-short pulses that shatter ink particles through photoacoustic energy rather than heat. This reduces thermal damage compared to older nanosecond Q-switched lasers.",
+      "LaserAway uses a picosecond laser, specifically the Cynosure PicoSure. Picosecond lasers deliver pulses in trillionths of a second. They shatter ink particles more efficiently than older Q-switched nanosecond lasers. PicoSure was the first picosecond aesthetic laser to receive FDA clearance.",
   },
   {
     question: "Is LaserAway worth it?",
     answer:
-      "For users who fit LaserAway's structural strengths: national chain access, PicoSure laser, service bundling, and standard body tattoo removal. For users with cosmetic tattoos, darker skin tones, strong non-laser preference, or a need for specialist focus, inkOUT or another provider may be a better fit. Get a consultation to compare quotes and protocols before deciding.",
+      "For users with standard body tattoos in markets where LaserAway is conveniently located, it is a reasonable mainstream option. PicoSure has strong clinical evidence. The chain's broad service mix means tattoo removal is one of many offerings. For edge cases, a specialist may be a better fit.",
   },
   {
     question: "Is LaserAway legit?",
     answer:
-      "Yes. LaserAway is a large, established national aesthetics chain using FDA-cleared picosecond laser technology. It operates in many markets across the US. The primary considerations are not legitimacy but fit: LaserAway is a multi-service chain rather than a tattoo-removal specialist, and its technology and pricing structure may or may not suit your specific case.",
+      "Yes. LaserAway is a legitimate, established national aesthetics chain. It uses FDA-cleared Cynosure PicoSure technology. The brand operates in major metros across the US. LaserAway reviews on Google reflect the full service mix, not just tattoo removal.",
   },
   {
     question: "Is TEPR better than PicoSure?",
     answer:
-      "TEPR and PicoSure are not directly comparable as better or worse because they are different categories of treatment. TEPR is non-laser and not bound by wavelength-versus-color or wavelength-versus-melanin limitations. PicoSure is a well-established picosecond laser with strong evidence on standard ink colors. The right question is which mechanism fits your specific tattoo, skin type, and removal goal.",
+      "TEPR and PicoSure are different categories of treatment. TEPR is non-laser. PicoSure is laser. TEPR is not bound by ink-color or melanin interaction. PicoSure has strong evidence on blue, green, red, and black inks with its multi-wavelength platform. The right question is which mechanism fits your case, not which is universally better.",
   },
   {
     question: "Which is better for dark skin?",
     answer:
-      "For darker Fitzpatrick skin types specifically prioritizing avoidance of any laser-pigment-change risk, TEPR (inkOUT) is the structurally lower-risk option because the mechanism does not interact with melanin. PicoSure's 755nm alexandrite wavelength has a higher melanin absorption ratio than 1064nm, which is a relevant consideration for darker skin types. Experienced providers can mitigate this risk with conservative protocols, but the structural interaction is present.",
+      "For darker Fitzpatrick skin types prioritizing avoidance of laser-pigment-change risk, TEPR (inkOUT) is structurally lower-risk. PicoSure's 755nm has a higher melanin absorption ratio than 1064nm. The optional 1064nm handpiece is safer for darker skin. Availability and clinician expertise vary by LaserAway location.",
   },
   {
     question: "Which is better for color ink?",
     answer:
-      "PicoSure's primary 755nm wavelength is effective on black, blue, and green inks. The optional 532nm adds red and orange coverage. TEPR is not wavelength-bound, so its performance on color ink does not depend on color absorption by wavelength. For mixed-color tattoos with unusual ink compositions, TEPR's mechanism avoids the wavelength matching problem entirely.",
+      "PicoSure handles blue and green well at 755nm. Optional 532nm covers red, orange, and yellow. TEPR is not wavelength-bound. For mixed-color tattoos, both are reasonable starting points. Consultation-specific ink assessment is the better guide.",
   },
   {
     question: "Which is better for complete removal?",
     answer:
-      "Both brands target complete removal. inkOUT positions TEPR around complete removal as the primary outcome. LaserAway frames tattoo removal as one of many services. For users specifically prioritizing complete removal as the goal rather than fading, inkOUT's specialist focus is the stronger signal.",
+      "Both can deliver complete removal. inkOUT positions TEPR around complete removal as the default outcome. LaserAway frames tattoo removal as one service within a broader aesthetics platform. The positioning difference matters for how the provider sets expectations and designs the treatment plan.",
   },
   {
     question: "How many sessions does inkOUT take vs LaserAway?",
     answer:
-      "Session counts vary by case for both brands. PicoSure peer-reviewed evidence shows greater than 75% clearance in an average of 4 to 5 sessions. inkOUT's TEPR session counts vary by tattoo size, ink density, and skin response. Both brands provide session-count estimates at consultation that are more useful than brand-versus-brand averages.",
+      "Session counts vary by case. PicoSure evidence shows greater than 75% clearance in an average of four to five sessions for standard cases. More sessions may be needed for complete removal. TEPR session counts vary by tattoo size, ink density, and skin response. Both methods require sessions spaced weeks apart. Get estimates at the free consultation.",
   },
 ];
 
@@ -122,10 +122,14 @@ const SITE_URL = "https://realtattooreviews.com";
 
 const GLANCE_ROWS: [string, string, string][] = [
   ["Method", "TEPR (Trans-Epidermal Pigment Release)", "Cynosure PicoSure (picosecond laser)"],
-  ["Modality", "Non-laser", "Laser"],
-  ["Wavelength dependency", "None", "755nm primary; optional 532nm and 1064nm"],
+  ["Modality category", "Non-laser", "Laser"],
+  ["Primary wavelength dependency", "None (mechanism is not light-based)", "755nm alexandrite primary; optional 532nm and 1064nm"],
   ["Business model", "Tattoo removal specialist", "Multi-service aesthetics chain"],
-  ["Footprint", "Smaller, focused locations", "Large national chain"],
+  ["Service focus", "Tattoo removal only", "Tattoo removal, laser hair removal, body contouring, injectables, skin rejuvenation"],
+  ["Footprint", "Smaller, focused locations", "Large national chain with locations across major metros"],
+  ["Pricing model", "Per-session and package options", "Per-session pricing; varies by location"],
+  ["Best fit category", "Complete removal, cosmetic tattoos, non-laser preference, difficult cases", "Mainstream laser removal, broad aesthetics access, convenience"],
+  ["Less ideal for", "Users wanting wide geographic access, service bundling, or a large public review base", "Edge cases (cosmetic tattoo, dark skin, stubborn ink) where specialist depth matters most"],
   ["Free consultation", "Yes", "Varies by location"],
 ];
 
@@ -140,7 +144,7 @@ export default function InkoutVsLaserawayPage() {
     "@type": "Article",
     headline: "inkOUT vs LaserAway: TEPR vs PicoSure Compared (2026)",
     description:
-      "Compare inkOUT and LaserAway side by side, including TEPR vs PicoSure, specialist vs chain differences, pricing, dark skin safety, color ink, and which option fits your removal goal.",
+      "Compare inkOUT and LaserAway side by side. TEPR vs PicoSure, specialist vs chain, pricing, pain, scarring risk, and which provider fits your tattoo removal needs.",
     mainEntityOfPage: `${SITE_URL}${PAGE_PATH}`,
     author: { "@type": "Organization", name: "RealTattooReviews" },
     publisher: { "@type": "Organization", name: "RealTattooReviews" },
@@ -183,8 +187,8 @@ export default function InkoutVsLaserawayPage() {
           </h1>
 
           <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            Compare TEPR and PicoSure tattoo removal, including the specialist vs chain distinction,
-            pricing, dark skin safety, and which provider fits your removal goal.
+            Compare TEPR and PicoSure tattoo removal, including specialist vs chain, pricing, pain,
+            scarring risk, and which provider fits different use cases.
           </p>
         </Container>
       </section>
@@ -202,45 +206,23 @@ export default function InkoutVsLaserawayPage() {
                   removal. LaserAway is a large multi-service aesthetics chain. It offers tattoo
                   removal alongside laser hair removal, body contouring, injectables, and other
                   cosmetic procedures. LaserAway uses Cynosure PicoSure, a picosecond laser built
-                  around a 755nm alexandrite wavelength. inkOUT is a non-laser brand that uses TEPR
+                  around a 755nm alexandrite wavelength. inkOUT is a non-laser brand. It uses TEPR
                   (Trans-Epidermal Pigment Release). TEPR tattoo removal lifts ink out through the
                   skin surface rather than shattering it with light.
                 </p>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
                   The inkOUT vs LaserAway decision sits on two axes. The first is TEPR vs PicoSure:
                   non-laser versus laser, two different mechanisms with different strengths. The
-                  second is specialist vs chain: a focused tattoo removal brand versus a
-                  broad-service aesthetics platform where tattoo removal is one of many offerings.
-                  Both axes matter. LaserAway vs inkOUT, inkOUT or LaserAway, and inkout vs
-                  laseraway tattoo removal all come back to the same two-layer comparison.
+                  laser vs non-laser distinction is the foundation of this comparison. The second is
+                  specialist vs chain: a focused tattoo removal brand versus a broad-service
+                  aesthetics platform where tattoo removal is one of many offerings. Both axes
+                  matter. LaserAway vs inkOUT, inkOUT or LaserAway, and inkout vs laseraway tattoo
+                  removal all come back to the same two-layer comparison.
                 </p>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
                   This page does not force a universal winner. It explains the real differences on
-                  both axes, then maps those differences onto who each provider actually serves best.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  For broader method comparison, see the{" "}
-                  <Link
-                    href="/comparisons/best-tattoo-removal-method"
-                    className="text-(--accent) hover:underline"
-                  >
-                    best tattoo removal method overview
-                  </Link>
-                  . For inkOUT versus another laser chain, see{" "}
-                  <Link
-                    href="/comparisons/inkout-vs-removery"
-                    className="text-(--accent) hover:underline"
-                  >
-                    inkOUT vs Removery
-                  </Link>
-                  . For a chain-versus-chain comparison, see{" "}
-                  <Link
-                    href="/comparisons/removery-vs-laseraway"
-                    className="text-(--accent) hover:underline"
-                  >
-                    Removery vs LaserAway
-                  </Link>
-                  .
+                  both axes. Then it maps those differences onto who each provider actually serves
+                  best.
                 </p>
               </div>
             </div>
@@ -249,16 +231,16 @@ export default function InkoutVsLaserawayPage() {
             <GuideSection heading="inkOUT vs LaserAway at a Glance">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The structural comparison between inkOUT and LaserAway spans method, business model,
-                and specialization focus. Quantitative review evidence appears in the cross-city
-                evidence section further down.
+                and specialization focus. The table below captures the categorical differences.
+                Quantitative review evidence appears in the cross-city evidence section further down.
               </p>
               <GuideTable
                 headers={["", "inkOUT", "LaserAway"]}
                 rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
               />
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The structural comparison sets the frame. The use-case comparison further down
-                translates these structural differences into who each brand actually serves best.
+                The structural comparison sets the frame. The specialist-vs-chain section and the
+                use-case section translate these differences into practical guidance.
               </p>
             </GuideSection>
 
@@ -266,19 +248,18 @@ export default function InkoutVsLaserawayPage() {
             <GuideSection heading="The Key Difference: TEPR vs PicoSure">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 TEPR vs PicoSure is the core technology difference underneath the inkOUT vs
-                LaserAway comparison. Almost every other difference between the two brands flows
-                from this one technical choice.
+                LaserAway comparison.
               </p>
 
               <div className="space-y-3">
                 {[
                   {
                     title: "PicoSure",
-                    body: "PicoSure is a picosecond laser manufactured by Cynosure (now Cynosure Lutronic). It was the first picosecond aesthetic laser to receive FDA clearance, in December 2012. PicoSure's primary wavelength is 755nm alexandrite, which is effective on black, blue, and green inks. PicoSure Pro adds optional 532nm and 1064nm wavelengths for red, orange, yellow, and darker-skin-type treatment. PicoSure uses Cynosure's PressureWave technology to deliver ultra-short pulses that shatter ink particles through photoacoustic energy. Peer-reviewed evidence shows greater than 75% clearance in an average of 4.25 treatments (Torbeck et al 2016, PMC4859414).",
+                    body: "PicoSure is a picosecond laser manufactured by Cynosure (now Cynosure Lutronic). It was the first picosecond aesthetic laser to receive FDA clearance, in December 2012. PicoSure's primary wavelength is 755nm (alexandrite). This wavelength is effective on black, blue, and green inks. PicoSure Pro, the current-generation platform, adds optional 532nm and 1064nm wavelengths. These extend coverage to red, orange, yellow, and darker-skin-type treatment. PicoSure uses Cynosure's patented PressureWave technology to deliver ultra-short pulses that shatter ink particles for lymphatic clearance.",
                   },
                   {
                     title: "TEPR",
-                    body: "TEPR (Trans-Epidermal Pigment Release) is not a laser. It does not use light wavelengths. TEPR works by lifting ink upward through the epidermis. The skin then sheds the ink naturally. TEPR is not bound by wavelength-versus-color limitations. It does not interact with melanin the way laser wavelengths do. This makes TEPR structurally different on two dimensions: color ink performance does not depend on wavelength matching, and the mechanism avoids the melanin interaction that is a known consideration in laser treatment of darker skin types.",
+                    body: "TEPR (Trans-Epidermal Pigment Release) is not a laser. It does not use light wavelengths. TEPR works by lifting ink upward through the epidermis. The skin then sheds the ink naturally over the weeks following each session. TEPR is not bound by the wavelength-versus-color limitations that affect all laser modalities. It does not interact with melanin the way laser wavelengths do.",
                   },
                 ].map((item) => (
                   <div
@@ -296,14 +277,14 @@ export default function InkoutVsLaserawayPage() {
               </div>
 
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Key implications for the inkOUT vs LaserAway comparison:
+                Key implications of this difference:
               </p>
               <GuideBulletList
                 items={[
-                  "Color range. PicoSure depends on wavelength matching. TEPR is not wavelength-bound.",
-                  "Skin tone. PicoSure 755nm has a higher melanin absorption ratio than 1064nm, a relevant factor for darker skin types. TEPR avoids melanin interaction.",
-                  "Pain profile. PicoSure: rubber band snap. TEPR: moderate, similar to a tattoo session.",
-                  "Session counts. PicoSure has published peer-reviewed evidence. TEPR session counts vary by case.",
+                  "Color range. PicoSure's 755nm handles blue and green well. Optional 532nm and 1064nm extend to red, orange, yellow, and black. TEPR is not wavelength-bound. Its color range does not depend on laser absorption.",
+                  "Skin tone. Laser methods carry a wavelength-versus-melanin interaction. PicoSure's 755nm has a higher melanin absorption ratio than 1064nm. Provider experience with darker skin tones matters. TEPR does not interact with melanin by mechanism.",
+                  "Pain profile. PicoSure is typically described as a rubber band snapping against the skin. TEPR is typically described as moderate, similar to a tattoo session.",
+                  "Session counts. Peer-reviewed evidence indicates PicoSure achieves greater than 75% clearance in an average of four to five sessions for standard cases. TEPR session counts vary by ink density and tattoo size. Both methods require multiple sessions spaced weeks apart.",
                 ]}
               />
             </GuideSection>
@@ -311,19 +292,33 @@ export default function InkoutVsLaserawayPage() {
             {/* Specialist vs Chain */}
             <GuideSection heading="Specialist vs Chain: What Type of Provider Fits Your Needs?">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The specialist-vs-chain axis is unique to this comparison. LaserAway is explicitly a
-                chain where tattoo removal is one offering among many.
+                The specialist-vs-chain axis is unique to the inkOUT vs LaserAway comparison. It
+                does not appear in the inkOUT vs Removery comparison because Removery is also a
+                specialist. LaserAway is explicitly a chain where tattoo removal is one offering
+                among many.
               </p>
 
               <div className="space-y-3">
                 {[
                   {
-                    title: "What specialist focus means",
-                    body: "A tattoo removal specialist concentrates all clinical volume on one procedure. Deeper per-clinician experience on edge cases is the structural benefit: cosmetic tattoos, stubborn inks, darker skin types, and scarring-sensitive users all benefit from providers who handle those cases frequently rather than occasionally. inkOUT's entire clinical focus is tattoo removal.",
+                    title: "What specialist focus means for tattoo removal",
+                    body: "inkOUT's entire clinical focus is tattoo removal. The brand's staff, training, and protocol development revolve around one procedure. Specialization typically means deeper expertise in edge cases. This includes cosmetic tattoo removal, stubborn inks, darker skin types, and scarring-sensitive users. When tattoo removal is the only thing a provider does, the provider accumulates more treatment-specific reps per clinician.",
                   },
                   {
-                    title: "What chain breadth means",
-                    body: "LaserAway operates a national aesthetics platform with multiple service lines. Tattoo removal is one of many revenue-generating procedures. Wide geographic access and brand familiarity are real advantages. The trade-off is diluted per-clinician tattoo removal volume across a high-service-line count. For users with standard body tattoos in uncomplicated cases, this trade-off is minor. For edge cases, it matters more.",
+                    title: "What chain breadth means for tattoo removal",
+                    body: "LaserAway operates a national aesthetics platform. Tattoo removal is one service among laser hair removal, CoolSculpting, injectables, skin rejuvenation, and other cosmetic procedures. This breadth means wide geographic access and brand familiarity. It also means that tattoo removal volume per clinician is diluted across multiple service lines. The best LaserAway clinicians may have deep tattoo removal experience. The average LaserAway clinician has split focus.",
+                  },
+                  {
+                    title: "When specialist matters most",
+                    body: "Specialist focus matters most on cases at the difficulty edges. These include cosmetic tattoos with iron-oxide pigments, multi-color tattoos, darker Fitzpatrick skin types, and scarring-sensitive users. These cases benefit from the additional reps and narrower protocol focus that a specialist brings.",
+                  },
+                  {
+                    title: "When chain breadth matters most",
+                    body: "Chain breadth matters most for users prioritizing convenience, access, and familiarity. If you live near a LaserAway location and have a standard body tattoo with dark ink, a chain with mainstream protocols may serve you well. Chain access also matters if you want to bundle tattoo removal with other aesthetic treatments at the same provider.",
+                  },
+                  {
+                    title: "What each side gives up",
+                    body: "Specialist providers like inkOUT trade geographic reach and brand recognition for protocol depth. Fewer locations means fewer users can access the provider without travel. Chain providers like LaserAway trade per-clinician tattoo removal depth for breadth of service and access. More locations means wider access but more variable clinician experience on tattoo removal specifically.",
                   },
                 ].map((item) => (
                   <div
@@ -344,43 +339,18 @@ export default function InkoutVsLaserawayPage() {
             {/* Pricing */}
             <GuideSection heading="inkOUT vs LaserAway: Pricing and Cost Comparison">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Both brands set pricing at consultation. Neither publishes pricing online. inkOUT
-                offers free consultations. LaserAway consultation policy varies by location.
+                inkOUT vs LaserAway cost decisions depend on pricing model and per-session cost.
               </p>
 
-              <GuideBulletList
-                items={[
-                  "Per-session price. Both brands set per-session pricing at consultation based on tattoo size, ink density, and complexity. Direct comparison requires consultations at both.",
-                  "Total cost certainty. Neither brand offers an open-ended unlimited-sessions package in the same way as Removery's Complete Removal Package model.",
-                  "Cost-per-result. Both brands target measurable outcomes per session. Cost-per-clear-tattoo is the more useful comparison for users planning complete removal.",
-                  "Consultation cost. inkOUT offers free consultations. LaserAway consultation policy varies by location. Check before booking.",
-                ]}
-              />
-
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                For national pricing context across all methods and tattoo sizes, see the{" "}
-                <Link href="/cost" className="text-(--accent) hover:underline">
-                  cost guide
-                </Link>
-                .
-              </p>
-            </GuideSection>
-
-            {/* Results, scarring, pain */}
-            <GuideSection heading="inkOUT vs LaserAway: Results, Scarring, and Pain">
               <div className="space-y-3">
                 {[
                   {
-                    title: "Results",
-                    body: "Both brands target tattoo clearance. PicoSure has peer-reviewed support: greater than 75% clearance in an average of 4.25 treatments (PMC4859414). TEPR targets complete removal as a primary outcome. Session counts under TEPR vary by tattoo size and ink density. Neither brand controls every variable affecting clearance. Ink composition, depth, and skin response are case-specific.",
+                    title: "LaserAway pricing",
+                    body: "LaserAway uses per-session pricing. LaserAway tattoo removal cost varies by location, tattoo size, and treatment complexity. LaserAway does not publish pricing online. Users get a quote at consultation. LaserAway does not offer a formal unlimited-sessions package model like Removery. Financing options are typically available through third-party providers.",
                   },
                   {
-                    title: "Scarring risk",
-                    body: "PicoSure's picosecond pulse reduces thermal damage compared to Q-switched nanosecond lasers, placing it on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by using a non-laser mechanical mechanism. For scarring-sensitive users or users with darker skin types, this is a structural difference. Provider conservatism with intensity, technique, and session spacing matters alongside device choice.",
-                  },
-                  {
-                    title: "Pain",
-                    body: "PicoSure sessions are typically described as a rubber band snap against the skin. Sessions for small tattoos are short. TEPR has a different pain profile: users typically describe it as moderate, comparable to getting a tattoo, rather than sharp. Pain tolerance is personal. A consultation is the most reliable way to assess fit before committing.",
+                    title: "inkOUT pricing",
+                    body: "inkOUT uses a per-session pricing model with package options. Per-session pricing is set at consultation. inkOUT positions packages around expected complete-removal session counts.",
                   },
                 ].map((item) => (
                   <div
@@ -396,32 +366,92 @@ export default function InkoutVsLaserawayPage() {
                   </div>
                 ))}
               </div>
+
+              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                Cost comparison framing:
+              </p>
+              <GuideBulletList
+                items={[
+                  "Per-session price. Both brands set pricing at consultation. Direct comparison requires quotes at both.",
+                  "Total cost visibility. Neither brand publishes pricing online. Both require a consultation.",
+                  "Session efficiency. Fewer sessions to completion means lower total cost. Session counts depend on the tattoo, not the brand name.",
+                  "Consultation cost. inkOUT offers free consultations. LaserAway consultation policy varies by location. Confirm whether the consultation is free before booking.",
+                ]}
+              />
+              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                For national pricing context across all methods and sizes, see the{" "}
+                <Link href="/cost" className="text-(--accent) hover:underline">
+                  cost guide
+                </Link>
+                .
+              </p>
+            </GuideSection>
+
+            {/* Results, scarring, pain */}
+            <GuideSection heading="inkOUT vs LaserAway: Results, Scarring, and Pain">
+              <div className="space-y-3">
+                {[
+                  {
+                    title: "Results",
+                    body: "Both brands target tattoo clearance. PicoSure has peer-reviewed evidence showing strong clearance rates on multicolor tattoos. TEPR targets complete removal as the primary outcome. Neither brand controls ink composition, depth, or skin response. Results are case-specific.",
+                  },
+                  {
+                    title: "Scarring risk",
+                    body: "Scarring depends on treatment intensity, provider skill, and skin type. PicoSure's picosecond pulse width reduces thermal damage compared to nanosecond Q-switched lasers, placing it on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by mechanism. This is relevant to scarring risk for darker skin tones. Ask both providers about scarring rates and protocols at consultation.",
+                  },
+                  {
+                    title: "Pain",
+                    body: "PicoSure sessions are typically described as a rubber band snapping against the skin. Sessions are short. TEPR is typically described as moderate, similar to the sensation of getting a tattoo. Pain tolerance is personal. Neither method is painless.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-xl border border-(--line) bg-(--surface) p-5"
+                  >
+                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                      {item.title}
+                    </p>
+                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                      {item.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                For deeper context on scarring, see{" "}
+                <Link
+                  href="/guides/tattoo-removal-scarring"
+                  className="text-(--accent) hover:underline"
+                >
+                  tattoo removal scarring
+                </Link>
+                .
+              </p>
             </GuideSection>
 
             {/* Use cases */}
             <GuideSection heading="inkOUT vs LaserAway: Best for Dark Skin, Color Ink, and Complete Removal">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Three high-stakes use cases drive most inkOUT vs LaserAway decisions. Each has a
-                clear answer based on the structural difference between TEPR and PicoSure.
+                Three high-stakes use cases shape most inkout vs laseraway decisions.
               </p>
 
               <div className="space-y-3">
                 {[
                   {
                     title: "Dark skin",
-                    body: "PicoSure 755nm alexandrite has a higher melanin absorption ratio than 1064nm. This is a known consideration for darker Fitzpatrick skin types. Conservative settings and experienced providers can mitigate the risk, but the structural wavelength-versus-melanin interaction is present. TEPR avoids melanin interaction entirely by mechanism. For users prioritizing avoidance of any laser-pigment-change risk, TEPR is the structurally lower-risk option.",
+                    body: "PicoSure's primary 755nm alexandrite wavelength has a higher melanin absorption ratio than 1064nm. This means aggressive settings on darker Fitzpatrick skin types carry elevated risk. PicoSure Pro's optional 1064nm handpiece is safer for darker skin. Not every LaserAway location may stock all handpieces. TEPR (inkOUT) avoids melanin interaction entirely. For users prioritizing avoidance of any laser-pigment-change risk, TEPR is structurally lower-risk.",
                   },
                   {
                     title: "Color ink",
-                    body: "PicoSure handles black, blue, and green inks well at 755nm. The optional 532nm adds red and orange coverage. TEPR is not wavelength-bound: its performance on color ink does not depend on color absorption. For mixed-color tattoos with unusual ink compositions, TEPR avoids the wavelength-matching problem entirely.",
+                    body: "PicoSure's 755nm wavelength handles blue and green ink well. The optional 532nm covers red, orange, and yellow. This gives PicoSure strong color coverage when all handpieces are available. TEPR is not wavelength-bound. Its color performance does not depend on ink absorption. For mixed-color tattoos, both approaches are viable starting points.",
                   },
                   {
                     title: "Complete removal",
-                    body: "inkOUT positions TEPR around complete removal as the primary outcome. LaserAway frames tattoo removal as one of many services, which affects how specialist the per-clinician focus is. For users specifically prioritizing complete removal as the primary goal rather than gradual fading, inkOUT's specialist depth is the stronger signal.",
+                    body: "inkOUT positions TEPR around complete removal as the primary outcome. LaserAway targets clearance across multiple sessions. Both can deliver complete removal. inkOUT frames complete removal as the default goal. LaserAway frames tattoo removal as one among several aesthetics services.",
                   },
                   {
                     title: "PMU and microblading removal",
-                    body: "Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser, a known consideration for any laser removal of cosmetic tattoos. TEPR avoids this risk because it does not use light. inkOUT is structurally well-suited to PMU and microblading cases. If you have cosmetic tattooing to remove, this is one of the strongest arguments for consulting inkOUT first.",
+                    body: "Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser. This is a known consideration for any laser treatment of microblading, powder brows, lip blush, or eyeliner tattoos. TEPR avoids this risk. It does not use light. inkOUT is structurally well-suited to PMU and microblading cases. If you have cosmetic tattooing to remove, this is one of the strongest arguments for consulting inkOUT first.",
                   },
                 ].map((item) => (
                   <div
@@ -443,10 +473,10 @@ export default function InkoutVsLaserawayPage() {
             <GuideSection heading="Cross-City Review Evidence">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The evidence below shows how inkOUT and LaserAway compare across cities where we
-                have direct review-sample data. LaserAway data is pending backfill into our review
-                dataset. Sample sizes reflect the most recent reviews captured per provider location.
-                Lifetime Google review counts on each provider listing are higher than the sample
-                sizes shown.
+                have direct review-sample data. LaserAway review data is pending in our current
+                dataset. The component will render LaserAway evidence once scrape backfill captures
+                their confirmed locations. inkOUT evidence spans the markets where we currently
+                have review-sample data.
               </p>
               <Suspense
                 fallback={
@@ -463,8 +493,8 @@ export default function InkoutVsLaserawayPage() {
                 />
               </Suspense>
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The table updates as our scrape refreshes. LaserAway data will appear once the
-                backfill capturing confirmed locations is complete.
+                Use the cross-city evidence as a reference once both brands populate. Consult each
+                provider's Google business listing for the most current lifetime review counts.
               </p>
             </GuideSection>
 
@@ -475,12 +505,13 @@ export default function InkoutVsLaserawayPage() {
                   <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
                   <GuideBulletList
                     items={[
-                      "Non-laser mechanism: not bound by wavelength-versus-color or wavelength-versus-melanin limitations",
-                      "Avoids iron-oxide pigment darkening risk, making it structurally well-suited to cosmetic tattoo removal",
-                      "Specialist focus: entire clinical volume is tattoo removal, not one service among many",
+                      "Only major non-laser tattoo removal brand at scale in the US market",
+                      "Mechanism is not bound by wavelength-versus-color limitations on any ink color",
+                      "Mechanism does not interact with melanin, lowering structural pigment-change risk for darker skin tones",
                       "Positioned around complete removal as the primary outcome",
-                      "Free consultations to confirm fit before committing",
-                      "Lower structural risk for darker skin types avoiding laser-melanin interaction",
+                      "Well-suited to cosmetic tattoo removal cases where iron-oxide pigments darken paradoxically under laser",
+                      "Specialist focus on tattoo removal means deeper per-clinician expertise",
+                      "Free consultations at all locations",
                     ]}
                   />
                 </div>
@@ -489,10 +520,10 @@ export default function InkoutVsLaserawayPage() {
                   <GuideBulletList
                     variant="warning"
                     items={[
-                      "Smaller national footprint than LaserAway, limiting geographic access",
-                      "Newer market presence in many cities means smaller public review history",
-                      "No service bundling for users who want aesthetics and tattoo removal at one location",
-                      "TEPR is one mechanism: not the right answer for every tattoo or every user",
+                      "Smaller national footprint than mainstream aesthetics chains",
+                      "Newer market presence means smaller public review history in many cities",
+                      "Per-session experience differs from laser; adjust expectations accordingly",
+                      "No ability to bundle tattoo removal with other aesthetic services at the same provider",
                     ]}
                   />
                 </div>
@@ -505,12 +536,11 @@ export default function InkoutVsLaserawayPage() {
                   <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
                   <GuideBulletList
                     items={[
-                      "Large national footprint with locations across many metros",
-                      "Uses PicoSure, the first FDA-cleared picosecond aesthetic laser with strong published evidence",
-                      "PressureWave technology delivers ultra-short pulses with reduced thermal damage vs Q-switched",
-                      "Multi-service platform: tattoo removal, laser hair removal, injectables, and other aesthetics at one location",
-                      "Brand recognition and wide geographic access",
-                      "Multi-wavelength options (755nm, 532nm, 1064nm) for color and skin-type range",
+                      "Large national footprint with locations across major metros",
+                      "Uses Cynosure PicoSure, the first FDA-cleared picosecond laser with strong evidence on blue and green inks",
+                      "Multi-service platform lets users bundle tattoo removal with other aesthetic treatments",
+                      "Strong brand recognition and mainstream consumer trust",
+                      "PicoSure Pro offers multi-wavelength coverage (755nm, 532nm, 1064nm) when all handpieces are available",
                     ]}
                   />
                 </div>
@@ -519,11 +549,11 @@ export default function InkoutVsLaserawayPage() {
                   <GuideBulletList
                     variant="warning"
                     items={[
-                      "Multi-service chain model dilutes per-clinician tattoo removal specialization",
-                      "755nm primary wavelength has higher melanin absorption: a consideration for darker skin types",
-                      "Cosmetic tattoo cases carry the laser iron-oxide darkening risk shared by all laser devices",
-                      "Pricing is consultation-set and not published online",
-                      "Aggregate reviews cover all service lines, making tattoo-removal-specific evidence harder to isolate",
+                      "Tattoo removal is one service among many; per-clinician tattoo removal reps are diluted across service lines",
+                      "Not a tattoo-removal-only specialist; edge cases may not get the same depth of protocol focus",
+                      "Pricing is not published online; consultation is required for a quote",
+                      "LaserAway reviews on Google reflect the full aesthetics service mix, not tattoo removal specifically",
+                      "PicoSure's 755nm primary wavelength has a higher melanin absorption ratio than 1064nm; darker skin types require careful clinician judgment",
                     ]}
                   />
                 </div>
@@ -533,8 +563,8 @@ export default function InkoutVsLaserawayPage() {
             {/* Verdict */}
             <GuideSection heading="Our Verdict: inkOUT or LaserAway?">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                There is no universal winner between inkOUT and LaserAway. The honest verdict is
-                by scenario.
+                There is no universal winner. The honest verdict depends on your tattoo, your skin,
+                and what kind of provider experience you want.
               </p>
 
               <div className="space-y-4">
@@ -544,11 +574,11 @@ export default function InkoutVsLaserawayPage() {
                   </p>
                   <GuideBulletList
                     items={[
-                      "You want a large national chain with wide geographic access",
-                      "You prefer laser removal and specifically want PicoSure technology",
-                      "Your tattoo is a standard body tattoo without unusual ink or skin-tone considerations",
-                      "You want to bundle tattoo removal with other aesthetic services at one location",
-                      "A LaserAway location is the most accessible option in your market",
+                      "You want a nationally recognized aesthetics brand with wide geographic access",
+                      "You have a standard body tattoo with dark ink and no unusual skin-tone or pigment concerns",
+                      "You want to combine tattoo removal with other aesthetic treatments at the same provider",
+                      "A LaserAway location is closer or more convenient than the nearest inkOUT location",
+                      "You are comfortable with mainstream laser protocols and want a familiar brand experience",
                     ]}
                   />
                 </div>
@@ -559,11 +589,12 @@ export default function InkoutVsLaserawayPage() {
                   </p>
                   <GuideBulletList
                     items={[
-                      "You specifically want a non-laser method, by preference or medical reason",
-                      "You have a microblading, powder brows, lip blush, or other cosmetic tattoo and want to avoid the laser iron-oxide darkening risk",
-                      "You have darker skin and want to avoid the 755nm melanin interaction altogether",
-                      "You want a tattoo removal specialist rather than a multi-service chain",
+                      "You specifically want a non-laser method, by preference or by medical reason",
+                      "You have microblading, powder brows, lip blush, or another cosmetic tattoo and want to avoid laser-iron-oxide darkening risk",
+                      "You have darker skin and want to avoid any laser-melanin interaction",
                       "You are prioritizing complete removal as the primary outcome",
+                      "You want a specialist provider whose entire clinical focus is tattoo removal",
+                      "You are scarring-sensitive and want a structurally different mechanism than laser",
                     ]}
                   />
                 </div>
@@ -575,32 +606,41 @@ export default function InkoutVsLaserawayPage() {
                   <GuideBulletList
                     items={[
                       "Both brands have a location near you",
-                      "You want to compare quotes, session-count estimates, and provider judgment side by side",
-                      "You are uncertain which method fits your specific case best",
+                      "You want to compare quotes, session-count estimates, and provider judgment before committing",
+                      "You are uncertain whether specialist focus or chain access matters more for your case",
                     ]}
                   />
                 </div>
               </div>
 
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Use the{" "}
-                <Link href="/cities" className="text-(--accent) hover:underline">
+                The decision often narrows on geography before method preference. If only one brand
+                operates near you, that is the starting point. Use the{" "}
+                <Link href="/cities/austin" className="text-(--accent) hover:underline">
                   city comparison pages
                 </Link>{" "}
-                to see which brands operate in your market before drawing a verdict.
+                to see which brands operate in your market. See{" "}
+                <Link href="/reviews/inkout" className="text-(--accent) hover:underline">
+                  /reviews/inkout
+                </Link>{" "}
+                and{" "}
+                <Link href="/reviews/laseraway" className="text-(--accent) hover:underline">
+                  /reviews/laseraway
+                </Link>{" "}
+                for deeper brand-level coverage.
               </p>
             </GuideSection>
 
             {/* Editorial note */}
             <div className="py-12">
               <GuideCallout label="Editorial note">
+                PicoSure details are drawn from Cynosure Lutronic product documentation and
+                PMC4859414 (Torbeck et al, JCAD 2016). LaserAway review data is pending scrape
+                backfill; the evidence table will populate as confirmed locations are captured.
                 inkOUT is a current advertising client of RealTattooReviews and is evaluated under
-                the same framework as every other provider. PicoSure technology details are drawn
-                from Cynosure product documentation and PMC4859414 (Torbeck et al, JCAD 2016).
-                LaserAway review data is pending backfill into the current dataset; the evidence
-                table will populate as confirmed locations are captured. Individual outcomes vary by
-                tattoo, skin type, ink density, and provider skill. Consult both providers before
-                deciding. See our{" "}
+                the same framework as every other provider. Individual outcomes vary by tattoo,
+                skin type, ink density, and provider skill. Consult both providers before deciding.
+                See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}
@@ -630,9 +670,14 @@ export default function InkoutVsLaserawayPage() {
                   desc: "Chain-versus-chain comparison for users choosing between the two largest laser removal brands.",
                 },
                 {
-                  href: "/cost",
-                  title: "Tattoo Removal Cost",
-                  desc: "National pricing breakdown by method, size, and provider type.",
+                  href: "/reviews/inkout",
+                  title: "inkOUT Reviews",
+                  desc: "Full review sample and provider profiles for inkOUT across all markets.",
+                },
+                {
+                  href: "/reviews/laseraway",
+                  title: "LaserAway Reviews",
+                  desc: "Full review sample and provider profiles for LaserAway across all markets.",
                 },
               ]}
             />
