@@ -1,17 +1,15 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import ReviewCardGrid from "@/components/reviews/ReviewCardGrid";
 import BlockHeading from "./BlockHeading";
 import JumpNav from "./JumpNav";
-import ProviderReviewsArchive from "./ProviderReviewsArchive";
 import ProsCons from "./ProsCons";
 import ResultsSnapshot from "./ResultsSnapshot";
-import ReviewsMoreLink from "./ReviewsMoreLink";
 import SourceSummary from "./SourceSummary";
 import StarsFull from "./StarsFull";
 import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
 import {
+  buildBestFor,
   buildFAQ,
   buildOverviewStats,
   buildProsConsFromReviews,
@@ -36,7 +34,7 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
   const { pros, cons } = buildProsConsFromReviews(reviews);
   const resultsSummary = buildResultsSummary(reviews);
   const faqItems = buildFAQ(providerName, market || undefined);
-  const hasMoreReviews = reviews.length > 6;
+  const bestForData = buildBestFor([], reviews);
 
   return (
     <main className="reviews-page min-h-screen bg-(--bg)">
@@ -83,11 +81,11 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
       </section>
 
       <JumpNav items={[
-        { label: "Overview", href: "#overview" },
-        { label: "Reviews",  href: "#reviews" },
-        { label: "Results",  href: "#results" },
-        ...(hasMoreReviews ? [{ label: "All reviews", href: "#all-reviews" }] : []),
-        { label: "FAQ",      href: "#faq" },
+        { label: "Overview",   href: "#overview" },
+        { label: "Reviews",    href: "#reviews" },
+        { label: "Results",    href: "#results" },
+        { label: "Who it fits", href: "#best-for" },
+        { label: "FAQ",        href: "#faq" },
       ]} />
 
       <section id="overview" className="border-b border-(--line) bg-hero-bg py-22">
@@ -106,24 +104,41 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
       </section>
 
       <section id="results" className="border-b border-(--line) bg-(--wash) py-22">
-        <Container className="grid gap-6 lg:grid-cols-[minmax(0,1fr),280px]">
-          <div>
-            <BlockHeading title="Results and Review Evidence" body="Sourced review excerpts alongside an outcome signal count, showing how often fading results, pain, or scarring come up." />
-            <ReviewCardGrid reviews={reviews.slice(0, 6)} columns={2} showProvider={false} />
-            <ReviewsMoreLink total={reviews.length} />
-          </div>
+        <Container>
+          <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
         </Container>
       </section>
 
-      {hasMoreReviews && (
-        <section id="all-reviews" className="border-b border-(--line) bg-(--bg) py-22">
-          <Container>
-            <BlockHeading title="All Reviews" body={`Browse the remaining sourced reviews for ${providerName}, loaded in batches so the page stays readable.`} />
-            <ProviderReviewsArchive reviews={reviews} />
-          </Container>
-        </section>
-      )}
+      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <BlockHeading title={`Who ${providerName} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-4">{providerName} may be a strong option if you:</p>
+              <ul className="flex flex-col gap-2">
+                {bestForData.bestFor.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="border border-(--line) bg-white p-6 rounded-xl">
+              <p className="font-semibold text-(--ink) text-[15px] mb-4">You should compare more carefully if you:</p>
+              <ul className="flex flex-col gap-2">
+                {bestForData.lessIdealFor.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       <section id="faq" className="bg-(--bg) py-22">
         <Container>

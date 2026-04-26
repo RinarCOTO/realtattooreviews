@@ -116,6 +116,18 @@ export function buildProsConsFromReviews(reviews: Review[]): { pros: string[]; c
 }
 
 export function buildPricingContext(providers: Provider[]): string {
+  const brandNames = unique(providers.map((p) => p.brand ?? p.name));
+
+  if (brandNames.includes("Removery")) {
+    return "Removery offers a Complete Removal Package: a single flat fee covers all sessions until the tattoo is fully removed. This fits users who want cost predictability and expect a longer treatment path, but the upfront cost is higher than per-session pricing at most clinics. See the cost guide for a calibrated comparison.";
+  }
+  if (brandNames.includes("inkOUT")) {
+    return "inkOUT uses per-session pricing with package options available. As a non-laser provider using TEPR, pricing does not map directly to laser-clinic benchmarks. Compare total path cost across methods using the cost guide before settling on a quote.";
+  }
+  if (brandNames.includes("LaserAway")) {
+    return "LaserAway uses per-session pricing without a bundled package option. Session rates vary by tattoo size and location. Compare the quoted session count and per-session rate against local specialists before committing.";
+  }
+
   const combinedTags = unique(providers.flatMap((p) => p.tags));
   const summaries = providers.map((p) => p.summary.toLowerCase());
 
@@ -164,7 +176,7 @@ export function getAlternativeProviders(providers: Provider[], currentSlug: stri
   return allProviders
     .filter((p) => p.slug !== currentSlug && brandToSlug(p.brand ?? "") !== currentSlug)
     .filter((p) => markets.includes(p.market) || specialties.includes(p.specialty))
-    .sort((a, b) => b.rating - a.rating || b.reviewCount - a.reviewCount)
+    .sort((a, b) => a.name.localeCompare(b.name))
     .slice(0, 4);
 }
 
