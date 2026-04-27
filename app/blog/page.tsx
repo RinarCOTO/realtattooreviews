@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description:
       "Editorial articles on tattoo removal research, provider trends, and patient outcomes.",
   },
+  alternates: {
+    canonical: "https://realtattooreviews.com/blog",
+  },
 };
 
 export default async function BlogPage() {

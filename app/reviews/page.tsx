@@ -48,6 +48,9 @@ export async function generateMetadata(): Promise<Metadata> {
     title,
     description,
     openGraph: { title, description },
+    alternates: {
+      canonical: "https://realtattooreviews.com/reviews",
+    },
   };
 }
 

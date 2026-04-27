@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import { organizationSchema } from "@/lib/seo/schema";
 import ProviderCard from "@/components/cards/ProviderCard";
 import CityCard from "@/components/cards/CityCard";
 import Hero from "@/components/sections/home/Hero";
@@ -82,6 +83,10 @@ export default async function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
       />
       {/* ── 1. Hero ─────────────────────────────────── */}
       <Hero headline={cms?.heroHeadline} subheadline={cms?.heroSubheadline} />
