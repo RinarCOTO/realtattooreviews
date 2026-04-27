@@ -161,7 +161,7 @@ export function dbReviewToReview(r: DbReview): Review {
     date: formatReviewDate(r.review_date_iso) ?? r.review_date ?? undefined,
     excerpt: r.review_text ?? undefined,
     fullText: r.review_text ?? undefined,
-    reviewUrl: undefined,
+    reviewUrl: r.source_url ?? undefined,
     tags: buildReviewTags(r.review_text ?? ""),
     sessions,
     painLevel: painRaw,
@@ -645,6 +645,50 @@ export async function getReviewStats(): Promise<{
     scarringMentions,
     lastUpdated,
   };
+}
+
+/**
+ * Aggregate reviews by brand from Supabase and return the highest-rated brands
+ * that meet the minimum review threshold.
+ *
+ * Groups by brand_name if available, otherwise strips location suffixes like
+ * "(Bucktown)" from provider_name. Filters to minReviews, sorts by avg rating
+ * DESC then brand name ASC, and returns up to `limit` results.
+ */
+export async function getHighestRatedProviders(
+  limit = 6,
+  minReviews = 48
+): Promise<{ brandName: string; avgRating: number; reviewCount: number }[]> {
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("brand_name, provider_name, star_rating"),
+    "any"
+  );
+
+  if (error || !data) return [];
+
+  type Row = { brand_name: string | null; provider_name: string; star_rating: number | null };
+
+  const brandMap = new Map<string, number[]>();
+  for (const row of data as Row[]) {
+    if (row.star_rating == null) continue;
+    const brand =
+      (row.brand_name?.trim()) ||
+      row.provider_name.replace(/\s*\([^)]+\)\s*$/, "").trim();
+    if (!brandMap.has(brand)) brandMap.set(brand, []);
+    brandMap.get(brand)!.push(row.star_rating);
+  }
+
+  return [...brandMap.entries()]
+    .map(([brandName, stars]) => ({
+      brandName,
+      avgRating: Math.round((stars.reduce((a, b) => a + b, 0) / stars.length) * 10) / 10,
+      reviewCount: stars.length,
+    }))
+    .filter((b) => b.reviewCount >= minReviews)
+    .sort((a, b) => b.avgRating - a.avgRating || a.brandName.localeCompare(b.brandName))
+    .slice(0, limit);
 }
 
 // ── City provider aggregates ──────────────────────────────────────────────────

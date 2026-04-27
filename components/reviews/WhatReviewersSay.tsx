@@ -61,7 +61,7 @@ export default function WhatReviewersSay({ reviews, providerName: _providerName,
         </p>
       )}
 
-      {/* Layer 2: Classified review summaries (RTR paraphrases, negative-first) */}
+      {/* Layer 2: Classified review summaries (RTR paraphrases, positive-first) */}
       {classified.length > 0 && (
         <div>
           <p className="font-mono text-[11px] uppercase tracking-widest text-(--muted) mb-4">

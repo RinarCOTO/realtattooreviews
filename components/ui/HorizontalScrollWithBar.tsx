@@ -7,6 +7,9 @@ type Props = {
   cardWidth?: number;
 };
 
+const FRICTION = 0.95;
+const MIN_VELOCITY = 0.3;
+
 export default function HorizontalScrollWithBar({ children, cardWidth = 272 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [progress, setProgress]   = useState(0);
@@ -42,9 +45,12 @@ export default function HorizontalScrollWithBar({ children, cardWidth = 272 }: P
   const applyMomentum = () => {
     const el = ref.current;
     if (!el) return;
-    if (Math.abs(velocity.current) < 0.5) { update(); return; }
+    if (Math.abs(velocity.current) < MIN_VELOCITY) {
+      update();
+      return;
+    }
     el.scrollLeft += velocity.current;
-    velocity.current *= 0.92;
+    velocity.current *= FRICTION;
     update();
     rafId.current = requestAnimationFrame(applyMomentum);
   };
@@ -53,13 +59,13 @@ export default function HorizontalScrollWithBar({ children, cardWidth = 272 }: P
     const el = ref.current;
     if (!el) return;
     cancelMomentum();
-    isDragging.current = true;
-    startX.current     = e.pageX - el.offsetLeft;
+    isDragging.current  = true;
+    startX.current      = e.pageX - el.offsetLeft;
     scrollStart.current = el.scrollLeft;
-    lastX.current      = e.pageX;
-    lastT.current      = performance.now();
-    velocity.current   = 0;
-    el.style.cursor    = "grabbing";
+    lastX.current       = e.pageX;
+    lastT.current       = performance.now();
+    velocity.current    = 0;
+    el.style.cursor     = "grabbing";
     el.style.userSelect = "none";
   };
 
@@ -69,17 +75,15 @@ export default function HorizontalScrollWithBar({ children, cardWidth = 272 }: P
     if (!el) return;
     e.preventDefault();
 
-    const now   = performance.now();
-    const dt    = now - lastT.current;
-    const dx    = e.pageX - lastX.current;
-
-    if (dt > 0) velocity.current = -dx / dt * 16;
-
+    const now = performance.now();
+    const dt  = now - lastT.current;
+    if (dt > 0) {
+      velocity.current = -(e.pageX - lastX.current) / dt * 12;
+    }
     lastX.current = e.pageX;
     lastT.current = now;
 
-    const x    = e.pageX - el.offsetLeft;
-    el.scrollLeft = scrollStart.current - (x - startX.current);
+    el.scrollLeft = scrollStart.current - (e.pageX - el.offsetLeft - startX.current);
   };
 
   const stopDrag = () => {
@@ -99,7 +103,6 @@ export default function HorizontalScrollWithBar({ children, cardWidth = 272 }: P
   return (
     <div style={{ position: "relative", overflow: "hidden" }}>
 
-      {/* ── Scroll container ─────────────────────── */}
       <div
         ref={ref}
         onScroll={update}
@@ -115,7 +118,6 @@ export default function HorizontalScrollWithBar({ children, cardWidth = 272 }: P
           width: "100%",
           maxWidth: "100%",
           overflowX: "scroll",
-          scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"],
           paddingLeft: "2rem",
           paddingRight: "2rem",
@@ -126,96 +128,51 @@ export default function HorizontalScrollWithBar({ children, cardWidth = 272 }: P
         {children}
       </div>
 
-      {/* ── Left arrow ───────────────────────────── */}
       {showLeft && (
         <button
           onClick={() => shift(-1)}
           aria-label="Scroll left"
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "0.25rem",
-            transform: "translateY(-60%)",
-            zIndex: 10,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "2rem",
-            height: "2rem",
-            borderRadius: "9999px",
-            border: "1px solid var(--color-border)",
-            background: "white",
-            cursor: "pointer",
-            boxShadow: "0 1px 3px rgb(0 0 0 / 0.1)",
+            position: "absolute", top: "50%", left: "0.25rem",
+            transform: "translateY(-60%)", zIndex: 10,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            width: "2rem", height: "2rem", borderRadius: "9999px",
+            border: "1px solid var(--color-border)", background: "white",
+            cursor: "pointer", boxShadow: "0 1px 3px rgb(0 0 0 / 0.1)",
             transition: "border-color 0.15s, color 0.15s",
             color: "var(--color-heading)",
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)";
-            (e.currentTarget as HTMLButtonElement).style.color = "var(--color-accent)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-border)";
-            (e.currentTarget as HTMLButtonElement).style.color = "var(--color-heading)";
-          }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)"; (e.currentTarget as HTMLButtonElement).style.color = "var(--color-accent)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-border)"; (e.currentTarget as HTMLButtonElement).style.color = "var(--color-heading)"; }}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6" /></svg>
         </button>
       )}
 
-      {/* ── Right arrow ──────────────────────────── */}
       {showRight && (
         <button
           onClick={() => shift(1)}
           aria-label="Scroll right"
           style={{
-            position: "absolute",
-            top: "50%",
-            right: "0.25rem",
-            transform: "translateY(-60%)",
-            zIndex: 10,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "2rem",
-            height: "2rem",
-            borderRadius: "9999px",
-            border: "1px solid var(--color-border)",
-            background: "white",
-            cursor: "pointer",
-            boxShadow: "0 1px 3px rgb(0 0 0 / 0.1)",
+            position: "absolute", top: "50%", right: "0.25rem",
+            transform: "translateY(-60%)", zIndex: 10,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            width: "2rem", height: "2rem", borderRadius: "9999px",
+            border: "1px solid var(--color-border)", background: "white",
+            cursor: "pointer", boxShadow: "0 1px 3px rgb(0 0 0 / 0.1)",
             transition: "border-color 0.15s, color 0.15s",
             color: "var(--color-heading)",
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)";
-            (e.currentTarget as HTMLButtonElement).style.color = "var(--color-accent)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-border)";
-            (e.currentTarget as HTMLButtonElement).style.color = "var(--color-heading)";
-          }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)"; (e.currentTarget as HTMLButtonElement).style.color = "var(--color-accent)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-border)"; (e.currentTarget as HTMLButtonElement).style.color = "var(--color-heading)"; }}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6" /></svg>
         </button>
       )}
 
-      {/* ── Progress bar ─────────────────────────── */}
       <div style={{ paddingLeft: "2rem", paddingRight: "2rem", marginTop: "0.75rem" }}>
         <div style={{ width: "100%", height: "3px", background: "#E5E1DC", borderRadius: "9999px" }}>
-          <div
-            style={{
-              height: "100%",
-              width: `${progress * 100}%`,
-              background: "var(--color-accent)",
-              borderRadius: "9999px",
-              transition: "width 0.1s linear",
-            }}
-          />
+          <div style={{ height: "100%", width: `${progress * 100}%`, background: "var(--color-accent)", borderRadius: "9999px", transition: "width 0.1s linear" }} />
         </div>
       </div>
 

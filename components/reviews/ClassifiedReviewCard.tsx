@@ -26,7 +26,7 @@ export default function ClassifiedReviewCard({ review }: { review: Review }) {
 
   if (!summaryText) return null;
 
-  const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(
+  const mapsUrl = review.reviewUrl ?? `https://www.google.com/maps/search/${encodeURIComponent(
     [review.provider, review.city, "tattoo removal"].filter(Boolean).join(" ")
   )}`;
 

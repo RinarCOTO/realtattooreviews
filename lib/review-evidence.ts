@@ -152,7 +152,7 @@ export function buildPatternSummary(reviews: Review[]): PatternGroup[] {
 // ── Classified review selection (Layer 2 of What Reviewers Say) ───────────────
 
 export function selectClassifiedReviews(reviews: Review[]): Review[] {
-  const SENT_ORDER = ["Negative", "Mixed", "Positive", "Neutral"];
+  const SENT_ORDER = ["Positive", "Neutral", "Mixed", "Negative"];
   return [...reviews]
     // Include if review has a paraphrase (reviewSummary) OR enough fields to generate one via template
     .filter((r) => r.resultRating != null && (r.reviewSummary || r.useCase))

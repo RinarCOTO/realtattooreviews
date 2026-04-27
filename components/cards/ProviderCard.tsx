@@ -28,7 +28,7 @@ export default function ProviderCard({ provider }: Props) {
   const logoSlug = provider.brand ? brandToSlug(provider.brand) : provider.slug;
 
   return (
-    <div className="relative flex h-full flex-col items-center rounded-2xl border border-border bg-surface px-6 pb-6 pt-8 text-center shadow-sm transition-all hover:border-accent hover:shadow-md">
+    <div className="relative flex h-full flex-col items-center rounded-2xl border border-border bg-white px-6 pb-6 pt-8 text-center shadow-card transition-all hover:border-accent hover:shadow-md">
 
       {/* Logo */}
       <div className="relative mb-4">

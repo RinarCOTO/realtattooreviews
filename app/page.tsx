@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import Button from "@/components/ui/Button";
 import ProviderCard from "@/components/cards/ProviderCard";
 import CityCard from "@/components/cards/CityCard";
 import Hero from "@/components/sections/home/Hero";
@@ -14,6 +13,7 @@ import FAQSection from "@/components/sections/home/FAQSection";
 import HorizontalScrollWithBar from "@/components/ui/HorizontalScrollWithBar";
 import { providers } from "@/lib/mock-data/providers";
 import type { Provider } from "@/types/provider";
+import { getHighestRatedProviders } from "@/lib/data/reviews";
 import { cities } from "@/lib/mock-data/cities";
 import { getHomepageCMS } from "@/lib/page-data/homepage-cms";
 
@@ -45,42 +45,37 @@ const websiteJsonLd = {
   url: "https://realtattooreviews.com",
 };
 
-function buildBrandEntry(ids: string[]): Provider {
-  const group = providers.filter((p) => ids.includes(p.id));
-  const totalReviews = group.reduce((s, p) => s + p.reviewCount, 0);
-  const avgRating =
-    totalReviews > 0
-      ? group.reduce((s, p) => s + p.rating * p.reviewCount, 0) / totalReviews
-      : 0;
-  const primary = [...group].sort(
-    (a, b) => (b.featuredScore ?? 0) - (a.featuredScore ?? 0)
-  )[0] as Provider;
-  return {
-    ...primary,
-    rating: Math.round(avgRating * 10) / 10,
-    reviewCount: totalReviews,
-    location: group.length > 1 ? `${group.length} locations` : primary.location,
-  };
-}
-
-const FEATURED_BRAND_PROVIDERS = [
-  buildBrandEntry(["arviv-medical-aesthetics"]),
-  buildBrandEntry(["clarity-skin"]),
-  buildBrandEntry(["clean-slate-ink"]),
-  buildBrandEntry(["dermsurgery-associates"]),
-  buildBrandEntry(["enfuse-medical-spa"]),
-  buildBrandEntry(["erasable-med-spa"]),
-  buildBrandEntry(["inkout-austin", "inkout-chicago", "inkout-houston", "inkout-tampa", "inkout-draper"]),
-  buildBrandEntry(["inkfree-md"]),
-  buildBrandEntry(["inklifters-aesthetica"]),
-  buildBrandEntry(["kovak-cosmetic-center"]),
-  buildBrandEntry(["medermis-laser-clinic"]),
-  buildBrandEntry(["removery-bucktown", "removery-lincoln-square", "removery-south-congress"]),
-  buildBrandEntry(["skintellect"]),
-];
 
 export default async function HomePage() {
-  const cms = await getHomepageCMS();
+  const [cms, liveRankings] = await Promise.all([
+    getHomepageCMS(),
+    getHighestRatedProviders(6, 48),
+  ]);
+
+  const highestRatedProviders: Provider[] = liveRankings.map(({ brandName, avgRating, reviewCount }) => {
+    const locationCount = providers.filter(
+      (p) => (p.brand ?? p.name) === brandName
+    ).length;
+    const primary = providers
+      .filter((p) => (p.brand ?? p.name) === brandName)
+      .sort((a, b) => (b.featuredScore ?? 0) - (a.featuredScore ?? 0))[0];
+    return {
+      id: primary?.id ?? brandName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      name: brandName,
+      slug: primary?.slug ?? brandName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      brand: primary?.brand,
+      market: primary?.market ?? "",
+      rating: avgRating,
+      reviewCount,
+      specialty: primary?.specialty,
+      yearsActive: primary?.yearsActive,
+      location: locationCount > 1 ? `${locationCount} locations` : primary?.location,
+      photo: primary?.photo,
+      summary: primary?.summary ?? "",
+      tags: primary?.tags ?? [],
+      website: primary?.website,
+    };
+  });
 
   return (
     <>
@@ -154,23 +149,23 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* ── 7. Featured providers ───────────────────── */}
+      {/* ── 7. Highest rated providers ──────────────── */}
       <section className="bg-surface py-14">
         <Container>
           <div className="mb-8 flex items-end justify-between">
             <div>
-              <h2 className="text-[28px] font-bold text-heading">Featured providers</h2>
+              <h2 className="text-[28px] font-bold text-heading">Highest rated providers</h2>
               <p className="mt-1 text-sm text-muted">
-                Ratings reflect all sourced patient reviews. Not a ranked endorsement list.
+                Minimum 48 reviews. Sorted by average rating. Updated as new reviews are added.
               </p>
             </div>
-            <Button href="/providers" variant="secondary" size="sm">View all →</Button>
+            <Link href="/providers" className="hidden text-sm font-medium text-accent hover:underline sm:block">View all →</Link>
           </div>
         </Container>
         <Container>
           <HorizontalScrollWithBar>
-            {FEATURED_BRAND_PROVIDERS.map((provider) => (
-              <div key={provider.id} style={{ flexShrink: 0, scrollSnapAlign: "start", width: "264px" }}>
+            {highestRatedProviders.map((provider) => (
+              <div key={provider.id} style={{ flexShrink: 0, width: "264px" }}>
                 <ProviderCard provider={provider} />
               </div>
             ))}

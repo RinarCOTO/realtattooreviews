@@ -80,6 +80,7 @@ export type DbReview = {
   skin_type: "Light" | "Medium" | "Dark" | "unknown" | null;
   use_case: "Complete" | "Cover-up" | "Microblading" | "Color" | "Other" | "unknown" | null;
   result_rating: "Positive" | "Neutral" | "Mixed" | "Negative" | "unknown" | null;
+  source_url: string | null;
   // ── Pipeline filter columns ──────────────────────────────────────────────
   // inkOUT reviews: bucket = 'inkout' | 'tatt2away' | 'review_required'
   // Competitor reviews: bucket = null (never processed by separator pipeline)
