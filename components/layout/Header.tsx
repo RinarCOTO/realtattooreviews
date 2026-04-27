@@ -330,7 +330,7 @@ export default function Header() {
           <div className="hidden lg:block">
             <Link
               href="/providers"
-              className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               Find a Provider
             </Link>
@@ -443,7 +443,7 @@ export default function Header() {
               <div className="mt-2 border-t border-border pt-3 pb-1">
                 <Link
                   href="/providers"
-                  className="block rounded-md bg-primary px-4 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                  className="block rounded-full bg-primary px-4 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   onClick={closeMobile}
                 >
                   Find a Provider

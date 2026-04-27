@@ -141,6 +141,7 @@ const REMOVAL_ONLY_PREFIXES = [
   "Erasable",
   "Skintellect",
   "Tatt2Away",
+  "LaserAway",
 ];
 
 function isRemovalOnlyProvider(name: string): boolean {
