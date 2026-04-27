@@ -6,8 +6,8 @@ type Props = {
 };
 
 const METHOD_COLORS: Record<Brand["method"], string> = {
-  "Laser":            "bg-secondary-soft text-secondary",
-  "Non-Laser":        "bg-accent-light text-accent",
+  "Laser":            "bg-accent-light text-accent",
+  "Non-Laser":        "bg-secondary-soft text-secondary",
   "Laser + Non-Laser":"bg-warning-soft text-warning",
 };
 
@@ -15,7 +15,7 @@ export default function BrandCard({ brand }: Props) {
   const methodStyle = METHOD_COLORS[brand.method];
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all hover:border-accent hover:shadow-md">
+    <div className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-card transition-all hover:border-accent hover:shadow-md">
 
       {/* Header: logo + name */}
       <div className="flex items-start gap-4">

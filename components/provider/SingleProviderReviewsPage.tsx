@@ -7,9 +7,7 @@ import JumpNav from "./JumpNav";
 import ProsCons from "./ProsCons";
 import ProviderHero from "./ProviderHero";
 import ResultsSnapshot from "./ResultsSnapshot";
-import SourceSummary from "./SourceSummary";
-import EvidenceCard from "@/components/reviews/EvidenceCard";
-import { selectEvidenceReviews } from "@/lib/review-evidence";
+import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import VerdictCard from "./VerdictCard";
 import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
@@ -48,8 +46,9 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
   const bottomLine = buildBottomLine(provider.name, [provider], reviews, alternatives);
   const city = provider.market.split(",")[0].trim();
   const citySlug = city.toLowerCase().replace(/\s+/g, "-");
-  const evidenceCards = selectEvidenceReviews(reviews, 10);
-
+  const googleMapsUrl =
+    provider.googleBusinessUrl ||
+    `https://www.google.com/maps/search/${encodeURIComponent(`${provider.name} ${city} tattoo removal`)}`;
   const jumpItems = [
     { label: "Overview",      href: "#overview" },
     { label: "Reviews",       href: "#reviews" },
@@ -109,8 +108,8 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
 
       <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <BlockHeading title="What Reviews Say" body="Public reviews are most useful when they are treated as patterns, not as isolated quotes. Here is what appears most often in the feedback." />
-          <SourceSummary reviews={reviews} />
+          <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
+          <WhatReviewersSay reviews={reviews} providerName={provider.name} googleMapsUrl={googleMapsUrl} />
         </Container>
       </section>
 
@@ -118,18 +117,6 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
-          {evidenceCards.length > 0 && (
-            <div className="mt-10">
-              <p className="font-mono text-[11px] uppercase tracking-widest text-(--muted) mb-4">
-                Review Evidence
-              </p>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {evidenceCards.map((r) => (
-                  <EvidenceCard key={r.id} review={r} />
-                ))}
-              </div>
-            </div>
-          )}
         </Container>
       </section>
 

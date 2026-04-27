@@ -34,6 +34,10 @@
   --color-bg:              oklch(0.99 0.002 60);
   --color-surface:         oklch(0.965 0.003 60);
   --color-surface-2:       oklch(0.94 0.003 60);
+  --color-card:            #F2F2F2;
+
+  /* Shadows */
+  --shadow-card:           0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
   --color-cloud-gray:      oklch(0.972 0.004 240);
   --color-feathering-mist: oklch(0.976 0.008 268);
   --color-background:      oklch(0.99 0.002 60);
@@ -157,6 +161,17 @@ button, [role="button"], a.btn {
 }
 
 
+/* ── Hero background ────────────────────────────────────── */
+.hero-section {
+  background-color: oklch(0.985 0.004 230);
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23C8C2B8' fill-opacity='0.35'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 70% 75% at -10% -5%, #E8C8BB 0%, transparent 62%),
+    radial-gradient(ellipse 65% 70% at 110% -5%, #BDD6D3 0%, transparent 62%),
+    radial-gradient(ellipse 100% 55% at 50% 115%, #EDE3C4 0%, transparent 55%),
+    radial-gradient(ellipse 55% 50% at 50% 32%, rgba(255,254,252,1) 0%, transparent 70%);
+}
+
 .scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -167,13 +182,13 @@ button, [role="button"], a.btn {
 
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: var(--accent) var(--border);
+  scrollbar-color: var(--accent) oklch(0.88 0.004 60);
 }
 .scrollbar-thin::-webkit-scrollbar {
-  height: 4px;
+  height: 6px;
 }
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: var(--border);
+  background: oklch(0.88 0.004 60);
   border-radius: 999px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {

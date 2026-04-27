@@ -41,7 +41,7 @@ export default function HorizontalScroll({ children, className = "" }: Props) {
       onMouseMove={onMouseMove}
       onMouseUp={onMouseUp}
       onMouseLeave={onMouseUp}
-      className={`flex items-stretch gap-4 overflow-x-auto pb-4 scrollbar-thin select-none cursor-grab ${className}`}
+      className={`flex items-stretch gap-4 overflow-x-scroll pb-4 scrollbar-thin select-none cursor-grab ${className}`}
     >
       {children}
     </div>

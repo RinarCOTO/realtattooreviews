@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       reviews.length || locations.reduce((s, l) => s + l.reviewCount, 0);
     const title =
       sanityReview.seoTitle ??
-      `${sanityReview.providerName} Review: Method, Pricing, and Results`;
+      `${sanityReview.providerName} Tattoo Removal Reviews`;
     const description =
       sanityReview.seoDescription ??
       `${count} sourced reviews for ${sanityReview.providerName}. Full breakdown of method, technology, pricing, and what to expect before you book.`;
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1)
         : (locations.reduce((s, l) => s + l.rating, 0) / locations.length).toFixed(1);
     return {
-      title: `${matchedBrand} Reviews: ${locations.length} Locations`,
+      title: `${matchedBrand} Tattoo Removal Reviews`,
       description: `${count} sourced reviews across ${locations.length} ${matchedBrand} locations. ${avg} average rating with location-by-location review coverage.`,
       alternates: { canonical: `/reviews/${slug}/` },
       openGraph: {
@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const market = `${reviews[0].city ?? ""}${reviews[0].state ? `, ${reviews[0].state}` : ""}`.trim();
     const avg = (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length).toFixed(1);
     return {
-      title: `${name} Reviews${market ? `: ${market}` : ""}`,
+      title: `${name} Tattoo Removal Reviews`,
       description: `${reviews.length} sourced reviews for ${name}${market ? ` in ${market}` : ""}. ${avg} average rating.`,
       alternates: { canonical: `/reviews/${slug}/` },
     };
@@ -101,11 +101,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : singleProvider.rating.toFixed(1);
 
   return {
-    title: `${singleProvider.name} Reviews: ${singleProvider.market}`,
+    title: `${singleProvider.name} Tattoo Removal Reviews`,
     description: `${count} sourced reviews for ${singleProvider.name} in ${singleProvider.market}. ${avg} average rating. ${singleProvider.summary}`,
     alternates: { canonical: `/reviews/${slug}/` },
     openGraph: {
-      title: `${singleProvider.name} Reviews: ${singleProvider.market}`,
+      title: `${singleProvider.name} Tattoo Removal Reviews`,
       description: `${count} sourced reviews for ${singleProvider.name}. ${avg} average rating.`,
     },
   };

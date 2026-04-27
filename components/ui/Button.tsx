@@ -26,7 +26,7 @@ export default function Button({
     primary:
       "bg-accent text-white hover:bg-accent-hover",
     secondary:
-      "border border-border bg-surface text-heading hover:border-accent hover:text-accent",
+      "border border-border bg-white text-heading hover:border-accent hover:text-accent",
     ghost:
       "text-accent hover:bg-accent-light",
   };

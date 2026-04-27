@@ -70,7 +70,7 @@ export default function CategoryTabs() {
               className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
                 active === cat.slug
                   ? "border-accent bg-accent text-white"
-                  : "border-border bg-surface text-body hover:border-accent hover:text-accent"
+                  : "border-border bg-white text-body hover:border-accent hover:text-accent"
               }`}
             >
               {cat.label}
@@ -79,7 +79,7 @@ export default function CategoryTabs() {
         </div>
 
         {/* Active category panel */}
-        <div className="mt-5 flex items-center justify-between rounded-2xl border border-border bg-bg px-6 py-5">
+        <div className="mt-5 flex items-center justify-between rounded-2xl border border-border bg-white px-6 py-5">
           <div>
             <h3 className="text-base font-semibold text-heading">{current.label}</h3>
             <p className="mt-1 text-sm text-muted">{current.description}</p>

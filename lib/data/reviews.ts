@@ -97,6 +97,14 @@ function getProviderNamesForSlug(
   if (brand) {
     // Deduplicate: inkOUT locations all share name "inkOUT", etc.
     const names = [...new Set(getProvidersByBrand(brand).map((p) => p.name))];
+    // inkOUT pages include Tatt2Away sessions (tatt2away bucket merged into inkOUT display)
+    if (isInkout) {
+      const tatt2awayBrand = getMultiLocationBrands().find((b) => brandToSlug(b) === "tatt2away");
+      if (tatt2awayBrand) {
+        const tatt2awayNames = getProvidersByBrand(tatt2awayBrand).map((p) => p.name);
+        return { names: [...new Set([...names, ...tatt2awayNames])], isInkout };
+      }
+    }
     return { names, isInkout };
   }
 
@@ -167,6 +175,7 @@ export function dbReviewToReview(r: DbReview): Review {
     useCase: (r.use_case && r.use_case !== "unknown") ? r.use_case : null,
     resultRating: (r.result_rating && r.result_rating !== "unknown") ? r.result_rating as Review["resultRating"] : null,
     methodUsed: r.method_used ?? null,
+    reviewSummary: r.review_summary ?? null,
     // Fields not captured in competitor_reviews, kept for type compatibility
     healingIssues: null,
     costMentioned: null,
@@ -232,13 +241,13 @@ export function selectDiverseReviews(reviews: Review[], maxCards = 6): Review[] 
 // Bucket logic (verified from actual data in competitor_reviews, April 2026):
 //   inkOUT reviews:     bucket = 'inkout'     (approved inkOUT reviews)
 //   Competitor reviews: bucket = 'competitor' (Removery, Arviv, Clean Slate, etc.)
-//   Tatt2Away method:   bucket = 'tatt2away'  (inkOUT sessions using Tatt2Away tech, NOT shown on RTR public pages)
+//   Tatt2Away method:   bucket = 'tatt2away'  (inkOUT sessions using Tatt2Away tech, shown on inkOUT pages)
 //   review_required:    bucket = 'review_required' (flagged for manual review, not published)
 //
 // BucketScope controls how the bucket column is filtered:
-//   "inkout"     -- strict: only bucket = 'inkout'
+//   "inkout"     -- inkOUT pages: bucket = 'inkout' OR bucket = 'tatt2away' (Tatt2Away merged into inkOUT)
 //   "competitor" -- only bucket = 'competitor'
-//   "any"        -- bucket = 'competitor' OR bucket = 'inkout' (excludes tatt2away)
+//   "any"        -- bucket = 'competitor' OR bucket = 'inkout' (site-wide; excludes tatt2away)
 
 type BucketScope = "inkout" | "competitor" | "any";
 
@@ -249,8 +258,8 @@ function applyPublicFilters(query: any, bucketScope: BucketScope): any {
 
   // Bucket gate: prevent tatt2away and review_required from reaching public pages
   if (bucketScope === "inkout") {
-    // inkOUT pages: only reviews the separator explicitly approved for inkOUT
-    query = query.eq("bucket", "inkout");
+    // inkOUT pages: inkOUT-approved reviews plus Tatt2Away sessions (merged into inkOUT)
+    query = query.or("bucket.eq.inkout,bucket.eq.tatt2away");
   } else if (bucketScope === "competitor") {
     // Competitor pages: reviews stamped 'competitor' by the separator pipeline
     query = query.eq("bucket", "competitor");

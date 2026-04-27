@@ -10,7 +10,6 @@ import CategoryTabs from "@/components/sections/home/CategoryTabs";
 import HowItWorks from "@/components/sections/home/HowItWorks";
 import IsItWorthIt from "@/components/sections/home/IsItWorthIt";
 import CTASection from "@/components/sections/home/CTASection";
-import HorizontalScroll from "@/components/ui/HorizontalScroll";
 import FAQSection from "@/components/sections/home/FAQSection";
 import { brands } from "@/lib/mock-data/brands";
 import { cities } from "@/lib/mock-data/cities";
@@ -66,7 +65,7 @@ export default async function HomePage() {
       {/* ── 3. The Problem ──────────────────────────── */}
       <section className="border-b border-border bg-surface py-16">
         <Container>
-          <div className="max-w-prose">
+          <div>
             <h2 className="text-[28px] font-bold text-heading mb-6">
               The Problem This Site Solves
             </h2>
@@ -83,7 +82,7 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* ── 4. How it works ─────────────────────────── */}
+      {/* ── 4. How Reviews works ─────────────────────────── */}
       <HowItWorks steps={cms?.howItWorksSteps} />
 
       {/* ── 5. Category tabs ────────────────────────── */}
@@ -113,9 +112,9 @@ export default async function HomePage() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group flex flex-col gap-2 rounded-xl border border-border bg-surface p-5 transition-colors hover:border-accent/40"
+                className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-5 shadow-card transition-colors hover:border-accent hover:bg-accent/8"
               >
-                <p className="font-semibold text-heading text-[14px] group-hover:text-accent transition-colors">{link.title}</p>
+                <p className="font-semibold text-heading text-[14px] transition-colors group-hover:text-accent">{link.title}</p>
                 <p className="text-[13px] leading-relaxed text-muted">{link.desc}</p>
               </Link>
             ))}
@@ -124,7 +123,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── 7. Featured providers ───────────────────── */}
-      <section className="py-14">
+      <section className="bg-surface py-14">
         <Container>
           <div className="mb-8 flex items-end justify-between">
             <div>
@@ -136,20 +135,20 @@ export default async function HomePage() {
             <Button href="/providers" variant="secondary" size="sm">View all →</Button>
           </div>
         </Container>
-        <div className="pl-4 sm:pl-6 lg:pl-8 xl:pl-[max(2rem,calc((100vw-72rem)/2+2rem))]">
-          <HorizontalScroll>
+        <div className="overflow-x-auto scrollbar-thin pb-4">
+          <div className="flex gap-4 pl-4 sm:pl-6 lg:pl-8 xl:pl-[max(2rem,calc((100vw-72rem)/2+2rem))]" style={{ width: "max-content" }}>
             {FEATURED_BRANDS.map((brand) => (
               <div key={brand.id} className="w-72 shrink-0">
                 <BrandCard brand={brand} />
               </div>
             ))}
             <div className="w-4 shrink-0 sm:w-6 lg:w-8" />
-          </HorizontalScroll>
+          </div>
         </div>
       </section>
 
       {/* ── 8. Browse by city ───────────────────────── */}
-      <section className="border-t border-border bg-surface py-14">
+      <section className="border-t border-border bg-bg py-14">
         <Container>
           <div className="mb-8 flex items-end justify-between">
             <div>
@@ -174,7 +173,7 @@ export default async function HomePage() {
       <IsItWorthIt />
 
       {/* ── 10. Research before you book ────────────── */}
-      <section className="border-t border-border py-14">
+      <section className="border-t border-border bg-bg py-14">
         <Container>
           <div className="mb-8">
             <h2 className="text-[28px] font-bold text-heading">Research before you book</h2>

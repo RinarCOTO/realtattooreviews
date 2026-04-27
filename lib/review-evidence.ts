@@ -91,3 +91,74 @@ export const SENTIMENT_STYLE: Record<string, string> = {
   "Mixed":    "bg-warning-soft text-warning",
   "Neutral":  "bg-(--surface) text-(--muted)",
 };
+
+// ── Pattern summary (Layer 1 of What Reviewers Say) ───────────────────────────
+
+export type PatternGroup = {
+  useCase: string;
+  label: string;
+  count: number;
+  positives: number;
+  negatives: number;
+  avgStars: number | null;
+  cities: string[];
+  scarringSignal: "praised" | "reported" | null;
+};
+
+const USE_CASE_SORT_ORDER = ["Complete", "Microblading", "Color", "Cover-up", "Other"];
+
+export function buildPatternSummary(reviews: Review[]): PatternGroup[] {
+  // Only include reviews with both classification fields populated (mirrors the Supabase query filter)
+  const classified = reviews.filter((r) => r.useCase != null && r.resultRating != null);
+
+  const grouped: Record<string, Review[]> = {};
+  for (const r of classified) {
+    const key = r.useCase!;
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(r);
+  }
+
+  return Object.entries(grouped)
+    .map(([useCase, group]): PatternGroup => {
+      const positives = group.filter((r) => r.resultRating === "Positive").length;
+      const negatives = group.filter((r) => r.resultRating === "Negative").length;
+      const stars = group.map((r) => r.rating).filter((s): s is number => s != null);
+      const avgStars =
+        stars.length > 0
+          ? Math.round((stars.reduce((a, b) => a + b, 0) / stars.length) * 10) / 10
+          : null;
+      const cities = [
+        ...new Set(group.map((r) => r.city).filter((c): c is string => Boolean(c))),
+      ];
+      const hasPraised = group.some((r) => r.scarringPraised);
+      const hasReported = group.some((r) => r.scarringReported);
+      return {
+        useCase,
+        label: USE_CASE_DISPLAY[useCase] ?? useCase.toUpperCase(),
+        count: group.length,
+        positives,
+        negatives,
+        avgStars,
+        cities,
+        scarringSignal: hasPraised ? "praised" : hasReported ? "reported" : null,
+      };
+    })
+    .sort(
+      (a, b) =>
+        USE_CASE_SORT_ORDER.indexOf(a.useCase) - USE_CASE_SORT_ORDER.indexOf(b.useCase)
+    );
+}
+
+// ── Classified review selection (Layer 2 of What Reviewers Say) ───────────────
+
+export function selectClassifiedReviews(reviews: Review[]): Review[] {
+  const SENT_ORDER = ["Negative", "Mixed", "Positive", "Neutral"];
+  return [...reviews]
+    // Include if review has a paraphrase (reviewSummary) OR enough fields to generate one via template
+    .filter((r) => r.resultRating != null && (r.reviewSummary || r.useCase))
+    .sort((a, b) => {
+      const sA = SENT_ORDER.indexOf(a.resultRating ?? "Neutral");
+      const sB = SENT_ORDER.indexOf(b.resultRating ?? "Neutral");
+      return sA - sB;
+    });
+}

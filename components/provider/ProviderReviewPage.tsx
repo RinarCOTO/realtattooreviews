@@ -6,6 +6,7 @@ import JumpNav from "./JumpNav";
 import ProviderHero from "./ProviderHero";
 import VerdictCard from "./VerdictCard";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import type { SanityProviderReview } from "@/lib/page-data/reviews";
 import type { Provider } from "@/types/provider";
 import type { Review } from "@/types/review";
@@ -74,9 +75,13 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
     .flatMap((l) => l.tags ?? [])
     .filter((v, i, a) => a.indexOf(v) === i)
     .slice(0, 6);
+  const googleMapsUrl =
+    locations.find((l) => l.googleBusinessUrl)?.googleBusinessUrl ||
+    `https://www.google.com/maps/search/${encodeURIComponent(`${review.providerName} tattoo removal`)}`;
 
   const jumpItems = [
     { label: "Verdict",     href: "#verdict" },
+    { label: "Reviews",     href: "#reviews" },
     { label: "Does well",   href: "#does-well" },
     { label: "Hesitations", href: "#hesitations" },
     { label: "Different",   href: "#different" },
@@ -133,8 +138,21 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
         </Container>
       </section>
 
+      {/* What Reviewers Say */}
+      {reviews.length > 0 && (
+        <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
+          <Container>
+            <BlockHeading
+              title="What Reviewers Say"
+              body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top."
+            />
+            <WhatReviewersSay reviews={reviews} providerName={review.providerName} googleMapsUrl={googleMapsUrl} />
+          </Container>
+        </section>
+      )}
+
       {/* What the Provider Does Well */}
-      <section id="does-well" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="does-well" className="border-b border-(--line) bg-(--wash) py-22">
         <Container>
           <BlockHeading title={`What ${review.providerName} Does Well`} body="" />
           <ul className="flex flex-col gap-3 mt-2">
@@ -382,14 +400,12 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             </p>
             <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
               These reviews are publicly posted by patients on Google. RealTattooReviews does
-              not host, collect, or claim ownership of the underlying review content. We
-              analyze publicly available review patterns as part of our editorial review
-              process.
+              not host user-submitted reviews. All review data is sourced from public
+              platforms.
             </p>
             <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
               Provider data is verified against {review.providerName}&apos;s website and
-              public sources. This review was prepared by the RealTattooReviews editorial
-              team.
+              public sources.
             </p>
             <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
               We do not accept payment from {review.providerName} or any other provider for

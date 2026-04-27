@@ -47,6 +47,7 @@ export type Review = {
   useCase?: "Complete" | "Cover-up" | "Microblading" | "Color" | "Other" | null;
   resultRating?: "Positive" | "Neutral" | "Mixed" | "Negative" | null;
   methodUsed?: string | null;
+  reviewSummary?: string | null;                 // RTR paraphrase stored in review_summary column
 };
 
 /**
@@ -85,6 +86,7 @@ export type DbReview = {
   bucket: "inkout" | "tatt2away" | "review_required" | "competitor" | null;
   is_tattoo_removal: boolean | null;
   status: "published" | "pending" | "rejected" | "draft" | null;
+  review_summary: string | null;               // RTR-authored paraphrase (not verbatim review_text)
   reviewed_decision: string | null;
   reviewed_at: string | null;
   routing_reason: string | null;

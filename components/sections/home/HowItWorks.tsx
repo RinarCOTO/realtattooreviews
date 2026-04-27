@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import { PortableText, type PortableTextBlock } from "@portabletext/react";
+import { type PortableTextBlock } from "@portabletext/react";
+import HowItWorksCards from "./HowItWorksCards";
 
 // What this component can receive from the outside
 type Props = {
@@ -68,44 +69,10 @@ export default function HowItWorks({ steps }: Props) {
           </Link>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-3">
-          {activeSteps.map((step, i) => {
-            // i = 0, 1, 2: matches the step to its decoration by position
-            const decor = STEP_DECORATIONS[i] ?? STEP_DECORATIONS[0];
-            return (
-              <div
-                key={step.stepNumber}
-                className="relative rounded-2xl border border-border bg-surface p-6"
-              >
-                {/* Connector line between cards */}
-                {i < activeSteps.length - 1 && (
-                  <div className="absolute right-0 top-8 hidden h-px w-6 bg-border sm:block translate-x-full" />
-                )}
-
-                {/* Icon */}
-                <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${decor.iconBg} ${decor.color}`}>
-                  {decor.icon}
-                </div>
-
-                {/* Step number */}
-                <span className={`mt-4 block text-xs font-semibold uppercase tracking-widest ${decor.color}`}>
-                  Step {step.stepNumber}
-                </span>
-
-                <h3 className="mt-1.5 text-base font-semibold text-heading">{step.title}</h3>
-                <div className="mt-2 text-sm leading-relaxed text-muted">
-                  {typeof step.body === 'string'
-                    ? step.body
-                    : <PortableText value={step.body} />
-                  }
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <HowItWorksCards steps={activeSteps} decorations={STEP_DECORATIONS} />
 
         {/* Editorial note */}
-        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-border bg-surface px-6 py-4">
+        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-border bg-card px-6 py-4">
           <svg className="mt-0.5 h-4 w-4 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>

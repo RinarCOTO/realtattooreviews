@@ -9,7 +9,7 @@ export default function CityCard({ city }: CityCardProps) {
   return (
     <Link
       href={`/cities/${city.slug}`}
-      className="flex items-center justify-between rounded-2xl border border-border bg-surface px-5 py-4 transition-all hover:border-accent hover:shadow-sm"
+      className="flex items-center justify-between rounded-2xl border border-border bg-card px-5 py-4 shadow-card transition-all hover:border-accent hover:shadow-md"
     >
       <div className="flex items-center gap-3">
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-light text-accent">

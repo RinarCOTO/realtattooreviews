@@ -7,9 +7,7 @@ import JumpNav from "./JumpNav";
 import ProsCons from "./ProsCons";
 import ProviderHero from "./ProviderHero";
 import ResultsSnapshot from "./ResultsSnapshot";
-import SourceSummary from "./SourceSummary";
-import EvidenceCard from "@/components/reviews/EvidenceCard";
-import { selectEvidenceReviews } from "@/lib/review-evidence";
+import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import VerdictCard from "./VerdictCard";
 import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
@@ -52,7 +50,10 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   const bestForData = buildBestFor(locations, reviews);
   const bottomLine = buildBottomLine(brand, locations, reviews, alternatives);
   const brandTags = unique(locations.flatMap((l) => l.tags ?? [])).slice(0, 6);
-  const evidenceCards = selectEvidenceReviews(reviews, 10);
+  // Use first location's Google Business URL if populated; fall back to Maps search
+  const googleMapsUrl =
+    locations.find((l) => l.googleBusinessUrl)?.googleBusinessUrl ||
+    `https://www.google.com/maps/search/${encodeURIComponent(`${brand} tattoo removal`)}`;
   const jumpItems = [
     { label: "Overview",     href: "#overview" },
     { label: "Reviews",      href: "#reviews" },
@@ -110,10 +111,10 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      <section id="reviews" className="border-b border-(--line) bg-bg py-22">
+      <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <BlockHeading title="What Reviews Say" body="Public reviews are most useful when they are treated as patterns, not as isolated quotes. Here is what appears most often in the feedback." />
-          <SourceSummary reviews={reviews} />
+          <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
+          <WhatReviewersSay reviews={reviews} providerName={brand} googleMapsUrl={googleMapsUrl} />
         </Container>
       </section>
 
@@ -121,18 +122,6 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
-          {evidenceCards.length > 0 && (
-            <div className="mt-10">
-              <p className="font-mono text-[11px] uppercase tracking-widest text-(--muted) mb-4">
-                Review Evidence
-              </p>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {evidenceCards.map((r) => (
-                  <EvidenceCard key={r.id} review={r} />
-                ))}
-              </div>
-            </div>
-          )}
         </Container>
       </section>
 
