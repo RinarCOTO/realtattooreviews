@@ -24,7 +24,8 @@ export type Review = {
   // ── Review content ───────────────────────────────────────────────────────
   rating?: number;
   source?: string;                               // e.g. "Google"
-  date?: string;
+  date?: string;                                 // formatted display date, e.g. "Apr 2024"
+  dateISO?: string;                              // raw ISO timestamp for sort comparisons
   excerpt?: string;                              // short teaser for cards
   fullText?: string;                             // full review text for detail pages
   reviewUrl?: string;                            // link back to original source

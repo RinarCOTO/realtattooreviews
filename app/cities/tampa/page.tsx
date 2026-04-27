@@ -28,11 +28,6 @@
  * but no rows in competitor_reviews yet. Listed in TAMPA_PROVIDERS so the components render
  * them with "Review sample pending". Static prose preserves SEO content by name.
  *
- * SKINTELLECT USE-CASE TAGS:
- * Skintellect's review rows have most use_case fields null. The classifier may have missed
- * this provider or all 50 reviews lacked specific use-case signals. Flagged for re-
- * classification at next scrape.
- *
  * METRO COVERAGE:
  * Brief explicitly requires Tampa Bay-wide coverage: Tampa + St. Petersburg + Clearwater as
  * a single market. The page includes a dedicated "Tattoo Removal in St. Petersburg &
@@ -90,7 +85,7 @@ const faqs = [
   {
     question: "Where can I get tattoo removal in Tampa Bay?",
     answer:
-      "Providers serve the entire metro. Westchase and NW Tampa host Arviv Medical Aesthetics and Skintellect. West Tampa hosts Erasable Med Spa. South Tampa hosts ReversaTatt. Westshore hosts Removery. inkOUT (Rejuvatek) serves the Tampa Bay metro as the only non-laser option. Pinellas Park and St. Petersburg host St Pete Tattoo Removal and EradiTatt. Clearwater hosts Tampa Bay Tattoo Removal. Choose by proximity once you have narrowed by method and provider fit.",
+      "Providers serve the entire metro. Westchase and NW Tampa host Arviv Medical Aesthetics. West Tampa hosts Erasable Med Spa. South Tampa hosts ReversaTatt. Westshore hosts Removery. inkOUT (Rejuvatek) serves the Tampa Bay metro as the only non-laser option. Pinellas Park and St. Petersburg host St Pete Tattoo Removal and EradiTatt. Clearwater hosts Tampa Bay Tattoo Removal. Choose by proximity once you have narrowed by method and provider fit.",
   },
   {
     question: "What laser tattoo removal options are available in Tampa?",
@@ -120,7 +115,7 @@ const faqs = [
   {
     question: "Do Tampa providers offer financing or payment plans?",
     answer:
-      "Most do. Removery includes internal financing as part of its Complete Removal Package. Med spas like Arviv, Erasable, and Skintellect typically offer membership or loyalty programs with discounts. Owner-operated specialists usually offer per-session pricing that functions as a built-in spread. Ask about payment plans at the consultation; most providers will work with users to fit a budget.",
+      "Most do. Removery includes internal financing as part of its Complete Removal Package. Med spas like Arviv and Erasable typically offer membership or loyalty programs with discounts. Owner-operated specialists usually offer per-session pricing that functions as a built-in spread. Ask about payment plans at the consultation; most providers will work with users to fit a budget.",
   },
 ];
 
@@ -142,12 +137,6 @@ const TAMPA_PROVIDERS: StaticProviderProfile[] = [
     address: "4103 N Armenia Ave",
     neighborhood: "West Tampa",
     staticMethod: "PicoWay (picosecond)",
-  },
-  {
-    providerName: "Skintellect Laser & Aesthetics",
-    address: "10840 Sheldon Rd Suite A",
-    neighborhood: "NW Tampa / Westchase",
-    staticMethod: "Fotona",
   },
   {
     providerName: "inkOUT",
@@ -353,18 +342,6 @@ export default function TampaPage() {
                     ],
                   },
                   {
-                    name: "Skintellect Laser & Aesthetics (NW Tampa / Westchase)",
-                    body: "Skintellect is at 10840 Sheldon Rd Suite A in NW Tampa, near the Westchase and Citrus Park areas. The clinic is a full-service laser and aesthetics studio offering tattoo removal alongside laser hair removal, facials, injectables, and skin treatments. Skintellect uses a Fotona laser system, a flexible platform used across multiple aesthetic procedures.",
-                    bestFor: [
-                      "Users in NW Tampa, Westchase, or Citrus Park who want a multi-service aesthetics studio",
-                      "Users who already use Skintellect for other treatments and want to add tattoo removal at the same provider",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a tattoo-removal-only specialist",
-                      "Users with complex multi-color tattoos that benefit from a dedicated removal-platform laser",
-                    ],
-                  },
-                  {
                     name: "inkOUT (Rejuvatek) Tampa Bay Metro",
                     body: "inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical, serves the Tampa Bay metro. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. This is the only non-laser option in the Tampa Bay area for users who want to avoid laser-based treatment entirely.",
                     bestFor: [
@@ -512,7 +489,7 @@ export default function TampaPage() {
                   },
                   {
                     title: "Cross-bay considerations",
-                    body: "The Howard Frankland and Gandy bridges put central Tampa within 25 to 35 minutes of central St. Petersburg outside rush hour. Removery's Westshore location is the closest Tampa-side chain to the Pinellas crossing. Arviv, Skintellect, and Erasable serve users willing to cross for a med spa or higher-volume practice. inkOUT (Rejuvatek) serves the metro on a flexible-location basis as the only non-laser provider in Tampa Bay.",
+                    body: "The Howard Frankland and Gandy bridges put central Tampa within 25 to 35 minutes of central St. Petersburg outside rush hour. Removery's Westshore location is the closest Tampa-side chain to the Pinellas crossing. Arviv and Erasable serve users willing to cross for a med spa or higher-volume practice. inkOUT (Rejuvatek) serves the metro on a flexible-location basis as the only non-laser provider in Tampa Bay.",
                   },
                 ].map((item) => (
                   <div
@@ -548,10 +525,6 @@ export default function TampaPage() {
                   {
                     title: "Q-switched systems",
                     body: "Some Tampa Bay clinics still use Q-switched laser technology. Q-switched lasers remain effective for black and dark-blue ink and were the original gold standard for tattoo removal. They typically need more sessions than picosecond systems for the same color range but have a longer track record and are widely available. Experienced Q-switched operators can match newer picosecond systems on standard cases.",
-                  },
-                  {
-                    title: "Other laser platforms",
-                    body: "Skintellect uses a Fotona laser, a multi-application platform used for tattoo removal alongside other aesthetic procedures. Different platform classes carry different strengths. Always ask which specific machine and which wavelengths a clinic offers if your tattoo includes hard-to-clear colors.",
                   },
                   {
                     title: "Wavelengths",

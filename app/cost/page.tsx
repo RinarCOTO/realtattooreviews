@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function CostPage() {
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-hero-bg py-14">
+      <section className="border-b border-border bg-feathering-mist py-14">
         <Container>
           <h1 className="text-[36px] font-bold text-heading">
             Tattoo Removal Cost Guide

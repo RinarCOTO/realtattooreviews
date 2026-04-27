@@ -159,6 +159,7 @@ export function dbReviewToReview(r: DbReview): Review {
     source: r.verified_source,
     // Use ISO timestamp (review_date_iso) for formatting; fall back to raw date string
     date: formatReviewDate(r.review_date_iso) ?? r.review_date ?? undefined,
+    dateISO: r.review_date_iso ?? undefined,
     excerpt: r.review_text ?? undefined,
     fullText: r.review_text ?? undefined,
     reviewUrl: r.source_url ?? undefined,

@@ -128,7 +128,7 @@ export default function CategoriesPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-border bg-hero-bg py-14">
+      <section className="border-b border-border bg-feathering-mist py-14">
         <Container>
           <nav className="mb-4 text-[12px] text-muted" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-accent">Home</Link>

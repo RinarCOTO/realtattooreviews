@@ -133,7 +133,7 @@ export default async function ComparisonPage({ params }: Props) {
   if (!detailedPage) {
     return (
       <main className="min-h-screen bg-bg">
-        <section className="border-b border-border bg-hero-bg py-14">
+        <section className="border-b border-border bg-feathering-mist py-14">
           <Container>
             <p className="mb-2 text-sm text-muted">
               <Link href="/comparisons" className="hover:text-accent">Comparisons</Link>
@@ -223,7 +223,7 @@ export default async function ComparisonPage({ params }: Props) {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) bg-hero-bg py-22">
+      <section className="border-b border-(--line) bg-feathering-mist py-22">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.75fr)_minmax(280px,1fr)] lg:items-start">
             <div>

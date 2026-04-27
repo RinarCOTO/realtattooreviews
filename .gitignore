@@ -47,3 +47,6 @@ ARCHITECTURE.md
 CLAUDE.md
 AGENTS.md
 .claude/
+
+# provider logos — fetched via scripts/fetch-logos.ts, not committed to git
+/public/images/providers/logos/

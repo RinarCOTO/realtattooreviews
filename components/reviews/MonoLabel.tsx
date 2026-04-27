@@ -18,7 +18,7 @@ export default function MonoLabel({
   return (
     <div
       className={[
-        "font-mono font-bold uppercase tracking-wider",
+        "font-sans font-bold uppercase tracking-wider",
         size === "xs" ? "text-[13px]" : "text-[14px]",
         color === "accent" ? "text-(--accent)" : "text-(--muted)",
         className,

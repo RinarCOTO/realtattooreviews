@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { City } from "@/types/city";
+import CountUp from "@/components/ui/CountUp";
 
 type CityCardProps = {
   city: City;
@@ -21,9 +24,9 @@ export default function CityCard({ city }: CityCardProps) {
         <span className="text-sm font-semibold text-heading">{city.name}</span>
       </div>
       <div className="flex items-center gap-3 text-xs text-muted">
-        <span>{city.reviewCount} reviews</span>
+        <span><CountUp end={city.reviewCount} /> reviews</span>
         <span className="text-border">·</span>
-        <span>{city.providerCount} providers</span>
+        <span><CountUp end={city.providerCount} /> providers</span>
       </div>
     </Link>
   );

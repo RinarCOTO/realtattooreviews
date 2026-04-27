@@ -10,6 +10,7 @@ import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import type { SanityProviderReview } from "@/lib/page-data/reviews";
 import type { Provider } from "@/types/provider";
 import type { Review } from "@/types/review";
+import FaqAccordion from "./FaqAccordion";
 import {
   getAlternativeProviders,
   getVerdictFromRating,
@@ -46,7 +47,7 @@ function VerdictTable({ review }: { review: SanityProviderReview }) {
           {rows.map(({ label, value }) =>
             value ? (
               <tr key={label} className="border-b border-(--line) last:border-0">
-                <td className="py-3 px-5 font-mono text-[11px] uppercase tracking-widest text-(--muted) whitespace-nowrap w-[220px] bg-(--surface)">
+                <td className="py-3 px-5 font-sans text-[11px] uppercase tracking-widest text-(--muted) whitespace-nowrap w-[220px] bg-(--surface)">
                   {label}
                 </td>
                 <td className="py-3 px-5 text-(--ink) leading-relaxed">{value}</td>
@@ -127,7 +128,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
           />
           <VerdictTable review={review} />
           {locations.length > 1 && (
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-(--muted)">
+            <p className="mt-4 font-sans text-[11px] uppercase tracking-widest text-(--muted)">
               Aggregate rating is a weighted composite across{" "}
               {locations.length} Google Business locations. Individual location ratings
               range from{" "}
@@ -263,24 +264,26 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               {locations.map((location) => (
                 <div
                   key={location.id}
-                  className="flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl"
+                  className="flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl transition-shadow hover:shadow-md"
                 >
                   <div className="flex items-start justify-between">
-                    <div>
-                      <p className="font-semibold text-(--ink) text-[15px]">
-                        {location.market}
+                    <p className="font-semibold text-(--ink) text-[15px]">
+                      {location.market}
+                    </p>
+                    <div className="text-right shrink-0">
+                      <p className="font-sans font-semibold text-[13px] text-(--accent)">
+                        {location.rating}
                       </p>
-                      <MonoLabel className="mt-0.5">{location.location}</MonoLabel>
+                      <p className="text-[11px] text-(--muted)">
+                        {location.rating >= 4.5 ? "Strong" : location.rating >= 4.0 ? "Solid" : "Mixed"}
+                      </p>
                     </div>
-                    <span className="font-mono font-semibold text-[13px] text-(--accent)">
-                      {location.rating}
-                    </span>
                   </div>
                   <p className="text-[13px] leading-relaxed text-(--muted) line-clamp-3">
                     {location.summary}
                   </p>
                   <div className="mt-auto flex items-center justify-between border-t border-(--line) pt-3">
-                    <MonoLabel>{location.reviewCount} reviews</MonoLabel>
+                    <span className="text-[13px] text-(--muted)">{location.reviewCount} reviews</span>
                     {location.googleBusinessUrl ? (
                       <a
                         href={location.googleBusinessUrl}
@@ -314,33 +317,27 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             body="Use this section to quickly judge whether this provider fits your situation before going deeper."
           />
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="border border-(--line) bg-white p-6 rounded-xl">
-              <p className="font-semibold text-(--ink) text-[15px] mb-4">
+            <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
+              <p className="mb-4 text-[15px] font-semibold text-(--ink)">
                 {review.providerName} is most likely the right fit if you:
               </p>
               <ul className="flex flex-col gap-2">
                 {(review.bestForDetails ?? review.bestFor)?.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)"
-                  >
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-1.5 shrink-0" />
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#5A7A5A" }} />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="border border-(--line) bg-white p-6 rounded-xl">
-              <p className="font-semibold text-(--ink) text-[15px] mb-4">
+            <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
+              <p className="mb-4 text-[15px] font-semibold text-(--ink)">
                 Compare more carefully if you:
               </p>
               <ul className="flex flex-col gap-2">
                 {(review.lessIdealForDetails ?? review.lessIdealFor)?.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)"
-                  >
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                     {item}
                   </li>
                 ))}
@@ -357,19 +354,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             title={`${review.providerName} Frequently Asked Questions`}
             body={`Common questions from people researching ${review.providerName} before making a booking decision.`}
           />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {review.faqItems?.map((item) => (
-              <div
-                key={item.question}
-                className="border border-(--line) bg-white p-5 rounded-xl"
-              >
-                <p className="font-semibold text-(--ink) text-[14px] mb-2">
-                  {item.question}
-                </p>
-                <p className="text-[13px] leading-relaxed text-(--muted)">{item.answer}</p>
-              </div>
-            ))}
-          </div>
+          {review.faqItems && <FaqAccordion items={review.faqItems} />}
         </Container>
       </section>
 
@@ -433,7 +418,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               .
             </p>
             {review.lastReviewed && (
-              <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-(--muted)">
+              <p className="mt-4 font-sans text-[11px] uppercase tracking-widest text-(--muted)">
                 Last reviewed:{" "}
                 {new Date(review.lastReviewed).toLocaleDateString("en-US", {
                   month: "long",

@@ -593,23 +593,4 @@ export const providers: Provider[] = [
     website: "https://removery.com",
     webSummary: "Removery performs laser tattoo removal exclusively using PicoWay picosecond devices, with more than 1.6 million treatments completed across its studio network. The company operates a dedicated Clinical Advisory Board of physicians and requires its specialists to complete over 160 hours of training. Its commercial model centers on unlimited-session Complete Removal Packages sold at a single flat price rather than per-session billing, and the brand runs the INK-nitiative program offering free removal for formerly incarcerated individuals, domestic violence survivors, and those removing hate symbols.",
   },
-  {
-    id: "skintellect",
-    name: "Skintellect",
-    slug: "skintellect",
-    market: "Tampa, FL",
-    rating: 4.2,
-    reviewCount: 26,
-    specialty: "Laser Tattoo Removal",
-    yearsActive: 11,
-    location: "Tampa, FL",
-    photo: "/images/providers/skintellect.jpg",
-    featured: false,
-    featuredScore: 69,
-    summary:
-      "Skintellect Laser and Aesthetics is a medical spa in Westchase, Tampa, established in 2015, offering laser tattoo removal as part of a broad aesthetic menu that includes laser hair removal, skin tightening, Morpheus8 microneedling, injectables, body contouring, and intimate lightening. The practice emphasizes Fotona laser technology across multiple service lines.",
-    tags: ["Laser", "Fotona", "Medical Spa", "High Rated"],
-    website: "https://skintellectonline.com",
-    webSummary: "Skintellect performs laser tattoo and permanent makeup removal using the Fotona StarWalker FracTat system, Fotona's patented two-step protocol that uses a fractional ablative handpiece to create micro-channels in the skin as pressure-relief ducts, followed by a full-beam Q-switched Nd:YAG pass that targets the underlying ink. The fractional component is marketed as reducing the frosting effect common to standard picosecond treatments and allowing deeper pigment access. Most tattoos require six to ten sessions spaced six to ten weeks apart, and the clinic is the only Fotona StarWalker provider among the major Tampa-market tattoo removal clinics.",
-  },
 ];

@@ -110,7 +110,7 @@ export default function MethodologyPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-border bg-hero-bg py-14">
+      <section className="border-b border-border bg-feathering-mist py-14">
         <Container>
           <p className="mb-3 text-sm text-muted">
             <Link href="/" className="hover:text-accent">Home</Link>

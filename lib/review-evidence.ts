@@ -78,18 +78,18 @@ export function generateFindingText(review: Review): string {
 }
 
 export const USE_CASE_DISPLAY: Record<string, string> = {
-  "Complete":    "COMPLETE REMOVAL",
-  "Microblading": "MICROBLADING",
-  "Color":       "COLOR INK",
-  "Cover-up":    "COVER-UP",
-  "Other":       "GENERAL",
+  "Complete":    "Complete Removal",
+  "Microblading": "Microblading",
+  "Color":       "Color Ink",
+  "Cover-up":    "Cover-Up",
+  "Other":       "General",
 };
 
 export const SENTIMENT_STYLE: Record<string, string> = {
-  "Positive": "bg-secondary-soft text-secondary",
-  "Negative": "bg-danger-soft text-danger",
-  "Mixed":    "bg-warning-soft text-warning",
-  "Neutral":  "bg-(--surface) text-(--muted)",
+  "Positive": "bg-[#E8E0D8] text-[#3D3530]",
+  "Negative": "bg-[#F0D5CF] text-(--accent)",
+  "Mixed":    "bg-[#EDEBE8] text-[#8A8078]",
+  "Neutral":  "bg-[#EDEBE8] text-[#8A8078]",
 };
 
 // ── Pattern summary (Layer 1 of What Reviewers Say) ───────────────────────────
@@ -151,14 +151,65 @@ export function buildPatternSummary(reviews: Review[]): PatternGroup[] {
 
 // ── Classified review selection (Layer 2 of What Reviewers Say) ───────────────
 
-export function selectClassifiedReviews(reviews: Review[]): Review[] {
-  const SENT_ORDER = ["Positive", "Neutral", "Mixed", "Negative"];
-  return [...reviews]
-    // Include if review has a paraphrase (reviewSummary) OR enough fields to generate one via template
-    .filter((r) => r.resultRating != null && (r.reviewSummary || r.useCase))
-    .sort((a, b) => {
-      const sA = SENT_ORDER.indexOf(a.resultRating ?? "Neutral");
-      const sB = SENT_ORDER.indexOf(b.resultRating ?? "Neutral");
-      return sA - sB;
+export type SortKey = "most_useful" | "most_recent" | "highest_rated" | "critical_first";
+
+function compareDateDesc(a: string | undefined, b: string | undefined): number {
+  if (!a && !b) return 0;
+  if (!a) return 1;   // nulls last
+  if (!b) return -1;
+  return b.localeCompare(a);
+}
+
+export function sortClassifiedReviews(reviews: Review[], sortKey: SortKey = "most_useful"): Review[] {
+  const filtered = [...reviews].filter(
+    (r) => r.resultRating != null && (r.reviewSummary || r.useCase)
+  );
+
+  if (sortKey === "most_recent") {
+    return filtered.sort((a, b) => compareDateDesc(a.dateISO, b.dateISO));
+  }
+
+  if (sortKey === "highest_rated") {
+    return filtered.sort((a, b) => {
+      const diff = (b.rating ?? 0) - (a.rating ?? 0);
+      return diff !== 0 ? diff : compareDateDesc(a.dateISO, b.dateISO);
     });
+  }
+
+  if (sortKey === "critical_first") {
+    return filtered.sort((a, b) => {
+      const diff = (a.rating ?? 5) - (b.rating ?? 5);
+      return diff !== 0 ? diff : compareDateDesc(a.dateISO, b.dateISO);
+    });
+  }
+
+  // most_useful: usefulness score then recency
+  const sorted = filtered.sort((a, b) => {
+    const tA = a.excerpt ? 1 : 0;
+    const tB = b.excerpt ? 1 : 0;
+    if (tA !== tB) return tB - tA;
+
+    const rrA = a.resultRating != null ? 1 : 0;
+    const rrB = b.resultRating != null ? 1 : 0;
+    if (rrA !== rrB) return rrB - rrA;
+
+    const ucA = a.useCase != null ? 1 : 0;
+    const ucB = b.useCase != null ? 1 : 0;
+    if (ucA !== ucB) return ucB - ucA;
+
+    return compareDateDesc(a.dateISO, b.dateISO);
+  });
+
+  // If the top 6 are all 5-star, insert the first non-5-star review at position 3
+  const firstNonFive = sorted.findIndex((r) => (r.rating ?? 5) < 5);
+  if (firstNonFive >= 6) {
+    const [pulled] = sorted.splice(firstNonFive, 1);
+    sorted.splice(2, 0, pulled);
+  }
+
+  return sorted;
+}
+
+export function selectClassifiedReviews(reviews: Review[]): Review[] {
+  return sortClassifiedReviews(reviews, "most_useful");
 }

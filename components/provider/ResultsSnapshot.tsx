@@ -1,5 +1,4 @@
 import Link from "next/link";
-import MonoLabel from "@/components/reviews/MonoLabel";
 
 interface ResultsSnapshotProps {
   resultsMentioned: number;
@@ -8,26 +7,55 @@ interface ResultsSnapshotProps {
 }
 
 export default function ResultsSnapshot({ resultsMentioned, painMentioned, scarringMentioned }: ResultsSnapshotProps) {
-  const rows = [
-    { label: "Results mentioned",    value: resultsMentioned },
-    { label: "Pain signal captured", value: painMentioned },
-    { label: "Scarring mentioned",   value: scarringMentioned },
-  ];
-
   return (
-    <div className="border border-(--line) bg-white p-5 rounded-xl">
-      <p className="font-sans font-semibold text-[22px] leading-[1.1] tracking-[-0.02em] text-(--ink) mb-4">
-        Results Snapshot
-      </p>
-      <div className="space-y-4">
-        {rows.map((row) => (
-          <div key={row.label} className="border-t border-(--line) pt-3">
-            <MonoLabel className="mb-1">{row.label}</MonoLabel>
-            <p className="text-[18px] font-semibold text-(--ink)">{row.value} reviews</p>
+    <div>
+      <div className="rounded-xl border border-border bg-white p-5 transition-shadow hover:shadow-md">
+        <p className="mb-4 font-sans text-[22px] font-semibold leading-[1.1] tracking-[-0.02em] text-(--ink)">
+          Results Snapshot
+        </p>
+
+        <div className="grid grid-cols-3 divide-x divide-(--line)">
+
+          {/* Results mentioned */}
+          <div className="flex flex-col gap-1 pr-4">
+            <p className="text-3xl font-bold text-(--ink)">{resultsMentioned}</p>
+            <p className="text-sm text-(--muted)">Results mentioned</p>
           </div>
-        ))}
+
+          {/* Pain signals */}
+          <div className="flex flex-col gap-1 px-4">
+            <p
+              className="text-3xl font-bold"
+              style={{ color: painMentioned === 0 ? "#5A7A5A" : "var(--ink)" }}
+            >
+              {painMentioned}
+            </p>
+            <p className="text-sm" style={{ color: painMentioned === 0 ? "#5A7A5A" : "var(--muted)" }}>
+              Pain signals
+            </p>
+          </div>
+
+          {/* Scarring mentions */}
+          <div className="flex flex-col gap-1 pl-4">
+            <p
+              className="text-3xl font-bold"
+              style={{ color: scarringMentioned === 0 ? "#5A7A5A" : "var(--accent)" }}
+            >
+              {scarringMentioned}
+            </p>
+            <p className="text-sm" style={{ color: scarringMentioned === 0 ? "#5A7A5A" : "var(--muted)" }}>
+              Scarring mentions
+            </p>
+          </div>
+
+        </div>
       </div>
-      <Link href="/before-and-after" className="mt-5 inline-block text-[13px] font-medium text-(--accent) hover:underline">
+
+      {/* Moved outside the card */}
+      <Link
+        href="/before-and-after"
+        className="mt-3 inline-block text-[13px] font-medium text-(--accent) hover:underline"
+      >
         Explore before-and-after research →
       </Link>
     </div>

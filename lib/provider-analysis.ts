@@ -7,18 +7,21 @@ export function unique<T>(values: T[]): T[] {
   return [...new Set(values)];
 }
 
-export function buildOverviewStats(reviews: Review[]): Array<{ label: string; value: string }> {
+export function buildOverviewStats(reviews: Review[]): Array<{ label: string; value: string; numeric: number; decimals?: number }> {
   const total = reviews.length;
-  const avgRating = total > 0
-    ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / total).toFixed(1)
+  const avgRatingNum = total > 0
+    ? reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / total
     : null;
+  const avgRating = avgRatingNum != null ? avgRatingNum.toFixed(1) : null;
   const resultsMentioned = reviews.filter((r) => r.resultsMentioned).length;
 
-  const stats: Array<{ label: string; value: string }> = [
-    { label: "sourced reviews", value: String(total) },
+  const stats: Array<{ label: string; value: string; numeric: number; decimals?: number }> = [
+    { label: "sourced reviews", value: String(total), numeric: total },
   ];
-  if (avgRating) stats.push({ label: "average rating", value: avgRating });
-  stats.push({ label: "reviews mention results", value: String(resultsMentioned) });
+  if (avgRating && avgRatingNum != null) {
+    stats.push({ label: "average rating", value: avgRating, numeric: avgRatingNum, decimals: 1 });
+  }
+  stats.push({ label: "reviews mention results", value: String(resultsMentioned), numeric: resultsMentioned });
 
   return stats;
 }

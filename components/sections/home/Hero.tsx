@@ -42,7 +42,7 @@ export default function Hero({headline, subheadline}: Props) {
   }
 
   return (
-    <section className="hero-section border-b border-border py-24 sm:py-32">
+    <section className="hero-section border-b border-border py-24 sm:py-32 bg-feathering-mist">
       <div className="mx-auto max-w-4xl px-4 text-center">
 
         {/* Eyebrow */}

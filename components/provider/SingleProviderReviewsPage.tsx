@@ -12,6 +12,7 @@ import VerdictCard from "./VerdictCard";
 import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
+import FaqAccordion from "./FaqAccordion";
 import {
   buildBestFor,
   buildBottomLine,
@@ -123,10 +124,13 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
       <section id="pricing" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
-          <InfoCard label="Pricing signal" body={buildPricingContext([provider])} link="Compare against the cost guide" linkHref="/cost" />
-          <p className="mt-6 font-sans text-[13px] leading-relaxed text-(--muted) border border-(--line) bg-(--surface) p-4 rounded-xl">
-            <span className="font-medium text-(--ink)">Before booking, ask:</span> how many sessions are realistic for your tattoo, what is included in the quoted price, and what happens if the tattoo fades more slowly than expected.
-          </p>
+          <InfoCard
+            label="Pricing signal"
+            body={buildPricingContext([provider])}
+            link="Compare against the cost guide"
+            linkHref="/cost"
+            beforeBookingNote="how many sessions are realistic for your tattoo, what is included in the quoted price, and what happens if the tattoo fades more slowly than expected."
+          />
         </Container>
       </section>
 
@@ -157,7 +161,7 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
             <p className="text-[14px] leading-relaxed text-(--muted)">{provider.summary}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {provider.tags.map((tag) => (
-                <span key={tag} className="border border-(--line) bg-(--surface) px-3 py-1 font-mono text-[11px] tracking-widest uppercase text-(--muted)">{tag}</span>
+                <span key={tag} className="border border-(--line) bg-(--surface) px-3 py-1 font-sans text-[11px] tracking-widest uppercase text-(--muted)">{tag}</span>
               ))}
             </div>
           </div>
@@ -179,23 +183,23 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         <Container>
           <BlockHeading title={`Who ${provider.name} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="border border-(--line) bg-white p-6 rounded-xl">
-              <p className="font-semibold text-(--ink) text-[15px] mb-4">{provider.name} may be a strong option if you:</p>
+            <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
+              <p className="mb-4 text-[15px] font-semibold text-(--ink)">{provider.name} may be a strong option if you:</p>
               <ul className="flex flex-col gap-2">
                 {bestForData.bestFor.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-1.5 shrink-0" />
+                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#5A7A5A" }} />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="border border-(--line) bg-white p-6 rounded-xl">
-              <p className="font-semibold text-(--ink) text-[15px] mb-4">You should compare more carefully if you:</p>
+            <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
+              <p className="mb-4 text-[15px] font-semibold text-(--ink)">You should compare more carefully if you:</p>
               <ul className="flex flex-col gap-2">
                 {bestForData.lessIdealFor.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
+                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                     {item}
                   </li>
                 ))}
@@ -209,14 +213,7 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
       <section id="faq" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${provider.name} before making a booking decision.`} />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {faqItems.map((item) => (
-              <div key={item.q} className="border border-(--line) bg-white p-5 rounded-xl">
-                <p className="font-semibold text-(--ink) text-[14px] mb-2">{item.q}</p>
-                <p className="text-[13px] leading-relaxed text-(--muted)">{item.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion items={faqItems.map((i) => ({ question: i.q, answer: i.a }))} />
         </Container>
       </section>
 

@@ -29,7 +29,7 @@ export default function RecentReviewsSection({ reviews }: Props) {
         {/* ── Section heading ───────────────────────────────────────────── */}
         <div className="mb-8 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-[28px] font-bold text-heading">
+            <h2 className="text-[32px] font-bold text-heading">
               Recent sourced reviews
             </h2>
             <p className="mt-1 max-w-lg text-sm text-muted">

@@ -68,7 +68,7 @@ const CITIES = [
     href: "/cities/tampa",
     name: "Tampa Bay, FL",
     tagline: "Tampa, St. Petersburg, Clearwater, and the wider Tampa Bay metro",
-    desc: "Five tracked providers including Arviv Medical Aesthetics, Erasable Med Spa, Skintellect, Removery, and inkOUT (non-laser).",
+    desc: "Four tracked providers including Arviv Medical Aesthetics, Erasable Med Spa, Removery, and inkOUT (non-laser).",
   },
 ];
 

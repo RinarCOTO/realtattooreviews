@@ -20,6 +20,14 @@ const guidesListSchema = {
   })),
 };
 
+const PILL_LABELS: Record<string, string> = {
+  "tattoo-removal-aftercare":     "BETWEEN SESSIONS",
+  "tattoo-removal-healing-process": "WHAT TO EXPECT",
+  "tattoo-removal-side-effects":  "RISKS",
+  "tattoo-removal-scarring":      "RISKS",
+  "saline-tattoo-removal":        "METHOD",
+};
+
 export default function IsItWorthIt() {
   return (
     <section aria-label="Treatment Guides" className="border-t border-border bg-surface py-16">
@@ -33,7 +41,7 @@ export default function IsItWorthIt() {
         {/* Header */}
         <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-4xl font-bold text-heading">
+            <h2 className="text-[32px] font-bold text-heading">
               Treatment Guides
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
@@ -76,10 +84,10 @@ export default function IsItWorthIt() {
                   background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.08) 100%)",
                 }}
               >
-                {/* Guide badge, top right */}
+                {/* Pill badge, top right */}
                 <div className="ml-auto rounded-full bg-black/60 px-3 py-1 backdrop-blur-sm">
                   <span className="text-xs font-semibold uppercase tracking-wider text-white/80">
-                    Guide
+                    {PILL_LABELS[guide.slug] ?? "GUIDE"}
                   </span>
                 </div>
 
@@ -136,10 +144,10 @@ export default function IsItWorthIt() {
                   background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.08) 100%)",
                 }}
               >
-                {/* Guide badge, top right */}
+                {/* Pill badge, top right */}
                 <div className="ml-auto rounded-full bg-black/60 px-3 py-1 backdrop-blur-sm">
                   <span className="text-xs font-semibold uppercase tracking-wider text-white/80">
-                    Guide
+                    {PILL_LABELS[guide.slug] ?? "GUIDE"}
                   </span>
                 </div>
 

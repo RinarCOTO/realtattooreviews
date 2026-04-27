@@ -59,7 +59,7 @@ export default function HowItWorks({ steps }: Props) {
       <Container>
         <div className="mb-10 flex items-end justify-between">
           <div>
-            <h2 className="text-[28px] font-bold text-primary">How reviews work</h2>
+            <h2 className="text-[32px] font-bold text-primary">How reviews work</h2>
             <p className="mt-1 text-sm text-muted">
               Google reviews, structured for faster clinic comparison.
             </p>

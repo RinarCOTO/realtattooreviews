@@ -53,7 +53,7 @@ export default function CategoryTabs() {
         {/* Section label */}
         <div className="mb-6 flex items-end justify-between">
           <div>
-            <h2 className="text-[28px] font-bold text-heading">Browse by treatment type</h2>
+            <h2 className="text-[32px] font-bold text-heading">Browse by treatment type</h2>
             <p className="mt-1 text-sm text-muted">Filter reviews by what matters to your situation.</p>
           </div>
           <Link href="/categories" className="hidden text-sm font-medium text-accent hover:underline sm:block">

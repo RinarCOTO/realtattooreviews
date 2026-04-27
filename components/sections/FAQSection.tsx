@@ -43,7 +43,7 @@ export default function FAQSection({
       <Container>
         <div className="mx-auto max-w-2xl">
           <div className="mb-10">
-            <h2 className="text-2xl font-bold text-heading">{title}</h2>
+            <h2 className="text-[32px] font-bold text-heading">{title}</h2>
             {description && (
               <p className="mt-2 text-[15px] leading-relaxed text-muted">
                 {description}

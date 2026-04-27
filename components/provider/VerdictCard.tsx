@@ -23,7 +23,7 @@ export default function VerdictCard({
 }: VerdictCardProps) {
   return (
     <div className="flex flex-col p-[24px_28px] border border-(--line) bg-white min-w-65 rounded-xl">
-      <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-(--accent)">
+      <span className="font-sans text-[10px] tracking-[0.14em] uppercase text-(--accent)">
         Our Verdict
       </span>
       <span className="mt-2 font-sans text-[28px] font-bold tracking-[-0.02em] text-(--ink)">

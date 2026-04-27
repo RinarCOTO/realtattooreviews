@@ -39,7 +39,7 @@
   /* Shadows */
   --shadow-card:           0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
   --color-cloud-gray:      oklch(0.972 0.004 240);
-  --color-feathering-mist: oklch(0.976 0.008 268);
+  --color-feathering-mist: #f4f7fc;
   --color-background:      oklch(0.99 0.002 60);
   --color-foreground:      oklch(0.52 0.005 60);
 
@@ -149,7 +149,7 @@ button, [role="button"], a.btn {
   --surface:     oklch(0.965 0.003 60);
   --surface-2:   oklch(0.94 0.003 60);
   --cloud-gray:        oklch(0.972 0.004 240);
-  --feathering-mist:   oklch(0.976 0.008 268);
+  --feathering-mist:   #f4f7fc;
   --wash:        oklch(0.945 0.012 35);
   --ink:         oklch(0.28 0.006 60);
   --muted:       oklch(0.52 0.005 60);

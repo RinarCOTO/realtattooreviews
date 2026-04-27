@@ -41,7 +41,6 @@ const itemListSchema = {
     { "@type": "ListItem", position: 10, name: "Kovak Cosmetic Center",       url: "https://realtattooreviews.com/reviews/kovak-cosmetic-center" },
     { "@type": "ListItem", position: 11, name: "MEDermis Laser Clinic",       url: "https://realtattooreviews.com/reviews/medermis-laser-clinic" },
     { "@type": "ListItem", position: 12, name: "Removery",                    url: "https://realtattooreviews.com/reviews/removery-bucktown" },
-    { "@type": "ListItem", position: 13, name: "Skintellect Laser & Aesthetics", url: "https://realtattooreviews.com/reviews/skintellect" },
   ],
 };
 
@@ -69,7 +68,6 @@ const PROVIDER_STATIC: (DirectoryRow & { supabaseSlug: string })[] = [
   { name: "Kovak Cosmetic Center",      slug: "kovak-cosmetic-center",    supabaseSlug: "kovak-cosmetic-center",    method: "Laser",     technology: "PicoWay",                      locations: "1 (Oakbrook Terrace, IL)",         locationCount: 1,   yearsActive: 27,   bestFor: "Established cosmetic practice, Chicago",                 footprint: "Single-market",  setting: "Medical spa",               reviews: null, avgStars: null },
   { name: "MEDermis Laser Clinic",      slug: "medermis-laser-clinic",    supabaseSlug: "medermis-laser-clinic",    method: "Laser",     technology: "Lutronic Spectra Pico Plus",    locations: "2 (Austin, San Antonio)",         locationCount: 2,   yearsActive: 19,   bestFor: "Tattoo-removal-only specialist, Austin/San Antonio",     footprint: "Regional",       setting: "Tattoo removal specialist", reviews: null, avgStars: null },
   { name: "Removery",                   slug: "removery-bucktown",        supabaseSlug: "removery",                 method: "Laser",     technology: "PicoWay",                      locations: "150+ (US, Canada, Australia)",     locationCount: 150, yearsActive: 7,    bestFor: "Largest US footprint, package pricing",                  footprint: "National chain", setting: "Tattoo removal specialist", reviews: null, avgStars: null },
-  { name: "Skintellect Laser & Aesthetics", slug: "skintellect",         supabaseSlug: "skintellect",              method: "Laser",     technology: "Fotona StarWalker FracTat",     locations: "1 (Tampa)",                       locationCount: 1,   yearsActive: 11,   bestFor: "Multi-service aesthetics, NW Tampa",                     footprint: "Single-market",  setting: "Medical spa",               reviews: null, avgStars: null },
 ];
 
 const PENDING_PROVIDERS: PendingRow[] = [
@@ -139,17 +137,19 @@ export default async function ProvidersPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <main className="min-h-screen bg-bg">
+      <main className="min-h-screen">
 
         {/* Hero */}
-        <section className="border-b border-border bg-hero-bg py-14">
+        <section className="hero-section border-b border-border py-12">
           <Container>
             <nav className="mb-4 text-[12px] text-muted" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-accent">Home</Link>
               <span className="mx-1.5">/</span>
               <span className="text-heading">Providers</span>
             </nav>
-            <h1 className="text-[36px] font-bold text-heading">Tattoo Removal Providers</h1>
+            <h1 className="text-[36px] font-bold text-heading">
+              Tattoo Removal <span className="text-(--accent)">Providers</span>
+            </h1>
             <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
               Browse tattoo removal providers reviewed by RealTattooReviews. Compare national chains, local specialists, and non-laser brands by method, technology, footprint, and reviews.
             </p>
@@ -157,17 +157,22 @@ export default async function ProvidersPage() {
         </section>
 
         {/* Intro + Provider Directory */}
-        <section className="py-12">
+        <section className="bg-surface py-14">
           <Container>
-            <h2 className="mb-2 text-[22px] font-bold text-heading">Browse and Compare Tattoo Removal Providers</h2>
+            <div className="mb-8 flex items-end justify-between">
+              <div>
+                <h2 className="text-[28px] font-bold text-heading">Browse and Compare Providers</h2>
+                <p className="mt-1 text-sm text-muted">Every provider evaluated under the same framework — no paid placement.</p>
+              </div>
+              <Link href="/comparisons" className="hidden text-sm font-medium text-accent hover:underline sm:block">
+                All comparisons →
+              </Link>
+            </div>
             <div className="mb-6 max-w-2xl space-y-3 text-[14px] leading-relaxed text-muted">
               <p>
-                RealTattooReviews tracks tattoo removal providers across multiple US markets. This page is the starting point for finding providers by brand, by city, or by method. Every provider listed here is evaluated using the same{" "}
+                RealTattooReviews tracks tattoo removal providers across multiple US markets. Every provider listed here is evaluated using the same{" "}
                 <Link href="/methodology" className="text-accent hover:underline">scoring methodology</Link>{" "}
                 regardless of brand size, advertising relationship, or business model.
-              </p>
-              <p>
-                The provider table below shows all brands and clinics currently in our review dataset. Each row shows the method used, the technology, the number of cities served, and a link to the provider review page. Providers not yet in our dataset appear with a "Review sample pending" badge. Sort by any column. Filter by method or footprint.
               </p>
               <p>
                 If you already know which city you are in, the{" "}
@@ -186,9 +191,12 @@ export default async function ProvidersPage() {
         </section>
 
         {/* How to Choose */}
-        <section className="border-t border-border py-12">
+        <section className="bg-bg py-14">
           <Container>
-            <h2 className="mb-3 text-[22px] font-bold text-heading">How to Choose a Tattoo Removal Provider</h2>
+            <div className="mb-8">
+              <h2 className="text-[28px] font-bold text-heading">How to Choose a Tattoo Removal Provider</h2>
+              <p className="mt-1 text-sm text-muted">Five questions that change which provider is right for your case.</p>
+            </div>
             <p className="mb-8 max-w-2xl text-[14px] leading-relaxed text-muted">
               Choosing a tattoo removal provider is mostly about matching method and protocol to your tattoo and your skin. Brand recognition and footprint matter less than they look. The five questions below cover the decisions that actually change which provider is right for you.
             </p>
@@ -276,9 +284,14 @@ export default async function ProvidersPage() {
         </section>
 
         {/* Browse by City */}
-        <section id="browse-by-city" className="border-t border-border py-12">
+        <section id="browse-by-city" className="bg-surface py-14">
           <Container>
-            <h2 className="mb-2 text-[22px] font-bold text-heading">Browse Providers by City</h2>
+            <div className="mb-8 flex items-end justify-between">
+              <div>
+                <h2 className="text-[28px] font-bold text-heading">Browse Providers by City</h2>
+                <p className="mt-1 text-sm text-muted">Provider availability varies by city. Each page ranks every tracked provider in that market.</p>
+              </div>
+            </div>
             <p className="mb-6 text-[14px] leading-relaxed text-muted">
               Provider availability varies by city. The pages below compare every tracked provider in each market, including local specialists not listed in the national table above.
             </p>
@@ -308,9 +321,14 @@ export default async function ProvidersPage() {
         </section>
 
         {/* Browse by Treatment Need */}
-        <section className="border-t border-border py-12">
+        <section className="bg-bg py-14">
           <Container>
-            <h2 className="mb-2 text-[22px] font-bold text-heading">Browse Providers by Treatment Need</h2>
+            <div className="mb-8 flex items-end justify-between">
+              <div>
+                <h2 className="text-[28px] font-bold text-heading">Browse by Treatment Need</h2>
+                <p className="mt-1 text-sm text-muted">Providers and methods organized by what your case actually requires.</p>
+              </div>
+            </div>
             <p className="mb-6 text-[14px] leading-relaxed text-muted">
               Tattoo removal needs vary by case. The pages below cover providers and methods that handle specific situations.
             </p>
@@ -338,9 +356,12 @@ export default async function ProvidersPage() {
         </section>
 
         {/* How We Cover Providers */}
-        <section className="border-t border-border py-12">
+        <section className="bg-surface py-14">
           <Container>
-            <h2 className="mb-4 text-[22px] font-bold text-heading">How We Cover Providers</h2>
+            <div className="mb-6">
+              <h2 className="text-[28px] font-bold text-heading">How We Cover Providers</h2>
+              <p className="mt-1 text-sm text-muted">Our standards for inclusion, evaluation, and disclosure.</p>
+            </div>
             <div className="max-w-2xl space-y-3 text-[14px] leading-relaxed text-muted">
               <p>
                 RealTattooReviews tracks tattoo removal providers across the US based on coverage in their target markets, treatment method, and public review volume. Provider data is verified against each provider&apos;s published locations, public websites, and Google Business listings as of the page&apos;s last review date.
@@ -375,7 +396,7 @@ export default async function ProvidersPage() {
       {/* Editorial note */}
       <section className="border-t border-border py-8">
         <Container>
-          <p className="max-w-2xl text-[12px] leading-relaxed text-subtle">
+          <p className="text-center text-[12px] leading-relaxed text-subtle">
             Provider data is sourced from public Google business listings and verified against provider-published materials. Review counts in the table reflect our internal review sample, not lifetime Google totals. inkOUT is a current advertising client of RealTattooReviews and is evaluated under the same framework as every other provider. See our{" "}
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>{" "}
             and{" "}

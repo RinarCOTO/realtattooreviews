@@ -38,7 +38,7 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-hero-bg py-14">
+      <section className="border-b border-border bg-feathering-mist py-14">
         <Container>
           <p className="mb-2 text-sm text-muted">
             <Link href="/categories" className="hover:text-accent">Categories</Link>

@@ -1,5 +1,9 @@
+"use client";
+
+import CountUp from "@/components/ui/CountUp";
+
 interface VerdictSidebarProps {
-  rows: Array<{ label: string; value: string }>;
+  rows: Array<{ label: string; value: string; numeric: number; decimals?: number }>;
 }
 
 export default function VerdictSidebar({ rows }: VerdictSidebarProps) {
@@ -11,9 +15,9 @@ export default function VerdictSidebar({ rows }: VerdictSidebarProps) {
           className={`flex flex-col pr-10 ${i < rows.length - 1 ? "mr-10 border-r border-(--line)" : ""}`}
         >
           <p className="text-[42px] font-black leading-none tracking-[-0.03em] text-(--ink)">
-            {stat.value}
+            <CountUp end={stat.numeric} decimals={stat.decimals ?? 0} duration={1600} />
           </p>
-          <p className="mt-1.5 font-mono text-[10px] font-medium tracking-widest uppercase text-(--muted)">
+          <p className="mt-1.5 font-sans text-[10px] font-medium tracking-widest uppercase text-(--muted)">
             {stat.label}
           </p>
         </div>

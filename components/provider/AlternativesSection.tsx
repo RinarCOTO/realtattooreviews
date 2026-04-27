@@ -25,7 +25,7 @@ export default function AlternativesSection({ alternatives }: { alternatives: Pr
               <p className="font-semibold text-(--ink) text-[15px]">{provider.name}</p>
               <MonoLabel className="mt-1">{provider.market}</MonoLabel>
             </div>
-            <span className="font-mono font-semibold text-[13px] text-(--accent) shrink-0">
+            <span className="font-sans font-semibold text-[13px] text-(--accent) shrink-0">
               {provider.rating.toFixed(1)}
             </span>
           </div>
