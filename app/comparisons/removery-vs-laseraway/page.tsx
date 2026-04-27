@@ -1,27 +1,3 @@
-/*
- * DYNAMIC DATA NOTE FOR CLAUDE CODE:
- * One dynamic component renders live cross-city evidence from Supabase.
- * The prose is intentionally GENERIC and STATIC: no hardcoded numbers, ratings,
- * or counts. All quantitative data is rendered by BrandComparisonEvidence.
- *
- * COMPONENT: <BrandComparisonEvidence brand_a="Removery" brand_b="LaserAway" />
- * Same reusable component as inkout-vs-removery. Goes where [[CROSS_CITY_EVIDENCE_TABLE]] appears.
- *
- * DATA STATUS (snapshot at draft time):
- * - Removery: Austin (50 reviews), Chicago (100 reviews) in competitor_reviews.
- *   Tampa (Westshore), Houston (3 locations), Round Rock pending next scrape.
- * - LaserAway: ZERO rows in competitor_reviews currently.
- *   Known markets: Austin, Chicago, Houston (Galleria/Heights/Pearland), Tampa.
- *   All render as "Review sample pending" via brandBPendingCities prop.
- *
- * SQL CASE expression for brand detection:
- *   WHEN provider_name ILIKE '%Removery%' THEN 'Removery'
- *   WHEN provider_name ILIKE '%LaserAway%' THEN 'LaserAway'
- * (inkOUT bucket not relevant; neither brand is inkOUT)
- *
- * Sources: Candela (PicoWay specs), Cynosure (PicoSure specs),
- * PMC4859414 (Torbeck et al 2016, PicoSure FDA clearance reference).
- */
 
 import type { Metadata } from "next";
 import Link from "next/link";

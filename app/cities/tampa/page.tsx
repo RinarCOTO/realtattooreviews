@@ -1,38 +1,3 @@
-/*
- * DYNAMIC DATA NOTE FOR CLAUDE CODE:
- * Two dynamic components on this page render live data from Supabase. The prose is
- * intentionally GENERIC and STATIC (no hardcoded numbers, ratings, rankings, or counts).
- * All quantitative data is rendered by CityProviderRanking and CityProviderComparisonTable.
- *
- * PROSE RULE: Provider profiles describe what each clinic IS (location, method, business
- * model, pricing structure, who they serve). Profiles do NOT describe how each clinic is
- * RANKED or PERFORMING in current data. The components handle that.
- *
- * Same SQL spec as Austin/Chicago/Houston. See app/cities/austin/page.tsx for full reference.
- *
- * INKOUT _PLACE_ID NULL ISSUE:
- * inkOUT Tampa rows in competitor_reviews have _place_id = null. Google Places search did
- * not surface a Rejuvatek/inkOUT Tampa Bay listing (only Singapore + Australia brands).
- * Possible causes: scrape captured reviews before a Google Business listing existed; Tampa
- * footprint operates through a partner clinic; location is delivered through a non-Google-
- * listed channel (concierge or by-appointment). Component should aggregate inkOUT rows by
- * brand_name='inkOUT' for Tampa specifically (not by place_id) until the data team
- * confirms the physical address and backfills a place_id. The inkOUT card renders with
- * "Tampa Bay metro (by appointment)" as the placeholder address until clarified.
- *
- * PROVIDERS WITHOUT SUPABASE DATA YET:
- * ReversaTatt (3202 Henderson Blvd 100A, South Tampa), Removery (130 S Westshore Blvd
- * Suite 2B, Westshore), Tampa Bay Tattoo Removal (2561 Nursery Rd #C, Clearwater), St Pete
- * Tattoo Removal (8130 66th St N Suite 9, Pinellas Park), and EradiTatt (9210 4th St N
- * Suite A, St. Petersburg) are all real Tampa Bay providers with established Google ratings
- * but no rows in competitor_reviews yet. Listed in TAMPA_PROVIDERS so the components render
- * them with "Review sample pending". Static prose preserves SEO content by name.
- *
- * METRO COVERAGE:
- * Brief explicitly requires Tampa Bay-wide coverage: Tampa + St. Petersburg + Clearwater as
- * a single market. The page includes a dedicated "Tattoo Removal in St. Petersburg &
- * Clearwater" section per brief direction.
- */
 
 import type { Metadata } from "next";
 import Link from "next/link";

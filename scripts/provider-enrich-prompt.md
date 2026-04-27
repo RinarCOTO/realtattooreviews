@@ -1,6 +1,6 @@
 # Provider Enrich Prompt
 
-Copy everything below the line and paste it into Claude.ai.
+Copy everything below the line and paste it into an AI assistant.
 Replace [PROVIDER WEBSITE URL] with the real URL before sending.
 
 ---

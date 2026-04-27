@@ -1,29 +1,3 @@
-/*
- * DYNAMIC DATA NOTE FOR CLAUDE CODE:
- * One dynamic component on this page renders live cross-city evidence from Supabase.
- * The prose is intentionally GENERIC and STATIC: no hardcoded numbers, ratings, win
- * counts, or rankings. All quantitative data is rendered by BrandComparisonEvidence.
- *
- * PROSE RULE: The page describes WHAT each brand IS (technology, business model, pricing
- * structure, footprint logic, specialist vs chain framing). The dynamic component handles
- * HOW each brand is currently performing across the review-sample dataset.
- *
- * COMPONENT: <BrandComparisonEvidence brand_a="inkOUT" brand_b="LaserAway" />
- * Renders the cross-city evidence table. Same reusable component as inkout-vs-removery
- * with brand_b parameterized to "LaserAway".
- *
- * CRITICAL DATA GAP:
- * LaserAway currently has ZERO rows in competitor_reviews. Component renders
- * LaserAway section as "Review sample pending" until backfill.
- * Known LaserAway place_ids for Houston scrape backfill:
- *   - Houston Galleria: ChIJaYtupZWfToYR6rSxp4DfDGk (5385 Westheimer Rd)
- *   - Houston Heights: ChIJa6EksDvHQIYRhBw7x-Qz2SY (246 W 19th St)
- *   - Houston Pearland: ChIJ5RNNeCGTQIYR9p204w-kHfY (11200 Broadway St)
- *
- * TECHNOLOGY: PicoSure (not PicoWay). Cynosure PicoSure, 755nm primary alexandrite.
- * First FDA-cleared picosecond aesthetic laser, December 2012. PressureWave technology.
- * PMC4859414 (Torbeck et al 2016): >75% clearance in avg 4.25 treatments.
- */
 
 import type { Metadata } from "next";
 import Link from "next/link";

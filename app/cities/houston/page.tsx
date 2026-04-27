@@ -1,38 +1,3 @@
-/*
- * DYNAMIC DATA NOTE FOR CLAUDE CODE:
- * Two dynamic components on this page render live data from Supabase. The prose is
- * intentionally GENERIC and STATIC (no hardcoded numbers, ratings, rankings, or counts).
- * All quantitative data is rendered by CityProviderRanking and CityProviderComparisonTable.
- *
- * PROSE RULE: Provider profiles describe what each clinic IS (location, method, business
- * model, pricing structure, who they serve). Profiles do NOT describe how each clinic is
- * RANKED or PERFORMING in current data. The components handle that.
- *
- * Same SQL spec as Austin/Chicago. See app/cities/austin/page.tsx for full reference.
- *
- * INKOUT BUCKET AGGREGATION:
- * inkOUT Houston (place_id ChIJNRyaQj2_QIYRFM2uE3nbCx0) appears under bucket='inkout'
- * only. No historical Tatt2Away phase since this is a newer location. No special
- * aggregation needed beyond the standard applyPublicFilters("any") scope.
- *
- * PROVIDERS WITHOUT SUPABASE DATA YET:
- * Removery (3 Houston locations: Energy Corridor / Spring Branch / Rice Village) and
- * LaserAway (3 Houston locations: Galleria / Heights / Pearland) have no rows in
- * competitor_reviews yet. Listed in HOUSTON_PROVIDERS so the components render them
- * with "Review sample pending". Static prose profiles preserve SEO content by name.
- *
- * DERMSURGERY ASSOCIATES NOTE:
- * Supabase has "DermSurgery Associates" with place_id ChIJk6eYdxPDQIYRk6CEjoHLXp4.
- * The brand operates multiple Houston locations including the Bellaire main office at
- * 6700 W Loop S Ste 500. The prose treats it as the W Loop / Bellaire group generally.
- * Confirm location-to-place-id mapping at next scrape; use-case tags for this provider
- * were not fully populated in the current scrape and are flagged for re-classification.
- *
- * SUBURBAN DATA:
- * Only Houston city rows are in the dataset currently. Suburb providers in Sugar Land,
- * The Woodlands, Katy proper, Cypress, Spring, Friendswood, and Pearland should be added
- * when next scrape captures these place_ids.
- */
 
 import type { Metadata } from "next";
 import Link from "next/link";
