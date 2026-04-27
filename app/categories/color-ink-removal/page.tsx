@@ -197,7 +197,7 @@ export default function ColorInkRemovalPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
+      <section className="border-b border-(--line) pt-12 pb-10 bg-(--feathering-mist)">
         <Container>
           <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
             <Link href="/categories" className="hover:text-(--ink) transition-colors">
@@ -216,8 +216,7 @@ export default function ColorInkRemovalPage() {
 
           <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
             Not all colors respond the same way. A color-by-color guide to which inks are hardest,
-            which laser wavelengths match which pigments, and what complete removal realistically
-            looks like.
+            which wavelengths match which pigments, and what complete removal realistically looks like.
           </p>
         </Container>
       </section>
@@ -225,11 +224,11 @@ export default function ColorInkRemovalPage() {
       {/* Body */}
       <section className="bg-(--bg)">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <div className="divide-y divide-(--line)">
 
             {/* Intro */}
             <div className="py-12">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
+              <div>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
                   Color tattoos can be removed, but not all colors respond the same way. Black and
                   dark blue clear well. Red and orange usually clear with the right wavelength. Green

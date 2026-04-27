@@ -114,7 +114,7 @@ export default function PermanentMakeupRemovalPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
+      <section className="border-b border-(--line) pt-12 pb-10 bg-(--feathering-mist)">
         <Container>
           <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
             <Link href="/categories" className="hover:text-(--ink) transition-colors">
@@ -142,11 +142,11 @@ export default function PermanentMakeupRemovalPage() {
       {/* Body */}
       <section className="bg-(--bg)">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <div className="divide-y divide-(--line)">
 
             {/* Intro callout */}
             <div className="py-12">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
+              <div>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
                   Permanent makeup can usually be removed or corrected, but cosmetic tattoos do not
                   behave like body tattoos. The pigments are different. The skin is thinner. The

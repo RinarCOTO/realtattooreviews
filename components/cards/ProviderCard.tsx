@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Provider } from "@/types/provider";
+import ProviderLogo from "@/components/ui/ProviderLogo";
+import { brandToSlug } from "@/lib/providers";
 
 type Props = {
   provider: Provider;
@@ -24,32 +25,20 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function ProviderCard({ provider }: Props) {
+  const logoSlug = provider.brand ? brandToSlug(provider.brand) : provider.slug;
+
   return (
     <div className="relative flex h-full flex-col items-center rounded-2xl border border-border bg-surface px-6 pb-6 pt-8 text-center shadow-sm transition-all hover:border-accent hover:shadow-md">
 
-      {/* Featured badge */}
-      {provider.featured && (
-        <span className="absolute right-4 top-4 rounded-full bg-accent-light px-2.5 py-0.5 text-[11px] font-medium text-accent">
-          Featured
-        </span>
-      )}
-
-      {/* Avatar */}
+      {/* Logo */}
       <div className="relative mb-4">
-        <div className="h-20 w-20 overflow-hidden rounded-full border-2 border-border bg-bg">
-          {provider.photo ? (
-            <Image
-              src={provider.photo}
-              alt={provider.name}
-              width={80}
-              height={80}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center text-2xl font-bold text-muted">
-              {provider.name.charAt(0)}
-            </div>
-          )}
+        <div className="relative h-20 w-20 overflow-hidden rounded-full border-2 border-border bg-bg p-2.5">
+          <ProviderLogo
+            slug={logoSlug}
+            name={provider.name}
+            className="h-full w-full object-contain"
+            fallbackClassName="absolute inset-0 flex items-center justify-center text-xl font-bold text-muted"
+          />
         </div>
         {/* Verified badge */}
         <span className="absolute bottom-0 right-0 flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-accent">

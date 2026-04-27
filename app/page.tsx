@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
-import BrandCard from "@/components/cards/BrandCard";
+import ProviderCard from "@/components/cards/ProviderCard";
 import CityCard from "@/components/cards/CityCard";
 import Hero from "@/components/sections/home/Hero";
 import StatsRow from "@/components/sections/home/StatsRow";
@@ -11,7 +11,9 @@ import HowItWorks from "@/components/sections/home/HowItWorks";
 import IsItWorthIt from "@/components/sections/home/IsItWorthIt";
 import CTASection from "@/components/sections/home/CTASection";
 import FAQSection from "@/components/sections/home/FAQSection";
-import { brands } from "@/lib/mock-data/brands";
+import HorizontalScrollWithBar from "@/components/ui/HorizontalScrollWithBar";
+import { providers } from "@/lib/mock-data/providers";
+import type { Provider } from "@/types/provider";
 import { cities } from "@/lib/mock-data/cities";
 import { getHomepageCMS } from "@/lib/page-data/homepage-cms";
 
@@ -43,9 +45,39 @@ const websiteJsonLd = {
   url: "https://realtattooreviews.com",
 };
 
-const FEATURED_BRANDS = brands
-  .filter((b) => b.id !== "tatt2away")
-  .sort((a, b) => a.name.localeCompare(b.name));
+function buildBrandEntry(ids: string[]): Provider {
+  const group = providers.filter((p) => ids.includes(p.id));
+  const totalReviews = group.reduce((s, p) => s + p.reviewCount, 0);
+  const avgRating =
+    totalReviews > 0
+      ? group.reduce((s, p) => s + p.rating * p.reviewCount, 0) / totalReviews
+      : 0;
+  const primary = [...group].sort(
+    (a, b) => (b.featuredScore ?? 0) - (a.featuredScore ?? 0)
+  )[0] as Provider;
+  return {
+    ...primary,
+    rating: Math.round(avgRating * 10) / 10,
+    reviewCount: totalReviews,
+    location: group.length > 1 ? `${group.length} locations` : primary.location,
+  };
+}
+
+const FEATURED_BRAND_PROVIDERS = [
+  buildBrandEntry(["arviv-medical-aesthetics"]),
+  buildBrandEntry(["clarity-skin"]),
+  buildBrandEntry(["clean-slate-ink"]),
+  buildBrandEntry(["dermsurgery-associates"]),
+  buildBrandEntry(["enfuse-medical-spa"]),
+  buildBrandEntry(["erasable-med-spa"]),
+  buildBrandEntry(["inkout-austin", "inkout-chicago", "inkout-houston", "inkout-tampa", "inkout-draper"]),
+  buildBrandEntry(["inkfree-md"]),
+  buildBrandEntry(["inklifters-aesthetica"]),
+  buildBrandEntry(["kovak-cosmetic-center"]),
+  buildBrandEntry(["medermis-laser-clinic"]),
+  buildBrandEntry(["removery-bucktown", "removery-lincoln-square", "removery-south-congress"]),
+  buildBrandEntry(["skintellect"]),
+];
 
 export default async function HomePage() {
   const cms = await getHomepageCMS();
@@ -135,16 +167,16 @@ export default async function HomePage() {
             <Button href="/providers" variant="secondary" size="sm">View all →</Button>
           </div>
         </Container>
-        <div className="overflow-x-auto scrollbar-thin pb-4">
-          <div className="flex gap-4 pl-4 sm:pl-6 lg:pl-8 xl:pl-[max(2rem,calc((100vw-72rem)/2+2rem))]" style={{ width: "max-content" }}>
-            {FEATURED_BRANDS.map((brand) => (
-              <div key={brand.id} className="w-72 shrink-0">
-                <BrandCard brand={brand} />
+        <Container>
+          <HorizontalScrollWithBar>
+            {FEATURED_BRAND_PROVIDERS.map((provider) => (
+              <div key={provider.id} style={{ flexShrink: 0, scrollSnapAlign: "start", width: "264px" }}>
+                <ProviderCard provider={provider} />
               </div>
             ))}
-            <div className="w-4 shrink-0 sm:w-6 lg:w-8" />
-          </div>
-        </div>
+            <div style={{ flexShrink: 0, width: "1rem" }} />
+          </HorizontalScrollWithBar>
+        </Container>
       </section>
 
       {/* ── 8. Browse by city ───────────────────────── */}

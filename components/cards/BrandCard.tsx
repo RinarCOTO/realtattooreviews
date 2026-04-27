@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Brand } from "@/types/brand";
+import ProviderLogo from "@/components/ui/ProviderLogo";
 
 type Props = {
   brand: Brand;
@@ -19,13 +20,13 @@ export default function BrandCard({ brand }: Props) {
 
       {/* Header: logo + name */}
       <div className="flex items-start gap-4">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-border bg-bg text-lg font-bold text-heading">
-          {brand.logo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={brand.logo} alt={brand.name} className="h-full w-full object-contain" />
-          ) : (
-            brand.name.charAt(0)
-          )}
+        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-border bg-bg p-1.5">
+          <ProviderLogo
+            slug={brand.slug}
+            name={brand.name}
+            className="h-full w-full object-contain"
+            fallbackClassName="absolute inset-0 flex items-center justify-center text-lg font-bold text-heading"
+          />
         </div>
         <div className="min-w-0">
           <p className="truncate text-[15px] font-bold text-heading">{brand.name}</p>

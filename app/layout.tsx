@@ -83,7 +83,7 @@ export default async function RootLayout({
   const dataLastUpdated = await getDataFreshness();
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${dmMono.variable} ${inter.variable} ${interTight.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-bg text-body">
+      <body className="min-h-full flex flex-col bg-bg text-body" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}

@@ -115,7 +115,7 @@ export default function ScarringConcernsPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
+      <section className="border-b border-(--line) pt-12 pb-10 bg-(--feathering-mist)">
         <Container>
           <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
             <Link href="/categories" className="hover:text-(--ink) transition-colors">
@@ -129,7 +129,8 @@ export default function ScarringConcernsPage() {
 
           <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
             Tattoo Removal{" "}
-            <span className="text-(--accent)">Scarring Concerns</span>
+            <span className="text-(--accent)">Scarring</span>
+            {" "}Concerns
           </h1>
 
           <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
@@ -143,11 +144,11 @@ export default function ScarringConcernsPage() {
       {/* Body */}
       <section className="bg-(--bg)">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <div className="divide-y divide-(--line)">
 
             {/* Intro callout */}
             <div className="py-12">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
+              <div>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
                   Tattoo removal scarring is real. It is much less common than most people assume.
                   A large peer-reviewed study of 1,041 laser tattoo removal patients found

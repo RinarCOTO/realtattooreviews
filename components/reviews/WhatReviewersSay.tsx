@@ -6,20 +6,19 @@ import type { Review } from "@/types/review";
 import ClassifiedReviewCard from "./ClassifiedReviewCard";
 import { buildPatternSummary, selectClassifiedReviews } from "@/lib/review-evidence";
 
-const INITIAL_SHOW = 6;
-
 type Props = {
   reviews: Review[];
   providerName: string;
   googleMapsUrl?: string;
+  initialShow?: number;
 };
 
-export default function WhatReviewersSay({ reviews, providerName: _providerName, googleMapsUrl }: Props) {
+export default function WhatReviewersSay({ reviews, providerName: _providerName, googleMapsUrl, initialShow = 6 }: Props) {
   const [showAll, setShowAll] = useState(false);
 
   const patterns = buildPatternSummary(reviews);
   const classified = selectClassifiedReviews(reviews);
-  const visible = showAll ? classified : classified.slice(0, INITIAL_SHOW);
+  const visible = showAll ? classified : classified.slice(0, initialShow);
 
   if (reviews.length === 0) return null;
 
@@ -73,7 +72,7 @@ export default function WhatReviewersSay({ reviews, providerName: _providerName,
               <ClassifiedReviewCard key={r.id} review={r} />
             ))}
           </div>
-          {classified.length > INITIAL_SHOW && !showAll && (
+          {classified.length > initialShow && !showAll && (
             <button
               onClick={() => setShowAll(true)}
               className="mt-6 text-[13px] font-medium text-(--accent) hover:underline"
@@ -89,7 +88,7 @@ export default function WhatReviewersSay({ reviews, providerName: _providerName,
                 rel="noopener noreferrer"
                 className="text-(--accent) hover:underline"
               >
-                Read all reviews on Google Maps
+                Read all {reviews.length} reviews on Google Maps →
               </a>
             </p>
           )}

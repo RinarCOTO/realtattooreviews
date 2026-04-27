@@ -145,7 +145,7 @@ export default function CategoriesPage() {
       {/* Intro */}
       <section className="border-b border-border py-12">
         <Container>
-          <div className="mx-auto max-w-2xl space-y-4">
+          <div className="space-y-4">
             <h2 className="text-[22px] font-bold text-heading">Find the Right Approach for Your Case</h2>
             <p className="text-[15px] leading-relaxed text-body">
               Not every tattoo removal case is the same. The method, provider, and protocol that work best depend on what you are removing, what your skin looks like, and what you are trying to accomplish. The category pages below organize tattoo removal by use case so you can start with your situation and find the providers and methods that fit.
@@ -195,7 +195,7 @@ export default function CategoriesPage() {
       {/* How categories connect */}
       <section className="border-b border-border py-12">
         <Container>
-          <div className="mx-auto max-w-2xl">
+          <div>
             <h2 className="mb-4 text-[22px] font-bold text-heading">How Categories Connect to the Rest of the Site</h2>
             <p className="mb-6 text-[14px] leading-relaxed text-muted">
               Category pages are one layer in the site's decision framework. They help you filter by use case. From there:

@@ -6,7 +6,8 @@ import { getAllCities, getCity } from "@/lib/page-data/cities";
 import { cities as mockCities } from "@/lib/mock-data/cities";
 import { providers } from "@/lib/mock-data/providers";
 import { getReviewsByCity, getAllProviderAggregates } from "@/lib/data/reviews";
-import ReviewCardGrid from "@/components/reviews/ReviewCardGrid";
+import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
+import type { Review } from "@/types/review";
 
 type Props = { params: Promise<{ city: string }> };
 
@@ -112,20 +113,56 @@ export default async function CityPage({ params }: Props) {
       {cityReviews.length > 0 && (
         <section className="border-t border-border py-12">
           <Container>
-            <h2 className="mb-6 text-[20px] font-bold text-heading">
+            <h2 className="mb-8 text-[20px] font-bold text-heading">
               Patient Reviews in {city.name}
             </h2>
-            <ReviewCardGrid reviews={cityReviews.slice(0, 6)} columns={2} />
-            {cityReviews.length > 6 && (
-              <div className="mt-6">
-                <Link
-                  href="/reviews"
-                  className="text-sm font-medium text-accent hover:underline"
-                >
-                  View all {cityReviews.length} reviews in {city.name} →
-                </Link>
-              </div>
-            )}
+            {(() => {
+              // Group reviews by provider, sorted by review count descending
+              const groups = Object.values(
+                cityReviews.reduce<Record<string, { name: string; slug: string | null; reviews: Review[] }>>(
+                  (acc, r) => {
+                    const key = r.providerSlug ?? r.provider;
+                    if (!acc[key]) acc[key] = { name: r.provider, slug: r.providerSlug ?? null, reviews: [] };
+                    acc[key].reviews.push(r);
+                    return acc;
+                  },
+                  {}
+                )
+              ).sort((a, b) => b.reviews.length - a.reviews.length);
+
+              return (
+                <div className="flex flex-col gap-12">
+                  {groups.map((group) => {
+                    const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(
+                      [group.name, city.name, "tattoo removal"].join(" ")
+                    )}`;
+                    return (
+                      <div key={group.slug ?? group.name}>
+                        <div className="mb-5 flex items-baseline gap-3">
+                          {group.slug ? (
+                            <Link
+                              href={`/reviews/${group.slug}`}
+                              className="text-[17px] font-semibold text-heading hover:text-accent"
+                            >
+                              {group.name}
+                            </Link>
+                          ) : (
+                            <span className="text-[17px] font-semibold text-heading">{group.name}</span>
+                          )}
+                          <span className="text-[13px] text-muted">{group.reviews.length} reviews</span>
+                        </div>
+                        <WhatReviewersSay
+                          reviews={group.reviews}
+                          providerName={group.name}
+                          googleMapsUrl={mapsUrl}
+                          initialShow={5}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
           </Container>
         </section>
       )}
