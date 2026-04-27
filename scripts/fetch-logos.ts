@@ -52,6 +52,7 @@ async function main() {
       continue;
     }
 
+    if (!provider.website) continue;
     const domain = new URL(provider.website).hostname.replace(/^www\./, "");
     process.stdout.write(`  fetch  ${slug}-logo  from ${domain} ... `);
 
