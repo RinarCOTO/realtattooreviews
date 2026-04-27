@@ -162,7 +162,7 @@ function compareDateDesc(a: string | undefined, b: string | undefined): number {
 
 export function sortClassifiedReviews(reviews: Review[], sortKey: SortKey = "most_useful"): Review[] {
   const filtered = [...reviews].filter(
-    (r) => r.resultRating != null && (r.reviewSummary || r.useCase)
+    (r) => r.resultRating != null && (r.reviewSummary || r.useCase) && (r.hasText !== false || r.reviewSummary != null)
   );
 
   if (sortKey === "most_recent") {

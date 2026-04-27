@@ -13,6 +13,7 @@ import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
 import { getLocationSlug } from "@/lib/providers";
+import BottomLineSection from "./BottomLineSection";
 import FaqAccordion from "./FaqAccordion";
 import {
   buildBestFor,
@@ -52,9 +53,6 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   const bottomLine = buildBottomLine(brand, locations, reviews, alternatives);
   const brandTags = unique(locations.flatMap((l) => l.tags ?? [])).slice(0, 6);
   // Use first location's Google Business URL if populated; fall back to Maps search
-  const googleMapsUrl =
-    locations.find((l) => l.googleBusinessUrl)?.googleBusinessUrl ||
-    `https://www.google.com/maps/search/${encodeURIComponent(`${brand} tattoo removal`)}`;
   const jumpItems = [
     { label: "Overview",     href: "#overview" },
     { label: "Reviews",      href: "#reviews" },
@@ -98,7 +96,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
 
       <JumpNav items={jumpItems} />
 
-      <section id="overview" className="border-b border-(--line) bg-card py-22">
+      <section id="overview" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title={`Is ${brand} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and location consistency make it a good fit for your tattoo, budget, and goals." />
           <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
@@ -112,21 +110,21 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      <section id="reviews" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
-          <WhatReviewersSay reviews={reviews} providerName={brand} googleMapsUrl={googleMapsUrl} />
+          <WhatReviewersSay reviews={reviews} providerName={brand} />
         </Container>
       </section>
 
-      <section id="results" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="results" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
         </Container>
       </section>
 
-      <section id="pricing" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="pricing" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
           <InfoCard
@@ -139,14 +137,14 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      <section id="treatment" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="treatment" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Treatment Approach and Technology" body="Brand reputation matters, but treatment fit matters more. A provider can look strong overall and still be a weak fit for a specific tattoo or skin profile." />
           <InfoCard label="Method and technology" body={buildTreatmentOverview(locations)} link="See our method comparison guide" linkHref="/comparisons/best-tattoo-removal-method" />
         </Container>
       </section>
 
-      <section id="locations" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="locations" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title={`${brand} by Location`} body="Large brands often perform unevenly by city. A national reputation can be directionally useful, but local execution still matters." />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -176,7 +174,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      <section id="alternatives" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="alternatives" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${brand}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
@@ -187,7 +185,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       </section>
 
       {/* ── Who it fits ──────────────────────────────────────────────────── */}
-      <section id="best-for" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title={`Who ${brand} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
           <div className="grid gap-4 sm:grid-cols-2">
@@ -218,35 +216,18 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
-      <section id="faq" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="faq" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${brand} before making a booking decision.`} />
           <FaqAccordion items={faqItems.map((i) => ({ question: i.q, answer: i.a }))} />
         </Container>
       </section>
 
-      {/* ── Bottom line ──────────────────────────────────────────────────── */}
-      <section id="bottom-line" className="bg-heading py-22">
-        <Container>
-          <div className="mb-8 max-w-2xl">
-            <h2 className="font-sans font-bold text-[32px] leading-[1.1] tracking-[-0.02em] text-white mb-3 m-0">
-              Bottom Line on {brand}
-            </h2>
-            <p className="text-[15px] leading-[1.6] text-white/70">{bottomLine.copy}</p>
-          </div>
-          <p className="-mt-4 mb-10 font-sans text-[14px] leading-relaxed text-subtle max-w-prose">
-            {bottomLine.actionLine}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="#alternatives" className="inline-flex items-center px-5 py-2.5 bg-accent text-white font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full hover:bg-accent-hover transition-colors">
-              Compare {brand} Alternatives
-            </Link>
-            <Link href="/reviews" className="inline-flex items-center px-5 py-2.5 border border-white/20 text-white font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full hover:border-white/50 transition-colors">
-              Read Tattoo Removal Reviews
-            </Link>
-          </div>
-        </Container>
-      </section>
+      <BottomLineSection
+        providerName={brand}
+        copy={bottomLine.copy}
+        actionLine={bottomLine.actionLine}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

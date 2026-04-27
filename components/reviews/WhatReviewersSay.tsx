@@ -10,7 +10,6 @@ import { buildPatternSummary, sortClassifiedReviews, type SortKey } from "@/lib/
 type Props = {
   reviews: Review[];
   providerName: string;
-  googleMapsUrl?: string;
   initialShow?: number;
 };
 
@@ -43,13 +42,11 @@ const VALID_SORTS = SORT_OPTIONS.map((o) => o.key);
 
 function ReviewsDisplay({
   reviews,
-  googleMapsUrl,
   initialShow = 6,
   sortKey,
   onSort,
 }: {
   reviews: Review[];
-  googleMapsUrl?: string;
   initialShow?: number;
   sortKey: SortKey;
   onSort: (key: SortKey) => void;
@@ -70,7 +67,7 @@ function ReviewsDisplay({
       {patterns.length > 0 ? (
         <div className="mb-10">
           <p className="text-[13px] text-(--muted) mb-4">
-            Patterns across {reviews.length} sourced {reviews.length === 1 ? "review" : "reviews"}
+            Patterns across {classified.length} classified {classified.length === 1 ? "review" : "reviews"}
           </p>
           {patterns.some((p) => p.count >= 5) && (
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4">
@@ -153,19 +150,6 @@ function ReviewsDisplay({
             >
               Show all {classified.length} reviews
             </button>
-          )}
-
-          {googleMapsUrl && (
-            <p className="mt-6 text-[13px] text-(--muted)">
-              <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-(--accent) hover:underline"
-              >
-                Read all {reviews.length} reviews on Google Maps →
-              </a>
-            </p>
           )}
 
           <p className="mt-4 font-sans text-[11px] text-(--muted) border-t border-(--line) pt-4">

@@ -29,6 +29,7 @@ export type Review = {
   excerpt?: string;                              // short teaser for cards
   fullText?: string;                             // full review text for detail pages
   reviewUrl?: string;                            // link back to original source
+  hasText?: boolean;                             // false = blank Google Maps review (no written text)
 
   // ── Structured tags ──────────────────────────────────────────────────────
   tags?: string[];
@@ -75,6 +76,7 @@ export type DbReview = {
   reviewer_name: string | null;
   verified_source: string;
   _place_title: string | null;
+  _place_id: string | null;
   pain_level: number | "unknown" | null;        // already a number, not a string
   scarring_mentioned: "Yes" | "No" | "Positive" | null;
   sessions_completed: number | "unknown" | null; // already a number, not a string
@@ -88,6 +90,7 @@ export type DbReview = {
   bucket: "inkout" | "tatt2away" | "review_required" | "competitor" | null;
   is_tattoo_removal: boolean | null;
   status: "published" | "pending" | "rejected" | "draft" | null;
+  has_text: boolean;
   review_summary: string | null;               // RTR-authored paraphrase (not verbatim review_text)
   reviewed_decision: string | null;
   reviewed_at: string | null;

@@ -12,6 +12,7 @@ import VerdictCard from "./VerdictCard";
 import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
+import BottomLineSection from "./BottomLineSection";
 import FaqAccordion from "./FaqAccordion";
 import {
   buildBestFor,
@@ -47,9 +48,6 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
   const bottomLine = buildBottomLine(provider.name, [provider], reviews, alternatives);
   const city = provider.market.split(",")[0].trim();
   const citySlug = city.toLowerCase().replace(/\s+/g, "-");
-  const googleMapsUrl =
-    provider.googleBusinessUrl ||
-    `https://www.google.com/maps/search/${encodeURIComponent(`${provider.name} ${city} tattoo removal`)}`;
   const jumpItems = [
     { label: "Overview",      href: "#overview" },
     { label: "Reviews",       href: "#reviews" },
@@ -94,7 +92,7 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         </Container>
       </section>
 
-      <section id="overview" className="border-b border-(--line) bg-hero-bg py-22">
+      <section id="overview" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title={`Is ${provider.name} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and local consistency make it a good fit for your tattoo, budget, and goals." />
           <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
@@ -110,11 +108,11 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
       <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
-          <WhatReviewersSay reviews={reviews} providerName={provider.name} googleMapsUrl={googleMapsUrl} />
+          <WhatReviewersSay reviews={reviews} providerName={provider.name} />
         </Container>
       </section>
 
-      <section id="results" className="border-b border-(--line) bg-(--wash) py-22">
+      <section id="results" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
@@ -217,23 +215,11 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         </Container>
       </section>
 
-      {/* ── Bottom line ──────────────────────────────────────────────────── */}
-      <section id="bottom-line" className="bg-(--bg) py-22">
-        <Container>
-          <BlockHeading title={`Bottom Line on ${provider.name}`} body={bottomLine.copy} />
-          <p className="-mt-4 mb-10 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
-            {bottomLine.actionLine}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="#alternatives" className="inline-flex items-center px-5 py-2.5 bg-(--ink) text-(--bg) font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full">
-              Compare {provider.name} Alternatives
-            </Link>
-            <Link href="/reviews" className="inline-flex items-center px-5 py-2.5 border border-(--line) text-(--ink) font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full">
-              Read Tattoo Removal Reviews
-            </Link>
-          </div>
-        </Container>
-      </section>
+      <BottomLineSection
+        providerName={provider.name}
+        copy={bottomLine.copy}
+        actionLine={bottomLine.actionLine}
+      />
 
       <script
         type="application/ld+json"

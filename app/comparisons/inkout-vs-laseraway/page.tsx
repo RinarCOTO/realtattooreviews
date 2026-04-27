@@ -4,11 +4,12 @@ import Link from "next/link";
 import { Suspense } from "react";
 import Container from "@/components/layout/Container";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
-import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import PageSection from "@/components/reviews/PageSection";
+import FaqAccordion from "@/components/provider/FaqAccordion";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
 
 export const revalidate = 3600;
@@ -159,520 +160,575 @@ export default function InkoutVsLaserawayPage() {
             <span className="text-(--accent)">LaserAway</span>
           </h1>
 
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
+          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-2xl">
             Compare TEPR and PicoSure tattoo removal, including specialist vs chain, pricing, pain,
             scarring risk, and which provider fits different use cases.
           </p>
         </Container>
       </section>
 
-      {/* Body */}
-      <section className="bg-(--bg)">
+      {/* Intro */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
+              inkOUT and LaserAway represent two fundamentally different approaches to tattoo
+              removal. LaserAway is a large multi-service aesthetics chain. It offers tattoo
+              removal alongside laser hair removal, body contouring, injectables, and other
+              cosmetic procedures. LaserAway uses Cynosure PicoSure, a picosecond laser built
+              around a 755nm alexandrite wavelength. inkOUT is a non-laser brand. It uses TEPR
+              (Trans-Epidermal Pigment Release). TEPR tattoo removal lifts ink out through the
+              skin surface rather than shattering it with light.
+            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0 mt-4">
+              The inkOUT vs LaserAway decision sits on two axes. The first is TEPR vs PicoSure:
+              non-laser versus laser, two different mechanisms with different strengths. The
+              laser vs non-laser distinction is the foundation of this comparison. The second is
+              specialist vs chain: a focused tattoo removal brand versus a broad-service
+              aesthetics platform where tattoo removal is one of many offerings. Both axes
+              matter. LaserAway vs inkOUT, inkOUT or LaserAway, and inkout vs laseraway tattoo
+              removal all come back to the same two-layer comparison.
+            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0 mt-4">
+              This page does not force a universal winner. It explains the real differences on
+              both axes. Then it maps those differences onto who each provider actually serves
+              best.
+            </p>
+        </Container>
+      </section>
 
-            {/* Intro */}
-            <div className="py-12">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
-                  inkOUT and LaserAway represent two fundamentally different approaches to tattoo
-                  removal. LaserAway is a large multi-service aesthetics chain. It offers tattoo
-                  removal alongside laser hair removal, body contouring, injectables, and other
-                  cosmetic procedures. LaserAway uses Cynosure PicoSure, a picosecond laser built
-                  around a 755nm alexandrite wavelength. inkOUT is a non-laser brand. It uses TEPR
-                  (Trans-Epidermal Pigment Release). TEPR tattoo removal lifts ink out through the
-                  skin surface rather than shattering it with light.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  The inkOUT vs LaserAway decision sits on two axes. The first is TEPR vs PicoSure:
-                  non-laser versus laser, two different mechanisms with different strengths. The
-                  laser vs non-laser distinction is the foundation of this comparison. The second is
-                  specialist vs chain: a focused tattoo removal brand versus a broad-service
-                  aesthetics platform where tattoo removal is one of many offerings. Both axes
-                  matter. LaserAway vs inkOUT, inkOUT or LaserAway, and inkout vs laseraway tattoo
-                  removal all come back to the same two-layer comparison.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  This page does not force a universal winner. It explains the real differences on
-                  both axes. Then it maps those differences onto who each provider actually serves
-                  best.
-                </p>
-              </div>
-            </div>
+      {/* At a glance */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            inkOUT vs LaserAway at a Glance
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The structural comparison between inkOUT and LaserAway spans method, business model,
+              and specialization focus. The table below captures the categorical differences.
+              Quantitative review evidence appears in the cross-city evidence section further down.
+            </p>
+            <GuideTable
+              headers={["", "inkOUT", "LaserAway"]}
+              rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
+            />
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The structural comparison sets the frame. The specialist-vs-chain section and the
+              use-case section translate these differences into practical guidance.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-            {/* At a glance */}
-            <GuideSection heading="inkOUT vs LaserAway at a Glance">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The structural comparison between inkOUT and LaserAway spans method, business model,
-                and specialization focus. The table below captures the categorical differences.
-                Quantitative review evidence appears in the cross-city evidence section further down.
-              </p>
-              <GuideTable
-                headers={["", "inkOUT", "LaserAway"]}
-                rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
-              />
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The structural comparison sets the frame. The specialist-vs-chain section and the
-                use-case section translate these differences into practical guidance.
-              </p>
-            </GuideSection>
+      {/* TEPR vs PicoSure */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            The Key Difference: TEPR vs PicoSure
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              TEPR vs PicoSure is the core technology difference underneath the inkOUT vs
+              LaserAway comparison.
+            </p>
 
-            {/* TEPR vs PicoSure */}
-            <GuideSection heading="The Key Difference: TEPR vs PicoSure">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                TEPR vs PicoSure is the core technology difference underneath the inkOUT vs
-                LaserAway comparison.
-              </p>
-
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "PicoSure",
-                    body: "PicoSure is a picosecond laser manufactured by Cynosure (now Cynosure Lutronic). It was the first picosecond aesthetic laser to receive FDA clearance, in December 2012. PicoSure's primary wavelength is 755nm (alexandrite). This wavelength is effective on black, blue, and green inks. PicoSure Pro, the current-generation platform, adds optional 532nm and 1064nm wavelengths. These extend coverage to red, orange, yellow, and darker-skin-type treatment. PicoSure uses Cynosure's patented PressureWave technology to deliver ultra-short pulses that shatter ink particles for lymphatic clearance.",
-                  },
-                  {
-                    title: "TEPR",
-                    body: "TEPR (Trans-Epidermal Pigment Release) is not a laser. It does not use light wavelengths. TEPR works by lifting ink upward through the epidermis. The skin then sheds the ink naturally over the weeks following each session. TEPR is not bound by the wavelength-versus-color limitations that affect all laser modalities. It does not interact with melanin the way laser wavelengths do.",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                  >
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                      {item.title}
-                    </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Key implications of this difference:
-              </p>
-              <GuideBulletList
-                items={[
-                  "Color range. PicoSure's 755nm handles blue and green well. Optional 532nm and 1064nm extend to red, orange, yellow, and black. TEPR is not wavelength-bound. Its color range does not depend on laser absorption.",
-                  "Skin tone. Laser methods carry a wavelength-versus-melanin interaction. PicoSure's 755nm has a higher melanin absorption ratio than 1064nm. Provider experience with darker skin tones matters. TEPR does not interact with melanin by mechanism.",
-                  "Pain profile. PicoSure is typically described as a rubber band snapping against the skin. TEPR is typically described as moderate, similar to a tattoo session.",
-                  "Session counts. Peer-reviewed evidence indicates PicoSure achieves greater than 75% clearance in an average of four to five sessions for standard cases. TEPR session counts vary by ink density and tattoo size. Both methods require multiple sessions spaced weeks apart.",
-                ]}
-              />
-            </GuideSection>
-
-            {/* Specialist vs Chain */}
-            <GuideSection heading="Specialist vs Chain: What Type of Provider Fits Your Needs?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The specialist-vs-chain axis is unique to the inkOUT vs LaserAway comparison. It
-                does not appear in the inkOUT vs Removery comparison because Removery is also a
-                specialist. LaserAway is explicitly a chain where tattoo removal is one offering
-                among many.
-              </p>
-
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "What specialist focus means for tattoo removal",
-                    body: "inkOUT's entire clinical focus is tattoo removal. The brand's staff, training, and protocol development revolve around one procedure. Specialization typically means deeper expertise in edge cases. This includes cosmetic tattoo removal, stubborn inks, darker skin types, and scarring-sensitive users. When tattoo removal is the only thing a provider does, the provider accumulates more treatment-specific reps per clinician.",
-                  },
-                  {
-                    title: "What chain breadth means for tattoo removal",
-                    body: "LaserAway operates a national aesthetics platform. Tattoo removal is one service among laser hair removal, CoolSculpting, injectables, skin rejuvenation, and other cosmetic procedures. This breadth means wide geographic access and brand familiarity. It also means that tattoo removal volume per clinician is diluted across multiple service lines. The best LaserAway clinicians may have deep tattoo removal experience. The average LaserAway clinician has split focus.",
-                  },
-                  {
-                    title: "When specialist matters most",
-                    body: "Specialist focus matters most on cases at the difficulty edges. These include cosmetic tattoos with iron-oxide pigments, multi-color tattoos, darker Fitzpatrick skin types, and scarring-sensitive users. These cases benefit from the additional reps and narrower protocol focus that a specialist brings.",
-                  },
-                  {
-                    title: "When chain breadth matters most",
-                    body: "Chain breadth matters most for users prioritizing convenience, access, and familiarity. If you live near a LaserAway location and have a standard body tattoo with dark ink, a chain with mainstream protocols may serve you well. Chain access also matters if you want to bundle tattoo removal with other aesthetic treatments at the same provider.",
-                  },
-                  {
-                    title: "What each side gives up",
-                    body: "Specialist providers like inkOUT trade geographic reach and brand recognition for protocol depth. Fewer locations means fewer users can access the provider without travel. Chain providers like LaserAway trade per-clinician tattoo removal depth for breadth of service and access. More locations means wider access but more variable clinician experience on tattoo removal specifically.",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                  >
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                      {item.title}
-                    </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </GuideSection>
-
-            {/* Pricing */}
-            <GuideSection heading="inkOUT vs LaserAway: Pricing and Cost Comparison">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                inkOUT vs LaserAway cost decisions depend on pricing model and per-session cost.
-              </p>
-
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "LaserAway pricing",
-                    body: "LaserAway uses per-session pricing. LaserAway tattoo removal cost varies by location, tattoo size, and treatment complexity. LaserAway does not publish pricing online. Users get a quote at consultation. LaserAway does not offer a formal unlimited-sessions package model like Removery. Financing options are typically available through third-party providers.",
-                  },
-                  {
-                    title: "inkOUT pricing",
-                    body: "inkOUT uses a per-session pricing model with package options. Per-session pricing is set at consultation. inkOUT positions packages around expected complete-removal session counts.",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                  >
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                      {item.title}
-                    </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Cost comparison framing:
-              </p>
-              <GuideBulletList
-                items={[
-                  "Per-session price. Both brands set pricing at consultation. Direct comparison requires quotes at both.",
-                  "Total cost visibility. Neither brand publishes pricing online. Both require a consultation.",
-                  "Session efficiency. Fewer sessions to completion means lower total cost. Session counts depend on the tattoo, not the brand name.",
-                  "Consultation cost. inkOUT offers free consultations. LaserAway consultation policy varies by location. Confirm whether the consultation is free before booking.",
-                ]}
-              />
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                For national pricing context across all methods and sizes, see the{" "}
-                <Link href="/cost" className="text-(--accent) hover:underline">
-                  cost guide
-                </Link>
-                .
-              </p>
-            </GuideSection>
-
-            {/* Results, scarring, pain */}
-            <GuideSection heading="inkOUT vs LaserAway: Results, Scarring, and Pain">
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "Results",
-                    body: "Both brands target tattoo clearance. PicoSure has peer-reviewed evidence showing strong clearance rates on multicolor tattoos. TEPR targets complete removal as the primary outcome. Neither brand controls ink composition, depth, or skin response. Results are case-specific.",
-                  },
-                  {
-                    title: "Scarring risk",
-                    body: "Scarring depends on treatment intensity, provider skill, and skin type. PicoSure's picosecond pulse width reduces thermal damage compared to nanosecond Q-switched lasers, placing it on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by mechanism. This is relevant to scarring risk for darker skin tones. Ask both providers about scarring rates and protocols at consultation.",
-                  },
-                  {
-                    title: "Pain",
-                    body: "PicoSure sessions are typically described as a rubber band snapping against the skin. Sessions are short. TEPR is typically described as moderate, similar to the sensation of getting a tattoo. Pain tolerance is personal. Neither method is painless.",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                  >
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                      {item.title}
-                    </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                For deeper context on scarring, see{" "}
-                <Link
-                  href="/guides/tattoo-removal-scarring"
-                  className="text-(--accent) hover:underline"
+            <div className="space-y-3">
+              {[
+                {
+                  title: "PicoSure",
+                  body: "PicoSure is a picosecond laser manufactured by Cynosure (now Cynosure Lutronic). It was the first picosecond aesthetic laser to receive FDA clearance, in December 2012. PicoSure's primary wavelength is 755nm (alexandrite). This wavelength is effective on black, blue, and green inks. PicoSure Pro, the current-generation platform, adds optional 532nm and 1064nm wavelengths. These extend coverage to red, orange, yellow, and darker-skin-type treatment. PicoSure uses Cynosure's patented PressureWave technology to deliver ultra-short pulses that shatter ink particles for lymphatic clearance.",
+                },
+                {
+                  title: "TEPR",
+                  body: "TEPR (Trans-Epidermal Pigment Release) is not a laser. It does not use light wavelengths. TEPR works by lifting ink upward through the epidermis. The skin then sheds the ink naturally over the weeks following each session. TEPR is not bound by the wavelength-versus-color limitations that affect all laser modalities. It does not interact with melanin the way laser wavelengths do.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
                 >
-                  tattoo removal scarring
-                </Link>
-                .
-              </p>
-            </GuideSection>
-
-            {/* Use cases */}
-            <GuideSection heading="inkOUT vs LaserAway: Best for Dark Skin, Color Ink, and Complete Removal">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Three high-stakes use cases shape most inkout vs laseraway decisions.
-              </p>
-
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "Dark skin",
-                    body: "PicoSure's primary 755nm alexandrite wavelength has a higher melanin absorption ratio than 1064nm. This means aggressive settings on darker Fitzpatrick skin types carry elevated risk. PicoSure Pro's optional 1064nm handpiece is safer for darker skin. Not every LaserAway location may stock all handpieces. TEPR (inkOUT) avoids melanin interaction entirely. For users prioritizing avoidance of any laser-pigment-change risk, TEPR is structurally lower-risk.",
-                  },
-                  {
-                    title: "Color ink",
-                    body: "PicoSure's 755nm wavelength handles blue and green ink well. The optional 532nm covers red, orange, and yellow. This gives PicoSure strong color coverage when all handpieces are available. TEPR is not wavelength-bound. Its color performance does not depend on ink absorption. For mixed-color tattoos, both approaches are viable starting points.",
-                  },
-                  {
-                    title: "Complete removal",
-                    body: "inkOUT positions TEPR around complete removal as the primary outcome. LaserAway targets clearance across multiple sessions. Both can deliver complete removal. inkOUT frames complete removal as the default goal. LaserAway frames tattoo removal as one among several aesthetics services.",
-                  },
-                  {
-                    title: "PMU and microblading removal",
-                    body: "Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser. This is a known consideration for any laser treatment of microblading, powder brows, lip blush, or eyeliner tattoos. TEPR avoids this risk. It does not use light. inkOUT is structurally well-suited to PMU and microblading cases. If you have cosmetic tattooing to remove, this is one of the strongest arguments for consulting inkOUT first.",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                  >
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                      {item.title}
-                    </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </GuideSection>
-
-            {/* Cross-city evidence */}
-            <GuideSection heading="Cross-City Review Evidence">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The evidence below shows how inkOUT and LaserAway compare across cities where we
-                have direct review-sample data. LaserAway review data is pending in our current
-                dataset. The component will render LaserAway evidence once scrape backfill captures
-                their confirmed locations. inkOUT evidence spans the markets where we currently
-                have review-sample data.
-              </p>
-              <Suspense
-                fallback={
-                  <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
-                    <p className="font-sans text-[14px] text-(--muted) m-0">
-                      Loading evidence table&hellip;
-                    </p>
-                  </div>
-                }
-              >
-                <BrandComparisonEvidence
-                  brandA="inkOUT"
-                  brandB="LaserAway"
-                />
-              </Suspense>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Use the cross-city evidence as a reference once both brands populate. Consult each
-                provider's Google business listing for the most current lifetime review counts.
-              </p>
-            </GuideSection>
-
-            {/* Pros and cons */}
-            <GuideSection heading="Pros and Cons of inkOUT">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
-                  <GuideBulletList
-                    items={[
-                      "Only major non-laser tattoo removal brand at scale in the US market",
-                      "Mechanism is not bound by wavelength-versus-color limitations on any ink color",
-                      "Mechanism does not interact with melanin, lowering structural pigment-change risk for darker skin tones",
-                      "Positioned around complete removal as the primary outcome",
-                      "Well-suited to cosmetic tattoo removal cases where iron-oxide pigments darken paradoxically under laser",
-                      "Specialist focus on tattoo removal means deeper per-clinician expertise",
-                      "Free consultations at all locations",
-                    ]}
-                  />
-                </div>
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Cons</p>
-                  <GuideBulletList
-                    variant="warning"
-                    items={[
-                      "Smaller national footprint than mainstream aesthetics chains",
-                      "Newer market presence means smaller public review history in many cities",
-                      "Per-session experience differs from laser; adjust expectations accordingly",
-                      "No ability to bundle tattoo removal with other aesthetic services at the same provider",
-                    ]}
-                  />
-                </div>
-              </div>
-            </GuideSection>
-
-            <GuideSection heading="Pros and Cons of LaserAway">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
-                  <GuideBulletList
-                    items={[
-                      "Large national footprint with locations across major metros",
-                      "Uses Cynosure PicoSure, the first FDA-cleared picosecond laser with strong evidence on blue and green inks",
-                      "Multi-service platform lets users bundle tattoo removal with other aesthetic treatments",
-                      "Strong brand recognition and mainstream consumer trust",
-                      "PicoSure Pro offers multi-wavelength coverage (755nm, 532nm, 1064nm) when all handpieces are available",
-                    ]}
-                  />
-                </div>
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Cons</p>
-                  <GuideBulletList
-                    variant="warning"
-                    items={[
-                      "Tattoo removal is one service among many; per-clinician tattoo removal reps are diluted across service lines",
-                      "Not a tattoo-removal-only specialist; edge cases may not get the same depth of protocol focus",
-                      "Pricing is not published online; consultation is required for a quote",
-                      "LaserAway reviews on Google reflect the full aesthetics service mix, not tattoo removal specifically",
-                      "PicoSure's 755nm primary wavelength has a higher melanin absorption ratio than 1064nm; darker skin types require careful clinician judgment",
-                    ]}
-                  />
-                </div>
-              </div>
-            </GuideSection>
-
-            {/* Verdict */}
-            <GuideSection heading="Our Verdict: inkOUT or LaserAway?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                There is no universal winner. The honest verdict depends on your tattoo, your skin,
-                and what kind of provider experience you want.
-              </p>
-
-              <div className="space-y-4">
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                    Choose LaserAway when:
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                    {item.title}
                   </p>
-                  <GuideBulletList
-                    items={[
-                      "You want a nationally recognized aesthetics brand with wide geographic access",
-                      "You have a standard body tattoo with dark ink and no unusual skin-tone or pigment concerns",
-                      "You want to combine tattoo removal with other aesthetic treatments at the same provider",
-                      "A LaserAway location is closer or more convenient than the nearest inkOUT location",
-                      "You are comfortable with mainstream laser protocols and want a familiar brand experience",
-                    ]}
-                  />
-                </div>
-
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                    Choose inkOUT when:
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                    {item.body}
                   </p>
-                  <GuideBulletList
-                    items={[
-                      "You specifically want a non-laser method, by preference or by medical reason",
-                      "You have microblading, powder brows, lip blush, or another cosmetic tattoo and want to avoid laser-iron-oxide darkening risk",
-                      "You have darker skin and want to avoid any laser-melanin interaction",
-                      "You are prioritizing complete removal as the primary outcome",
-                      "You want a specialist provider whose entire clinical focus is tattoo removal",
-                      "You are scarring-sensitive and want a structurally different mechanism than laser",
-                    ]}
-                  />
                 </div>
-
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                    Get consultations at both when:
-                  </p>
-                  <GuideBulletList
-                    items={[
-                      "Both brands have a location near you",
-                      "You want to compare quotes, session-count estimates, and provider judgment before committing",
-                      "You are uncertain whether specialist focus or chain access matters more for your case",
-                    ]}
-                  />
-                </div>
-              </div>
-
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The decision often narrows on geography before method preference. If only one brand
-                operates near you, that is the starting point. Use the{" "}
-                <Link href="/cities/austin" className="text-(--accent) hover:underline">
-                  city comparison pages
-                </Link>{" "}
-                to see which brands operate in your market. See{" "}
-                <Link href="/reviews/inkout" className="text-(--accent) hover:underline">
-                  /reviews/inkout
-                </Link>{" "}
-                and{" "}
-                <Link href="/reviews/laseraway" className="text-(--accent) hover:underline">
-                  /reviews/laseraway
-                </Link>{" "}
-                for deeper brand-level coverage.
-              </p>
-            </GuideSection>
-
-            {/* Editorial note */}
-            <div className="py-12">
-              <GuideCallout label="Editorial note">
-                PicoSure details are drawn from Cynosure Lutronic product documentation and
-                PMC4859414 (Torbeck et al, JCAD 2016). LaserAway review data is pending scrape
-                backfill; the evidence table will populate as confirmed locations are captured.
-                inkOUT is a current advertising client of RealTattooReviews and is evaluated under
-                the same framework as every other provider. Individual outcomes vary by tattoo,
-                skin type, ink density, and provider skill. Consult both providers before deciding.
-                See our{" "}
-                <Link href="/methodology" className="text-(--accent) hover:underline">
-                  methodology
-                </Link>{" "}
-                and{" "}
-                <Link href="/editorial-policy" className="text-(--accent) hover:underline">
-                  editorial policy
-                </Link>{" "}
-                for full details.
-              </GuideCallout>
+              ))}
             </div>
 
-            <div className="py-12 border-t border-(--line)">
-              <p className="font-sans text-[12px] font-semibold uppercase tracking-wider text-(--muted) mb-4">
-                Related Pages
-              </p>
-              <div className="space-y-2">
-                {[
-                  { href: "/comparisons/best-tattoo-removal-method", title: "Best Tattoo Removal Method" },
-                  { href: "/comparisons/inkout-vs-removery", title: "inkOUT vs Removery" },
-                  { href: "/comparisons/removery-vs-laseraway", title: "Removery vs LaserAway" },
-                  { href: "/reviews/inkout", title: "inkOUT Reviews" },
-                  { href: "/reviews/laseraway", title: "LaserAway Reviews" },
-                ].map((link) => (
-                  <div key={link.href}>
-                    <Link href={link.href} className="font-sans text-[14px] text-(--accent) hover:underline">
-                      {link.title}
-                    </Link>
-                  </div>
-                ))}
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Key implications of this difference:
+            </p>
+            <GuideBulletList
+              items={[
+                "Color range. PicoSure's 755nm handles blue and green well. Optional 532nm and 1064nm extend to red, orange, yellow, and black. TEPR is not wavelength-bound. Its color range does not depend on laser absorption.",
+                "Skin tone. Laser methods carry a wavelength-versus-melanin interaction. PicoSure's 755nm has a higher melanin absorption ratio than 1064nm. Provider experience with darker skin tones matters. TEPR does not interact with melanin by mechanism.",
+                "Pain profile. PicoSure is typically described as a rubber band snapping against the skin. TEPR is typically described as moderate, similar to a tattoo session.",
+                "Session counts. Peer-reviewed evidence indicates PicoSure achieves greater than 75% clearance in an average of four to five sessions for standard cases. TEPR session counts vary by ink density and tattoo size. Both methods require multiple sessions spaced weeks apart.",
+              ]}
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Specialist vs Chain */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            Specialist vs Chain: What Type of Provider Fits Your Needs?
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The specialist-vs-chain axis is unique to the inkOUT vs LaserAway comparison. It
+              does not appear in the inkOUT vs Removery comparison because Removery is also a
+              specialist. LaserAway is explicitly a chain where tattoo removal is one offering
+              among many.
+            </p>
+
+            <div className="space-y-3">
+              {[
+                {
+                  title: "What specialist focus means for tattoo removal",
+                  body: "inkOUT's entire clinical focus is tattoo removal. The brand's staff, training, and protocol development revolve around one procedure. Specialization typically means deeper expertise in edge cases. This includes cosmetic tattoo removal, stubborn inks, darker skin types, and scarring-sensitive users. When tattoo removal is the only thing a provider does, the provider accumulates more treatment-specific reps per clinician.",
+                },
+                {
+                  title: "What chain breadth means for tattoo removal",
+                  body: "LaserAway operates a national aesthetics platform. Tattoo removal is one service among laser hair removal, CoolSculpting, injectables, skin rejuvenation, and other cosmetic procedures. This breadth means wide geographic access and brand familiarity. It also means that tattoo removal volume per clinician is diluted across multiple service lines. The best LaserAway clinicians may have deep tattoo removal experience. The average LaserAway clinician has split focus.",
+                },
+                {
+                  title: "When specialist matters most",
+                  body: "Specialist focus matters most on cases at the difficulty edges. These include cosmetic tattoos with iron-oxide pigments, multi-color tattoos, darker Fitzpatrick skin types, and scarring-sensitive users. These cases benefit from the additional reps and narrower protocol focus that a specialist brings.",
+                },
+                {
+                  title: "When chain breadth matters most",
+                  body: "Chain breadth matters most for users prioritizing convenience, access, and familiarity. If you live near a LaserAway location and have a standard body tattoo with dark ink, a chain with mainstream protocols may serve you well. Chain access also matters if you want to bundle tattoo removal with other aesthetic treatments at the same provider.",
+                },
+                {
+                  title: "What each side gives up",
+                  body: "Specialist providers like inkOUT trade geographic reach and brand recognition for protocol depth. Fewer locations means fewer users can access the provider without travel. Chain providers like LaserAway trade per-clinician tattoo removal depth for breadth of service and access. More locations means wider access but more variable clinician experience on tattoo removal specifically.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
+                >
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                    {item.title}
+                  </p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Pricing */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            inkOUT vs LaserAway: Pricing and Cost Comparison
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              inkOUT vs LaserAway cost decisions depend on pricing model and per-session cost.
+            </p>
+
+            <div className="space-y-3">
+              {[
+                {
+                  title: "LaserAway pricing",
+                  body: "LaserAway uses per-session pricing. LaserAway tattoo removal cost varies by location, tattoo size, and treatment complexity. LaserAway does not publish pricing online. Users get a quote at consultation. LaserAway does not offer a formal unlimited-sessions package model like Removery. Financing options are typically available through third-party providers.",
+                },
+                {
+                  title: "inkOUT pricing",
+                  body: "inkOUT uses a per-session pricing model with package options. Per-session pricing is set at consultation. inkOUT positions packages around expected complete-removal session counts.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
+                >
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                    {item.title}
+                  </p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Cost comparison framing:
+            </p>
+            <GuideBulletList
+              items={[
+                "Per-session price. Both brands set pricing at consultation. Direct comparison requires quotes at both.",
+                "Total cost visibility. Neither brand publishes pricing online. Both require a consultation.",
+                "Session efficiency. Fewer sessions to completion means lower total cost. Session counts depend on the tattoo, not the brand name.",
+                "Consultation cost. inkOUT offers free consultations. LaserAway consultation policy varies by location. Confirm whether the consultation is free before booking.",
+              ]}
+            />
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              For national pricing context across all methods and sizes, see the{" "}
+              <Link href="/cost" className="text-(--accent) hover:underline">
+                cost guide
+              </Link>
+              .
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Results, scarring, pain */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            inkOUT vs LaserAway: Results, Scarring, and Pain
+          </h2>
+          <div className="space-y-4">
+            <div className="space-y-3">
+              {[
+                {
+                  title: "Results",
+                  body: "Both brands target tattoo clearance. PicoSure has peer-reviewed evidence showing strong clearance rates on multicolor tattoos. TEPR targets complete removal as the primary outcome. Neither brand controls ink composition, depth, or skin response. Results are case-specific.",
+                },
+                {
+                  title: "Scarring risk",
+                  body: "Scarring depends on treatment intensity, provider skill, and skin type. PicoSure's picosecond pulse width reduces thermal damage compared to nanosecond Q-switched lasers, placing it on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by mechanism. This is relevant to scarring risk for darker skin tones. Ask both providers about scarring rates and protocols at consultation.",
+                },
+                {
+                  title: "Pain",
+                  body: "PicoSure sessions are typically described as a rubber band snapping against the skin. Sessions are short. TEPR is typically described as moderate, similar to the sensation of getting a tattoo. Pain tolerance is personal. Neither method is painless.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
+                >
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                    {item.title}
+                  </p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              For deeper context on scarring, see{" "}
+              <Link
+                href="/guides/tattoo-removal-scarring"
+                className="text-(--accent) hover:underline"
+              >
+                tattoo removal scarring
+              </Link>
+              .
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Use cases */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            inkOUT vs LaserAway: Best for Dark Skin, Color Ink, and Complete Removal
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Three high-stakes use cases shape most inkout vs laseraway decisions.
+            </p>
+
+            <div className="space-y-3">
+              {[
+                {
+                  title: "Dark skin",
+                  body: "PicoSure's primary 755nm alexandrite wavelength has a higher melanin absorption ratio than 1064nm. This means aggressive settings on darker Fitzpatrick skin types carry elevated risk. PicoSure Pro's optional 1064nm handpiece is safer for darker skin. Not every LaserAway location may stock all handpieces. TEPR (inkOUT) avoids melanin interaction entirely. For users prioritizing avoidance of any laser-pigment-change risk, TEPR is structurally lower-risk.",
+                },
+                {
+                  title: "Color ink",
+                  body: "PicoSure's 755nm wavelength handles blue and green ink well. The optional 532nm covers red, orange, and yellow. This gives PicoSure strong color coverage when all handpieces are available. TEPR is not wavelength-bound. Its color performance does not depend on ink absorption. For mixed-color tattoos, both approaches are viable starting points.",
+                },
+                {
+                  title: "Complete removal",
+                  body: "inkOUT positions TEPR around complete removal as the primary outcome. LaserAway targets clearance across multiple sessions. Both can deliver complete removal. inkOUT frames complete removal as the default goal. LaserAway frames tattoo removal as one among several aesthetics services.",
+                },
+                {
+                  title: "PMU and microblading removal",
+                  body: "Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser. This is a known consideration for any laser treatment of microblading, powder brows, lip blush, or eyeliner tattoos. TEPR avoids this risk. It does not use light. inkOUT is structurally well-suited to PMU and microblading cases. If you have cosmetic tattooing to remove, this is one of the strongest arguments for consulting inkOUT first.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
+                >
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                    {item.title}
+                  </p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Cross-city evidence */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            Cross-City Review Evidence
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The evidence below shows how inkOUT and LaserAway compare across cities where we
+              have direct review-sample data. LaserAway review data is pending in our current
+              dataset. The component will render LaserAway evidence once scrape backfill captures
+              their confirmed locations. inkOUT evidence spans the markets where we currently
+              have review-sample data.
+            </p>
+            <Suspense
+              fallback={
+                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                  <p className="font-sans text-[14px] text-(--muted) m-0">
+                    Loading evidence table&hellip;
+                  </p>
+                </div>
+              }
+            >
+              <BrandComparisonEvidence
+                brandA="inkOUT"
+                brandB="LaserAway"
+              />
+            </Suspense>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Use the cross-city evidence as a reference once both brands populate. Consult each
+              provider's Google business listing for the most current lifetime review counts.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Pros and cons of inkOUT */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            Pros and Cons of inkOUT
+          </h2>
+          <div className="space-y-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
+                <GuideBulletList
+                  items={[
+                    "Only major non-laser tattoo removal brand at scale in the US market",
+                    "Mechanism is not bound by wavelength-versus-color limitations on any ink color",
+                    "Mechanism does not interact with melanin, lowering structural pigment-change risk for darker skin tones",
+                    "Positioned around complete removal as the primary outcome",
+                    "Well-suited to cosmetic tattoo removal cases where iron-oxide pigments darken paradoxically under laser",
+                    "Specialist focus on tattoo removal means deeper per-clinician expertise",
+                    "Free consultations at all locations",
+                  ]}
+                />
+              </div>
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Cons</p>
+                <GuideBulletList
+                  variant="warning"
+                  items={[
+                    "Smaller national footprint than mainstream aesthetics chains",
+                    "Newer market presence means smaller public review history in many cities",
+                    "Per-session experience differs from laser; adjust expectations accordingly",
+                    "No ability to bundle tattoo removal with other aesthetic services at the same provider",
+                  ]}
+                />
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* FAQ */}
-      <section className="border-y border-(--line) bg-(--surface) py-20">
+      {/* Pros and cons of LaserAway */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5">
-            FAQ
-          </MonoLabel>
-          <h2 className="font-sans font-bold text-[clamp(24px,3.5vw,36px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-10">
-            Frequently Asked Questions
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            Pros and Cons of LaserAway
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="border border-(--line) bg-white p-6 rounded-xl"
-              >
-                <p className="font-semibold text-(--ink) text-[15px] mb-3 leading-snug m-0">
-                  {faq.question}
+          <div className="space-y-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
+                <GuideBulletList
+                  items={[
+                    "Large national footprint with locations across major metros",
+                    "Uses Cynosure PicoSure, the first FDA-cleared picosecond laser with strong evidence on blue and green inks",
+                    "Multi-service platform lets users bundle tattoo removal with other aesthetic treatments",
+                    "Strong brand recognition and mainstream consumer trust",
+                    "PicoSure Pro offers multi-wavelength coverage (755nm, 532nm, 1064nm) when all handpieces are available",
+                  ]}
+                />
+              </div>
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Cons</p>
+                <GuideBulletList
+                  variant="warning"
+                  items={[
+                    "Tattoo removal is one service among many; per-clinician tattoo removal reps are diluted across service lines",
+                    "Not a tattoo-removal-only specialist; edge cases may not get the same depth of protocol focus",
+                    "Pricing is not published online; consultation is required for a quote",
+                    "LaserAway reviews on Google reflect the full aesthetics service mix, not tattoo removal specifically",
+                    "PicoSure's 755nm primary wavelength has a higher melanin absorption ratio than 1064nm; darker skin types require careful clinician judgment",
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Verdict */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            Our Verdict: inkOUT or LaserAway?
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              There is no universal winner. The honest verdict depends on your tattoo, your skin,
+              and what kind of provider experience you want.
+            </p>
+
+            <div className="space-y-4">
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
+                  Choose LaserAway when:
                 </p>
-                <p className="text-[13px] leading-relaxed text-(--muted) m-0">{faq.answer}</p>
+                <GuideBulletList
+                  items={[
+                    "You want a nationally recognized aesthetics brand with wide geographic access",
+                    "You have a standard body tattoo with dark ink and no unusual skin-tone or pigment concerns",
+                    "You want to combine tattoo removal with other aesthetic treatments at the same provider",
+                    "A LaserAway location is closer or more convenient than the nearest inkOUT location",
+                    "You are comfortable with mainstream laser protocols and want a familiar brand experience",
+                  ]}
+                />
+              </div>
+
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
+                  Choose inkOUT when:
+                </p>
+                <GuideBulletList
+                  items={[
+                    "You specifically want a non-laser method, by preference or by medical reason",
+                    "You have microblading, powder brows, lip blush, or another cosmetic tattoo and want to avoid laser-iron-oxide darkening risk",
+                    "You have darker skin and want to avoid any laser-melanin interaction",
+                    "You are prioritizing complete removal as the primary outcome",
+                    "You want a specialist provider whose entire clinical focus is tattoo removal",
+                    "You are scarring-sensitive and want a structurally different mechanism than laser",
+                  ]}
+                />
+              </div>
+
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
+                  Get consultations at both when:
+                </p>
+                <GuideBulletList
+                  items={[
+                    "Both brands have a location near you",
+                    "You want to compare quotes, session-count estimates, and provider judgment before committing",
+                    "You are uncertain whether specialist focus or chain access matters more for your case",
+                  ]}
+                />
+              </div>
+            </div>
+
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The decision often narrows on geography before method preference. If only one brand
+              operates near you, that is the starting point. Use the{" "}
+              <Link href="/cities/austin" className="text-(--accent) hover:underline">
+                city comparison pages
+              </Link>{" "}
+              to see which brands operate in your market. See{" "}
+              <Link href="/reviews/inkout" className="text-(--accent) hover:underline">
+                /reviews/inkout
+              </Link>{" "}
+              and{" "}
+              <Link href="/reviews/laseraway" className="text-(--accent) hover:underline">
+                /reviews/laseraway
+              </Link>{" "}
+              for deeper brand-level coverage.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Editorial note */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <div className="space-y-4">
+            <GuideCallout label="Editorial note">
+              PicoSure details are drawn from Cynosure Lutronic product documentation and
+              PMC4859414 (Torbeck et al, JCAD 2016). LaserAway review data is pending scrape
+              backfill; the evidence table will populate as confirmed locations are captured.
+              inkOUT is a current advertising client of RealTattooReviews and is evaluated under
+              the same framework as every other provider. Individual outcomes vary by tattoo,
+              skin type, ink density, and provider skill. Consult both providers before deciding.
+              See our{" "}
+              <Link href="/methodology" className="text-(--accent) hover:underline">
+                methodology
+              </Link>{" "}
+              and{" "}
+              <Link href="/editorial-policy" className="text-(--accent) hover:underline">
+                editorial policy
+              </Link>{" "}
+              for full details.
+            </GuideCallout>
+          </div>
+        </Container>
+      </section>
+
+      {/* Related links */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <p className="font-sans text-[12px] font-semibold uppercase tracking-wider text-(--muted) mb-4">
+            Related Pages
+          </p>
+          <div className="space-y-2">
+            {[
+              { href: "/comparisons/best-tattoo-removal-method", title: "Best Tattoo Removal Method" },
+              { href: "/comparisons/inkout-vs-removery", title: "inkOUT vs Removery" },
+              { href: "/comparisons/removery-vs-laseraway", title: "Removery vs LaserAway" },
+              { href: "/reviews/inkout", title: "inkOUT Reviews" },
+              { href: "/reviews/laseraway", title: "LaserAway Reviews" },
+            ].map((link) => (
+              <div key={link.href}>
+                <Link href={link.href} className="font-sans text-[14px] text-(--accent) hover:underline">
+                  {link.title}
+                </Link>
               </div>
             ))}
           </div>
         </Container>
       </section>
+
+      <PageSection id="faq" bg="bg">
+        <div className="mb-10">
+          <MonoLabel color="accent" size="sm" className="mb-4">FAQ</MonoLabel>
+          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        <FaqAccordion items={faqs} />
+      </PageSection>
     </div>
   );
 }

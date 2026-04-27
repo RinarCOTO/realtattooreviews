@@ -97,14 +97,6 @@ function getProviderNamesForSlug(
   if (brand) {
     // Deduplicate: inkOUT locations all share name "inkOUT", etc.
     const names = [...new Set(getProvidersByBrand(brand).map((p) => p.name))];
-    // inkOUT pages include Tatt2Away sessions (tatt2away bucket merged into inkOUT display)
-    if (isInkout) {
-      const tatt2awayBrand = getMultiLocationBrands().find((b) => brandToSlug(b) === "tatt2away");
-      if (tatt2awayBrand) {
-        const tatt2awayNames = getProvidersByBrand(tatt2awayBrand).map((p) => p.name);
-        return { names: [...new Set([...names, ...tatt2awayNames])], isInkout };
-      }
-    }
     return { names, isInkout };
   }
 
@@ -129,6 +121,30 @@ function formatReviewDate(isoDate: string | null): string | undefined {
   const d = new Date(isoDate);
   if (Number.isNaN(d.getTime())) return undefined;
   return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
+
+// ── Provider classification ───────────────────────────────────────────────────
+//
+// Tattoo-removal-only providers: reviews with use_case = 'unknown' are still
+// tattoo removal reviews — Qwen just didn't tag a specific use case. Default to
+// 'Complete' so they surface on review pages.
+//
+// Mixed med-spa providers: reviews with use_case = 'unknown' may be about other
+// services (facials, injectables, etc.) — keep them null so they stay hidden.
+
+const REMOVAL_ONLY_PREFIXES = [
+  "Removery",
+  "MEDermis",
+  "InkFree",
+  "Inklifters",
+  "Clean Slate",
+  "Erasable",
+  "Skintellect",
+  "Tatt2Away",
+];
+
+function isRemovalOnlyProvider(name: string): boolean {
+  return REMOVAL_ONLY_PREFIXES.some((p) => name.startsWith(p));
 }
 
 // ── Mapper ───────────────────────────────────────────────────────────────────
@@ -162,7 +178,8 @@ export function dbReviewToReview(r: DbReview): Review {
     dateISO: r.review_date_iso ?? undefined,
     excerpt: r.review_text ?? undefined,
     fullText: r.review_text ?? undefined,
-    reviewUrl: r.source_url ?? undefined,
+    reviewUrl: r.source_url
+      ?? (r._place_id ? `https://www.google.com/maps/place/?q=place_id:${r._place_id}` : undefined),
     tags: buildReviewTags(r.review_text ?? ""),
     sessions,
     painLevel: painRaw,
@@ -173,10 +190,13 @@ export function dbReviewToReview(r: DbReview): Review {
       : null,
     scarringPraised: r.scarring_mentioned === "Positive" ? true : null,
     resultsMentioned: r.result_rating != null && r.result_rating !== "unknown",
-    useCase: (r.use_case && r.use_case !== "unknown") ? r.use_case : null,
+    useCase: (r.use_case && r.use_case !== "unknown")
+      ? r.use_case
+      : (r.bucket === "inkout" || isRemovalOnlyProvider(r.provider_name)) ? "Complete" : null,
     resultRating: (r.result_rating && r.result_rating !== "unknown") ? r.result_rating as Review["resultRating"] : null,
     methodUsed: r.method_used ?? null,
     reviewSummary: r.review_summary ?? null,
+    hasText: r.has_text,
     // Fields not captured in competitor_reviews, kept for type compatibility
     healingIssues: null,
     costMentioned: null,
@@ -259,8 +279,7 @@ function applyPublicFilters(query: any, bucketScope: BucketScope): any {
 
   // Bucket gate: prevent tatt2away and review_required from reaching public pages
   if (bucketScope === "inkout") {
-    // inkOUT pages: inkOUT-approved reviews plus Tatt2Away sessions (merged into inkOUT)
-    query = query.or("bucket.eq.inkout,bucket.eq.tatt2away");
+    query = query.eq("bucket", "inkout");
   } else if (bucketScope === "competitor") {
     // Competitor pages: reviews stamped 'competitor' by the separator pipeline
     query = query.eq("bucket", "competitor");

@@ -76,10 +76,6 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
     .flatMap((l) => l.tags ?? [])
     .filter((v, i, a) => a.indexOf(v) === i)
     .slice(0, 6);
-  const googleMapsUrl =
-    locations.find((l) => l.googleBusinessUrl)?.googleBusinessUrl ||
-    `https://www.google.com/maps/search/${encodeURIComponent(`${review.providerName} tattoo removal`)}`;
-
   const jumpItems = [
     { label: "Verdict",     href: "#verdict" },
     { label: "Reviews",     href: "#reviews" },
@@ -147,7 +143,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               title="What Reviewers Say"
               body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top."
             />
-            <WhatReviewersSay reviews={reviews} providerName={review.providerName} googleMapsUrl={googleMapsUrl} />
+            <WhatReviewersSay reviews={reviews} providerName={review.providerName} />
           </Container>
         </section>
       )}

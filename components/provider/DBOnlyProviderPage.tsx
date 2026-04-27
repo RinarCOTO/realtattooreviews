@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import BlockHeading from "./BlockHeading";
+import FaqAccordion from "./FaqAccordion";
 import JumpNav from "./JumpNav";
 import ProsCons from "./ProsCons";
 import ResultsSnapshot from "./ResultsSnapshot";
@@ -35,10 +36,6 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
   const resultsSummary = buildResultsSummary(reviews);
   const faqItems = buildFAQ(providerName, market || undefined);
   const bestForData = buildBestFor([], reviews);
-  const googleMapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(
-    [providerName, market, "tattoo removal"].filter(Boolean).join(" ")
-  )}`;
-
   return (
     <main className="reviews-page min-h-screen bg-(--bg)">
       <section className="relative overflow-hidden border-b border-primary-strong bg-primary py-14">
@@ -91,7 +88,7 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
         { label: "FAQ",        href: "#faq" },
       ]} />
 
-      <section id="overview" className="border-b border-(--line) bg-hero-bg py-22">
+      <section id="overview" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Overview" body="Quick verdict and the most meaningful positives and cautions from the review data." />
           <VerdictSidebar rows={buildOverviewStats(reviews)} />
@@ -102,11 +99,11 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
       <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
-          <WhatReviewersSay reviews={reviews} providerName={providerName} googleMapsUrl={googleMapsUrl} />
+          <WhatReviewersSay reviews={reviews} providerName={providerName} />
         </Container>
       </section>
 
-      <section id="results" className="border-b border-(--line) bg-(--wash) py-22">
+      <section id="results" className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
@@ -143,17 +140,10 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
         </Container>
       </section>
 
-      <section id="faq" className="bg-(--bg) py-22">
+      <section id="faq" className="bg-(--surface) py-22">
         <Container>
           <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${providerName} before making a booking decision.`} />
-          <div className="grid gap-4 sm:grid-cols-3">
-            {faqItems.map((item) => (
-              <div key={item.q} className="border border-(--line) bg-(--surface) p-5 rounded-xl">
-                <p className="font-semibold text-(--ink) text-[14px] mb-2">{item.q}</p>
-                <p className="text-[13px] leading-relaxed text-(--muted)">{item.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion items={faqItems.map((i) => ({ question: i.q, answer: i.a }))} />
         </Container>
       </section>
     </main>

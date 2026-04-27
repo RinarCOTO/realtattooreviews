@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
-import FAQSection from "@/components/sections/FAQSection";
+import PageSection from "@/components/reviews/PageSection";
+import FaqAccordion from "@/components/provider/FaqAccordion";
+import MonoLabel from "@/components/reviews/MonoLabel";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
@@ -156,9 +158,8 @@ export default function ComparisonsPage() {
       </section>
 
       {/* Body */}
-      <section className="py-14">
-        <Container>
-          <div className="mx-auto max-w-3xl space-y-14">
+      <PageSection bg="bg">
+        <div className="space-y-14">
 
             {/* Intro */}
             <div className="space-y-4">
@@ -282,11 +283,18 @@ export default function ComparisonsPage() {
               </p>
             </div>
 
-          </div>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
 
-      <FAQSection title="Frequently Asked Questions" faqs={faqs} />
+      <PageSection id="faq" bg="bg">
+        <div className="mb-10">
+          <MonoLabel color="accent" size="sm" className="mb-4">FAQ</MonoLabel>
+          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        <FaqAccordion items={faqs} />
+      </PageSection>
     </main>
   );
 }

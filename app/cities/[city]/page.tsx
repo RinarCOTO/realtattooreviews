@@ -133,9 +133,6 @@ export default async function CityPage({ params }: Props) {
               return (
                 <div className="flex flex-col gap-12">
                   {groups.map((group) => {
-                    const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(
-                      [group.name, city.name, "tattoo removal"].join(" ")
-                    )}`;
                     return (
                       <div key={group.slug ?? group.name}>
                         <div className="mb-5 flex items-baseline gap-3">
@@ -154,7 +151,6 @@ export default async function CityPage({ params }: Props) {
                         <WhatReviewersSay
                           reviews={group.reviews}
                           providerName={group.name}
-                          googleMapsUrl={mapsUrl}
                           initialShow={5}
                         />
                       </div>

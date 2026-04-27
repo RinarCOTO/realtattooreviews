@@ -1,13 +1,13 @@
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
+import FaqAccordion from "@/components/ui/FaqAccordion";
 
 type Props = {
   items?: Array<{ question: string; answer: PortableTextBlock[] }>;
-}
+};
 
-type FallbackFaq = { question: string; answer: string };
-const DEFAULT_FAQS: FallbackFaq[] = [
+const DEFAULT_FAQS = [
   {
     question: "How are reviews collected?",
     answer: "We source reviews from public Google business listings for every provider and location we track. We do not accept reviews submitted directly to us. We do not use provider-owned testimonials.",
@@ -31,8 +31,14 @@ const DEFAULT_FAQS: FallbackFaq[] = [
 ];
 
 export default function FAQSection({ items }: Props) {
-  const faqs: Array<{ question: string; answer: PortableTextBlock[] | string }> =
-    items && items.length > 0 ? items : DEFAULT_FAQS;
+  const faqItems =
+    items && items.length > 0
+      ? items.map((f) => ({
+          question: f.question,
+          answer: <PortableText value={f.answer} />,
+        }))
+      : DEFAULT_FAQS.map((f) => ({ question: f.question, answer: f.answer }));
+
   return (
     <section className="py-16">
       <Container>
@@ -40,19 +46,7 @@ export default function FAQSection({ items }: Props) {
           title="Common questions"
           description="About how reviews are collected, rated, and published."
         />
-        <div className="divide-y divide-divider">
-          {faqs.map((faq) => (
-            <div key={faq.question} className="py-5">
-              <p className="text-sm font-medium text-heading">{faq.question}</p>
-              <div className="mt-2 text-sm leading-relaxed text-muted">
-                {typeof faq.answer === 'string'
-                  ? faq.answer
-                  : <PortableText value={faq.answer} />
-                }
-              </div>
-            </div>
-          ))}
-        </div>
+        <FaqAccordion items={faqItems} />
       </Container>
     </section>
   );

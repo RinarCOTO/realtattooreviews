@@ -29,10 +29,6 @@ export default function ClassifiedReviewCard({ review }: { review: Review }) {
 
   if (!summaryText) return null;
 
-  const mapsUrl = review.reviewUrl ?? `https://www.google.com/maps/search/${encodeURIComponent(
-    [review.provider, review.city, "tattoo removal"].filter(Boolean).join(" ")
-  )}`;
-
   return (
     <article
       className="flex flex-col gap-3 rounded-xl border border-(--line) bg-white p-5 transition-shadow hover:shadow-md"
@@ -66,14 +62,16 @@ export default function ClassifiedReviewCard({ review }: { review: Review }) {
         <p className="font-sans text-[11px] text-(--muted)">
           Sourced from Google Reviews{location ? `, ${location}` : ""}
         </p>
-        <a
-          href={mapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="shrink-0 font-sans text-[11px] text-(--accent) hover:underline"
-        >
-          Read original on Google Maps
-        </a>
+        {review.reviewUrl && (
+          <a
+            href={review.reviewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 font-sans text-[11px] text-(--accent) hover:underline"
+          >
+            Read original on Google Maps
+          </a>
+        )}
       </div>
 
     </article>

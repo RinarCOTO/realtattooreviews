@@ -496,7 +496,7 @@ export default async function ComparisonPage({ params }: Props) {
       {sanityComparison.body && sanityComparison.body.length > 0 && (
         <section className="border-b border-(--line) bg-(--bg) py-22">
           <Container>
-            <div className="mx-auto max-w-2xl prose prose-neutral text-[15px] leading-relaxed text-(--muted)">
+            <div className="prose prose-neutral text-[15px] leading-relaxed text-(--muted)">
               <PortableText value={sanityComparison.body} />
             </div>
           </Container>

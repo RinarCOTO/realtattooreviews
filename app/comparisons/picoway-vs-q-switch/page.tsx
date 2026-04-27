@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
-import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import PageSection from "@/components/reviews/PageSection";
+import FaqAccordion from "@/components/provider/FaqAccordion";
 
 export const metadata: Metadata = {
   title:
@@ -162,438 +163,494 @@ export default function PicoLaserVsQSwitchPage() {
             <span className="text-(--accent)">Q-Switch for Tattoo Removal</span>
           </h1>
 
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
+          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-2xl">
             Compare picosecond and Q-switched lasers across effectiveness, color ink, dark skin
             safety, sessions, pain, and cost. PicoWay vs Q-switched Nd:YAG explained.
           </p>
         </Container>
       </section>
 
-      {/* Body */}
-      <section className="bg-(--bg)">
+      {/* Intro */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
+              The pico laser vs Q-switch decision is one of the most common questions in tattoo
+              removal research. Both are real, proven laser categories. Both remove tattoos. The
+              difference is how they do it, how fast they do it, and which cases they handle
+              better.
+            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0 mt-4">
+              Picosecond lasers (pico lasers) deliver pulses in the trillionths-of-a-second
+              range. Q-switched lasers deliver pulses in the billionths-of-a-second range. That
+              difference in pulse duration changes how ink particles break apart. It also changes
+              how the surrounding skin responds to treatment. The practical result is a difference
+              in session count, color performance, skin-type safety, pain, and cost.
+            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0 mt-4">
+              This page covers the technology comparison between picosecond and Q-switched lasers
+              for tattoo removal. Whether you search for pico laser vs q switch, q switch laser
+              vs pico, pico laser vs q switch tattoo removal, or the branded picoway vs q switch,
+              the comparison is the same underlying physics. PicoWay (by Candela) is one of the
+              most widely deployed picosecond platforms. Q-switched Nd:YAG is the most common
+              Q-switch configuration. The comparison also applies to other pico platforms like
+              PicoSure (Cynosure) and PiQo4 (Lumenis) versus other Q-switch platforms like
+              RevLite and MedLite.
+            </p>
+        </Container>
+      </section>
 
-            {/* Intro */}
-            <div className="py-12">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-6 space-y-4">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
-                  The pico laser vs Q-switch decision is one of the most common questions in tattoo
-                  removal research. Both are real, proven laser categories. Both remove tattoos. The
-                  difference is how they do it, how fast they do it, and which cases they handle
-                  better.
+      {/* How they work */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            How Picosecond and Nanosecond Lasers Actually Work
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The difference between pico laser and Q-switch starts with pulse duration.
+            </p>
+            <div className="space-y-3">
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">Q-switched lasers</p>
+                <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                  Q-switched lasers fire pulses measured in nanoseconds (billionths of a second).
+                  The pulse is short enough to confine energy within the tattoo ink particles. This
+                  creates a photothermal and photoacoustic effect that fragments ink into smaller
+                  pieces. The body's immune system then clears the fragments through the lymphatic
+                  system over weeks following each session. Q-switched Nd:YAG is the most common
+                  configuration. It operates at 1064nm (for black and dark ink) and 532nm (for red,
+                  orange, and warm-toned inks).
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
-                  Picosecond lasers (pico lasers) deliver pulses in the trillionths-of-a-second
-                  range. Q-switched lasers deliver pulses in the billionths-of-a-second range. That
-                  difference in pulse duration changes how ink particles break apart. It also changes
-                  how the surrounding skin responds to treatment. The practical result is a difference
-                  in session count, color performance, skin-type safety, pain, and cost.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
-                  This page covers the technology comparison between picosecond and Q-switched lasers
-                  for tattoo removal. Whether you search for pico laser vs q switch, q switch laser
-                  vs pico, pico laser vs q switch tattoo removal, or the branded picoway vs q switch,
-                  the comparison is the same underlying physics. PicoWay (by Candela) is one of the
-                  most widely deployed picosecond platforms. Q-switched Nd:YAG is the most common
-                  Q-switch configuration. The comparison also applies to other pico platforms like
-                  PicoSure (Cynosure) and PiQo4 (Lumenis) versus other Q-switch platforms like
-                  RevLite and MedLite.
+              </div>
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">Picosecond lasers</p>
+                <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                  Picosecond lasers fire pulses measured in picoseconds (trillionths of a second).
+                  The pulse is roughly 100 times shorter than a nanosecond pulse. This shorter
+                  pulse produces a stronger photoacoustic effect relative to the photothermal
+                  effect. The result is more efficient ink particle fragmentation with less
+                  residual heat delivered to surrounding tissue. Less heat means less thermal
+                  damage. Less thermal damage typically means faster healing, fewer side effects,
+                  and fewer sessions for equivalent clearance. Picosecond platforms like PicoWay,
+                  PicoSure, and PiQo4 offer multiple wavelengths to address a wider range of ink
+                  colors.
                 </p>
               </div>
             </div>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The difference between picosecond and nanosecond pulse duration is not marketing
+              language. It is a physics difference that produces measurable clinical differences
+              in session count, side-effect rate, and color clearance.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-            {/* How they work */}
-            <GuideSection heading="How Picosecond and Nanosecond Lasers Actually Work">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The difference between pico laser and Q-switch starts with pulse duration.
-              </p>
-              <div className="space-y-3">
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">Q-switched lasers</p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
-                    Q-switched lasers fire pulses measured in nanoseconds (billionths of a second).
-                    The pulse is short enough to confine energy within the tattoo ink particles. This
-                    creates a photothermal and photoacoustic effect that fragments ink into smaller
-                    pieces. The body's immune system then clears the fragments through the lymphatic
-                    system over weeks following each session. Q-switched Nd:YAG is the most common
-                    configuration. It operates at 1064nm (for black and dark ink) and 532nm (for red,
-                    orange, and warm-toned inks).
-                  </p>
-                </div>
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">Picosecond lasers</p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
-                    Picosecond lasers fire pulses measured in picoseconds (trillionths of a second).
-                    The pulse is roughly 100 times shorter than a nanosecond pulse. This shorter
-                    pulse produces a stronger photoacoustic effect relative to the photothermal
-                    effect. The result is more efficient ink particle fragmentation with less
-                    residual heat delivered to surrounding tissue. Less heat means less thermal
-                    damage. Less thermal damage typically means faster healing, fewer side effects,
-                    and fewer sessions for equivalent clearance. Picosecond platforms like PicoWay,
-                    PicoSure, and PiQo4 offer multiple wavelengths to address a wider range of ink
-                    colors.
-                  </p>
-                </div>
-              </div>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The difference between picosecond and nanosecond pulse duration is not marketing
-                language. It is a physics difference that produces measurable clinical differences
-                in session count, side-effect rate, and color clearance.
-              </p>
-            </GuideSection>
-
-            {/* Head-to-head table */}
-            <GuideSection heading="PicoWay vs Q-Switched Nd:YAG: Head-to-Head Comparison">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                PicoWay (Candela) and Q-switched Nd:YAG represent the two technology classes in
-                their most common commercial forms.
-              </p>
-              <GuideTable
-                headers={["", "PicoWay (picosecond)", "Q-Switched Nd:YAG (nanosecond)"]}
-                rows={COMPARISON_ROWS}
-              />
-            </GuideSection>
-
-            {/* Is pico better */}
-            <GuideSection heading="Is Pico Laser Better Than Q-Switch?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The short answer: for most cases, yes. For some cases, Q-switch is still perfectly
-                adequate.
-              </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Picosecond lasers outperform Q-switched lasers on three dimensions. First, session
-                count. Peer-reviewed studies show picosecond systems typically clear standard
-                tattoos in fewer sessions. Second, color clearance. The additional 785nm wavelength
-                on platforms like PicoWay extends effective clearance to green, blue-green, and
-                purple inks. Third, side-effect rate. The lower thermal profile reduces the risk of
-                blistering, scarring, and post-inflammatory pigment changes.
-              </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Q-switched Nd:YAG is still effective for standard cases. Black ink on lighter skin
-                types responds well at 1064nm. An experienced Q-switch operator can match pico
-                results on straightforward tattoos. The difference widens on harder cases:
-                multi-color tattoos, darker skin types, and tattoos that have already been partially
-                treated.
-              </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                The pico laser vs nanosecond distinction is not a matter of old versus new. It is a
-                matter of which physics produces better outcomes on which types of cases.
-              </p>
-            </GuideSection>
-
-            {/* Effectiveness */}
-            <GuideSection heading="PicoWay vs Q-Switch: Effectiveness">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                PicoWay's effectiveness advantage comes from pulse duration and wavelength range.
-              </p>
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "Pulse duration",
-                    body: "PicoWay's shorter pulse creates smaller ink fragments per treatment. Smaller fragments clear faster. The cumulative effect is fewer sessions for equivalent clearance.",
-                  },
-                  {
-                    title: "Wavelength range",
-                    body: "PicoWay offers 1064nm, 532nm, and 785nm. Q-switched Nd:YAG offers 1064nm and 532nm. The additional 785nm handles green and blue-green inks more effectively than any Q-switch wavelength.",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                For black ink on lighter skin, the effectiveness difference is moderate. Both clear
-                black ink well. For multi-color tattoos, the difference is significant. For
-                previously treated but not fully cleared tattoos, PicoWay's more efficient
-                fragmentation often breaks through where Q-switch has plateaued.
-              </p>
-            </GuideSection>
-
-            {/* Dark skin */}
-            <GuideSection heading="PicoWay vs Q-Switch: Dark Skin and Skin-Type Safety">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Dark skin tattoo removal is where the pico laser vs Q-switch difference matters
-                most.
-              </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                All laser tattoo removal carries a wavelength-versus-melanin interaction. Melanin
-                in the epidermis absorbs laser energy alongside tattoo ink. The more melanin (darker
-                Fitzpatrick skin types IV through VI), the higher the risk of post-inflammatory
-                hyperpigmentation or hypopigmentation.
-              </p>
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "PicoWay advantage",
-                    body: "PicoWay's shorter pulse duration delivers less residual heat to the epidermis. Less heat means less melanin disruption. This translates to a lower rate of post-inflammatory pigment changes on darker skin types.",
-                  },
-                  {
-                    title: "Q-switch on dark skin",
-                    body: "Q-switched Nd:YAG at 1064nm is safe for darker skin types in experienced hands. Conservative settings, longer intervals, and careful fluence management can produce good results. The risk is higher than PicoWay at equivalent settings.",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                For Fitzpatrick IV through VI, PicoWay (or any picosecond platform) is preferred
-                when available. For users who want to avoid the laser-melanin interaction entirely,
-                non-laser options exist. See the{" "}
-                <Link
-                  href="/comparisons/best-tattoo-removal-method"
-                  className="text-(--accent) hover:underline"
-                >
-                  best tattoo removal method overview
-                </Link>
-                .
-              </p>
-            </GuideSection>
-
-            {/* Color ink */}
-            <GuideSection heading="PicoWay vs Q-Switch: Color Ink Removal">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Color ink is where the gap widens most.
-              </p>
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "Black and dark blue",
-                    body: "Both platforms handle well at 1064nm. No meaningful difference.",
-                  },
-                  {
-                    title: "Red and orange",
-                    body: "Both platforms handle at 532nm. No meaningful difference.",
-                  },
-                  {
-                    title: "Green and blue-green",
-                    body: "PicoWay's 785nm wavelength is optimally absorbed by green pigment. Q-switched Nd:YAG does not offer 785nm. Green ink clearance under Q-switch is slower, less complete, and requires more sessions. This is the single largest effectiveness gap.",
-                  },
-                  {
-                    title: "Purple",
-                    body: "PicoWay's multi-wavelength platform addresses red and blue components. Q-switch may leave residual pigment.",
-                  },
-                  {
-                    title: "Yellow and white",
-                    body: "Neither platform clears reliably. Low absorption across all wavelengths.",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-            </GuideSection>
-
-            {/* Sessions, pain, downtime */}
-            <GuideSection heading="PicoWay vs Q-Switch: Sessions, Pain, and Downtime">
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "Sessions",
-                    body: "4 to 8 with PicoWay vs 6 to 12 with Q-switch. Sessions spaced 6 to 8 weeks apart for both. Fewer sessions means faster completion by months or years.",
-                  },
-                  {
-                    title: "Pain",
-                    body: "Both produce discomfort (rubber band snapping). PicoWay sessions may feel slightly sharper. Q-switch may produce more residual heat sensation. Both use cooling devices. Neither is painless.",
-                  },
-                  {
-                    title: "Downtime",
-                    body: "PicoWay's lower thermal profile means less redness, less blistering, and faster healing. Q-switch at aggressive settings can produce more significant blistering. Most users resume normal activity within 24 to 48 hours after either platform.",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-            </GuideSection>
-
-            {/* Cost */}
-            <GuideSection heading="PicoWay vs Q-Switch: Cost">
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "Per-session cost",
-                    body: "Picosecond treatments typically cost more per session (higher equipment cost, newer technology positioning).",
-                  },
-                  {
-                    title: "Total cost",
-                    body: "Fewer sessions can offset the higher per-session price. If PicoWay clears in 6 sessions and Q-switch in 10, total cost may be comparable or lower with PicoWay.",
-                  },
-                  {
-                    title: "Cost-per-result",
-                    body: "The useful comparison is cost per cleared tattoo, not cost per session. Compare total estimated cost from consultation quotes.",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                For national pricing context, see the{" "}
-                <Link href="/cost" className="text-(--accent) hover:underline">cost guide</Link>.
-              </p>
-            </GuideSection>
-
-            {/* Which providers */}
-            <GuideSection heading="Which Providers Use Which Technology?">
-              <div className="space-y-3">
-                {[
-                  {
-                    title: "Picosecond providers",
-                    body: "Removery (PicoWay), Arviv Medical Aesthetics (PicoWay), Erasable Med Spa (PicoWay), LaserAway (PicoSure). Standard in high-volume tattoo removal practices.",
-                  },
-                  {
-                    title: "Q-switched providers",
-                    body: "Many independent dermatologists and smaller practices. Kovak Cosmetic Center (Chicago). Equipment is less expensive, widely available, and carries a longer track record.",
-                  },
-                  {
-                    title: "Multi-platform providers",
-                    body: "Some large practices use both. Ask which platform they plan to use on your tattoo and why.",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                For city-level provider comparison, see the{" "}
-                <Link href="/cities/austin" className="text-(--accent) hover:underline">city pages</Link>.
-              </p>
-            </GuideSection>
-
-            {/* Verdict */}
-            <GuideSection heading="Our Verdict: Which Laser Is Better?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-                Picosecond laser is better than Q-switched for most cases. The evidence supports
-                this across session count, color clearance, dark-skin safety, and side-effect rate.
-              </p>
-              <div className="space-y-4">
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">Choose pico when:</p>
-                  <GuideBulletList
-                    items={[
-                      "Fewest sessions is the priority",
-                      "Color ink includes green, blue-green, or purple",
-                      "Fitzpatrick IV through VI skin type",
-                      "The tattoo has been previously treated and has not fully cleared",
-                      "Lower downtime and faster healing matter",
-                    ]}
-                  />
-                </div>
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">Q-switch still makes sense when:</p>
-                  <GuideBulletList
-                    items={[
-                      "The tattoo is simple black ink on lighter skin",
-                      "Picosecond platforms are not available locally",
-                      "Per-session cost is a hard budget constraint",
-                      "Fading for a cover-up (not complete removal) is the goal",
-                    ]}
-                  />
-                </div>
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                  <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">Neither laser is the right answer when:</p>
-                  <GuideBulletList
-                    variant="warning"
-                    items={[
-                      "You want to avoid laser entirely (non-laser options like TEPR exist)",
-                      "Cosmetic tattoo with iron-oxide pigments is involved",
-                      "Extreme scarring sensitivity makes any laser a concern",
-                    ]}
-                  />
-                </div>
-              </div>
-            </GuideSection>
-
-            {/* Editorial note */}
-            <div className="py-12">
-              <GuideCallout label="Source transparency">
-                Sources include MDPI Applied Sciences 2021 (Bennardo), PubMed 9487208 (Ross et al
-                1998), PMC4859414 (Torbeck 2016), PMC4928479 (JCAD 2016), PMC2923953
-                (Kirby-Desai). Wavelengths from Candela (PicoWay) and Cynosure (PicoSure)
-                documentation. inkOUT is a current advertising client of RealTattooReviews but is
-                not directly evaluated on this technology page. See our{" "}
-                <Link href="/methodology" className="text-(--accent) hover:underline">
-                  methodology
-                </Link>{" "}
-                and{" "}
-                <Link href="/editorial-policy" className="text-(--accent) hover:underline">
-                  editorial policy
-                </Link>{" "}
-                for full details.
-              </GuideCallout>
-            </div>
-
-            <GuideRelatedLinks
-              links={[
-                {
-                  href: "/comparisons/best-tattoo-removal-method",
-                  title: "Best Tattoo Removal Method",
-                  desc: "Broader method hub comparing laser, saline, and non-laser options side by side.",
-                },
-                {
-                  href: "/comparisons/inkout-vs-removery",
-                  title: "inkOUT vs Removery",
-                  desc: "Non-laser TEPR versus picosecond laser. The head-to-head for those comparing methods, not just machines.",
-                },
-                {
-                  href: "/cost",
-                  title: "Tattoo Removal Cost Guide",
-                  desc: "Price the full treatment path after comparing devices, not just one session.",
-                },
-                {
-                  href: "/comparisons/saline-vs-laser-tattoo-removal",
-                  title: "Saline vs Laser Removal",
-                  desc: "For cosmetic tattoos where a non-laser alternative is part of the comparison.",
-                },
-                {
-                  href: "/comparisons/inkout-vs-laseraway",
-                  title: "inkOUT vs LaserAway",
-                  desc: "Non-laser TEPR versus PicoSure laser for users comparing methods and chains.",
-                },
-              ]}
+      {/* Head-to-head table */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            PicoWay vs Q-Switched Nd:YAG: Head-to-Head Comparison
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              PicoWay (Candela) and Q-switched Nd:YAG represent the two technology classes in
+              their most common commercial forms.
+            </p>
+            <GuideTable
+              headers={["", "PicoWay (picosecond)", "Q-Switched Nd:YAG (nanosecond)"]}
+              rows={COMPARISON_ROWS}
             />
           </div>
         </Container>
       </section>
 
-      {/* FAQ */}
-      <section className="border-y border-(--line) bg-(--surface) py-20">
+      {/* Is pico better */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5">
-            FAQ
-          </MonoLabel>
-          <h2 className="font-sans font-bold text-[clamp(24px,3.5vw,36px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-10">
-            Frequently Asked Questions
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            Is Pico Laser Better Than Q-Switch?
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="border border-(--line) bg-white p-6 rounded-xl"
-              >
-                <p className="font-semibold text-(--ink) text-[15px] mb-3 leading-snug m-0">
-                  {faq.question}
-                </p>
-                <p className="text-[13px] leading-relaxed text-(--muted) m-0">{faq.answer}</p>
-              </div>
-            ))}
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The short answer: for most cases, yes. For some cases, Q-switch is still perfectly
+              adequate.
+            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Picosecond lasers outperform Q-switched lasers on three dimensions. First, session
+              count. Peer-reviewed studies show picosecond systems typically clear standard
+              tattoos in fewer sessions. Second, color clearance. The additional 785nm wavelength
+              on platforms like PicoWay extends effective clearance to green, blue-green, and
+              purple inks. Third, side-effect rate. The lower thermal profile reduces the risk of
+              blistering, scarring, and post-inflammatory pigment changes.
+            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Q-switched Nd:YAG is still effective for standard cases. Black ink on lighter skin
+              types responds well at 1064nm. An experienced Q-switch operator can match pico
+              results on straightforward tattoos. The difference widens on harder cases:
+              multi-color tattoos, darker skin types, and tattoos that have already been partially
+              treated.
+            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              The pico laser vs nanosecond distinction is not a matter of old versus new. It is a
+              matter of which physics produces better outcomes on which types of cases.
+            </p>
           </div>
         </Container>
       </section>
+
+      {/* Effectiveness */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            PicoWay vs Q-Switch: Effectiveness
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              PicoWay's effectiveness advantage comes from pulse duration and wavelength range.
+            </p>
+            <div className="space-y-3">
+              {[
+                {
+                  title: "Pulse duration",
+                  body: "PicoWay's shorter pulse creates smaller ink fragments per treatment. Smaller fragments clear faster. The cumulative effect is fewer sessions for equivalent clearance.",
+                },
+                {
+                  title: "Wavelength range",
+                  body: "PicoWay offers 1064nm, 532nm, and 785nm. Q-switched Nd:YAG offers 1064nm and 532nm. The additional 785nm handles green and blue-green inks more effectively than any Q-switch wavelength.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">{item.body}</p>
+                </div>
+              ))}
+            </div>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              For black ink on lighter skin, the effectiveness difference is moderate. Both clear
+              black ink well. For multi-color tattoos, the difference is significant. For
+              previously treated but not fully cleared tattoos, PicoWay's more efficient
+              fragmentation often breaks through where Q-switch has plateaued.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Dark skin */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            PicoWay vs Q-Switch: Dark Skin and Skin-Type Safety
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Dark skin tattoo removal is where the pico laser vs Q-switch difference matters
+              most.
+            </p>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              All laser tattoo removal carries a wavelength-versus-melanin interaction. Melanin
+              in the epidermis absorbs laser energy alongside tattoo ink. The more melanin (darker
+              Fitzpatrick skin types IV through VI), the higher the risk of post-inflammatory
+              hyperpigmentation or hypopigmentation.
+            </p>
+            <div className="space-y-3">
+              {[
+                {
+                  title: "PicoWay advantage",
+                  body: "PicoWay's shorter pulse duration delivers less residual heat to the epidermis. Less heat means less melanin disruption. This translates to a lower rate of post-inflammatory pigment changes on darker skin types.",
+                },
+                {
+                  title: "Q-switch on dark skin",
+                  body: "Q-switched Nd:YAG at 1064nm is safe for darker skin types in experienced hands. Conservative settings, longer intervals, and careful fluence management can produce good results. The risk is higher than PicoWay at equivalent settings.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">{item.body}</p>
+                </div>
+              ))}
+            </div>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              For Fitzpatrick IV through VI, PicoWay (or any picosecond platform) is preferred
+              when available. For users who want to avoid the laser-melanin interaction entirely,
+              non-laser options exist. See the{" "}
+              <Link
+                href="/comparisons/best-tattoo-removal-method"
+                className="text-(--accent) hover:underline"
+              >
+                best tattoo removal method overview
+              </Link>
+              .
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Color ink */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            PicoWay vs Q-Switch: Color Ink Removal
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Color ink is where the gap widens most.
+            </p>
+            <div className="space-y-3">
+              {[
+                {
+                  title: "Black and dark blue",
+                  body: "Both platforms handle well at 1064nm. No meaningful difference.",
+                },
+                {
+                  title: "Red and orange",
+                  body: "Both platforms handle at 532nm. No meaningful difference.",
+                },
+                {
+                  title: "Green and blue-green",
+                  body: "PicoWay's 785nm wavelength is optimally absorbed by green pigment. Q-switched Nd:YAG does not offer 785nm. Green ink clearance under Q-switch is slower, less complete, and requires more sessions. This is the single largest effectiveness gap.",
+                },
+                {
+                  title: "Purple",
+                  body: "PicoWay's multi-wavelength platform addresses red and blue components. Q-switch may leave residual pigment.",
+                },
+                {
+                  title: "Yellow and white",
+                  body: "Neither platform clears reliably. Low absorption across all wavelengths.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Sessions, pain, downtime */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            PicoWay vs Q-Switch: Sessions, Pain, and Downtime
+          </h2>
+          <div className="space-y-4">
+            <div className="space-y-3">
+              {[
+                {
+                  title: "Sessions",
+                  body: "4 to 8 with PicoWay vs 6 to 12 with Q-switch. Sessions spaced 6 to 8 weeks apart for both. Fewer sessions means faster completion by months or years.",
+                },
+                {
+                  title: "Pain",
+                  body: "Both produce discomfort (rubber band snapping). PicoWay sessions may feel slightly sharper. Q-switch may produce more residual heat sensation. Both use cooling devices. Neither is painless.",
+                },
+                {
+                  title: "Downtime",
+                  body: "PicoWay's lower thermal profile means less redness, less blistering, and faster healing. Q-switch at aggressive settings can produce more significant blistering. Most users resume normal activity within 24 to 48 hours after either platform.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Cost */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            PicoWay vs Q-Switch: Cost
+          </h2>
+          <div className="space-y-4">
+            <div className="space-y-3">
+              {[
+                {
+                  title: "Per-session cost",
+                  body: "Picosecond treatments typically cost more per session (higher equipment cost, newer technology positioning).",
+                },
+                {
+                  title: "Total cost",
+                  body: "Fewer sessions can offset the higher per-session price. If PicoWay clears in 6 sessions and Q-switch in 10, total cost may be comparable or lower with PicoWay.",
+                },
+                {
+                  title: "Cost-per-result",
+                  body: "The useful comparison is cost per cleared tattoo, not cost per session. Compare total estimated cost from consultation quotes.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">{item.body}</p>
+                </div>
+              ))}
+            </div>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              For national pricing context, see the{" "}
+              <Link href="/cost" className="text-(--accent) hover:underline">cost guide</Link>.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Which providers */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            Which Providers Use Which Technology?
+          </h2>
+          <div className="space-y-4">
+            <div className="space-y-3">
+              {[
+                {
+                  title: "Picosecond providers",
+                  body: "Removery (PicoWay), Arviv Medical Aesthetics (PicoWay), Erasable Med Spa (PicoWay), LaserAway (PicoSure). Standard in high-volume tattoo removal practices.",
+                },
+                {
+                  title: "Q-switched providers",
+                  body: "Many independent dermatologists and smaller practices. Kovak Cosmetic Center (Chicago). Equipment is less expensive, widely available, and carries a longer track record.",
+                },
+                {
+                  title: "Multi-platform providers",
+                  body: "Some large practices use both. Ask which platform they plan to use on your tattoo and why.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
+                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">{item.body}</p>
+                </div>
+              ))}
+            </div>
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              For city-level provider comparison, see the{" "}
+              <Link href="/cities/austin" className="text-(--accent) hover:underline">city pages</Link>.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Verdict */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
+            Our Verdict: Which Laser Is Better?
+          </h2>
+          <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              Picosecond laser is better than Q-switched for most cases. The evidence supports
+              this across session count, color clearance, dark-skin safety, and side-effect rate.
+            </p>
+            <div className="space-y-4">
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">Choose pico when:</p>
+                <GuideBulletList
+                  items={[
+                    "Fewest sessions is the priority",
+                    "Color ink includes green, blue-green, or purple",
+                    "Fitzpatrick IV through VI skin type",
+                    "The tattoo has been previously treated and has not fully cleared",
+                    "Lower downtime and faster healing matter",
+                  ]}
+                />
+              </div>
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">Q-switch still makes sense when:</p>
+                <GuideBulletList
+                  items={[
+                    "The tattoo is simple black ink on lighter skin",
+                    "Picosecond platforms are not available locally",
+                    "Per-session cost is a hard budget constraint",
+                    "Fading for a cover-up (not complete removal) is the goal",
+                  ]}
+                />
+              </div>
+              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">Neither laser is the right answer when:</p>
+                <GuideBulletList
+                  variant="warning"
+                  items={[
+                    "You want to avoid laser entirely (non-laser options like TEPR exist)",
+                    "Cosmetic tattoo with iron-oxide pigments is involved",
+                    "Extreme scarring sensitivity makes any laser a concern",
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Editorial note */}
+      <section className="border-b border-(--line) bg-(--bg) py-22">
+        <Container>
+          <div className="space-y-4">
+            <GuideCallout label="Source transparency">
+              Sources include MDPI Applied Sciences 2021 (Bennardo), PubMed 9487208 (Ross et al
+              1998), PMC4859414 (Torbeck 2016), PMC4928479 (JCAD 2016), PMC2923953
+              (Kirby-Desai). Wavelengths from Candela (PicoWay) and Cynosure (PicoSure)
+              documentation. inkOUT is a current advertising client of RealTattooReviews but is
+              not directly evaluated on this technology page. See our{" "}
+              <Link href="/methodology" className="text-(--accent) hover:underline">
+                methodology
+              </Link>{" "}
+              and{" "}
+              <Link href="/editorial-policy" className="text-(--accent) hover:underline">
+                editorial policy
+              </Link>{" "}
+              for full details.
+            </GuideCallout>
+          </div>
+        </Container>
+      </section>
+
+      {/* Related links */}
+      <section className="border-b border-(--line) bg-(--surface) py-22">
+        <Container>
+          <GuideRelatedLinks
+            links={[
+              {
+                href: "/comparisons/best-tattoo-removal-method",
+                title: "Best Tattoo Removal Method",
+                desc: "Broader method hub comparing laser, saline, and non-laser options side by side.",
+              },
+              {
+                href: "/comparisons/inkout-vs-removery",
+                title: "inkOUT vs Removery",
+                desc: "Non-laser TEPR versus picosecond laser. The head-to-head for those comparing methods, not just machines.",
+              },
+              {
+                href: "/cost",
+                title: "Tattoo Removal Cost Guide",
+                desc: "Price the full treatment path after comparing devices, not just one session.",
+              },
+              {
+                href: "/comparisons/saline-vs-laser-tattoo-removal",
+                title: "Saline vs Laser Removal",
+                desc: "For cosmetic tattoos where a non-laser alternative is part of the comparison.",
+              },
+              {
+                href: "/comparisons/inkout-vs-laseraway",
+                title: "inkOUT vs LaserAway",
+                desc: "Non-laser TEPR versus PicoSure laser for users comparing methods and chains.",
+              },
+            ]}
+          />
+        </Container>
+      </section>
+
+      <PageSection id="faq" bg="bg">
+        <div className="mb-10">
+          <MonoLabel color="accent" size="sm" className="mb-4">FAQ</MonoLabel>
+          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        <FaqAccordion items={faqs} />
+      </PageSection>
     </div>
   );
 }

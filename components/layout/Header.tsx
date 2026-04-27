@@ -247,7 +247,7 @@ export default function Header() {
                                       >
                                         <Link
                                           href={link.href}
-                                          className={`-ml-2 block rounded border-l-2 border-transparent py-0.5 pl-2 text-sm leading-[1.8] transition-all duration-150 hover:translate-x-[3px] hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
+                                          className={`-ml-2 relative block rounded py-0.5 pl-2 text-sm leading-[1.8] transition-colors duration-150 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-[width] after:duration-200 hover:after:w-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
                                             linkActive
                                               ? "font-semibold text-accent"
                                               : isNeedSection
@@ -276,11 +276,7 @@ export default function Header() {
                           <div className="w-56 shrink-0">
                             <Link
                               href={item.mega.featured.href}
-                              className={`group flex h-full flex-col justify-between rounded-lg bg-[#FAF7F4] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
-                                isCompareMenu
-                                  ? "border-l-[3px] border-l-accent"
-                                  : "border border-[#E8D8D0]"
-                              }`}
+                              className="group flex h-full flex-col justify-between rounded-lg bg-[#FAF7F4] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 border border-[#E8D8D0]"
                               onClick={() => setOpenMega(null)}
                             >
                               <div>
