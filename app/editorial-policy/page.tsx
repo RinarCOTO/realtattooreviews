@@ -5,6 +5,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideCallout from "@/components/guide/GuideCallout";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import GuideFAQSection from "@/components/guide/GuideFAQSection";
 
 export const metadata: Metadata = {
   title: "Editorial Policy | RealTattooReviews",
@@ -217,30 +218,7 @@ export default function EditorialPolicyPage() {
         </Container>
       </section>
 
-      {/* FAQ */}
-      <section className="border-y border-(--line) bg-(--surface) py-20">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5">
-            FAQ
-          </MonoLabel>
-          <h2 className="font-sans font-bold text-[clamp(24px,3.5vw,36px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-10">
-            Frequently Asked Questions
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="border border-(--line) bg-white p-6 rounded-xl"
-              >
-                <p className="font-semibold text-(--ink) text-[15px] mb-3 leading-snug m-0">
-                  {faq.question}
-                </p>
-                <p className="text-[13px] leading-relaxed text-(--muted) m-0">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <GuideFAQSection faqs={faqs} />
     </div>
   );
 }

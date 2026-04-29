@@ -6,7 +6,7 @@ import Container from "@/components/layout/Container";
 import Tag from "@/components/ui/Tag";
 import { getBlogPost, getAllBlogSlugs } from "@/lib/page-data/blog";
 import { blogPosts as mockPosts } from "@/lib/mock-data/blog-posts";
-import FAQSection from "@/components/sections/FAQSection";
+import GuideFAQSection from "@/components/guide/GuideFAQSection";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -97,8 +97,7 @@ export default async function BlogPostPage({ params }: Props) {
         </Container>
       </section>
 
-      <FAQSection
-        title="Common Questions"
+      <GuideFAQSection
         faqs={[
           {
             question: "How many sessions does tattoo removal take?",

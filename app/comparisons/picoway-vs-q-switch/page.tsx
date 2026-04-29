@@ -7,8 +7,7 @@ import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import MonoLabel from "@/components/reviews/MonoLabel";
-import PageSection from "@/components/reviews/PageSection";
-import FaqAccordion from "@/components/provider/FaqAccordion";
+import GuideFAQSection from "@/components/guide/GuideFAQSection";
 
 export const metadata: Metadata = {
   title:
@@ -642,15 +641,7 @@ export default function PicoLaserVsQSwitchPage() {
         </Container>
       </section>
 
-      <PageSection id="faq" bg="bg">
-        <div className="mb-10">
-          <MonoLabel color="accent" size="sm" className="mb-4">FAQ</MonoLabel>
-          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0">
-            Frequently Asked Questions
-          </h2>
-        </div>
-        <FaqAccordion items={faqs} />
-      </PageSection>
+      <GuideFAQSection faqs={faqs} />
     </div>
   );
 }

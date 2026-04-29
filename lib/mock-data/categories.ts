@@ -10,8 +10,8 @@ export const categories = [
     description: "Greens, yellows, and blues are the hardest to clear. Real reviews on what worked, what didn't, and how many sessions it took.",
   },
   {
-    slug: "dark-skin-removal",
-    title: "Dark Skin Removal",
+    slug: "dark-skin-tattoo-removal",
+    title: "Dark Skin Tattoo Removal",
     description: "Provider and outcome reviews focused on patients with deeper skin tones. Covers pigmentation risk, technique, and results.",
   },
   {

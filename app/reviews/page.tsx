@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import GuideFAQSection from "@/components/guide/GuideFAQSection";
 import PageSection from "@/components/reviews/PageSection";
 import ReviewCard from "@/components/reviews/ReviewCard";
 import ProvidersTable from "@/components/reviews/ProvidersTable";
@@ -94,26 +95,26 @@ export default async function ReviewsPage() {
       : "4.4";
 
   // FAQ items built with live DB numbers
-  const faqItems = [
+  const faqs = [
     {
-      q: "Are tattoo removal reviews trustworthy?",
-      a: `They can be, if you read patterns rather than single quotes. One glowing review and one complaint both tell you almost nothing. ${stats.totalReviews} sourced reviews across ${stats.totalProviders} providers tell you a great deal. This page is designed to surface those patterns, not promote individual clinics.`,
+      question: "Are tattoo removal reviews trustworthy?",
+      answer: `They can be, if you read patterns rather than single quotes. One glowing review and one complaint both tell you almost nothing. ${stats.totalReviews} sourced reviews across ${stats.totalProviders} providers tell you a great deal. This page is designed to surface those patterns, not promote individual clinics.`,
     },
     {
-      q: "What should I look for in tattoo removal reviews?",
-      a: "Look for: review count (more volume means more signal), complaint patterns (especially scarring, session count underestimates, and billing disputes), whether positive experiences are consistent or isolated, and whether the provider sets realistic expectations about pain and sessions. Single five-star reviews are easy to post. Consistent patterns across dozens of reviews are harder to fake.",
+      question: "What should I look for in tattoo removal reviews?",
+      answer: "Look for: review count (more volume means more signal), complaint patterns (especially scarring, session count underestimates, and billing disputes), whether positive experiences are consistent or isolated, and whether the provider sets realistic expectations about pain and sessions. Single five-star reviews are easy to post. Consistent patterns across dozens of reviews are harder to fake.",
     },
     {
-      q: `Is inkOUT worth it?`,
-      a: `inkOUT is the most-reviewed provider in our index: ${inkoutReviews} sourced reviews across ${inkoutLocCount} locations with a ${inkoutAvg} average. That volume makes it one of the more reliable providers to evaluate. Whether it is the right fit depends on your city, tattoo, and budget. Read the full inkOUT brand page to see location-level patterns before deciding.`,
+      question: `Is inkOUT worth it?`,
+      answer: `inkOUT is the most-reviewed provider in our index: ${inkoutReviews} sourced reviews across ${inkoutLocCount} locations with a ${inkoutAvg} average. That volume makes it one of the more reliable providers to evaluate. Whether it is the right fit depends on your city, tattoo, and budget. Read the full inkOUT brand page to see location-level patterns before deciding.`,
     },
     {
-      q: "Are tattoo removal clinics safe?",
-      a: `Most are, when operated correctly. Of ${stats.totalReviews} reviews in our index, ${stats.scarringMentions} mention scarring or skin damage. That is a small percentage, but it is not zero. Scarring risk increases with undertrained operators, overly aggressive settings, and poor aftercare. Look for providers who discuss aftercare explicitly and have consistent safety signals across their reviews.`,
+      question: "Are tattoo removal clinics safe?",
+      answer: `Most are, when operated correctly. Of ${stats.totalReviews} reviews in our index, ${stats.scarringMentions} mention scarring or skin damage. That is a small percentage, but it is not zero. Scarring risk increases with undertrained operators, overly aggressive settings, and poor aftercare. Look for providers who discuss aftercare explicitly and have consistent safety signals across their reviews.`,
     },
     {
-      q: "How many sessions does tattoo removal take?",
-      a: "Most professional tattoos require 5 to 10 sessions with a quality laser. Amateur tattoos and lighter inks often clear faster. Colors other than black (especially greens and blues) take longer. Clinics that quote 3 sessions without examining your tattoo are not giving you an honest answer. Use session count expectations in reviews as a trust signal.",
+      question: "How many sessions does tattoo removal take?",
+      answer: "Most professional tattoos require 5 to 10 sessions with a quality laser. Amateur tattoos and lighter inks often clear faster. Colors other than black (especially greens and blues) take longer. Clinics that quote 3 sessions without examining your tattoo are not giving you an honest answer. Use session count expectations in reviews as a trust signal.",
     },
   ];
 
@@ -291,25 +292,7 @@ export default async function ReviewsPage() {
       </PageSection>
 
       {/* ── 6. FAQ ──────────────────────────────────────────────────────── */}
-      <PageSection id="faq" bg="surface">
-        <div className="mb-10">
-          <MonoLabel color="accent" size="sm" className="mb-4">06 · FAQ</MonoLabel>
-          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
-            Frequently Asked Questions
-          </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted) max-w-prose m-0">
-            Common questions from people researching tattoo removal clinics before making a booking decision.
-          </p>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {faqItems.map((item) => (
-            <div key={item.q} className="border border-(--line) bg-white p-6 rounded-xl">
-              <p className="font-semibold text-(--ink) text-[15px] mb-3 leading-snug">{item.q}</p>
-              <p className="text-[13px] leading-relaxed text-(--muted)">{item.a}</p>
-            </div>
-          ))}
-        </div>
-      </PageSection>
+      <GuideFAQSection faqs={faqs} />
 
       {/* ── 7. Where to go next ─────────────────────────────────────────── */}
       <PageSection id="guides">
@@ -363,12 +346,12 @@ export default async function ReviewsPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: faqItems.map((item) => ({
+            mainEntity: faqs.map((faq) => ({
               "@type": "Question",
-              name: item.q,
+              name: faq.question,
               acceptedAnswer: {
                 "@type": "Answer",
-                text: item.a,
+                text: faq.answer,
               },
             })),
           }),

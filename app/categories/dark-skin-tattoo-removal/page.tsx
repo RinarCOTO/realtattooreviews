@@ -7,6 +7,7 @@ import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import GuideFAQSection from "@/components/guide/GuideFAQSection";
 
 export const metadata: Metadata = {
   title: "Tattoo Removal on Dark Skin: Safe Laser, Wavelengths, and Provider Guide | RealTattooReviews",
@@ -24,16 +25,6 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    question: "Can you do tattoo removal on dark skin?",
-    answer:
-      "Yes. Tattoo removal on dark skin is safe and effective with the right setup. That means the right laser wavelength, appropriate settings, and a provider experienced with Fitzpatrick IV, V, and VI skin. The key decisions are wavelength (1064 nm Nd:YAG), fluence (lower is safer), and session spacing (eight to twelve weeks, not six).",
-  },
-  {
-    question: "Does laser tattoo removal work on dark skin?",
-    answer:
-      "Yes, laser tattoo removal works on dark skin. It typically takes more sessions than on lighter skin, and sessions are usually spaced further apart. Q-switched and picosecond Nd:YAG lasers at 1064 nm are the standard choice.",
-  },
-  {
     question: "Can Black people get tattoo removal?",
     answer:
       "Yes. Laser tattoo removal on black skin, including Fitzpatrick V and VI skin tones, is safe with the right laser and provider. Avoid clinics that treat all skin tones with the same settings and wavelengths. Ask directly about their experience with darker skin before booking.",
@@ -44,11 +35,6 @@ const faqs = [
       "It can be, with the right setup. Safety depends on wavelength choice (1064 nm for most dark-skin cases), appropriate fluence, careful session spacing, patch testing, and real provider experience. Any of those done poorly raises risk of pigment change or scarring.",
   },
   {
-    question: "What is the best laser for dark skin tattoo removal?",
-    answer:
-      "A Q-switched or picosecond Nd:YAG laser at 1064 nm is the standard safest choice. Picosecond machines like PicoWay, PicoSure, or Enlighten are preferred over older Q-switched models when available. Shorter pulse widths reduce thermal injury. Alexandrite (755 nm) and KTP (532 nm) lasers are higher risk on darker skin.",
-  },
-  {
     question: "Can tattoo removal cause hyperpigmentation on dark skin?",
     answer:
       "Yes, it can. Hyperpigmentation is the most common side effect on darker skin. Thermal injury triggers extra melanin production. It usually fades in three to twelve months. Risk is reduced with lower fluence, correct wavelength, and longer session spacing.",
@@ -57,11 +43,6 @@ const faqs = [
     question: "Can tattoo removal cause hypopigmentation on dark skin?",
     answer:
       "Yes, but less commonly than hyperpigmentation. Hypopigmentation is lightening of the skin where the laser treated, and it is more likely to be permanent. Aggressive settings, overlapping pulses, or too-frequent sessions raise the risk.",
-  },
-  {
-    question: "How can you reduce pigmentation risk during tattoo removal?",
-    answer:
-      "Use a 1064 nm Nd:YAG laser. Run lower fluence. Space sessions eight to twelve weeks apart. Patch test before treating the full tattoo. Follow aftercare strictly (sun avoidance, sunscreen, no scab picking). And pause treatment if pigment change appears. Choose a provider with documented Fitzpatrick V-VI experience.",
   },
   {
     question: "Does tattoo removal leave scars on dark skin?",
@@ -157,10 +138,21 @@ export default function DarkSkinTattooRemovalPage() {
                   VI skin, outcomes are safe and effective.
                 </p>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  This page explains why melanin raises risk, covers which wavelengths and
-                  technologies are safest, shows how to tell pigment change apart from true
-                  scarring, and covers what to look for in a provider. Generic clinic pages that
+                  This page explains why melanin raises risk. It covers which wavelengths and
+                  technologies are safest. It shows how to tell pigment change apart from true
+                  scarring. And it covers what to look for in a provider. Generic clinic pages that
                   say "safe for all skin tones" without specifics are the reason this page exists.
+                </p>
+                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                  For deeper reading on scarring risk specifically, see the{" "}
+                  <Link href="/guides/tattoo-removal-scarring" className="text-(--accent) hover:underline">
+                    tattoo removal scarring guide
+                  </Link>
+                  . For pricing expectations, the{" "}
+                  <Link href="/cost" className="text-(--accent) hover:underline">
+                    cost page
+                  </Link>{" "}
+                  covers pay-as-you-go and package pricing across provider types.
                 </p>
               </div>
             </div>
@@ -175,8 +167,8 @@ export default function DarkSkinTattooRemovalPage() {
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The reason this question keeps coming up is simple. Older lasers, some current
                 mid-tier machines, and providers without Fitzpatrick IV-VI experience do cause
-                problems. Those problems are not the same as "tattoo removal does not work on dark
-                skin." They are the result of the wrong tool or hands on the right skin.
+                problems. Those problems reflect the wrong tool or hands, not a limitation of the
+                skin itself.
               </p>
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Modern picosecond and Q-switched Nd:YAG lasers at the 1064 nm wavelength are
@@ -368,7 +360,8 @@ export default function DarkSkinTattooRemovalPage() {
 
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 A provider who answers all six confidently and specifically is a fit. A provider who
-                deflects, generalizes, or says "it's safe for all skin tones" without detail is not.
+                deflects, generalizes, or says "it's safe for all skin tones" without detail is a
+                sign to keep looking.
               </p>
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Medical credentials also matter. A dermatology practice or physician-supervised
@@ -380,11 +373,8 @@ export default function DarkSkinTattooRemovalPage() {
             {/* Editorial note */}
             <div className="py-12">
               <GuideCallout label="Editorial note">
-                Wavelength guidance (1064 nm Nd:YAG for Fitzpatrick IV-VI skin), risk explanations,
-                and provider-selection advice are grounded in standard dermatology consensus on laser
-                tattoo removal. Session count and spacing ranges reflect typical clinical practice.
-                Individual outcomes vary by tattoo, skin type, aftercare, and provider skill.
-                Consult a qualified provider before proceeding. See our{" "}
+                Wavelength and risk guidance reflects standard dermatology consensus. Individual
+                outcomes vary by tattoo, skin type, aftercare, and provider skill. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}
@@ -425,32 +415,7 @@ export default function DarkSkinTattooRemovalPage() {
         </Container>
       </section>
 
-      {/* FAQ */}
-      <section className="border-y border-(--line) bg-(--surface) py-20">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5">
-            FAQ
-          </MonoLabel>
-          <h2 className="font-sans font-bold text-[clamp(24px,3.5vw,36px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-10">
-            Frequently Asked Questions
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="border border-(--line) bg-white p-6 rounded-xl"
-              >
-                <p className="font-semibold text-(--ink) text-[15px] mb-3 leading-snug m-0">
-                  {faq.question}
-                </p>
-                <p className="text-[13px] leading-relaxed text-(--muted) m-0">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <GuideFAQSection faqs={faqs} />
     </div>
   );
 }

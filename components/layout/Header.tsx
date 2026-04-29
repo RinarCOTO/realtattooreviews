@@ -15,7 +15,7 @@ const nav = [
           heading: "By Need",
           links: [
             { label: "Complete Removal", href: "/categories/complete-removal" },
-            { label: "Dark Skin", href: "/categories/dark-skin-removal" },
+            { label: "Dark Skin", href: "/categories/dark-skin-tattoo-removal" },
             { label: "Color Ink", href: "/categories/color-ink-removal" },
             { label: "Cover-Up Prep", href: "/categories/cover-up-prep" },
             { label: "Microblading Removal", href: "/categories/microblading-removal" },

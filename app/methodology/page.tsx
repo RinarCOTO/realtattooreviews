@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
-import FAQSection from "@/components/sections/FAQSection";
+import GuideFAQSection from "@/components/guide/GuideFAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
@@ -458,10 +458,7 @@ export default function MethodologyPage() {
         </Container>
       </section>
 
-      <FAQSection
-        title="Frequently Asked Questions"
-        faqs={faqs}
-      />
+      <GuideFAQSection faqs={faqs} />
     </main>
   );
 }

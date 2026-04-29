@@ -3,8 +3,7 @@ import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
 import PageSection from "@/components/reviews/PageSection";
-import FaqAccordion from "@/components/provider/FaqAccordion";
-import MonoLabel from "@/components/reviews/MonoLabel";
+import GuideFAQSection from "@/components/guide/GuideFAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
@@ -286,15 +285,7 @@ export default function ComparisonsPage() {
         </div>
       </PageSection>
 
-      <PageSection id="faq" bg="bg">
-        <div className="mb-10">
-          <MonoLabel color="accent" size="sm" className="mb-4">FAQ</MonoLabel>
-          <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0">
-            Frequently Asked Questions
-          </h2>
-        </div>
-        <FaqAccordion items={faqs} />
-      </PageSection>
+      <GuideFAQSection faqs={faqs} />
     </main>
   );
 }

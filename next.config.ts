@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: BASE_PATH,
   },
+  allowedDevOrigins: ["192.168.1.236"],
 };
 
 export default nextConfig;

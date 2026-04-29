@@ -816,6 +816,107 @@ export async function getCityProviderAggregates(
     .sort((a, b) => b.sampleSize - a.sampleSize);
 }
 
+// ── Brand location aggregates ────────────────────────────────────────────────
+
+export interface BrandLocationRow {
+  providerName: string;
+  locationCity: string;
+  sampleSize: number;
+  avgStars: number | null;
+  positives: number;
+  negatives: number;
+  scarringPositive: number;
+  useCaseComplete: number;
+  useCaseMicroblading: number;
+  pctPositive: number | null;
+}
+
+/**
+ * Aggregate review stats per city for a given brand, identified by provider_name prefix.
+ * Uses bucketScope "competitor" -- do not use this for inkOUT (use getCityProviderAggregates).
+ *
+ * CC BUILD NOTE: LaserAway rows have brand_name = NULL in competitor_reviews.
+ * Identify them via .ilike("provider_name", "LaserAway%").
+ */
+export async function getBrandLocationAggregates(
+  brandPrefix: string
+): Promise<BrandLocationRow[]> {
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select(
+        "provider_name, location_city, star_rating, result_rating, scarring_mentioned, use_case"
+      )
+      .ilike("provider_name", `${brandPrefix}%`),
+    "competitor"
+  );
+
+  if (error || !data) return [];
+
+  type Row = {
+    provider_name: string;
+    location_city: string;
+    star_rating: number | null;
+    result_rating: string | null;
+    scarring_mentioned: string | null;
+    use_case: string | null;
+  };
+
+  const acc: Record<string, {
+    providerName: string;
+    ratings: number[];
+    positives: number;
+    negatives: number;
+    scarringPositive: number;
+    useCaseComplete: number;
+    useCaseMicroblading: number;
+  }> = {};
+
+  for (const row of data as Row[]) {
+    const key = row.location_city;
+    if (!acc[key]) {
+      acc[key] = {
+        providerName: row.provider_name,
+        ratings: [],
+        positives: 0,
+        negatives: 0,
+        scarringPositive: 0,
+        useCaseComplete: 0,
+        useCaseMicroblading: 0,
+      };
+    }
+    if (row.star_rating != null) acc[key].ratings.push(row.star_rating);
+    if (row.result_rating === "Positive") acc[key].positives++;
+    if (row.result_rating === "Negative") acc[key].negatives++;
+    if (row.scarring_mentioned === "Positive") acc[key].scarringPositive++;
+    if (row.use_case === "Complete" && row.result_rating === "Positive") acc[key].useCaseComplete++;
+    if (row.use_case === "Microblading" && row.result_rating === "Positive") acc[key].useCaseMicroblading++;
+  }
+
+  return Object.entries(acc)
+    .map(([locationCity, v]) => {
+      const sampleSize = v.ratings.length;
+      const avgStars =
+        sampleSize > 0
+          ? Math.round((v.ratings.reduce((a, b) => a + b, 0) / sampleSize) * 100) / 100
+          : null;
+      const pctPositive = sampleSize > 0 ? Math.round((v.positives / sampleSize) * 100) : null;
+      return {
+        providerName: v.providerName,
+        locationCity,
+        sampleSize,
+        avgStars,
+        positives: v.positives,
+        negatives: v.negatives,
+        scarringPositive: v.scarringPositive,
+        useCaseComplete: v.useCaseComplete,
+        useCaseMicroblading: v.useCaseMicroblading,
+        pctPositive,
+      };
+    })
+    .sort((a, b) => b.sampleSize - a.sampleSize);
+}
+
 // ── Cross-brand comparison aggregates ────────────────────────────────────────
 
 export interface BrandComparisonRow {

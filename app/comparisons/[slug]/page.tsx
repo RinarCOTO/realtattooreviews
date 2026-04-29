@@ -14,6 +14,7 @@ import { comparisons as mockComparisons } from "@/lib/mock-data/comparisons";
 import { comparisonPages } from "@/lib/mock-data/comparison-pages";
 import { providers as mockProviders } from "@/lib/mock-data/providers";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
+import GuideFAQSection from "@/components/guide/GuideFAQSection";
 import type { ComparisonFAQ, ComparisonTableRow, ComparisonProsCons } from "@/types/comparison";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -503,20 +504,7 @@ export default async function ComparisonPage({ params }: Props) {
         </section>
       )}
 
-      {/* FAQ */}
-      <section id="faq" className="bg-(--bg) py-22">
-        <Container>
-          <BlockHeading title="Frequently asked questions" body="Common questions from people comparing PicoWay and Q-switch before making a booking decision." />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {activeFaqs.map((faq) => (
-              <div key={faq.question} className="border border-(--line) bg-white p-5 rounded-xl">
-                <p className="text-[14px] font-semibold text-(--ink) mb-2">{faq.question}</p>
-                <p className="text-[13px] leading-relaxed text-(--muted)">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <GuideFAQSection faqs={activeFaqs} />
     </main>
   );
 }
