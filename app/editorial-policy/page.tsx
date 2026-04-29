@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import PageSection from "@/components/reviews/PageSection";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideCallout from "@/components/guide/GuideCallout";
@@ -83,7 +84,7 @@ export default function EditorialPolicyPage() {
       </section>
 
       {/* Body */}
-      <section className="bg-(--bg)">
+      <PageSection bg="bg">
         <Container>
           <div className="mx-auto max-w-2xl divide-y divide-(--line)">
 
@@ -216,7 +217,7 @@ export default function EditorialPolicyPage() {
             </div>
           </div>
         </Container>
-      </section>
+      </PageSection>
 
       <GuideFAQSection faqs={faqs} />
     </div>

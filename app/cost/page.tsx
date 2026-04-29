@@ -8,6 +8,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import PageSection from "@/components/reviews/PageSection";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
@@ -139,10 +140,9 @@ export default function CostPage() {
       </section>
 
       {/* Body */}
-      <section className="bg-(--bg)">
+      <PageSection bg="bg">
         <Container>
           <div className="mx-auto max-w-2xl divide-y divide-(--line)">
-
             {/* Intro callout */}
             <div className="py-12">
               <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
@@ -560,7 +560,7 @@ export default function CostPage() {
 
           </div>
         </Container>
-      </section>
+      </PageSection>
 
       <GuideFAQSection faqs={faqs} />
     </div>

@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import Container from "@/components/layout/Container";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
@@ -10,6 +9,11 @@ import GuideCallout from "@/components/guide/GuideCallout";
 import MonoLabel from "@/components/reviews/MonoLabel";
 import GuideFAQSection from "@/components/guide/GuideFAQSection";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
+import ContentCard from "@/components/comparison/ContentCard";
+import BrandTableHeader from "@/components/comparison/BrandTableHeader";
+import ComparisonHero from "@/components/comparison/ComparisonHero";
+import PageSection from "@/components/reviews/PageSection";
+import SectionHeading from "@/components/guide/SectionHeading";
 
 export const revalidate = 3600;
 
@@ -142,9 +146,9 @@ export default function InkoutVsLaserawayPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
+      <ComparisonHero
+        label={
+          <>
             <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
               Comparisons
             </Link>
@@ -152,81 +156,73 @@ export default function InkoutVsLaserawayPage() {
             <span className="text-(--muted) font-normal normal-case tracking-normal">
               inkOUT vs LaserAway
             </span>
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            inkOUT vs{" "}
-            <span className="text-(--accent)">LaserAway</span>
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-2xl">
-            Compare TEPR and PicoSure tattoo removal, including specialist vs chain, pricing, pain,
-            scarring risk, and which provider fits different use cases.
-          </p>
-        </Container>
-      </section>
+          </>
+        }
+        title={
+          <>
+            inkOUT vs <span className="text-(--accent)">LaserAway</span>
+          </>
+        }
+        subtitle="Compare TEPR and PicoSure tattoo removal, including specialist vs chain, pricing, pain, scarring risk, and which provider fits different use cases."
+      />
 
       {/* Intro */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
-              inkOUT and LaserAway represent two fundamentally different approaches to tattoo
-              removal. LaserAway is a large multi-service aesthetics chain. It offers tattoo
-              removal alongside laser hair removal, body contouring, injectables, and other
-              cosmetic procedures. LaserAway uses Cynosure PicoSure, a picosecond laser built
-              around a 755nm alexandrite wavelength. inkOUT is a non-laser brand. It uses TEPR
-              (Trans-Epidermal Pigment Release). TEPR tattoo removal lifts ink out through the
-              skin surface rather than shattering it with light.
-            </p>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0 mt-4">
-              The inkOUT vs LaserAway decision sits on two axes. The first is TEPR vs PicoSure:
-              non-laser versus laser, two different mechanisms with different strengths. The
-              laser vs non-laser distinction is the foundation of this comparison. The second is
-              specialist vs chain: a focused tattoo removal brand versus a broad-service
-              aesthetics platform where tattoo removal is one of many offerings. Both axes
-              matter. LaserAway vs inkOUT, inkOUT or LaserAway, and inkout vs laseraway tattoo
-              removal all come back to the same two-layer comparison.
-            </p>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0 mt-4">
-              This page does not force a universal winner. It explains the real differences on
-              both axes. Then it maps those differences onto who each provider actually serves
-              best.
-            </p>
-        </Container>
-      </section>
+      <PageSection bg="surface">
+        <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
+            inkOUT and LaserAway represent two fundamentally different approaches to tattoo
+            removal. LaserAway is a large multi-service aesthetics chain. It offers tattoo
+            removal alongside laser hair removal, body contouring, injectables, and other
+            cosmetic procedures. LaserAway uses Cynosure PicoSure, a picosecond laser built
+            around a 755nm alexandrite wavelength. inkOUT is a non-laser brand. It uses TEPR
+            (Trans-Epidermal Pigment Release). TEPR tattoo removal lifts ink out through the
+            skin surface rather than shattering it with light.
+          </p>
+          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0 mt-4">
+            The inkOUT vs LaserAway decision sits on two axes. The first is TEPR vs PicoSure:
+            non-laser versus laser, two different mechanisms with different strengths. The
+            laser vs non-laser distinction is the foundation of this comparison. The second is
+            specialist vs chain: a focused tattoo removal brand versus a broad-service
+            aesthetics platform where tattoo removal is one of many offerings. Both axes
+            matter. LaserAway vs inkOUT, inkOUT or LaserAway, and inkout vs laseraway tattoo
+            removal all come back to the same two-layer comparison.
+          </p>
+          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0 mt-4">
+            This page does not force a universal winner. It explains the real differences on
+            both axes. Then it maps those differences onto who each provider actually serves
+            best.
+          </p>
+      </PageSection>
 
       {/* At a glance */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            inkOUT vs LaserAway at a Glance
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
-              The structural comparison between inkOUT and LaserAway spans method, business model,
-              and specialization focus. The table below captures the categorical differences.
-              Quantitative review evidence appears in the cross-city evidence section further down.
-            </p>
-            <GuideTable
-              headers={["", "inkOUT", "LaserAway"]}
-              rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
-            />
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
-              The structural comparison sets the frame. The specialist-vs-chain section and the
-              use-case section translate these differences into practical guidance.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <PageSection bg="bg">
+        <SectionHeading>inkOUT vs LaserAway at a Glance</SectionHeading>
+        <div className="space-y-4">
+          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+            The structural comparison between inkOUT and LaserAway spans method, business model,
+            and specialization focus. The table below captures the categorical differences.
+            Quantitative review evidence appears in the cross-city evidence section further down.
+          </p>
+          <GuideTable
+            headers={[
+              "",
+              <BrandTableHeader key="inkout" name="inkOUT" logoSrc="/images/providers/logos/inkout-logo.jpg" />,
+              <BrandTableHeader key="laseraway" name="LaserAway" initials="LA" />,
+            ]}
+            rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
+            winners={[null, null, 1, 1, null, 2, null, null, null, 1]}
+          />
+          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+            The structural comparison sets the frame. The specialist-vs-chain section and the
+            use-case section translate these differences into practical guidance.
+          </p>
+        </div>
+      </PageSection>
 
       {/* TEPR vs PicoSure */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            The Key Difference: TEPR vs PicoSure
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="surface">
+        <SectionHeading label="Key Difference">The Key Difference: TEPR vs PicoSure</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               TEPR vs PicoSure is the core technology difference underneath the inkOUT vs
               LaserAway comparison.
             </p>
@@ -242,21 +238,15 @@ export default function InkoutVsLaserawayPage() {
                   body: "TEPR (Trans-Epidermal Pigment Release) is not a laser. It does not use light wavelengths. TEPR works by lifting ink upward through the epidermis. The skin then sheds the ink naturally over the weeks following each session. TEPR is not bound by the wavelength-versus-color limitations that affect all laser modalities. It does not interact with melanin the way laser wavelengths do.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
 
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               Key implications of this difference:
             </p>
             <GuideBulletList
@@ -268,17 +258,13 @@ export default function InkoutVsLaserawayPage() {
               ]}
             />
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Specialist vs Chain */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Specialist vs Chain: What Type of Provider Fits Your Needs?
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="bg">
+        <SectionHeading>Specialist vs Chain: What Type of Provider Fits Your Needs?</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               The specialist-vs-chain axis is unique to the inkOUT vs LaserAway comparison. It
               does not appear in the inkOUT vs Removery comparison because Removery is also a
               specialist. LaserAway is explicitly a chain where tattoo removal is one offering
@@ -308,31 +294,21 @@ export default function InkoutVsLaserawayPage() {
                   body: "Specialist providers like inkOUT trade geographic reach and brand recognition for protocol depth. Fewer locations means fewer users can access the provider without travel. Chain providers like LaserAway trade per-clinician tattoo removal depth for breadth of service and access. More locations means wider access but more variable clinician experience on tattoo removal specifically.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Pricing */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            inkOUT vs LaserAway: Pricing and Cost Comparison
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="surface">
+        <SectionHeading>inkOUT vs LaserAway: Pricing and Cost Comparison</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               inkOUT vs LaserAway cost decisions depend on pricing model and per-session cost.
             </p>
 
@@ -347,21 +323,15 @@ export default function InkoutVsLaserawayPage() {
                   body: "inkOUT uses a per-session pricing model with package options. Per-session pricing is set at consultation. inkOUT positions packages around expected complete-removal session counts.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
 
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               Cost comparison framing:
             </p>
             <GuideBulletList
@@ -372,7 +342,7 @@ export default function InkoutVsLaserawayPage() {
                 "Consultation cost. inkOUT offers free consultations. LaserAway consultation policy varies by location. Confirm whether the consultation is free before booking.",
               ]}
             />
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               For national pricing context across all methods and sizes, see the{" "}
               <Link href="/cost" className="text-(--accent) hover:underline">
                 cost guide
@@ -380,16 +350,12 @@ export default function InkoutVsLaserawayPage() {
               .
             </p>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Results, scarring, pain */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            inkOUT vs LaserAway: Results, Scarring, and Pain
-          </h2>
-          <div className="space-y-4">
+      <PageSection bg="bg">
+        <SectionHeading>inkOUT vs LaserAway: Results, Scarring, and Pain</SectionHeading>
+        <div className="space-y-4">
             <div className="space-y-3">
               {[
                 {
@@ -405,20 +371,14 @@ export default function InkoutVsLaserawayPage() {
                   body: "PicoSure sessions are typically described as a rubber band snapping against the skin. Sessions are short. TEPR is typically described as moderate, similar to the sensation of getting a tattoo. Pain tolerance is personal. Neither method is painless.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               For deeper context on scarring, see{" "}
               <Link
                 href="/guides/tattoo-removal-scarring"
@@ -429,17 +389,13 @@ export default function InkoutVsLaserawayPage() {
               .
             </p>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Use cases */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            inkOUT vs LaserAway: Best for Dark Skin, Color Ink, and Complete Removal
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="surface">
+        <SectionHeading>inkOUT vs LaserAway: Best for Dark Skin, Color Ink, and Complete Removal</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               Three high-stakes use cases shape most inkout vs laseraway decisions.
             </p>
 
@@ -462,31 +418,21 @@ export default function InkoutVsLaserawayPage() {
                   body: "Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser. This is a known consideration for any laser treatment of microblading, powder brows, lip blush, or eyeliner tattoos. TEPR avoids this risk. It does not use light. inkOUT is structurally well-suited to PMU and microblading cases. If you have cosmetic tattooing to remove, this is one of the strongest arguments for consulting inkOUT first.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Cross-city evidence */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Cross-City Review Evidence
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="bg">
+        <SectionHeading>Cross-City Review Evidence</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               The evidence below shows how inkOUT and LaserAway compare across cities where we
               have direct review-sample data. LaserAway review data is pending in our current
               dataset. The component will render LaserAway evidence once scrape backfill captures
@@ -507,24 +453,19 @@ export default function InkoutVsLaserawayPage() {
                 brandB="LaserAway"
               />
             </Suspense>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               Use the cross-city evidence as a reference once both brands populate. Consult each
               provider's Google business listing for the most current lifetime review counts.
             </p>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Pros and cons of inkOUT */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Pros and Cons of inkOUT
-          </h2>
-          <div className="space-y-4">
+      <PageSection bg="surface">
+        <SectionHeading>Pros and Cons of inkOUT</SectionHeading>
+        <div className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
+              <ContentCard title="Pros" titleSize="sm">
                 <GuideBulletList
                   items={[
                     "Only major non-laser tattoo removal brand at scale in the US market",
@@ -536,9 +477,8 @@ export default function InkoutVsLaserawayPage() {
                     "Free consultations at all locations",
                   ]}
                 />
-              </div>
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Cons</p>
+              </ContentCard>
+              <ContentCard title="Cons" titleSize="sm">
                 <GuideBulletList
                   variant="warning"
                   items={[
@@ -548,22 +488,17 @@ export default function InkoutVsLaserawayPage() {
                     "No ability to bundle tattoo removal with other aesthetic services at the same provider",
                   ]}
                 />
-              </div>
+              </ContentCard>
             </div>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Pros and cons of LaserAway */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Pros and Cons of LaserAway
-          </h2>
-          <div className="space-y-4">
+      <PageSection bg="bg">
+        <SectionHeading>Pros and Cons of LaserAway</SectionHeading>
+        <div className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
+              <ContentCard title="Pros" titleSize="sm">
                 <GuideBulletList
                   items={[
                     "Large national footprint with locations across major metros",
@@ -573,9 +508,8 @@ export default function InkoutVsLaserawayPage() {
                     "PicoSure Pro offers multi-wavelength coverage (755nm, 532nm, 1064nm) when all handpieces are available",
                   ]}
                 />
-              </div>
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Cons</p>
+              </ContentCard>
+              <ContentCard title="Cons" titleSize="sm">
                 <GuideBulletList
                   variant="warning"
                   items={[
@@ -586,29 +520,22 @@ export default function InkoutVsLaserawayPage() {
                     "PicoSure's 755nm primary wavelength has a higher melanin absorption ratio than 1064nm; darker skin types require careful clinician judgment",
                   ]}
                 />
-              </div>
+              </ContentCard>
             </div>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Verdict */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Our Verdict: inkOUT or LaserAway?
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="bg" className="verdict-bg">
+        <SectionHeading label="Verdict">Our Verdict: inkOUT or LaserAway?</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               There is no universal winner. The honest verdict depends on your tattoo, your skin,
               and what kind of provider experience you want.
             </p>
 
             <div className="space-y-4">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                  Choose LaserAway when:
-                </p>
+              <ContentCard title="Choose LaserAway when:">
                 <GuideBulletList
                   items={[
                     "You want a nationally recognized aesthetics brand with wide geographic access",
@@ -618,12 +545,9 @@ export default function InkoutVsLaserawayPage() {
                     "You are comfortable with mainstream laser protocols and want a familiar brand experience",
                   ]}
                 />
-              </div>
+              </ContentCard>
 
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                  Choose inkOUT when:
-                </p>
+              <ContentCard title="Choose inkOUT when:">
                 <GuideBulletList
                   items={[
                     "You specifically want a non-laser method, by preference or by medical reason",
@@ -634,12 +558,9 @@ export default function InkoutVsLaserawayPage() {
                     "You are scarring-sensitive and want a structurally different mechanism than laser",
                   ]}
                 />
-              </div>
+              </ContentCard>
 
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                  Get consultations at both when:
-                </p>
+              <ContentCard title="Get consultations at both when:">
                 <GuideBulletList
                   items={[
                     "Both brands have a location near you",
@@ -647,10 +568,10 @@ export default function InkoutVsLaserawayPage() {
                     "You are uncertain whether specialist focus or chain access matters more for your case",
                   ]}
                 />
-              </div>
+              </ContentCard>
             </div>
 
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               The decision often narrows on geography before method preference. If only one brand
               operates near you, that is the starting point. Use the{" "}
               <Link href="/cities/austin" className="text-(--accent) hover:underline">
@@ -667,14 +588,12 @@ export default function InkoutVsLaserawayPage() {
               for deeper brand-level coverage.
             </p>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Editorial note */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <div className="space-y-4">
-            <GuideCallout label="Editorial note">
+      <PageSection bg="bg">
+        <div className="space-y-4">
+          <GuideCallout label="Editorial note">
               PicoSure details are drawn from Cynosure Lutronic product documentation and
               PMC4859414 (Torbeck et al, JCAD 2016). LaserAway review data is pending scrape
               backfill; the evidence table will populate as confirmed locations are captured.
@@ -691,33 +610,30 @@ export default function InkoutVsLaserawayPage() {
               </Link>{" "}
               for full details.
             </GuideCallout>
-          </div>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
 
       {/* Related links */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <p className="font-sans text-[12px] font-semibold uppercase tracking-wider text-(--muted) mb-4">
-            Related Pages
-          </p>
-          <div className="space-y-2">
-            {[
-              { href: "/comparisons/best-tattoo-removal-method", title: "Best Tattoo Removal Method" },
-              { href: "/comparisons/inkout-vs-removery", title: "inkOUT vs Removery" },
-              { href: "/comparisons/removery-vs-laseraway", title: "Removery vs LaserAway" },
-              { href: "/reviews/inkout", title: "inkOUT Reviews" },
-              { href: "/reviews/laseraway", title: "LaserAway Reviews" },
-            ].map((link) => (
-              <div key={link.href}>
-                <Link href={link.href} className="font-sans text-[14px] text-(--accent) hover:underline">
-                  {link.title}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <PageSection bg="surface">
+        <p className="font-sans text-[12px] font-semibold uppercase tracking-wider text-(--muted) mb-4">
+          Related Pages
+        </p>
+        <div className="space-y-2">
+          {[
+            { href: "/comparisons/best-tattoo-removal-method", title: "Best Tattoo Removal Method" },
+            { href: "/comparisons/inkout-vs-removery", title: "inkOUT vs Removery" },
+            { href: "/comparisons/removery-vs-laseraway", title: "Removery vs LaserAway" },
+            { href: "/reviews/inkout", title: "inkOUT Reviews" },
+            { href: "/reviews/laseraway", title: "LaserAway Reviews" },
+          ].map((link) => (
+            <div key={link.href}>
+              <Link href={link.href} className="font-sans text-[14px] text-(--accent) hover:underline">
+                {link.title}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </PageSection>
 
       <GuideFAQSection faqs={faqs} />
     </div>

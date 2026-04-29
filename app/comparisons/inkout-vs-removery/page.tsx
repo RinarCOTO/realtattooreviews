@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import Container from "@/components/layout/Container";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
@@ -11,6 +10,11 @@ import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import MonoLabel from "@/components/reviews/MonoLabel";
 import GuideFAQSection from "@/components/guide/GuideFAQSection";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
+import ContentCard from "@/components/comparison/ContentCard";
+import BrandTableHeader from "@/components/comparison/BrandTableHeader";
+import ComparisonHero from "@/components/comparison/ComparisonHero";
+import PageSection from "@/components/reviews/PageSection";
+import SectionHeading from "@/components/guide/SectionHeading";
 
 export const revalidate = 3600;
 
@@ -132,9 +136,9 @@ export default function InkoutVsRemoveryPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
+      <ComparisonHero
+        label={
+          <>
             <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
               Comparisons
             </Link>
@@ -142,73 +146,65 @@ export default function InkoutVsRemoveryPage() {
             <span className="text-(--muted) font-normal normal-case tracking-normal">
               inkOUT vs Removery
             </span>
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            inkOUT vs{" "}
-            <span className="text-(--accent)">Removery</span>
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-2xl">
-            Compare TEPR and PicoWay tattoo removal, including pricing, pain, scarring risk, and
-            which provider fits different use cases.
-          </p>
-        </Container>
-      </section>
+          </>
+        }
+        title={
+          <>
+            inkOUT vs <span className="text-(--accent)">Removery</span>
+          </>
+        }
+        subtitle="Compare TEPR and PicoWay tattoo removal, including pricing, pain, scarring risk, and which provider fits different use cases."
+      />
 
       {/* Intro */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
-              inkOUT and Removery are two of the most-asked-about tattoo removal brands today.
-              They are also two of the most different. Removery is a national tattoo-removal-only
-              chain. It uses the Candela PicoWay laser. inkOUT is a non-laser brand. It uses TEPR (Trans-Epidermal Pigment Release). TEPR lifts ink
-              out of the skin instead of using light to fragment it. The decision is rarely about
-              which brand is bigger. It is about which method fits your tattoo, your skin type,
-              and your removal goal.
-            </p>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0 mt-4">
-              This page is a side-by-side comparison built to support that decision. inkOUT vs
-              Removery is the right question if you are choosing between non-laser and laser
-              approaches in markets where both are available. The page does not pretend either
-              brand wins universally. It explains the real differences clearly, then identifies
-              who each brand serves best.
-            </p>
-        </Container>
-      </section>
+      <PageSection bg="surface">
+        <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
+            inkOUT and Removery are two of the most-asked-about tattoo removal brands today.
+            They are also two of the most different. Removery is a national tattoo-removal-only
+            chain. It uses the Candela PicoWay laser. inkOUT is a non-laser brand. It uses TEPR (Trans-Epidermal Pigment Release). TEPR lifts ink
+            out of the skin instead of using light to fragment it. The decision is rarely about
+            which brand is bigger. It is about which method fits your tattoo, your skin type,
+            and your removal goal.
+          </p>
+          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0 mt-4">
+            This page is a side-by-side comparison built to support that decision. inkOUT vs
+            Removery is the right question if you are choosing between non-laser and laser
+            approaches in markets where both are available. The page does not pretend either
+            brand wins universally. It explains the real differences clearly, then identifies
+            who each brand serves best.
+          </p>
+      </PageSection>
 
       {/* At a glance */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            inkOUT vs Removery at a Glance
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-              The most useful one-screen view of inkOUT vs Removery is the structural difference
-              between the two brands. The table below summarizes the categorical differences.
-              Quantitative review evidence appears further down in the cross-city evidence section.
-            </p>
-            <GuideTable
-              headers={["", "inkOUT", "Removery"]}
-              rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
-            />
-            <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
-              The structural comparison sets the frame. The use-case comparison further down
-              translates these structural differences into who each brand actually serves best.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <PageSection bg="bg">
+        <SectionHeading>inkOUT vs Removery at a Glance</SectionHeading>
+        <div className="space-y-4">
+          <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl">
+            The most useful one-screen view of inkOUT vs Removery is the structural difference
+            between the two brands. The table below summarizes the categorical differences.
+            Quantitative review evidence appears further down in the cross-city evidence section.
+          </p>
+          <GuideTable
+            headers={[
+              "",
+              <BrandTableHeader key="inkout" name="inkOUT" logoSrc="/images/providers/logos/inkout-logo.jpg" />,
+              <BrandTableHeader key="removery" name="Removery" logoSrc="/images/providers/logos/removery-logo.png" />,
+            ]}
+            rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
+            winners={[null, null, null, 1, 1, 2, 2, null, null]}
+          />
+          <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl">
+            The structural comparison sets the frame. The use-case comparison further down
+            translates these structural differences into who each brand actually serves best.
+          </p>
+        </div>
+      </PageSection>
 
       {/* TEPR vs PicoWay */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            The Key Difference: TEPR vs PicoWay
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="surface">
+        <SectionHeading label="Key Difference">The Key Difference: TEPR vs PicoWay</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               The TEPR vs PicoWay distinction is the real comparison underneath inkOUT vs
               Removery. Almost every other difference between the two brands flows from this one
               technical choice.
@@ -225,21 +221,15 @@ export default function InkoutVsRemoveryPage() {
                   body: "TEPR (Trans-Epidermal Pigment Release) is not a laser. Rather than shattering ink with light, TEPR works mechanically. The treatment encourages ink to lift upward through the epidermis. The skin then sheds it naturally over the weeks following each session. TEPR does not rely on light wavelengths interacting with ink color. The method is not bound by the wavelength-versus-color limitations that affect every laser modality.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
 
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               The implications stack up across the rest of the comparison:
             </p>
             <GuideBulletList
@@ -251,17 +241,13 @@ export default function InkoutVsRemoveryPage() {
               ]}
             />
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Pricing */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            inkOUT vs Removery: Pricing and Cost Comparison
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="bg">
+        <SectionHeading>inkOUT vs Removery: Pricing and Cost Comparison</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               inkOUT vs Removery cost decisions hinge on the pricing model as much as on the
               per-session price.
             </p>
@@ -277,21 +263,15 @@ export default function InkoutVsRemoveryPage() {
                   body: "inkOUT typically uses a per-session pricing model. Package options are available for users who want a multi-session commitment. Per-session pricing is set at consultation and varies by tattoo size, ink density, and complexity. inkOUT generally positions packages around expected complete-removal session counts rather than around an unlimited-sessions guarantee.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
 
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               Useful framing for cost comparison:
             </p>
             <GuideBulletList
@@ -302,7 +282,7 @@ export default function InkoutVsRemoveryPage() {
                 "Consultation cost. Both brands offer free consultations, so two consultations cost nothing and produce two comparable quotes.",
               ]}
             />
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               For national pricing context across all methods and tattoo sizes, see the{" "}
               <Link href="/cost" className="text-(--accent) hover:underline">
                 cost guide
@@ -310,16 +290,12 @@ export default function InkoutVsRemoveryPage() {
               .
             </p>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Results, scarring, pain */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            inkOUT vs Removery: Results, Scarring, and Pain
-          </h2>
-          <div className="space-y-4">
+      <PageSection bg="surface">
+        <SectionHeading>inkOUT vs Removery: Results, Scarring, and Pain</SectionHeading>
+        <div className="space-y-4">
             <div className="space-y-3">
               {[
                 {
@@ -335,20 +311,14 @@ export default function InkoutVsRemoveryPage() {
                   body: "Most users describe Removery's PicoWay session as similar to a thick rubber band snapping against the skin. Sessions for small tattoos are typically under 10 minutes. inkOUT's TEPR has a different pain profile. Users typically describe it as moderate, comparable to the sensation of getting a tattoo, rather than sharp. Pain tolerance is personal. A consultation is the most reliable way to gauge fit before committing.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               For deeper context on scarring, see{" "}
               <Link href="/guides/tattoo-removal-scarring" className="text-(--accent) hover:underline">
                 tattoo removal scarring
@@ -360,17 +330,13 @@ export default function InkoutVsRemoveryPage() {
               .
             </p>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Use cases: dark skin, color, complete removal */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            inkOUT vs Removery: Best for Dark Skin, Color Ink, and Complete Removal
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="bg">
+        <SectionHeading>inkOUT vs Removery: Best for Dark Skin, Color Ink, and Complete Removal</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               Three high-stakes use cases drive most inkOUT vs Removery decisions. Each has a
               clear answer based on the structural difference between TEPR and PicoWay.
             </p>
@@ -394,31 +360,21 @@ export default function InkoutVsRemoveryPage() {
                   body: "Cosmetic tattoo removal (microblading, powder brows, lip blush, eyeliner) is harder than body tattoo removal. Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser, a known consideration for any laser removal of cosmetic tattoos. TEPR avoids this risk because it does not use light. inkOUT is structurally well-suited to PMU and microblading cases. Removery handles cosmetic cases as well. Ask specifically about the studio's cosmetic-tattoo experience at consultation.",
                 },
               ].map((item) => (
-                <div
+                <ContentCard
                   key={item.title}
-                  className="rounded-xl border border-(--line) bg-(--surface) p-5"
-                >
-                  <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                    {item.body}
-                  </p>
-                </div>
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
             </div>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Cross-city evidence */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Cross-City Review Evidence
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="surface">
+        <SectionHeading>Cross-City Review Evidence</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               The evidence below shows how inkOUT and Removery compare across cities where we
               have direct review-sample data. Sample sizes reflect the most recent reviews
               captured per provider location in our internal review dataset. Lifetime Google
@@ -440,25 +396,20 @@ export default function InkoutVsRemoveryPage() {
                 brandBPendingCities={["Tampa", "Houston"]}
               />
             </Suspense>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               The table updates as our scrape refreshes. Use the cross-city evidence as a
               reference, not a verdict, since both brands operate in markets not yet fully
               captured in our scrape.
             </p>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Pros and cons of inkOUT */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Pros and Cons of inkOUT
-          </h2>
-          <div className="space-y-4">
+      <PageSection bg="bg">
+        <SectionHeading>Pros and Cons of inkOUT</SectionHeading>
+        <div className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
+              <ContentCard title="Pros" titleSize="sm">
                 <GuideBulletList
                   items={[
                     "Only major non-laser tattoo removal brand at scale in the US market",
@@ -469,9 +420,8 @@ export default function InkoutVsRemoveryPage() {
                     "Free consultations to confirm fit before committing",
                   ]}
                 />
-              </div>
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Cons</p>
+              </ContentCard>
+              <ContentCard title="Cons" titleSize="sm">
                 <GuideBulletList
                   variant="warning"
                   items={[
@@ -481,22 +431,17 @@ export default function InkoutVsRemoveryPage() {
                     "TEPR is one mechanism with one performance envelope, so it is not the right answer for every tattoo or every user",
                   ]}
                 />
-              </div>
+              </ContentCard>
             </div>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Pros and cons of Removery */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Pros and Cons of Removery
-          </h2>
-          <div className="space-y-4">
+      <PageSection bg="surface">
+        <SectionHeading>Pros and Cons of Removery</SectionHeading>
+        <div className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Pros</p>
+              <ContentCard title="Pros" titleSize="sm">
                 <GuideBulletList
                   items={[
                     "National footprint with multiple locations across major metros, simplifying access and follow-up",
@@ -507,9 +452,8 @@ export default function InkoutVsRemoveryPage() {
                     "Free consultations and consistent national protocols",
                   ]}
                 />
-              </div>
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">Cons</p>
+              </ContentCard>
+              <ContentCard title="Cons" titleSize="sm">
                 <GuideBulletList
                   variant="warning"
                   items={[
@@ -519,29 +463,22 @@ export default function InkoutVsRemoveryPage() {
                     "Mainstream chain experience may not fit users seeking owner-operated continuity across the treatment series",
                   ]}
                 />
-              </div>
+              </ContentCard>
             </div>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Verdict */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
-            Our Verdict: inkOUT or Removery?
-          </h2>
-          <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+      <PageSection bg="bg" className="verdict-bg">
+        <SectionHeading label="Verdict">Our Verdict: inkOUT or Removery?</SectionHeading>
+        <div className="space-y-4">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               There is no universal winner between inkOUT and Removery. The honest verdict is
               by scenario.
             </p>
 
             <div className="space-y-4">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                  Choose Removery when:
-                </p>
+              <ContentCard title="Choose Removery when:">
                 <GuideBulletList
                   items={[
                     "You want a national chain with multiple locations and consistent protocols",
@@ -551,12 +488,9 @@ export default function InkoutVsRemoveryPage() {
                     "A Removery location is genuinely closer or more convenient than the nearest inkOUT location",
                   ]}
                 />
-              </div>
+              </ContentCard>
 
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                  Choose inkOUT when:
-                </p>
+              <ContentCard title="Choose inkOUT when:">
                 <GuideBulletList
                   items={[
                     "You specifically want a non-laser method, either by preference or by medical reason",
@@ -566,12 +500,9 @@ export default function InkoutVsRemoveryPage() {
                     "You are scarring-sensitive and want a structurally different mechanism than laser",
                   ]}
                 />
-              </div>
+              </ContentCard>
 
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans mb-2 text-[14px] font-semibold text-(--ink)">
-                  Get consultations at both when:
-                </p>
+              <ContentCard title="Get consultations at both when:">
                 <GuideBulletList
                   items={[
                     "Both brands have a location near you",
@@ -579,10 +510,10 @@ export default function InkoutVsRemoveryPage() {
                     "You are uncertain which method fits your specific case best",
                   ]}
                 />
-              </div>
+              </ContentCard>
             </div>
 
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
               The decision is not abstract. Most users have only one or two providers within
               reasonable driving distance. Geographic constraints often narrow the choice before
               method preference does. Use the{" "}
@@ -600,14 +531,12 @@ export default function InkoutVsRemoveryPage() {
               to see which brand actually operates in your market before drawing a verdict.
             </p>
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       {/* Editorial note */}
-      <section className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <div className="space-y-4">
-            <GuideCallout label="Editorial note">
+      <PageSection bg="surface">
+        <div className="space-y-4">
+          <GuideCallout label="Editorial note">
               This comparison synthesizes brand-published technology and pricing material with
               our internal review-sample evidence dataset for both brands. The cross-city
               evidence table renders dynamically from our internal review dataset and refreshes
@@ -626,44 +555,41 @@ export default function InkoutVsRemoveryPage() {
               </Link>{" "}
               for full details.
             </GuideCallout>
-          </div>
-        </Container>
-      </section>
+        </div>
+      </PageSection>
 
       {/* Related links */}
-      <section className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <GuideRelatedLinks
-            links={[
-              {
-                href: "/comparisons/best-tattoo-removal-method",
-                title: "Best Tattoo Removal Method",
-                desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
-              },
-              {
-                href: "/reviews/inkout",
-                title: "inkOUT Reviews",
-                desc: "Full review sample and provider profiles for inkOUT across all markets.",
-              },
-              {
-                href: "/reviews/removery",
-                title: "Removery Reviews",
-                desc: "Full review sample and provider profiles for Removery across all markets.",
-              },
-              {
-                href: "/cost",
-                title: "Tattoo Removal Cost",
-                desc: "National pricing breakdown by method, size, and provider type.",
-              },
-              {
-                href: "/comparisons/picoway-vs-q-switch",
-                title: "Pico Laser vs Q-Switch",
-                desc: "Deep-dive into picosecond vs Q-switched laser technology for tattoo removal.",
-              },
-            ]}
-          />
-        </Container>
-      </section>
+      <PageSection bg="bg">
+        <GuideRelatedLinks
+          links={[
+            {
+              href: "/comparisons/best-tattoo-removal-method",
+              title: "Best Tattoo Removal Method",
+              desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
+            },
+            {
+              href: "/reviews/inkout",
+              title: "inkOUT Reviews",
+              desc: "Full review sample and provider profiles for inkOUT across all markets.",
+            },
+            {
+              href: "/reviews/removery",
+              title: "Removery Reviews",
+              desc: "Full review sample and provider profiles for Removery across all markets.",
+            },
+            {
+              href: "/cost",
+              title: "Tattoo Removal Cost",
+              desc: "National pricing breakdown by method, size, and provider type.",
+            },
+            {
+              href: "/comparisons/picoway-vs-q-switch",
+              title: "Pico Laser vs Q-Switch",
+              desc: "Deep-dive into picosecond vs Q-switched laser technology for tattoo removal.",
+            },
+          ]}
+        />
+      </PageSection>
 
       <GuideFAQSection faqs={faqs} />
     </div>

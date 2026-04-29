@@ -20,16 +20,16 @@ function Totals({ rows }: { rows: BrandComparisonRow[] }) {
   const avgStars = totalSample > 0 ? (weightedStarSum / totalSample).toFixed(2) : null;
 
   return (
-    <tr className="bg-(--surface) border-t-2 border-(--line) font-semibold text-(--ink) text-[12px]">
-      <td className="px-4 py-2.5 whitespace-nowrap">Total</td>
-      <td className="px-4 py-2.5 whitespace-nowrap">{totalSample}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap">{avgStars ? `${avgStars}★` : "-"}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap">{pctPositive != null ? `${pctPositive}%` : "-"}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap">{totalPos}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap">{totalNeg}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap">{totalComplete}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap">{totalMicro}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap">{totalScarringPos + totalScarringYes}</td>
+    <tr className="bg-white border-t-2 border-(--line) font-semibold text-[13px]">
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">Total</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{totalSample}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{avgStars ? `${avgStars}★` : "-"}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{pctPositive != null ? `${pctPositive}%` : "-"}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--muted)">{totalPos}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--muted)">{totalNeg}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{totalComplete}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--muted)">{totalMicro}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-(--muted)">{totalScarringPos + totalScarringYes}</td>
     </tr>
   );
 }
@@ -60,15 +60,15 @@ export default async function BrandComparisonEvidence({
     const pendingOnly = pendingCities.filter((c) => !liveCities.has(c));
 
     return (
-      <div className="overflow-x-auto rounded-xl border border-(--line) mb-6">
-        <div className="bg-(--surface) border-b border-(--line) px-4 py-2.5">
+      <div className="overflow-x-auto rounded-xl border border-(--line) bg-white shadow-[0_2px_8px_0_rgb(0,0,0,0.09)] mb-6">
+        <div className="bg-white border-b border-(--line) px-4 py-2.5">
           <p className="font-sans text-[12px] font-semibold uppercase tracking-wider text-(--accent) m-0">
             {brand} review evidence
           </p>
         </div>
         <table className="w-full text-[13px] font-sans border-collapse">
           <thead>
-            <tr className="bg-(--surface) border-b border-(--line)">
+            <tr className="bg-white border-b border-(--line)">
               {headers.map((h) => (
                 <th
                   key={h}
@@ -81,7 +81,7 @@ export default async function BrandComparisonEvidence({
           </thead>
           <tbody className="divide-y divide-(--line)">
             {liveRows.map((row) => (
-              <tr key={row.city} className="bg-white hover:bg-surface transition-colors">
+              <tr key={row.city} className="bg-white hover:bg-(--surface) transition-colors">
                 <td className="px-4 py-3 font-medium text-heading whitespace-nowrap">{row.city}</td>
                 <td className="px-4 py-3 text-body whitespace-nowrap">{row.sampleSize}</td>
                 <td className="px-4 py-3 text-body whitespace-nowrap">
@@ -90,11 +90,11 @@ export default async function BrandComparisonEvidence({
                 <td className="px-4 py-3 text-body whitespace-nowrap">
                   {row.pctPositive != null ? `${row.pctPositive}%` : <span className="text-muted">-</span>}
                 </td>
-                <td className="px-4 py-3 text-body whitespace-nowrap">{row.positives}</td>
-                <td className="px-4 py-3 text-body whitespace-nowrap">{row.negatives}</td>
+                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">{row.positives}</td>
+                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">{row.negatives}</td>
                 <td className="px-4 py-3 text-body whitespace-nowrap">{row.useCaseComplete}</td>
-                <td className="px-4 py-3 text-body whitespace-nowrap">{row.useCaseMicroblading}</td>
-                <td className="px-4 py-3 text-body whitespace-nowrap">
+                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">{row.useCaseMicroblading}</td>
+                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">
                   {row.scarringPositive + row.scarringYes}
                 </td>
               </tr>

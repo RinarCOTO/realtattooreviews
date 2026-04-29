@@ -6,10 +6,10 @@
   --sans:  var(--font-inter-tight), 'Inter Tight', sans-serif;
   --mono:  'Space Mono', monospace;
 
-  --bg:               oklch(0.99 0.002 60);
-  --surface:          oklch(0.965 0.003 60);
-  --text:             oklch(0.28 0.006 60);
-  --text-soft:        oklch(0.52 0.005 60);
+  --bg:               oklch(0.99 0.006 58);
+  --surface:          oklch(0.96 0.010 52);
+  --text:             oklch(0.24 0.018 30);
+  --text-soft:        oklch(0.52 0.012 36);
 
   --primary:          #243746;
   --primary-strong:   #1C2C38;
@@ -26,28 +26,28 @@
   --danger:           #A34A3C;
   --danger-soft:      #F0D9D4;
 
-  --border:           oklch(0.91 0.004 60);
+  --border:           oklch(0.90 0.010 50);
 }
 
 @theme inline {
   /* Backgrounds */
-  --color-bg:              oklch(0.99 0.002 60);
-  --color-surface:         oklch(0.965 0.003 60);
-  --color-surface-2:       oklch(0.94 0.003 60);
-  --color-card:            #F2F2F2;
+  --color-bg:              oklch(0.99 0.006 58);
+  --color-surface:         oklch(0.96 0.010 52);
+  --color-surface-2:       oklch(0.94 0.012 48);
+  --color-card:            oklch(0.97 0.008 55);
 
   /* Shadows */
   --shadow-card:           0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
   --color-cloud-gray:      oklch(0.972 0.004 240);
-  --color-feathering-mist: #f4f7fc;
-  --color-background:      oklch(0.99 0.002 60);
-  --color-foreground:      oklch(0.52 0.005 60);
+  --color-feathering-mist: oklch(0.975 0.009 62);
+  --color-background:      oklch(0.99 0.006 58);
+  --color-foreground:      oklch(0.52 0.012 36);
 
   /* Text */
-  --color-heading:         oklch(0.28 0.006 60);
-  --color-body:            oklch(0.52 0.005 60);
-  --color-muted:           oklch(0.52 0.005 60);
-  --color-subtle:          oklch(0.62 0.004 60);
+  --color-heading:         oklch(0.24 0.018 30);
+  --color-body:            oklch(0.52 0.012 36);
+  --color-muted:           oklch(0.52 0.012 36);
+  --color-subtle:          oklch(0.62 0.008 42);
 
   /* Primary (dark navy) */
   --color-primary:         #243746;
@@ -59,7 +59,7 @@
 
   /* Accent (deep terracotta) */
   --color-accent:          oklch(0.52 0.12 32);
-  --color-accent-hover:    oklch(0.28 0.006 60);
+  --color-accent-hover:    oklch(0.24 0.018 30);
   --color-accent-light:    oklch(0.93 0.03 35);
   --color-accent-muted:    oklch(0.93 0.03 35);
 
@@ -70,8 +70,8 @@
   --color-danger-soft:     #F0D9D4;
 
   /* Border / dividers */
-  --color-border:          oklch(0.91 0.004 60);
-  --color-divider:         oklch(0.91 0.004 60);
+  --color-border:          oklch(0.90 0.010 50);
+  --color-divider:         oklch(0.90 0.010 50);
 
   /* Wash (editorial accent bg) */
   --color-hero-bg:         oklch(0.945 0.012 35);
@@ -145,19 +145,19 @@ button, [role="button"], a.btn {
 /* ── Utilities ──────────────────────────────────────────── */
 /* ── Reviews page design tokens ─────────────────────────────────────────── */
 .reviews-page {
-  --bg:          oklch(0.99 0.002 60);
-  --surface:     oklch(0.965 0.003 60);
-  --surface-2:   oklch(0.94 0.003 60);
+  --bg:          oklch(0.99 0.006 58);
+  --surface:     oklch(0.96 0.010 52);
+  --surface-2:   oklch(0.94 0.012 48);
   --cloud-gray:        oklch(0.972 0.004 240);
-  --feathering-mist:   #f4f7fc;
+  --feathering-mist:   oklch(0.975 0.009 62);
   --wash:        oklch(0.945 0.012 35);
-  --ink:         oklch(0.28 0.006 60);
-  --muted:       oklch(0.52 0.005 60);
-  --line:        oklch(0.91 0.004 60);
+  --ink:         oklch(0.24 0.018 30);
+  --muted:       oklch(0.52 0.012 36);
+  --line:        oklch(0.90 0.010 50);
   --accent:      oklch(0.52 0.12 32);
   --accent-soft: oklch(0.93 0.03 35);
-  background:    oklch(0.99 0.002 60);
-  color:         oklch(0.28 0.006 60);
+  background:    oklch(0.99 0.006 58);
+  color:         oklch(0.24 0.018 30);
 }
 
 
@@ -170,6 +170,27 @@ button, [role="button"], a.btn {
     radial-gradient(ellipse 65% 70% at 110% -5%, #BDD6D3 0%, transparent 62%),
     radial-gradient(ellipse 100% 55% at 50% 115%, #EDE3C4 0%, transparent 55%),
     radial-gradient(ellipse 55% 50% at 50% 32%, rgba(255,254,252,1) 0%, transparent 70%);
+}
+
+/* ── Comparison page hero — warm all-temperature variant ── */
+.comparison-hero {
+  background-color: oklch(0.975 0.009 62);
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23C8C2B8' fill-opacity='0.28'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 70% 75% at -10% -5%, #EAC2AA 0%, transparent 60%),
+    radial-gradient(ellipse 65% 70% at 110% -5%, #E2D0A4 0%, transparent 60%),
+    radial-gradient(ellipse 100% 55% at 50% 115%, #EDE8C4 0%, transparent 55%),
+    radial-gradient(ellipse 55% 50% at 50% 32%, rgba(255, 254, 252, 1) 0%, transparent 68%);
+}
+
+/* ── Verdict section — subtle warm depth gradient ── */
+.verdict-bg {
+  background: linear-gradient(
+    160deg,
+    oklch(0.940 0.016 34) 0%,
+    oklch(0.952 0.013 38) 50%,
+    oklch(0.962 0.010 42) 100%
+  );
 }
 
 .scrollbar-none {

@@ -933,6 +933,10 @@ export interface BrandComparisonRow {
   useCaseMicroblading: number;
   useCaseColor: number;
   useCaseCoverup: number;
+  /** Star-rating distribution counts (4–5★ / 3★ / 1–2★) */
+  starsHigh: number;
+  starsMid: number;
+  starsLow: number;
 }
 
 export interface BrandComparisonResult {
@@ -990,6 +994,9 @@ export async function getBrandComparisonAggregates(
       useCaseMicroblading: number;
       useCaseColor: number;
       useCaseCoverup: number;
+      starsHigh: number;
+      starsMid: number;
+      starsLow: number;
     }
   > = {};
 
@@ -1030,10 +1037,18 @@ export async function getBrandComparisonAggregates(
         useCaseMicroblading: 0,
         useCaseColor: 0,
         useCaseCoverup: 0,
+        starsHigh: 0,
+        starsMid: 0,
+        starsLow: 0,
       };
     }
     const a = acc[key];
-    if (row.star_rating != null) a.ratings.push(row.star_rating);
+    if (row.star_rating != null) {
+      a.ratings.push(row.star_rating);
+      if (row.star_rating >= 4) a.starsHigh++;
+      else if (row.star_rating === 3) a.starsMid++;
+      else a.starsLow++;
+    }
     if (row.result_rating === "Positive") a.positives++;
     if (row.result_rating === "Negative") a.negatives++;
     if (row.scarring_mentioned === "Positive") a.scarringPositive++;
@@ -1067,6 +1082,9 @@ export async function getBrandComparisonAggregates(
         useCaseMicroblading: v.useCaseMicroblading,
         useCaseColor: v.useCaseColor,
         useCaseCoverup: v.useCaseCoverup,
+        starsHigh: v.starsHigh,
+        starsMid: v.starsMid,
+        starsLow: v.starsLow,
       };
     })
     .sort((a, b) => {

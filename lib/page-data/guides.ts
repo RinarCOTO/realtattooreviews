@@ -1,12 +1,26 @@
 import { sanity } from '@/lib/sanity'
 import type { PortableTextBlock } from '@portabletext/react'
 
+export type SanityGuideSection = {
+    heading: string
+    body: PortableTextBlock[]
+}
+
+export type SanityRelatedLink = {
+    href: string
+    title: string
+    desc: string
+}
+
 export type SanityGuide = {
     title: string
     slug: string
     description: string
+    intro?: string | null
     author?: string | null
     image?: { url: string; alt: string } | null
+    sections?: SanityGuideSection[] | null
+    relatedLinks?: SanityRelatedLink[] | null
     body?: PortableTextBlock[]
     faqItems?: { question: string; answer: string }[] | null
     seoTitle?: string | null
@@ -28,7 +42,17 @@ const SINGLE_GUIDE_QUERY = `*[_type == "guide" && slug.current == $slug][0] {
     title,
     "slug": slug.current,
     description,
+    intro,
     author,
+    sections[] {
+        heading,
+        body
+    },
+    relatedLinks[] {
+        href,
+        title,
+        desc
+    },
     body,
     faqItems[] {
         question,

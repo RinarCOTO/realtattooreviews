@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
+import PageSection from "@/components/reviews/PageSection";
+import SectionHeading from "@/components/guide/SectionHeading";
 import GuideFAQSection from "@/components/guide/GuideFAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
@@ -125,8 +127,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* Body */}
-      <section className="py-14">
-        <Container>
+      <PageSection bg="bg">
           <div className="mx-auto max-w-2xl space-y-12">
 
             {/* Intro */}
@@ -147,7 +148,7 @@ export default function MethodologyPage() {
 
             {/* How We Rank */}
             <div className="space-y-6">
-              <h2 className="text-[24px] font-bold text-heading">How We Rank Tattoo Removal Providers</h2>
+              <SectionHeading>How We Rank Tattoo Removal Providers</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
                 Provider rankings on RealTattooReviews are generated from structured analysis of public review data. Rankings are not pay-for-placement. No provider can pay to rank higher. Rankings are not editorial opinion. They are produced from a scoring framework applied consistently across all providers.
               </p>
@@ -169,7 +170,7 @@ export default function MethodologyPage() {
 
             {/* How Scores Are Calculated */}
             <div className="space-y-5">
-              <h2 className="text-[24px] font-bold text-heading">How Review Scores Are Calculated</h2>
+              <SectionHeading>How Review Scores Are Calculated</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
                 Review scores on RealTattooReviews are not simple star averages. They are composite scores built from multiple data points extracted from each review.
               </p>
@@ -216,7 +217,7 @@ export default function MethodologyPage() {
 
             {/* Review Sources */}
             <div className="space-y-5">
-              <h2 className="text-[24px] font-bold text-heading">Review Sources</h2>
+              <SectionHeading>Review Sources</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
                 RealTattooReviews currently sources review data from public Google business listings. Reviews are scraped from each provider's Google business profile and stored in our internal review dataset.
               </p>
@@ -264,7 +265,7 @@ export default function MethodologyPage() {
 
             {/* Verification */}
             <div className="space-y-5">
-              <h2 className="text-[24px] font-bold text-heading">How We Verify Reviews and Provider Data</h2>
+              <SectionHeading>How We Verify Reviews and Provider Data</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
                 Verification operates at two levels: review-level and provider-level.
               </p>
@@ -301,7 +302,7 @@ export default function MethodologyPage() {
 
             {/* Signals */}
             <div className="space-y-5">
-              <h2 className="text-[24px] font-bold text-heading">How We Analyze Scarring, Pain, and Use-Case Signals</h2>
+              <SectionHeading>How We Analyze Scarring, Pain, and Use-Case Signals</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
                 Review text is analyzed for three signal categories beyond basic sentiment.
               </p>
@@ -329,7 +330,7 @@ export default function MethodologyPage() {
 
             {/* Weighting */}
             <div className="space-y-5">
-              <h2 className="text-[24px] font-bold text-heading">Weighting and Thresholds</h2>
+              <SectionHeading>Weighting and Thresholds</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
                 The scoring framework applies review weighting rules and thresholds to prevent misleading scores.
               </p>
@@ -362,7 +363,7 @@ export default function MethodologyPage() {
 
             {/* Update Frequency */}
             <div className="space-y-5">
-              <h2 className="text-[24px] font-bold text-heading">Update Frequency and Data Freshness</h2>
+              <SectionHeading>Update Frequency and Data Freshness</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
                 Review data is refreshed periodically through automated scraping of public Google business listings. The current update cadence is not real-time. Data refreshes occur on a rolling basis, with the most recently refreshed timestamp displayed at the bottom of each dynamic data component on the site.
               </p>
@@ -404,7 +405,7 @@ export default function MethodologyPage() {
 
             {/* Editorial Independence */}
             <div className="space-y-5">
-              <h2 className="text-[24px] font-bold text-heading">Editorial Independence and Corrections</h2>
+              <SectionHeading>Editorial Independence and Corrections</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
                 RealTattooReviews maintains editorial independence from all providers, including advertising clients. The scoring framework, ranking methodology, and review classification process described on this page apply equally to every provider regardless of advertising relationship.
               </p>
@@ -455,8 +456,7 @@ export default function MethodologyPage() {
             </div>
 
           </div>
-        </Container>
-      </section>
+      </PageSection>
 
       <GuideFAQSection faqs={faqs} />
     </main>
