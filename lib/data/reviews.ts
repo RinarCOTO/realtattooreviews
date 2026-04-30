@@ -678,7 +678,7 @@ export async function getReviewStats(): Promise<{
 
   const dates = data
     .map((r: { review_date_iso: string | null }) => r.review_date_iso)
-    .filter(Boolean)
+    .filter((d): d is string => d !== null)
     .map((d: string) => new Date(d))
     .filter((d: Date) => !Number.isNaN(d.getTime()));
 
