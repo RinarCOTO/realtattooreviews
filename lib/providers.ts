@@ -1,7 +1,7 @@
 import { providers } from "@/lib/mock-data/providers";
 import type { Provider } from "@/types/provider";
 
-/** "inkOUT" → "inkout", "Tatt2Away" → "tatt2away" */
+/** "inkOUT" → "inkout", "Removery" → "removery" */
 export function brandToSlug(brand: string): string {
   return brand.toLowerCase().replace(/\s+/g, "-");
 }

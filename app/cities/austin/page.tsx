@@ -96,10 +96,16 @@ const AUSTIN_PROVIDERS: StaticProviderProfile[] = [
     staticMethod: "PicoWay (picosecond)",
   },
   {
-    providerName: "Rejuvatek Aesthetics providing inkOUT",
+    providerName: "inkOUT",
     address: "7101 State Hwy 71",
     neighborhood: "West Austin",
     staticMethod: "TEPR (non-laser)",
+  },
+  {
+    providerName: "LaserAway (Austin)",
+    address: "Austin East Side",
+    neighborhood: "East Austin",
+    staticMethod: "PicoSure (picosecond)",
   },
   {
     providerName: "Clean Slate Ink",
@@ -108,7 +114,7 @@ const AUSTIN_PROVIDERS: StaticProviderProfile[] = [
     staticMethod: "Laser",
   },
   {
-    providerName: "UNBRANDED Austin",
+    providerName: "Unbranded ATX",
     address: "5511 Parkcrest Dr",
     neighborhood: "North Austin",
     staticMethod: "Laser",
@@ -302,6 +308,19 @@ export default function AustinPage() {
                     ],
                   },
                   {
+                    name: "LaserAway (Austin)",
+                    body: "LaserAway's Austin East Side location is part of the national chain's Texas expansion. LaserAway uses Cynosure PicoSure picosecond technology alongside Nd:YAG systems and operates across more than 150 locations nationally. The brand emphasizes standardized protocols, medical oversight, and consistent staff training. Financing is available through CareCredit and Alphaeon Credit.",
+                    bestFor: [
+                      "Users who want a large national chain with high review volume",
+                      "Users who may need to continue treatment while traveling",
+                      "Users with multicolor tattoos benefiting from PicoSure wavelength coverage",
+                    ],
+                    lessIdealFor: [
+                      "Users who prefer an owner-operated specialist studio",
+                      "Users seeking non-laser options",
+                    ],
+                  },
+                  {
                     name: "Clean Slate Ink (Round Rock)",
                     body: "Clean Slate Ink is in Round Rock at 600 Round Rock W Dr. The clinic offers both tattoo removal and other laser services, with an established lifetime review base in the North Austin suburbs.",
                     bestFor: [
@@ -312,7 +331,7 @@ export default function AustinPage() {
                     ],
                   },
                   {
-                    name: "UNBRANDED Austin (North Austin)",
+                    name: "Unbranded ATX (North Austin)",
                     body: "UNBRANDED is an owner-operated specialist studio in North Austin at 5511 Parkcrest Dr, near Mopac and 2222. Founder Alan personally performs treatments. Pricing is size-based and the clinic offers free consultations.",
                     bestFor: [
                       "Users who want a single experienced provider across their entire treatment series",
@@ -472,15 +491,17 @@ export default function AustinPage() {
             <GuideSection heading="How We Ranked Austin Tattoo Removal Clinics">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The ranked list above is generated from a structured analysis of the most recent
-                public reviews per provider. We weighted six factors:
+                public reviews per provider. Austin is one of our deepest markets by provider
+                count, with nine tracked clinics spanning removal-only specialists, national
+                chains, dermatology practices, and a non-laser location. We weighted six factors:
               </p>
               <GuideBulletList
                 items={[
-                  "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone.",
-                  "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit.",
-                  "Method specialization. Tattoo-removal-only specialists generally outperform med spas where tattoo removal is one of many services.",
-                  "Technology fit for the case. Picosecond systems suit difficult colors and stubborn ink. Q-switched suits standard black work. TEPR suits cosmetic tattoos and users avoiding laser entirely.",
-                  "Pricing transparency. Providers with published pricing rank above those that withhold it until consultation.",
+                  "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone. MEDermis, Removery, and Unbranded ATX have among the strongest Austin sample sizes.",
+                  "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. Pigment's combined studio model, for instance, gets specific credit on cover-up prep cases.",
+                  "Method specialization. Tattoo-removal-only specialists like MEDermis, Think Again, and Unbranded ATX generally outperform multi-service med spas on complex or color-heavy cases.",
+                  "Technology fit for the case. Picosecond systems (Removery's PicoWay, Think Again's Quanta Discovery Pico Plus) suit difficult colors and stubborn ink. MEDermis's Spectra suits standard black work with a deep track record. inkOUT's TEPR suits cosmetic tattoos and users avoiding laser entirely.",
+                  "Pricing transparency. Providers with published pricing — Pigment, Think Again, Unbranded ATX — rank above those that withhold pricing until consultation.",
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />

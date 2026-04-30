@@ -14,7 +14,7 @@ const TABLE = "competitor_reviews";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-// Computed once at module load. e.g. ["inkout", "tatt2away", "removery"]
+// Computed once at module load. e.g. ["inkout", "removery"]
 const MULTI_LOCATION_BRAND_SLUGS: string[] = getMultiLocationBrands().map(brandToSlug);
 
 // Maps RTR city slugs to the location_city / location_state values in competitor_reviews.
@@ -92,7 +92,7 @@ function getProviderNamesForSlug(
 ): { names: string[]; isInkout: boolean } {
   const isInkout = slug === "inkout";
 
-  // Multi-location brand slug (e.g. "inkout", "removery", "tatt2away")
+  // Multi-location brand slug (e.g. "inkout", "removery")
   const brand = getMultiLocationBrands().find((b) => brandToSlug(b) === slug);
   if (brand) {
     // Deduplicate: inkOUT locations all share name "inkOUT", etc.
@@ -140,7 +140,6 @@ const REMOVAL_ONLY_PREFIXES = [
   "Clean Slate",
   "Erasable",
   "Skintellect",
-  "Tatt2Away",
   "LaserAway",
 ];
 
@@ -261,15 +260,17 @@ export function selectDiverseReviews(reviews: Review[], maxCards = 6): Review[] 
 // Never write a bare supabase.from(TABLE) call that bypasses these conditions.
 //
 // Bucket logic (verified from actual data in competitor_reviews, April 2026):
-//   inkOUT reviews:     bucket = 'inkout'     (approved inkOUT reviews)
+//   inkOUT reviews:     bucket = 'inkout'     (approved inkOUT reviews shown on inkOUT pages)
 //   Competitor reviews: bucket = 'competitor' (Removery, Arviv, Clean Slate, etc.)
-//   Tatt2Away method:   bucket = 'tatt2away'  (inkOUT sessions using Tatt2Away tech, shown on inkOUT pages)
+//   tatt2away:          bucket = 'tatt2away'  (historical classification; negatives + explicit
+//                                              Tatt2Away name mentions. EXCLUDED from all public
+//                                              pages — never shown to site visitors.)
 //   review_required:    bucket = 'review_required' (flagged for manual review, not published)
 //
 // BucketScope controls how the bucket column is filtered:
-//   "inkout"     -- inkOUT pages: bucket = 'inkout' OR bucket = 'tatt2away' (Tatt2Away merged into inkOUT)
+//   "inkout"     -- inkOUT pages: bucket = 'inkout' only (tatt2away is excluded)
 //   "competitor" -- only bucket = 'competitor'
-//   "any"        -- bucket = 'competitor' OR bucket = 'inkout' (site-wide; excludes tatt2away)
+//   "any"        -- bucket = 'competitor' OR bucket = 'inkout' (site-wide; tatt2away excluded)
 
 type BucketScope = "inkout" | "competitor" | "any";
 
@@ -739,7 +740,7 @@ export async function getCityProviderAggregates(
   const { data, error } = await applyPublicFilters(
     supabase
       .from(TABLE)
-      .select("provider_name, method_used, bucket, star_rating, result_rating, scarring_mentioned, use_case")
+      .select("provider_name, method_used, bucket, star_rating, result_rating, scarring_mentioned, use_case, _place_id")
       .ilike("location_city", locationCity),
     "any"
   );
@@ -754,7 +755,25 @@ export async function getCityProviderAggregates(
     result_rating: string | null;
     scarring_mentioned: string | null;
     use_case: string | null;
+    _place_id: string | null;
   };
+
+  // Pass 1: build provider_name → canonical place_id map (for rows that have a place_id).
+  // This lets us group null-place_id rows for the same provider with their place_id siblings.
+  const nameToPlaceId: Record<string, string> = {};
+  for (const row of data as Row[]) {
+    if (row._place_id && !nameToPlaceId[row.provider_name]) {
+      nameToPlaceId[row.provider_name] = row._place_id;
+    }
+  }
+
+  // Group key: use place_id (direct or via name lookup) so same-location rows merge.
+  // Falls back to provider_name for providers with no place_id at all.
+  const getGroupKey = (row: Row) =>
+    row._place_id ?? nameToPlaceId[row.provider_name] ?? row.provider_name;
+
+  // Maps group key → canonical display name (first seen; inkout bucket wins)
+  const keyToName: Record<string, string> = {};
 
   const acc: Record<string, {
     methodUsed: string | null;
@@ -768,11 +787,20 @@ export async function getCityProviderAggregates(
   }> = {};
 
   for (const row of data as Row[]) {
-    const key = row.provider_name;
+    const isInkoutBucket = row.bucket === "inkout";
+    const key = getGroupKey(row);
+
+    // Canonical display name: inkout bucket wins, otherwise first seen
+    if (!keyToName[key]) {
+      keyToName[key] = row.provider_name;
+    } else if (row.bucket === "inkout") {
+      keyToName[key] = row.provider_name;
+    }
+
     if (!acc[key]) {
       acc[key] = {
         methodUsed: row.method_used ?? null,
-        isInkout: row.bucket === "inkout",
+        isInkout: isInkoutBucket,
         ratings: [],
         positives: 0,
         negatives: 0,
@@ -782,7 +810,7 @@ export async function getCityProviderAggregates(
       };
     }
     if (!acc[key].methodUsed && row.method_used) acc[key].methodUsed = row.method_used;
-    if (row.bucket === "inkout") acc[key].isInkout = true;
+    if (isInkoutBucket) acc[key].isInkout = true;
     if (row.star_rating != null) acc[key].ratings.push(row.star_rating);
     if (row.result_rating === "Positive") acc[key].positives++;
     if (row.result_rating === "Negative") acc[key].negatives++;
@@ -792,7 +820,8 @@ export async function getCityProviderAggregates(
   }
 
   return Object.entries(acc)
-    .map(([providerName, v]) => {
+    .map(([groupKey, v]) => {
+      const providerName = keyToName[groupKey] ?? groupKey;
       const sampleSize = v.ratings.length;
       const avgStars =
         sampleSize > 0
@@ -813,6 +842,10 @@ export async function getCityProviderAggregates(
         pctPositive,
       };
     })
+    // Exclude Tatt2Away by name — these rows may arrive with bucket='competitor' or
+    // bucket='inkout' and would otherwise pass the bucket filter. Tatt2Away is the
+    // former brand name for inkOUT and should not appear as a public provider.
+    .filter((row) => !row.providerName.toLowerCase().includes("tatt2away"))
     .sort((a, b) => b.sampleSize - a.sampleSize);
 }
 

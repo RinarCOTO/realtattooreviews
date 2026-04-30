@@ -117,13 +117,13 @@ const CHICAGO_PROVIDERS: StaticProviderProfile[] = [
     staticMethod: "PicoWay (picosecond)",
   },
   {
-    providerName: "Rejuvatek Aesthetics providing inkOUT",
+    providerName: "inkOUT",
     address: "2724 N Lincoln Ave Suite 6",
     neighborhood: "Lincoln Park",
     staticMethod: "TEPR (non-laser)",
   },
   {
-    providerName: "LaserAway",
+    providerName: "LaserAway (Chicago)",
     address: "Lincoln Park / River North / Bucktown",
     neighborhood: "Multiple",
     staticMethod: "PicoSure (picosecond)",
@@ -464,14 +464,16 @@ export default function ChicagoPage() {
             <GuideSection heading="How We Ranked Chicago Tattoo Removal Clinics">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The ranked list above is generated from a structured analysis of the most recent
-                public reviews per provider. We weighted six factors:
+                public reviews per provider. Chicago is a fragmented market with seven tracked
+                providers across national chains, dedicated removal specialists, full-service med
+                spas, and a non-laser location. We weighted six factors:
               </p>
               <GuideBulletList
                 items={[
-                  "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone.",
-                  "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit.",
-                  "Method specialization. Tattoo-removal-only specialists generally outperform med spas where tattoo removal is one of many services.",
-                  "Technology fit for the case. Picosecond systems suit difficult colors and stubborn ink. Q-Switch suits standard black work. TEPR suits cosmetic tattoos and users avoiding laser entirely.",
+                  "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone. Both Removery locations and LaserAway's three Chicago locations carry the deepest review volumes in the market.",
+                  "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. Removery's Lincoln Square location, for instance, has a noted cosmetic tattoo removal signal.",
+                  "Method specialization. Tattoo-removal-only specialists — both Removery locations — generally outperform full-service med spas like Enfuse and Kovak on complex or high-session-count cases.",
+                  "Technology fit for the case. Picosecond systems (Removery's PicoWay, Enfuse's PicoWay, LaserAway's PicoSure) suit difficult colors and stubborn ink. Kovak's Q-Switch suits standard black work. inkOUT's TEPR suits cosmetic tattoos and users avoiding laser entirely.",
                   "Pricing transparency. Providers with published pricing rank above those that withhold it until consultation.",
                   "Honest fit framing. No provider wins for every user. Each profile includes both a best-for and a less-ideal-for section.",
                 ]}

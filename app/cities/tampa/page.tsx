@@ -111,7 +111,7 @@ const TAMPA_PROVIDERS: StaticProviderProfile[] = [
     staticMethod: "TEPR (non-laser)",
   },
   {
-    providerName: "ReversaTatt Tattoo Removal",
+    providerName: "ReversaTatt",
     address: "3202 Henderson Blvd Suite 100A",
     neighborhood: "South Tampa",
     staticMethod: "Laser",
@@ -123,6 +123,24 @@ const TAMPA_PROVIDERS: StaticProviderProfile[] = [
     staticMethod: "PicoWay (picosecond)",
   },
   {
+    providerName: "LaserAway (Tampa)",
+    address: "Tampa, FL",
+    neighborhood: "Tampa",
+    staticMethod: "PicoSure (picosecond)",
+  },
+  {
+    providerName: "Skintellect",
+    address: "Tampa, FL",
+    neighborhood: "Tampa",
+    staticMethod: "Laser",
+  },
+  {
+    providerName: "EradiTatt",
+    address: "9210 4th St N Suite A",
+    neighborhood: "St. Petersburg",
+    staticMethod: "Laser",
+  },
+  {
     providerName: "Tampa Bay Tattoo Removal",
     address: "2561 Nursery Rd Suite C",
     neighborhood: "Clearwater",
@@ -132,12 +150,6 @@ const TAMPA_PROVIDERS: StaticProviderProfile[] = [
     providerName: "St Pete Tattoo Removal",
     address: "8130 66th St N Suite 9",
     neighborhood: "Pinellas Park",
-    staticMethod: "Laser",
-  },
-  {
-    providerName: "EradiTatt",
-    address: "9210 4th St N Suite A",
-    neighborhood: "St. Petersburg",
     staticMethod: "Laser",
   },
 ];
@@ -578,14 +590,17 @@ export default function TampaPage() {
             <GuideSection heading="How We Ranked Tampa Bay Tattoo Removal Clinics">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The ranked list above is generated from a structured analysis of the most recent
-                public reviews per provider. We weighted six factors:
+                public reviews per provider. Tampa Bay is a metro-wide market with ten tracked
+                providers spread across both sides of the bay — from national chains like Removery
+                to owner-operated Pinellas specialists like St Pete Tattoo Removal and Tampa Bay
+                Tattoo Removal. We weighted six factors:
               </p>
               <GuideBulletList
                 items={[
-                  "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone.",
-                  "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit.",
-                  "Method specialization. Tattoo-removal-only specialists generally outperform med spas where tattoo removal is one of many services.",
-                  "Technology fit for the case. Picosecond systems suit difficult colors and stubborn ink. Q-switched suits standard black work. TEPR suits cosmetic tattoos and users avoiding laser entirely.",
+                  "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone. Arviv Medical Aesthetics and Erasable Med Spa carry established Tampa-side review histories. Pinellas-side specialists like St Pete Tattoo Removal and Tampa Bay Tattoo Removal have smaller but focused removal-specific review bases.",
+                  "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. St Pete Tattoo Removal shows notable cosmetic tattoo removal signals in its review base.",
+                  "Method specialization. Tattoo-removal-only specialists — ReversaTatt, St Pete Tattoo Removal, EradiTatt, Tampa Bay Tattoo Removal, Removery — generally outperform multi-service med spas like Arviv and Erasable on complex or high-session-count cases.",
+                  "Technology fit for the case. Picosecond systems (Arviv and Erasable's PicoWay, Removery's PicoWay) suit difficult colors and stubborn ink. Other Tampa Bay providers use Q-switched or multi-application systems for standard cases. inkOUT's TEPR suits cosmetic tattoos, darker skin tones, and users avoiding laser entirely.",
                   "Pricing transparency and access. Providers with published pricing rank above those that withhold it until consultation. Providers with payment plans rank for users who need spread cost.",
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}

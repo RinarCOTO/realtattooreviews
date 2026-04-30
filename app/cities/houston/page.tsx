@@ -96,16 +96,52 @@ const HOUSTON_PROVIDERS: StaticProviderProfile[] = [
     staticMethod: "Q-Switch",
   },
   {
-    providerName: "Rejuvatek Aesthetics providing inkOUT",
+    providerName: "inkOUT",
     address: "2200 Edwards St Suite 107",
     neighborhood: "Heights",
     staticMethod: "TEPR (non-laser)",
+  },
+  {
+    providerName: "Dermaluxe Spa",
+    address: "Houston, TX",
+    neighborhood: "Houston",
+    staticMethod: "Laser",
+  },
+  {
+    providerName: "Houston Tattoo Removal Clinic",
+    address: "Houston, TX",
+    neighborhood: "Houston",
+    staticMethod: "Laser",
+  },
+  {
+    providerName: "Rethink Laser",
+    address: "Houston, TX",
+    neighborhood: "Houston",
+    staticMethod: "Laser",
   },
   {
     providerName: "DermSurgery Associates",
     address: "6700 W Loop S Suite 500",
     neighborhood: "Bellaire / W Loop",
     staticMethod: "Q-Switch",
+  },
+  {
+    providerName: "Removery (Hedwig Village)",
+    address: "Houston, TX",
+    neighborhood: "Hedwig Village",
+    staticMethod: "PicoWay (picosecond)",
+  },
+  {
+    providerName: "Removery (Rice Village)",
+    address: "2530 Rice Blvd",
+    neighborhood: "Rice Village",
+    staticMethod: "PicoWay (picosecond)",
+  },
+  {
+    providerName: "LaserAway (Houston)",
+    address: "Houston, TX",
+    neighborhood: "Houston",
+    staticMethod: "PicoSure (picosecond)",
   },
   {
     providerName: "Removery (Energy Corridor)",
@@ -118,30 +154,6 @@ const HOUSTON_PROVIDERS: StaticProviderProfile[] = [
     address: "9930 Katy Fwy Suite 400",
     neighborhood: "Spring Branch",
     staticMethod: "PicoWay (picosecond)",
-  },
-  {
-    providerName: "Removery (Rice Village)",
-    address: "2530 Rice Blvd",
-    neighborhood: "Rice Village",
-    staticMethod: "PicoWay (picosecond)",
-  },
-  {
-    providerName: "LaserAway (Galleria)",
-    address: "5385 Westheimer Rd",
-    neighborhood: "Galleria",
-    staticMethod: "PicoSure (picosecond)",
-  },
-  {
-    providerName: "LaserAway (Heights)",
-    address: "246 W 19th St",
-    neighborhood: "Heights",
-    staticMethod: "PicoSure (picosecond)",
-  },
-  {
-    providerName: "LaserAway (Pearland)",
-    address: "11200 Broadway St Suite 760",
-    neighborhood: "Pearland",
-    staticMethod: "PicoSure (picosecond)",
   },
 ];
 
@@ -505,14 +517,17 @@ export default function HoustonPage() {
             <GuideSection heading="How We Ranked Houston Tattoo Removal Clinics">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The ranked list above is generated from a structured analysis of the most recent
-                public reviews per provider. We weighted six factors:
+                public reviews per provider. Houston is one of the deepest markets we track, with
+                eleven providers spanning owner-operated specialists, national chains running
+                multiple Houston locations, a full dermatology group, and a non-laser option. We
+                weighted six factors:
               </p>
               <GuideBulletList
                 items={[
-                  "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone.",
-                  "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit.",
-                  "Method specialization. Tattoo-removal-only specialists generally outperform med spas where tattoo removal is one of many services.",
-                  "Technology fit for the case. Picosecond systems suit difficult colors and stubborn ink. Q-switched suits standard black work. TEPR suits cosmetic tattoos and users avoiding laser entirely.",
+                  "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone. InkFree, MD and DermSurgery Associates carry established Houston-specific review histories. Removery and LaserAway contribute high volume across their three locations each.",
+                  "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. InkFree, MD shows notable cosmetic and microblading removal signals.",
+                  "Method specialization. Owner-operated specialists like InkFree, MD and dedicated removal chains like Removery generally outperform multi-service practices like DermSurgery on session-count efficiency and outcome consistency.",
+                  "Technology fit for the case. Picosecond systems (Removery's PicoWay, LaserAway's PicoSure) suit difficult colors and stubborn ink. Q-switched systems (DermSurgery, InkFree, MD) suit standard black work and have deep track records in the Houston market. inkOUT's TEPR suits cosmetic tattoos, darker skin tones, and users avoiding laser entirely.",
                   "Pricing transparency and access. Providers with published pricing rank above those that withhold it until consultation. Providers with payment plans rank for users who need spread cost.",
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
