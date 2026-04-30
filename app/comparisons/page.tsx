@@ -82,8 +82,8 @@ const TECH_COMPARISONS = [
     title: "Picosecond vs Q-Switched Laser",
     description:
       "Pico and Q-switch laser technologies compared on ink types, skin tones, treatment count expectations, and real patient outcomes. Coming soon.",
-    href: null,
-    live: false,
+    href: "/comparisons/picoway-vs-q-switch",
+    live: true,
   },
 ];
 
