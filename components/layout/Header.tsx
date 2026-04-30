@@ -160,7 +160,7 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-border bg-surface"
+      className="sticky top-0 z-50 border-b border-border bg-nav"
       onMouseLeave={() => setOpenMega(null)}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -219,7 +219,7 @@ export default function Header() {
 
                   {open && (
                     <div
-                      className="absolute top-full left-0 w-full border-b border-border bg-surface shadow-lg"
+                      className="absolute top-full left-0 w-full border-b border-border bg-nav shadow-lg"
                       onKeyDown={handleEscapeClose}
                     >
                       <Container>
@@ -359,7 +359,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div id="mobile-menu" className="border-t border-border bg-surface lg:hidden">
+        <div id="mobile-menu" className="border-t border-border bg-nav lg:hidden">
           <Container>
             <nav aria-label="Mobile navigation" className="flex flex-col py-2">
               {nav.map((item) => {

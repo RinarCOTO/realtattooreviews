@@ -37,7 +37,7 @@ export default async function StatsRow() {
   ];
 
   return (
-    <section className="bg-heading py-8">
+    <section className="py-4">
       <Container>
         <StatsCounter stats={stats} />
       </Container>

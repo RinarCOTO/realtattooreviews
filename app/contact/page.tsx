@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Container from "@/components/layout/Container";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -14,14 +15,11 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-feathering-mist py-14">
-        <Container>
-          <h1 className="text-[36px] font-bold text-heading">Contact Us</h1>
-          <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted">
-            Questions about reviews, provider listings, or editorial concerns.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label="Contact"
+        title={<>Contact <span className="text-(--accent)">Us</span></>}
+        subtitle="Questions about reviews, provider listings, or editorial concerns."
+      />
     </main>
   );
 }

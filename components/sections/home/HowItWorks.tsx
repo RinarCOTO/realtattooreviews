@@ -55,24 +55,28 @@ export default function HowItWorks({ steps }: Props) {
     steps && steps.length > 0 ? steps : DEFAULT_STEPS;
 
   return (
-    <section className="bg-bg border-y border-border py-16">
+    <section className="pt-4 pb-6">
       <Container>
-        <div className="mb-10 flex items-end justify-between">
-          <div>
-            <h2 className="text-[32px] font-bold text-primary">How reviews work</h2>
-            <p className="mt-1 text-sm text-muted">
-              Google reviews, structured for faster clinic comparison.
-            </p>
-          </div>
-          <Link href="/methodology" className="hidden text-sm font-medium text-secondary hover:underline sm:block">
+        <div className="mb-4 relative text-center">
+          <h2 className="text-[32px] font-bold text-primary">How reviews work</h2>
+          <p className="mt-1 text-sm text-muted">
+            Google reviews, structured for faster clinic comparison.
+          </p>
+          <Link href="/methodology" className="absolute right-0 top-0 hidden text-sm font-medium text-secondary hover:underline sm:block">
             Our methodology →
           </Link>
         </div>
 
-        <HowItWorksCards steps={activeSteps} decorations={STEP_DECORATIONS} />
+        <HowItWorksCards steps={activeSteps} />
 
         {/* Editorial note */}
-        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-border bg-card px-6 py-4">
+        <div
+          className="mt-6 flex items-start gap-3 rounded-2xl px-6 py-4"
+          style={{
+            border: "1.5px solid transparent",
+            background: "linear-gradient(white, white) padding-box, linear-gradient(135deg, #C8E6E4, #F5DDD0, #C8E6E4) border-box",
+          }}
+        >
           <svg className="mt-0.5 h-4 w-4 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>

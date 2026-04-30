@@ -1,46 +1,112 @@
+import type { ReactNode } from "react";
 import Container from "@/components/layout/Container";
-import FaqAccordion from "@/components/ui/FaqAccordion";
+import MonoLabel from "@/components/reviews/MonoLabel";
 
-type FAQ = { question: string; answer: string };
-
-type Props = {
-  faqs: FAQ[];
-  title?: string;
-  description?: string;
+export type FAQItem = {
+  question: string;
+  /** Rendered answer. Strings render as plain text; ReactNode allows rich content (e.g. PortableText). */
+  answer: ReactNode;
+  /**
+   * Plain-text version of the answer for FAQPage JSON-LD.
+   * Falls back to `answer` when it's a string. Required to include a rich-content
+   * answer in the structured-data graph.
+   */
+  answerText?: string;
 };
 
+type Props = {
+  faqs: FAQItem[];
+  /** Override the h2 (defaults to "Frequently Asked Questions"). */
+  title?: string;
+  /** Optional supporting copy under the h2. */
+  description?: string;
+  /** Anchor id for in-page nav (e.g. "faq"). */
+  id?: string;
+};
+
+/**
+ * Single shared FAQ section for the entire site.
+ *
+ * Visual: MonoLabel "FAQ" eyebrow + h2 + optional description, followed by an
+ * accordion (<details>) of questions on a (--surface) panel bordered top/bottom.
+ *
+ * SEO: Always emits FAQPage schema.org JSON-LD for items that have plain-text
+ * answers (either `answer` as a string, or via the `answerText` fallback).
+ */
 export default function FAQSection({
   faqs,
   title = "Frequently Asked Questions",
   description,
+  id,
 }: Props) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
-    })),
-  };
+  if (!faqs || faqs.length === 0) return null;
+
+  const ldEntities = faqs
+    .map((f) => {
+      const text =
+        f.answerText ?? (typeof f.answer === "string" ? f.answer : undefined);
+      if (!text) return null;
+      return {
+        "@type": "Question" as const,
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer" as const, text },
+      };
+    })
+    .filter((x): x is NonNullable<typeof x> => x !== null);
+
+  const jsonLd =
+    ldEntities.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: ldEntities,
+        }
+      : null;
 
   return (
-    <section className="border-t border-(--line) py-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <section
+      id={id}
+      className="bg-white py-20"
+    >
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       <Container>
-        <div className="mx-auto max-w-2xl">
-          <div className="mb-10">
-            <h2 className="text-[32px] font-bold text-(--ink)">{title}</h2>
-            {description && (
-              <p className="mt-2 text-[15px] leading-relaxed text-(--muted)">
-                {description}
-              </p>
-            )}
-          </div>
-          <FaqAccordion items={faqs} />
+        <MonoLabel color="accent" size="sm" className="mb-5">
+          FAQ
+        </MonoLabel>
+        <h2 className="font-sans font-bold text-[clamp(24px,3.5vw,36px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
+          {title}
+        </h2>
+        {description && (
+          <p className="text-[15px] leading-relaxed text-(--muted) max-w-2xl m-0 mb-10">
+            {description}
+          </p>
+        )}
+        {!description && <div className="mb-10" />}
+
+        <div className="divide-y divide-(--line) border-t border-b border-(--line)">
+          {faqs.map((item, i) => (
+            <details key={`${item.question}-${i}`} className="group py-5">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 [&::-webkit-details-marker]:hidden">
+                <span className="text-[16px] font-semibold text-(--ink) leading-snug">
+                  {item.question}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 text-[20px] leading-none text-(--accent) transition-transform duration-200 group-open:rotate-45 mt-1"
+                >
+                  +
+                </span>
+              </summary>
+              <div className="mt-3 max-w-2xl text-[14px] leading-relaxed text-(--muted)">
+                {item.answer}
+              </div>
+            </details>
+          ))}
         </div>
       </Container>
     </section>

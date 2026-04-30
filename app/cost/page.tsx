@@ -14,8 +14,8 @@ import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
-import MonoLabel from "@/components/reviews/MonoLabel";
+import FAQSection from "@/components/sections/FAQSection";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title:
@@ -114,10 +114,9 @@ export default function CostPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
+      <PageHero
+        label={
+          <>
             <Link href="/" className="hover:text-(--ink) transition-colors">
               Home
             </Link>
@@ -125,19 +124,11 @@ export default function CostPage() {
             <span className="text-(--muted) font-normal normal-case tracking-normal">
               Tattoo Removal Cost
             </span>
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            Tattoo Removal{" "}
-            <span className="text-(--accent)">Cost</span>
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            How much does tattoo removal cost? A provider-neutral guide to tattoo removal pricing
-            by size, method, session count, and financing options.
-          </p>
-        </Container>
-      </section>
+          </>
+        }
+        title={<>Tattoo Removal <span className="text-(--accent)">Cost</span></>}
+        subtitle="How much does tattoo removal cost? A provider-neutral guide to tattoo removal pricing by size, method, session count, and financing options."
+      />
 
       {/* Body */}
       <PageSection bg="bg">
@@ -562,7 +553,7 @@ export default function CostPage() {
         </Container>
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

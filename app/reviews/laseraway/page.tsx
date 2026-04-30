@@ -22,8 +22,8 @@ import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
-import MonoLabel from "@/components/reviews/MonoLabel";
+import FAQSection from "@/components/sections/FAQSection";
+import PageHero from "@/components/layout/PageHero";
 import BrandReviewSummary from "@/components/provider/BrandReviewSummary";
 
 export const revalidate = 3600;
@@ -151,9 +151,9 @@ export default function LaserAwayReviewsPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
+      <PageHero
+        label={
+          <>
             <Link href="/reviews" className="hover:text-(--ink) transition-colors">
               Reviews
             </Link>
@@ -161,22 +161,11 @@ export default function LaserAwayReviewsPage() {
             <span className="text-(--muted) font-normal normal-case tracking-normal">
               LaserAway
             </span>
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            LaserAway{" "}
-            <span className="text-(--accent)">Tattoo Removal</span>{" "}
-            Reviews
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            LaserAway is one of the largest multi-service aesthetic chains in the US, offering tattoo
-            removal alongside laser hair removal, body contouring, injectables, and skin treatments.
-            This page aggregates real patient reviews from RTR-tracked markets and covers the
-            technology, pricing model, and where LaserAway fits relative to specialists.
-          </p>
-        </Container>
-      </section>
+          </>
+        }
+        title={<>LaserAway <span className="text-(--accent)">Tattoo Removal</span> Reviews</>}
+        subtitle="LaserAway is one of the largest multi-service aesthetic chains in the US. This page aggregates real patient reviews from RTR-tracked markets and covers the technology, pricing model, and where LaserAway fits relative to specialists."
+      />
 
       {/* Body */}
       <section className="bg-(--bg)">
@@ -474,7 +463,7 @@ export default function LaserAwayReviewsPage() {
         </Container>
       </section>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

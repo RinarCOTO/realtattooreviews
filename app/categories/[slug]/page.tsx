@@ -88,10 +88,16 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <GuideLayout
       breadcrumb={category.title}
-      h1={category.title}
+      h1={(() => {
+        const title = category.title as string;
+        const match = title.match(/^(.*?)(tattoo removal|removal|concerns|prep)(.*)$/i);
+        if (!match) return title;
+        return <>{match[1]}<span className="text-(--accent)">{match[2]}</span>{match[3]}</>;
+      })()}
       description={category.description}
       faqs={faqs}
       path={`/categories/${slug}`}
+      heroClassName="category-page-hero"
     >
       {/* Intro box */}
       {category.intro && (

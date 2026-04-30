@@ -3,12 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
 
-type Decoration = {
-  color: string;
-  iconBg: string;
-  icon: React.ReactNode;
-};
-
 type Step = {
   stepNumber: string;
   title: string;
@@ -17,10 +11,9 @@ type Step = {
 
 type Props = {
   steps: Step[];
-  decorations: Decoration[];
 };
 
-export default function HowItWorksCards({ steps, decorations }: Props) {
+export default function HowItWorksCards({ steps }: Props) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -41,43 +34,25 @@ export default function HowItWorksCards({ steps, decorations }: Props) {
   }, []);
 
   return (
-    <div ref={ref} className="grid gap-6 sm:grid-cols-3">
-      {steps.map((step, i) => {
-        const decor = decorations[i] ?? decorations[0];
-        return (
-          <div
-            key={step.stepNumber}
-            className="relative rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-500"
-            style={{
-              transitionDelay: `${i * 150}ms`,
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateX(0)" : "translateX(-20px)",
-            }}
-          >
-            {/* Connector line */}
-            {i < steps.length - 1 && (
-              <div className="absolute right-0 top-8 hidden h-px w-6 bg-border sm:block translate-x-full" />
-            )}
-
-            {/* Icon */}
-            <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${decor.iconBg} ${decor.color}`}>
-              {decor.icon}
-            </div>
-
-            {/* Step number */}
-            <span className={`mt-4 block text-xs font-semibold uppercase tracking-widest ${decor.color}`}>
-              Step {step.stepNumber}
-            </span>
-
-            <h3 className="mt-1.5 text-base font-semibold text-heading">{step.title}</h3>
-            <div className="mt-2 text-sm leading-relaxed text-muted">
-              {typeof step.body === "string"
-                ? step.body
-                : <PortableText value={step.body} />}
-            </div>
+    <div ref={ref} className="grid gap-8 sm:grid-cols-3">
+      {steps.map((step, i) => (
+        <div
+          key={step.stepNumber}
+          className="flex flex-col bg-white rounded-2xl p-6 text-center shadow-[-3px_5px_12px_rgba(200,230,228,0.3),3px_5px_12px_rgba(245,221,208,0.3)] transition-all duration-500"
+          style={{
+            transitionDelay: `${i * 150}ms`,
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateX(0)" : "translateX(-20px)",
+          }}
+        >
+          <h3 className="min-h-14 text-xl font-semibold text-heading">{step.title}</h3>
+          <div className="mt-2 text-[16px] font-medium leading-5 text-heading">
+            {typeof step.body === "string"
+              ? step.body
+              : <PortableText value={step.body} />}
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 }

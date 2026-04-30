@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import Container from "@/components/layout/Container";
+import PageHero from "@/components/layout/PageHero";
 import Tag from "@/components/ui/Tag";
 import { getBlogPost, getAllBlogSlugs } from "@/lib/page-data/blog";
 import { blogPosts as mockPosts } from "@/lib/mock-data/blog-posts";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -46,26 +47,27 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-feathering-mist py-14">
-        <Container>
-          <p className="mb-2 text-sm text-muted">
-            <Link href="/blog" className="hover:text-accent">Blog</Link>
-            {" / "}
-            <span className="text-heading">{post.title}</span>
-          </p>
-          <div className="mb-3 flex items-center gap-3">
-            <Tag label={post.category} />
-            <span className="text-xs text-subtle">{post.date}</span>
-            <span className="text-xs text-subtle">By {post.author}</span>
-          </div>
-          <h1 className="text-[36px] font-bold leading-tight text-heading">
-            {post.title}
-          </h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
-            {post.description}
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label={
+          <>
+            <Link href="/blog" className="hover:text-(--ink) transition-colors">
+              Blog
+            </Link>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">
+              {post.title}
+            </span>
+          </>
+        }
+        title={post.title}
+        subtitle={post.description}
+      >
+        <div className="flex items-center gap-3">
+          <Tag label={post.category} />
+          <span className="text-xs text-(--muted)">{post.date}</span>
+          <span className="text-xs text-(--muted)">By {post.author}</span>
+        </div>
+      </PageHero>
 
       {isSanity && sanityPost.featuredImage?.url && (
         <div className="border-b border-border bg-surface">
@@ -97,7 +99,7 @@ export default async function BlogPostPage({ params }: Props) {
         </Container>
       </section>
 
-      <GuideFAQSection
+      <FAQSection
         faqs={[
           {
             question: "How many sessions does tattoo removal take?",

@@ -6,9 +6,9 @@ import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import MonoLabel from "@/components/reviews/MonoLabel";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 import ContentCard from "@/components/comparison/ContentCard";
-import ComparisonHero from "@/components/comparison/ComparisonHero";
+import PageHero from "@/components/layout/PageHero";
 import PageSection from "@/components/reviews/PageSection";
 import SectionHeading from "@/components/guide/SectionHeading";
 
@@ -148,7 +148,7 @@ export default function PicoLaserVsQSwitchPage() {
       />
 
       {/* Hero */}
-      <ComparisonHero
+      <PageHero
         label={
           <span className="flex items-center gap-2">
             <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
@@ -578,7 +578,7 @@ export default function PicoLaserVsQSwitchPage() {
           />
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

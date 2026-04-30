@@ -6,8 +6,10 @@ import GuideLayout from "@/components/guide/GuideLayout";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import { getGuide, getAllGuideSlugs } from "@/lib/page-data/guides";
+import { guides as mockGuides } from "@/lib/mock-data/guides";
 
 export const dynamicParams = false;
+export const revalidate = 0;
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -78,8 +80,14 @@ const ptComponents = {
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params;
-  const guide = await getGuide(slug);
-  if (!guide) notFound();
+  let guide = await getGuide(slug);
+
+  // Fall back to mock data if Sanity has no content yet
+  if (!guide) {
+    const mock = mockGuides.find((g) => g.slug === slug);
+    if (!mock) notFound();
+    guide = { title: mock.title, slug: mock.slug, description: mock.description };
+  }
 
   const hasSections = guide.sections && guide.sections.length > 0;
   const hasLegacyBody = guide.body && guide.body.length > 0;

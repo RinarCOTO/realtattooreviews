@@ -8,8 +8,8 @@ import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
-import MonoLabel from "@/components/reviews/MonoLabel";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import PageHero from "@/components/layout/PageHero";
+import FAQSection from "@/components/sections/FAQSection";
 import CityProviderRanking from "@/components/city/CityProviderRanking";
 import CityProviderComparisonTable from "@/components/city/CityProviderComparisonTable";
 import type { StaticProviderProfile } from "@/components/city/types";
@@ -197,27 +197,21 @@ export default function HoustonPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
+      <PageHero
+        label={
+          <>
             <Link href="/cities" className="hover:text-(--ink) transition-colors">
               Cities
             </Link>
             <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">Houston</span>
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            Best Tattoo Removal{" "}
-            <span className="text-(--accent)">in Houston</span>
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            Compare Houston tattoo removal clinics on outcomes, pain, scarring, and cost. See
-            provider differences across the metro before you book.
-          </p>
-        </Container>
-      </section>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">
+              Houston
+            </span>
+          </>
+        }
+        title={<>Best Tattoo Removal <span className="text-(--accent)">in Houston</span></>}
+        subtitle="Compare Houston tattoo removal clinics on outcomes, pain, scarring, and cost. See provider differences across the metro before you book."
+      />
 
       {/* Body */}
       <section className="bg-(--bg)">
@@ -592,7 +586,7 @@ export default function HoustonPage() {
         </Container>
       </section>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

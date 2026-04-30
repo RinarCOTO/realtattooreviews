@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import PageHero from "@/components/layout/PageHero";
 import { getAllCities, getCity } from "@/lib/page-data/cities";
 import { cities as mockCities } from "@/lib/mock-data/cities";
 import { providers } from "@/lib/mock-data/providers";
@@ -62,21 +63,21 @@ export default async function CityPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-feathering-mist py-14">
-        <Container>
-          <p className="mb-2 text-sm text-muted">
-            <Link href="/cities" className="hover:text-accent">Cities</Link>
-            {" / "}
-            <span className="text-heading">{city.name}</span>
-          </p>
-          <h1 className="text-[36px] font-bold text-heading">
-            Tattoo Removal in {city.name}
-          </h1>
-          <p className="mt-2 text-[15px] text-muted">
-            {providerCount} providers · {reviewCount} verified reviews
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label={
+          <>
+            <Link href="/cities" className="hover:text-(--ink) transition-colors">
+              Cities
+            </Link>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">
+              {city.name}
+            </span>
+          </>
+        }
+        title={<>Tattoo Removal in <span className="text-(--accent)">{city.name}</span></>}
+        subtitle={`${providerCount} providers · ${reviewCount} verified reviews`}
+      />
 
       <section className="py-12">
         <Container>

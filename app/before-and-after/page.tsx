@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Container from "@/components/layout/Container";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "Tattoo Removal Before & After: Real Patient Results",
@@ -14,15 +15,11 @@ export const metadata: Metadata = {
 export default function BeforeAndAfterPage() {
   return (
     <main className="min-h-screen bg-bg">
-      <section className="border-b border-border bg-feathering-mist py-14">
-        <Container>
-          <h1 className="text-[36px] font-bold text-heading">Before & After</h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
-            Real patient results by ink type, skin tone, and session count.
-            All photos are from verified reviews.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label="Before & After"
+        title={<>Before <span className="text-(--accent)">&amp; After</span></>}
+        subtitle="Real patient results by ink type, skin tone, and session count. All photos are from verified reviews."
+      />
     </main>
   );
 }

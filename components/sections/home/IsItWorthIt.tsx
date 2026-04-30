@@ -30,7 +30,7 @@ const PILL_LABELS: Record<string, string> = {
 
 export default function IsItWorthIt() {
   return (
-    <section aria-label="Treatment Guides" className="border-t border-border bg-surface py-16">
+    <section aria-label="Treatment Guides" className="py-16">
       <Script
         id="guides-list-schema"
         type="application/ld+json"

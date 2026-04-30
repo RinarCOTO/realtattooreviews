@@ -13,7 +13,7 @@ import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
 import BottomLineSection from "./BottomLineSection";
-import FaqAccordion from "./FaqAccordion";
+import FAQSection from "@/components/sections/FAQSection";
 import {
   buildBestFor,
   buildBottomLine,
@@ -208,12 +208,11 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
-      <section id="faq" className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${provider.name} before making a booking decision.`} />
-          <FaqAccordion items={faqItems.map((i) => ({ question: i.q, answer: i.a }))} />
-        </Container>
-      </section>
+      <FAQSection
+        id="faq"
+        description={`Common questions from people researching ${provider.name} before making a booking decision.`}
+        faqs={faqItems.map((i) => ({ question: i.q, answer: i.a }))}
+      />
 
       <BottomLineSection
         providerName={provider.name}

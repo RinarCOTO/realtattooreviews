@@ -302,6 +302,27 @@ function applyPublicFilters(query: any, bucketScope: BucketScope): any {
   return query;
 }
 
+// ── Pagination helper ────────────────────────────────────────────────────────
+//
+// Supabase PostgREST enforces a server-side max_rows cap (default 1000).
+// .limit(N) on the client cannot exceed this cap.
+// fetchAllPages() works around it by fetching in 1000-row chunks.
+//
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function fetchAllPages(buildQuery: () => any): Promise<any[]> {
+  const PAGE = 1000;
+  let from = 0;
+  const all: any[] = [];
+  while (true) {
+    const { data, error } = await buildQuery().range(from, from + PAGE - 1);
+    if (error || !data || data.length === 0) break;
+    all.push(...data);
+    if (data.length < PAGE) break;
+    from += PAGE;
+  }
+  return all;
+}
+
 // ── Supabase queries ─────────────────────────────────────────────────────────
 
 /**
@@ -637,14 +658,17 @@ export async function getReviewStats(): Promise<{
   scarringMentions: number;
   lastUpdated: string;
 }> {
-  const { data, error } = await applyPublicFilters(
-    supabase
-      .from(TABLE)
-      .select("provider_name, location_city, scarring_mentioned, review_date_iso"),
-    "any"
+  // fetchAllPages bypasses Supabase's server-side 1000-row cap via pagination.
+  const data = await fetchAllPages(() =>
+    applyPublicFilters(
+      supabase
+        .from(TABLE)
+        .select("provider_name, location_city, scarring_mentioned, review_date_iso"),
+      "any"
+    )
   );
 
-  if (error || !data) {
+  if (!data.length) {
     return { totalReviews: 0, totalProviders: 0, totalCities: 0, scarringMentions: 0, lastUpdated: "" };
   }
 
@@ -686,14 +710,16 @@ export async function getHighestRatedProviders(
   limit = 6,
   minReviews = 48
 ): Promise<{ brandName: string; avgRating: number; reviewCount: number }[]> {
-  const { data, error } = await applyPublicFilters(
-    supabase
-      .from(TABLE)
-      .select("brand_name, provider_name, star_rating"),
-    "any"
+  const data = await fetchAllPages(() =>
+    applyPublicFilters(
+      supabase
+        .from(TABLE)
+        .select("brand_name, provider_name, star_rating"),
+      "any"
+    )
   );
 
-  if (error || !data) return [];
+  if (!data.length) return [];
 
   type Row = { brand_name: string | null; provider_name: string; star_rating: number | null };
 

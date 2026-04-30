@@ -3,8 +3,9 @@ import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
 import PageSection from "@/components/reviews/PageSection";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "Tattoo Removal Comparisons: Methods, Brands, and Technology Compared | RealTattooReviews",
@@ -139,22 +140,11 @@ export default function ComparisonsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }}
       />
 
-      {/* Hero */}
-      <section className="border-b border-(--line) bg-(--surface) py-14">
-        <Container>
-          <p className="mb-3 text-sm text-(--muted)">
-            <Link href="/" className="hover:text-(--accent)">Home</Link>
-            {" / "}
-            <span className="text-(--ink)">Comparisons</span>
-          </p>
-          <h1 className="text-[36px] font-bold text-(--ink)">Tattoo Removal Comparisons</h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-(--muted)">
-            Compare before you book. Each page below puts two providers or two methods side by side
-            using real patient review evidence: sample sizes, sentiment rates, scarring signals, and
-            use-case wins. No editorial opinion. No sponsored rankings.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label="Comparisons"
+        title={<>Tattoo Removal <span className="text-(--accent)">Comparisons</span></>}
+        subtitle="Compare before you book. Each page below puts two providers or two methods side by side using real patient review evidence: sample sizes, sentiment rates, scarring signals, and use-case wins. No editorial opinion. No sponsored rankings."
+      />
 
       {/* Body */}
       <PageSection bg="bg">
@@ -285,7 +275,7 @@ export default function ComparisonsPage() {
         </div>
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </main>
   );
 }

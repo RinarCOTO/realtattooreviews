@@ -5,8 +5,8 @@ import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideCallout from "@/components/guide/GuideCallout";
-import MonoLabel from "@/components/reviews/MonoLabel";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import PageHero from "@/components/layout/PageHero";
+import FAQSection from "@/components/sections/FAQSection";
 
 export const metadata: Metadata = {
   title:
@@ -117,24 +117,11 @@ export default function CitiesIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5">
-            Cities
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            Tattoo Removal{" "}
-            <span className="text-(--accent)">by City</span>
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            Find and compare every tracked tattoo removal provider in your metro. Rankings, review
-            evidence, pricing, and method breakdowns — no provider pays for placement.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label="Cities"
+        title={<>Tattoo Removal <span className="text-(--accent)">by City</span></>}
+        subtitle="Find and compare every tracked tattoo removal provider in your metro. Rankings, review evidence, pricing, and method breakdowns — no provider pays for placement."
+      />
 
       {/* Body */}
       <section className="bg-(--bg)">
@@ -266,7 +253,7 @@ export default function CitiesIndexPage() {
         </Container>
       </section>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

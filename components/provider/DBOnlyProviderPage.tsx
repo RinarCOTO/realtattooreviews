@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import BlockHeading from "./BlockHeading";
-import FaqAccordion from "./FaqAccordion";
+import FAQSection from "@/components/sections/FAQSection";
 import JumpNav from "./JumpNav";
 import ProsCons from "./ProsCons";
 import ResultsSnapshot from "./ResultsSnapshot";
@@ -140,12 +140,11 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
         </Container>
       </section>
 
-      <section id="faq" className="bg-(--surface) py-22">
-        <Container>
-          <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${providerName} before making a booking decision.`} />
-          <FaqAccordion items={faqItems.map((i) => ({ question: i.q, answer: i.a }))} />
-        </Container>
-      </section>
+      <FAQSection
+        id="faq"
+        description={`Common questions from people researching ${providerName} before making a booking decision.`}
+        faqs={faqItems.map((i) => ({ question: i.q, answer: i.a }))}
+      />
     </main>
   );
 }

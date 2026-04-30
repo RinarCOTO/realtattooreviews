@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import PageHero from "@/components/layout/PageHero";
+import FAQSection from "@/components/sections/FAQSection";
 import ProviderDirectory, {
   type DirectoryRow,
   type PendingRow,
@@ -139,22 +140,21 @@ export default async function ProvidersPage() {
 
       <main className="min-h-screen">
 
-        {/* Hero */}
-        <section className="hero-section border-b border-border py-12">
-          <Container>
-            <nav className="mb-4 text-[12px] text-muted" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-accent">Home</Link>
-              <span className="mx-1.5">/</span>
-              <span className="text-heading">Providers</span>
-            </nav>
-            <h1 className="text-[36px] font-bold text-heading">
-              Tattoo Removal <span className="text-(--accent)">Providers</span>
-            </h1>
-            <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
-              Browse tattoo removal providers reviewed by RealTattooReviews. Compare national chains, local specialists, and non-laser brands by method, technology, footprint, and reviews.
-            </p>
-          </Container>
-        </section>
+        <PageHero
+          label={
+            <>
+              <Link href="/" className="hover:text-(--ink) transition-colors">
+                Home
+              </Link>
+              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+              <span className="text-(--muted) font-normal normal-case tracking-normal">
+                Providers
+              </span>
+            </>
+          }
+          title={<>Tattoo Removal <span className="text-(--accent)">Providers</span></>}
+          subtitle="Browse tattoo removal providers reviewed by RealTattooReviews. Compare national chains, local specialists, and non-laser brands by method, technology, footprint, and reviews."
+        />
 
         {/* Intro + Provider Directory */}
         <section className="bg-surface py-14">
@@ -388,7 +388,7 @@ export default async function ProvidersPage() {
 
       </main>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
 
       {/* Editorial note */}
       <section className="border-t border-border py-8">

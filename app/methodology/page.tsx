@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
+import PageHero from "@/components/layout/PageHero";
 import PageSection from "@/components/reviews/PageSection";
 import SectionHeading from "@/components/guide/SectionHeading";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
@@ -111,20 +112,21 @@ export default function MethodologyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }}
       />
 
-      {/* Hero */}
-      <section className="border-b border-border bg-feathering-mist py-14">
-        <Container>
-          <p className="mb-3 text-sm text-muted">
-            <Link href="/" className="hover:text-accent">Home</Link>
-            {" / "}
-            <span className="text-heading">Methodology</span>
-          </p>
-          <h1 className="text-[36px] font-bold text-heading">Our Methodology</h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
-            How RealTattooReviews collects, verifies, scores, and updates tattoo removal provider data.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label={
+          <>
+            <Link href="/" className="hover:text-(--ink) transition-colors">
+              Home
+            </Link>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">
+              Methodology
+            </span>
+          </>
+        }
+        title={<>Our <span className="text-(--accent)">Methodology</span></>}
+        subtitle="How RealTattooReviews collects, verifies, scores, and updates tattoo removal provider data."
+      />
 
       {/* Body */}
       <PageSection bg="bg">
@@ -458,7 +460,7 @@ export default function MethodologyPage() {
           </div>
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </main>
   );
 }

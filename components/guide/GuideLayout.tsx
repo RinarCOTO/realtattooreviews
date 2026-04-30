@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import MonoLabel from "@/components/reviews/MonoLabel";
-import FaqAccordion from "@/components/ui/FaqAccordion";
+import PageHero from "@/components/layout/PageHero";
+import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 const siteUrl = "https://realtattooreviews.com";
@@ -16,6 +16,7 @@ type Props = {
   sources?: string;
   path?: string;
   children: React.ReactNode;
+  heroClassName?: string;
 };
 
 export default function GuideLayout({
@@ -26,6 +27,7 @@ export default function GuideLayout({
   sources,
   path,
   children,
+  heroClassName,
 }: Props) {
   const breadcrumbJsonLd = path
     ? breadcrumbSchema([
@@ -46,18 +48,6 @@ export default function GuideLayout({
       }
     : null;
 
-  const faqJsonLd = faqs
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqs.map((f) => ({
-          "@type": "Question",
-          name: f.question,
-          acceptedAnswer: { "@type": "Answer", text: f.answer },
-        })),
-      }
-    : null;
-
   return (
     <div className="reviews-page">
       {breadcrumbJsonLd && (
@@ -72,10 +62,10 @@ export default function GuideLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
         />
       )}
-      {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
+      <PageHero
+        heroClassName={heroClassName}
+        label={
+          <>
             <Link href="/guides" className="hover:text-(--ink) transition-colors">
               Guides
             </Link>
@@ -83,17 +73,11 @@ export default function GuideLayout({
             <span className="text-(--muted) font-normal normal-case tracking-normal">
               {breadcrumb}
             </span>
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            {h1}
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            {description}
-          </p>
-        </Container>
-      </section>
+          </>
+        }
+        title={h1}
+        subtitle={description}
+      />
 
       {/* Body */}
       <section className="bg-(--bg)">
@@ -105,25 +89,7 @@ export default function GuideLayout({
       </section>
 
       {/* FAQ */}
-      {faqs && faqs.length > 0 && (
-        <section className="border-y border-(--line) bg-(--surface) py-20">
-          {faqJsonLd && (
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-            />
-          )}
-          <Container>
-            <MonoLabel color="accent" size="sm" className="mb-5">
-              FAQ
-            </MonoLabel>
-            <h2 className="font-sans font-bold text-[clamp(24px,3.5vw,36px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-10">
-              Frequently Asked Questions
-            </h2>
-            <FaqAccordion items={faqs} />
-          </Container>
-        </section>
-      )}
+      {faqs && faqs.length > 0 && <FAQSection faqs={faqs} />}
 
       {/* Sources */}
       {sources && (

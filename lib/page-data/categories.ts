@@ -31,7 +31,9 @@ const ALL_CATEGORIES_QUERY = `*[_type == "category"] | order(title asc) {
     description
 }`
 
-const SINGLE_CATEGORY_QUERY = `*[_type == "category" && slug.current == $slug][0] {
+// When duplicate category docs exist for the same slug (e.g. an empty stub
+// alongside a fully-seeded doc), prefer the one that has `sections` defined.
+const SINGLE_CATEGORY_QUERY = `*[_type == "category" && slug.current == $slug] | order(defined(sections) desc, _updatedAt desc)[0] {
     title,
     "slug": slug.current,
     description,
@@ -77,8 +79,13 @@ export async function getCategory(slug: string): Promise<SanityCategory | null> 
 
 export async function getAllCategorySlugs(): Promise<string[]> {
     try {
-        const results = await sanity.fetch(`*[_type == "category"]{ "slug": slug.current }`)
-        return (results ?? []).map((r: { slug: string }) => r.slug).filter(Boolean)
+        // Only return slugs whose doc has sections — avoids static-building empty stub docs
+        // when duplicate category docs exist for the same slug (orphan or unseeded entries).
+        const results = await sanity.fetch(
+            `*[_type == "category" && defined(sections)]{ "slug": slug.current }`,
+        )
+        const slugs = (results ?? []).map((r: { slug: string }) => r.slug).filter(Boolean)
+        return Array.from(new Set<string>(slugs))
     } catch {
         return []
     }

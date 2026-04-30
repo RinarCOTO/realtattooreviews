@@ -14,7 +14,7 @@ import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
 import { getLocationSlug } from "@/lib/providers";
 import BottomLineSection from "./BottomLineSection";
-import FaqAccordion from "./FaqAccordion";
+import FAQSection from "@/components/sections/FAQSection";
 import {
   buildBestFor,
   buildBottomLine,
@@ -216,12 +216,11 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
-      <section id="faq" className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <BlockHeading title="Frequently Asked Questions" body={`Common questions from people researching ${brand} before making a booking decision.`} />
-          <FaqAccordion items={faqItems.map((i) => ({ question: i.q, answer: i.a }))} />
-        </Container>
-      </section>
+      <FAQSection
+        id="faq"
+        description={`Common questions from people researching ${brand} before making a booking decision.`}
+        faqs={faqItems.map((i) => ({ question: i.q, answer: i.a }))}
+      />
 
       <BottomLineSection
         providerName={brand}

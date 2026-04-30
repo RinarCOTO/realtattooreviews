@@ -9,7 +9,7 @@ export default function CTASection() {
 
           <Link
             href="/cost"
-            className="group flex flex-col gap-3 rounded-2xl border border-border bg-surface p-6 transition-all hover:border-accent hover:shadow-sm"
+            className="group flex flex-col gap-3 rounded-2xl border border-border bg-white p-6 transition-all hover:border-accent hover:shadow-sm"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-light text-accent">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +28,7 @@ export default function CTASection() {
 
           <Link
             href="/before-and-after"
-            className="group flex flex-col gap-3 rounded-2xl border border-border bg-surface p-6 transition-all hover:border-accent hover:shadow-sm"
+            className="group flex flex-col gap-3 rounded-2xl border border-border bg-white p-6 transition-all hover:border-accent hover:shadow-sm"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-light text-accent">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

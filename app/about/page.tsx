@@ -5,8 +5,8 @@ import PageSection from "@/components/reviews/PageSection";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideCallout from "@/components/guide/GuideCallout";
-import MonoLabel from "@/components/reviews/MonoLabel";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "About RealTattooReviews | RealTattooReviews",
@@ -62,24 +62,11 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5">
-            About
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            About{" "}
-            <span className="text-(--accent)">RealTattooReviews</span>
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            An independent review and comparison site for tattoo removal. Providers, methods, and
-            practical guides — all under the same scoring framework.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label="About"
+        title={<>About <span className="text-(--accent)">RealTattooReviews</span></>}
+        subtitle="An independent review and comparison site for tattoo removal. Providers, methods, and practical guides — all under the same scoring framework."
+      />
 
       {/* Body */}
       <PageSection bg="bg">
@@ -209,7 +196,7 @@ export default function AboutPage() {
         </Container>
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

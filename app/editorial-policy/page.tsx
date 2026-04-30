@@ -5,8 +5,8 @@ import PageSection from "@/components/reviews/PageSection";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideCallout from "@/components/guide/GuideCallout";
-import MonoLabel from "@/components/reviews/MonoLabel";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "Editorial Policy | RealTattooReviews",
@@ -64,24 +64,11 @@ export default function EditorialPolicyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5">
-            Transparency
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            Editorial{" "}
-            <span className="text-(--accent)">Policy</span>
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            How the site handles advertising disclosure, editorial independence, negative findings,
-            source standards, and corrections.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label="Transparency"
+        title={<>Editorial <span className="text-(--accent)">Policy</span></>}
+        subtitle="How the site handles advertising disclosure, editorial independence, negative findings, source standards, and corrections."
+      />
 
       {/* Body */}
       <PageSection bg="bg">
@@ -219,7 +206,7 @@ export default function EditorialPolicyPage() {
         </Container>
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

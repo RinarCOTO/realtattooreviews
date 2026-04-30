@@ -29,7 +29,7 @@ import ContentCard from "@/components/comparison/ContentCard";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
@@ -257,7 +257,7 @@ export default function TodoCategoryPage() {
         />
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

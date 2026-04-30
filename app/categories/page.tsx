@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import Container from "@/components/layout/Container";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import PageHero from "@/components/layout/PageHero";
+import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
@@ -128,19 +129,22 @@ export default function CategoriesPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-border bg-feathering-mist py-14">
-        <Container>
-          <nav className="mb-4 text-[12px] text-muted" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-accent">Home</Link>
-            <span className="mx-1.5">/</span>
-            <span className="text-heading">Categories</span>
-          </nav>
-          <h1 className="text-[36px] font-bold text-heading">Tattoo Removal Categories</h1>
-          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
-            Browse tattoo removal by use case. Find the methods, providers, and protocols that fit your specific situation.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        heroClassName="category-page-hero"
+        label={
+          <>
+            <Link href="/" className="hover:text-(--ink) transition-colors">
+              Home
+            </Link>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">
+              Categories
+            </span>
+          </>
+        }
+        title={<>Tattoo Removal <span className="text-(--accent)">Categories</span></>}
+        subtitle="Browse tattoo removal by use case. Find the methods, providers, and protocols that fit your specific situation."
+      />
 
       {/* Intro */}
       <section className="border-b border-border py-12">
@@ -257,7 +261,7 @@ export default function CategoriesPage() {
         </Container>
       </section>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
 
       {/* Editorial note */}
       <section className="border-t border-border py-8">

@@ -73,6 +73,17 @@
   --color-border:          oklch(0.90 0.010 50);
   --color-divider:         oklch(0.90 0.010 50);
 
+  /* Nav background */
+  --color-nav:             #FFFFFF;
+
+  /* Blob palette */
+  --color-blob-peach:      #F5DDD0;
+  --color-blob-teal:       #C8E6E4;
+  --color-blob-gold:       #EDE3C4;
+  --color-blob-peach-deep: #A86B52;
+  --color-blob-teal-deep:  #4A9490;
+  --color-blob-gold-deep:  #8A7840;
+
   /* Wash (editorial accent bg) */
   --color-hero-bg:         oklch(0.945 0.012 35);
 
@@ -163,17 +174,75 @@ button, [role="button"], a.btn {
 
 /* ── Hero background ────────────────────────────────────── */
 .hero-section {
-  background-color: oklch(0.985 0.004 230);
+  position: relative;
+  isolation: isolate;
+  background-color: #FFFFFF;
   background-image:
-    url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23C8C2B8' fill-opacity='0.35'/%3E%3C/svg%3E"),
-    radial-gradient(ellipse 70% 75% at -10% -5%, #E8C8BB 0%, transparent 62%),
-    radial-gradient(ellipse 65% 70% at 110% -5%, #BDD6D3 0%, transparent 62%),
-    radial-gradient(ellipse 100% 55% at 50% 115%, #EDE3C4 0%, transparent 55%),
-    radial-gradient(ellipse 55% 50% at 50% 32%, rgba(255,254,252,1) 0%, transparent 70%);
+    url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23C8C2B8' fill-opacity='0.20'/%3E%3C/svg%3E");
 }
 
-/* ── Comparison page hero — warm all-temperature variant ── */
-.comparison-hero {
+/* ── Floating blobs ─────────────────────────────────────── */
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.75;
+}
+
+@keyframes blob-a {
+  0%, 100% { transform: translate(0px, 0px); }
+  33%       { transform: translate(22px, -18px); }
+  66%       { transform: translate(-14px, 20px); }
+}
+@keyframes blob-b {
+  0%, 100% { transform: translate(0px, 0px); }
+  33%       { transform: translate(-20px, 14px); }
+  66%       { transform: translate(16px, -22px); }
+}
+@keyframes blob-c {
+  0%, 100% { transform: translate(0px, 0px); }
+  33%       { transform: translate(14px, 20px); }
+  66%       { transform: translate(-18px, -12px); }
+}
+
+/* ── Category hero gradient token ──────────────────────────────────────── */
+:root {
+  --category-hero-gradient: radial-gradient(circle at 30% 40%, #FFF0E6 0%, #F5DDD0 35%, #C8E6E4 75%);
+}
+
+@property --cat-grad-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 30%;
+}
+
+@property --cat-grad-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 40%;
+}
+
+.category-page-hero {
+  background: radial-gradient(circle at var(--cat-grad-x) var(--cat-grad-y), #FFF0E6 0%, #F5DDD0 35%, #C8E6E4 75%);
+  animation: category-hero-drift 18s ease-in-out infinite;
+}
+
+@keyframes category-hero-drift {
+  0%, 100% { --cat-grad-x: 30%; --cat-grad-y: 40%; }
+  33%       { --cat-grad-x: 58%; --cat-grad-y: 22%; }
+  66%       { --cat-grad-x: 18%; --cat-grad-y: 68%; }
+}
+
+/* ── Page hero — warm all-temperature background used site-wide by PageHero ── */
+.page-hero {
   background-color: oklch(0.975 0.009 62);
   background-image:
     url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23C8C2B8' fill-opacity='0.28'/%3E%3C/svg%3E"),
@@ -191,6 +260,21 @@ button, [role="button"], a.btn {
     oklch(0.952 0.013 38) 50%,
     oklch(0.962 0.010 42) 100%
   );
+}
+
+/* ── Animated gold-to-green gradient card ───────────────── */
+@keyframes gradient-card-move {
+  0%   { background-position: 0% 0%; }
+  25%  { background-position: 100% 0%; }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+.gradient-card {
+  background: linear-gradient(135deg, #fdfae8, #ecf8f7, #fdfae8, #ecf8f7);
+  background-size: 400% 400%;
+  animation: gradient-card-move 28s ease-in-out infinite;
 }
 
 .scrollbar-none {

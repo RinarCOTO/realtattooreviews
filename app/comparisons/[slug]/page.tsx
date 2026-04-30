@@ -14,7 +14,7 @@ import { comparisons as mockComparisons } from "@/lib/mock-data/comparisons";
 import { comparisonPages } from "@/lib/mock-data/comparison-pages";
 import { providers as mockProviders } from "@/lib/mock-data/providers";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 import type { ComparisonFAQ, ComparisonTableRow, ComparisonProsCons } from "@/types/comparison";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -504,7 +504,7 @@ export default async function ComparisonPage({ params }: Props) {
         </section>
       )}
 
-      <GuideFAQSection faqs={activeFaqs} />
+      <FAQSection faqs={activeFaqs} />
     </main>
   );
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import MonoLabel from "@/components/reviews/MonoLabel";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 import PageSection from "@/components/reviews/PageSection";
 import ReviewCard from "@/components/reviews/ReviewCard";
 import ProvidersTable from "@/components/reviews/ProvidersTable";
@@ -292,7 +292,7 @@ export default async function ReviewsPage() {
       </PageSection>
 
       {/* ── 6. FAQ ──────────────────────────────────────────────────────── */}
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
 
       {/* ── 7. Where to go next ─────────────────────────────────────────── */}
       <PageSection id="guides">

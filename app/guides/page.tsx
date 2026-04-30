@@ -4,8 +4,8 @@ import Container from "@/components/layout/Container";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideCallout from "@/components/guide/GuideCallout";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
-import MonoLabel from "@/components/reviews/MonoLabel";
+import FAQSection from "@/components/sections/FAQSection";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title:
@@ -112,24 +112,11 @@ export default function GuidesIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="border-b border-(--line) pt-20 pb-16 bg-(--feathering-mist)">
-        <Container>
-          <MonoLabel color="accent" size="sm" className="mb-5">
-            Guides
-          </MonoLabel>
-
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-            Tattoo Removal{" "}
-            <span className="text-(--accent)">Guides</span>
-          </h1>
-
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--muted) max-w-2xl">
-            Practical knowledge for before, during, and after treatment — based on clinical
-            literature, not clinic marketing.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        label="Guides"
+        title={<>Tattoo Removal <span className="text-(--accent)">Guides</span></>}
+        subtitle="Practical knowledge for before, during, and after treatment — based on clinical literature, not clinic marketing."
+      />
 
       {/* Body */}
       <section className="bg-(--bg)">
@@ -238,7 +225,7 @@ export default function GuidesIndexPage() {
         </Container>
       </section>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

@@ -8,11 +8,11 @@ import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import MonoLabel from "@/components/reviews/MonoLabel";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
 import ContentCard from "@/components/comparison/ContentCard";
 import BrandTableHeader from "@/components/comparison/BrandTableHeader";
-import ComparisonHero from "@/components/comparison/ComparisonHero";
+import PageHero from "@/components/layout/PageHero";
 import PageSection from "@/components/reviews/PageSection";
 import SectionHeading from "@/components/guide/SectionHeading";
 
@@ -136,7 +136,7 @@ export default function InkoutVsRemoveryPage() {
       />
 
       {/* Hero */}
-      <ComparisonHero
+      <PageHero
         label={
           <>
             <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
@@ -591,7 +591,7 @@ export default function InkoutVsRemoveryPage() {
         />
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

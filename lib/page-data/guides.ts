@@ -83,7 +83,7 @@ export async function getAllGuides(): Promise<SanityGuide[]> {
 
 export async function getGuide(slug: string): Promise<SanityGuide | null> {
     try {
-        const guide = await sanity.fetch(SINGLE_GUIDE_QUERY, { slug })
+        const guide = await sanity.fetch(SINGLE_GUIDE_QUERY, { slug }, { next: { revalidate: 60 } })
         return guide ?? null
     } catch {
         return null

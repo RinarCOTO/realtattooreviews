@@ -14,7 +14,7 @@ Copy the right template, search for `TODO`, fill it in.
 |---|---|---|
 | `PageSection` | `@/components/reviews/PageSection` | Section wrapper — bg + border + Container. Use `bg="bg"` or `bg="surface"`. Add `className="verdict-bg"` for the verdict section. |
 | `SectionHeading` | `@/components/guide/SectionHeading` | The h2. Pass `label="Key Difference"` for a MonoLabel kicker above it. |
-| `ComparisonHero` | `@/components/comparison/ComparisonHero` | Hero for comparison pages only. Pass `label` (breadcrumb JSX), `title` (ReactNode), `subtitle` (string). |
+| `PageHero` | `@/components/layout/PageHero` | Site-wide hero. Pass `label` (string or breadcrumb JSX), `title` (ReactNode), `subtitle` (ReactNode). Optional `children` for a CTA row below. |
 | `ContentCard` | `@/components/comparison/ContentCard` | Info cards. Use `titleSize="sm"` for pros/cons cards (white bg + icon mode). |
 | `GuideBulletList` | `@/components/guide/GuideBulletList` | Bullet list. Inside a `titleSize="sm"` ContentCard it auto-switches to ⊕/⊖ icons. Pass `variant="warning"` for cons. |
 | `GuideTable` | `@/components/guide/GuideTable` | Comparison table. Pass `winners={[]}` array (1 = col 1, 2 = col 2, null = tie). |

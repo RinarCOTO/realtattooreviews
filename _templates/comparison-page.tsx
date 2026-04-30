@@ -20,7 +20,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 
 // Layout
 import PageSection from "@/components/reviews/PageSection";
-import ComparisonHero from "@/components/comparison/ComparisonHero";
+import PageHero from "@/components/layout/PageHero";
 
 // Content primitives
 import SectionHeading from "@/components/guide/SectionHeading";
@@ -29,7 +29,7 @@ import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
-import GuideFAQSection from "@/components/guide/GuideFAQSection";
+import FAQSection from "@/components/sections/FAQSection";
 import MonoLabel from "@/components/reviews/MonoLabel";
 
 // Data (remove if not a brand-vs-brand page)
@@ -103,7 +103,7 @@ export default function BrandAVsBrandBPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* ── Hero ── */}
-      <ComparisonHero
+      <PageHero
         label={
           <>
             <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
@@ -282,7 +282,7 @@ export default function BrandAVsBrandBPage() {
         />
       </PageSection>
 
-      <GuideFAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} />
     </div>
   );
 }

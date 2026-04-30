@@ -9,13 +9,6 @@ type Props = {
   headline?:    string | null;
   subheadline?: PortableTextBlock[] | null;
 }
-const popular = [
-  "Complete removal",
-  "Color ink removal",
-  "Cover-up prep",
-  "Dark skin tattoo removal",
-  "Microblading removal",
-];
 
 const PLACEHOLDER_WORDS = ["provider", "city", "treatment type", "method"];
 
@@ -42,7 +35,7 @@ export default function Hero({headline, subheadline}: Props) {
   }
 
   return (
-    <section className="hero-section border-b border-border py-24 sm:py-32 bg-feathering-mist">
+    <section className="pt-10 pb-4 sm:pt-14 sm:pb-6">
       <div className="mx-auto max-w-4xl px-4 text-center">
 
         {/* Eyebrow */}
@@ -56,14 +49,18 @@ export default function Hero({headline, subheadline}: Props) {
         </span>
 
         {/* Heading */}
-        <h1 className="mt-6 text-[36px] font-bold leading-[1.1] tracking-tight text-heading sm:text-[50px]">
-          {headline ?? (
-            <>
-              Compare Tattoo Removal Providers
-              <br />
-              <span className="text-accent">Before You Book</span>
-            </>
-          )}
+        <h1 className="mt-6 text-[48px] font-bold leading-[1.1] tracking-tight text-heading sm:text-[66px]">
+          {(() => {
+            const text = headline ?? "Compare Tattoo Removal Clinics Before You Book";
+            const split = text.split(/before you book/i);
+            return split.length === 2 ? (
+              <>
+                {split[0].trim()}
+                <br />
+                <span className="text-accent">Before You Book</span>
+              </>
+            ) : text;
+          })()}
         </h1>
 
         {/* Subheading */}
@@ -114,34 +111,21 @@ export default function Hero({headline, subheadline}: Props) {
           </button>
         </form>
 
-        {/* Primary CTAs */}
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
+        {/* Subordinate quick links */}
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
           <Link
             href="/cities"
-            className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-white hover:bg-accent-hover transition-colors"
+            className="text-muted transition-colors hover:text-accent"
           >
-            Find providers in your city
+            Find providers in your city →
           </Link>
+          <span className="text-subtle" aria-hidden="true">·</span>
           <Link
             href="/comparisons/best-tattoo-removal-method"
-            className="rounded-full border border-border bg-white px-6 py-3 text-sm font-medium text-body hover:border-accent hover:text-accent transition-colors"
+            className="text-muted transition-colors hover:text-accent"
           >
-            Compare methods
+            Compare methods →
           </Link>
-        </div>
-
-        {/* Browse by case type */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-          <span className="text-xs text-muted">Browse by case:</span>
-          {popular.map((term) => (
-            <Link
-              key={term}
-              href={`/categories/${term.toLowerCase().replace(/\s+/g, "-")}`}
-              className="rounded-full border border-border bg-white px-3 py-1.5 text-xs text-body transition-colors hover:border-accent hover:text-accent"
-            >
-              {term}
-            </Link>
-          ))}
         </div>
       </div>
     </section>

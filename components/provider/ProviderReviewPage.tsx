@@ -10,7 +10,7 @@ import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import type { SanityProviderReview } from "@/lib/page-data/reviews";
 import type { Provider } from "@/types/provider";
 import type { Review } from "@/types/review";
-import FaqAccordion from "./FaqAccordion";
+import FAQSection from "@/components/sections/FAQSection";
 import {
   getAlternativeProviders,
   getVerdictFromRating,
@@ -344,15 +344,14 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <BlockHeading
-            title={`${review.providerName} Frequently Asked Questions`}
-            body={`Common questions from people researching ${review.providerName} before making a booking decision.`}
-          />
-          {review.faqItems && <FaqAccordion items={review.faqItems} />}
-        </Container>
-      </section>
+      {review.faqItems && (
+        <FAQSection
+          id="faq"
+          title={`${review.providerName} Frequently Asked Questions`}
+          description={`Common questions from people researching ${review.providerName} before making a booking decision.`}
+          faqs={review.faqItems}
+        />
+      )}
 
       {/* How We Reviewed */}
       <section id="methodology" className="bg-(--bg) py-22">

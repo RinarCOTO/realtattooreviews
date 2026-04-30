@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "npx tsx scripts/seed-sanity-content.ts",
-    "seed-pages": "npx tsx --env-file=.env.local scripts/seed-pages.ts"
+    "seed-pages": "npx tsx --env-file=.env.local scripts/seed-pages.ts",
+    "convert-images": "npx tsx scripts/convert-images-to-webp.ts"
   },
   "dependencies": {
     "@portabletext/react": "^6.0.3",
@@ -25,8 +26,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/sharp": "^0.31.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
