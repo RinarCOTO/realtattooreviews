@@ -294,6 +294,11 @@ function applyPublicFilters(query: any, bucketScope: BucketScope): any {
   // Manual review gate: include unreviewed (null) and explicitly approved; exclude rejected
   query = query.or("reviewed_decision.is.null,reviewed_decision.eq.approved");
 
+  // Tattoo removal filter: only include confirmed tattoo removal reviews (TRUE) or
+  // unclassified rows (NULL) where Qwen hasn't run yet. Excludes hair removal,
+  // microblading, and other non-tattoo-removal services classified as FALSE.
+  query = query.or("is_tattoo_removal.is.true,is_tattoo_removal.is.null");
+
   return query;
 }
 
