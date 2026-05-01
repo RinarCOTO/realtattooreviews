@@ -50,3 +50,5 @@ AGENTS.md
 
 # provider logos — fetched via scripts/fetch-logos.ts, not committed to git
 /public/images/providers/logos/
+_audit.ts
+_audit.ts
