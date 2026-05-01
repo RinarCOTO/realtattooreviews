@@ -13,6 +13,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import CityProviderRanking from "@/components/city/CityProviderRanking";
 import CityProviderComparisonTable from "@/components/city/CityProviderComparisonTable";
 import type { StaticProviderProfile } from "@/components/city/types";
+import { getCityProviderProfiles } from "@/lib/page-data/city-profiles";
 
 export const revalidate = 3600;
 
@@ -34,7 +35,7 @@ const faqs = [
   {
     question: "What is the best tattoo removal clinic in Houston?",
     answer:
-      "There is no single best clinic for every user. The ranked list above orders providers by current review-sample evidence and use-case fit. InkFree, MD is the longest-established owner-operated Houston specialist. inkOUT (Rejuvatek Aesthetics in the Heights) is the only non-laser option and is positioned for users prioritizing lower pain or lower scarring concern. Removery is the deepest national chain in the market with three locations. Match the provider to your tattoo, budget, and method preference.",
+      "There is no single best clinic for every user. The ranked list above orders providers by current review-sample evidence and use-case fit. InkFree, MD is the longest-established owner-operated Houston specialist. inkOUT is the non-laser TEPR option for users avoiding laser. Removery is the deepest national chain in the market with three locations. Match the provider to your tattoo, budget, and method preference.",
   },
   {
     question: "How much does tattoo removal cost in Houston?",
@@ -49,12 +50,12 @@ const faqs = [
   {
     question: "Where can I get tattoo removal in Houston?",
     answer:
-      "Providers serve every part of the metro. The Heights area hosts inkOUT (Rejuvatek) and a LaserAway location. The Galleria area hosts LaserAway. Bellaire and the W Loop area host DermSurgery Associates. The Energy Corridor and Spring Branch host Removery. Rice Village hosts a third Removery. NW Houston and the Cypress corridor host InkFree, MD. Pearland hosts a LaserAway location. Suburb access for The Woodlands, Sugar Land, Katy, Cypress, Spring, and Friendswood typically goes through one of these locations or the closest national-chain satellite.",
+      "Providers serve every part of the metro. The Heights area hosts inkOUT and a LaserAway location. The Galleria area hosts LaserAway. Bellaire and the W Loop area host DermSurgery Associates. The Energy Corridor and Spring Branch host Removery. Rice Village hosts a third Removery. NW Houston and the Cypress corridor host InkFree, MD. Pearland hosts a LaserAway location. Suburb access for The Woodlands, Sugar Land, Katy, Cypress, Spring, and Friendswood typically goes through one of these locations or the closest national-chain satellite.",
   },
   {
     question: "What laser tattoo removal options are available in Houston?",
     answer:
-      "Picosecond options include Candela PicoWay (Removery's three Houston locations) and PicoSure (LaserAway's three Houston locations). Q-switched options include DermSurgery Associates and InkFree, MD. inkOUT (Rejuvatek) is the only non-laser TEPR option in the metro. Laser tattoo removal Houston TX coverage is among the deepest in the South thanks to multiple chain footprints.",
+      "Picosecond options include Candela PicoWay (Removery's three Houston locations) and PicoSure (LaserAway's three Houston locations). Q-switched options include DermSurgery Associates and InkFree, MD. inkOUT is the non-laser TEPR option in the metro for users avoiding laser entirely. Laser tattoo removal Houston TX coverage is among the deepest in the South thanks to multiple chain footprints.",
   },
   {
     question: "Does tattoo removal hurt?",
@@ -157,7 +158,8 @@ const HOUSTON_PROVIDERS: StaticProviderProfile[] = [
   },
 ];
 
-export default function HoustonPage() {
+export default async function HoustonPage() {
+  const profiles = await getCityProviderProfiles("houston");
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Cities", href: "/cities" },
     { name: "Houston", href: PAGE_PATH },
@@ -228,7 +230,7 @@ export default function HoustonPage() {
                   chains like Removery and LaserAway run multiple locations across the metro.
                   Owner-operated specialists like InkFree, MD focus on tattoo removal as a
                   primary service. Dermatology practices like DermSurgery Associates handle
-                  removal alongside other skin work. inkOUT, the only non-laser option, operates
+                  removal alongside other skin work. inkOUT, the non-laser TEPR option, operates
                   a Houston location near the Heights convenient to River Oaks and the Galleria.
                 </p>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
@@ -266,7 +268,7 @@ export default function HoustonPage() {
                 the sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading provider data&hellip;</p>
                 </div>
               }>
@@ -284,77 +286,15 @@ export default function HoustonPage() {
               </p>
 
               <div className="space-y-4">
-                {[
-                  {
-                    name: "InkFree, MD Laser Clinic (NW Houston / Cypress)",
-                    body: "InkFree, MD is at 11240 FM 1960 W #401 in NW Houston, on the corridor toward Cypress. The clinic is owner-operated and family-run, with an MD on staff. InkFree, MD treats tattoo removal as a primary service alongside related procedures like skin tag removal, scarring treatment, and microblading or eyebrow embroidery removal. The clinic offers free consultations and same-day starts when scheduling allows.",
-                    bestFor: [
-                      "Users in NW Houston, Cypress, Spring, or The Woodlands who want a closer option than central Houston specialists",
-                      "Users with cosmetic tattoo or microblading removal needs",
-                      "Users who want an owner-operated clinic with continuity of care",
-                    ],
-                    lessIdealFor: [
-                      "Users in central Houston, the Galleria, or Pearland who would face a longer drive than a closer chain location",
-                    ],
-                  },
-                  {
-                    name: "Rejuvatek Aesthetics providing inkOUT (Heights)",
-                    body: "This is the Houston corporate location for inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical. The clinic is at 2200 Edwards St Suite 107, near the Heights and convenient to River Oaks, the Galleria, and central Houston. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. This is the only non-laser option in the Houston metro.",
-                    bestFor: [
-                      "Users seeking complete removal rather than fading",
-                      "Users who want a lower-pain alternative to laser",
-                      "Users prioritizing lower scarring risk",
-                      "Users with cosmetic tattoos like microblading or lip blush",
-                      "Users with darker skin tones who want to avoid laser pigment-change risk",
-                    ],
-                    lessIdealFor: [
-                      "Users with very large tattoos who prefer the per-session speed of laser",
-                      "Users who want a deep public review history before committing (the Houston location is newer than the laser providers)",
-                    ],
-                  },
-                  {
-                    name: "DermSurgery Associates (Bellaire / W Loop)",
-                    body: "DermSurgery Associates is a Houston-area dermatology and laser surgery group. The Bellaire main office is at 6700 W Loop S Suite 500, with additional satellite locations across the metro. The group offers tattoo removal as one service among broader dermatologic care including Mohs surgery, skin cancer treatment, and cosmetic dermatology. Tattoo removal is performed using Q-switched laser technology under physician supervision.",
-                    bestFor: [
-                      "Users who want tattoo removal in a full dermatology practice setting",
-                      "Users who are already DermSurgery patients for other care",
-                      "Users with elevated medical-history risk who want physician-led treatment",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a tattoo-removal-only specialist focus",
-                    ],
-                  },
-                  {
-                    name: "Removery (Energy Corridor, Spring Branch, Rice Village)",
-                    body: "Removery operates three Houston locations: Energy Corridor at 19859 Katy Fwy Suite A, Spring Branch at 9930 Katy Fwy Suite 400, and Rice Village at 2530 Rice Blvd near Rice University. Removery is a national tattoo-removal-only chain that uses Candela PicoWay, a picosecond laser handling most ink colors and skin types. Removery offers a Complete Removal Package model that caps the total cost regardless of session count, with internal payment plans available.",
-                    bestFor: [
-                      "Users who want package pricing with unlimited sessions",
-                      "Users who want to spread cost over a payment plan",
-                      "Users who prefer a national-chain experience with consistent protocols",
-                      "Users in the West Houston, Memorial, or Rice Village corridors",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a smaller, owner-operated studio",
-                      "Users seeking a non-laser method",
-                      "Users who are uncomfortable with consultation-only pricing rather than published per-session rates",
-                    ],
-                  },
-                  {
-                    name: "LaserAway (Galleria, Heights, Pearland)",
-                    body: "LaserAway operates three Houston locations: Galleria at 5385 Westheimer Rd, Heights at 246 W 19th St, and Pearland at 11200 Broadway St Suite 760. LaserAway is a national aesthetic chain where tattoo removal is one service among many. The brand uses the PicoSure laser, a picosecond system, and emphasizes financing options, package bundles, and seasonal promotional pricing.",
-                    bestFor: [
-                      "Users who already use LaserAway for hair removal or other aesthetic services",
-                      "Users who want extended evening and weekend hours",
-                      "Users in Pearland or other south-of-Houston suburbs",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a tattoo-removal-only specialist",
-                      "Users with complex color or cover-up cases that benefit from a specialist's narrower focus",
-                    ],
-                  },
-                ].map((p) => (
-                  <div key={p.name} className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">{p.name}</h3>
+                {profiles.map((p) => (
+                  <div key={p.name} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6">
+                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">
+                      {p.href ? (
+                        <Link href={p.href} className="hover:text-(--accent) transition-colors">
+                          {p.name}
+                        </Link>
+                      ) : p.name}
+                    </h3>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">{p.body}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
@@ -380,7 +320,7 @@ export default function HoustonPage() {
                 Total lifetime Google review counts are higher than sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-center">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading comparison table&hellip;</p>
                 </div>
               }>
@@ -411,7 +351,7 @@ export default function HoustonPage() {
                     body: "Method-sensitive and skin-sensitive. Q-switched laser at high intensity carries higher scarring risk than picosecond at the same intensity. Darker skin tones face elevated risk of pigment change with any laser modality. TEPR avoids the wavelength-versus-melanin interaction by using a non-laser mechanical mechanism. Provider conservatism with intensity settings and session spacing matters more than the laser brand label. Six to eight weeks between sessions is standard and is one of the better proxies for scarring-aware practice.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -451,7 +391,7 @@ export default function HoustonPage() {
                     body: "inkOUT uses TEPR, a non-laser method that avoids wavelength-versus-color limitations entirely. It lifts ink physically through the skin rather than shattering it with light. This is a different category of treatment, not a laser variant.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -460,7 +400,7 @@ export default function HoustonPage() {
             </GuideSection>
 
             {/* Pricing section */}
-            <GuideSection heading="Tattoo Removal Prices Houston">
+            <GuideSection heading="How Much Does Tattoo Removal Cost in Houston?">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Tattoo removal prices Houston providers charge generally run $100 to $500 per
                 session. Most standard cases land in the $200 to $400 range. The big variables
@@ -475,7 +415,7 @@ export default function HoustonPage() {
                 ].map((tier) => (
                   <div
                     key={tier.label}
-                    className="flex items-center justify-between rounded-xl border border-(--line) bg-(--surface) px-5 py-4"
+                    className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
                     <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>
@@ -490,7 +430,7 @@ export default function HoustonPage() {
                 Package, LaserAway bundles, InkFree, MD package options) caps that total.
               </p>
 
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+              <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                 <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">Financing and payment plans</p>
                 <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
                   Most Houston providers offer payment plans. Removery splits package totals into
@@ -563,9 +503,34 @@ export default function HoustonPage() {
             <GuideRelatedLinks
               links={[
                 {
+                  href: "/reviews/inkfree-md",
+                  title: "InkFree, MD Reviews",
+                  desc: "Provider profile for the longest-tenured Houston specialist with full review breakdown.",
+                },
+                {
+                  href: "/reviews/dermsurgery-associates",
+                  title: "DermSurgery Associates Reviews",
+                  desc: "Bellaire dermatology practice with tattoo removal as part of a broader skin-services menu.",
+                },
+                {
+                  href: "/reviews/removery",
+                  title: "Removery Reviews",
+                  desc: "Brand-level review profile covering Removery's three Houston locations and the national network.",
+                },
+                {
                   href: "/comparisons/best-tattoo-removal-method",
                   title: "Best Tattoo Removal Method",
                   desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
+                },
+                {
+                  href: "/guides/tattoo-removal-healing-process",
+                  title: "Healing Process Guide",
+                  desc: "Stage-by-stage timeline of what to expect after each session, across laser and non-laser methods.",
+                },
+                {
+                  href: "/guides/tattoo-removal-scarring",
+                  title: "Scarring Guide",
+                  desc: "When scarring happens, why it happens, and how to evaluate providers on scarring track record.",
                 },
                 {
                   href: "/cost",
@@ -588,7 +553,7 @@ export default function HoustonPage() {
         </Container>
       </section>
 
-      <FAQSection faqs={faqs} />
+      <FAQSection title="Frequently Asked Questions About Tattoo Removal in Houston" faqs={faqs} />
     </div>
     </BlobBackground>
   );

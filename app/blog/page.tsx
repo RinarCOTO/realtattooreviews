@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
 import BlogGrid from "@/components/blog/BlogGrid";
+import BlobBackground from "@/components/ui/BlobBackground";
 import { getAllBlogPosts } from "@/lib/page-data/blog";
 import { blogPosts as mockPosts } from "@/lib/mock-data/blog-posts";
 
@@ -24,18 +25,20 @@ export default async function BlogPage() {
   const posts = sanityPosts.length > 0 ? sanityPosts : mockPosts;
 
   return (
-    <main className="min-h-screen bg-bg">
-      <PageHero
-        label="Blog"
-        title={<>RTR <span className="text-(--accent)">Blog</span></>}
-        subtitle="Research, provider trends, and editorial coverage on tattoo removal."
-      />
+    <BlobBackground>
+      <main className="min-h-screen">
+        <PageHero
+          label="Blog"
+          title={<>RealTattooReviews <span className="text-(--accent)">Blog</span></>}
+          subtitle="Research, provider trends, and editorial coverage on tattoo removal."
+        />
 
-      <section className="py-12">
-        <Container>
-          <BlogGrid posts={posts} />
-        </Container>
-      </section>
-    </main>
+        <section className="py-12">
+          <Container>
+            <BlogGrid posts={posts} />
+          </Container>
+        </section>
+      </main>
+    </BlobBackground>
   );
 }

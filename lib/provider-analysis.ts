@@ -34,19 +34,113 @@ export function summarizeSources(reviews: Review[]): string {
   return `${sources.slice(0, -1).join(", ")}, and ${sources.at(-1)} reviews`;
 }
 
-export function getVerdictFromRating(rating: number): { label: string; summary: string } {
-  if (rating >= 4.4) return {
-    label: "Above-average review profile",
-    summary: "Review volume and signal consistency sit above most covered providers in this category. Cautions are still present and should be reviewed before booking.",
-  };
-  if (rating >= 4.0) return {
-    label: "Mixed-to-positive review profile",
-    summary: "Positive signals outweigh negative ones, but consistency varies. Compare alternatives and location-specific signals before deciding.",
-  };
-  return {
-    label: "Limited-confidence review profile",
-    summary: "Review signals are less consistent than higher-rated providers in this category. Negative signals are present and deserve a closer look.",
-  };
+/**
+ * Multi-signal verdict composer.
+ *
+ * Combines rating tier + review density + risk-signal density to produce a
+ * label and summary that vary across providers instead of falling into one
+ * of three fixed buckets. When called with just a rating (legacy callers),
+ * degrades to the original three-bucket behavior.
+ */
+export function getVerdictFromRating(
+  rating: number,
+  reviews: Review[] = []
+): { label: string; summary: string } {
+  const total = reviews.length;
+
+  // Legacy path: no reviews supplied, return rating-only verdict.
+  if (total === 0) {
+    if (rating >= 4.4)
+      return {
+        label: "Above-average review profile",
+        summary:
+          "Review volume and signal consistency sit above most covered providers in this category. Cautions are still present and should be reviewed before booking.",
+      };
+    if (rating >= 4.0)
+      return {
+        label: "Mixed-to-positive review profile",
+        summary:
+          "Positive signals outweigh negative ones, but consistency varies. Compare alternatives and location-specific signals before deciding.",
+      };
+    return {
+      label: "Limited-confidence review profile",
+      summary:
+        "Review signals are less consistent than higher-rated providers in this category. Negative signals are present and deserve a closer look.",
+    };
+  }
+
+  // Multi-signal path.
+  const scarringCount = reviews.filter((r) => r.scarringReported === true).length;
+  const scarringPct = (scarringCount / total) * 100;
+  const lowRatedCount = reviews.filter((r) => (r.rating ?? 0) <= 2).length;
+  const lowRatedPct = (lowRatedCount / total) * 100;
+  const resultsCount = reviews.filter((r) => r.resultsMentioned).length;
+  const resultsPct = (resultsCount / total) * 100;
+
+  // Rating tier.
+  const ratingTier =
+    rating >= 4.5 ? "strong" : rating >= 4.0 ? "mixed" : rating >= 3.5 ? "uneven" : "weak";
+
+  // Volume tier.
+  const volumeTier = total >= 30 ? "heavy" : total >= 15 ? "moderate" : "light";
+
+  // Compose label.
+  let label: string;
+  if (ratingTier === "strong" && volumeTier === "heavy" && scarringPct < 5)
+    label = "Strong, well-documented review profile";
+  else if (ratingTier === "strong" && volumeTier === "heavy")
+    label = "Strong overall, scarring caveat present";
+  else if (ratingTier === "strong" && volumeTier === "moderate")
+    label = "Strong but moderately sourced review profile";
+  else if (ratingTier === "strong")
+    label = "Strong but lightly sourced review profile";
+  else if (ratingTier === "mixed" && volumeTier === "heavy")
+    label = "Mixed-to-positive, well-documented review profile";
+  else if (ratingTier === "mixed")
+    label = "Mixed-to-positive review profile";
+  else if (ratingTier === "uneven" && volumeTier !== "light")
+    label = "Uneven review profile, real cautions present";
+  else label = "Limited-confidence review profile";
+
+  // Compose summary from signal pieces.
+  const ratingSentence = (() => {
+    if (ratingTier === "strong" && volumeTier === "heavy")
+      return `Average rating of ${rating.toFixed(1)} across ${total} reviews places this provider above most others in the category.`;
+    if (ratingTier === "strong")
+      return `Average rating of ${rating.toFixed(1)} is strong, though the sample size of ${total} review${total === 1 ? "" : "s"} keeps confidence narrower than higher-volume providers.`;
+    if (ratingTier === "mixed" && volumeTier === "heavy")
+      return `Average rating of ${rating.toFixed(1)} across ${total} reviews shows positive signals outweighing negative ones, with consistency that varies by case.`;
+    if (ratingTier === "mixed")
+      return `Average rating of ${rating.toFixed(1)} across ${total} review${total === 1 ? "" : "s"} is positive on balance but uneven enough that comparison against alternatives is worth doing.`;
+    return `Average rating of ${rating.toFixed(1)} across ${total} review${total === 1 ? "" : "s"} sits below most other providers in the category. Negative signals deserve a close look.`;
+  })();
+
+  const cautionPieces: string[] = [];
+  if (scarringPct >= 5)
+    cautionPieces.push(
+      `${scarringCount} of ${total} reviewers (${Math.round(scarringPct)}%) mention scarring or skin damage`
+    );
+  if (lowRatedPct >= 10)
+    cautionPieces.push(`${lowRatedCount} review${lowRatedCount === 1 ? "" : "s"} report a 1-or-2-star experience`);
+
+  const positivePieces: string[] = [];
+  if (resultsPct >= 50) {
+    if (resultsCount === total)
+      positivePieces.push(`every reviewer describes a visible result`);
+    else
+      positivePieces.push(
+        `${resultsCount} of ${total} reviewers (${Math.round(resultsPct)}%) describe a visible result`
+      );
+  }
+
+  const caveat =
+    cautionPieces.length > 0
+      ? `Caveats worth weighing: ${cautionPieces.join(", and ")}.`
+      : positivePieces.length > 0
+        ? `Notable positive signal: ${positivePieces.join(", and ")}.`
+        : "Cautions are still present and should be reviewed before booking.";
+
+  return { label, summary: `${ratingSentence} ${caveat}` };
 }
 
 export function verdictColors(label: string) {
@@ -94,8 +188,8 @@ export function buildProsConsFromReviews(reviews: Review[]): { pros: string[]; c
 
   if (scarringCount > 0)
     cons.push(`${scarringCount} review${scarringCount > 1 ? "s" : ""} mention scarring or skin damage.`);
-  else
-    cons.push("Scarring cannot be fully ruled out from public review data alone.");
+  else if (total < 15)
+    cons.push("Sample size is too small to fully characterize scarring risk from public review data alone.");
 
   const refundCount = reviews.filter((r) => r.tags?.includes("Refund issue")).length;
   if (refundCount > 0) cons.push(`${refundCount} review${refundCount > 1 ? "s" : ""} flag a refund dispute or billing issue.`);
@@ -109,40 +203,54 @@ export function buildProsConsFromReviews(reviews: Review[]): { pros: string[]; c
   if (total < 15)
     cons.push(`Limited review volume (${total} reviews) makes consistent patterns harder to confirm.`);
 
-  // Structural fallbacks to always reach 3 cautions
+  // Structural fallbacks to always reach 3 cautions. Strings here are written
+  // to be safe whether they appear standalone or get interpolated downstream.
   if (cons.length < 3)
-    cons.push("Pain and session experience vary and are not consistently reported across all reviews.");
+    cons.push("Pain and session experience reporting varies inconsistently across reviewers.");
   if (cons.length < 3)
-    cons.push("Negative and mixed signals are present and should be reviewed before booking.");
+    cons.push("Mixed signals warrant a second opinion before committing to a treatment plan.");
 
   return { pros: pros.slice(0, 4), cons: cons.slice(0, 4) };
 }
 
 export function buildPricingContext(providers: Provider[]): string {
   const brandNames = unique(providers.map((p) => p.brand ?? p.name));
+  const primary = providers[0];
 
-  if (brandNames.includes("Removery")) {
+  // Brand-specific paragraphs.
+  if (brandNames.includes("Removery"))
     return "Removery offers a Complete Removal Package: a single flat fee covers all sessions until the tattoo is fully removed. This fits users who want cost predictability and expect a longer treatment path, but the upfront cost is higher than per-session pricing at most clinics. See the cost guide for a calibrated comparison.";
-  }
-  if (brandNames.includes("inkOUT")) {
+  if (brandNames.includes("inkOUT"))
     return "inkOUT uses per-session pricing with package options available. As a non-laser provider using TEPR, pricing does not map directly to laser-clinic benchmarks. Compare total path cost across methods using the cost guide before settling on a quote.";
-  }
-  if (brandNames.includes("LaserAway")) {
+  if (brandNames.includes("LaserAway"))
     return "LaserAway uses per-session pricing without a bundled package option. Session rates vary by tattoo size and location. Compare the quoted session count and per-session rate against local specialists before committing.";
-  }
 
   const combinedTags = unique(providers.flatMap((p) => p.tags));
   const summaries = providers.map((p) => p.summary.toLowerCase());
+  const yearsActive = primary?.yearsActive;
 
+  // Derive a base paragraph from tags + summary signals.
+  let base: string;
   if (summaries.some((s) => s.includes("higher price point")))
-    return "Pricing appears to sit above many standalone clinics. The tradeoff is usually clinical credibility, specialist positioning, or a more established setup.";
-  if (combinedTags.includes("Affordable"))
-    return "This provider looks more price-accessible than many higher-end clinics, but affordability should be weighed against consistency and long-term results.";
-  if (combinedTags.includes("National Chain"))
-    return "Chain pricing is often more standardized than independent clinics, but actual session quotes can still vary by location and treatment complexity.";
-  if (combinedTags.includes("Medical") || combinedTags.includes("Medical Spa"))
-    return "The pricing posture likely reflects a more medical or premium aesthetic setup. Users should compare quotes against local laser specialists and national averages.";
-  return "There is enough signal to treat this provider as a real pricing comparison candidate, but not enough to publish a national price claim without city-by-city context. Use the cost guide and city pages for calibration.";
+    base = `Pricing appears to sit above many standalone clinics. The tradeoff is usually clinical credibility, specialist positioning, or a more established setup.`;
+  else if (combinedTags.includes("Affordable"))
+    base = `This provider looks more price-accessible than many higher-end clinics, but affordability should be weighed against consistency and long-term results.`;
+  else if (combinedTags.includes("National Chain"))
+    base = `Chain pricing is often more standardized than independent clinics, but actual session quotes can still vary by location and treatment complexity.`;
+  else if (combinedTags.includes("Medical") || combinedTags.includes("Medical Spa"))
+    base = `Pricing posture likely reflects a more medical or premium aesthetic setup. Compare quotes against local laser specialists and national averages.`;
+  else if (combinedTags.includes("Specialist") || (primary?.specialty ?? "").toLowerCase().includes("removal"))
+    base = `As a tattoo-removal-focused practice, pricing is usually structured around a session count appropriate to the case rather than aesthetics-package bundling.`;
+  else
+    base = `Pricing varies by tattoo size, ink density, and session count rather than a single quoted rate. Use the cost guide for full-course math.`;
+
+  // Add a tenure modifier if available, to differentiate similar providers.
+  if (yearsActive && yearsActive >= 10)
+    base += ` ${primary.name} has operated for ${yearsActive} years, which often correlates with established consultation pricing rather than promotional pricing.`;
+  else if (yearsActive && yearsActive >= 5)
+    base += ` With ${yearsActive} years in market, ${primary.name} sits between newer entrants and the most-tenured operators on pricing posture.`;
+
+  return base;
 }
 
 export function buildTreatmentOverview(providers: Provider[]): string {
@@ -153,15 +261,174 @@ export function buildTreatmentOverview(providers: Provider[]): string {
   );
   const isMedical = tags.some((t) => ["Medical", "Medical Spa"].includes(t));
   const isNonLaser = specialties.some((s) => s.toLowerCase().includes("non-laser"));
+  const primary = providers[0];
 
-  const methodLine = isNonLaser ? "This provider uses non-laser removal" : "This provider uses laser-based removal";
-  const techLine = techTags.length > 0
-    ? `, with ${techTags.join(" and ")} as the ${techTags.length === 1 ? "primary technology" : "primary technologies"}`
-    : "";
+  const methodLine = isNonLaser
+    ? "This provider uses non-laser removal"
+    : "This provider uses laser-based removal";
+  const techLine =
+    techTags.length > 0
+      ? `, with ${techTags.join(" and ")} as the ${techTags.length === 1 ? "primary technology" : "primary technologies"}`
+      : "";
   const clinicLine = isMedical ? " in a medical or medical spa setting" : "";
   const countLine = providers.length > 1 ? ` across ${providers.length} locations` : "";
 
-  return `${methodLine}${techLine}${clinicLine}${countLine}. Review signals and provider profile data are the sources used here, not provider marketing claims.`;
+  const opener = `${methodLine}${techLine}${clinicLine}${countLine}.`;
+
+  // Weave in webSummary if available so the auto-section is differentiated.
+  const webSummary = primary?.webSummary?.trim();
+  if (webSummary) {
+    // Take the first 1-2 sentences of webSummary to enrich the opener.
+    const sentences = webSummary.split(/(?<=\.)\s+/);
+    const seedClause = sentences.slice(0, Math.min(2, sentences.length)).join(" ");
+    return `${opener} ${seedClause} Review signals and provider profile data are the sources used here, not provider marketing claims.`;
+  }
+
+  return `${opener} Review signals and provider profile data are the sources used here, not provider marketing claims.`;
+}
+
+/**
+ * Compute use-case distribution from review data. Used by FAQ, differentiator,
+ * and use-case focus paragraph.
+ */
+export function buildUseCaseDistribution(reviews: Review[]): {
+  total: number;
+  complete: number;
+  coverUp: number;
+  microblading: number;
+  color: number;
+  other: number;
+  topUseCase: string | null;
+  topUseCaseCount: number;
+} {
+  const total = reviews.length;
+  const complete = reviews.filter((r) => r.useCase === "Complete").length;
+  const coverUp = reviews.filter((r) => r.useCase === "Cover-up").length;
+  const microblading = reviews.filter((r) => r.useCase === "Microblading").length;
+  const color = reviews.filter((r) => r.useCase === "Color").length;
+  const other = reviews.filter((r) => r.useCase === "Other").length;
+
+  const tally: Array<[string, number]> = [
+    ["Complete removal", complete],
+    ["Cover-up fading", coverUp],
+    ["Microblading removal", microblading],
+    ["Color ink removal", color],
+    ["Other cases", other],
+  ];
+  tally.sort((a, b) => b[1] - a[1]);
+  const [topName, topCount] = tally[0] ?? ["", 0];
+
+  return {
+    total,
+    complete,
+    coverUp,
+    microblading,
+    color,
+    other,
+    topUseCase: topCount > 0 ? topName : null,
+    topUseCaseCount: topCount,
+  };
+}
+
+/**
+ * One-paragraph prose describing the dominant use case in the review sample.
+ * Returns null when no use-case classification data is present.
+ */
+export function buildUseCaseFocus(reviews: Review[]): string | null {
+  const dist = buildUseCaseDistribution(reviews);
+  if (dist.total === 0 || dist.topUseCase === null) return null;
+  if (dist.topUseCaseCount < 3) return null;
+
+  const pct = Math.round((dist.topUseCaseCount / dist.total) * 100);
+  const lead = `${dist.topUseCase} dominates the review sample at ${dist.topUseCaseCount} of ${dist.total} reviewers (${pct}%).`;
+
+  // Identify a notable secondary use case if present.
+  const candidates: Array<[string, number]> = [
+    ["complete removal", dist.complete],
+    ["cover-up fading", dist.coverUp],
+    ["microblading removal", dist.microblading],
+    ["color ink removal", dist.color],
+  ];
+  const topLower = dist.topUseCase.toLowerCase();
+  const remaining: Array<[string, number]> = candidates.filter(
+    ([name]) => !topLower.includes(name.split(" ")[0])
+  );
+  remaining.sort((a, b) => b[1] - a[1]);
+  const fallback: [string, number] = ["", 0];
+  const [secondName, secondCount] = remaining[0] ?? fallback;
+
+  if (secondCount >= 2) {
+    const secondPct = Math.round((secondCount / dist.total) * 100);
+    return `${lead} ${secondName.charAt(0).toUpperCase() + secondName.slice(1)} appears as a secondary signal at ${secondCount} of ${dist.total} (${secondPct}%). The use-case mix is what makes this provider's review base most useful for matching against your specific case.`;
+  }
+
+  return `${lead} The use-case mix is narrow enough that this provider's review evidence is most useful when your case lines up with the dominant pattern.`;
+}
+
+/**
+ * Provider-specific differentiator paragraph derived from tags, market,
+ * tenure, top use case, and editorial summary. Designed to inject one or
+ * two sentences of copy that vary across providers and avoid duplicate
+ * content patterns.
+ *
+ * Returns null when there is not enough signal to write something specific.
+ */
+export function buildDifferentiator(
+  provider: Provider,
+  reviews: Review[]
+): string | null {
+  if (!provider) return null;
+
+  const tags = provider.tags ?? [];
+  const topUseCase = buildUseCaseDistribution(reviews).topUseCase;
+  const yearsActive = provider.yearsActive;
+  const market = provider.market;
+  const isNonLaser = (provider.specialty ?? "").toLowerCase().includes("non-laser");
+  const isSpecialist =
+    tags.includes("Specialist") || (provider.specialty ?? "").toLowerCase().includes("removal");
+  const isMedical = tags.includes("Medical") || tags.includes("Medical Spa");
+  const isChain = tags.includes("National Chain");
+
+  const pieces: string[] = [];
+
+  // Lead sentence: combine tenure + market + practice type.
+  if (yearsActive && yearsActive >= 10 && isSpecialist)
+    pieces.push(
+      `${provider.name} is one of the longer-tenured tattoo-removal-focused practices in ${market}, with ${yearsActive} years in market.`
+    );
+  else if (yearsActive && yearsActive >= 10)
+    pieces.push(
+      `${provider.name} has operated in ${market} for ${yearsActive} years, putting it on the established side of the local market.`
+    );
+  else if (yearsActive && yearsActive >= 5 && isSpecialist)
+    pieces.push(
+      `${provider.name} is a tattoo-removal-focused practice in ${market} with ${yearsActive} years in market.`
+    );
+  else if (isNonLaser)
+    pieces.push(
+      `${provider.name} sits in a different category from most ${market} options because it is non-laser, which changes the comparison axis.`
+    );
+  else if (isChain)
+    pieces.push(
+      `${provider.name} is a multi-market chain with a ${market} location, which means standardized protocols rather than owner-operated variability.`
+    );
+  else if (isMedical)
+    pieces.push(
+      `${provider.name} operates as a medical aesthetics practice in ${market}, with tattoo removal positioned alongside a broader service menu.`
+    );
+  else
+    pieces.push(
+      `${provider.name} is a ${market} provider whose review evidence and treatment approach are worth comparing against alternatives.`
+    );
+
+  // Second sentence: pull from review evidence if available.
+  if (topUseCase) {
+    pieces.push(
+      `Review evidence skews toward ${topUseCase.toLowerCase()} cases, which is a useful match signal if your case fits that pattern and a caution if it does not.`
+    );
+  }
+
+  return pieces.join(" ");
 }
 
 export function buildResultsSummary(reviews: Review[]) {
@@ -183,25 +450,328 @@ export function getAlternativeProviders(providers: Provider[], currentSlug: stri
     .slice(0, 4);
 }
 
-export function buildFAQ(providerName: string, marketLine?: string) {
+/**
+ * Deterministic seed from a string. Used to pick between sentence-shape
+ * variants per provider so different providers render different sentence
+ * structures (not just substituted data) without randomness across renders.
+ */
+function shapeSeed(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+function pickShape<T>(seed: number, shapes: T[], offset = 0): T {
+  return shapes[(seed + offset) % shapes.length];
+}
+
+/**
+ * Evidence-aware FAQ with variant sentence shapes.
+ *
+ * Each answer is composed from multiple candidate sentence skeletons, picked
+ * deterministically per provider via a slug-based seed. Combined with the
+ * data interpolation, this avoids the page-to-page sameness of single-template
+ * answers across the 22 provider pages.
+ */
+export function buildFAQ(
+  providerName: string,
+  marketLine?: string,
+  reviews: Review[] = [],
+  provider?: Provider | null
+) {
   const suffix = marketLine ? ` in ${marketLine}` : "";
+  const total = reviews.length;
+  const hasData = total > 0;
+
+  // Pre-compute review-derived signals once.
+  const avgRating = hasData
+    ? (reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / total).toFixed(1)
+    : null;
+  const highRatedPct = hasData
+    ? Math.round((reviews.filter((r) => (r.rating ?? 0) >= 4).length / total) * 100)
+    : null;
+  const useCaseDist = buildUseCaseDistribution(reviews);
+  const scarringCount = reviews.filter((r) => r.scarringReported === true).length;
+  const costMentions = reviews.filter((r) => r.costMentioned === true).length;
+  const yearsActive = provider?.yearsActive ?? null;
+  const market = provider?.market ?? marketLine ?? "";
+  const tags = provider?.tags ?? [];
+  const isSpecialist =
+    tags.includes("Specialist") ||
+    (provider?.specialty ?? "").toLowerCase().includes("removal");
+  const isChain = tags.includes("National Chain");
+  const isMedical = tags.includes("Medical") || tags.includes("Medical Spa");
+  const isNonLaser = (provider?.specialty ?? "").toLowerCase().includes("non-laser");
+
+  const seed = shapeSeed(provider?.slug ?? providerName);
+
+  // ── Q1: legit ─────────────────────────────────────────────────────────────
+  // Pick the strongest single "story" based on signal hierarchy, then pick a
+  // sentence variant within that story so different providers in different
+  // story buckets read differently, and providers in the same bucket still get
+  // sentence-shape variation through the deterministic seed.
+  let legitLeads: string[];
+  if (yearsActive && yearsActive >= 10 && isSpecialist) {
+    legitLeads = [
+      `${providerName} has run a tattoo-removal-focused practice for ${yearsActive} years.`,
+      `Tattoo-removal-only and operating for ${yearsActive} years, ${providerName} sits in the longer-tenured tier of specialist clinics.`,
+      `${providerName} is a ${yearsActive}-year specialist in tattoo removal.`,
+    ];
+  } else if (yearsActive && yearsActive >= 10) {
+    legitLeads = [
+      `With ${yearsActive} years operating in ${market}, ${providerName} sits among the more established practices in its market.`,
+      `${providerName} has ${yearsActive} years of local operating tenure in ${market}.`,
+      `Operating tenure for ${providerName} runs ${yearsActive} years, which is above the local median.`,
+    ];
+  } else if (yearsActive && yearsActive >= 5 && isSpecialist) {
+    legitLeads = [
+      `${providerName} is a tattoo-removal specialist with ${yearsActive} years in market.`,
+      `As a specialist clinic, ${providerName} has built a ${yearsActive}-year operating record.`,
+      `${providerName} runs as a tattoo-removal-focused practice and has been in business for ${yearsActive} years.`,
+    ];
+  } else if (yearsActive && yearsActive >= 5) {
+    legitLeads = [
+      `${providerName} carries ${yearsActive} years of operating tenure as one signal of legitimacy.`,
+      `Operating tenure at ${providerName} runs ${yearsActive} years, which puts it on the established side of the market.`,
+      `${providerName} has been in operation for ${yearsActive} years.`,
+    ];
+  } else if (isChain) {
+    legitLeads = [
+      `As part of a multi-market chain, ${providerName} carries a structural footprint that goes beyond a single location.`,
+      `${providerName} is part of a multi-market chain, which gives it a different legitimacy signal than a single-location independent.`,
+      `Chain affiliation is the structural answer for ${providerName}; the operating model is multi-location standardized.`,
+    ];
+  } else if (total >= 30) {
+    legitLeads = [
+      `${providerName} has ${total} sourced reviews on file, which is substantial enough to read meaningful patterns from.`,
+      `${total} sourced reviews on ${providerName} confirm a real operating presence with public data to back it up.`,
+      `Review volume for ${providerName} is high (${total} entries), pointing to an active practice with public visibility.`,
+    ];
+  } else if (total >= 15) {
+    legitLeads = [
+      `Public review data on ${providerName} runs to ${total} entries, enough to confirm an active operating presence.`,
+      `${providerName} has ${total} sourced reviews, which is moderate volume but readable.`,
+      `${total} reviews on file at ${providerName} establish basic operating presence.`,
+    ];
+  } else if (isMedical) {
+    legitLeads = [
+      `${providerName} operates as a medical aesthetics practice in ${market}, which carries clinical-setting credentialing as one legitimacy signal.`,
+      `As a medical aesthetics clinic in ${market}, ${providerName} sits within a medically supervised model rather than a standalone studio.`,
+      `Practice type for ${providerName} is medical aesthetics, which folds in clinical-setting credentialing as part of legitimacy.`,
+    ];
+  } else {
+    legitLeads = [
+      `${providerName} is a real operating practice with publicly available review data.`,
+      `Operating presence for ${providerName} is documented in public review data, though detail is light compared to higher-volume providers.`,
+      `${providerName} appears to be an active practice; review volume is on the lighter side.`,
+    ];
+  }
+
+  const legitMids = [
+    "The harder questions are pricing clarity, treatment fit, and local consistency.",
+    "Tenure or review count tell you the practice exists. Whether it fits your case is a separate question.",
+    "Operating presence is the entry-level signal. Outcome patterns and cost transparency carry more weight.",
+    "Public review patterns, scarring track record, and pricing posture are the load-bearing comparisons.",
+  ];
+
+  const legitCloses = useCaseDist.topUseCase
+    ? [
+        `Reviewers most often describe ${useCaseDist.topUseCase.toLowerCase()} cases, which is a useful match check.`,
+        `The dominant case pattern in the review sample is ${useCaseDist.topUseCase.toLowerCase()}; check whether your case fits.`,
+        "Read the review-pattern sections above before deciding.",
+      ]
+    : [
+        "Read the review-pattern sections above before deciding.",
+        "Match the strengths and cautions above to your specific case.",
+        "The evidence sections above cover the patterns in detail.",
+      ];
+
+  const legitAnswer = [
+    pickShape(seed, legitLeads, 0),
+    pickShape(seed, legitMids, 1),
+    pickShape(seed, legitCloses, 2),
+  ].join(" ");
+
+  // ── Q2: worth it ──────────────────────────────────────────────────────────
+  let worthLeads: string[];
+  if (highRatedPct != null && highRatedPct >= 90 && total >= 15) {
+    worthLeads = [
+      `${highRatedPct}% of ${total} reviewers landed at 4 or 5 stars for ${providerName}, which is a high-consistency signal.`,
+      `Out of ${total} sourced reviews, ${highRatedPct}% rate ${providerName} 4 or 5 stars; consistency is unusually high.`,
+      `Review consistency for ${providerName} sits at ${highRatedPct}% positive across ${total} entries.`,
+    ];
+  } else if (highRatedPct != null && highRatedPct >= 80 && total >= 15) {
+    worthLeads = [
+      `${highRatedPct}% of ${total} reviewers gave ${providerName} 4 or 5 stars, which is a strong but not uniform signal.`,
+      `${providerName} pulls ${highRatedPct}% positive across ${total} reviews, putting it well above the median for the category.`,
+      `Across ${total} sourced reviews, ${providerName} runs ${highRatedPct}% at 4 or 5 stars.`,
+    ];
+  } else if (highRatedPct != null && highRatedPct >= 65) {
+    worthLeads = [
+      `${highRatedPct}% of ${total} reviewers rated ${providerName} 4 or 5, which is positive on balance but uneven.`,
+      `Review pattern for ${providerName} is positive at ${highRatedPct}% high-rated, with enough variance to merit comparison.`,
+      `${providerName} reads positive but inconsistent: ${highRatedPct}% high-rated across ${total} entries.`,
+    ];
+  } else if (hasData) {
+    worthLeads = [
+      `${providerName}'s review pattern across ${total} entries is mixed. Strong cases sit alongside weaker ones.`,
+      `Across ${total} reviews, ${providerName} pulls a mixed pattern. The averages hide real outcome variance.`,
+      `Review evidence on ${providerName} is mixed enough that comparison against alternatives is the right next step.`,
+    ];
+  } else {
+    worthLeads = [
+      `Worth-it depends on tattoo type, budget, and how the strengths and cautions match your priorities.`,
+      `${providerName} looks strongest for users whose case lines up with the dominant review pattern.`,
+      `Match the review patterns above to your specific case before deciding.`,
+    ];
+  }
+
+  const worthMids = useCaseDist.topUseCase
+    ? [
+        `The clearest fit signal is ${useCaseDist.topUseCase.toLowerCase()}, which is the case type the review sample most often describes.`,
+        `Reviewers tend to describe ${useCaseDist.topUseCase.toLowerCase()} cases, so users in that bucket get the most predictive read.`,
+        "Match your case type to the dominant pattern above for the most useful comparison.",
+      ]
+    : [
+        "The better test is whether the provider's strengths match your tattoo, skin type, and budget.",
+        "Strong rating without strong fit usually still leaves users weighing alternatives.",
+        "Match the strengths and cautions above to what matters most to your case.",
+      ];
+
+  const worthCloses = [
+    `Compare ${providerName} against alternatives in the section above before deciding.`,
+    "Run a side-by-side against at least one alternative before committing.",
+    "Free consultations across multiple providers usually beat picking based on rating alone.",
+  ];
+
+  const worthItAnswer = [
+    pickShape(seed, worthLeads, 3),
+    pickShape(seed, worthMids, 4),
+    pickShape(seed, worthCloses, 5),
+  ].join(" ");
+
+  // ── Q3: cost ──────────────────────────────────────────────────────────────
+  let costLeads: string[];
+  if (isNonLaser) {
+    costLeads = [
+      `Non-laser pricing for ${providerName} does not map directly to laser-clinic benchmarks because the method is different.`,
+      `${providerName} prices outside the standard laser-clinic comparison frame; the non-laser method changes the math.`,
+      `Because ${providerName} runs a non-laser method, per-session price comparisons against laser clinics are not apples-to-apples.`,
+    ];
+  } else if (isChain) {
+    costLeads = [
+      `As a multi-market chain, ${providerName} typically prices closer to a standardized session rate than independent specialists.`,
+      `Chain pricing at ${providerName} tends to be more uniform than single-location quotes, though session counts still vary.`,
+      `${providerName} usually quotes from a chain pricing tier rather than per-case independent pricing.`,
+    ];
+  } else if (isMedical) {
+    costLeads = [
+      `Medical aesthetics practices like ${providerName} tend to price above standalone laser specialists.`,
+      `${providerName} prices within the medical-aesthetics tier, which usually sits above standalone laser specialists.`,
+      `Medical-setting pricing at ${providerName} typically reflects a higher service-tier baseline.`,
+    ];
+  } else if (isSpecialist) {
+    costLeads = [
+      `Tattoo-removal specialists like ${providerName} typically structure pricing around session count rather than aesthetics packages.`,
+      `${providerName} usually prices per-session against an estimated case count rather than a flat aesthetics-package rate.`,
+      `Specialist pricing at ${providerName} maps to session count and case complexity rather than service-bundle tiers.`,
+    ];
+  } else if (costMentions >= 5 && hasData) {
+    costLeads = [
+      `${costMentions} of ${total} reviewers mention pricing or value, which gives a calibrated view of how ${providerName} quotes.`,
+      `Cost comes up frequently in ${providerName}'s review base (${costMentions} of ${total}), pointing to a price-sensitive comparison.`,
+      `Pricing is a recurring topic in ${costMentions} of ${total} reviews on ${providerName}.`,
+    ];
+  } else {
+    costLeads = [
+      `Pricing varies by tattoo size, ink density, and session count more than by any single quoted rate.`,
+      `${providerName}'s pricing depends on case specifics; a single per-session number rarely captures the full picture.`,
+      `Cost expectations at ${providerName} hinge on session count, which itself depends on the tattoo and skin type.`,
+    ];
+  }
+
+  const costMids = [
+    "Per-session pricing is the easy number to find. Total path cost is the one that matters.",
+    "Always ask for projected session count and total cost, not just the per-session rate.",
+    "Quote-vs-actual divergence usually comes from session count outliers, not session price.",
+    "The relevant math is full-course total, including realistic outlier scenarios.",
+  ];
+
+  const costCloses = [
+    `Use the cost guide for calibration against national averages.`,
+    `See the pricing section above and the cost guide for full-course math.`,
+    `Compare against local alternatives before treating any single quote as the right number.`,
+  ];
+
+  const costAnswer = [
+    pickShape(seed, costLeads, 6),
+    pickShape(seed, costMids, 7),
+    pickShape(seed, costCloses, 8),
+  ].join(" ");
+
+  // ── Q4: good reviews ──────────────────────────────────────────────────────
+  let reviewsLeads: string[];
+  if (hasData && avgRating && total >= 30) {
+    reviewsLeads = [
+      `${providerName} carries ${total} sourced reviews averaging ${avgRating} stars, with enough volume to read patterns rather than anecdotes.`,
+      `${total} reviews at ${avgRating} stars on ${providerName} give a high-confidence read on the typical experience.`,
+      `Review evidence on ${providerName} runs deep: ${total} entries averaging ${avgRating}.`,
+    ];
+  } else if (hasData && avgRating && total >= 15) {
+    reviewsLeads = [
+      `Across ${total} sourced reviews, ${providerName} averages ${avgRating} stars. Volume is moderate but readable.`,
+      `${providerName}'s ${total} reviews at ${avgRating} average put it in moderate-confidence territory.`,
+      `${total} entries at ${avgRating} stars give ${providerName} a workable but not deep evidence base.`,
+    ];
+  } else if (hasData && avgRating) {
+    reviewsLeads = [
+      `${providerName} has ${total} sourced reviews on file at ${avgRating} stars. Sample size is light, so individual cases pull the average more.`,
+      `Light review volume on ${providerName} (${total} entries at ${avgRating}) means each individual review weighs more than at higher-volume providers.`,
+      `Only ${total} reviews currently on file at ${avgRating} stars; treat the average as preliminary.`,
+    ];
+  } else {
+    reviewsLeads = [
+      `Rating alone is the easy answer; pattern is the useful one.`,
+      `Review goodness depends on volume, consistency, and which case types reviewers describe.`,
+      `Star average alone is a thin signal. Pattern, consistency, and use-case distribution matter more.`,
+    ];
+  }
+
+  const reviewsMids: string[] = [];
+  if (useCaseDist.topUseCase)
+    reviewsMids.push(
+      `The dominant use-case signal is ${useCaseDist.topUseCase.toLowerCase()} (${useCaseDist.topUseCaseCount} of ${total}).`
+    );
+  if (scarringCount > 0)
+    reviewsMids.push(
+      `${scarringCount} review${scarringCount === 1 ? "" : "s"} flag scarring or skin damage.`
+    );
+  if (highRatedPct != null && highRatedPct >= 80)
+    reviewsMids.push(
+      `${highRatedPct}% of reviewers landed at 4 or 5 stars, indicating strong consistency.`
+    );
+  if (reviewsMids.length === 0)
+    reviewsMids.push(
+      "Look at recurring positives, recurring complaints, and consistency across locations."
+    );
+
+  const reviewsCloses = [
+    "The evidence sections above break the pattern down in full.",
+    "Read the negative-first ordering above for the load-bearing signals.",
+    "Pros, cons, and use-case sections cover the rest.",
+  ];
+
+  const reviewsAnswer = [
+    pickShape(seed, reviewsLeads, 9),
+    pickShape(seed, reviewsMids, 10),
+    pickShape(seed, reviewsCloses, 11),
+  ].join(" ");
+
   return [
-    {
-      q: `Is ${providerName} legit?`,
-      a: `${providerName} appears to be a real, established operator, but legitimacy is not the only question. Users should still compare review patterns, pricing clarity, treatment fit, and local consistency before booking.`,
-    },
-    {
-      q: `Is ${providerName} worth it?`,
-      a: `It depends on your tattoo, budget, and priorities. ${providerName} looks strongest for users whose needs match its core strengths. The better test is whether its review patterns, pricing, and treatment approach match what matters most to you.`,
-    },
-    {
-      q: `How expensive is ${providerName}${suffix}?`,
-      a: `That depends on tattoo size, session count, location, and treatment plan. The right comparison is total path cost, not just the first quoted session. Use the pricing section above and the cost guide for calibration.`,
-    },
-    {
-      q: `Does ${providerName} have good reviews?`,
-      a: `The answer depends on both rating and pattern. Look at review count, repeated positives, repeated complaints, and whether the experience appears consistent across locations. The review-source summary and evidence sections above cover this in detail.`,
-    },
+    { q: `Is ${providerName} legit?`, a: legitAnswer },
+    { q: `Is ${providerName} worth it?`, a: worthItAnswer },
+    { q: `How expensive is ${providerName}${suffix}?`, a: costAnswer },
+    { q: `Does ${providerName} have good reviews?`, a: reviewsAnswer },
   ];
 }
 
@@ -215,41 +785,56 @@ export function buildBestFor(
   const avgRating =
     total > 0
       ? reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / total
-      : providers.reduce((s, p) => s + p.rating, 0) / providers.length;
-  const { cons } = buildProsConsFromReviews(reviews);
+      : providers.reduce((s, p) => s + p.rating, 0) / Math.max(providers.length, 1);
   const isNonLaser = specialties.some((s) => s.toLowerCase().includes("non-laser"));
   const isMedical = tags.some((t) => ["Medical", "Medical Spa"].includes(t));
   const isChain = tags.includes("National Chain");
   const isAffordable = tags.includes("Affordable");
+  const isSpecialist =
+    tags.includes("Specialist") || specialties.some((s) => s.toLowerCase().includes("removal"));
   const lowRated = reviews.filter((r) => (r.rating ?? 0) <= 2).length;
+  const lowRatedPct = total > 0 ? lowRated / total : 0;
+  const scarringCount = reviews.filter((r) => r.scarringReported === true).length;
+  const refundCount = reviews.filter((r) => r.tags?.includes("Refund issue")).length;
+  const useCaseDist = buildUseCaseDistribution(reviews);
 
   const bestFor: string[] = [];
   const lessIdealFor: string[] = [];
 
-  if (isChain) bestFor.push("users who want a structured, multi-location provider with an established process");
-  if (isMedical) bestFor.push("users who prefer a clinical or medically supervised setting");
-  if (isAffordable) bestFor.push("users comparing on price who want a more accessible entry point");
-  if (avgRating >= 4.4) bestFor.push("users who want a provider with a strong overall review record");
-  if (isNonLaser) bestFor.push("users open to non-laser removal methods");
-  if (bestFor.length < 2) bestFor.push("users comparing a known provider against local alternatives");
+  // bestFor: composed from data signals.
+  if (isChain)
+    bestFor.push("users who want a structured, multi-location provider with an established process");
+  if (isSpecialist && !isChain)
+    bestFor.push("users who prefer a tattoo-removal-focused practice over a multi-service med spa");
+  if (isMedical)
+    bestFor.push("users who prefer a clinical or medically supervised setting");
+  if (isAffordable)
+    bestFor.push("users comparing on price who want a more accessible entry point");
+  if (avgRating >= 4.4)
+    bestFor.push("users who want a provider with a strong overall review record");
+  if (isNonLaser)
+    bestFor.push("users open to non-laser removal methods");
+  if (useCaseDist.topUseCase && useCaseDist.topUseCaseCount >= 3)
+    bestFor.push(`users with ${useCaseDist.topUseCase.toLowerCase()} cases similar to the dominant pattern in the review sample`);
+  if (bestFor.length < 2)
+    bestFor.push("users comparing a known provider against local alternatives");
 
-  if (total < 15) lessIdealFor.push("users who want a large volume of consistent public reviews before deciding");
-  if (total > 0 && lowRated / total > 0.1)
+  // lessIdealFor: derived directly from data signals as clean noun phrases.
+  // No interpolation of cons-text strings (which produced ungrammatical output).
+  if (total < 15)
+    lessIdealFor.push("users who want a large volume of consistent public reviews before deciding");
+  if (lowRatedPct > 0.1)
     lessIdealFor.push("users highly sensitive to recurring negative review patterns");
+  if (scarringCount > 0)
+    lessIdealFor.push("users for whom scarring risk is the deciding factor");
+  if (refundCount > 0)
+    lessIdealFor.push("users for whom billing or refund disputes would be a non-starter");
   if (!isAffordable && !isMedical)
     lessIdealFor.push("users comparing primarily on price without a firm budget in mind");
   if (!isChain && providers.length === 1)
     lessIdealFor.push("users who want multi-location national coverage");
-  if (cons.length > 0 && lessIdealFor.length < 3)
-    lessIdealFor.push(
-      "users for whom " +
-        cons[0]
-          .toLowerCase()
-          .replace(/^\d+\s+reviews?\s+(report|flag|mention)\s+/i, "")
-          .replace(/\.$/, "") +
-        " is the deciding factor"
-    );
-  if (lessIdealFor.length < 2) lessIdealFor.push("users who need more location-specific data before committing");
+  if (lessIdealFor.length < 2)
+    lessIdealFor.push("users who need more location-specific data before committing");
 
   return { bestFor: bestFor.slice(0, 4), lessIdealFor: lessIdealFor.slice(0, 4) };
 }

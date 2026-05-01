@@ -32,10 +32,10 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
     : "";
   const avgRatingValue = reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length;
   const avgRating = avgRatingValue.toFixed(1);
-  const verdict = getVerdictFromRating(avgRatingValue);
+  const verdict = getVerdictFromRating(avgRatingValue, reviews);
   const { pros, cons } = buildProsConsFromReviews(reviews);
   const resultsSummary = buildResultsSummary(reviews);
-  const faqItems = buildFAQ(providerName, market || undefined);
+  const faqItems = buildFAQ(providerName, market || undefined, reviews, null);
   const bestForData = buildBestFor([], reviews);
   return (
     <main className="reviews-page min-h-screen bg-(--bg)">

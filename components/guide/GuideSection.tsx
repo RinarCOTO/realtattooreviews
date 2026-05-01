@@ -3,12 +3,13 @@ import DevLabel from "@/components/dev/DevLabel";
 type Props = {
   heading: string;
   children: React.ReactNode;
+  id?: string;
 };
 
-export default function GuideSection({ heading, children }: Props) {
+export default function GuideSection({ heading, children, id }: Props) {
   return (
     <DevLabel name={`GuideSection: ${heading}`}>
-    <div className="py-12">
+    <div id={id} className="py-12">
       <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.1] tracking-[-0.02em] text-(--ink) m-0 mb-6">
         {heading}
       </h2>

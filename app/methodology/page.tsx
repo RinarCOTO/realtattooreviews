@@ -133,7 +133,7 @@ export default function MethodologyPage() {
 
       {/* Body */}
       <PageSection className="bg-white!">
-          <div className="mx-auto max-w-4xl space-y-12">
+          <div className="mx-auto max-w-3xl space-y-12">
 
             {/* Intro */}
             <div className="space-y-4">
@@ -146,8 +146,6 @@ export default function MethodologyPage() {
               <p className="text-[15px] leading-relaxed text-muted">
                 If you want to know our editorial standards, see the{" "}
                 <Link href="/editorial-policy" className="font-medium text-accent hover:underline">editorial policy</Link>.
-                If you want to contact us about an error or dispute, see the{" "}
-                <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>.
               </p>
             </div>
 
@@ -423,17 +421,13 @@ export default function MethodologyPage() {
                 <div>
                   <p className="text-[15px] font-semibold text-heading">Corrections process</p>
                   <p className="mt-1 text-[15px] leading-relaxed text-body">
-                    If you believe any information on the site is incorrect, outdated, or unfair, you can report it through the{" "}
-                    <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>.
-                    We review all correction requests and update the site when errors are confirmed. Providers, users, and third parties can all submit corrections. The corrections process is the same for every submitter.
+                    If you believe any information on the site is incorrect, outdated, or unfair, we review all correction requests and update the site when errors are confirmed. Providers, users, and third parties can all submit corrections. The corrections process is the same for every submitter.
                   </p>
                 </div>
                 <div>
                   <p className="text-[15px] font-semibold text-heading">Challenge process</p>
                   <p className="mt-1 text-[15px] leading-relaxed text-body">
-                    Providers who believe their score is inaccurate can request a review of their scoring data. The request is processed through the{" "}
-                    <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>.
-                    We will share the review-sample data that produced the score (aggregated, not individual reviews) and explain how the scoring framework was applied. We will correct errors when found. We will not change scores based on provider disagreement with the framework itself.
+                    Providers who believe their score is inaccurate can request a review of their scoring data. We will share the review-sample data that produced the score (aggregated, not individual reviews) and explain how the scoring framework was applied. We will correct errors when found. We will not change scores based on provider disagreement with the framework itself.
                   </p>
                 </div>
               </div>
@@ -442,9 +436,7 @@ export default function MethodologyPage() {
             <GuideCallout label="Editorial note">
               This page describes the scoring and review methodology used across RealTattooReviews as of the publication date. The methodology may evolve as data sources expand, classification methods improve, and user feedback is incorporated. Any material changes to the methodology will be reflected on this page. See our{" "}
               <Link href="/editorial-policy" className="font-medium text-accent hover:underline">editorial policy</Link>{" "}
-              for full details and our{" "}
-              <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>{" "}
-              for corrections.
+              for full details.
             </GuideCallout>
 
           </div>

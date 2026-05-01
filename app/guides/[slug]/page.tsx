@@ -15,7 +15,6 @@ type Props = { params: Promise<{ slug: string }> };
 
 const FALLBACK_GUIDE_SLUGS = [
   "saline-tattoo-removal",
-  "laser-tattoo-removal",
   "tattoo-removal-aftercare",
   "tattoo-removal-healing-process",
   "tattoo-removal-scarring",

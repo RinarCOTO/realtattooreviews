@@ -200,7 +200,7 @@ export default function GuidesIndexPage() {
                 <Link href="/editorial-policy" className="text-(--accent) hover:underline">
                   editorial policy
                 </Link>{" "}
-                for advertising disclosures.
+                for full details.
               </p>
             </GuideSection>
 
@@ -209,8 +209,7 @@ export default function GuidesIndexPage() {
               <GuideCallout label="Editorial note">
                 Guides are based on peer-reviewed clinical literature (PMC2923953, PMC4928479,
                 PMC4859414, MDPI Applied Sciences 2021), published aftercare protocols, and
-                professional-practice consensus. inkOUT is a current advertising client of
-                RealTattooReviews and is not promoted on any guide page. See our{" "}
+                professional-practice consensus. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}

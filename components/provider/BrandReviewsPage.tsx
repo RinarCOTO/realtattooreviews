@@ -20,12 +20,14 @@ import BlobBackground from "@/components/ui/BlobBackground";
 import {
   buildBestFor,
   buildBottomLine,
+  buildDifferentiator,
   buildFAQ,
   buildOverviewStats,
   buildPricingContext,
   buildProsConsFromReviews,
   buildResultsSummary,
   buildTreatmentOverview,
+  buildUseCaseFocus,
   getAlternativeProviders,
   getVerdictFromRating,
   summarizeSources,
@@ -46,14 +48,16 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
     ? reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length
     : locations.reduce((s, l) => s + l.rating, 0) / locations.length;
   const avgRating = avgRatingValue.toFixed(1);
-  const verdict = getVerdictFromRating(avgRatingValue);
+  const verdict = getVerdictFromRating(avgRatingValue, reviews);
   const { pros, cons } = buildProsConsFromReviews(reviews);
   const resultsSummary = buildResultsSummary(reviews);
   const alternatives = getAlternativeProviders(locations, slug);
-  const faqItems = buildFAQ(brand);
+  const faqItems = buildFAQ(brand, undefined, reviews, locations[0] ?? null);
   const bestForData = buildBestFor(locations, reviews);
   const bottomLine = buildBottomLine(brand, locations, reviews, alternatives);
   const brandTags = unique(locations.flatMap((l) => l.tags ?? [])).slice(0, 6);
+  const differentiator = locations[0] ? buildDifferentiator(locations[0], reviews) : null;
+  const useCaseFocus = buildUseCaseFocus(reviews);
   // Use first location's Google Business URL if populated; fall back to Maps search
   const jumpItems = [
     { label: "Overview",     href: "#overview" },
@@ -98,6 +102,25 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       />
 
       <JumpNav items={jumpItems} />
+
+      {(differentiator || useCaseFocus) && (
+        <section className="py-12">
+          <Container>
+            <div className="max-w-3xl space-y-4">
+              {differentiator && (
+                <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
+                  {differentiator}
+                </p>
+              )}
+              {useCaseFocus && (
+                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                  {useCaseFocus}
+                </p>
+              )}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <OverviewSection
         providerName={brand}

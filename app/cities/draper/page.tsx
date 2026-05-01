@@ -62,6 +62,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import CityProviderRanking from "@/components/city/CityProviderRanking";
 import CityProviderComparisonTable from "@/components/city/CityProviderComparisonTable";
 import type { StaticProviderProfile } from "@/components/city/types";
+import { getCityProviderProfiles } from "@/lib/page-data/city-profiles";
 
 export const revalidate = 3600;
 
@@ -83,7 +84,7 @@ const faqs = [
   {
     question: "What is the best tattoo removal clinic in Draper?",
     answer:
-      "It depends on your tattoo and your priorities. The ranked list above orders providers by current review-sample evidence and use-case fit. inkOUT (Rejuvatek Aesthetics) is the only non-laser option and suits users prioritizing complete removal, cosmetic tattoo removal, or avoiding laser entirely. Clarity Skin is a full-service med spa offering PicoWay picosecond laser in a physician-led setting and suits users who want an established medical practice with a broad aesthetic service menu. Match the provider to your case.",
+      "It depends on your tattoo and your priorities. The ranked list above orders providers by current review-sample evidence and use-case fit. inkOUT is the non-laser TEPR option and suits users prioritizing complete removal, cosmetic tattoo removal, or avoiding laser entirely. Clarity Skin is a full-service med spa offering PicoWay picosecond laser in a physician-led setting and suits users who want an established medical practice with a broad aesthetic service menu. Match the provider to your case.",
   },
   {
     question: "What is the difference between inkOUT and Clarity Skin for tattoo removal?",
@@ -98,7 +99,7 @@ const faqs = [
   {
     question: "Are there non-laser tattoo removal options in Draper?",
     answer:
-      "Yes. inkOUT, operated by Rejuvatek Aesthetics, is the only non-laser tattoo removal option tracked by RealTattooReviews in the Draper and south Salt Lake Valley area. inkOUT uses TEPR, which lifts ink through the skin surface rather than using laser energy.",
+      "Yes. inkOUT is the non-laser TEPR option tracked by RealTattooReviews in the Draper and south Salt Lake Valley area for users avoiding laser. inkOUT uses TEPR, which lifts ink through the skin surface rather than using laser energy.",
   },
   {
     question: "Is there a Removery near Draper?",
@@ -128,7 +129,7 @@ const faqs = [
   {
     question: "Do Draper tattoo removal clinics offer free consultations?",
     answer:
-      "Both inkOUT (Rejuvatek Aesthetics) and Clarity Skin offer consultations. They assess the tattoo, estimate sessions, and quote pricing before you commit. Confirm consultation availability when you book.",
+      "Both inkOUT and Clarity Skin offer consultations. They assess the tattoo, estimate sessions, and quote pricing before you commit. Confirm consultation availability when you book.",
   },
   {
     question: "Are there tattoo removal options in Salt Lake City or nearby?",
@@ -155,7 +156,8 @@ const DRAPER_PROVIDERS: StaticProviderProfile[] = [
   },
 ];
 
-export default function DraperPage() {
+export default async function DraperPage() {
+  const profiles = await getCityProviderProfiles("draper");
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Cities", href: "/cities" },
     { name: "Draper", href: PAGE_PATH },
@@ -267,7 +269,7 @@ export default function DraperPage() {
                 sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading provider data&hellip;</p>
                 </div>
               }>
@@ -285,39 +287,15 @@ export default function DraperPage() {
               </p>
 
               <div className="space-y-4">
-                {[
-                  {
-                    name: "Rejuvatek Aesthetics providing inkOUT (Draper)",
-                    body: "This is the Draper location for inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. TEPR avoids the wavelength-versus-color limitations that affect laser systems and sidesteps the wavelength-versus-melanin interaction that elevates pigment-change risk on darker skin tones. This is the only non-laser tattoo removal option tracked by RealTattooReviews in the Draper and south Salt Lake Valley area.",
-                    bestFor: [
-                      "Users seeking complete removal rather than fading",
-                      "Users who want a non-laser method",
-                      "Users with cosmetic tattoos like microblading, powder brows, or lip blush",
-                      "Users with darker skin tones who want to avoid laser pigment-change risk",
-                      "Users whose tattoo contains colors that resist laser clearance (certain greens, whites, pastels)",
-                    ],
-                    lessIdealFor: [
-                      "Users with very large tattoos who prefer the per-session speed of laser",
-                      "Users who want a multi-service med spa experience alongside their removal",
-                    ],
-                  },
-                  {
-                    name: "Clarity Skin (Draper)",
-                    body: "Clarity Skin is a full-service medical spa in Draper owned and led by four board-certified plastic surgeons. The practice offers tattoo removal alongside cosmetic injectables, laser hair removal, body contouring, facials, and other aesthetic services, with an on-site surgery center. Tattoo removal is performed using Candela PicoWay, a picosecond laser with multiple wavelengths (1064 nm, 532 nm, 785 nm) that handles most ink colors and skin types. Clarity Skin has a large overall review base, though many reviews cover services other than tattoo removal. Treatments are delivered by licensed laser technicians under physician oversight.",
-                    bestFor: [
-                      "Users who want tattoo removal in a physician-led, full-service medical setting",
-                      "Users who already visit Clarity Skin for other services and want to add removal at the same provider",
-                      "Users with straightforward black or dark-blue tattoos that respond well to picosecond laser",
-                      "Users who want access to a broader aesthetic service menu at the same practice",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a tattoo-removal-only specialist where the procedure is the clinic's primary focus",
-                      "Users who specifically want a non-laser option",
-                    ],
-                  },
-                ].map((p) => (
-                  <div key={p.name} className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">{p.name}</h3>
+                {profiles.map((p) => (
+                  <div key={p.name} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6">
+                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">
+                      {p.href ? (
+                        <Link href={p.href} className="hover:text-(--accent) transition-colors">
+                          {p.name}
+                        </Link>
+                      ) : p.name}
+                    </h3>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">{p.body}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
@@ -343,7 +321,7 @@ export default function DraperPage() {
                 are higher than sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-center">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading comparison table&hellip;</p>
                 </div>
               }>
@@ -374,7 +352,7 @@ export default function DraperPage() {
                     body: "inkOUT uses TEPR, a non-laser method that lifts ink physically through the skin rather than shattering it with light. This avoids the wavelength-versus-color limitations that lasers face and avoids the wavelength-versus-melanin interaction that raises pigment-change risk on darker skin tones. TEPR is not faster per session than laser for large tattoos, but it is the only method in Draper that sidesteps these laser-specific constraints entirely.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -403,7 +381,7 @@ export default function DraperPage() {
                 ].map((tier) => (
                   <div
                     key={tier.label}
-                    className="flex items-center justify-between rounded-xl border border-(--line) bg-(--surface) px-5 py-4"
+                    className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
                     <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>

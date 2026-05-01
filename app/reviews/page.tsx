@@ -182,7 +182,7 @@ export default async function ReviewsPage() {
 
       {/* ── 2. Trust strip ───────────────────────────────────────────────── */}
       <PageSection id="methodology" bg="surface" className="py-18">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-12">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-8 sm:gap-12">
           <div className="flex flex-col">
             <MonoLabel color="accent" size="sm" className="mb-4">01 /</MonoLabel>
             <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
@@ -233,7 +233,7 @@ export default async function ReviewsPage() {
             Positive and negative reviews side by side. One high-rated clinic and one complaint-flagged clinic appearing in the same section is intentional.
           </p>
         </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
           {mixedReviews.map((r) => (
             <ReviewCard key={r.id} review={r} />
           ))}

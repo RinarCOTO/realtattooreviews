@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `/reviews/${brandSlug}/${locationSlug}/` },
+    alternates: { canonical: `https://realtattooreviews.com/reviews/${brandSlug}/${locationSlug}/` },
     openGraph: { title, description },
   };
 }

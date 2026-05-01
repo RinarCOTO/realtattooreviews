@@ -19,12 +19,14 @@ import FAQSection from "@/components/sections/FAQSection";
 import {
   buildBestFor,
   buildBottomLine,
+  buildDifferentiator,
   buildFAQ,
   buildOverviewStats,
   buildPricingContext,
   buildProsConsFromReviews,
   buildResultsSummary,
   buildTreatmentOverview,
+  buildUseCaseFocus,
   getAlternativeProviders,
   getVerdictFromRating,
   summarizeSources,
@@ -52,13 +54,15 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
     ? reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length
     : provider.rating;
   const realAvg = realAvgRating.toFixed(1);
-  const verdict = getVerdictFromRating(realAvgRating);
+  const verdict = getVerdictFromRating(realAvgRating, reviews);
   const { pros, cons } = buildProsConsFromReviews(reviews);
   const resultsSummary = buildResultsSummary(reviews);
   const alternatives = getAlternativeProviders([provider], provider.slug);
-  const faqItems = buildFAQ(provider.name, provider.market);
+  const faqItems = buildFAQ(provider.name, provider.market, reviews, provider);
   const bestForData = buildBestFor([provider], reviews);
   const bottomLine = buildBottomLine(provider.name, [provider], reviews, alternatives);
+  const differentiator = buildDifferentiator(provider, reviews);
+  const useCaseFocus = buildUseCaseFocus(reviews);
   const city = provider.market.split(",")[0].trim();
   const citySlug = city.toLowerCase().replace(/\s+/g, "-");
   const jumpItems = [
@@ -105,6 +109,25 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
           <VerdictSidebar rows={buildOverviewStats(reviews)} />
         </Container>
       </section>
+
+      {(differentiator || useCaseFocus) && (
+        <section className="py-12">
+          <Container>
+            <div className="max-w-3xl space-y-4">
+              {differentiator && (
+                <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
+                  {differentiator}
+                </p>
+              )}
+              {useCaseFocus && (
+                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                  {useCaseFocus}
+                </p>
+              )}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <OverviewSection
         providerName={provider.name}

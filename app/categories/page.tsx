@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Do category pages recommend specific providers?",
     answer:
-      "Yes. Each category page identifies which providers and methods have documented positive outcomes for that case type. Recommendations are based on review-sample evidence and method fit, not advertising relationships.",
+      "Yes. Each category page identifies which providers and methods have documented positive outcomes for that case type. Recommendations are based on review-sample evidence and method fit, not on commercial relationships.",
   },
   {
     question: "Are these pages specific to a city?",
@@ -259,7 +259,7 @@ export default function CategoriesPage() {
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>.
             See our{" "}
             <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy</Link>{" "}
-            for advertising disclosures.
+            for full details.
           </p>
         </Container>
       </section>
@@ -270,7 +270,7 @@ export default function CategoriesPage() {
       <section className="py-8">
         <Container>
           <p className="max-w-2xl text-[12px] leading-relaxed text-subtle">
-            Category pages are based on the same review-sample evidence, clinical literature, and scoring methodology used across the site. inkOUT is a current advertising client of RealTattooReviews and is evaluated under the same framework as every other provider. See our{" "}
+            Category pages are based on the same review-sample evidence, clinical literature, and scoring methodology used across the site. See our{" "}
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>{" "}
             and{" "}
             <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy</Link>{" "}

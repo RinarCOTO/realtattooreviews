@@ -75,7 +75,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
               </span>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 ml-8">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 ml-4 sm:ml-8">
               <div className="rounded-lg bg-(--surface) border border-(--line) p-3 text-center">
                 <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
                   Sample

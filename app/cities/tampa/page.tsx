@@ -13,6 +13,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import CityProviderRanking from "@/components/city/CityProviderRanking";
 import CityProviderComparisonTable from "@/components/city/CityProviderComparisonTable";
 import type { StaticProviderProfile } from "@/components/city/types";
+import { getCityProviderProfiles } from "@/lib/page-data/city-profiles";
 
 export const revalidate = 3600;
 
@@ -36,7 +37,7 @@ const faqs = [
   {
     question: "What is the best tattoo removal clinic in Tampa?",
     answer:
-      "There is no single best clinic for every user. The ranked list above orders providers by current review-sample evidence and use-case fit. Arviv Medical Aesthetics is the longest-tenured medical aesthetics practice in the comparison. Removery is the deepest national chain in Tampa Bay. inkOUT is the only non-laser option and is positioned for users prioritizing lower pain or lower scarring concern. Owner-operated specialists like ReversaTatt, St Pete Tattoo Removal, EradiTatt, and Tampa Bay Tattoo Removal cover South Tampa and the Pinellas side. Match the provider to your tattoo, budget, and method preference.",
+      "There is no single best clinic for every user. The ranked list above orders providers by current review-sample evidence and use-case fit. Arviv Medical Aesthetics is the longest-tenured medical aesthetics practice in the comparison. Removery is the deepest national chain in Tampa Bay. inkOUT is the non-laser TEPR option for users avoiding laser. Owner-operated specialists like ReversaTatt, St Pete Tattoo Removal, EradiTatt, and Tampa Bay Tattoo Removal cover South Tampa, Downtown Tampa, and the Pinellas side. Match the provider to your tattoo, budget, and method preference.",
   },
   {
     question: "How much does tattoo removal cost in Tampa?",
@@ -51,12 +52,12 @@ const faqs = [
   {
     question: "Where can I get tattoo removal in Tampa Bay?",
     answer:
-      "Providers serve the entire metro. Westchase and NW Tampa host Arviv Medical Aesthetics. West Tampa hosts Erasable Med Spa. South Tampa hosts ReversaTatt. Westshore hosts Removery. inkOUT (Rejuvatek) serves the Tampa Bay metro as the only non-laser option. Pinellas Park and St. Petersburg host St Pete Tattoo Removal and EradiTatt. Clearwater hosts Tampa Bay Tattoo Removal. Choose by proximity once you have narrowed by method and provider fit.",
+      "Tattoo removal Tampa FL providers serve the entire metro. Westchase and NW Tampa host Arviv Medical Aesthetics. West Tampa hosts Erasable Med Spa. South Tampa, Hyde Park, and Downtown Tampa are served by ReversaTatt and the Westshore-area clinics. Westshore hosts Removery. inkOUT serves the Tampa Bay metro as the non-laser TEPR option. Pinellas Park and St. Petersburg host St Pete Tattoo Removal and EradiTatt. Clearwater hosts Tampa Bay Tattoo Removal. Choose by proximity once you have narrowed by method and provider fit.",
   },
   {
     question: "What laser tattoo removal options are available in Tampa?",
     answer:
-      "Picosecond options include Candela PicoWay (Arviv, Erasable, Removery). Other Tampa Bay providers use Q-switched or multi-application systems like Fotona. inkOUT (Rejuvatek) is the only non-laser TEPR option in the metro. Laser tattoo removal Tampa Bay coverage extends across both sides of the bay through the providers above.",
+      "Picosecond options include Candela PicoWay (Arviv, Erasable, Removery). Other Tampa Bay providers use Q-switched or multi-application systems like Fotona. inkOUT is the non-laser TEPR option in the metro for users avoiding laser entirely. Laser tattoo removal Tampa Bay coverage extends across both sides of the bay through the providers above.",
   },
   {
     question: "How many sessions does tattoo removal take?",
@@ -71,7 +72,7 @@ const faqs = [
   {
     question: "Are there non-laser tattoo removal options in Tampa?",
     answer:
-      "Yes. inkOUT, operated by Rejuvatek Medical, serves the Tampa Bay metro and is the only non-laser tattoo removal option in the area. inkOUT uses TEPR (Trans-Epidermal Pigment Release), which lifts ink out through the skin surface rather than shattering it with laser pulses.",
+      "Yes. inkOUT serves the Tampa Bay metro as the non-laser TEPR option in the area. inkOUT uses TEPR (Trans-Epidermal Pigment Release), which lifts ink out through the skin surface rather than shattering it with laser pulses.",
   },
   {
     question: "Do any Tampa clinics guarantee tattoo removal results?",
@@ -154,7 +155,8 @@ const TAMPA_PROVIDERS: StaticProviderProfile[] = [
   },
 ];
 
-export default function TampaPage() {
+export default async function TampaPage() {
+  const profiles = await getCityProviderProfiles("tampa");
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Cities", href: "/cities" },
     { name: "Tampa", href: PAGE_PATH },
@@ -234,8 +236,8 @@ export default function TampaPage() {
                   Clearwater together as a single tattoo removal Tampa Bay market because that
                   is how users actually shop. Specialist studios cluster in central Tampa and on
                   the St. Pete side. Med spas with tattoo removal as one service line spread
-                  across both sides of the bay. The only non-laser option in the metro serves
-                  the Tampa Bay area on a flexible-location basis.
+                  across both sides of the bay. The non-laser TEPR option (inkOUT) serves the
+                  Tampa Bay area on a flexible-location basis.
                 </p>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
@@ -269,7 +271,7 @@ export default function TampaPage() {
               </p>
               <Suspense
                 fallback={
-                  <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                  <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
                     <p className="font-sans text-[14px] text-(--muted) m-0">
                       Loading provider data&hellip;
                     </p>
@@ -290,115 +292,17 @@ export default function TampaPage() {
               </p>
 
               <div className="space-y-4">
-                {[
-                  {
-                    name: "Arviv Medical Aesthetics (Westchase / NW Tampa)",
-                    body: "Arviv Medical Aesthetics is at 11329 Countryway Blvd in the Westchase area of NW Tampa. The clinic is a medical aesthetics practice led by Dr. Yael Arviv that handles tattoo removal alongside CoolSculpting, hair removal, microneedling, injectables, and other dermatologic procedures. Arviv uses Candela PicoWay, a picosecond laser that handles most ink colors, and offers free consultations.",
-                    bestFor: [
-                      "Users in NW Tampa, Westchase, or the bay's western edge who want a medical practice with deep aesthetics service depth",
-                      "Users with cosmetic or eyebrow-area tattoo removal cases",
-                      "Users who prefer a long-tenured Tampa practice",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a tattoo-removal-only specialist where the procedure is a primary service rather than one offering among many",
-                    ],
-                  },
-                  {
-                    name: "Erasable Med Spa (West Tampa / Armenia)",
-                    body: "Erasable Med Spa is at 4103 N Armenia Ave in West Tampa, near the West Tampa neighborhood and accessible to South Tampa, Hyde Park, and Westshore. The clinic offers tattoo removal alongside MOXI laser, scar treatment, HydraFacial, Botox, and other med spa services. Erasable uses Candela PicoWay, a picosecond laser that handles most ink colors and skin types. The clinic emphasizes patient comfort and runs a Teal program with discounts and savings.",
-                    bestFor: [
-                      "Users in central or West Tampa who want a comfortable med spa setting",
-                      "Users with sensitive skin or eczema who want a methodical consultation",
-                      "Users with cosmetic tattoo or microblading removal needs",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a tattoo-removal-only specialist focus",
-                      "Users in St. Petersburg or Clearwater who would face a longer drive than a closer option",
-                    ],
-                  },
-                  {
-                    name: "inkOUT (Rejuvatek) Tampa Bay Metro",
-                    body: "inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical, serves the Tampa Bay metro. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. This is the only non-laser option in the Tampa Bay area for users who want to avoid laser-based treatment entirely.",
-                    bestFor: [
-                      "Users seeking complete removal rather than fading",
-                      "Users prioritizing a lower-pain method",
-                      "Users prioritizing lower scarring risk",
-                      "Users with cosmetic tattoos like microblading or lip blush",
-                      "Users with darker skin tones who want to avoid laser pigment-change risk",
-                      "Users seeking complete removal without laser-clearance limitations on certain ink colors",
-                    ],
-                    lessIdealFor: [
-                      "Users with very large tattoos who prefer the per-session speed of laser",
-                      "Users who want a long-established public review history at a fixed Tampa Bay address",
-                    ],
-                  },
-                  {
-                    name: "ReversaTatt Tattoo Removal (South Tampa / Henderson Blvd)",
-                    body: "ReversaTatt is a tattoo-removal-only specialist at 3202 Henderson Blvd Suite 100A in South Tampa, near Hyde Park and Westshore. The clinic emphasizes upfront, realistic timeline expectations and a quick session model. ReversaTatt offers free consultations and per-session pricing.",
-                    bestFor: [
-                      "Users in South Tampa, Hyde Park, or downtown Tampa who want a tattoo-removal-only specialist",
-                      "Users who want quick session scheduling and short appointment times",
-                    ],
-                    lessIdealFor: [
-                      "Users in St. Petersburg or Clearwater who would face a cross-bay drive",
-                      "Users who want a med spa with multiple service options",
-                    ],
-                  },
-                  {
-                    name: "Removery (Westshore)",
-                    body: "Removery's Westshore Tampa location is at 130 S Westshore Blvd Suite 2B. Removery is a national tattoo-removal-only chain that uses Candela PicoWay, a picosecond laser handling most ink colors and skin types. Removery offers a Complete Removal Package model that caps the total cost regardless of session count, with internal payment plans available.",
-                    bestFor: [
-                      "Users who want package pricing with unlimited sessions",
-                      "Users planning to relocate or travel during their removal series",
-                      "Users who prefer a national-chain experience with consistent protocols",
-                      "Users in Westshore, downtown Tampa, or the airport corridor",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a smaller, owner-operated studio",
-                      "Users who specifically want non-laser options",
-                    ],
-                  },
-                  {
-                    name: "Tampa Bay Tattoo Removal (Clearwater)",
-                    body: "Tampa Bay Tattoo Removal is at 2561 Nursery Rd Suite C in Clearwater. The clinic is owner-operated by a husband-wife team and serves the Pinellas County side of the metro. The clinic emphasizes upfront pricing and consultations that set realistic session-count expectations.",
-                    bestFor: [
-                      "Users in Clearwater, Largo, Pinellas Park, or western Pinellas County",
-                      "Users who prefer an owner-operated specialist with continuity across the treatment series",
-                      "Users who want fair pricing without a chain markup",
-                    ],
-                    lessIdealFor: [
-                      "Users on the Tampa side of the bay, where multiple closer options exist",
-                    ],
-                  },
-                  {
-                    name: "St Pete Tattoo Removal (Pinellas Park)",
-                    body: "St Pete Tattoo Removal is at 8130 66th St N Suite 9 in Pinellas Park, between St. Petersburg and Clearwater. The clinic is owner-operated and known for cosmetic tattoo work, including powder brows and microblading removal. The clinic emphasizes patient education and honest pre-treatment expectations.",
-                    bestFor: [
-                      "Users in St. Petersburg, Pinellas Park, or central Pinellas County",
-                      "Users with cosmetic tattoo cases like powder brows, microblading, or lip blush",
-                      "Users who want an honest, non-pushy consultation",
-                    ],
-                    lessIdealFor: [
-                      "Users on the Tampa side of the bay seeking a closer central-Tampa option",
-                    ],
-                  },
-                  {
-                    name: "EradiTatt Tattoo Removal of St. Petersburg",
-                    body: "EradiTatt is at 9210 4th St N Suite A in St. Petersburg. The clinic is a tattoo-removal-only specialist with newer market presence in St. Pete proper.",
-                    bestFor: [
-                      "Users in St. Petersburg or northern Pinellas who want a tattoo-removal-only specialist closer to home than the Tampa-side providers",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking the largest sample size of public reviews to evaluate against, since the location has a smaller lifetime review base than longer-established metro providers",
-                    ],
-                  },
-                ].map((p) => (
+                {profiles.map((p) => (
                   <div
                     key={p.name}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-6"
+                    className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6"
                   >
                     <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">
-                      {p.name}
+                      {p.href ? (
+                        <Link href={p.href} className="hover:text-(--accent) transition-colors">
+                          {p.name}
+                        </Link>
+                      ) : p.name}
                     </h3>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">
                       {p.body}
@@ -432,7 +336,7 @@ export default function TampaPage() {
               </p>
               <Suspense
                 fallback={
-                  <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-center">
+                  <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
                     <p className="font-sans text-[14px] text-(--muted) m-0">
                       Loading comparison table&hellip;
                     </p>
@@ -464,12 +368,12 @@ export default function TampaPage() {
                   },
                   {
                     title: "Cross-bay considerations",
-                    body: "The Howard Frankland and Gandy bridges put central Tampa within 25 to 35 minutes of central St. Petersburg outside rush hour. Removery's Westshore location is the closest Tampa-side chain to the Pinellas crossing. Arviv and Erasable serve users willing to cross for a med spa or higher-volume practice. inkOUT (Rejuvatek) serves the metro on a flexible-location basis as the only non-laser provider in Tampa Bay.",
+                    body: "The Howard Frankland and Gandy bridges put central Tampa within 25 to 35 minutes of central St. Petersburg outside rush hour. Removery's Westshore location is the closest Tampa-side chain to the Pinellas crossing. Arviv and Erasable serve users willing to cross for a med spa or higher-volume practice. inkOUT serves the metro on a flexible-location basis as the non-laser TEPR provider in Tampa Bay.",
                   },
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-5"
+                    className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5"
                   >
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
                       {item.title}
@@ -512,7 +416,7 @@ export default function TampaPage() {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-5"
+                    className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5"
                   >
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
                       {item.title}
@@ -541,7 +445,7 @@ export default function TampaPage() {
                 ].map((tier) => (
                   <div
                     key={tier.label}
-                    className="flex items-center justify-between rounded-xl border border-(--line) bg-(--surface) px-5 py-4"
+                    className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
                     <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">
@@ -559,7 +463,7 @@ export default function TampaPage() {
                 owner-operated studio package options) caps that total.
               </p>
 
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+              <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                 <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
                   Financing and guarantees
                 </p>
@@ -588,7 +492,7 @@ export default function TampaPage() {
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The ranked list above is generated from a structured analysis of the most recent
                 public reviews per provider. Tampa Bay is a metro-wide market with ten tracked
-                providers spread across both sides of the bay — from national chains like Removery
+                providers spread across both sides of the bay, from national chains like Removery
                 to owner-operated Pinellas specialists like St Pete Tattoo Removal and Tampa Bay
                 Tattoo Removal. We weighted six factors:
               </p>
@@ -596,7 +500,7 @@ export default function TampaPage() {
                 items={[
                   "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone. Arviv Medical Aesthetics and Erasable Med Spa carry established Tampa-side review histories. Pinellas-side specialists like St Pete Tattoo Removal and Tampa Bay Tattoo Removal have smaller but focused removal-specific review bases.",
                   "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. St Pete Tattoo Removal shows notable cosmetic tattoo removal signals in its review base.",
-                  "Method specialization. Tattoo-removal-only specialists — ReversaTatt, St Pete Tattoo Removal, EradiTatt, Tampa Bay Tattoo Removal, Removery — generally outperform multi-service med spas like Arviv and Erasable on complex or high-session-count cases.",
+                  "Method specialization. Tattoo-removal-only specialists (ReversaTatt, St Pete Tattoo Removal, EradiTatt, Tampa Bay Tattoo Removal, Removery) generally outperform multi-service med spas like Arviv and Erasable on complex or high-session-count cases.",
                   "Technology fit for the case. Picosecond systems (Arviv and Erasable's PicoWay, Removery's PicoWay) suit difficult colors and stubborn ink. Other Tampa Bay providers use Q-switched or multi-application systems for standard cases. inkOUT's TEPR suits cosmetic tattoos, darker skin tones, and users avoiding laser entirely.",
                   "Pricing transparency and access. Providers with published pricing rank above those that withhold it until consultation. Providers with payment plans rank for users who need spread cost.",
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
@@ -638,9 +542,34 @@ export default function TampaPage() {
             <GuideRelatedLinks
               links={[
                 {
+                  href: "/reviews/arviv-medical-aesthetics",
+                  title: "Arviv Medical Aesthetics Reviews",
+                  desc: "Provider profile for the longest-tenured Tampa medical aesthetics practice.",
+                },
+                {
+                  href: "/reviews/reversatatt",
+                  title: "ReversaTatt Reviews",
+                  desc: "South Tampa owner-operated tattoo removal specialist.",
+                },
+                {
+                  href: "/reviews/removery",
+                  title: "Removery Reviews",
+                  desc: "Brand-level review profile covering Removery's Westshore location and the national network.",
+                },
+                {
                   href: "/comparisons/best-tattoo-removal-method",
                   title: "Best Tattoo Removal Method",
                   desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
+                },
+                {
+                  href: "/guides/tattoo-removal-healing-process",
+                  title: "Healing Process Guide",
+                  desc: "Stage-by-stage timeline of what to expect after each session, across laser and non-laser methods.",
+                },
+                {
+                  href: "/guides/tattoo-removal-scarring",
+                  title: "Scarring Guide",
+                  desc: "When scarring happens, why it happens, and how to evaluate providers on scarring track record.",
                 },
                 {
                   href: "/cost",
@@ -662,7 +591,7 @@ export default function TampaPage() {
         </Container>
       </section>
 
-      <FAQSection faqs={faqs} />
+      <FAQSection title="Frequently Asked Questions About Tattoo Removal in Tampa" faqs={faqs} />
     </div>
     </BlobBackground>
   );

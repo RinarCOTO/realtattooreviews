@@ -361,10 +361,6 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               <Link href="/editorial-policy" className="text-(--accent) hover:underline">
                 editorial policy
               </Link>
-              .{" "}
-              <Link href="/contact" className="text-(--accent) hover:underline">
-                To request a correction, contact us
-              </Link>
               .
             </p>
             {review.lastReviewed && (

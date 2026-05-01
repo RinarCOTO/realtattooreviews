@@ -7,7 +7,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}`,                    priority: 1.0, changeFrequency: "daily" },
     { url: `${BASE_URL}/providers`,          priority: 0.9, changeFrequency: "weekly" },
-    { url: `${BASE_URL}/reviews`,            priority: 0.9, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/reviews`,                                          priority: 0.9, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/reviews/laseraway`,                                priority: 0.9, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/blog/how-to-choose-a-tattoo-removal-provider`,     priority: 0.7, changeFrequency: "monthly" },
     { url: `${BASE_URL}/categories`,         priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/comparisons`,        priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/guides`,             priority: 0.8, changeFrequency: "weekly" },
@@ -18,7 +20,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/methodology`,        priority: 0.5, changeFrequency: "yearly" },
     { url: `${BASE_URL}/editorial-policy`,   priority: 0.5, changeFrequency: "yearly" },
     { url: `${BASE_URL}/about`,              priority: 0.4, changeFrequency: "yearly" },
-    { url: `${BASE_URL}/contact`,            priority: 0.3, changeFrequency: "yearly" },
   ];
 
   const [blogs, guides, categories, comparisons, providers, cities] =

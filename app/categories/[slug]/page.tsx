@@ -34,21 +34,21 @@ const CARD_DATA: Record<string, CardData> = {
   "microblading-removal": {
     heading: "Microblading Removal",
     fallbackImage: {
-      src: "/images/category-heroes/microblading-removal.webp",
+      src: "/images/categories/microblading-procedure-bg.webp",
       alt: "Eyebrow microblading tattoo before saline removal treatment",
     },
   },
   "permanent-makeup-removal": {
     heading: "PMU Removal",
     fallbackImage: {
-      src: "/images/category-heroes/permanent-makeup-removal.webp",
+      src: "/images/category-heroes/permanent-make-up-removal-bg.jpg",
       alt: "Permanent makeup lip blush and eyebrow tattoo removal process",
     },
   },
   "dark-skin-tattoo-removal": {
     heading: "Dark Skin Removal",
     fallbackImage: {
-      src: "/images/category-heroes/dark-skin-tattoo-removal.webp",
+      src: "/images/category-heroes/dark-skin-tattoo-removal-bg-1.jpg",
       alt: "Laser tattoo removal on darker skin tone Fitzpatrick IV to VI",
     },
   },
@@ -69,14 +69,14 @@ const CARD_DATA: Record<string, CardData> = {
   "cover-up-prep": {
     heading: "Cover-Up Prep",
     fallbackImage: {
-      src: "/images/category-heroes/cover-up-prep.webp",
+      src: "/images/category-heroes/tattoo-coverup-prep-bg.jpg",
       alt: "Tattoo fading progress for cover-up preparation after laser sessions",
     },
   },
   "scarring-concerns": {
     heading: "Scarring Risk",
     fallbackImage: {
-      src: "/images/category-heroes/scarring-concerns.webp",
+      src: "/images/category-heroes/laser-tattoo-removal-scars-bg.jpeg",
       alt: "Skin texture assessment for tattoo removal scarring risk evaluation",
     },
   },

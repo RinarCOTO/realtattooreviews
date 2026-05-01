@@ -34,11 +34,11 @@ export default function HowItWorksCards({ steps }: Props) {
   }, []);
 
   return (
-    <div ref={ref} className="grid gap-8 sm:grid-cols-3">
+    <div ref={ref} className="grid gap-5 sm:gap-8 sm:grid-cols-3">
       {steps.map((step, i) => (
         <div
           key={step.stepNumber}
-          className="flex flex-col bg-white rounded-2xl p-6 text-center shadow-[-3px_5px_12px_rgba(200,230,228,0.3),3px_5px_12px_rgba(245,221,208,0.3)] transition-all duration-500"
+          className="flex flex-col bg-white rounded-2xl p-4 sm:p-6 text-center shadow-[-3px_5px_12px_rgba(200,230,228,0.3),3px_5px_12px_rgba(245,221,208,0.3)] transition-all duration-500"
           style={{
             transitionDelay: `${i * 150}ms`,
             opacity: visible ? 1 : 0,

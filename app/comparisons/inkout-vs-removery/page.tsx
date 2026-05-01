@@ -7,14 +7,15 @@ import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
-import MonoLabel from "@/components/reviews/MonoLabel";
 import FAQSection from "@/components/sections/FAQSection";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
 import ContentCard from "@/components/comparison/ContentCard";
 import BrandTableHeader from "@/components/comparison/BrandTableHeader";
 import PageHero from "@/components/layout/PageHero";
-import PageSection from "@/components/reviews/PageSection";
 import SectionHeading from "@/components/guide/SectionHeading";
+import BlobBackground from "@/components/ui/BlobBackground";
+import JumpNav from "@/components/provider/JumpNav";
+import Container from "@/components/layout/Container";
 
 export const revalidate = 3600;
 
@@ -46,7 +47,7 @@ const faqs = [
   {
     question: "Which has better tattoo removal results, inkOUT or Removery?",
     answer:
-      "Both target full clearance. The cross-city evidence on this page shows positive complete-removal outcomes for both brands in the markets where we have data. Results in any individual case depend on the tattoo, the skin, the ink, and the provider's protocol more than the brand label. Look at the use-case fit signals in the evidence table for the better answer to \"which performs better on my type of tattoo.\"",
+      "Both target full clearance. The cross-city evidence on this page shows positive complete-removal outcomes for both brands in the markets where we have data. Results in any individual case depend on the tattoo, the skin, the ink, and the provider's protocol more than the brand label. Look at the use-case fit signals in the evidence table for the better answer to which performs better on my type of tattoo.",
   },
   {
     question: "Is TEPR better than PicoWay?",
@@ -100,6 +101,17 @@ const GLANCE_ROWS: [string, string, string][] = [
   ["Free consultation", "Yes", "Yes"],
 ];
 
+const jumpItems = [
+  { label: "At a Glance", href: "#glance" },
+  { label: "TEPR vs PicoWay", href: "#tech" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Results & Pain", href: "#results" },
+  { label: "Use Cases", href: "#use-cases" },
+  { label: "Review Evidence", href: "#evidence" },
+  { label: "Verdict", href: "#verdict" },
+  { label: "FAQ", href: "#faq" },
+];
+
 export default function InkoutVsRemoveryPage() {
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Comparisons", href: "/comparisons" },
@@ -121,477 +133,486 @@ export default function InkoutVsRemoveryPage() {
   const faqJsonLd = faqSchema(faqs);
 
   return (
-    <div className="reviews-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+    <BlobBackground>
+      <main className="reviews-page min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
 
-      {/* Hero */}
-      <PageHero
-        label={
-          <>
-            <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
-              Comparisons
-            </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
-              inkOUT vs Removery
-            </span>
-          </>
-        }
-        title={
-          <>
-            inkOUT vs <span className="text-(--accent)">Removery</span>
-          </>
-        }
-        subtitle="Compare TEPR and PicoWay tattoo removal, including pricing, pain, scarring risk, and which provider fits different use cases."
-      />
-
-      {/* Intro */}
-      <PageSection bg="none" noBorder>
-        <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
-            inkOUT and Removery are two of the most-asked-about tattoo removal brands today.
-            They are also two of the most different. Removery is a national tattoo-removal-only
-            chain. It uses the Candela PicoWay laser. inkOUT is a non-laser brand. It uses TEPR (Trans-Epidermal Pigment Release). TEPR lifts ink
-            out of the skin instead of using light to fragment it. The decision is rarely about
-            which brand is bigger. It is about which method fits your tattoo, your skin type,
-            and your removal goal.
-          </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0 mt-4">
-            This page is a side-by-side comparison built to support that decision. inkOUT vs
-            Removery is the right question if you are choosing between non-laser and laser
-            approaches in markets where both are available. The page does not pretend either
-            brand wins universally. It explains the real differences clearly, then identifies
-            who each brand serves best.
-          </p>
-      </PageSection>
-
-      {/* At a glance */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>inkOUT vs Removery at a Glance</SectionHeading>
-        <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl">
-            The most useful one-screen view of inkOUT vs Removery is the structural difference
-            between the two brands. The table below summarizes the categorical differences.
-            Quantitative review evidence appears further down in the cross-city evidence section.
-          </p>
-          <GuideTable
-            headers={[
-              "",
-              <BrandTableHeader key="inkout" name="inkOUT" logoSrc="/images/providers/logos/inkout-logo.jpg" />,
-              <BrandTableHeader key="removery" name="Removery" logoSrc="/images/providers/logos/removery-logo.png" />,
-            ]}
-            rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
-            winners={[null, null, null, 1, 1, 2, 2, null, null]}
-          />
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl">
-            The structural comparison sets the frame. The use-case comparison further down
-            translates these structural differences into who each brand actually serves best.
-          </p>
-        </div>
-      </PageSection>
-
-      {/* TEPR vs PicoWay */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading label="Key Difference">The Key Difference: TEPR vs PicoWay</SectionHeading>
-        <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              The TEPR vs PicoWay distinction is the real comparison underneath inkOUT vs
-              Removery. Almost every other difference between the two brands flows from this one
-              technical choice.
-            </p>
-
-            <div className="space-y-3">
-              {[
-                {
-                  title: "PicoWay",
-                  body: "PicoWay is a picosecond laser. Picosecond lasers deliver pulses in the trillionths-of-a-second range. The pulse is short enough to shatter ink particles into smaller fragments through photoacoustic energy. The body's lymphatic system then clears the fragments over the weeks following each session. PicoWay handles most ink colors. The platform offers multiple wavelengths (typically 1064 nm, 532 nm, and 785 nm) to address black, blue, red, green, and other inks.",
-                },
-                {
-                  title: "TEPR",
-                  body: "TEPR (Trans-Epidermal Pigment Release) is not a laser. Rather than shattering ink with light, TEPR works mechanically. The treatment encourages ink to lift upward through the epidermis. The skin then sheds it naturally over the weeks following each session. TEPR does not rely on light wavelengths interacting with ink color. The method is not bound by the wavelength-versus-color limitations that affect every laser modality.",
-                },
-              ].map((item) => (
-                <ContentCard
-                  key={item.title}
-                  title={item.title}
-                  body={item.body}
-                />
-              ))}
-            </div>
-
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              The implications stack up across the rest of the comparison:
-            </p>
-            <GuideBulletList
-              items={[
-                "Color performance. PicoWay strength on a given color depends on its wavelength options. TEPR performance is not color-bound in the same way.",
-                "Skin tone. Laser methods carry a known wavelength-versus-melanin interaction in darker Fitzpatrick skin types. TEPR does not interact with melanin in the same way.",
-                "Pain profile. Laser is typically described as a thick rubber band snapping against the skin. TEPR is typically described as moderate, similar to the sensation of getting a tattoo.",
-                "Outcome target. Laser is well-suited to fading toward complete removal across many sessions. TEPR is positioned for complete removal as the primary outcome.",
-              ]}
-            />
-          </div>
-      </PageSection>
-
-      {/* Pricing */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>inkOUT vs Removery: Pricing and Cost Comparison</SectionHeading>
-        <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              inkOUT vs Removery cost decisions hinge on the pricing model as much as on the
-              per-session price.
-            </p>
-
-            <div className="space-y-3">
-              {[
-                {
-                  title: "Removery pricing",
-                  body: "Removery uses a Complete Removal Package model. The brand quotes a total cost at consultation based on tattoo size, ink density, and complexity. The package covers unlimited sessions until the tattoo is removed, regardless of how many sessions that takes. Removery also offers per-session pricing. Monthly payment plans are available within the package model. The Complete Removal Package effectively functions as a results guarantee within the package terms.",
-                },
-                {
-                  title: "inkOUT pricing",
-                  body: "inkOUT typically uses a per-session pricing model. Package options are available for users who want a multi-session commitment. Per-session pricing is set at consultation and varies by tattoo size, ink density, and complexity. inkOUT generally positions packages around expected complete-removal session counts rather than around an unlimited-sessions guarantee.",
-                },
-              ].map((item) => (
-                <ContentCard
-                  key={item.title}
-                  title={item.title}
-                  body={item.body}
-                />
-              ))}
-            </div>
-
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              Useful framing for cost comparison:
-            </p>
-            <GuideBulletList
-              items={[
-                "Per-session price. Both brands set per-session pricing at consultation. Direct per-session comparison requires consultations at both providers.",
-                "Total cost certainty. Removery's Complete Removal Package caps total cost. This is meaningful for users uncertain how many sessions their tattoo will need.",
-                "Cost-per-result. Both brands target measurable outcomes per session. Cost-per-clear-tattoo (rather than cost-per-session) is the more useful comparison for users planning complete removal.",
-                "Consultation cost. Both brands offer free consultations, so two consultations cost nothing and produce two comparable quotes.",
-              ]}
-            />
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              For national pricing context across all methods and tattoo sizes, see the{" "}
-              <Link href="/cost" className="text-(--accent) hover:underline">
-                cost guide
+        <PageHero
+          label={
+            <>
+              <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
+                Comparisons
               </Link>
-              .
-            </p>
-          </div>
-      </PageSection>
+              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+              <span className="text-(--muted) font-normal normal-case tracking-normal">
+                inkOUT vs Removery
+              </span>
+            </>
+          }
+          title={
+            <>
+              inkOUT vs <span className="text-(--accent)">Removery</span>
+            </>
+          }
+          subtitle="Compare TEPR and PicoWay tattoo removal, including pricing, pain, scarring risk, and which provider fits different use cases."
+        />
 
-      {/* Results, scarring, pain */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>inkOUT vs Removery: Results, Scarring, and Pain</SectionHeading>
-        <div className="space-y-4">
-            <div className="space-y-3">
-              {[
-                {
-                  title: "Results",
-                  body: "Both brands target tattoo clearance. Framing differs. Removery's Complete Removal Package treats results as the package goal across unlimited sessions. Most tattoos clear in the typical 6-to-12-session range for picosecond laser. inkOUT positions complete removal as a primary outcome. Session counts vary by tattoo size and ink density. Neither brand controls every variable that affects clearance. Ink composition, depth, and skin response are case-specific.",
-                },
-                {
-                  title: "Scarring risk",
-                  body: "Scarring is method-sensitive and skin-sensitive. Removery's PicoWay is on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by using a non-laser mechanical mechanism, a structural difference relevant to scarring risk. Provider conservatism with intensity, technique, and session spacing matters more than the brand label. Both brands offer free consultations where you can ask about starting intensity, scarring rate, and what the studio does when a tattoo responds aggressively.",
-                },
-                {
-                  title: "Pain",
-                  body: "Most users describe Removery's PicoWay session as similar to a thick rubber band snapping against the skin. Sessions for small tattoos are typically under 10 minutes. inkOUT's TEPR has a different pain profile. Users typically describe it as moderate, comparable to the sensation of getting a tattoo, rather than sharp. Pain tolerance is personal. A consultation is the most reliable way to gauge fit before committing.",
-                },
-              ].map((item) => (
-                <ContentCard
-                  key={item.title}
-                  title={item.title}
-                  body={item.body}
-                />
-              ))}
-            </div>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              For deeper context on scarring, see{" "}
-              <Link href="/guides/tattoo-removal-scarring" className="text-(--accent) hover:underline">
-                tattoo removal scarring
-              </Link>
-              . For visual outcome reference, see the{" "}
-              <Link href="/before-and-after" className="text-(--accent) hover:underline">
-                before-and-after gallery
-              </Link>
-              .
-            </p>
-          </div>
-      </PageSection>
+        <JumpNav items={jumpItems} />
 
-      {/* Use cases: dark skin, color, complete removal */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>inkOUT vs Removery: Best for Dark Skin, Color Ink, and Complete Removal</SectionHeading>
-        <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              Three high-stakes use cases drive most inkOUT vs Removery decisions. Each has a
-              clear answer based on the structural difference between TEPR and PicoWay.
-            </p>
+        <section className="py-6">
+          <Container>
+            <div className="mx-auto max-w-3xl">
 
-            <div className="space-y-3">
-              {[
-                {
-                  title: "Dark skin",
-                  body: "Laser tattoo removal is safe for darker Fitzpatrick skin types in experienced hands. The wavelength-versus-melanin interaction is real. Aggressive laser settings on darker skin carry elevated risk of post-inflammatory hyperpigmentation or hypopigmentation. PicoWay is on the lower-risk side of the laser spectrum compared to Q-switched. Removery providers are typically experienced with adjusting protocols by skin tone. TEPR (inkOUT) avoids the wavelength-versus-melanin interaction by mechanism. For users prioritizing avoidance of any laser-pigment-change risk, TEPR is the structurally lower-risk option.",
-                },
-                {
-                  title: "Color ink",
-                  body: "Color ink performance under laser depends on which wavelengths the laser offers and how the ink absorbs at those wavelengths. PicoWay's multi-wavelength platform handles black, blue, red, and green well across most cases. There is some difficulty on light blue, white, and yellow shades. TEPR is not wavelength-bound. Its performance on color ink does not depend on color absorption. For mixed-color tattoos, both brands are reasonable starting points. The determinant is consultation-specific assessment of ink behavior.",
-                },
-                {
-                  title: "Complete removal",
-                  body: "This is where inkOUT positions most strongly. TEPR's mechanism is built around lifting ink out of the skin rather than fragmenting and waiting for clearance. Removery's Complete Removal Package is the laser-side equivalent: a structured commitment to full removal across unlimited sessions for a capped price. The choice between them on complete removal is mechanism preference more than outcome difference.",
-                },
-                {
-                  title: "PMU and microblading removal",
-                  body: "Cosmetic tattoo removal (microblading, powder brows, lip blush, eyeliner) is harder than body tattoo removal. Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser, a known consideration for any laser removal of cosmetic tattoos. TEPR avoids this risk because it does not use light. inkOUT is structurally well-suited to PMU and microblading cases. Removery handles cosmetic cases as well. Ask specifically about the studio's cosmetic-tattoo experience at consultation.",
-                },
-              ].map((item) => (
-                <ContentCard
-                  key={item.title}
-                  title={item.title}
-                  body={item.body}
-                />
-              ))}
-            </div>
-          </div>
-      </PageSection>
+              {/* Intro */}
+              <div className="py-12 space-y-4">
+                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  inkOUT and Removery are two of the most-asked-about tattoo removal brands today.
+                  They are also two of the most different. Removery is a national tattoo-removal-only
+                  chain. It uses the Candela PicoWay laser. inkOUT is a non-laser brand. It uses TEPR (Trans-Epidermal Pigment Release). TEPR lifts ink
+                  out of the skin instead of using light to fragment it. The decision is rarely about
+                  which brand is bigger. It is about which method fits your tattoo, your skin type,
+                  and your removal goal.
+                </p>
+                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  This page is a side-by-side comparison built to support that decision. inkOUT vs
+                  Removery is the right question if you are choosing between non-laser and laser
+                  approaches in markets where both are available. The page does not pretend either
+                  brand wins universally. It explains the real differences clearly, then identifies
+                  who each brand serves best.
+                </p>
+              </div>
 
-      {/* Cross-city evidence */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>Cross-City Review Evidence</SectionHeading>
-        <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              The evidence below shows how inkOUT and Removery compare across cities where we
-              have direct review-sample data. Sample sizes reflect the most recent reviews
-              captured per provider location in our internal review dataset. Lifetime Google
-              review counts on each provider's business listing are higher than the sample sizes
-              shown.
-            </p>
-            <Suspense
-              fallback={
-                <div className="rounded-xl bg-white p-8 text-center">
-                  <p className="font-sans text-[14px] text-(--muted) m-0">
-                    Loading evidence table&hellip;
+              {/* At a glance */}
+              <div id="glance" className="py-12">
+                <SectionHeading>inkOUT vs Removery at a Glance</SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                    The most useful one-screen view of inkOUT vs Removery is the structural difference
+                    between the two brands. The table below summarizes the categorical differences.
+                    Quantitative review evidence appears further down in the cross-city evidence section.
+                  </p>
+                  <GuideTable
+                    headers={[
+                      "",
+                      <BrandTableHeader key="inkout" name="inkOUT" logoSrc="/images/providers/logos/inkout-logo.jpg" />,
+                      <BrandTableHeader key="removery" name="Removery" logoSrc="/images/providers/logos/removery-logo.png" />,
+                    ]}
+                    rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
+                    winners={[null, null, null, 1, 1, 2, 2, null, null]}
+                  />
+                  <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                    The structural comparison sets the frame. The use-case comparison further down
+                    translates these structural differences into who each brand actually serves best.
                   </p>
                 </div>
-              }
-            >
-              <BrandComparisonEvidence
-                brandA="inkOUT"
-                brandB="Removery"
-                brandBPendingCities={["Tampa", "Houston"]}
-              />
-            </Suspense>
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              The table updates as our scrape refreshes. Use the cross-city evidence as a
-              reference, not a verdict, since both brands operate in markets not yet fully
-              captured in our scrape.
-            </p>
-          </div>
-      </PageSection>
+              </div>
 
-      {/* Pros and cons of inkOUT */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>Pros and Cons of inkOUT</SectionHeading>
-        <div className="space-y-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <ContentCard title="Pros" titleSize="sm">
-                <GuideBulletList
-                  items={[
-                    "Only major non-laser tattoo removal brand at scale in the US market",
-                    "Mechanism does not depend on wavelength-versus-color interaction, so color ink performance is not bound by laser color limitations",
-                    "Mechanism does not interact with melanin in the way laser does, lowering the structural pigment-change risk for darker skin tones",
-                    "Positioned around complete removal as the primary outcome rather than fading",
-                    "Well-suited to cosmetic tattoo removal cases where iron-oxide pigments can darken paradoxically under laser",
-                    "Free consultations to confirm fit before committing",
+              {/* TEPR vs PicoWay */}
+              <div id="tech" className="py-12">
+                <SectionHeading label="Key Difference">The Key Difference: TEPR vs PicoWay</SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    The TEPR vs PicoWay distinction is the real comparison underneath inkOUT vs
+                    Removery. Almost every other difference between the two brands flows from this one
+                    technical choice.
+                  </p>
+
+                  <div className="space-y-3">
+                    {[
+                      {
+                        title: "PicoWay",
+                        body: "PicoWay is a picosecond laser. Picosecond lasers deliver pulses in the trillionths-of-a-second range. The pulse is short enough to shatter ink particles into smaller fragments through photoacoustic energy. The body's lymphatic system then clears the fragments over the weeks following each session. PicoWay handles most ink colors. The platform offers multiple wavelengths (typically 1064 nm, 532 nm, and 785 nm) to address black, blue, red, green, and other inks.",
+                      },
+                      {
+                        title: "TEPR",
+                        body: "TEPR (Trans-Epidermal Pigment Release) is not a laser. Rather than shattering ink with light, TEPR works mechanically. The treatment encourages ink to lift upward through the epidermis. The skin then sheds it naturally over the weeks following each session. TEPR does not rely on light wavelengths interacting with ink color. The method is not bound by the wavelength-versus-color limitations that affect every laser modality.",
+                      },
+                    ].map((item) => (
+                      <ContentCard
+                        key={item.title}
+                        title={item.title}
+                        body={item.body}
+                      />
+                    ))}
+                  </div>
+
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    The implications stack up across the rest of the comparison:
+                  </p>
+                  <GuideBulletList
+                    items={[
+                      "Color performance. PicoWay strength on a given color depends on its wavelength options. TEPR performance is not color-bound in the same way.",
+                      "Skin tone. Laser methods carry a known wavelength-versus-melanin interaction in darker Fitzpatrick skin types. TEPR does not interact with melanin in the same way.",
+                      "Pain profile. Laser is typically described as a thick rubber band snapping against the skin. TEPR is typically described as moderate, similar to the sensation of getting a tattoo.",
+                      "Outcome target. Laser is well-suited to fading toward complete removal across many sessions. TEPR is positioned for complete removal as the primary outcome.",
+                    ]}
+                  />
+                </div>
+              </div>
+
+              {/* Pricing */}
+              <div id="pricing" className="py-12">
+                <SectionHeading>inkOUT vs Removery: Pricing and Cost Comparison</SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    inkOUT vs Removery cost decisions hinge on the pricing model as much as on the
+                    per-session price.
+                  </p>
+
+                  <div className="space-y-3">
+                    {[
+                      {
+                        title: "Removery pricing",
+                        body: "Removery uses a Complete Removal Package model. The brand quotes a total cost at consultation based on tattoo size, ink density, and complexity. The package covers unlimited sessions until the tattoo is removed, regardless of how many sessions that takes. Removery also offers per-session pricing. Monthly payment plans are available within the package model. The Complete Removal Package effectively functions as a results guarantee within the package terms.",
+                      },
+                      {
+                        title: "inkOUT pricing",
+                        body: "inkOUT typically uses a per-session pricing model. Package options are available for users who want a multi-session commitment. Per-session pricing is set at consultation and varies by tattoo size, ink density, and complexity. inkOUT generally positions packages around expected complete-removal session counts rather than around an unlimited-sessions guarantee.",
+                      },
+                    ].map((item) => (
+                      <ContentCard
+                        key={item.title}
+                        title={item.title}
+                        body={item.body}
+                      />
+                    ))}
+                  </div>
+
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    Useful framing for cost comparison:
+                  </p>
+                  <GuideBulletList
+                    items={[
+                      "Per-session price. Both brands set per-session pricing at consultation. Direct per-session comparison requires consultations at both providers.",
+                      "Total cost certainty. Removery's Complete Removal Package caps total cost. This is meaningful for users uncertain how many sessions their tattoo will need.",
+                      "Cost-per-result. Both brands target measurable outcomes per session. Cost-per-clear-tattoo (rather than cost-per-session) is the more useful comparison for users planning complete removal.",
+                      "Consultation cost. Both brands offer free consultations, so two consultations cost nothing and produce two comparable quotes.",
+                    ]}
+                  />
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    For national pricing context across all methods and tattoo sizes, see the{" "}
+                    <Link href="/cost" className="text-(--accent) hover:underline">
+                      cost guide
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
+
+              {/* Results, scarring, pain */}
+              <div id="results" className="py-12">
+                <SectionHeading>inkOUT vs Removery: Results, Scarring, and Pain</SectionHeading>
+                <div className="space-y-4">
+                  <div className="space-y-3">
+                    {[
+                      {
+                        title: "Results",
+                        body: "Both brands target tattoo clearance. Framing differs. Removery's Complete Removal Package treats results as the package goal across unlimited sessions. Most tattoos clear in the typical 6-to-12-session range for picosecond laser. inkOUT positions complete removal as a primary outcome. Session counts vary by tattoo size and ink density. Neither brand controls every variable that affects clearance. Ink composition, depth, and skin response are case-specific.",
+                      },
+                      {
+                        title: "Scarring risk",
+                        body: "Scarring is method-sensitive and skin-sensitive. Removery's PicoWay is on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by using a non-laser mechanical mechanism, a structural difference relevant to scarring risk. Provider conservatism with intensity, technique, and session spacing matters more than the brand label. Both brands offer free consultations where you can ask about starting intensity, scarring rate, and what the studio does when a tattoo responds aggressively.",
+                      },
+                      {
+                        title: "Pain",
+                        body: "Most users describe Removery's PicoWay session as similar to a thick rubber band snapping against the skin. Sessions for small tattoos are typically under 10 minutes. inkOUT's TEPR has a different pain profile. Users typically describe it as moderate, comparable to the sensation of getting a tattoo, rather than sharp. Pain tolerance is personal. A consultation is the most reliable way to gauge fit before committing.",
+                      },
+                    ].map((item) => (
+                      <ContentCard
+                        key={item.title}
+                        title={item.title}
+                        body={item.body}
+                      />
+                    ))}
+                  </div>
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    For deeper context on scarring, see{" "}
+                    <Link href="/guides/tattoo-removal-scarring" className="text-(--accent) hover:underline">
+                      tattoo removal scarring
+                    </Link>
+                    . For visual outcome reference, see the{" "}
+                    <Link href="/before-and-after" className="text-(--accent) hover:underline">
+                      before-and-after gallery
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
+
+              {/* Use cases */}
+              <div id="use-cases" className="py-12">
+                <SectionHeading>inkOUT vs Removery: Best for Dark Skin, Color Ink, and Complete Removal</SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    Three high-stakes use cases drive most inkOUT vs Removery decisions. Each has a
+                    clear answer based on the structural difference between TEPR and PicoWay.
+                  </p>
+
+                  <div className="space-y-3">
+                    {[
+                      {
+                        title: "Dark skin",
+                        body: "Laser tattoo removal is safe for darker Fitzpatrick skin types in experienced hands. The wavelength-versus-melanin interaction is real. Aggressive laser settings on darker skin carry elevated risk of post-inflammatory hyperpigmentation or hypopigmentation. PicoWay is on the lower-risk side of the laser spectrum compared to Q-switched. Removery providers are typically experienced with adjusting protocols by skin tone. TEPR (inkOUT) avoids the wavelength-versus-melanin interaction by mechanism. For users prioritizing avoidance of any laser-pigment-change risk, TEPR is the structurally lower-risk option.",
+                      },
+                      {
+                        title: "Color ink",
+                        body: "Color ink performance under laser depends on which wavelengths the laser offers and how the ink absorbs at those wavelengths. PicoWay's multi-wavelength platform handles black, blue, red, and green well across most cases. There is some difficulty on light blue, white, and yellow shades. TEPR is not wavelength-bound. Its performance on color ink does not depend on color absorption. For mixed-color tattoos, both brands are reasonable starting points. The determinant is consultation-specific assessment of ink behavior.",
+                      },
+                      {
+                        title: "Complete removal",
+                        body: "This is where inkOUT positions most strongly. TEPR's mechanism is built around lifting ink out of the skin rather than fragmenting and waiting for clearance. Removery's Complete Removal Package is the laser-side equivalent: a structured commitment to full removal across unlimited sessions for a capped price. The choice between them on complete removal is mechanism preference more than outcome difference.",
+                      },
+                      {
+                        title: "PMU and microblading removal",
+                        body: "Cosmetic tattoo removal (microblading, powder brows, lip blush, eyeliner) is harder than body tattoo removal. Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser, a known consideration for any laser removal of cosmetic tattoos. TEPR avoids this risk because it does not use light. inkOUT is structurally well-suited to PMU and microblading cases. Removery handles cosmetic cases as well. Ask specifically about the studio's cosmetic-tattoo experience at consultation.",
+                      },
+                    ].map((item) => (
+                      <ContentCard
+                        key={item.title}
+                        title={item.title}
+                        body={item.body}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Cross-city evidence */}
+              <div id="evidence" className="py-12">
+                <SectionHeading>Cross-City Review Evidence</SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    The evidence below shows how inkOUT and Removery compare across cities where we
+                    have direct review-sample data. Sample sizes reflect the most recent reviews
+                    captured per provider location in our internal review dataset. Lifetime Google
+                    review counts on each provider's business listing are higher than the sample sizes
+                    shown.
+                  </p>
+                  <Suspense
+                    fallback={
+                      <div className="rounded-xl bg-white border border-(--line) p-8 text-center">
+                        <p className="font-sans text-[14px] text-(--muted) m-0">
+                          Loading evidence table&hellip;
+                        </p>
+                      </div>
+                    }
+                  >
+                    <BrandComparisonEvidence
+                      brandA="inkOUT"
+                      brandB="Removery"
+                      brandBPendingCities={["Tampa", "Houston"]}
+                    />
+                  </Suspense>
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    The table updates as our scrape refreshes. Use the cross-city evidence as a
+                    reference, not a verdict, since both brands operate in markets not yet fully
+                    captured in our scrape.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pros and cons of inkOUT */}
+              <div id="inkout-pros" className="py-12">
+                <SectionHeading>Pros and Cons of inkOUT</SectionHeading>
+                <div className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <ContentCard title="Pros" titleSize="sm">
+                      <GuideBulletList
+                        items={[
+                          "Only major non-laser tattoo removal brand at scale in the US market",
+                          "Mechanism does not depend on wavelength-versus-color interaction, so color ink performance is not bound by laser color limitations",
+                          "Mechanism does not interact with melanin in the way laser does, lowering the structural pigment-change risk for darker skin tones",
+                          "Positioned around complete removal as the primary outcome rather than fading",
+                          "Well-suited to cosmetic tattoo removal cases where iron-oxide pigments can darken paradoxically under laser",
+                          "Free consultations to confirm fit before committing",
+                        ]}
+                      />
+                    </ContentCard>
+                    <ContentCard title="Cons" titleSize="sm">
+                      <GuideBulletList
+                        variant="warning"
+                        items={[
+                          "Smaller national footprint than mainstream laser chains, so geographic access is limited",
+                          "Newer market presence in many cities means smaller public review history versus established laser providers",
+                          "Per-session experience differs from laser; users expecting a laser-style appointment should adjust expectations",
+                          "TEPR is one mechanism with one performance envelope, so it is not the right answer for every tattoo or every user",
+                        ]}
+                      />
+                    </ContentCard>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pros and cons of Removery */}
+              <div id="removery-pros" className="py-12">
+                <SectionHeading>Pros and Cons of Removery</SectionHeading>
+                <div className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <ContentCard title="Pros" titleSize="sm">
+                      <GuideBulletList
+                        items={[
+                          "National footprint with multiple locations across major metros, simplifying access and follow-up",
+                          "Complete Removal Package model caps total cost regardless of session count, functioning as an effective results guarantee",
+                          "Uses Candela PicoWay, a picosecond laser with strong color performance across most inks",
+                          "Tattoo-removal-only specialist focus across all locations",
+                          "Monthly payment plans within the package model for users spreading cost",
+                          "Free consultations and consistent national protocols",
+                        ]}
+                      />
+                    </ContentCard>
+                    <ContentCard title="Cons" titleSize="sm">
+                      <GuideBulletList
+                        variant="warning"
+                        items={[
+                          "Laser modality carries the standard wavelength-versus-melanin consideration for darker skin tones",
+                          "Cosmetic tattoo cases (microblading, powder brows) require careful consultation given the iron-oxide-pigment darkening risk under laser",
+                          "Pricing is consultation-set, not published, which adds friction for users wanting a quick price comparison",
+                          "Mainstream chain experience may not fit users seeking owner-operated continuity across the treatment series",
+                        ]}
+                      />
+                    </ContentCard>
+                  </div>
+                </div>
+              </div>
+
+              {/* Verdict */}
+              <div id="verdict" className="py-12">
+                <SectionHeading label="Verdict">Our Verdict: inkOUT or Removery?</SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    There is no universal winner between inkOUT and Removery. The honest verdict is
+                    by scenario.
+                  </p>
+
+                  <div className="space-y-4">
+                    <ContentCard title="Choose Removery when:">
+                      <GuideBulletList
+                        items={[
+                          "You want a national chain with multiple locations and consistent protocols",
+                          "You want package pricing that caps total cost across unlimited sessions",
+                          "Your tattoo is a standard body tattoo without unusual cosmetic-pigment or skin-tone considerations",
+                          "You prefer a long-established mainstream laser brand and want a deeper public review history to evaluate against",
+                          "A Removery location is genuinely closer or more convenient than the nearest inkOUT location",
+                        ]}
+                      />
+                    </ContentCard>
+
+                    <ContentCard title="Choose inkOUT when:">
+                      <GuideBulletList
+                        items={[
+                          "You specifically want a non-laser method, either by preference or by medical reason",
+                          "You have a microblading, powder brows, lip blush, or other cosmetic tattoo to remove and want to avoid laser-iron-oxide darkening risk",
+                          "You have darker skin and want to avoid the laser-melanin interaction altogether rather than rely on conservative laser settings",
+                          "You are prioritizing complete removal as the primary outcome rather than gradual fading",
+                          "You are scarring-sensitive and want a structurally different mechanism than laser",
+                        ]}
+                      />
+                    </ContentCard>
+
+                    <ContentCard title="Get consultations at both when:">
+                      <GuideBulletList
+                        items={[
+                          "Both brands have a location near you",
+                          "You want to compare quotes, session-count estimates, and provider judgment side by side before committing",
+                          "You are uncertain which method fits your specific case best",
+                        ]}
+                      />
+                    </ContentCard>
+                  </div>
+
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    The decision is not abstract. Most users have only one or two providers within
+                    reasonable driving distance. Geographic constraints often narrow the choice before
+                    method preference does. Use the{" "}
+                    <Link href="/cities/austin" className="text-(--accent) hover:underline">
+                      city comparison pages
+                    </Link>{" "}
+                    and the brand review pages at{" "}
+                    <Link href="/reviews/inkout" className="text-(--accent) hover:underline">
+                      /reviews/inkout
+                    </Link>{" "}
+                    and{" "}
+                    <Link href="/reviews/removery" className="text-(--accent) hover:underline">
+                      /reviews/removery
+                    </Link>{" "}
+                    to see which brand actually operates in your market before drawing a verdict.
+                  </p>
+                </div>
+              </div>
+
+              {/* Editorial note */}
+              <div className="py-12">
+                <GuideCallout label="Editorial note">
+                  This comparison synthesizes brand-published technology and pricing material with
+                  our internal review-sample evidence dataset for both brands. The cross-city
+                  evidence table renders dynamically from our internal review dataset and refreshes
+                  as new reviews are scraped. Sample sizes are capped at 50 per provider location;
+                  total lifetime Google review counts are higher. Sentiment classifications and
+                  use-case tags are derived from review text analysis. Method and technology details
+                  are drawn from each brand&rsquo;s published materials. Individual outcomes vary by
+                  tattoo, skin type, ink density, and provider skill. Consult both providers before
+                  deciding. See our{" "}
+                  <Link href="/methodology" className="text-(--accent) hover:underline">
+                    methodology
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="/editorial-policy" className="text-(--accent) hover:underline">
+                    editorial policy
+                  </Link>{" "}
+                  for full details.
+                </GuideCallout>
+              </div>
+
+              {/* Related links */}
+              <div className="py-12">
+                <GuideRelatedLinks
+                  links={[
+                    {
+                      href: "/comparisons/best-tattoo-removal-method",
+                      title: "Best Tattoo Removal Method",
+                      desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
+                    },
+                    {
+                      href: "/reviews/inkout",
+                      title: "inkOUT Reviews",
+                      desc: "Full review sample and provider profiles for inkOUT across all markets.",
+                    },
+                    {
+                      href: "/reviews/removery",
+                      title: "Removery Reviews",
+                      desc: "Full review sample and provider profiles for Removery across all markets.",
+                    },
+                    {
+                      href: "/cost",
+                      title: "Tattoo Removal Cost",
+                      desc: "National pricing breakdown by method, size, and provider type.",
+                    },
+                    {
+                      href: "/comparisons/picoway-vs-q-switch",
+                      title: "Pico Laser vs Q-Switch",
+                      desc: "Deep-dive into picosecond vs Q-switched laser technology for tattoo removal.",
+                    },
                   ]}
                 />
-              </ContentCard>
-              <ContentCard title="Cons" titleSize="sm">
-                <GuideBulletList
-                  variant="warning"
-                  items={[
-                    "Smaller national footprint than mainstream laser chains, so geographic access is limited",
-                    "Newer market presence in many cities means smaller public review history versus established laser providers",
-                    "Per-session experience differs from laser; users expecting a laser-style appointment should adjust expectations",
-                    "TEPR is one mechanism with one performance envelope, so it is not the right answer for every tattoo or every user",
-                  ]}
-                />
-              </ContentCard>
+              </div>
+
             </div>
-          </div>
-      </PageSection>
+          </Container>
+        </section>
 
-      {/* Pros and cons of Removery */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>Pros and Cons of Removery</SectionHeading>
-        <div className="space-y-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <ContentCard title="Pros" titleSize="sm">
-                <GuideBulletList
-                  items={[
-                    "National footprint with multiple locations across major metros, simplifying access and follow-up",
-                    "Complete Removal Package model caps total cost regardless of session count, functioning as an effective results guarantee",
-                    "Uses Candela PicoWay, a picosecond laser with strong color performance across most inks",
-                    "Tattoo-removal-only specialist focus across all locations",
-                    "Monthly payment plans within the package model for users spreading cost",
-                    "Free consultations and consistent national protocols",
-                  ]}
-                />
-              </ContentCard>
-              <ContentCard title="Cons" titleSize="sm">
-                <GuideBulletList
-                  variant="warning"
-                  items={[
-                    "Laser modality carries the standard wavelength-versus-melanin consideration for darker skin tones",
-                    "Cosmetic tattoo cases (microblading, powder brows) require careful consultation given the iron-oxide-pigment darkening risk under laser",
-                    "Pricing is consultation-set, not published, which adds friction for users wanting a quick price comparison",
-                    "Mainstream chain experience may not fit users seeking owner-operated continuity across the treatment series",
-                  ]}
-                />
-              </ContentCard>
-            </div>
-          </div>
-      </PageSection>
-
-      {/* Verdict */}
-      <PageSection bg="none" noBorder className="verdict-bg">
-        <SectionHeading label="Verdict">Our Verdict: inkOUT or Removery?</SectionHeading>
-        <div className="space-y-4">
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              There is no universal winner between inkOUT and Removery. The honest verdict is
-              by scenario.
-            </p>
-
-            <div className="space-y-4">
-              <ContentCard title="Choose Removery when:">
-                <GuideBulletList
-                  items={[
-                    "You want a national chain with multiple locations and consistent protocols",
-                    "You want package pricing that caps total cost across unlimited sessions",
-                    "Your tattoo is a standard body tattoo without unusual cosmetic-pigment or skin-tone considerations",
-                    "You prefer a long-established mainstream laser brand and want a deeper public review history to evaluate against",
-                    "A Removery location is genuinely closer or more convenient than the nearest inkOUT location",
-                  ]}
-                />
-              </ContentCard>
-
-              <ContentCard title="Choose inkOUT when:">
-                <GuideBulletList
-                  items={[
-                    "You specifically want a non-laser method, either by preference or by medical reason",
-                    "You have a microblading, powder brows, lip blush, or other cosmetic tattoo to remove and want to avoid laser-iron-oxide darkening risk",
-                    "You have darker skin and want to avoid the laser-melanin interaction altogether rather than rely on conservative laser settings",
-                    "You are prioritizing complete removal as the primary outcome rather than gradual fading",
-                    "You are scarring-sensitive and want a structurally different mechanism than laser",
-                  ]}
-                />
-              </ContentCard>
-
-              <ContentCard title="Get consultations at both when:">
-                <GuideBulletList
-                  items={[
-                    "Both brands have a location near you",
-                    "You want to compare quotes, session-count estimates, and provider judgment side by side before committing",
-                    "You are uncertain which method fits your specific case best",
-                  ]}
-                />
-              </ContentCard>
-            </div>
-
-            <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-              The decision is not abstract. Most users have only one or two providers within
-              reasonable driving distance. Geographic constraints often narrow the choice before
-              method preference does. Use the{" "}
-              <Link href="/cities/austin" className="text-(--accent) hover:underline">
-                city comparison pages
-              </Link>{" "}
-              and the brand review pages at{" "}
-              <Link href="/reviews/inkout" className="text-(--accent) hover:underline">
-                /reviews/inkout
-              </Link>{" "}
-              and{" "}
-              <Link href="/reviews/removery" className="text-(--accent) hover:underline">
-                /reviews/removery
-              </Link>{" "}
-              to see which brand actually operates in your market before drawing a verdict.
-            </p>
-          </div>
-      </PageSection>
-
-      {/* Editorial note */}
-      <PageSection bg="none" noBorder>
-        <div className="space-y-4">
-          <GuideCallout label="Editorial note">
-              This comparison synthesizes brand-published technology and pricing material with
-              our internal review-sample evidence dataset for both brands. The cross-city
-              evidence table renders dynamically from our internal review dataset and refreshes
-              as new reviews are scraped. Sample sizes are capped at 50 per provider location;
-              total lifetime Google review counts are higher. Sentiment classifications and
-              use-case tags are derived from review text analysis. Method and technology details
-              are drawn from each brand&rsquo;s published materials. Individual outcomes vary by
-              tattoo, skin type, ink density, and provider skill. Consult both providers before
-              deciding. See our{" "}
-              <Link href="/methodology" className="text-(--accent) hover:underline">
-                methodology
-              </Link>{" "}
-              and{" "}
-              <Link href="/editorial-policy" className="text-(--accent) hover:underline">
-                editorial policy
-              </Link>{" "}
-              for full details.
-            </GuideCallout>
-        </div>
-      </PageSection>
-
-      {/* Related links */}
-      <PageSection bg="none" noBorder>
-        <GuideRelatedLinks
-          links={[
-            {
-              href: "/comparisons/best-tattoo-removal-method",
-              title: "Best Tattoo Removal Method",
-              desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
-            },
-            {
-              href: "/reviews/inkout",
-              title: "inkOUT Reviews",
-              desc: "Full review sample and provider profiles for inkOUT across all markets.",
-            },
-            {
-              href: "/reviews/removery",
-              title: "Removery Reviews",
-              desc: "Full review sample and provider profiles for Removery across all markets.",
-            },
-            {
-              href: "/cost",
-              title: "Tattoo Removal Cost",
-              desc: "National pricing breakdown by method, size, and provider type.",
-            },
-            {
-              href: "/comparisons/picoway-vs-q-switch",
-              title: "Pico Laser vs Q-Switch",
-              desc: "Deep-dive into picosecond vs Q-switched laser technology for tattoo removal.",
-            },
-          ]}
-        />
-      </PageSection>
-
-      <FAQSection faqs={faqs} />
-    </div>
+        <FAQSection id="faq" faqs={faqs} />
+      </main>
+    </BlobBackground>
   );
 }

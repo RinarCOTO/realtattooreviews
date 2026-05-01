@@ -13,6 +13,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import CityProviderRanking from "@/components/city/CityProviderRanking";
 import CityProviderComparisonTable from "@/components/city/CityProviderComparisonTable";
 import type { StaticProviderProfile } from "@/components/city/types";
+import { getCityProviderProfiles } from "@/lib/page-data/city-profiles";
 
 export const revalidate = 3600;
 
@@ -34,7 +35,7 @@ const faqs = [
   {
     question: "What is the best tattoo removal clinic in Austin?",
     answer:
-      "There is no single best clinic for every user. The ranked list above orders providers by current review-sample evidence and use-case fit. Removery offers the strongest national-chain package model. Think Again is a tattoo-removal-only specialist with picosecond technology. inkOUT (Rejuvatek Aesthetics on Hwy 71) is the only non-laser option. MEDermis is the longest-established Texas operator. Match the provider to your tattoo, budget, and method preference.",
+      "There is no single best clinic for every user. The ranked list above orders providers by current review-sample evidence and use-case fit. Removery offers the strongest national-chain package model. Think Again is a tattoo-removal-only specialist with picosecond technology. inkOUT is the non-laser TEPR option for users avoiding laser. MEDermis is the longest-established Texas operator. Match the provider to your tattoo, budget, and method preference.",
   },
   {
     question: "How much does tattoo removal cost in Austin?",
@@ -49,12 +50,12 @@ const faqs = [
   {
     question: "Where can I get tattoo removal in Austin?",
     answer:
-      "Providers serve every corner of the metro. South Congress hosts Removery and Think Again. South Austin hosts MEDermis on Dickson Drive. North Austin hosts UNBRANDED and Pigment. Round Rock hosts Removery and Clean Slate Ink. West Austin hosts inkOUT/Rejuvatek. Bee Cave hosts Austin Laser Solutions. Choose by proximity once you have narrowed by method and provider fit.",
+      "Providers serve every corner of the metro. Tattoo removal South Austin is well covered: South Congress hosts Removery and Think Again, and Dickson Drive hosts MEDermis. North Austin hosts UNBRANDED and Pigment, plus The Domain area. Round Rock hosts Removery and Clean Slate Ink. Cedar Park is served by the same North Austin and Round Rock corridor. West Austin hosts inkOUT. Bee Cave hosts Austin Laser Solutions. Choose by proximity once you have narrowed by method and provider fit.",
   },
   {
     question: "What laser tattoo removal options are available in Austin?",
     answer:
-      "Picosecond options include Candela PicoWay (Removery) and Quanta Discovery Pico Plus (Think Again). Q-switched options include MEDermis's Spectra system. Other Austin clinics use a range of size-tier laser systems. inkOUT (Rejuvatek) is the only non-laser TEPR option in the metro.",
+      "Picosecond options include Candela PicoWay (Removery) and Quanta Discovery Pico Plus (Think Again). Q-switched options include MEDermis's Spectra system. Other Austin clinics use a range of size-tier laser systems. inkOUT is the non-laser TEPR option in the Austin metro for users avoiding laser entirely.",
   },
   {
     question: "Does tattoo removal hurt?",
@@ -69,12 +70,12 @@ const faqs = [
   {
     question: "Do Austin clinics offer free consultations?",
     answer:
-      "Most do. Removery, UNBRANDED, Think Again, MEDermis, Pigment, and inkOUT (Rejuvatek) all offer no-cost consultations. They assess the tattoo, estimate sessions, and quote pricing before commitment.",
+      "Most do. Removery, UNBRANDED, Think Again, MEDermis, Pigment, and inkOUT all offer no-cost consultations. They assess the tattoo, estimate sessions, and quote pricing before commitment.",
   },
   {
     question: "Are there non-laser tattoo removal options in Austin?",
     answer:
-      "Yes. inkOUT, operated by Rejuvatek Aesthetics at 7101 State Hwy 71, is the corporate Austin location for non-laser TEPR removal. This is the only non-laser tattoo removal option in the Austin metro at the time of writing.",
+      "Yes. inkOUT at 7101 State Hwy 71 in West Austin is the non-laser TEPR option in the metro. TEPR (Trans-Epidermal Pigment Release) lifts ink out through the skin rather than fragmenting it with laser pulses. It is the option to consider when laser is not the right fit, including for microblading tattoo removal Austin patients seeking cosmetic ink clearance.",
   },
 ];
 
@@ -139,7 +140,8 @@ const AUSTIN_PROVIDERS: StaticProviderProfile[] = [
   },
 ];
 
-export default function AustinPage() {
+export default async function AustinPage() {
+  const profiles = await getCityProviderProfiles("austin");
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Cities", href: "/cities" },
     { name: "Austin", href: PAGE_PATH },
@@ -208,9 +210,10 @@ export default function AustinPage() {
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
                   Tattoo removal Austin TX has more good options than most Texas cities of
                   comparable size. Specialist laser studios, dermatology practices, med spas, and
-                  a non-laser inkOUT location all serve the metro. Providers are spread across
-                  South Congress, downtown, North Austin, Round Rock, Cedar Park, and the Bee Cave
-                  area.
+                  a non-laser inkOUT location all serve the metro. Providers span South Austin,
+                  South Congress, downtown, North Austin, The Domain, Round Rock, Cedar Park, and
+                  the Bee Cave area. Tattoo removal South Austin specifically is well covered, with
+                  established providers on South Congress and Dickson Drive.
                 </p>
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
                   This page compares the providers that actually treat tattoos in Austin. It
@@ -247,7 +250,7 @@ export default function AustinPage() {
                 sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading provider data&hellip;</p>
                 </div>
               }>
@@ -265,116 +268,15 @@ export default function AustinPage() {
               </p>
 
               <div className="space-y-4">
-                {[
-                  {
-                    name: "MEDermis Laser Clinic (South Austin)",
-                    body: "MEDermis Laser Clinic is at 2111 Dickson Dr in South Austin. The clinic has been in the Austin and San Antonio market since 2006, making it one of the longest-established tattoo removal operations in the metro. MEDermis uses a Spectra Q-switched Nd:YAG laser system and reports a 98% ink clearance rate across more than 300,000 treatments. The clinic offers a session guarantee that continues treatment at no additional cost for one year if a tattoo requires more than 10 sessions to clear, with limitations on green and blue tattoos.",
-                    bestFor: [
-                      "Users who want a long-established Texas operator with a session guarantee",
-                      "Users with straightforward black or dark-blue tattoos",
-                    ],
-                    lessIdealFor: [
-                      "Users with heavily colored tattoos in green or blue, where the guarantee does not apply",
-                    ],
-                  },
-                  {
-                    name: "Removery (South Congress)",
-                    body: "Removery's South Congress location is at 1400 S Congress Ave. Removery is a national tattoo-removal-only chain that uses Candela PicoWay, a picosecond laser that handles most ink colors and skin types. Removery offers a Complete Removal Package model that caps the total cost regardless of session count. The brand also operates a Round Rock location at 2541 N IH-35 with similar service.",
-                    bestFor: [
-                      "Users who want package pricing with unlimited sessions",
-                      "Users planning to relocate or travel during their removal series",
-                      "Users who prefer a national-chain experience with consistent protocols",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a smaller, owner-operated studio",
-                      "Users who specifically want non-laser options",
-                    ],
-                  },
-                  {
-                    name: "Rejuvatek Aesthetics providing inkOUT (West Austin)",
-                    body: "This is the Austin corporate location for inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical. The clinic is at 7101 State Hwy 71 in West Austin. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. This is the only non-laser option in the Austin metro.",
-                    bestFor: [
-                      "Users who want a non-laser method",
-                      "Users with cosmetic tattoos like microblading or lip blush",
-                      "Users with concerns about laser interaction with darker skin tones",
-                      "Users seeking complete removal without typical laser-clearance limitations on certain ink colors",
-                    ],
-                    lessIdealFor: [
-                      "Users with very large tattoos who prefer the per-session speed of laser",
-                      "Users who are price-sensitive on a single small tattoo",
-                    ],
-                  },
-                  {
-                    name: "LaserAway (Austin)",
-                    body: "LaserAway's Austin East Side location is part of the national chain's Texas expansion. LaserAway uses Cynosure PicoSure picosecond technology alongside Nd:YAG systems and operates across more than 150 locations nationally. The brand emphasizes standardized protocols, medical oversight, and consistent staff training. Financing is available through CareCredit and Alphaeon Credit.",
-                    bestFor: [
-                      "Users who want a large national chain with high review volume",
-                      "Users who may need to continue treatment while traveling",
-                      "Users with multicolor tattoos benefiting from PicoSure wavelength coverage",
-                    ],
-                    lessIdealFor: [
-                      "Users who prefer an owner-operated specialist studio",
-                      "Users seeking non-laser options",
-                    ],
-                  },
-                  {
-                    name: "Clean Slate Ink (Round Rock)",
-                    body: "Clean Slate Ink is in Round Rock at 600 Round Rock W Dr. The clinic offers both tattoo removal and other laser services, with an established lifetime review base in the North Austin suburbs.",
-                    bestFor: [
-                      "Users in Round Rock or North Austin suburbs who want a closer option than central Austin specialists",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a tattoo-removal-only specialist focus",
-                    ],
-                  },
-                  {
-                    name: "Unbranded ATX (North Austin)",
-                    body: "UNBRANDED is an owner-operated specialist studio in North Austin at 5511 Parkcrest Dr, near Mopac and 2222. Founder Alan personally performs treatments. Pricing is size-based and the clinic offers free consultations.",
-                    bestFor: [
-                      "Users who want a single experienced provider across their entire treatment series",
-                      "Users with complex or sensitive cases",
-                      "Users prioritizing scarring-risk minimization",
-                    ],
-                    lessIdealFor: [
-                      "Users who need extended evening or weekend hours",
-                    ],
-                  },
-                  {
-                    name: "Pigment Tattoo & Laser Removal (North Austin)",
-                    body: "Pigment is a combined tattoo studio and laser removal clinic on Ranch Road 620 in North Austin. The location handles both ends of the cover-up workflow. Laser fading happens on one side; cover-up tattoo work on the other. Pricing is published in size brackets, ranging from about $150 for postage-stamp-sized tattoos to $500 to $600 for half-sleeve outer-arm work.",
-                    bestFor: [
-                      "Users planning a cover-up who want fading and the new tattoo coordinated under one roof",
-                      "Users who want transparent published pricing before consultation",
-                    ],
-                    lessIdealFor: [
-                      "Users who specifically want a laser-only specialist with no tattooing services",
-                    ],
-                  },
-                  {
-                    name: "Think Again Tattoo Removal (South Austin)",
-                    body: "Think Again is a tattoo-removal-only specialist on South Congress at 3801 S Congress. The clinic uses the Quanta Discovery Pico Plus, an FDA-cleared picosecond system. Think Again offers a Complete Care Commitment package model, with per-session pricing starting around $90 for very small tattoos.",
-                    bestFor: [
-                      "Users who want a tattoo-removal-only specialist",
-                      "Users with stubborn blue or green ink that benefits from picosecond technology",
-                      "Users who want a clear package guarantee",
-                    ],
-                    lessIdealFor: [
-                      "Users who prefer a Texas-headquartered company with a longer local history",
-                    ],
-                  },
-                  {
-                    name: "Austin Laser Solutions (Bee Cave)",
-                    body: "Austin Laser Solutions is in the Hill Country Galleria area at 12700 Hill Country Blvd. The clinic offers both tattoo removal and hair removal and runs periodic promotional pricing.",
-                    bestFor: [
-                      "Users in Bee Cave, Lakeway, or Westlake who want a closer option than central Austin specialists",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking the largest sample size of public reviews to evaluate against",
-                    ],
-                  },
-                ].map((p) => (
-                  <div key={p.name} className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">{p.name}</h3>
+                {profiles.map((p) => (
+                  <div key={p.name} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6">
+                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">
+                      {p.href ? (
+                        <Link href={p.href} className="hover:text-(--accent) transition-colors">
+                          {p.name}
+                        </Link>
+                      ) : p.name}
+                    </h3>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">{p.body}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
@@ -400,7 +302,7 @@ export default function AustinPage() {
                 lifetime Google review counts are higher than sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-center">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading comparison table&hellip;</p>
                 </div>
               }>
@@ -435,7 +337,7 @@ export default function AustinPage() {
                     body: "inkOUT uses TEPR, a non-laser method that avoids wavelength-versus-color limitations entirely. It lifts ink physically through the skin rather than shattering it with light. This is a different category of treatment, not a laser variant.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -459,7 +361,7 @@ export default function AustinPage() {
                 ].map((tier) => (
                   <div
                     key={tier.label}
-                    className="flex items-center justify-between rounded-xl border border-(--line) bg-(--surface) px-5 py-4"
+                    className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
                     <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>
@@ -498,7 +400,7 @@ export default function AustinPage() {
                   "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. Pigment's combined studio model, for instance, gets specific credit on cover-up prep cases.",
                   "Method specialization. Tattoo-removal-only specialists like MEDermis, Think Again, and Unbranded ATX generally outperform multi-service med spas on complex or color-heavy cases.",
                   "Technology fit for the case. Picosecond systems (Removery's PicoWay, Think Again's Quanta Discovery Pico Plus) suit difficult colors and stubborn ink. MEDermis's Spectra suits standard black work with a deep track record. inkOUT's TEPR suits cosmetic tattoos and users avoiding laser entirely.",
-                  "Pricing transparency. Providers with published pricing — Pigment, Think Again, Unbranded ATX — rank above those that withhold pricing until consultation.",
+                  "Pricing transparency. Providers with published pricing (Pigment, Think Again, Unbranded ATX) rank above those that withhold pricing until consultation.",
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />
@@ -535,9 +437,29 @@ export default function AustinPage() {
             <GuideRelatedLinks
               links={[
                 {
+                  href: "/reviews/medermis-laser-clinic",
+                  title: "MEDermis Laser Clinic Reviews",
+                  desc: "Provider profile for the longest-tenured Austin specialist with full review breakdown.",
+                },
+                {
+                  href: "/reviews/think-again-tattoo-removal",
+                  title: "Think Again Tattoo Removal Reviews",
+                  desc: "South Austin tattoo-removal-only specialist with picosecond technology.",
+                },
+                {
                   href: "/comparisons/best-tattoo-removal-method",
                   title: "Best Tattoo Removal Method",
                   desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
+                },
+                {
+                  href: "/guides/tattoo-removal-healing-process",
+                  title: "Healing Process Guide",
+                  desc: "Stage-by-stage timeline of what to expect after each session, across laser and non-laser methods.",
+                },
+                {
+                  href: "/guides/tattoo-removal-scarring",
+                  title: "Scarring Guide",
+                  desc: "When scarring happens, why it happens, and how to evaluate providers on their scarring track record.",
                 },
                 {
                   href: "/cost",
@@ -560,7 +482,7 @@ export default function AustinPage() {
         </Container>
       </section>
 
-      <FAQSection faqs={faqs} />
+      <FAQSection title="Frequently Asked Questions About Tattoo Removal in Austin" faqs={faqs} />
     </div>
     </BlobBackground>
   );

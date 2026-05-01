@@ -125,8 +125,8 @@ export default function AboutPage() {
                   manufacturer, or device company has ownership or editorial control.
                 </p>
                 <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0 mt-3">
-                  For how the site handles advertising relationships, commercial disclosures, and
-                  editorial independence, see the{" "}
+                  For how the site handles funding, editorial independence, and corrections,
+                  see the{" "}
                   <Link href="/editorial-policy" className="text-(--accent) hover:underline">
                     editorial policy
                   </Link>
@@ -184,10 +184,6 @@ export default function AboutPage() {
                 . For scoring details, see{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   /methodology
-                </Link>
-                . For corrections or inquiries, see{" "}
-                <Link href="/contact" className="text-(--accent) hover:underline">
-                  /contact
                 </Link>
                 .
               </GuideCallout>

@@ -8,14 +8,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
-import PageSection from "@/components/reviews/PageSection";
+import PageHero from "@/components/layout/PageHero";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import FAQSection from "@/components/sections/FAQSection";
-import PageHero from "@/components/layout/PageHero";
+import BlobBackground from "@/components/ui/BlobBackground";
+import JumpNav from "@/components/provider/JumpNav";
 
 export const metadata: Metadata = {
   title:
@@ -73,6 +74,18 @@ const faqs = [
 const PAGE_PATH = "/cost";
 const SITE_URL = "https://realtattooreviews.com";
 
+const jumpItems = [
+  { label: "Pricing by Size", href: "#how-much" },
+  { label: "Session vs Total", href: "#per-session" },
+  { label: "Pricing Factors", href: "#factors" },
+  { label: "By Method", href: "#by-method" },
+  { label: "Sessions", href: "#session-count" },
+  { label: "Insurance", href: "#insurance" },
+  { label: "Financing", href: "#financing" },
+  { label: "Provider Types", href: "#provider-type" },
+  { label: "FAQ", href: "#faq" },
+];
+
 export default function CostPage() {
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Home", href: "/" },
@@ -100,7 +113,8 @@ export default function CostPage() {
   const faqJsonLd = faqSchema(faqs);
 
   return (
-    <div className="reviews-page">
+    <BlobBackground>
+    <main className="reviews-page min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -130,34 +144,34 @@ export default function CostPage() {
         subtitle="How much does tattoo removal cost? A provider-neutral guide to tattoo removal pricing by size, method, session count, and financing options."
       />
 
-      {/* Body */}
-      <PageSection bg="bg">
+      <JumpNav items={jumpItems} />
+
+      <section className="py-6">
         <Container>
-          <div className="mx-auto max-w-2xl">
-            {/* Intro callout */}
-            <div className="py-12">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
-                  Tattoo removal cost ranges from $100 to $500 per session for most tattoos. Total
-                  cost for complete removal typically falls between $1,000 and $10,000 depending on
-                  the tattoo's size, ink density, color complexity, and how many sessions it takes.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  That range is wide because every tattoo is different. A small black ankle tattoo
-                  and a full-color half-sleeve are not the same job. This page breaks down what
-                  drives tattoo removal pricing, how session count multiplies the total, how
-                  different methods compare on cost, and what financing options exist. For visual
-                  proof of what removal looks like over time, see the{" "}
-                  <Link href="/before-and-after" className="text-(--accent) hover:underline">
-                    before-and-after gallery
-                  </Link>
-                  .
-                </p>
-              </div>
+          <div className="mx-auto max-w-3xl">
+
+            {/* Intro */}
+            <div className="py-12 space-y-4">
+              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                Tattoo removal cost ranges from $100 to $500 per session for most tattoos. Total
+                cost for complete removal typically falls between $1,000 and $10,000 depending on
+                the tattoo's size, ink density, color complexity, and how many sessions it takes.
+              </p>
+              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                That range is wide because every tattoo is different. A small black ankle tattoo
+                and a full-color half-sleeve are not the same job. This page breaks down what
+                drives tattoo removal pricing, how session count multiplies the total, how
+                different methods compare on cost, and what financing options exist. For visual
+                proof of what removal looks like over time, see the{" "}
+                <Link href="/before-and-after" className="text-(--accent) hover:underline">
+                  before-and-after gallery
+                </Link>
+                .
+              </p>
             </div>
 
             {/* How Much Does It Cost */}
-            <GuideSection heading="How Much Does Tattoo Removal Cost?">
+            <GuideSection id="how-much" heading="How Much Does Tattoo Removal Cost?">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The average cost of tattoo removal per session in the United States falls between
                 $200 and $400 for a medium-sized tattoo. Here is how pricing breaks down by size:
@@ -188,7 +202,7 @@ export default function CostPage() {
                 ].map((tier) => (
                   <div
                     key={tier.size}
-                    className="rounded-xl border border-(--line) bg-(--surface) px-5 py-4"
+                    className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
@@ -217,7 +231,7 @@ export default function CostPage() {
             </GuideSection>
 
             {/* Per Session vs Total */}
-            <GuideSection heading="Tattoo Removal Cost Per Session vs Total Cost">
+            <GuideSection id="per-session" heading="Tattoo Removal Cost Per Session vs Total Cost">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The per-session price is not the number that matters most. Total cost is per-session
                 price multiplied by session count. A $150 session that takes 10 sessions costs
@@ -246,7 +260,7 @@ export default function CostPage() {
             </GuideSection>
 
             {/* What Affects Pricing */}
-            <GuideSection heading="What Affects Tattoo Removal Pricing?">
+            <GuideSection id="factors" heading="What Affects Tattoo Removal Pricing?">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Six factors drive most of the price variation across providers and cases.
               </p>
@@ -278,7 +292,7 @@ export default function CostPage() {
                     body: "Pricing is higher in coastal metros and lower in mid-market cities. A session that costs $350 in New York may cost $200 in a smaller Texas market.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -304,7 +318,7 @@ export default function CostPage() {
                     body: "Often priced lower per session, typically $150 to $400. May require more sessions than picosecond systems for the same ink clearance, especially on stubborn colors.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -320,7 +334,7 @@ export default function CostPage() {
             </GuideSection>
 
             {/* Cost by Method */}
-            <GuideSection heading="Cost by Tattoo Removal Method">
+            <GuideSection id="by-method" heading="Cost by Tattoo Removal Method">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Different removal methods carry different cost structures. For a full comparison of
                 methods, see the{" "}
@@ -352,7 +366,7 @@ export default function CostPage() {
                     body: "Used rarely and only for very small tattoos. A one-time procedure with costs ranging from $500 to $2,000+ depending on the surgeon and complexity. It trades a single procedure for a surgical scar.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -383,7 +397,7 @@ export default function CostPage() {
             </GuideSection>
 
             {/* Session Count */}
-            <GuideSection heading="How Many Sessions to Remove a Tattoo">
+            <GuideSection id="session-count" heading="How Many Sessions to Remove a Tattoo">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Session count is the most important cost variable and the hardest to predict.
                 Providers use assessment tools like the Kirby-Desai scale to estimate sessions
@@ -414,7 +428,7 @@ export default function CostPage() {
             </GuideSection>
 
             {/* Insurance */}
-            <GuideSection heading="Does Insurance Cover Tattoo Removal?">
+            <GuideSection id="insurance" heading="Does Insurance Cover Tattoo Removal?">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 In most cases, no. Tattoo removal is classified as a cosmetic procedure and is not
                 covered by standard health insurance plans. This applies to laser, non-laser, and
@@ -434,7 +448,7 @@ export default function CostPage() {
             </GuideSection>
 
             {/* Financing */}
-            <GuideSection heading="Tattoo Removal Financing and Payment Plans">
+            <GuideSection id="financing" heading="Tattoo Removal Financing and Payment Plans">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Most providers offer some form of cost management beyond pay-per-session pricing.
               </p>
@@ -458,7 +472,7 @@ export default function CostPage() {
                     body: "Most providers offer free consultations. Getting two or three consultations produces comparable quotes and helps you evaluate total estimated cost, not just the per-session headline number.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -467,7 +481,7 @@ export default function CostPage() {
             </GuideSection>
 
             {/* Cost by Provider Type */}
-            <GuideSection heading="Tattoo Removal Cost by Provider Type">
+            <GuideSection id="provider-type" heading="Tattoo Removal Cost by Provider Type">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Different provider types price differently. Understanding the model helps you
                 compare apples to apples.
@@ -492,7 +506,7 @@ export default function CostPage() {
                     body: "Vary widely. Some are competitively priced with strong aesthetic equipment. Others bundle removal with other services at higher margins. Ask specifically about the laser system used and the experience of the person performing the treatment.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -551,9 +565,10 @@ export default function CostPage() {
 
           </div>
         </Container>
-      </PageSection>
+      </section>
 
-      <FAQSection faqs={faqs} />
-    </div>
+      <FAQSection id="faq" faqs={faqs} />
+    </main>
+    </BlobBackground>
   );
 }

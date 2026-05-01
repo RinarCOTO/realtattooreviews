@@ -1,25 +1,8 @@
-import type { Metadata } from "next";
-import Container from "@/components/layout/Container";
-import PageHero from "@/components/layout/PageHero";
+import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description:
-    "Get in touch with the RealTattooReviews team. Questions about reviews, provider listings, or editorial concerns.",
-  openGraph: {
-    title: "Contact RealTattooReviews",
-    description: "Questions about reviews, provider listings, or editorial concerns.",
-  },
-};
-
+// Contact page intentionally returns 404 — there is no public contact page yet.
+// The route file is preserved as a placeholder. To restore, replace this with
+// the actual contact content. See `git log` for the previous stub.
 export default function ContactPage() {
-  return (
-    <main className="min-h-screen bg-bg">
-      <PageHero
-        label="Contact"
-        title={<>Contact <span className="text-(--accent)">Us</span></>}
-        subtitle="Questions about reviews, provider listings, or editorial concerns."
-      />
-    </main>
-  );
+  notFound();
 }

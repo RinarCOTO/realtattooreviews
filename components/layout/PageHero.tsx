@@ -35,24 +35,26 @@ type Props = {
  * Page hero shared site-wide — guides, comparisons, cities, blog, etc.
  * Renders the breadcrumb (in MonoLabel), h1, and subtitle on the warm-textured `.page-hero` background.
  */
-export default function PageHero({ label, title, subtitle, children, heroClassName = "page-hero" }: Props) {
+export default function PageHero({ label, title, subtitle, children, heroClassName = "" }: Props) {
   return (
-    <section className={`border-b border-(--line) flex flex-col justify-center ${heroClassName}`} style={{ minHeight: "70vh" }}>
-      <Container>
-        <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
-          {label}
-        </MonoLabel>
+    <section className={`bg-canvas py-6 px-4 sm:px-6 ${heroClassName}`}>
+      <div className="rounded-3xl pt-18 pb-16" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
+        <Container>
+          <MonoLabel color="accent" size="sm" className="mb-5 flex items-center gap-2">
+            {label}
+          </MonoLabel>
 
-        <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
-          {title}
-        </h1>
+          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
+            {title}
+          </h1>
 
-        <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-2xl">
-          {subtitle}
-        </p>
+          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-2xl">
+            {subtitle}
+          </p>
 
-        {children && <div className="mt-8">{children}</div>}
-      </Container>
+          {children && <div className="mt-8">{children}</div>}
+        </Container>
+      </div>
     </section>
   );
 }

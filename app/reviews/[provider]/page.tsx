@@ -16,13 +16,17 @@ import { getProviderReview } from "@/lib/page-data/reviews";
 
 type Props = { params: Promise<{ provider: string }> };
 
+const STATIC_PROVIDER_PAGES = new Set(["laseraway"]);
+
 export async function generateStaticParams() {
   const mockSlugs = new Set<string>([
     ...getMultiLocationBrands().map(brandToSlug),
     ...getSingleLocationProviders().map((p) => p.slug),
   ]);
   const dbSlugs = await getUniqueProviderSlugs();
-  return [...new Set([...mockSlugs, ...dbSlugs])].map((slug) => ({ provider: slug }));
+  return [...new Set([...mockSlugs, ...dbSlugs])]
+    .filter((slug) => !STATIC_PROVIDER_PAGES.has(slug))
+    .map((slug) => ({ provider: slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -52,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title,
       description,
-      alternates: { canonical: `/reviews/${slug}/` },
+      alternates: { canonical: `https://realtattooreviews.com/reviews/${slug}/` },
       openGraph: {
         title,
         description,
@@ -72,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${matchedBrand} Tattoo Removal Reviews`,
       description: `${count} sourced reviews across ${locations.length} ${matchedBrand} locations. ${avg} average rating with location-by-location review coverage.`,
-      alternates: { canonical: `/reviews/${slug}/` },
+      alternates: { canonical: `https://realtattooreviews.com/reviews/${slug}/` },
       openGraph: {
         title: `${matchedBrand} Reviews`,
         description: `${count} sourced reviews across ${locations.length} locations. ${avg} average rating.`,
@@ -90,7 +94,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${name} Tattoo Removal Reviews`,
       description: `${reviews.length} sourced reviews for ${name}${market ? ` in ${market}` : ""}. ${avg} average rating.`,
-      alternates: { canonical: `/reviews/${slug}/` },
+      alternates: { canonical: `https://realtattooreviews.com/reviews/${slug}/` },
     };
   }
 
@@ -103,7 +107,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${singleProvider.name} Tattoo Removal Reviews`,
     description: `${count} sourced reviews for ${singleProvider.name} in ${singleProvider.market}. ${avg} average rating. ${singleProvider.summary}`,
-    alternates: { canonical: `/reviews/${slug}/` },
+    alternates: { canonical: `https://realtattooreviews.com/reviews/${slug}/` },
     openGraph: {
       title: `${singleProvider.name} Tattoo Removal Reviews`,
       description: `${count} sourced reviews for ${singleProvider.name}. ${avg} average rating.`,

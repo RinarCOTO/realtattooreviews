@@ -91,7 +91,7 @@ const homepageContent = {
       _type: "object",
       _key: k(),
       question: "How are reviews collected?",
-      answer: [block("We source reviews from verified patients through direct submission and cross-reference public accounts. We do not accept reviews from clinics or their staff.")],
+      answer: [block("We source reviews from public Google Business Profile listings for every provider and location we track. We do not accept reviews submitted directly to us. We do not use provider-owned testimonials.")],
     },
     {
       _type: "object",
@@ -120,7 +120,7 @@ const homepageContent = {
   ],
   seoTitle: "RealTattooReviews: Compare Tattoo Removal Clinics Before You Book",
   seoDescription:
-    "848 verified patient reviews across 22 tattoo removal providers in 6 markets. Compare clinics by rating, city, ink type, and outcome before you book.",
+    "848 sourced reviews across 22 tattoo removal providers in 6 markets. Compare clinics by rating, city, ink type, and outcome before you book.",
 };
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -337,6 +337,59 @@ const guideSeeds = [
         question: "Can you prevent scarring from tattoo removal?",
         answer:
           "Risk can be reduced but not eliminated. The most effective prevention: choose a provider with documented experience treating your skin type, follow aftercare instructions precisely (especially not disturbing scabs or blisters), avoid sun exposure during healing, and disclose any personal or family history of keloids before treatment.",
+      },
+    ],
+  },
+  {
+    slug: "tattoo-removal-side-effects",
+    title: "Tattoo Removal Side Effects",
+    description:
+      "Honest overview of common and uncommon side effects: hypopigmentation, hyperpigmentation, blistering, and scarring risk by skin type.",
+    author: "RealTattooReviews",
+    seoTitle:
+      "Tattoo Removal Side Effects: What Is Normal, What Is Not, and When to Call Your Provider | RealTattooReviews",
+    seoDescription:
+      "A complete overview of tattoo removal side effects across laser and non-laser methods. What is normal, what is not, when to be concerned, and how to reduce risk.",
+    faqItems: [
+      {
+        question: "What are the most common side effects of tattoo removal?",
+        answer:
+          "Redness, swelling, and mild tenderness are the most common side effects across both laser and non-laser methods. They usually peak within 24 to 48 hours and resolve within a week. Blistering is also common after laser sessions. Frosting, the immediate white discoloration after a laser pulse, fades within 30 minutes. None of these require treatment beyond standard aftercare.",
+      },
+      {
+        question: "Is blistering after tattoo removal normal?",
+        answer:
+          "Yes. Blisters are a normal reaction in many laser tattoo removal patients, particularly with Q-switched systems. They usually appear within 24 to 72 hours and contain clear or slightly pink fluid. Do not pop them. Allow them to drain naturally. Yellow or green fluid, blisters that continue to grow after 72 hours, or significant pain are signs to contact your provider.",
+      },
+      {
+        question: "How long do tattoo removal side effects last?",
+        answer:
+          "Most short-term effects (redness, swelling, tenderness) resolve within 3 to 7 days. Blistering and scabbing typically clear within 7 to 14 days. Temporary pigment changes can take 3 to 6 months to normalize. Healing is generally faster on areas with strong lymphatic drainage (chest, upper back) than on the extremities.",
+      },
+      {
+        question: "What is hyperpigmentation after tattoo removal?",
+        answer:
+          "Hyperpigmentation is darkening of the skin in the treated area. It is caused by the skin producing extra melanin in response to the laser pulse or non-laser trauma. It is more common in Fitzpatrick IV through VI skin types and is worsened by sun exposure during healing. Most cases resolve within 3 to 6 months. Sun avoidance and SPF 30 or higher accelerate recovery.",
+      },
+      {
+        question: "What is hypopigmentation after tattoo removal?",
+        answer:
+          "Hypopigmentation is lightening of the skin in the treated area. It is caused by damage to melanin-producing cells. It is more common after aggressive laser settings and in darker skin tones treated with shorter wavelengths. Most cases resolve over 6 to 12 months. In rare cases the change is permanent. Risk is reduced by using 1064nm Nd:YAG on darker skin and by avoiding excessive fluence.",
+      },
+      {
+        question: "When should I be worried about a tattoo removal side effect?",
+        answer:
+          "Contact your provider if you see signs of infection: pain that increases after 48 hours, yellow or green discharge, warmth or red streaks spreading beyond the treatment area, or fever. Persistent texture change, pigment change that has not improved by 6 months, or raised tissue that continues to grow may indicate scar formation and should be evaluated. For cosmetic tattoos (microblading, lip blush, eyeliner), darkening of the ink after a laser session requires immediate provider review.",
+      },
+      {
+        question: "Are tattoo removal side effects different for laser and non-laser methods?",
+        answer:
+          "Yes. The side-effect profiles differ. Laser produces frosting, blistering, and a higher risk of pigment change in darker skin tones when shorter wavelengths are used. Non-laser saline removal produces a controlled scab as part of the removal mechanism, which means visible scabbing for 2 to 4 weeks per session. The risk of scarring is roughly comparable when both methods are performed by experienced providers with appropriate aftercare.",
+      },
+      {
+        question: "How can I reduce side effects from tattoo removal?",
+        answer:
+          "Choose a provider with documented experience treating your skin type. Follow the provider's aftercare instructions precisely. Wait the full 6 to 8 weeks between sessions to allow complete healing. Avoid sun exposure on the treated area before and after each session. Stay hydrated, eat well during healing, and disclose any personal or family history of keloid scarring before treatment begins.",
       },
     ],
   },
@@ -709,7 +762,7 @@ async function main() {
   console.log("Homepage:");
   await seedHomepage();
 
-  console.log("\nGuides (4):");
+  console.log("\nGuides (5):");
   for (const guide of guideSeeds) {
     await seedGuide(guide);
   }

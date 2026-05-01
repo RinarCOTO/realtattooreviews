@@ -127,13 +127,20 @@ function mapSanityProsCons(comparison: SanityComparison): ComparisonProsCons[] |
   ];
 }
 
+const STATIC_COMPARISON_PAGES = new Set([
+  "removery-vs-laseraway",
+  "inkout-vs-removery",
+  "inkout-vs-laseraway",
+  "picoway-vs-q-switch",
+  "saline-vs-laser-tattoo-removal",
+  "best-tattoo-removal-method",
+]);
+
 export async function generateStaticParams() {
   const sanitySlugs = await getAllComparisonSlugs();
   const mockSlugs = mockComparisons.map((c) => c.slug);
-  // Union: include every slug present in either source so mock-only pages still
-  // statically render even when Sanity has its own (smaller) set of slugs.
   const all = [...new Set([...sanitySlugs, ...mockSlugs])];
-  return all.map((slug) => ({ slug }));
+  return all.filter((slug) => !STATIC_COMPARISON_PAGES.has(slug)).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -326,7 +333,7 @@ export default async function ComparisonPage({ params }: Props) {
             {activeChoiceCards.map((card) => (
               <article
                 key={card.title}
-                className="bg-white p-6 rounded-xl"
+                className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 rounded-xl"
               >
                 <p className="text-[15px] font-semibold text-(--ink)">{card.title}</p>
                 <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">{card.body}</p>
@@ -397,7 +404,7 @@ export default async function ComparisonPage({ params }: Props) {
               const [label, ...rest] = point.split(". ");
               const body = rest.join(". ");
               return (
-                <div key={point} className="bg-white p-5 rounded-xl">
+                <div key={point} className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 rounded-xl">
                   <p className="text-[14px] font-semibold text-(--ink)">{label}</p>
                   <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">{body}</p>
                 </div>
@@ -417,7 +424,7 @@ export default async function ComparisonPage({ params }: Props) {
             />
             <Suspense
               fallback={
-                <div className="rounded-xl bg-white p-8 text-center">
+                <div className="rounded-xl bg-white border border-(--line) p-8 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading evidence table&hellip;</p>
                 </div>
               }
@@ -442,7 +449,7 @@ export default async function ComparisonPage({ params }: Props) {
           <BlockHeading title="Pros and cons" body="A quick read on where each technology looks stronger and where it comes up short." />
           <div className="grid gap-5 md:grid-cols-2">
             {activeProsCons.map((block) => (
-              <article key={block.label} className="bg-white p-6 rounded-xl">
+              <article key={block.label} className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 rounded-xl">
                 <p className="text-[15px] font-semibold text-(--ink)">{block.label}</p>
 
                 <div className="mt-5">
@@ -488,7 +495,7 @@ export default async function ComparisonPage({ params }: Props) {
                 {activeConsultQuestions.map((question, index) => (
                   <li
                     key={question}
-                    className="bg-white p-5 rounded-xl text-[13px] leading-relaxed text-(--muted)"
+                    className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 rounded-xl text-[13px] leading-relaxed text-(--muted)"
                   >
                     <span className="mr-2 font-semibold text-(--ink)">{index + 1}.</span>
                     {question}
@@ -497,7 +504,7 @@ export default async function ComparisonPage({ params }: Props) {
               </ol>
             </div>
 
-            <aside className="bg-white p-6 rounded-xl self-start">
+            <aside className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 rounded-xl self-start">
               <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
                 Source transparency
               </p>

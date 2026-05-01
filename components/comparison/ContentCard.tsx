@@ -36,8 +36,6 @@ export default function ContentCard({
       ? "font-sans text-[12px] font-semibold text-(--ink) mb-2"
       : "font-sans text-[17px] font-semibold text-(--ink) mb-2";
 
-  const bgClass = titleSize === "sm" ? "bg-white" : "bg-(--bg)";
-
   return (
     <ContentCardContext.Provider value={{ useIcons: titleSize === "sm" }}>
       <div className={`rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 ${className}`}>

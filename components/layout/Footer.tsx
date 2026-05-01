@@ -11,7 +11,6 @@ const links = [
   { label: "Methodology", href: "/methodology" },
   { label: "Editorial Policy", href: "/editorial-policy" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer({ dataLastUpdated }: { dataLastUpdated?: string }) {

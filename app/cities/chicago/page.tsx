@@ -13,6 +13,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import CityProviderRanking from "@/components/city/CityProviderRanking";
 import CityProviderComparisonTable from "@/components/city/CityProviderComparisonTable";
 import type { StaticProviderProfile } from "@/components/city/types";
+import { getCityProviderProfiles } from "@/lib/page-data/city-profiles";
 
 export const revalidate = 3600;
 
@@ -34,7 +35,7 @@ const faqs = [
   {
     question: "What is the best tattoo removal clinic in Chicago?",
     answer:
-      "There is no single best clinic for every user. The ranked list above orders providers by current review-sample evidence and use-case fit. Removery is the deepest national chain in the market. inkOUT (Rejuvatek Aesthetics on Lincoln Ave) is the only non-laser option. Kovak is the longest-established South Loop med spa. Match the provider to your tattoo, budget, and method preference.",
+      "There is no single best clinic for every user. The ranked list above orders providers by current review-sample evidence and use-case fit. Removery is the deepest national chain in the market. inkOUT is the non-laser TEPR option for users avoiding laser. Kovak is the longest-established South Loop med spa. Match the provider to your tattoo, budget, and method preference.",
   },
   {
     question: "How much does tattoo removal cost in Chicago?",
@@ -49,12 +50,12 @@ const faqs = [
   {
     question: "Where can I get tattoo removal in Chicago?",
     answer:
-      "Providers serve every part of the metro. Bucktown hosts Removery and LaserAway. Lincoln Square hosts Removery. Lincoln Park hosts inkOUT (Rejuvatek), LaserAway, and several med spas. River North hosts LaserAway. The South Loop hosts Kovak Cosmetic Center. The Northwest Side hosts Advanced Laser Aesthetics. Suburbs like Naperville and Orland Park have Removery locations.",
+      "Providers serve every part of the metro. Bucktown and Wicker Park host Removery and LaserAway. Lincoln Square hosts Removery. Lincoln Park hosts inkOUT, LaserAway, and several med spas. Lakeview, Old Town, and River North are within reach of the Lincoln Park and downtown clinics. The South Loop hosts Kovak Cosmetic Center. The Northwest Side hosts Advanced Laser Aesthetics. Suburbs including Naperville, Schaumburg, Evanston, and Orland Park are served by Removery locations and the closest city-side clinics.",
   },
   {
     question: "What laser tattoo removal options are available in Chicago?",
     answer:
-      "Picosecond options include Candela PicoWay (both Removery locations, Enfuse) and PicoSure (LaserAway). Q-Switch options include Kovak Cosmetic Center. inkOUT (Rejuvatek) is the only non-laser TEPR option in Chicago.",
+      "Picosecond options include Candela PicoWay (both Removery locations, Enfuse) and PicoSure (LaserAway). Q-Switch options include Kovak Cosmetic Center. inkOUT is the non-laser TEPR option in Chicago for users avoiding laser entirely.",
   },
   {
     question: "How many sessions does tattoo removal take?",
@@ -74,7 +75,7 @@ const faqs = [
   {
     question: "Do any Chicago tattoo removal clinics offer free consultations?",
     answer:
-      "Most do. Removery, LaserAway, Enfuse Medical Spa, Kovak Cosmetic Center, and inkOUT (Rejuvatek) all offer no-cost consultations. They assess the tattoo, estimate sessions, and quote pricing before commitment. Free tattoo removal Chicago programs (full procedures at no cost) are not common; some clinics occasionally offer limited charity removal for tattoos linked to abuse, gang affiliation, or human trafficking recovery, but this is rare.",
+      "Most do. Removery, LaserAway, Enfuse Medical Spa, Kovak Cosmetic Center, and inkOUT all offer no-cost consultations. They assess the tattoo, estimate sessions, and quote pricing before commitment. Free tattoo removal Chicago programs (full procedures at no cost) are not common; some clinics occasionally offer limited charity removal for tattoos linked to abuse, gang affiliation, or human trafficking recovery, but this is rare.",
   },
   {
     question: "Are there tattoo removal deals or discounts in Chicago?",
@@ -136,7 +137,8 @@ const CHICAGO_PROVIDERS: StaticProviderProfile[] = [
   },
 ];
 
-export default function ChicagoPage() {
+export default async function ChicagoPage() {
+  const profiles = await getCityProviderProfiles("chicago");
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Cities", href: "/cities" },
     { name: "Chicago", href: PAGE_PATH },
@@ -244,7 +246,7 @@ export default function ChicagoPage() {
                 sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading provider data&hellip;</p>
                 </div>
               }>
@@ -262,91 +264,15 @@ export default function ChicagoPage() {
               </p>
 
               <div className="space-y-4">
-                {[
-                  {
-                    name: "Removery (Bucktown)",
-                    body: "Removery's Bucktown location is at 1864 N Damen Ave. Removery is a national tattoo-removal-only chain. The clinic uses Candela PicoWay, a picosecond laser that handles most ink colors. Removery offers a Complete Removal Package model that caps total cost regardless of session count.",
-                    bestFor: [
-                      "Users who want package pricing with unlimited sessions",
-                      "Users planning complete removal",
-                      "Users who prefer a national-chain experience with consistent protocols",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking an owner-operated studio",
-                      "Users who specifically want non-laser options",
-                    ],
-                  },
-                  {
-                    name: "Removery (Lincoln Square)",
-                    body: "Removery's Lincoln Square location is at 4347 N Lincoln Ave. Same chain, same PicoWay laser, same package pricing model as the Bucktown studio. The two locations operate independently for scheduling but share Removery's national protocols.",
-                    bestFor: [
-                      "Users in the North Side who prefer Lincoln Square over Bucktown",
-                      "Users with cosmetic tattoo removal needs, including microblading cases",
-                    ],
-                    lessIdealFor: [
-                      "Users who want a tattoo-removal-only specialist studio rather than a chain location",
-                    ],
-                  },
-                  {
-                    name: "Kovak Cosmetic Center (South Loop)",
-                    body: "Kovak Cosmetic Center is at 850 S Wabash Ave in the South Loop. The clinic is an established med spa offering tattoo removal alongside other aesthetic services. Kovak uses Q-Switch laser technology, which is well-established for black and dark-blue ink.",
-                    bestFor: [
-                      "Users in the South Loop or Loop area who prefer a longer-established med spa",
-                      "Users with straightforward black-ink tattoos",
-                    ],
-                    lessIdealFor: [
-                      "Users with complex color tattoos that benefit from picosecond technology",
-                    ],
-                  },
-                  {
-                    name: "Enfuse Medical Spa",
-                    body: "Enfuse Medical Spa is a Chicago med spa that offers tattoo removal alongside other aesthetic services. The clinic uses PicoWay, a picosecond laser system, and handles cosmetic and microblading cases alongside body tattoos.",
-                    bestFor: [
-                      "Users who want a med spa experience that handles cosmetic and microblading cases alongside body tattoos",
-                    ],
-                    lessIdealFor: [
-                      "Users who specifically want a tattoo-removal-only specialist focus",
-                    ],
-                  },
-                  {
-                    name: "Rejuvatek Aesthetics providing inkOUT (Lincoln Park)",
-                    body: "This is the Chicago corporate location for inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical. The clinic is at 2724 N Lincoln Ave Suite 6 in Lincoln Park. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin rather than shattering it with light. This is the only non-laser option in Chicago.",
-                    bestFor: [
-                      "Users who want a non-laser method",
-                      "Users with cosmetic tattoos like microblading or lip blush",
-                      "Users with darker skin tones who want to avoid laser pigment-change risk",
-                      "Users seeking complete removal without laser-clearance limitations on certain ink colors",
-                    ],
-                    lessIdealFor: [
-                      "Users with very large tattoos who prefer the per-session speed of laser",
-                      "Users who want a deep public review history before committing",
-                    ],
-                  },
-                  {
-                    name: "LaserAway (Lincoln Park, River North, Bucktown)",
-                    body: "LaserAway operates three Chicago locations: Lincoln Park (2032 N Halsted St), River North (666 N Wells St), and Bucktown (1953 W Wabansia Ave). LaserAway is a national aesthetic chain where tattoo removal is one service among many. The brand uses the PicoSure laser.",
-                    bestFor: [
-                      "Users who already use LaserAway for hair removal or other aesthetic services",
-                      "Users who want extended evening and weekend hours",
-                    ],
-                    lessIdealFor: [
-                      "Users seeking a tattoo-removal-only specialist",
-                      "Users with complex color or cover-up cases that benefit from a specialist's narrower focus",
-                    ],
-                  },
-                  {
-                    name: "Advanced Laser Aesthetics (Edgebrook)",
-                    body: "Advanced Laser Aesthetics is at 5906 N Milwaukee Ave on the city's far Northwest Side. It is a smaller clinic that handles tattoo removal alongside other laser services.",
-                    bestFor: [
-                      "Users on the Northwest Side or near Edgebrook who want a closer option than central Chicago specialists",
-                    ],
-                    lessIdealFor: [
-                      "Users with complex multi-color cases, where higher-volume specialists may have more pattern-matched experience",
-                    ],
-                  },
-                ].map((p) => (
-                  <div key={p.name} className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">{p.name}</h3>
+                {profiles.map((p) => (
+                  <div key={p.name} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6">
+                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">
+                      {p.href ? (
+                        <Link href={p.href} className="hover:text-(--accent) transition-colors">
+                          {p.name}
+                        </Link>
+                      ) : p.name}
+                    </h3>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">{p.body}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
@@ -372,7 +298,7 @@ export default function ChicagoPage() {
                 Total lifetime Google review counts are higher than sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-center">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading comparison table&hellip;</p>
                 </div>
               }>
@@ -407,7 +333,7 @@ export default function ChicagoPage() {
                     body: "inkOUT uses TEPR, a non-laser method that avoids wavelength-versus-color limitations entirely. It lifts ink physically through the skin rather than shattering it with light. This is a different category of treatment, not a laser variant.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -431,7 +357,7 @@ export default function ChicagoPage() {
                 ].map((tier) => (
                   <div
                     key={tier.label}
-                    className="flex items-center justify-between rounded-xl border border-(--line) bg-(--surface) px-5 py-4"
+                    className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
                     <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>
@@ -469,7 +395,7 @@ export default function ChicagoPage() {
                 items={[
                   "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone. Both Removery locations and LaserAway's three Chicago locations carry the deepest review volumes in the market.",
                   "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. Removery's Lincoln Square location, for instance, has a noted cosmetic tattoo removal signal.",
-                  "Method specialization. Tattoo-removal-only specialists — both Removery locations — generally outperform full-service med spas like Enfuse and Kovak on complex or high-session-count cases.",
+                  "Method specialization. Tattoo-removal-only specialists (both Removery locations) generally outperform full-service med spas like Enfuse and Kovak on complex or high-session-count cases.",
                   "Technology fit for the case. Picosecond systems (Removery's PicoWay, Enfuse's PicoWay, LaserAway's PicoSure) suit difficult colors and stubborn ink. Kovak's Q-Switch suits standard black work. inkOUT's TEPR suits cosmetic tattoos and users avoiding laser entirely.",
                   "Pricing transparency. Providers with published pricing rank above those that withhold it until consultation.",
                   "Honest fit framing. No provider wins for every user. Each profile includes both a best-for and a less-ideal-for section.",
@@ -508,9 +434,34 @@ export default function ChicagoPage() {
             <GuideRelatedLinks
               links={[
                 {
+                  href: "/reviews/removery",
+                  title: "Removery Reviews",
+                  desc: "Brand-level review profile for Removery covering both Chicago locations and the national network.",
+                },
+                {
+                  href: "/reviews/laseraway",
+                  title: "LaserAway Reviews",
+                  desc: "Provider profile for LaserAway across Lincoln Park, River North, and Bucktown.",
+                },
+                {
+                  href: "/reviews/kovak-cosmetic-center",
+                  title: "Kovak Cosmetic Center Reviews",
+                  desc: "Provider profile for the long-tenured South Loop multi-service practice.",
+                },
+                {
                   href: "/comparisons/best-tattoo-removal-method",
                   title: "Best Tattoo Removal Method",
                   desc: "Side-by-side comparison of laser, non-laser, and other methods by effectiveness, cost, and risk.",
+                },
+                {
+                  href: "/guides/tattoo-removal-healing-process",
+                  title: "Healing Process Guide",
+                  desc: "Stage-by-stage timeline of what to expect after each session, across laser and non-laser methods.",
+                },
+                {
+                  href: "/guides/tattoo-removal-scarring",
+                  title: "Scarring Guide",
+                  desc: "When scarring happens, why it happens, and how to evaluate providers on scarring track record.",
                 },
                 {
                   href: "/cost",
@@ -533,7 +484,7 @@ export default function ChicagoPage() {
         </Container>
       </section>
 
-      <FAQSection faqs={faqs} />
+      <FAQSection title="Frequently Asked Questions About Tattoo Removal in Chicago" faqs={faqs} />
     </div>
     </BlobBackground>
   );

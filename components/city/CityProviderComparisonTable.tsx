@@ -28,16 +28,22 @@ export default async function CityProviderComparisonTable({ city, staticProvider
       <table className="w-full text-[13px] font-sans border-collapse">
         <thead>
           <tr className="bg-(--surface) border-b border-(--line)">
-            {["Provider", "Neighborhood", "Method", "Sample", "Avg ★", "% Positive", "Standout fit"].map(
-              (h) => (
-                <th
-                  key={h}
-                  className="px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wider text-(--muted) whitespace-nowrap"
-                >
-                  {h}
-                </th>
-              )
-            )}
+            {[
+              { label: "Provider", cls: "" },
+              { label: "Neighborhood", cls: "hidden md:table-cell" },
+              { label: "Method", cls: "" },
+              { label: "Sample", cls: "" },
+              { label: "Avg ★", cls: "" },
+              { label: "% Positive", cls: "" },
+              { label: "Standout fit", cls: "hidden md:table-cell" },
+            ].map(({ label, cls }) => (
+              <th
+                key={label}
+                className={`px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wider text-(--muted) whitespace-nowrap ${cls}`}
+              >
+                {label}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody className="divide-y divide-(--line)">
@@ -49,7 +55,7 @@ export default async function CityProviderComparisonTable({ city, staticProvider
                 <td className="px-4 py-3 font-semibold text-(--ink) whitespace-nowrap">
                   {profile.providerName}
                 </td>
-                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">
+                <td className="hidden md:table-cell px-4 py-3 text-(--muted) whitespace-nowrap">
                   {profile.neighborhood}
                 </td>
                 <td className="px-4 py-3 text-(--muted) whitespace-nowrap">
@@ -72,7 +78,7 @@ export default async function CityProviderComparisonTable({ city, staticProvider
                     </td>
                   </>
                 )}
-                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">
+                <td className="hidden md:table-cell px-4 py-3 text-(--muted)">
                   {live ? computeStandoutFit(live) : "-"}
                 </td>
               </tr>

@@ -166,7 +166,7 @@ button, [role="button"], a.btn {
   --feathering-mist:   oklch(0.975 0.009 62);
   --wash:        oklch(0.945 0.012 35);
   --ink:         oklch(0.24 0.018 30);
-  --muted:       oklch(0.52 0.012 36);
+  --muted:       oklch(0.24 0.018 30);
   --line:        oklch(0.90 0.010 50);
   --accent:      oklch(0.52 0.12 32);
   --accent-soft: oklch(0.93 0.03 35);

@@ -23,8 +23,11 @@ import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import FAQSection from "@/components/sections/FAQSection";
-import PageHero from "@/components/layout/PageHero";
 import BrandReviewSummary from "@/components/provider/BrandReviewSummary";
+import BlobBackground from "@/components/ui/BlobBackground";
+import ProviderHero from "@/components/provider/ProviderHero";
+import JumpNav from "@/components/provider/JumpNav";
+import { getBrandLocationAggregates } from "@/lib/data/reviews";
 
 export const revalidate = 3600;
 
@@ -115,7 +118,20 @@ const TRACKED_CITIES = [
   },
 ];
 
-export default function LaserAwayReviewsPage() {
+const jumpItems = [
+  { label: "Review Data", href: "#review-data" },
+  { label: "Locations", href: "#locations" },
+  { label: "Technology", href: "#technology" },
+  { label: "Best Fit", href: "#best-fit" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Comparisons", href: "#comparisons" },
+  { label: "FAQ", href: "#faq" },
+];
+
+export default async function LaserAwayReviewsPage() {
+  const aggregates = await getBrandLocationAggregates("LaserAway");
+  const totalReviews = aggregates.reduce((sum, r) => sum + r.sampleSize, 0);
+
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Reviews", href: "/reviews" },
     { name: "LaserAway", href: PAGE_PATH },
@@ -136,7 +152,8 @@ export default function LaserAwayReviewsPage() {
   const faqJsonLd = faqSchema(faqs);
 
   return (
-    <div className="reviews-page">
+    <BlobBackground>
+    <main className="reviews-page min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -150,65 +167,59 @@ export default function LaserAwayReviewsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* Hero */}
-      <PageHero
-        label={
-          <>
-            <Link href="/reviews" className="hover:text-(--ink) transition-colors">
-              Reviews
-            </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
-              LaserAway
-            </span>
-          </>
+      <ProviderHero
+        breadcrumb={["Reviews", "LaserAway"]}
+        nameNode={
+          <>LaserAway,<br />
+          <em className="italic text-(--accent)">PicoSure laser chain.</em></>
         }
-        title={<>LaserAway <span className="text-(--accent)">Tattoo Removal</span> Reviews</>}
-        subtitle="LaserAway is one of the largest multi-service aesthetic chains in the US. This page aggregates real patient reviews from RTR-tracked markets and covers the technology, pricing model, and where LaserAway fits relative to specialists."
+        body="across 100+ locations nationwide. See how LaserAway compares on technology, pricing, and patient outcomes before you book."
+        tags={["Picosecond Laser", "PicoSure", "National Chain", "Multi-Service", "Per-Session"]}
+        reviewCount={totalReviews}
+        reviewsHref="#review-data"
       />
 
-      {/* Body */}
-      <section className="bg-(--bg)">
+      <JumpNav items={jumpItems} />
+
+      <section className="py-6">
         <Container>
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-3xl">
 
             {/* Intro */}
-            <div className="py-12">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
-                  LaserAway operates across more than 100 locations nationwide. Tattoo removal at
-                  LaserAway uses Cynosure PicoSure, a picosecond alexandrite laser. Per-session
-                  pricing applies at all locations. There is no unlimited-sessions package or formal
-                  results guarantee.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  The multi-service model means tattoo removal is one of several offerings at each
-                  location. Patients who want a tattoo-removal-only specialist or package pricing
-                  that caps total cost may be better served by Removery or a local independent
-                  clinic. Patients who want a nationally-recognized chain, location flexibility,
-                  or the ability to bundle removal with other aesthetic services may find LaserAway
-                  a reasonable fit.
-                </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
-                  For a direct head-to-head, see the{" "}
-                  <Link href="/comparisons/removery-vs-laseraway" className="text-(--accent) hover:underline">
-                    Removery vs LaserAway comparison
-                  </Link>{" "}
-                  or the{" "}
-                  <Link href="/comparisons/inkout-vs-laseraway" className="text-(--accent) hover:underline">
-                    inkOUT vs LaserAway comparison
-                  </Link>{" "}
-                  for a non-laser alternative. For pricing context, see the{" "}
-                  <Link href="/cost" className="text-(--accent) hover:underline">
-                    tattoo removal cost guide
-                  </Link>
-                  .
-                </p>
-              </div>
+            <div className="py-12 space-y-4">
+              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                LaserAway operates across more than 100 locations nationwide. Tattoo removal at
+                LaserAway uses Cynosure PicoSure, a picosecond alexandrite laser. Per-session
+                pricing applies at all locations. There is no unlimited-sessions package or formal
+                results guarantee.
+              </p>
+              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                The multi-service model means tattoo removal is one of several offerings at each
+                location. Patients who want a tattoo-removal-only specialist or package pricing
+                that caps total cost may be better served by Removery or a local independent
+                clinic. Patients who want a nationally-recognized chain, location flexibility,
+                or the ability to bundle removal with other aesthetic services may find LaserAway
+                a reasonable fit.
+              </p>
+              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                For a direct head-to-head, see the{" "}
+                <Link href="/comparisons/removery-vs-laseraway" className="text-(--accent) hover:underline">
+                  Removery vs LaserAway comparison
+                </Link>{" "}
+                or the{" "}
+                <Link href="/comparisons/inkout-vs-laseraway" className="text-(--accent) hover:underline">
+                  inkOUT vs LaserAway comparison
+                </Link>{" "}
+                for a non-laser alternative. For pricing context, see the{" "}
+                <Link href="/cost" className="text-(--accent) hover:underline">
+                  tattoo removal cost guide
+                </Link>
+                .
+              </p>
             </div>
 
             {/* Review data */}
-            <GuideSection heading="Review Data by Location">
+            <GuideSection id="review-data" heading="Review Data by Location">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 Aggregated from published patient reviews in RTR-tracked markets. Sample size,
                 positive rate, and negative count are shown per city. Sample is capped at 50 per
@@ -216,7 +227,7 @@ export default function LaserAwayReviewsPage() {
               </p>
               <Suspense
                 fallback={
-                  <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                  <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
                     <p className="font-sans text-[14px] text-(--muted) m-0">Loading review data&hellip;</p>
                   </div>
                 }
@@ -230,7 +241,7 @@ export default function LaserAwayReviewsPage() {
             </GuideSection>
 
             {/* Tracked locations */}
-            <GuideSection heading="Tracked Locations">
+            <GuideSection id="locations" heading="Tracked Locations">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 RTR currently tracks LaserAway in four markets. Each city page shows how LaserAway
                 compares to other providers operating in that market.
@@ -239,7 +250,7 @@ export default function LaserAwayReviewsPage() {
                 {TRACKED_CITIES.map((loc) => (
                   <div
                     key={loc.city}
-                    className="rounded-xl border border-(--line) bg-(--surface) p-5 flex items-start justify-between gap-4"
+                    className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 flex items-start justify-between gap-4"
                   >
                     <div>
                       <p className="font-sans font-semibold text-(--ink) text-[15px] m-0 mb-0.5">
@@ -259,7 +270,7 @@ export default function LaserAwayReviewsPage() {
             </GuideSection>
 
             {/* Technology */}
-            <GuideSection heading="LaserAway Technology: PicoSure">
+            <GuideSection id="technology" heading="LaserAway Technology: PicoSure">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 LaserAway uses Cynosure PicoSure across its locations. PicoSure was the first
                 picosecond laser to receive FDA clearance for tattoo removal. Picosecond lasers
@@ -296,9 +307,9 @@ export default function LaserAwayReviewsPage() {
             </GuideSection>
 
             {/* Best for / Less ideal for */}
-            <GuideSection heading="Best Fit and Weak Fit">
+            <GuideSection id="best-fit" heading="Best Fit and Weak Fit">
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                   <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">
                     Better fit for LaserAway
                   </p>
@@ -312,7 +323,7 @@ export default function LaserAwayReviewsPage() {
                     ]}
                   />
                 </div>
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                   <p className="font-sans text-[12px] font-semibold text-(--ink) mb-2">
                     Less ideal for LaserAway
                   </p>
@@ -332,7 +343,7 @@ export default function LaserAwayReviewsPage() {
             </GuideSection>
 
             {/* Pricing */}
-            <GuideSection heading="LaserAway Pricing">
+            <GuideSection id="pricing" heading="LaserAway Pricing">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 LaserAway does not publish pricing online. Pricing is set at consultation and varies
                 by tattoo size, location on the body, ink complexity, and market.
@@ -353,7 +364,7 @@ export default function LaserAwayReviewsPage() {
                     body: "Book a free consultation to receive a quote. LaserAway consultations are location-dependent -- some locations offer in-person consultations only. For national cost benchmarks, see the tattoo removal cost guide.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                   </div>
@@ -370,7 +381,7 @@ export default function LaserAwayReviewsPage() {
             </GuideSection>
 
             {/* Comparisons */}
-            <GuideSection heading="How LaserAway Compares to Other Options">
+            <GuideSection id="comparisons" heading="How LaserAway Compares to Other Options">
               <div className="space-y-3">
                 {[
                   {
@@ -392,7 +403,7 @@ export default function LaserAwayReviewsPage() {
                     linkText: "inkOUT vs LaserAway comparison",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
                     <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
                     {item.link && (
@@ -463,7 +474,8 @@ export default function LaserAwayReviewsPage() {
         </Container>
       </section>
 
-      <FAQSection faqs={faqs} />
-    </div>
+      <FAQSection id="faq" faqs={faqs} />
+    </main>
+    </BlobBackground>
   );
 }

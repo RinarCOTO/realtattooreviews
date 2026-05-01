@@ -33,19 +33,19 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col rounded-xl border border-border bg-surface p-6 transition hover:border-accent"
+            className="group flex flex-col rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 transition hover:border-(--accent)"
           >
             <div className="mb-3 flex items-center gap-2">
               <Tag label={post.category} />
-              <span className="text-xs text-subtle">{post.date}</span>
+              <span className="text-xs text-(--ink)">{post.date}</span>
             </div>
-            <h2 className="mb-2 text-[17px] font-semibold leading-snug text-heading group-hover:text-accent">
+            <h2 className="mb-2 text-[17px] font-semibold leading-snug text-(--ink) group-hover:text-(--accent)">
               {post.title}
             </h2>
-            <p className="mb-4 flex-1 text-[14px] leading-relaxed text-muted">
+            <p className="mb-4 flex-1 font-sans text-[14px] leading-relaxed text-(--ink)">
               {post.description}
             </p>
-            <span className="text-sm font-medium text-accent">Read full article →</span>
+            <span className="text-sm font-medium text-(--accent)">Read full article →</span>
           </Link>
         ))}
       </div>
@@ -55,7 +55,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
           <button
             onClick={() => goTo(currentPage - 1)}
             disabled={currentPage === 1}
-            className="rounded-md border border-border px-4 py-2 text-sm text-muted transition hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-40"
+            className="rounded-md border border-(--line) px-4 py-2 text-sm text-(--ink) transition hover:border-(--accent) hover:text-(--accent) disabled:pointer-events-none disabled:opacity-40"
           >
             ← Prev
           </button>
@@ -66,8 +66,8 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
               onClick={() => goTo(page)}
               className={`rounded-md border px-4 py-2 text-sm font-medium transition ${
                 page === currentPage
-                  ? "border-accent bg-accent text-white"
-                  : "border-border text-muted hover:border-accent hover:text-accent"
+                  ? "border-(--accent) bg-(--accent) text-white"
+                  : "border-(--line) text-(--ink) hover:border-(--accent) hover:text-(--accent)"
               }`}
             >
               {page}
@@ -77,7 +77,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
           <button
             onClick={() => goTo(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="rounded-md border border-border px-4 py-2 text-sm text-muted transition hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-40"
+            className="rounded-md border border-(--line) px-4 py-2 text-sm text-(--ink) transition hover:border-(--accent) hover:text-(--accent) disabled:pointer-events-none disabled:opacity-40"
           >
             Next →
           </button>

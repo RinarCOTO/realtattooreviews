@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     title: "Tattoo Removal Before & After: Real Patient Results",
     description: "Real before and after photos by ink type, skin tone, and session count.",
   },
+  alternates: {
+    canonical: "https://realtattooreviews.com/before-and-after",
+  },
 };
 
 export default function BeforeAndAfterPage() {

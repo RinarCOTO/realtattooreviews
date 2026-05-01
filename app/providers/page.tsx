@@ -172,7 +172,7 @@ export default async function ProvidersPage() {
               <p>
                 RealTattooReviews tracks tattoo removal providers across multiple US markets. Every provider listed here is evaluated using the same{" "}
                 <Link href="/methodology" className="text-accent hover:underline">scoring methodology</Link>{" "}
-                regardless of brand size, advertising relationship, or business model.
+                regardless of brand size or business model.
               </p>
               <p>
                 If you already know which city you are in, the{" "}
@@ -213,7 +213,7 @@ export default async function ProvidersPage() {
                     Most clinics in the US use laser systems. The current standard is picosecond lasers like PicoWay (Candela), PicoSure (Cynosure), or PiQo4 (Lumenis). Older Q-switched Nd:YAG systems are still in use at many independent practices. Laser works by shattering ink particles with light energy. The body then clears the fragments through the lymphatic system over weeks. Laser sessions are spaced 6 to 8 weeks apart. Standard body tattoos typically clear in 4 to 12 sessions depending on the laser platform, ink colors, and skin type.
                   </p>
                   <p>
-                    A small number of providers use non-laser methods. inkOUT (Rejuvatek Medical) uses TEPR (Trans-Epidermal Pigment Release), which lifts ink out through the skin surface rather than shattering it with light. Saline removal uses osmotic lift and is most common for cosmetic tattoo and microblading cases. Neither non-laser method depends on ink color or interacts with melanin the way laser does.
+                    A small number of providers use non-laser methods. inkOUT uses TEPR (Trans-Epidermal Pigment Release), which lifts ink out through the skin surface rather than shattering it with light. Saline removal uses osmotic lift and is most common for cosmetic tattoo and microblading cases. Neither non-laser method depends on ink color or interacts with melanin the way laser does.
                   </p>
                   <p>
                     Neither laser nor non-laser is universally better. The right choice depends on your tattoo, your skin type, your tolerance for the healing process, and the specific characteristics of your case. For the full method comparison, see the{" "}
@@ -370,17 +370,11 @@ export default async function ProvidersPage() {
                 We do not accept payment from providers for inclusion or placement in any listing on this site. Providers cannot edit, remove, or pre-approve their listings. Listings update as providers add or close locations and as new public review data becomes available.
               </p>
               <p>
-                inkOUT (operated by Rejuvatek Medical) is a current advertising client of RealTattooReviews. This relationship is fully disclosed on the{" "}
-                <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy page</Link>.
-                inkOUT is evaluated using the same scoring framework as every other provider. Advertising clients cannot pay for higher rankings, favorable review classifications, or preferential positioning.
-              </p>
-              <p>
                 Read more about our review approach in our{" "}
                 <Link href="/methodology" className="text-accent hover:underline">methodology</Link>.
                 Read our{" "}
                 <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy</Link>{" "}
-                for full disclosure on commercial relationships and review independence. To report an inaccuracy,{" "}
-                <Link href="/contact" className="text-accent hover:underline">contact us</Link>.
+                for full details on review independence.
               </p>
             </div>
           </Container>
@@ -394,7 +388,7 @@ export default async function ProvidersPage() {
       <section className="border-t border-border py-8">
         <Container>
           <p className="text-center text-[12px] leading-relaxed text-subtle">
-            Provider data is sourced from public Google business listings and verified against provider-published materials. Review counts in the table reflect our internal review sample, not lifetime Google totals. inkOUT is a current advertising client of RealTattooReviews and is evaluated under the same framework as every other provider. See our{" "}
+            Provider data is sourced from public Google business listings and verified against provider-published materials. Review counts in the table reflect our internal review sample, not lifetime Google totals. See our{" "}
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>{" "}
             and{" "}
             <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy</Link>{" "}

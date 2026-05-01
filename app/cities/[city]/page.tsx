@@ -14,10 +14,12 @@ import type { Review } from "@/types/review";
 
 type Props = { params: Promise<{ city: string }> };
 
+const STATIC_CITY_PAGES = new Set(["austin", "chicago", "houston", "tampa", "draper"]);
+
 export async function generateStaticParams() {
   const sanityCities = await getAllCities();
-  if (sanityCities.length > 0) return sanityCities.map((c) => ({ city: c.slug }));
-  return mockCities.map((c) => ({ city: c.slug }));
+  const slugs = sanityCities.length > 0 ? sanityCities.map((c) => c.slug) : mockCities.map((c) => c.slug);
+  return slugs.filter((slug) => !STATIC_CITY_PAGES.has(slug)).map((slug) => ({ city: slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const providerCount = cityProviders.length;
   const reviewCount = cityReviews.length;
   const title = (cityData as any).seoTitle ?? `Tattoo Removal in ${cityData.name}: Reviews & Provider Ratings | RealTattooReviews`;
-  const description = (cityData as any).seoDescription ?? `Compare ${providerCount} tattoo removal providers in ${cityData.name}. ${reviewCount} verified patient reviews covering outcomes, pricing, and session experience.`;
+  const description = (cityData as any).seoDescription ?? `Compare ${providerCount} tattoo removal providers in ${cityData.name}. ${reviewCount} sourced reviews covering outcomes, pricing, and session experience.`;
   const seoImage = (cityData as any).seoImage;
   return {
     title,

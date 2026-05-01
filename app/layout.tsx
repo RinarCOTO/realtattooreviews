@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Inter_Tight, Instrument_Serif, Space_Mono } from "next/font/google";
+import { Inter, Inter_Tight, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/layout/Header";
@@ -20,13 +20,6 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
   style: ["normal", "italic"],
-});
-
-const dmMono = Space_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal"],
 });
 
 const inter = Inter({
@@ -91,7 +84,7 @@ export default async function RootLayout({
 }>) {
   const dataLastUpdated = await getDataFreshness();
   return (
-    <html lang="en" className={`${satoshi.variable} ${instrumentSerif.variable} ${dmMono.variable} ${inter.variable} ${interTight.variable} h-full antialiased`}>
+    <html lang="en" className={`${satoshi.variable} ${instrumentSerif.variable} ${inter.variable} ${interTight.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-bg text-body" suppressHydrationWarning>
         <script
           type="application/ld+json"

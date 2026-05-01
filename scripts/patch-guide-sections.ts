@@ -158,28 +158,57 @@ const guides: Record<string, { intro: string; sections: object[] }> = {
 
   "tattoo-removal-healing-process": {
     intro:
-      "Tattoo removal healing is a staged process. After each session, the treated skin goes through an immediate reaction, a wound-healing phase, and a recovery phase. The full process takes 6–8 weeks per session.",
+      "Tattoo removal healing is a staged biological process that occurs after every session. The treated skin moves through an immediate reaction phase, a wound-healing phase, and a recovery phase before the next session can be scheduled. Most modern clinical protocols allow 6 to 8 weeks between sessions, which gives the immune system time to clear fragmented ink particles and the skin time to fully recover.",
     sections: [
       section("How Tattoo Removal Healing Works", [
-        "Tattoo removal healing is a staged process. After a laser session, the treated skin goes through an immediate reaction (frosting, redness, swelling), a wound-healing phase (blistering, scabbing, crusting), and a recovery phase (peeling, fading, skin normalization). The full tattoo removal healing process takes 6–8 weeks per session.",
-        "The laser tattoo removal healing process is driven by the body's immune response: macrophages clear fragmented ink through the lymphatic system. For aftercare instructions, see the aftercare guide. For scarring concerns, see the scarring guide.",
+        "Tattoo removal healing is driven by two parallel processes: surface skin repair and immune clearance of ink. After a laser session, the body's macrophages (a type of immune cell) engulf the fragmented ink particles created by the laser pulse and transport them through the lymphatic system for excretion. This is why the tattoo continues fading for weeks after a single session, not just immediately.",
+        "Surface healing follows the standard wound-healing pathway: hemostasis, inflammation, proliferation, and remodeling. The visible stages (redness, blistering, scabbing, peeling) reflect this pathway. Surface healing typically completes within 2 to 3 weeks per session, but full cellular recovery, including immune clearance, takes the full 6 to 8 week interval. Treating the skin again before that interval increases the risk of overlap injury and scarring.",
+        "For non-laser methods such as TEPR (used by inkOUT) and saline removal, the surface healing follows a controlled wound model: a scab forms intentionally over 2 to 4 weeks and lifts ink with it as it sheds. The immune component is smaller because most of the ink leaves through the scab itself rather than via the lymphatic system.",
+        "For step-by-step aftercare instructions, see the aftercare guide. For scarring concerns, see the scarring guide.",
       ]),
-      section("Tattoo Removal Healing Stages", [
-        "Stage 1 — Frosting and Immediate Reaction (minutes 0–60): Frosting is a white or gray discoloration caused by gas bubbles. It fades within 10–30 minutes. Normal reactions: white discoloration, mild pinpoint bleeding, warm or stinging sensation.",
-        "Stage 2 — Redness, Swelling, and Inflammation (hours 1–48): Standard inflammatory response. Peaks at 24 hours and resolves within 48 hours.",
-        "Stage 3 — Blistering (days 1–7): Common, especially after Q-switched laser. Do not pop blisters. Normal blisters are small to moderate, clear or slightly pink, and flatten and dry within 3–7 days.",
-        "Stage 4 — Scabbing and Crusting (days 5–14): Dark scabs containing residual ink. Do not pick. Shed naturally within 7–14 days.",
-        "Stage 5 — Peeling and Skin Recovery (weeks 2–8): Final visible stage. Dry, flaky skin. Gradual fading becomes visible. Persistent raised tissue beyond 8 weeks may indicate scarring.",
+      section("Laser Tattoo Removal Healing Stages", [
+        "Stage 1. Frosting and immediate reaction (minutes 0 to 60). Frosting is a white or gray discoloration caused by gas bubbles released when the laser interacts with ink particles. It fades within 10 to 30 minutes. Normal reactions also include mild pinpoint bleeding and a warm or stinging sensation. Frosting does not occur with non-laser methods.",
+        "Stage 2. Redness, swelling, and inflammation (hours 1 to 48). The treated area becomes inflamed and feels warm. Swelling peaks at around 24 hours and typically resolves within 48 hours. Cool compresses (not ice) and elevation reduce discomfort.",
+        "Stage 3. Blistering (days 1 to 7). Blisters are common after laser sessions, especially with Q-switched systems. They are small to moderate, clear or slightly pink, and flatten within 3 to 7 days. Do not pop blisters. Allow them to drain naturally if they rupture, then keep the area clean and covered.",
+        "Stage 4. Scabbing and crusting (days 5 to 14). Dark scabs form as blisters dry. Scabs may contain residual ink and look darker than the surrounding skin. They shed naturally within 7 to 14 days. Picking scabs significantly raises scarring risk and is the most common preventable cause of poor outcomes.",
+        "Stage 5. Peeling and skin recovery (weeks 2 to 8). The final visible phase. Dry, flaky skin replaces the scab. Gradual fading of the underlying tattoo becomes visible. By the end of week 8, the skin should look settled at the surface even though immune clearance continues underneath. Persistent raised tissue beyond 8 weeks warrants a dermatology review.",
+      ]),
+      section("How Healing Differs Between Methods", [
+        "Picosecond laser (used at clinics including LaserAway, Removery, MEDermis Laser Clinic, and other picosecond-equipped specialists). Lower thermal profile and shorter pulse duration tend to produce less blistering and faster surface healing per session compared to Q-switched. Frosting still occurs. The 6 to 8 week interval still applies because immune clearance is the rate-limiting step, not surface repair.",
+        "Q-switched laser (older devices including Astanza Trinity, RevLite, and MedLite). Longer pulse duration delivers more thermal energy per pulse, which produces more blistering, more redness, and longer surface healing time per session. Standard interval is also 6 to 8 weeks. Outcomes can be excellent in skilled hands, particularly for solid black ink.",
+        "TEPR, the non-laser mechanical method used by inkOUT. Treatment introduces a proprietary solution into the dermis to bind ink to a controlled scab. The scab forms over 5 to 10 days and sheds over 2 to 4 weeks, lifting ink with it. Recommended interval between sessions is generally 8 to 10 weeks. Healing is more visually disruptive during the scab phase but typically more predictable in timing because there is no immune-clearance variability.",
+        "Saline removal (offered by specialty studios, often within tattoo or PMU studios). Mechanism is similar to TEPR: hypertonic saline draws ink toward the surface through osmosis, and a scab carries ink out as it heals. Scab phase is typically 2 to 4 weeks per session. Best clinical fit is cosmetic ink and small body tattoos.",
       ]),
       section("How Long Does Tattoo Removal Take to Heal?", [
-        "Healing time is 6–8 weeks per session. Visible healing takes 2–3 weeks. Recovery time varies by method (picosecond lasers heal faster than Q-switched), tattoo size, skin type, individual healing speed, and aftercare compliance.",
+        "Per-session healing breaks down roughly as follows. Surface inflammation: 24 to 48 hours. Blistering and scabbing: 5 to 14 days. Surface recovery: 2 to 3 weeks. Full cellular recovery and immune clearance: 6 to 8 weeks. The 6 to 8 week interval is the standard between sessions because that is when the body has cleared enough fragmented ink to make the next pulse useful.",
+        "Total treatment course depends on the method. Picosecond laser typically completes professional tattoos in 6 to 10 sessions, or roughly 9 to 18 months. Q-switched laser typically takes 8 to 15 sessions, or 12 to 24 months. TEPR typically completes most cases in 3 to 5 sessions over 10 to 15 months. Saline depends on tattoo size and ink type and can extend longer for body tattoos.",
+        "Healing speed varies by individual factors: tattoo size, skin type, age, immune function, smoking status, hydration, and aftercare adherence. Smokers and patients with poorly controlled diabetes typically heal slower at every stage.",
+      ]),
+      section("How Body Location Affects Healing", [
+        "Tattoo location strongly influences both healing speed and total session count, because both depend on local lymphatic drainage. Areas with strong lymphatic drainage clear ink faster and heal more cleanly. Areas with weak drainage do the opposite.",
+        "Faster healing and clearance: chest, upper back, neck, upper arms, shoulders. These areas sit close to major lymph node clusters and recover quickly per session.",
+        "Average healing: thighs, abdomen, forearms.",
+        "Slower healing and clearance: hands, fingers, lower legs, ankles, feet. These areas are farthest from major lymph clusters and have thinner skin with reduced perfusion. Total session count for tattoos in these locations is often 30 to 50 percent higher than the same tattoo on the upper body.",
+        "Face and cosmetic ink locations (eyebrows, lip line, eyeliner): require extra healing precautions because of higher visibility, thinner skin, and higher risk of paradoxical ink darkening with laser. Non-laser methods such as saline or TEPR are often the safer first-line option for these areas.",
       ]),
       section("What Does Healed Tattoo Removal Look Like?", [
-        "After one session: a lighter tattoo with mild pinkness in the treated area. After multiple sessions: cumulative fading is visible. After completed treatment: near-normal skin, with possible subtle texture or pigment variation.",
+        "After one session, expect mild fading and a lighter overall appearance, with possible pinkness or temporary pigment change in the treated area. Most patients are surprised by how subtle the first-session result looks. This is normal. Cumulative fading does the work, not single sessions.",
+        "Mid-treatment (sessions 4 to 6 for most patients), the tattoo appears noticeably faded. Edges typically clear before the densest ink in the center. Some color inks (red, orange, yellow) may persist while black and dark blue clear earlier.",
+        "After completed treatment, most patients have skin that returns to near-normal appearance, with possible subtle pigment variation or texture difference visible only on close inspection. Complete clearance to indistinguishable skin is the typical outcome with picosecond laser on suitable cases. Some residual ghost ink can persist permanently in certain ink types or in patients whose immune systems do not fully clear fragments. Realistic expectation is meaningful clearance, not guaranteed invisibility.",
       ]),
       section("When Healing Is Not Normal", [
-        "Signs of infection: increasing pain after 48 hours, yellow or green discharge, warmth spreading from the area, red streaks radiating outward, fever.",
-        "Signs of scarring: raised or thickened tissue persisting 8–12 weeks after the last session, keloid formation, or depressed skin texture. Prolonged pigment changes beyond 3–6 months also warrant evaluation.",
+        "Signs of infection. Increasing pain after 48 hours rather than improving, yellow or green discharge, warmth or red streaks spreading beyond the treatment area, or fever. Contact your provider promptly. Untreated infection raises scarring risk substantially.",
+        "Signs of scarring. Raised or thickened tissue persisting 8 to 12 weeks after the last session, keloid formation extending beyond the treatment area, or depressed skin texture. Prolonged pigment changes beyond 3 to 6 months also warrant evaluation.",
+        "Signs of paradoxical darkening (cosmetic tattoos only). If a microblading, lip blush, or eyeliner tattoo darkens or shifts color after a laser session, contact your provider before scheduling another session. This is a known reaction with iron oxide and titanium dioxide pigments and is best avoided by using non-laser methods.",
+        "Allergic reaction. Rare but possible, particularly with red and yellow inks. Symptoms include itching beyond normal healing, raised welts, or a spreading rash. Seek medical attention.",
+      ]),
+      section("How to Support Healing Between Sessions", [
+        "Wait the full provider-recommended interval (usually 6 to 8 weeks for laser, 8 to 10 weeks for TEPR, and at least 6 weeks for saline). Faster intervals raise risk without improving total clearance.",
+        "Protect the treated area from sun. Use SPF 30 or higher once the skin has fully closed, and physically cover the area when possible during direct exposure.",
+        "Stay hydrated and eat well. Adequate protein, vitamin C, vitamin E, and zinc all support wound healing.",
+        "Do not pick scabs or drain blisters. The scab is part of the healing structure. Premature removal is the most common cause of preventable scarring.",
+        "Avoid smoking and minimize alcohol. Both reduce dermal perfusion and slow every stage of healing.",
+        "See the aftercare guide for the full step-by-step protocol.",
       ]),
     ],
   },

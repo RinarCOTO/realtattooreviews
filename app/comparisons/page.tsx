@@ -147,7 +147,7 @@ export default function ComparisonsPage() {
       />
 
       {/* Body */}
-      <PageSection>
+      <PageSection bg="none" noBorder>
         <div className="space-y-14">
 
             {/* Intro */}

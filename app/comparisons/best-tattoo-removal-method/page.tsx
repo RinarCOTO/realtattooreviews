@@ -12,12 +12,13 @@ import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
-import MonoLabel from "@/components/reviews/MonoLabel";
 import FAQSection from "@/components/sections/FAQSection";
 import ContentCard from "@/components/comparison/ContentCard";
 import PageHero from "@/components/layout/PageHero";
-import PageSection from "@/components/reviews/PageSection";
 import SectionHeading from "@/components/guide/SectionHeading";
+import BlobBackground from "@/components/ui/BlobBackground";
+import JumpNav from "@/components/provider/JumpNav";
+import Container from "@/components/layout/Container";
 
 export const metadata: Metadata = {
   title:
@@ -270,6 +271,18 @@ const PROS_CONS = [
 const PAGE_PATH = "/comparisons/best-tattoo-removal-method";
 const SITE_URL = "https://realtattooreviews.com";
 
+const jumpItems = [
+  { label: "Method Types", href: "#methods" },
+  { label: "Comparison", href: "#comparison" },
+  { label: "Laser vs Non-Laser", href: "#laser-vs-non-laser" },
+  { label: "Most Effective", href: "#effectiveness" },
+  { label: "Dark Skin", href: "#dark-skin" },
+  { label: "Color Ink", href: "#color-ink" },
+  { label: "Microblading & PMU", href: "#microblading" },
+  { label: "Pros & Cons", href: "#pros-cons" },
+  { label: "FAQ", href: "#faq" },
+];
+
 export default function BestTattooRemovalMethodPage() {
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Comparisons", href: "/comparisons" },
@@ -297,372 +310,381 @@ export default function BestTattooRemovalMethodPage() {
   const faqJsonLd = faqSchema(faqs);
 
   return (
-    <div className="reviews-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+    <BlobBackground>
+      <main className="reviews-page min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
 
-      {/* Hero */}
-      <PageHero
-        label={
-          <span className="flex items-center gap-2">
-            <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
-              Comparisons
-            </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
-              Best Tattoo Removal Method
+        <PageHero
+          label={
+            <span className="flex items-center gap-2">
+              <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
+                Comparisons
+              </Link>
+              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+              <span className="text-(--muted) font-normal normal-case tracking-normal">
+                Best Tattoo Removal Method
+              </span>
             </span>
-          </span>
-        }
-        title={
-          <>
-            Best Tattoo{" "}
-            <span className="text-(--accent)">Removal Method</span>
-          </>
-        }
-        subtitle="Compare all major tattoo removal methods. Laser vs non-laser, picosecond vs Q-switch,
-            saline vs laser, and which method fits your tattoo, skin type, and goal."
-      />
+          }
+          title={
+            <>
+              Best Tattoo{" "}
+              <span className="text-(--accent)">Removal Method</span>
+            </>
+          }
+          subtitle="Compare all major tattoo removal methods. Laser vs non-laser, picosecond vs Q-switch,
+              saline vs laser, and which method fits your tattoo, skin type, and goal."
+        />
 
-      {/* Intro */}
-      <PageSection bg="none" noBorder>
-        <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
-          The best tattoo removal method depends on your tattoo, your skin, and your goal.
-          Laser is the most common. It is not always the best fit. Non-laser methods exist
-          for cases where laser carries specific risks. Saline removal exists for cosmetic
-          tattoos where laser can make things worse.
-        </p>
-        <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0 mt-4">
-          This page compares every major method across the same criteria: how it works,
-          what it is best for, what it is worst for, effectiveness, pain, scarring risk,
-          sessions, and cost. For deeper dives into individual methods or head-to-head brand
-          comparisons, use the links throughout this page.
-        </p>
-      </PageSection>
+        <JumpNav items={jumpItems} />
 
-      {/* Types of Methods */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading label="Key Difference">
-          Types of Tattoo Removal Methods
-        </SectionHeading>
-        <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            Tattoo removal methods fall into three categories: laser, non-laser mechanical, and
-            topical. Only the first two produce reliable results.
-          </p>
-          <div className="space-y-3">
-            {METHOD_TYPES.map((item) => (
-              <ContentCard
-                key={item.title}
-                title={item.title}
-                body={item.body}
-              />
-            ))}
-          </div>
-        </div>
-      </PageSection>
+        <section className="py-6">
+          <Container>
+            <div className="mx-auto max-w-3xl">
 
-      {/* Comparison Table */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>
-          Tattoo Removal Methods Compared
-        </SectionHeading>
-        <div className="space-y-4">
-          <GuideTable headers={COMPARISON_HEADERS} rows={COMPARISON_ROWS} />
-        </div>
-      </PageSection>
-
-      {/* Laser vs Non-Laser */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>
-          Laser vs Non-Laser Tattoo Removal
-        </SectionHeading>
-        <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            The laser vs non-laser decision is the first fork in the road. Everything else
-            follows from this choice.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <ContentCard title="Choose laser when" titleSize="sm">
-              <GuideBulletList
-                items={[
-                  "You have a standard body tattoo (especially medium to large)",
-                  "Your tattoo is predominantly black ink on lighter skin",
-                  "You want access to the widest range of providers and the deepest clinical evidence base",
-                  "You want the fastest per-session coverage on larger surface areas",
-                ]}
-              />
-            </ContentCard>
-            <ContentCard title="Choose non-laser when" titleSize="sm">
-              <GuideBulletList
-                items={[
-                  "You have a cosmetic tattoo (microblading, powder brows, lip liner, eyeliner) with iron-oxide or titanium-dioxide pigments",
-                  "You have darker skin and want to avoid any laser-melanin interaction",
-                  "You are prioritizing complete removal as the primary outcome",
-                  "You are scarring-sensitive and want a method that does not involve thermal energy",
-                ]}
-              />
-            </ContentCard>
-          </div>
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            For the head-to-head brand comparison between the largest non-laser and laser
-            providers, see{" "}
-            <Link
-              href="/comparisons/inkout-vs-removery"
-              className="text-(--accent) hover:underline"
-            >
-              inkOUT vs Removery
-            </Link>
-            . For saline vs laser specifically, see{" "}
-            <Link
-              href="/comparisons/saline-vs-laser-tattoo-removal"
-              className="text-(--accent) hover:underline"
-            >
-              saline vs laser tattoo removal
-            </Link>
-            .
-          </p>
-        </div>
-      </PageSection>
-
-      {/* Which Is Most Effective */}
-      <PageSection bg="none" noBorder className="verdict-bg">
-        <SectionHeading label="Verdict">
-          Which Tattoo Removal Method Is Most Effective?
-        </SectionHeading>
-        <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            Effectiveness depends on the case, not the method alone. No method removes every
-            tattoo perfectly in every situation.
-          </p>
-          <div className="space-y-3">
-            {EFFECTIVENESS_CASES.map((item) => (
-              <ContentCard
-                key={item.title}
-                title={item.title}
-                body={item.body}
-              />
-            ))}
-          </div>
-        </div>
-      </PageSection>
-
-      {/* Dark Skin */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>
-          Best Tattoo Removal Method for Dark Skin
-        </SectionHeading>
-        <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            Dark skin tattoo removal requires extra attention to the wavelength-versus-melanin
-            interaction that affects all laser methods.
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                title: "Picosecond laser at 1064nm",
-                body: "The safest laser option for Fitzpatrick IV through VI skin types. The 1064nm wavelength has the lowest melanin absorption. Picosecond pulse duration reduces thermal damage compared to Q-switched.",
-              },
-              {
-                title: "Q-switched Nd:YAG at 1064nm",
-                body: "Viable with conservative settings and an experienced provider. Higher thermal profile than picosecond means higher risk at equivalent energy levels.",
-              },
-              {
-                title: "Non-laser methods (TEPR, saline)",
-                body: "Do not interact with melanin because they do not use light energy. For users who want to eliminate any laser-melanin interaction, non-laser is the structurally lower-risk option.",
-              },
-            ].map((item) => (
-              <ContentCard
-                key={item.title}
-                title={item.title}
-                body={item.body}
-              />
-            ))}
-          </div>
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            See{" "}
-            <Link
-              href="/categories/dark-skin-tattoo-removal"
-              className="text-(--accent) hover:underline"
-            >
-              dark skin tattoo removal
-            </Link>{" "}
-            for provider-level guidance.
-          </p>
-        </div>
-      </PageSection>
-
-      {/* Color Ink */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>
-          Best Tattoo Removal Method for Color Ink
-        </SectionHeading>
-        <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            Color ink performance under laser depends on which wavelengths the laser offers.
-          </p>
-          <div className="space-y-2">
-            {COLOR_ROWS.map((row) => (
-              <div
-                key={row.ink}
-                className="flex gap-4 rounded-xl bg-white px-5 py-4"
-              >
-                <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 shrink-0 w-40">
-                  {row.ink}
+              {/* Intro */}
+              <div className="py-12 space-y-4">
+                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  The best tattoo removal method depends on your tattoo, your skin, and your goal.
+                  Laser is the most common. It is not always the best fit. Non-laser methods exist
+                  for cases where laser carries specific risks. Saline removal exists for cosmetic
+                  tattoos where laser can make things worse.
                 </p>
-                <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
-                  {row.body}
+                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  This page compares every major method across the same criteria: how it works,
+                  what it is best for, what it is worst for, effectiveness, pain, scarring risk,
+                  sessions, and cost. For deeper dives into individual methods or head-to-head brand
+                  comparisons, use the links throughout this page.
                 </p>
               </div>
-            ))}
-          </div>
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            See{" "}
-            <Link
-              href="/categories/color-ink-removal"
-              className="text-(--accent) hover:underline"
-            >
-              color ink removal
-            </Link>{" "}
-            for provider-level guidance.
-          </p>
-        </div>
-      </PageSection>
 
-      {/* Microblading and PMU */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>
-          Best Method for Microblading and PMU Removal
-        </SectionHeading>
-        <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            Cosmetic tattoo removal is a separate category. The pigments, the depth, and the
-            risks are different from body tattoo removal.
-          </p>
-          <div className="space-y-3">
-            {[
-              {
-                title: "Saline removal",
-                body: "The lowest-risk starting point for microblading, powder brows, lip liner, and eyeliner. Avoids iron-oxide oxidation and titanium-dioxide darkening. Works best on the shallow pigment depth typical of cosmetic tattoos. Most cases complete in 2 to 4 sessions.",
-              },
-              {
-                title: "TEPR",
-                body: "Also well-suited to cosmetic tattoos. Avoids all laser-pigment interaction risks.",
-              },
-              {
-                title: "Laser",
-                body: "Can work on cosmetic tattoos with experienced providers using conservative settings and appropriate wavelengths (1064nm is safer than 532nm or 755nm for iron-oxide pigments). The paradoxical darkening risk is structural. Always ask the provider about their specific experience with cosmetic tattoo pigments.",
-              },
-            ].map((item) => (
-              <ContentCard
-                key={item.title}
-                title={item.title}
-                body={item.body}
-              />
-            ))}
-          </div>
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
-            See{" "}
-            <Link
-              href="/categories/microblading-removal"
-              className="text-(--accent) hover:underline"
-            >
-              microblading removal
-            </Link>{" "}
-            and{" "}
-            <Link
-              href="/categories/permanent-makeup-removal"
-              className="text-(--accent) hover:underline"
-            >
-              permanent makeup removal
-            </Link>
-            .
-          </p>
-        </div>
-      </PageSection>
+              {/* Types of Methods */}
+              <div id="methods" className="py-12">
+                <SectionHeading label="Key Difference">
+                  Types of Tattoo Removal Methods
+                </SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    Tattoo removal methods fall into three categories: laser, non-laser mechanical, and
+                    topical. Only the first two produce reliable results.
+                  </p>
+                  <div className="space-y-3">
+                    {METHOD_TYPES.map((item) => (
+                      <ContentCard
+                        key={item.title}
+                        title={item.title}
+                        body={item.body}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-      {/* Pros and Cons */}
-      <PageSection bg="none" noBorder>
-        <SectionHeading>
-          Tattoo Removal Options: Pros and Cons
-        </SectionHeading>
-        <div className="space-y-4">
-          <div className="space-y-3">
-            {PROS_CONS.map((item) => (
-              <ContentCard
-                key={item.method}
-                title={item.method}
-              >
-                <p className="font-sans text-[13px] leading-relaxed text-(--ink) m-0">
-                  <span className="font-medium text-(--ink)">Pros:</span> {item.pros}
-                </p>
-                <p className="font-sans text-[13px] leading-relaxed text-(--ink) m-0 mt-1">
-                  <span className="font-medium text-(--ink)">Cons:</span> {item.cons}
-                </p>
-              </ContentCard>
-            ))}
-          </div>
-        </div>
-      </PageSection>
+              {/* Comparison Table */}
+              <div id="comparison" className="py-12">
+                <SectionHeading>
+                  Tattoo Removal Methods Compared
+                </SectionHeading>
+                <div className="space-y-4">
+                  <GuideTable headers={COMPARISON_HEADERS} rows={COMPARISON_ROWS} />
+                </div>
+              </div>
 
-      {/* Editorial note */}
-      <PageSection bg="none" noBorder>
-        <div className="space-y-4">
-          <GuideCallout label="Editorial note">
-            This guide is educational and reflects published clinical understanding of tattoo
-            removal methods. Individual outcomes vary. Always consult a qualified provider
-            before proceeding. See our{" "}
-            <Link href="/methodology" className="text-(--accent) hover:underline">
-              methodology
-            </Link>{" "}
-            and{" "}
-            <Link href="/editorial-policy" className="text-(--accent) hover:underline">
-              editorial policy
-            </Link>{" "}
-            for full details.
-          </GuideCallout>
-        </div>
-      </PageSection>
+              {/* Laser vs Non-Laser */}
+              <div id="laser-vs-non-laser" className="py-12">
+                <SectionHeading>
+                  Laser vs Non-Laser Tattoo Removal
+                </SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    The laser vs non-laser decision is the first fork in the road. Everything else
+                    follows from this choice.
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <ContentCard title="Choose laser when" titleSize="sm">
+                      <GuideBulletList
+                        items={[
+                          "You have a standard body tattoo (especially medium to large)",
+                          "Your tattoo is predominantly black ink on lighter skin",
+                          "You want access to the widest range of providers and the deepest clinical evidence base",
+                          "You want the fastest per-session coverage on larger surface areas",
+                        ]}
+                      />
+                    </ContentCard>
+                    <ContentCard title="Choose non-laser when" titleSize="sm">
+                      <GuideBulletList
+                        items={[
+                          "You have a cosmetic tattoo (microblading, powder brows, lip liner, eyeliner) with iron-oxide or titanium-dioxide pigments",
+                          "You have darker skin and want to avoid any laser-melanin interaction",
+                          "You are prioritizing complete removal as the primary outcome",
+                          "You are scarring-sensitive and want a method that does not involve thermal energy",
+                        ]}
+                      />
+                    </ContentCard>
+                  </div>
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    For the head-to-head brand comparison between the largest non-laser and laser
+                    providers, see{" "}
+                    <Link
+                      href="/comparisons/inkout-vs-removery"
+                      className="text-(--accent) hover:underline"
+                    >
+                      inkOUT vs Removery
+                    </Link>
+                    . For saline vs laser specifically, see{" "}
+                    <Link
+                      href="/comparisons/saline-vs-laser-tattoo-removal"
+                      className="text-(--accent) hover:underline"
+                    >
+                      saline vs laser tattoo removal
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
 
-      {/* Related links */}
-      <PageSection bg="none" noBorder>
-        <GuideRelatedLinks
-          links={[
-            {
-              href: "/comparisons/inkout-vs-removery",
-              title: "inkOUT vs Removery",
-              desc: "Head-to-head comparison of TEPR and picosecond laser across outcomes, pricing, dark skin, and PMU removal.",
-            },
-            {
-              href: "/comparisons/saline-vs-laser-tattoo-removal",
-              title: "Saline vs Laser Tattoo Removal",
-              desc: "Full comparison across PMU, microblading, scarring risk, color ink, and cost.",
-            },
-            {
-              href: "/guides/saline-tattoo-removal",
-              title: "Saline Tattoo Removal Guide",
-              desc: "How saline removal works, which cases it handles best, and what to expect.",
-            },
-            {
-              href: "/guides/tattoo-removal-scarring",
-              title: "Tattoo Removal Scarring",
-              desc: "Scarring risk by method, skin type, and provider. What to do if scarring occurs.",
-            },
-          ]}
-        />
-      </PageSection>
+              {/* Which Is Most Effective */}
+              <div id="effectiveness" className="py-12">
+                <SectionHeading label="Verdict">
+                  Which Tattoo Removal Method Is Most Effective?
+                </SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    Effectiveness depends on the case, not the method alone. No method removes every
+                    tattoo perfectly in every situation.
+                  </p>
+                  <div className="space-y-3">
+                    {EFFECTIVENESS_CASES.map((item) => (
+                      <ContentCard
+                        key={item.title}
+                        title={item.title}
+                        body={item.body}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-      <FAQSection faqs={faqs} />
-    </div>
+              {/* Dark Skin */}
+              <div id="dark-skin" className="py-12">
+                <SectionHeading>
+                  Best Tattoo Removal Method for Dark Skin
+                </SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    Dark skin tattoo removal requires extra attention to the wavelength-versus-melanin
+                    interaction that affects all laser methods.
+                  </p>
+                  <div className="space-y-3">
+                    {[
+                      {
+                        title: "Picosecond laser at 1064nm",
+                        body: "The safest laser option for Fitzpatrick IV through VI skin types. The 1064nm wavelength has the lowest melanin absorption. Picosecond pulse duration reduces thermal damage compared to Q-switched.",
+                      },
+                      {
+                        title: "Q-switched Nd:YAG at 1064nm",
+                        body: "Viable with conservative settings and an experienced provider. Higher thermal profile than picosecond means higher risk at equivalent energy levels.",
+                      },
+                      {
+                        title: "Non-laser methods (TEPR, saline)",
+                        body: "Do not interact with melanin because they do not use light energy. For users who want to eliminate any laser-melanin interaction, non-laser is the structurally lower-risk option.",
+                      },
+                    ].map((item) => (
+                      <ContentCard
+                        key={item.title}
+                        title={item.title}
+                        body={item.body}
+                      />
+                    ))}
+                  </div>
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    See{" "}
+                    <Link
+                      href="/categories/dark-skin-tattoo-removal"
+                      className="text-(--accent) hover:underline"
+                    >
+                      dark skin tattoo removal
+                    </Link>{" "}
+                    for provider-level guidance.
+                  </p>
+                </div>
+              </div>
+
+              {/* Color Ink */}
+              <div id="color-ink" className="py-12">
+                <SectionHeading>
+                  Best Tattoo Removal Method for Color Ink
+                </SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    Color ink performance under laser depends on which wavelengths the laser offers.
+                  </p>
+                  <div className="space-y-2">
+                    {COLOR_ROWS.map((row) => (
+                      <div
+                        key={row.ink}
+                        className="flex gap-4 rounded-xl bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
+                      >
+                        <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 shrink-0 w-40">
+                          {row.ink}
+                        </p>
+                        <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                          {row.body}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    See{" "}
+                    <Link
+                      href="/categories/color-ink-removal"
+                      className="text-(--accent) hover:underline"
+                    >
+                      color ink removal
+                    </Link>{" "}
+                    for provider-level guidance.
+                  </p>
+                </div>
+              </div>
+
+              {/* Microblading and PMU */}
+              <div id="microblading" className="py-12">
+                <SectionHeading>
+                  Best Method for Microblading and PMU Removal
+                </SectionHeading>
+                <div className="space-y-4">
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    Cosmetic tattoo removal is a separate category. The pigments, the depth, and the
+                    risks are different from body tattoo removal.
+                  </p>
+                  <div className="space-y-3">
+                    {[
+                      {
+                        title: "Saline removal",
+                        body: "The lowest-risk starting point for microblading, powder brows, lip liner, and eyeliner. Avoids iron-oxide oxidation and titanium-dioxide darkening. Works best on the shallow pigment depth typical of cosmetic tattoos. Most cases complete in 2 to 4 sessions.",
+                      },
+                      {
+                        title: "TEPR",
+                        body: "Also well-suited to cosmetic tattoos. Avoids all laser-pigment interaction risks.",
+                      },
+                      {
+                        title: "Laser",
+                        body: "Can work on cosmetic tattoos with experienced providers using conservative settings and appropriate wavelengths (1064nm is safer than 532nm or 755nm for iron-oxide pigments). The paradoxical darkening risk is structural. Always ask the provider about their specific experience with cosmetic tattoo pigments.",
+                      },
+                    ].map((item) => (
+                      <ContentCard
+                        key={item.title}
+                        title={item.title}
+                        body={item.body}
+                      />
+                    ))}
+                  </div>
+                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                    See{" "}
+                    <Link
+                      href="/categories/microblading-removal"
+                      className="text-(--accent) hover:underline"
+                    >
+                      microblading removal
+                    </Link>{" "}
+                    and{" "}
+                    <Link
+                      href="/categories/permanent-makeup-removal"
+                      className="text-(--accent) hover:underline"
+                    >
+                      permanent makeup removal
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
+
+              {/* Pros and Cons */}
+              <div id="pros-cons" className="py-12">
+                <SectionHeading>
+                  Tattoo Removal Options: Pros and Cons
+                </SectionHeading>
+                <div className="space-y-4">
+                  <div className="space-y-3">
+                    {PROS_CONS.map((item) => (
+                      <ContentCard
+                        key={item.method}
+                        title={item.method}
+                      >
+                        <p className="font-sans text-[13px] leading-relaxed text-(--ink) m-0">
+                          <span className="font-medium text-(--ink)">Pros:</span> {item.pros}
+                        </p>
+                        <p className="font-sans text-[13px] leading-relaxed text-(--ink) m-0 mt-1">
+                          <span className="font-medium text-(--ink)">Cons:</span> {item.cons}
+                        </p>
+                      </ContentCard>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Editorial note */}
+              <div className="py-12">
+                <GuideCallout label="Editorial note">
+                  This guide is educational and reflects published clinical understanding of tattoo
+                  removal methods. Individual outcomes vary. Always consult a qualified provider
+                  before proceeding. See our{" "}
+                  <Link href="/methodology" className="text-(--accent) hover:underline">
+                    methodology
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="/editorial-policy" className="text-(--accent) hover:underline">
+                    editorial policy
+                  </Link>{" "}
+                  for full details.
+                </GuideCallout>
+              </div>
+
+              {/* Related links */}
+              <div className="py-12">
+                <GuideRelatedLinks
+                  links={[
+                    {
+                      href: "/comparisons/inkout-vs-removery",
+                      title: "inkOUT vs Removery",
+                      desc: "Head-to-head comparison of TEPR and picosecond laser across outcomes, pricing, dark skin, and PMU removal.",
+                    },
+                    {
+                      href: "/comparisons/saline-vs-laser-tattoo-removal",
+                      title: "Saline vs Laser Tattoo Removal",
+                      desc: "Full comparison across PMU, microblading, scarring risk, color ink, and cost.",
+                    },
+                    {
+                      href: "/guides/saline-tattoo-removal",
+                      title: "Saline Tattoo Removal Guide",
+                      desc: "How saline removal works, which cases it handles best, and what to expect.",
+                    },
+                    {
+                      href: "/guides/tattoo-removal-scarring",
+                      title: "Tattoo Removal Scarring",
+                      desc: "Scarring risk by method, skin type, and provider. What to do if scarring occurs.",
+                    },
+                  ]}
+                />
+              </div>
+
+            </div>
+          </Container>
+        </section>
+
+        <FAQSection id="faq" faqs={faqs} />
+      </main>
+    </BlobBackground>
   );
 }

@@ -237,8 +237,7 @@ export default function CitiesIndexPage() {
               <GuideCallout label="Editorial note">
                 City pages are generated from our internal review dataset (Supabase) and verified
                 against Google Places data. Provider rankings refresh as new reviews are scraped.
-                inkOUT is a current advertising client of RealTattooReviews and is evaluated under
-                the same framework as every other provider. See our{" "}
+                See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology
                 </Link>{" "}
