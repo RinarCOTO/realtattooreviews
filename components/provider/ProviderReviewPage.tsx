@@ -11,6 +11,7 @@ import type { SanityProviderReview } from "@/lib/page-data/reviews";
 import type { Provider } from "@/types/provider";
 import type { Review } from "@/types/review";
 import FAQSection from "@/components/sections/FAQSection";
+import BlobBackground from "@/components/ui/BlobBackground";
 import {
   getAlternativeProviders,
   getVerdictFromRating,
@@ -47,7 +48,7 @@ function VerdictTable({ review }: { review: SanityProviderReview }) {
           {rows.map(({ label, value }) =>
             value ? (
               <tr key={label} className="border-b border-(--line) last:border-0">
-                <td className="py-3 px-5 font-sans text-[11px] uppercase tracking-widest text-(--muted) whitespace-nowrap w-[220px] bg-(--surface)">
+                <td className="py-3 px-5 font-sans text-[11px] uppercase tracking-widest text-(--muted) whitespace-nowrap w-55 bg-(--surface)">
                   {label}
                 </td>
                 <td className="py-3 px-5 text-(--ink) leading-relaxed">{value}</td>
@@ -91,7 +92,8 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
   ];
 
   return (
-    <main className="reviews-page min-h-screen bg-(--bg)">
+    <BlobBackground>
+    <main className="reviews-page min-h-screen">
       <ProviderHero
         breadcrumb={["Reviews", review.providerName]}
         nameNode={<>{review.providerName}</>}
@@ -116,7 +118,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       <JumpNav items={jumpItems} />
 
       {/* Verdict */}
-      <section id="verdict" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="verdict" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading
             title={`${review.providerName} Verdict`}
@@ -137,7 +139,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
 
       {/* What Reviewers Say */}
       {reviews.length > 0 && (
-        <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
+        <section id="reviews" className="border-b border-(--line) py-22">
           <Container>
             <BlockHeading
               title="What Reviewers Say"
@@ -149,7 +151,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       )}
 
       {/* What the Provider Does Well */}
-      <section id="does-well" className="border-b border-(--line) bg-(--wash) py-22">
+      <section id="does-well" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title={`What ${review.providerName} Does Well`} body="" />
           <ul className="flex flex-col gap-3 mt-2">
@@ -167,7 +169,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* Where Users Hesitate */}
-      <section id="hesitations" className="border-b border-(--line) bg-(--wash) py-22">
+      <section id="hesitations" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title="Where Users Hesitate" body="" />
           <ul className="flex flex-col gap-3 mt-2">
@@ -185,7 +187,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* What Makes Different */}
-      <section id="different" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="different" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading
             title={`What Makes ${review.providerName} Different`}
@@ -204,7 +206,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="pricing" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title={`${review.providerName} Pricing`} body="" />
           <div className="max-w-prose">
@@ -225,7 +227,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* Comparison */}
-      <section id="comparison" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="comparison" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading
             title={`How ${review.providerName} Compares`}
@@ -246,7 +248,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
 
       {/* Locations */}
       {locations.length > 0 && (
-        <section id="locations" className="border-b border-(--line) bg-(--surface) py-22">
+        <section id="locations" className="border-b border-(--line) py-22">
           <Container>
             <BlockHeading
               title={`${review.providerName} Locations`}
@@ -306,7 +308,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       )}
 
       {/* Who It Is Best For */}
-      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="best-for" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading
             title={`Who ${review.providerName} Is Best For`}
@@ -354,7 +356,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       )}
 
       {/* How We Reviewed */}
-      <section id="methodology" className="bg-(--bg) py-22">
+      <section id="methodology" className="py-22">
         <Container>
           <BlockHeading title={`How We Reviewed ${review.providerName}`} body="" />
           <div className="max-w-prose border border-(--line) bg-(--surface) rounded-xl p-6">
@@ -426,6 +428,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
         </Container>
       </section>
 
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -493,5 +496,6 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
         />
       )}
     </main>
+    </BlobBackground>
   );
 }

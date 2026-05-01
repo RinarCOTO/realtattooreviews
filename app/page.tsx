@@ -137,11 +137,9 @@ export default async function HomePage() {
           <div className="hero-blob" style={{ width: 640, height: 440, background: "#EDE3C4", left: "36%", top: "65%", animation: "blob-c 18s ease-in-out infinite" }} />
         </div>
 
-        <div className="min-h-screen flex flex-col justify-center">
-          <Hero headline={cms?.heroHeadline} subheadline={cms?.heroSubheadline} />
-          <StatsRow />
-          <HowItWorks steps={cms?.howItWorksSteps} />
-        </div>
+        <Hero headline={cms?.heroHeadline} subheadline={cms?.heroSubheadline} />
+        <StatsRow />
+        <HowItWorks steps={cms?.howItWorksSteps} />
 
         {/* ── 5. Category tabs ──────────────────────── */}
         <CategoryTabs />
@@ -181,9 +179,9 @@ export default async function HomePage() {
         </section>
 
         {/* ── 7. Highest rated providers ────────────── */}
-        <section className="py-14">
-          <Container>
-            <div className="mb-8 flex items-end justify-between">
+        <section className="py-14 px-4 sm:px-6 lg:px-8">
+          <div className="gradient-card-teal-peach rounded-3xl py-8">
+            <div className="mx-auto max-w-6xl px-8 mb-8 flex items-end justify-between">
               <div>
                 <h2 className="text-[28px] font-bold text-heading">Highest rated providers</h2>
                 <p className="mt-1 text-sm font-medium text-heading">
@@ -192,17 +190,17 @@ export default async function HomePage() {
               </div>
               <Link href="/providers" className="hidden text-sm font-medium text-accent hover:underline sm:block">View all →</Link>
             </div>
-          </Container>
-          <Container>
-            <HorizontalScrollWithBar>
-              {highestRatedProviders.map((provider) => (
-                <div key={provider.id} style={{ flexShrink: 0, width: "264px" }}>
-                  <ProviderCard provider={provider} />
-                </div>
-              ))}
-              <div style={{ flexShrink: 0, width: "1rem" }} />
-            </HorizontalScrollWithBar>
-          </Container>
+            <div className="flex justify-center">
+              <HorizontalScrollWithBar>
+                {highestRatedProviders.map((provider) => (
+                  <div key={provider.id} style={{ flexShrink: 0, width: "264px" }}>
+                    <ProviderCard provider={provider} />
+                  </div>
+                ))}
+                <div style={{ flexShrink: 0, width: "1rem" }} />
+              </HorizontalScrollWithBar>
+            </div>
+          </div>
         </section>
 
         {/* ── 8. Browse by city ─────────────────────── */}
@@ -275,8 +273,8 @@ export default async function HomePage() {
       />
 
       {/* ── 12. Final CTA banner ────────────────────── */}
-      <section className="border-t border-border py-16" style={{ background: "linear-gradient(135deg, var(--color-blob-teal) 0%, #F8F5EE 50%, var(--color-blob-peach) 100%)" }}>
-        <Container>
+      <section className="py-6 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="rounded-3xl py-16" style={{ background: "linear-gradient(135deg, var(--color-blob-teal) 0%, #F8F5EE 50%, var(--color-blob-peach) 100%)" }}>
           <div className="flex flex-col items-center gap-6 text-center">
             <h2 className="text-[28px] font-bold text-heading">
               Ready to find the right clinic?
@@ -300,7 +298,7 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
     </>
   );

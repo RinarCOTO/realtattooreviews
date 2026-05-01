@@ -16,7 +16,7 @@ const links = [
 
 export default function Footer({ dataLastUpdated }: { dataLastUpdated?: string }) {
   return (
-    <footer className="border-t border-border bg-surface py-10">
+    <footer className="relative border-t border-border bg-surface py-10" style={{ zIndex: 1 }}>
       <Container>
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
 

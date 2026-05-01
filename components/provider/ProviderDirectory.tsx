@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useMemo } from "react";
+import Card from "@/components/ui/Card";
 
 type Method = "Laser" | "Non-laser";
 type Footprint = "National chain" | "Regional" | "Single-market";
@@ -85,7 +86,9 @@ export default function ProviderDirectory({
   }
 
   return (
-    <div>
+    <>
+    <Card>
+    <div className="p-6">
       {/* Controls */}
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2">
@@ -190,24 +193,27 @@ export default function ProviderDirectory({
         Review counts reflect our internal review sample, not lifetime Google totals. Data refreshed: {refreshedAt}
       </p>
 
+    </div>
+    </Card>
+
       {/* Coverage pending */}
       {pendingProviders.length > 0 && (
-        <div className="mt-10 border-t border-border pt-8">
+        <Card className="mt-4 p-6">
           <h3 className="mb-1 text-[15px] font-semibold text-heading">Coverage pending</h3>
           <p className="mb-4 text-[13px] leading-relaxed text-muted">
             Providers tracked in our coverage plan that do not yet have a review sample in our dataset.
           </p>
-          <ul className="space-y-2">
-            {pendingProviders.map((p) => (
-              <li key={p.name} className="flex flex-wrap items-baseline gap-x-2 text-[13px]">
-                <span className="font-medium text-subtle">{p.name}</span>
-                <span className="text-border">·</span>
-                <span className="text-[12px] text-subtle">{p.markets}</span>
-              </li>
+          <p className="text-[13px] leading-relaxed text-subtle">
+            {pendingProviders.map((p, i) => (
+              <span key={p.name}>
+                {i > 0 && <span className="mx-2 text-border">·</span>}
+                <span className="font-medium">{p.name}</span>
+                {p.markets && <span className="text-[12px] text-muted"> ({p.markets})</span>}
+              </span>
             ))}
-          </ul>
-        </div>
+          </p>
+        </Card>
       )}
-    </div>
+    </>
   );
 }

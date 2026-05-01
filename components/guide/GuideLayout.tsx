@@ -17,6 +17,8 @@ type Props = {
   path?: string;
   children: React.ReactNode;
   heroClassName?: string;
+  /** Replaces the default PageHero entirely when provided (e.g. CategoryHero) */
+  hero?: React.ReactNode;
 };
 
 export default function GuideLayout({
@@ -28,6 +30,7 @@ export default function GuideLayout({
   path,
   children,
   heroClassName,
+  hero,
 }: Props) {
   const breadcrumbJsonLd = path
     ? breadcrumbSchema([
@@ -62,27 +65,29 @@ export default function GuideLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
         />
       )}
-      <PageHero
-        heroClassName={heroClassName}
-        label={
-          <>
-            <Link href="/guides" className="hover:text-(--ink) transition-colors">
-              Guides
-            </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
-              {breadcrumb}
-            </span>
-          </>
-        }
-        title={h1}
-        subtitle={description}
-      />
+      {hero ?? (
+        <PageHero
+          heroClassName={heroClassName}
+          label={
+            <>
+              <Link href="/guides" className="hover:text-(--ink) transition-colors">
+                Guides
+              </Link>
+              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+              <span className="text-(--muted) font-normal normal-case tracking-normal">
+                {breadcrumb}
+              </span>
+            </>
+          }
+          title={h1}
+          subtitle={description}
+        />
+      )}
 
       {/* Body */}
-      <section className="bg-(--bg)">
+      <section className="bg-white">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <div className="mx-auto max-w-4xl">
             {children}
           </div>
         </Container>
@@ -95,7 +100,7 @@ export default function GuideLayout({
       {sources && (
         <section className="border-t border-(--line) py-10 bg-(--bg)">
           <Container>
-            <div className="mx-auto max-w-2xl">
+            <div className="mx-auto max-w-4xl">
               <p className="font-mono text-[11px] tracking-widest uppercase text-(--muted) mb-2">
                 Sources
               </p>

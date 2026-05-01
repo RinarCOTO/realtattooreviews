@@ -22,7 +22,7 @@ export default function GuideRelatedLinks({ links }: Props) {
           <Link
             key={link.href}
             href={link.href}
-            className="flex items-center justify-between px-6 py-4 no-underline text-inherit hover:bg-(--surface) transition-colors"
+            className="flex items-center justify-between px-6 py-4 bg-white no-underline text-inherit hover:bg-(--surface) transition-colors"
           >
             <div className="min-w-0 pr-4">
               <p className="font-sans font-medium text-(--ink) text-[15px] m-0 mb-0.5">

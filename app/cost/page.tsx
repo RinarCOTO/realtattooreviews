@@ -133,7 +133,7 @@ export default function CostPage() {
       {/* Body */}
       <PageSection bg="bg">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <div className="mx-auto max-w-2xl">
             {/* Intro callout */}
             <div className="py-12">
               <div className="rounded-xl border border-(--line) bg-(--surface) p-6">

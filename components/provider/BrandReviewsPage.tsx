@@ -15,6 +15,7 @@ import type { Provider } from "@/types/provider";
 import { getLocationSlug } from "@/lib/providers";
 import BottomLineSection from "./BottomLineSection";
 import FAQSection from "@/components/sections/FAQSection";
+import BlobBackground from "@/components/ui/BlobBackground";
 import {
   buildBestFor,
   buildBottomLine,
@@ -67,7 +68,8 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   ];
 
   return (
-    <main className="reviews-page min-h-screen bg-(--bg)">
+    <BlobBackground>
+    <main className="reviews-page min-h-screen">
       <ProviderHero
         breadcrumb={["Reviews", brand]}
         nameNode={
@@ -96,7 +98,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
 
       <JumpNav items={jumpItems} />
 
-      <section id="overview" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="overview" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title={`Is ${brand} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and location consistency make it a good fit for your tattoo, budget, and goals." />
           <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
@@ -110,21 +112,21 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="reviews" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
           <WhatReviewersSay reviews={reviews} providerName={brand} />
         </Container>
       </section>
 
-      <section id="results" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="results" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
         </Container>
       </section>
 
-      <section id="pricing" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="pricing" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
           <InfoCard
@@ -137,14 +139,14 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      <section id="treatment" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="treatment" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title="Treatment Approach and Technology" body="Brand reputation matters, but treatment fit matters more. A provider can look strong overall and still be a weak fit for a specific tattoo or skin profile." />
           <InfoCard label="Method and technology" body={buildTreatmentOverview(locations)} link="See our method comparison guide" linkHref="/comparisons/best-tattoo-removal-method" />
         </Container>
       </section>
 
-      <section id="locations" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="locations" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title={`${brand} by Location`} body="Large brands often perform unevenly by city. A national reputation can be directionally useful, but local execution still matters." />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -174,7 +176,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      <section id="alternatives" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="alternatives" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${brand}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
@@ -185,7 +187,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       </section>
 
       {/* ── Who it fits ──────────────────────────────────────────────────── */}
-      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="best-for" className="border-b border-(--line) py-22">
         <Container>
           <BlockHeading title={`Who ${brand} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
           <div className="grid gap-4 sm:grid-cols-2">
@@ -242,5 +244,6 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         }}
       />
     </main>
+    </BlobBackground>
   );
 }

@@ -22,6 +22,8 @@ type Props = {
   description?: string;
   /** Anchor id for in-page nav (e.g. "faq"). */
   id?: string;
+  /** Override the section background (defaults to "bg-white"). */
+  className?: string;
 };
 
 /**
@@ -38,6 +40,7 @@ export default function FAQSection({
   title = "Frequently Asked Questions",
   description,
   id,
+  className = "bg-white",
 }: Props) {
   if (!faqs || faqs.length === 0) return null;
 
@@ -66,7 +69,7 @@ export default function FAQSection({
   return (
     <section
       id={id}
-      className="bg-white py-20"
+      className={`${className} py-20`}
     >
       {jsonLd && (
         <script

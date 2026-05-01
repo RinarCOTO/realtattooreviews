@@ -121,7 +121,7 @@ export default function CategoriesPage() {
   ]);
 
   return (
-    <main className="min-h-screen bg-bg">
+    <main className="min-h-screen bg-(--bg)">
       <Script
         id="categories-breadcrumb-schema"
         type="application/ld+json"
@@ -147,15 +147,20 @@ export default function CategoriesPage() {
       />
 
       {/* Intro */}
-      <section className="border-b border-border py-12">
+      <section className="py-16">
         <Container>
-          <div className="space-y-4">
-            <h2 className="text-[22px] font-bold text-heading">Find the Right Approach for Your Case</h2>
+          <div className="mb-8">
+            <h2 className="text-[28px] font-bold text-heading">Find the Right Approach for Your Case</h2>
+            <p className="mt-1 text-sm font-medium text-heading">
+              Not every removal case is the same. Start with your situation.
+            </p>
+          </div>
+          <div className="max-w-2xl space-y-3">
             <p className="text-[15px] leading-relaxed text-body">
-              Not every tattoo removal case is the same. The method, provider, and protocol that work best depend on what you are removing, what your skin looks like, and what you are trying to accomplish. The category pages below organize tattoo removal by use case so you can start with your situation and find the providers and methods that fit.
+              The method, provider, and protocol that work best depend on what you are removing, what your skin looks like, and what you are trying to accomplish. The category pages below organize tattoo removal by use case so you can start with your situation and find the providers and methods that fit.
             </p>
             <p className="text-[15px] leading-relaxed text-body">
-              Each category page covers which methods work best for that case type, which providers have documented positive outcomes, what the risks are, and what to ask at consultation. Category pages link to the relevant comparison pages, city pages, and guides for deeper research.
+              Each category page covers which methods work best for that case type, which providers have documented positive outcomes, what the risks are, and what to ask at consultation.
             </p>
           </div>
         </Container>
@@ -163,29 +168,27 @@ export default function CategoriesPage() {
 
       {/* Category groups */}
       {GROUPS.map((group) => (
-        <section key={group.id} className="border-b border-border py-12">
+        <section key={group.id} className="py-14">
           <Container>
-            <div className="mb-6">
-              <h2 className="text-[22px] font-bold text-heading">{group.heading}</h2>
-              {group.intro && (
-                <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-muted">
-                  {group.intro}
-                </p>
-              )}
+            <div className="mb-8 flex items-end justify-between">
+              <div>
+                <h2 className="text-[28px] font-bold text-heading">{group.heading}</h2>
+                {group.intro && (
+                  <p className="mt-1 text-sm font-medium text-heading max-w-2xl">
+                    {group.intro}
+                  </p>
+                )}
+              </div>
             </div>
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {group.categories.map((cat) => (
                 <Link
                   key={cat.slug}
                   href={`/categories/${cat.slug}`}
-                  className="group flex flex-col rounded-xl border border-border bg-surface p-6 transition-all hover:border-accent hover:shadow-sm"
+                  className="group flex flex-col gap-2 rounded-xl border border-border bg-white p-5 shadow-card transition-colors hover:border-accent hover:bg-accent/8"
                 >
-                  <h3 className="mb-2 text-[16px] font-semibold leading-snug text-heading group-hover:text-accent">
-                    {cat.title}
-                  </h3>
-                  <p className="mb-4 flex-1 text-[14px] leading-relaxed text-muted">
-                    {cat.description}
-                  </p>
+                  <p className="font-semibold text-heading text-[14px] transition-colors group-hover:text-accent">{cat.title}</p>
+                  <p className="text-[13px] leading-relaxed font-medium text-heading flex-1">{cat.description}</p>
                   <span className="text-[13px] font-medium text-accent">
                     Browse {cat.title.toLowerCase()} →
                   </span>
@@ -197,74 +200,74 @@ export default function CategoriesPage() {
       ))}
 
       {/* How categories connect */}
-      <section className="border-b border-border py-12">
+      <section className="py-14">
         <Container>
-          <div>
-            <h2 className="mb-4 text-[22px] font-bold text-heading">How Categories Connect to the Rest of the Site</h2>
-            <p className="mb-6 text-[14px] leading-relaxed text-muted">
-              Category pages are one layer in the site's decision framework. They help you filter by use case. From there:
-            </p>
-            <div className="space-y-4">
-              {[
-                {
-                  label: "City pages",
-                  body: "show which providers in your metro handle your specific case type.",
-                  links: [
-                    { label: "Austin", href: "/cities/austin" },
-                    { label: "Chicago", href: "/cities/chicago" },
-                    { label: "Houston", href: "/cities/houston" },
-                    { label: "Tampa Bay", href: "/cities/tampa" },
-                  ],
-                },
-                {
-                  label: "Comparison pages",
-                  body: "put methods and brands side by side.",
-                  links: [{ label: "All comparisons", href: "/comparisons" }],
-                },
-                {
-                  label: "Guide pages",
-                  body: "cover the practical details of healing, aftercare, scarring, and saline removal.",
-                  links: [{ label: "All guides", href: "/guides" }],
-                },
-                {
-                  label: "Provider pages",
-                  body: "give you the full review picture for individual brands.",
-                  links: [{ label: "All providers", href: "/providers" }],
-                },
-              ].map((item) => (
-                <div key={item.label} className="flex gap-3 rounded-xl border border-border bg-surface px-5 py-4">
-                  <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  <p className="text-[14px] leading-relaxed text-body">
-                    <span className="font-semibold text-heading">{item.label}</span>{" "}
-                    {item.body}{" "}
-                    {item.links.map((link, i) => (
-                      <span key={link.href}>
-                        {i > 0 && ", "}
-                        <Link href={link.href} className="text-accent hover:underline">
-                          {link.label}
-                        </Link>
-                      </span>
-                    ))}
-                    .
-                  </p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 text-[13px] leading-relaxed text-muted">
-              Every category page, city page, comparison page, and provider page is evaluated using the same{" "}
-              <Link href="/methodology" className="text-accent hover:underline">methodology</Link>.
-              See our{" "}
-              <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy</Link>{" "}
-              for advertising disclosures.
+          <div className="mb-8">
+            <h2 className="text-[28px] font-bold text-heading">How Categories Connect to the Rest of the Site</h2>
+            <p className="mt-1 text-sm font-medium text-heading">
+              Category pages are one layer in the site's decision framework.
             </p>
           </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              {
+                label: "City pages",
+                body: "show which providers in your metro handle your specific case type.",
+                links: [
+                  { label: "Austin", href: "/cities/austin" },
+                  { label: "Chicago", href: "/cities/chicago" },
+                  { label: "Houston", href: "/cities/houston" },
+                  { label: "Tampa Bay", href: "/cities/tampa" },
+                ],
+              },
+              {
+                label: "Comparison pages",
+                body: "put methods and brands side by side.",
+                links: [{ label: "All comparisons", href: "/comparisons" }],
+              },
+              {
+                label: "Guide pages",
+                body: "cover the practical details of healing, aftercare, scarring, and saline removal.",
+                links: [{ label: "All guides", href: "/guides" }],
+              },
+              {
+                label: "Provider pages",
+                body: "give you the full review picture for individual brands.",
+                links: [{ label: "All providers", href: "/providers" }],
+              },
+            ].map((item) => (
+              <div key={item.label} className="flex gap-3 rounded-xl border border-border bg-white p-5 shadow-card">
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                <p className="text-[14px] leading-relaxed text-body">
+                  <span className="font-semibold text-heading">{item.label}</span>{" "}
+                  {item.body}{" "}
+                  {item.links.map((link, i) => (
+                    <span key={link.href}>
+                      {i > 0 && ", "}
+                      <Link href={link.href} className="text-accent hover:underline">
+                        {link.label}
+                      </Link>
+                    </span>
+                  ))}
+                  .
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-[13px] leading-relaxed text-muted">
+            Every category page, city page, comparison page, and provider page is evaluated using the same{" "}
+            <Link href="/methodology" className="text-accent hover:underline">methodology</Link>.
+            See our{" "}
+            <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy</Link>{" "}
+            for advertising disclosures.
+          </p>
         </Container>
       </section>
 
-      <FAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} className="" />
 
       {/* Editorial note */}
-      <section className="border-t border-border py-8">
+      <section className="py-8">
         <Container>
           <p className="max-w-2xl text-[12px] leading-relaxed text-subtle">
             Category pages are based on the same review-sample evidence, clinical literature, and scoring methodology used across the site. inkOUT is a current advertising client of RealTattooReviews and is evaluated under the same framework as every other provider. See our{" "}

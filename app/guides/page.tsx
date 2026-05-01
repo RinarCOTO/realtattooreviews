@@ -121,7 +121,7 @@ export default function GuidesIndexPage() {
       {/* Body */}
       <section className="bg-(--bg)">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <div className="mx-auto max-w-2xl">
 
             {/* Intro */}
             <div className="py-12">

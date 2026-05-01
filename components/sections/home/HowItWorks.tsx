@@ -58,11 +58,11 @@ export default function HowItWorks({ steps }: Props) {
     <section className="pt-4 pb-6">
       <Container>
         <div className="mb-4 relative text-center">
-          <h2 className="text-[32px] font-bold text-primary">How reviews work</h2>
-          <p className="mt-1 text-sm text-muted">
+          <h2 className="font-(family-name:--font-satoshi) text-[28px] font-bold text-heading">How reviews work</h2>
+          <p className="mt-1 font-(family-name:--font-inter) text-sm font-medium text-heading">
             Google reviews, structured for faster clinic comparison.
           </p>
-          <Link href="/methodology" className="absolute right-0 top-0 hidden text-sm font-medium text-secondary hover:underline sm:block">
+          <Link href="/methodology" className="absolute right-0 top-0 hidden font-(family-name:--font-inter) text-sm font-medium text-accent hover:underline sm:block">
             Our methodology →
           </Link>
         </div>

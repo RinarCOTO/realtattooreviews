@@ -39,7 +39,7 @@ export default function Hero({headline, subheadline}: Props) {
       <div className="mx-auto max-w-4xl px-4 text-center">
 
         {/* Eyebrow */}
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3.5 py-1 text-xs font-medium text-muted">
+        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3.5 py-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[20px] text-muted">
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
           <span>Independent reviews</span>
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
@@ -48,8 +48,8 @@ export default function Hero({headline, subheadline}: Props) {
           <span>Multiple US markets</span>
         </span>
 
-        {/* Heading */}
-        <h1 className="mt-6 text-[48px] font-bold leading-[1.1] tracking-tight text-heading sm:text-[66px]">
+        {/* Heading — Satoshi 64px / 700 / 70.4px */}
+        <h1 className="mt-6 font-[family-name:var(--font-satoshi)] text-[64px] font-bold leading-[70.4px] tracking-tight text-heading">
           {(() => {
             const text = headline ?? "Compare Tattoo Removal Clinics Before You Book";
             const split = text.split(/before you book/i);
@@ -63,8 +63,8 @@ export default function Hero({headline, subheadline}: Props) {
           })()}
         </h1>
 
-        {/* Subheading */}
-        <div className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-body">
+        {/* Subheading — Inter 18px / 500 / 28.8px */}
+        <div className="mx-auto mt-6 max-w-xl font-[family-name:var(--font-inter)] text-[18px] font-medium leading-[28.8px] text-body">
           {subheadline
             ? <PortableText value={subheadline} />
             : "See how clinics differ on method, technology, pricing, and review patterns. Built from sourced Google reviews across multiple US markets."
@@ -86,10 +86,10 @@ export default function Hero({headline, subheadline}: Props) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder=""
-                className="w-full bg-transparent py-3.5 text-sm text-heading outline-none"
+                className="w-full bg-transparent py-3.5 font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[20px] text-heading outline-none"
               />
               {!query && (
-                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center text-sm text-subtle">
+                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center font-[family-name:var(--font-inter)] text-[14px] leading-[20px] text-subtle">
                   Search by{" "}
                   <span
                     key={wordIndex}
@@ -103,26 +103,27 @@ export default function Hero({headline, subheadline}: Props) {
               )}
             </div>
           </div>
+          {/* CTA button — Inter 16px / 700 / 24px */}
           <button
             type="submit"
-            className="m-1.5 rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-white hover:bg-accent-hover transition-colors"
+            className="m-1.5 rounded-full bg-accent px-6 py-2.5 font-[family-name:var(--font-inter)] text-[16px] font-bold leading-[24px] text-white hover:bg-accent-hover transition-colors"
           >
             Search
           </button>
         </form>
 
-        {/* Subordinate quick links */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+        {/* Quick links — Inter 14px / 500 */}
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <Link
             href="/cities"
-            className="text-muted transition-colors hover:text-accent"
+            className="font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[22.4px] text-muted transition-colors hover:text-accent"
           >
             Find providers in your city →
           </Link>
           <span className="text-subtle" aria-hidden="true">·</span>
           <Link
             href="/comparisons/best-tattoo-removal-method"
-            className="text-muted transition-colors hover:text-accent"
+            className="font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[22.4px] text-muted transition-colors hover:text-accent"
           >
             Compare methods →
           </Link>

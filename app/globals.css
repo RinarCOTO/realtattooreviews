@@ -6,8 +6,8 @@
   --sans:  var(--font-inter-tight), 'Inter Tight', sans-serif;
   --mono:  'Space Mono', monospace;
 
-  --bg:               oklch(0.99 0.006 58);
-  --surface:          oklch(0.96 0.010 52);
+  --bg:               oklch(0.97 0.002 265);
+  --surface:          oklch(0.96 0.003 265);
   --text:             oklch(0.24 0.018 30);
   --text-soft:        oklch(0.52 0.012 36);
 
@@ -31,16 +31,16 @@
 
 @theme inline {
   /* Backgrounds */
-  --color-bg:              oklch(0.99 0.006 58);
-  --color-surface:         oklch(0.96 0.010 52);
-  --color-surface-2:       oklch(0.94 0.012 48);
-  --color-card:            oklch(0.97 0.008 55);
+  --color-bg:              oklch(0.97 0.002 265);
+  --color-surface:         oklch(0.96 0.003 265);
+  --color-surface-2:       oklch(0.93 0.003 265);
+  --color-card:            oklch(0.97 0.002 265);
 
   /* Shadows */
   --shadow-card:           0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
   --color-cloud-gray:      oklch(0.972 0.004 240);
   --color-feathering-mist: oklch(0.975 0.009 62);
-  --color-background:      oklch(0.99 0.006 58);
+  --color-background:      oklch(0.97 0.002 265);
   --color-foreground:      oklch(0.52 0.012 36);
 
   /* Text */
@@ -76,6 +76,9 @@
   /* Nav background */
   --color-nav:             #FFFFFF;
 
+  /* Pure white */
+  --color-canvas:          #FFFFFF;
+
   /* Blob palette */
   --color-blob-peach:      #F5DDD0;
   --color-blob-teal:       #C8E6E4;
@@ -91,17 +94,17 @@
   --color-card-dark:       #243746;
 
   /* Fonts */
-  --font-sans:    var(--font-inter-tight);
-  --font-display: var(--font-inter-tight);
+  --font-sans:    var(--font-inter);
+  --font-display: var(--font-satoshi);
   --font-serif:   var(--font-instrument-serif);
   --font-mono:    'Space Mono', monospace;
 }
 
 /* ── Base ───────────────────────────────────────────────── */
 body {
-  background: var(--bg);
+  background: #ffffff;
   color: var(--text-soft);
-  font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
@@ -111,7 +114,7 @@ body {
 /* ── Type scale ─────────────────────────────────────────── */
 @layer base {
   h1 {
-    font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
+    font-family: var(--font-satoshi), 'Satoshi', sans-serif;
     font-size: 60px;
     font-weight: 700;
     line-height: 1.1;
@@ -120,7 +123,7 @@ body {
   }
 
   h2 {
-    font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
+    font-family: var(--font-satoshi), 'Satoshi', sans-serif;
     font-size: 34px;
     font-weight: 700;
     line-height: 1.2;
@@ -129,7 +132,7 @@ body {
   }
 
   h3 {
-    font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
+    font-family: var(--font-satoshi), 'Satoshi', sans-serif;
     font-size: 20px;
     font-weight: 600;
     line-height: 1.3;
@@ -148,7 +151,7 @@ body {
 }
 
 button, [role="button"], a.btn {
-  font-family: var(--font-inter-tight), 'Inter Tight', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
@@ -156,9 +159,9 @@ button, [role="button"], a.btn {
 /* ── Utilities ──────────────────────────────────────────── */
 /* ── Reviews page design tokens ─────────────────────────────────────────── */
 .reviews-page {
-  --bg:          oklch(0.99 0.006 58);
-  --surface:     oklch(0.96 0.010 52);
-  --surface-2:   oklch(0.94 0.012 48);
+  --bg:          oklch(0.97 0.002 265);
+  --surface:     oklch(0.96 0.003 265);
+  --surface-2:   oklch(0.93 0.003 265);
   --cloud-gray:        oklch(0.972 0.004 240);
   --feathering-mist:   oklch(0.975 0.009 62);
   --wash:        oklch(0.945 0.012 35);
@@ -167,7 +170,7 @@ button, [role="button"], a.btn {
   --line:        oklch(0.90 0.010 50);
   --accent:      oklch(0.52 0.12 32);
   --accent-soft: oklch(0.93 0.03 35);
-  background:    oklch(0.99 0.006 58);
+  background:    transparent;
   color:         oklch(0.24 0.018 30);
 }
 
@@ -277,6 +280,17 @@ button, [role="button"], a.btn {
   animation: gradient-card-move 28s ease-in-out infinite;
 }
 
+.gradient-card-lavender {
+  background: linear-gradient(135deg, #D8E0FF, #C8D8F8, #DDD4F8, #C8DCFA);
+  background-size: 400% 400%;
+  animation: gradient-card-move 28s ease-in-out infinite;
+}
+
+.gradient-card-teal-peach {
+  background: linear-gradient(135deg, #C8E6E4, #DCF0EE, #F5DDD0, #EDE3C4);
+  animation: none;
+}
+
 .scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -302,4 +316,27 @@ button, [role="button"], a.btn {
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
+}
+
+/* ── Blob background animations ─────────────────────────── */
+@keyframes blob-float-1 {
+  0%   { transform: translate(0px, 0px) scale(1);    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%  { transform: translate(80px, -60px) scale(1.1);  border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50%  { transform: translate(40px, 80px) scale(0.93);  border-radius: 50% 60% 30% 60% / 30% 40% 70% 50%; }
+  75%  { transform: translate(-70px, 30px) scale(1.07); border-radius: 40% 60% 60% 40% / 60% 30% 60% 40%; }
+  100% { transform: translate(0px, 0px) scale(1);    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+@keyframes blob-float-2 {
+  0%   { transform: translate(0px, 0px) scale(1);    border-radius: 40% 60% 60% 40% / 40% 30% 60% 50%; }
+  25%  { transform: translate(-80px, 60px) scale(0.92); border-radius: 70% 30% 50% 50% / 30% 70% 40% 60%; }
+  50%  { transform: translate(-30px, -70px) scale(1.1);  border-radius: 50% 40% 30% 60% / 60% 50% 40% 50%; }
+  75%  { transform: translate(70px, -40px) scale(0.95); border-radius: 30% 60% 40% 60% / 50% 40% 60% 30%; }
+  100% { transform: translate(0px, 0px) scale(1);    border-radius: 40% 60% 60% 40% / 40% 30% 60% 50%; }
+}
+@keyframes blob-float-3 {
+  0%   { transform: translate(0px, 0px) scale(1);    border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%; }
+  25%  { transform: translate(60px, 70px) scale(1.08);  border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; }
+  50%  { transform: translate(-50px, 40px) scale(0.9);  border-radius: 30% 70% 40% 60% / 60% 40% 70% 30%; }
+  75%  { transform: translate(-30px, -65px) scale(1.05); border-radius: 70% 30% 60% 40% / 30% 60% 50% 70%; }
+  100% { transform: translate(0px, 0px) scale(1);    border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%; }
 }

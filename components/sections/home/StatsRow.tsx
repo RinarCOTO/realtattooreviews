@@ -37,7 +37,7 @@ export default async function StatsRow() {
   ];
 
   return (
-    <section className="py-4">
+    <section className="py-6 border-t border-border/60">
       <Container>
         <StatsCounter stats={stats} />
       </Container>

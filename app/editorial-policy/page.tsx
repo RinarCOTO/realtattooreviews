@@ -73,7 +73,7 @@ export default function EditorialPolicyPage() {
       {/* Body */}
       <PageSection bg="bg">
         <Container>
-          <div className="mx-auto max-w-2xl divide-y divide-(--line)">
+          <div className="mx-auto max-w-2xl">
 
             {/* Advertising Disclosure */}
             <GuideSection heading="Advertising Disclosure">

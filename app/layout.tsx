@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import { Inter, Inter_Tight, Instrument_Serif, Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { organizationSchema } from "@/lib/seo/schema";
 import { getDataFreshness } from "@/lib/data/reviews";
+
+const satoshi = localFont({
+  src: "../public/fonts/satoshi/Satoshi-Variable.woff2",
+  variable: "--font-satoshi",
+  weight: "300 900",
+  display: "swap",
+});
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -82,7 +90,7 @@ export default async function RootLayout({
 }>) {
   const dataLastUpdated = await getDataFreshness();
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${dmMono.variable} ${inter.variable} ${interTight.variable} h-full antialiased`}>
+    <html lang="en" className={`${satoshi.variable} ${instrumentSerif.variable} ${dmMono.variable} ${inter.variable} ${interTight.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-bg text-body" suppressHydrationWarning>
         <script
           type="application/ld+json"
