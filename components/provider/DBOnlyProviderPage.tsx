@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import BlockHeading from "./BlockHeading";
+import BestForSection from "./BestForSection";
 import FAQSection from "@/components/sections/FAQSection";
 import JumpNav from "./JumpNav";
 import ProsCons from "./ProsCons";
@@ -110,35 +111,11 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
         </Container>
       </section>
 
-      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <BlockHeading title={`Who ${providerName} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="border border-(--line) bg-white p-6 rounded-xl">
-              <p className="font-semibold text-(--ink) text-[15px] mb-4">{providerName} may be a strong option if you:</p>
-              <ul className="flex flex-col gap-2">
-                {bestForData.bestFor.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-1.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="border border-(--line) bg-white p-6 rounded-xl">
-              <p className="font-semibold text-(--ink) text-[15px] mb-4">You should compare more carefully if you:</p>
-              <ul className="flex flex-col gap-2">
-                {bestForData.lessIdealFor.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <BestForSection
+        providerName={providerName}
+        bestFor={bestForData.bestFor}
+        lessIdealFor={bestForData.lessIdealFor}
+      />
 
       <FAQSection
         id="faq"

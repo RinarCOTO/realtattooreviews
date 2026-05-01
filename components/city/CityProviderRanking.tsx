@@ -1,5 +1,6 @@
 import { getCityProviderAggregates, type CityProviderRow } from "@/lib/data/reviews";
 import type { StaticProviderProfile } from "./types";
+import DevLabel from "@/components/dev/DevLabel";
 
 function computeStandoutFit(row: CityProviderRow): string {
   if (row.isInkout) return "Non-laser TEPR";
@@ -32,6 +33,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
     : null;
 
   return (
+    <DevLabel name="CityProviderRanking">
     <div className="space-y-4">
       {ranked.map((row, i) => {
         const profile = staticProviders.find((p) => p.providerName === row.providerName);
@@ -39,7 +41,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
         return (
           <div
             key={row.providerName}
-            className="rounded-xl border border-(--line) bg-(--surface) p-6"
+            className="rounded-xl border border-(--line) bg-white p-6"
           >
             <div className="flex items-start justify-between gap-4 mb-3">
               <div>
@@ -74,7 +76,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
             </div>
 
             <div className="grid grid-cols-3 gap-3 ml-8">
-              <div className="rounded-lg bg-(--bg) border border-(--line) p-3 text-center">
+              <div className="rounded-lg bg-(--surface) border border-(--line) p-3 text-center">
                 <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
                   Sample
                 </p>
@@ -82,7 +84,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
                   {row.sampleSize}
                 </p>
               </div>
-              <div className="rounded-lg bg-(--bg) border border-(--line) p-3 text-center">
+              <div className="rounded-lg bg-(--surface) border border-(--line) p-3 text-center">
                 <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
                   Positive
                 </p>
@@ -90,7 +92,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
                   {row.pctPositive != null ? `${row.pctPositive}%` : "-"}
                 </p>
               </div>
-              <div className="rounded-lg bg-(--bg) border border-(--line) p-3 text-center">
+              <div className="rounded-lg bg-(--surface) border border-(--line) p-3 text-center">
                 <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
                   Negative
                 </p>
@@ -119,5 +121,6 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
         </p>
       )}
     </div>
+    </DevLabel>
   );
 }

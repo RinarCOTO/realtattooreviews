@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Provider } from "@/types/provider";
 import { brandToSlug } from "@/lib/providers";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import DevLabel from "@/components/dev/DevLabel";
 
 function reviewPageHref(provider: Provider): string {
   return provider.brand
@@ -13,6 +14,7 @@ export default function AlternativesSection({ alternatives }: { alternatives: Pr
   if (alternatives.length === 0) return null;
 
   return (
+    <DevLabel name="AlternativesSection">
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {alternatives.map((provider) => (
         <Link
@@ -36,5 +38,6 @@ export default function AlternativesSection({ alternatives }: { alternatives: Pr
         </Link>
       ))}
     </div>
+    </DevLabel>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import DevLabel from "@/components/dev/DevLabel";
 
 type Props = {
   providerName: string;
@@ -15,6 +16,7 @@ export default function BottomLineSection({
   alternativesHref = "#alternatives",
 }: Props) {
   return (
+    <DevLabel name="BottomLineSection">
     <section id="bottom-line" className="bg-canvas py-8 px-4 sm:px-6">
       <div
         className="rounded-3xl py-22 px-10 sm:px-16"
@@ -47,5 +49,6 @@ export default function BottomLineSection({
       </Container>
       </div>
     </section>
+    </DevLabel>
   );
 }

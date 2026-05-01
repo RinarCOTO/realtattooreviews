@@ -29,4 +29,24 @@ export const comparisons = [
     title: "Best Tattoo Removal Method",
     description: "Review-backed breakdown of removal methods by tattoo type, skin tone, and budget. No single best method, but clear patterns in real outcomes.",
   },
+  {
+    slug: "removery-vs-medermis-laser-clinic",
+    title: "Removery vs MEDermis Laser Clinic",
+    description: "Austin-specific comparison of a national tattoo-removal chain against a long-tenured local laser specialist. Side-by-side coverage of specialization, pricing, and outcomes.",
+  },
+  {
+    slug: "laseraway-vs-medermis-laser-clinic",
+    title: "LaserAway vs MEDermis Laser Clinic",
+    description: "Austin-focused comparison of a mainstream aesthetics chain against a tattoo-removal-only specialist. Specialization, pricing, and treatment context side by side.",
+  },
+  {
+    slug: "removery-vs-inkfree-md",
+    title: "Removery vs InkFree, MD",
+    description: "Houston comparison of a national tattoo-removal chain against a physician-led local clinic. Medical credibility, chain consistency, pricing, and outcomes side by side.",
+  },
+  {
+    slug: "removery-vs-kovak-cosmetic-center",
+    title: "Removery vs Kovak Cosmetic Center",
+    description: "Chicago comparison of a tattoo-removal-focused chain against a long-tenured multi-service cosmetic practice. Specialization, process consistency, and local fit side by side.",
+  },
 ];

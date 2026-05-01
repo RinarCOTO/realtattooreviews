@@ -1,3 +1,5 @@
+import DevLabel from "@/components/dev/DevLabel";
+
 interface ProsConsProps {
   pros: string[];
   cons: string[];
@@ -13,11 +15,14 @@ function DotRed() {
 
 export default function ProsCons({ pros, cons }: ProsConsProps) {
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
-      <div className="border border-(--line) bg-white p-5 rounded-xl shadow-card">
+    <DevLabel name="ProsCons">
+    <div className="relative grid gap-4 lg:grid-cols-2">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full" style={{ background: "#C8E6E4", filter: "blur(80px)", opacity: 0.65, zIndex: 0 }} />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-72 w-72 rounded-full" style={{ background: "#EDE3C4", filter: "blur(70px)", opacity: 0.55, zIndex: 0 }} />
+      <div className="relative z-1 border border-(--line) bg-white p-5 rounded-xl shadow-card">
         <div className="flex items-center gap-2 mb-4">
           <DotGreen />
-          <span className="font-sans text-[11px] font-medium tracking-widest uppercase text-(--muted)">What They Do Well</span>
+          <span className="font-sans text-[13px] font-bold tracking-widest uppercase text-(--muted)">What They Do Well</span>
         </div>
         {pros.length === 0 ? (
           <p className="text-[13px] text-(--muted)">Not enough review data to identify consistent positives.</p>
@@ -33,10 +38,10 @@ export default function ProsCons({ pros, cons }: ProsConsProps) {
         )}
       </div>
 
-      <div className="border border-(--line) bg-white p-5 rounded-xl shadow-card">
+      <div className="relative z-1 border border-(--line) bg-white p-5 rounded-xl shadow-card">
         <div className="flex items-center gap-2 mb-4">
           <DotRed />
-          <span className="font-sans text-[11px] font-medium tracking-widest uppercase text-(--muted)">Where Users Hesitate</span>
+          <span className="font-sans text-[13px] font-bold tracking-widest uppercase text-(--muted)">Where Users Hesitate</span>
         </div>
         {cons.length === 0 ? (
           <p className="text-[13px] text-(--muted)">No consistent negative signals in the current review dataset.</p>
@@ -52,5 +57,6 @@ export default function ProsCons({ pros, cons }: ProsConsProps) {
         )}
       </div>
     </div>
+    </DevLabel>
   );
 }

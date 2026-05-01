@@ -157,7 +157,7 @@ export default function InkoutVsRemoveryPage() {
       />
 
       {/* Intro */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
             inkOUT and Removery are two of the most-asked-about tattoo removal brands today.
             They are also two of the most different. Removery is a national tattoo-removal-only
@@ -176,7 +176,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* At a glance */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>inkOUT vs Removery at a Glance</SectionHeading>
         <div className="space-y-4">
           <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl">
@@ -201,7 +201,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* TEPR vs PicoWay */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading label="Key Difference">The Key Difference: TEPR vs PicoWay</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -244,7 +244,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Pricing */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>inkOUT vs Removery: Pricing and Cost Comparison</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -293,7 +293,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Results, scarring, pain */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>inkOUT vs Removery: Results, Scarring, and Pain</SectionHeading>
         <div className="space-y-4">
             <div className="space-y-3">
@@ -333,7 +333,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Use cases: dark skin, color, complete removal */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>inkOUT vs Removery: Best for Dark Skin, Color Ink, and Complete Removal</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -371,7 +371,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Cross-city evidence */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>Cross-City Review Evidence</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -383,7 +383,7 @@ export default function InkoutVsRemoveryPage() {
             </p>
             <Suspense
               fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                <div className="rounded-xl bg-white p-8 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">
                     Loading evidence table&hellip;
                   </p>
@@ -405,7 +405,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Pros and cons of inkOUT */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>Pros and Cons of inkOUT</SectionHeading>
         <div className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
@@ -437,7 +437,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Pros and cons of Removery */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>Pros and Cons of Removery</SectionHeading>
         <div className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
@@ -469,7 +469,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Verdict */}
-      <PageSection bg="bg" className="verdict-bg">
+      <PageSection bg="none" noBorder className="verdict-bg">
         <SectionHeading label="Verdict">Our Verdict: inkOUT or Removery?</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -534,7 +534,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Editorial note */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <div className="space-y-4">
           <GuideCallout label="Editorial note">
               This comparison synthesizes brand-published technology and pricing material with
@@ -559,7 +559,7 @@ export default function InkoutVsRemoveryPage() {
       </PageSection>
 
       {/* Related links */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <GuideRelatedLinks
           links={[
             {

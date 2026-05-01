@@ -166,7 +166,7 @@ export default function SalineVsLaserPage() {
       />
 
       {/* Intro */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
             Saline vs laser tattoo removal is one of the most important method comparisons
             in cosmetic tattoo removal. Both methods remove pigment from the skin through
@@ -225,7 +225,7 @@ export default function SalineVsLaserPage() {
       </PageSection>
 
       {/* How laser works */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           How Laser Tattoo Removal Works
         </SectionHeading>
@@ -287,7 +287,7 @@ export default function SalineVsLaserPage() {
       </PageSection>
 
       {/* PMU and microblading */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Saline vs Laser for Microblading and Permanent Makeup Removal
         </SectionHeading>
@@ -372,7 +372,7 @@ export default function SalineVsLaserPage() {
       </PageSection>
 
       {/* Color, dark skin, difficult cases */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Saline vs Laser: Color Ink, Dark Skin, and Difficult Cases
         </SectionHeading>
@@ -525,7 +525,7 @@ export default function SalineVsLaserPage() {
       </PageSection>
 
       {/* Related links */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <GuideRelatedLinks
           links={[
             {

@@ -4,16 +4,17 @@ import AlternativesSection from "./AlternativesSection";
 import BlockHeading from "./BlockHeading";
 import InfoCard from "./InfoCard";
 import JumpNav from "./JumpNav";
-import ProsCons from "./ProsCons";
 import ProviderHero from "./ProviderHero";
 import ResultsSnapshot from "./ResultsSnapshot";
 import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import VerdictCard from "./VerdictCard";
-import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
 import { getLocationSlug } from "@/lib/providers";
 import BottomLineSection from "./BottomLineSection";
+import BestForSection from "./BestForSection";
+import LocationsSection from "./LocationsSection";
+import OverviewSection from "./OverviewSection";
 import FAQSection from "@/components/sections/FAQSection";
 import BlobBackground from "@/components/ui/BlobBackground";
 import {
@@ -98,35 +99,29 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
 
       <JumpNav items={jumpItems} />
 
-      <section id="overview" className="border-b border-(--line) py-22">
-        <Container>
-          <BlockHeading title={`Is ${brand} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and location consistency make it a good fit for your tattoo, budget, and goals." />
-          <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
-            If you are already researching {brand} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common patient patterns look like, and which alternatives are worth comparing before you commit.
-          </p>
-          <VerdictSidebar rows={buildOverviewStats(reviews)} />
-          <ProsCons pros={pros} cons={cons} />
-          <p className="mt-6 font-sans text-[13px] leading-relaxed text-(--muted) border-t border-(--line) pt-5">
-            The important question is not whether every review is positive. It is whether the negatives feel isolated or repeated.
-          </p>
-        </Container>
-      </section>
+      <OverviewSection
+        providerName={brand}
+        intro={`If you are already researching ${brand} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common patient patterns look like, and which alternatives are worth comparing before you commit.`}
+        pros={pros}
+        cons={cons}
+        statsRows={buildOverviewStats(reviews)}
+      />
 
-      <section id="reviews" className="border-b border-(--line) py-22">
+      <section id="reviews" className="py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
           <WhatReviewersSay reviews={reviews} providerName={brand} />
         </Container>
       </section>
 
-      <section id="results" className="border-b border-(--line) py-22">
+      <section id="results" className="py-22" style={{ background: "linear-gradient(135deg, #EDE3C4 0%, #C8E6E4 45%, #A8D5D3 100%)" }}>
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
         </Container>
       </section>
 
-      <section id="pricing" className="border-b border-(--line) py-22">
+      <section id="pricing" className="py-22">
         <Container>
           <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
           <InfoCard
@@ -139,44 +134,22 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      <section id="treatment" className="border-b border-(--line) py-22">
+      <section id="treatment" className="py-22">
         <Container>
           <BlockHeading title="Treatment Approach and Technology" body="Brand reputation matters, but treatment fit matters more. A provider can look strong overall and still be a weak fit for a specific tattoo or skin profile." />
           <InfoCard label="Method and technology" body={buildTreatmentOverview(locations)} link="See our method comparison guide" linkHref="/comparisons/best-tattoo-removal-method" />
         </Container>
       </section>
 
-      <section id="locations" className="border-b border-(--line) py-22">
-        <Container>
-          <BlockHeading title={`${brand} by Location`} body="Large brands often perform unevenly by city. A national reputation can be directionally useful, but local execution still matters." />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {locations.map((location) => (
-              <Link
-                key={location.id}
-                href={`/reviews/${slug}#${getLocationSlug(location)}`}
-                className="group flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl transition-shadow hover:shadow-md"
-              >
-                <div className="flex items-start justify-between">
-                  <p className="font-semibold text-(--ink) text-[15px]">{location.market}</p>
-                  <div className="text-right shrink-0">
-                    <p className="font-sans font-semibold text-[13px] text-(--accent)">{location.rating}</p>
-                    <p className="text-[11px] text-(--muted)">
-                      {location.rating >= 4.5 ? "Strong" : location.rating >= 4.0 ? "Solid" : "Mixed"}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-[13px] leading-relaxed text-(--muted) line-clamp-3">{location.summary}</p>
-                <div className="mt-auto flex items-center justify-between border-t border-(--line) pt-3">
-                  <span className="text-[13px] text-(--muted)">{location.reviewCount} reviews</span>
-                  <span className="text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">View location →</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <LocationsSection
+        title={`${brand} by Location`}
+        body="Large brands often perform unevenly by city. A national reputation can be directionally useful, but local execution still matters."
+        locations={locations}
+        slug={slug}
+        websiteHref={locations[0]?.website}
+      />
 
-      <section id="alternatives" className="border-b border-(--line) py-22">
+      <section id="alternatives" className="py-22">
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${brand}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
@@ -186,36 +159,11 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         </Container>
       </section>
 
-      {/* ── Who it fits ──────────────────────────────────────────────────── */}
-      <section id="best-for" className="border-b border-(--line) py-22">
-        <Container>
-          <BlockHeading title={`Who ${brand} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
-              <p className="mb-4 text-[15px] font-semibold text-(--ink)">{brand} may be a strong option if you:</p>
-              <ul className="flex flex-col gap-2">
-                {bestForData.bestFor.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
-                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#5A7A5A" }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
-              <p className="mb-4 text-[15px] font-semibold text-(--ink)">You should compare more carefully if you:</p>
-              <ul className="flex flex-col gap-2">
-                {bestForData.lessIdealFor.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
-                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <BestForSection
+        providerName={brand}
+        bestFor={bestForData.bestFor}
+        lessIdealFor={bestForData.lessIdealFor}
+      />
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
       <FAQSection

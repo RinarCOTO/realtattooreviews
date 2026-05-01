@@ -1,6 +1,7 @@
 "use client";
 
 import CountUp from "@/components/ui/CountUp";
+import DevLabel from "@/components/dev/DevLabel";
 
 interface VerdictSidebarProps {
   rows: Array<{ label: string; value: string; numeric: number; decimals?: number }>;
@@ -8,6 +9,7 @@ interface VerdictSidebarProps {
 
 export default function VerdictSidebar({ rows }: VerdictSidebarProps) {
   return (
+    <DevLabel name="VerdictSidebar">
     <div className="flex flex-wrap justify-center gap-y-6 mb-10">
       {rows.map((stat, i) => (
         <div
@@ -23,5 +25,6 @@ export default function VerdictSidebar({ rows }: VerdictSidebarProps) {
         </div>
       ))}
     </div>
+    </DevLabel>
   );
 }

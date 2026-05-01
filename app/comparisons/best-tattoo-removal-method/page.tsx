@@ -335,7 +335,7 @@ export default function BestTattooRemovalMethodPage() {
       />
 
       {/* Intro */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
           The best tattoo removal method depends on your tattoo, your skin, and your goal.
           Laser is the most common. It is not always the best fit. Non-laser methods exist
@@ -351,7 +351,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Types of Methods */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading label="Key Difference">
           Types of Tattoo Removal Methods
         </SectionHeading>
@@ -373,7 +373,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Comparison Table */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Tattoo Removal Methods Compared
         </SectionHeading>
@@ -383,7 +383,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Laser vs Non-Laser */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Laser vs Non-Laser Tattoo Removal
         </SectionHeading>
@@ -436,7 +436,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Which Is Most Effective */}
-      <PageSection bg="bg" className="verdict-bg">
+      <PageSection bg="none" noBorder className="verdict-bg">
         <SectionHeading label="Verdict">
           Which Tattoo Removal Method Is Most Effective?
         </SectionHeading>
@@ -458,7 +458,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Dark Skin */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Best Tattoo Removal Method for Dark Skin
         </SectionHeading>
@@ -503,7 +503,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Color Ink */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Best Tattoo Removal Method for Color Ink
         </SectionHeading>
@@ -515,7 +515,7 @@ export default function BestTattooRemovalMethodPage() {
             {COLOR_ROWS.map((row) => (
               <div
                 key={row.ink}
-                className="flex gap-4 rounded-xl border border-(--line) bg-(--surface) px-5 py-4"
+                className="flex gap-4 rounded-xl bg-white px-5 py-4"
               >
                 <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 shrink-0 w-40">
                   {row.ink}
@@ -540,7 +540,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Microblading and PMU */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Best Method for Microblading and PMU Removal
         </SectionHeading>
@@ -592,7 +592,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Pros and Cons */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Tattoo Removal Options: Pros and Cons
         </SectionHeading>
@@ -616,13 +616,12 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Editorial note */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <div className="space-y-4">
           <GuideCallout label="Editorial note">
             This guide is educational and reflects published clinical understanding of tattoo
             removal methods. Individual outcomes vary. Always consult a qualified provider
-            before proceeding. inkOUT is a current advertising client of RealTattooReviews and
-            is evaluated under the same framework as all other providers. See our{" "}
+            before proceeding. See our{" "}
             <Link href="/methodology" className="text-(--accent) hover:underline">
               methodology
             </Link>{" "}
@@ -636,7 +635,7 @@ export default function BestTattooRemovalMethodPage() {
       </PageSection>
 
       {/* Related links */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <GuideRelatedLinks
           links={[
             {

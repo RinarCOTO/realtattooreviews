@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DevLabel from "@/components/dev/DevLabel";
 
 interface ResultsSnapshotProps {
   resultsMentioned: number;
@@ -8,8 +9,9 @@ interface ResultsSnapshotProps {
 
 export default function ResultsSnapshot({ resultsMentioned, painMentioned, scarringMentioned }: ResultsSnapshotProps) {
   return (
+    <DevLabel name="ResultsSnapshot">
     <div>
-      <div className="rounded-xl border border-border bg-white p-5 transition-shadow hover:shadow-md">
+      <div className="rounded-xl bg-white p-5" style={{ boxShadow: "0 4px 24px 0 rgba(0,0,0,0.08)" }}>
         <p className="mb-4 font-sans text-[22px] font-semibold leading-[1.1] tracking-[-0.02em] text-(--ink)">
           Results Snapshot
         </p>
@@ -59,5 +61,6 @@ export default function ResultsSnapshot({ resultsMentioned, painMentioned, scarr
         Explore before-and-after research →
       </Link>
     </div>
+    </DevLabel>
   );
 }

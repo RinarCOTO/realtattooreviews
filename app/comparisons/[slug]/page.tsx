@@ -5,9 +5,15 @@ import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import Container from "@/components/layout/Container";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
+import BrandTableHeader from "@/components/comparison/BrandTableHeader";
 import BlockHeading from "@/components/provider/BlockHeading";
 import JumpNav from "@/components/provider/JumpNav";
 import ComparisonTable from "@/components/sections/ComparisonTable";
+import GuideTable from "@/components/guide/GuideTable";
+import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
+import SectionHeading from "@/components/guide/SectionHeading";
+import PageHero from "@/components/layout/PageHero";
+import PageSection from "@/components/reviews/PageSection";
 import { getComparison, getAllComparisonSlugs } from "@/lib/page-data/comparisons";
 import type { SanityComparison } from "@/lib/page-data/comparisons";
 import { comparisons as mockComparisons } from "@/lib/mock-data/comparisons";
@@ -16,6 +22,36 @@ import { providers as mockProviders } from "@/lib/mock-data/providers";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import FAQSection from "@/components/sections/FAQSection";
 import type { ComparisonFAQ, ComparisonTableRow, ComparisonProsCons } from "@/types/comparison";
+
+/**
+ * Map a brand display name to its logo path under public/images/providers/logos.
+ * Returns null when no logo exists; BrandTableHeader will fall back to initials.
+ */
+function getBrandLogo(name: string | null | undefined): string | null {
+  if (!name) return null;
+  const map: Record<string, string> = {
+    "Removery": "/images/providers/logos/removery-logo.png",
+    "inkOUT": "/images/providers/logos/inkout-logo.jpg",
+    "MEDermis Laser Clinic": "/images/providers/logos/medermis-laser-clinic-logo.png",
+    "InkFree, MD": "/images/providers/logos/inkfree-md-logo.png",
+    "Kovak Cosmetic Center": "/images/providers/logos/kovak-cosmetic-center-logo.jpg",
+    "Arviv Medical Aesthetics": "/images/providers/logos/arviv-medical-aesthetics-logo.jpg",
+    "Clarity Skin": "/images/providers/logos/clarity-skin-logo.png",
+    "DermSurgery Associates": "/images/providers/logos/dermsurgery-associates-logo.png",
+    "Enfuse Medical Spa": "/images/providers/logos/enfuse-medical-spa-logo.png",
+    "Erasable Med Spa": "/images/providers/logos/erasable-med-spa-logo.png",
+    "Inklifters (Aesthetica)": "/images/providers/logos/inklifters-aesthetica-logo.png",
+    "Skintellect Laser & Aesthetics": "/images/providers/logos/skintellect-laser-aesthetics-logo.png",
+  };
+  return map[name] ?? null;
+}
+
+function brandInitials(name: string | null | undefined): string {
+  if (!name) return "?";
+  const letters = name.replace(/[^A-Za-z ]/g, "").trim().split(/\s+/);
+  if (letters.length === 1) return letters[0].slice(0, 2).toUpperCase();
+  return (letters[0][0] + letters[1][0]).toUpperCase();
+}
 
 type Props = { params: Promise<{ slug: string }> };
 type ComparisonSeoFields = {
@@ -93,8 +129,11 @@ function mapSanityProsCons(comparison: SanityComparison): ComparisonProsCons[] |
 
 export async function generateStaticParams() {
   const sanitySlugs = await getAllComparisonSlugs();
-  if (sanitySlugs.length > 0) return sanitySlugs.map((slug) => ({ slug }));
-  return mockComparisons.map((c) => ({ slug: c.slug }));
+  const mockSlugs = mockComparisons.map((c) => c.slug);
+  // Union: include every slug present in either source so mock-only pages still
+  // statically render even when Sanity has its own (smaller) set of slugs.
+  const all = [...new Set([...sanitySlugs, ...mockSlugs])];
+  return all.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -133,8 +172,8 @@ export default async function ComparisonPage({ params }: Props) {
 
   if (!detailedPage) {
     return (
-      <main className="min-h-screen bg-bg">
-        <section className="border-b border-border bg-feathering-mist py-14">
+      <main className="min-h-screen">
+        <section className="py-14">
           <Container>
             <p className="mb-2 text-sm text-muted">
               <Link href="/comparisons" className="hover:text-accent">Comparisons</Link>
@@ -160,6 +199,23 @@ export default async function ComparisonPage({ params }: Props) {
   const sanityComparison = comparison as SanityComparison;
 
   const activeVerdict = sanityComparison.verdict ?? detailedPage.verdict;
+  const activeIntro: string[] = sanityComparison.intro?.length
+    ? sanityComparison.intro
+    : detailedPage.intro;
+  const activeChoiceCards = sanityComparison.choiceCards?.length
+    ? sanityComparison.choiceCards
+    : detailedPage.choiceCards;
+  const activeCriteriaTitle = sanityComparison.criteriaTitle ?? detailedPage.criteriaTitle;
+  const activeCriteriaPoints: string[] = sanityComparison.criteriaPoints?.length
+    ? sanityComparison.criteriaPoints
+    : detailedPage.criteriaPoints;
+  const activeConsultQuestions: string[] = sanityComparison.consultQuestions?.length
+    ? sanityComparison.consultQuestions
+    : detailedPage.consultQuestions;
+  const activeSourceNote = sanityComparison.sourceNote ?? detailedPage.sourceNote;
+  const activeRelatedLinks = sanityComparison.relatedLinks?.length
+    ? sanityComparison.relatedLinks.map((l) => ({ href: l.href, label: l.label, description: l.description }))
+    : detailedPage.relatedLinks;
   const activeTableRows = mapSanityTableRows(sanityComparison.tableRows).length
     ? mapSanityTableRows(sanityComparison.tableRows)
     : detailedPage.tableRows;
@@ -209,7 +265,7 @@ export default async function ComparisonPage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-(--bg)">
+    <main className="min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -224,98 +280,53 @@ export default async function ComparisonPage({ params }: Props) {
       />
 
       {/* Hero */}
-      <section className="border-b border-(--line) bg-feathering-mist py-22">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.75fr)_minmax(280px,1fr)] lg:items-start">
-            <div>
-              <p className="mb-3 font-mono text-[11px] tracking-widest uppercase text-(--muted)">
-                <Link href="/comparisons" className="hover:text-(--accent)">Comparisons</Link>
-                {" / "}
-                <span className="text-(--ink)">{comparison.title}</span>
-              </p>
-              <p className="mb-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
-                {detailedPage.eyebrow}
-              </p>
-              <h1 className="max-w-3xl text-[clamp(2.2rem,5vw,4rem)] font-bold leading-none tracking-[-0.03em] text-(--ink)">
-                {comparison.title}
-              </h1>
-              <p className="mt-5 max-w-2xl text-[15px] font-medium leading-[1.55] text-(--ink)">
-                {activeVerdict}
-              </p>
-              <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-(--muted)">
-                {comparison.description}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="#comparison-table"
-                  className="inline-flex items-center px-5 py-2.5 bg-(--ink) text-(--bg) font-sans text-[13px] font-medium tracking-[-0.01em] rounded-full"
-                >
-                  Jump to table
-                </a>
-                <a
-                  href="/cost"
-                  className="inline-flex items-center px-5 py-2.5 border border-(--line) text-(--ink) font-sans text-[13px] font-medium tracking-[-0.01em] rounded-full"
-                >
-                  See cost guide
-                </a>
-              </div>
-            </div>
+      <PageHero
+        label={
+          <>
+            <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
+              Comparisons
+            </Link>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
+            <span className="text-(--muted) font-normal normal-case tracking-normal">
+              {comparison.title}
+            </span>
+          </>
+        }
+        title={
+          activeBrandA && activeBrandB ? (
+            <>
+              {activeBrandA} vs <span className="text-(--accent)">{activeBrandB}</span>
+            </>
+          ) : (
+            <>{comparison.title}</>
+          )
+        }
+        subtitle={comparison.description}
+      />
 
-            <aside id="verdict" className="border border-(--line) bg-white p-6 rounded-xl">
-              <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
-                The short answer
-              </p>
-              <p className="mt-3 text-[15px] font-semibold leading-snug text-(--ink)">
-                {detailedPage.summary}
-              </p>
-              <div className="mt-6 space-y-4 border-t border-(--line) pt-5">
-                <div>
-                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
-                    Site coverage
-                  </p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">
-                    Current index includes {picoCoverage.count} clinics tagged{" "}
-                    <span className="font-medium text-(--ink)">PicoWay</span> and{" "}
-                    {qSwitchCoverage.count} tagged{" "}
-                    <span className="font-medium text-(--ink)">Q-Switch</span>.
-                  </p>
-                </div>
-                <div>
-                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
-                    PicoWay examples
-                  </p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">
-                    {picoCoverage.providers.slice(0, 3).map((p) => p.name).join(", ")}
-                    {" "}and other clinics in{" "}
-                    {picoCoverage.markets.slice(0, 3).join(", ")}.
-                  </p>
-                </div>
-                <div>
-                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
-                    Q-switch examples
-                  </p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">
-                    {qSwitchCoverage.providers.map((p) => p.name).join(" and ")}
-                    {" "}in {qSwitchCoverage.markets.join(" and ")}.
-                  </p>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </Container>
-      </section>
+      {/* Intro */}
+      <PageSection bg="none" noBorder>
+        {activeIntro.map((paragraph, idx) => (
+          <p
+            key={idx}
+            className={`font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0 ${idx > 0 ? "mt-4" : ""}`}
+          >
+            {paragraph}
+          </p>
+        ))}
+      </PageSection>
 
       <JumpNav items={jumpItems} />
 
       {/* When to choose */}
-      <section id="when-to-choose" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="when-to-choose" className="py-22">
         <Container>
           <BlockHeading title="When to choose" body="Use these three frames to decide which option fits your case before going deeper into providers." />
           <div className="grid gap-4 md:grid-cols-3">
-            {detailedPage.choiceCards.map((card) => (
+            {activeChoiceCards.map((card) => (
               <article
                 key={card.title}
-                className="border border-(--line) bg-white p-6 rounded-xl"
+                className="bg-white p-6 rounded-xl"
               >
                 <p className="text-[15px] font-semibold text-(--ink)">{card.title}</p>
                 <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">{card.body}</p>
@@ -334,27 +345,59 @@ export default async function ComparisonPage({ params }: Props) {
       </section>
 
       {/* Comparison table */}
-      <section id="comparison-table" className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <BlockHeading title="Side by side" body="Use this table to compare the technology itself, then pressure-test the provider using it." />
+      <PageSection id="comparison-table" bg="none" noBorder>
+        <SectionHeading>
+          {activeBrandA && activeBrandB
+            ? `${activeBrandA} vs ${activeBrandB} at a Glance`
+            : `${comparison.title} at a Glance`}
+        </SectionHeading>
+        <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl mb-8">
+          The most useful one-screen view of this comparison is the structural difference between
+          the two providers. The table below summarizes the categorical differences. Quantitative
+          review evidence appears further down in the cross-city evidence section.
+        </p>
+        {activeBrandA && activeBrandB ? (
+          <GuideTable
+            headers={[
+              "",
+              <BrandTableHeader
+                key="left"
+                name={activeBrandA}
+                logoSrc={getBrandLogo(activeBrandA) ?? undefined}
+                initials={brandInitials(activeBrandA)}
+              />,
+              <BrandTableHeader
+                key="right"
+                name={activeBrandB}
+                logoSrc={getBrandLogo(activeBrandB) ?? undefined}
+                initials={brandInitials(activeBrandB)}
+              />,
+            ]}
+            rows={activeTableRows.map((row) => [row.criterion, row.left, row.right])}
+          />
+        ) : (
           <ComparisonTable
             leftLabel={sanityComparison.providerA ?? "PicoWay"}
             rightLabel={sanityComparison.providerB ?? "Q-Switch"}
             rows={activeTableRows}
           />
-        </Container>
-      </section>
+        )}
+        <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl mt-6">
+          The structural comparison sets the frame. The use-case sections below translate these
+          differences into who each provider serves best.
+        </p>
+      </PageSection>
 
       {/* What matters more */}
-      <section id="criteria" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="criteria" className="py-22">
         <Container>
-          <BlockHeading title={detailedPage.criteriaTitle} body="Device name is one factor. These are the others that tend to matter just as much." />
+          <BlockHeading title={activeCriteriaTitle} body="Device name is one factor. These are the others that tend to matter just as much." />
           <div className="grid gap-4 sm:grid-cols-2">
-            {detailedPage.criteriaPoints.map((point) => {
+            {activeCriteriaPoints.map((point) => {
               const [label, ...rest] = point.split(". ");
               const body = rest.join(". ");
               return (
-                <div key={point} className="border border-(--line) bg-white p-5 rounded-xl">
+                <div key={point} className="bg-white p-5 rounded-xl">
                   <p className="text-[14px] font-semibold text-(--ink)">{label}</p>
                   <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">{body}</p>
                 </div>
@@ -366,7 +409,7 @@ export default async function ComparisonPage({ params }: Props) {
 
       {/* Cross-city review evidence */}
       {activeBrandA && activeBrandB && (
-        <section id="evidence" className="border-b border-(--line) bg-(--bg) py-22">
+        <section id="evidence" className="py-22">
           <Container>
             <BlockHeading
               title="Cross-city review evidence"
@@ -374,7 +417,7 @@ export default async function ComparisonPage({ params }: Props) {
             />
             <Suspense
               fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                <div className="rounded-xl bg-white p-8 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">Loading evidence table&hellip;</p>
                 </div>
               }
@@ -394,12 +437,12 @@ export default async function ComparisonPage({ params }: Props) {
       )}
 
       {/* Pros and cons */}
-      <section id="pros-cons" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="pros-cons" className="py-22">
         <Container>
           <BlockHeading title="Pros and cons" body="A quick read on where each technology looks stronger and where it comes up short." />
           <div className="grid gap-5 md:grid-cols-2">
             {activeProsCons.map((block) => (
-              <article key={block.label} className="border border-(--line) bg-white p-6 rounded-xl">
+              <article key={block.label} className="bg-white p-6 rounded-xl">
                 <p className="text-[15px] font-semibold text-(--ink)">{block.label}</p>
 
                 <div className="mt-5">
@@ -416,7 +459,7 @@ export default async function ComparisonPage({ params }: Props) {
                   </ul>
                 </div>
 
-                <div className="mt-5 border-t border-(--line) pt-5">
+                <div className="mt-5 pt-5">
                   <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
                     Cons
                   </p>
@@ -436,16 +479,16 @@ export default async function ComparisonPage({ params }: Props) {
       </section>
 
       {/* Questions + source note */}
-      <section id="questions" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="questions" className="py-22">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
             <div>
               <BlockHeading title="Consultation checklist" body="Questions to ask before you let anyone treat your tattoo." />
               <ol className="flex flex-col gap-3">
-                {detailedPage.consultQuestions.map((question, index) => (
+                {activeConsultQuestions.map((question, index) => (
                   <li
                     key={question}
-                    className="border border-(--line) bg-white p-5 rounded-xl text-[13px] leading-relaxed text-(--muted)"
+                    className="bg-white p-5 rounded-xl text-[13px] leading-relaxed text-(--muted)"
                   >
                     <span className="mr-2 font-semibold text-(--ink)">{index + 1}.</span>
                     {question}
@@ -454,12 +497,12 @@ export default async function ComparisonPage({ params }: Props) {
               </ol>
             </div>
 
-            <aside className="border border-(--line) bg-white p-6 rounded-xl self-start">
+            <aside className="bg-white p-6 rounded-xl self-start">
               <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
                 Source transparency
               </p>
               <p className="mt-4 text-[13px] leading-relaxed text-(--muted)">
-                {detailedPage.sourceNote}
+                {activeSourceNote}
               </p>
             </aside>
           </div>
@@ -467,35 +510,24 @@ export default async function ComparisonPage({ params }: Props) {
       </section>
 
       {/* Related links */}
-      <section id="next-steps" className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <BlockHeading title="Where to go next" body="Comparison intent stays here. Once you know which type of clinic or method you want to evaluate, move into the page that owns that question." />
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {detailedPage.relatedLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="group border border-(--line) bg-white p-6 rounded-xl transition-colors hover:border-(--accent)/30"
-              >
-                <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
-                  {link.meta}
-                </p>
-                <p className="mt-3 text-[15px] font-semibold text-(--ink)">{link.label}</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">
-                  {link.description}
-                </p>
-                <p className="mt-4 text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">
-                  Open page →
-                </p>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <PageSection id="next-steps" bg="none" noBorder>
+        <SectionHeading>Where to go next</SectionHeading>
+        <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl mb-2">
+          Comparison intent stays here. Once you know which type of clinic or method you want to
+          evaluate, move into the page that owns that question.
+        </p>
+        <GuideRelatedLinks
+          links={activeRelatedLinks.map((link) => ({
+            href: link.href,
+            title: link.label,
+            desc: link.description,
+          }))}
+        />
+      </PageSection>
 
       {/* Editorial body */}
       {sanityComparison.body && sanityComparison.body.length > 0 && (
-        <section className="border-b border-(--line) bg-(--bg) py-22">
+        <section className="py-22">
           <Container>
             <div className="prose prose-neutral text-[15px] leading-relaxed text-(--muted)">
               <PortableText value={sanityComparison.body} />

@@ -29,4 +29,10 @@ export const guides = [
     description: "How saline removal works, which use cases it suits, and how it compares to laser in terms of outcomes, cost, and healing time.",
     image: "/images/image-test.jpg",
   },
+  {
+    slug: "laser-tattoo-removal",
+    title: "Laser Tattoo Removal",
+    description: "How laser tattoo removal actually works, how Q-switched and picosecond lasers differ, what affects outcomes by ink color and skin tone, and how to evaluate a provider before booking.",
+    image: "/images/image-test.jpg",
+  },
 ];

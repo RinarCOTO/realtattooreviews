@@ -171,7 +171,7 @@ export default function PicoLaserVsQSwitchPage() {
       />
 
       {/* Intro */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
             The pico laser vs Q-switch decision is one of the most common questions in tattoo
             removal research. Both are real, proven laser categories. Both remove tattoos. The
@@ -198,7 +198,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* How they work */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           How Picosecond and Nanosecond Lasers Actually Work
         </SectionHeading>
@@ -225,7 +225,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Head-to-head table */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading label="Key Difference">
           PicoWay vs Q-Switched Nd:YAG: Head-to-Head Comparison
         </SectionHeading>
@@ -243,7 +243,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Is pico better */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Is Pico Laser Better Than Q-Switch?
         </SectionHeading>
@@ -275,7 +275,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Effectiveness */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           PicoWay vs Q-Switch: Effectiveness
         </SectionHeading>
@@ -307,7 +307,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Dark skin */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           PicoWay vs Q-Switch: Dark Skin and Skin-Type Safety
         </SectionHeading>
@@ -352,7 +352,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Color ink */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           PicoWay vs Q-Switch: Color Ink Removal
         </SectionHeading>
@@ -390,7 +390,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Sessions, pain, downtime */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           PicoWay vs Q-Switch: Sessions, Pain, and Downtime
         </SectionHeading>
@@ -417,7 +417,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Cost */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           PicoWay vs Q-Switch: Cost
         </SectionHeading>
@@ -448,7 +448,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Which providers */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Which Providers Use Which Technology?
         </SectionHeading>
@@ -479,7 +479,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Verdict */}
-      <PageSection bg="bg" className="verdict-bg">
+      <PageSection bg="none" noBorder className="verdict-bg">
         <SectionHeading label="Verdict">
           Our Verdict: Which Laser Is Better?
         </SectionHeading>
@@ -525,14 +525,13 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Editorial note */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <div className="space-y-4">
           <GuideCallout label="Source transparency">
               Sources include MDPI Applied Sciences 2021 (Bennardo), PubMed 9487208 (Ross et al
               1998), PMC4859414 (Torbeck 2016), PMC4928479 (JCAD 2016), PMC2923953
               (Kirby-Desai). Wavelengths from Candela (PicoWay) and Cynosure (PicoSure)
-              documentation. inkOUT is a current advertising client of RealTattooReviews but is
-              not directly evaluated on this technology page. See our{" "}
+              documentation. See our{" "}
               <Link href="/methodology" className="text-(--accent) hover:underline">
                 methodology
               </Link>{" "}
@@ -546,7 +545,7 @@ export default function PicoLaserVsQSwitchPage() {
       </PageSection>
 
       {/* Related links */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <GuideRelatedLinks
             links={[
               {

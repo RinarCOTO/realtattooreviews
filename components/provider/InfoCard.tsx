@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DevLabel from "@/components/dev/DevLabel";
 
 interface InfoCardProps {
   label: string;
@@ -10,6 +11,7 @@ interface InfoCardProps {
 
 export default function InfoCard({ label, body, link, linkHref, beforeBookingNote }: InfoCardProps) {
   return (
+    <DevLabel name="InfoCard">
     <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
       <p className="mb-3 text-[15px] font-bold text-(--ink)">{label}</p>
       <p className="text-[14px] leading-relaxed text-(--muted)">{body}</p>
@@ -28,5 +30,6 @@ export default function InfoCard({ label, body, link, linkHref, beforeBookingNot
         {link} →
       </Link>
     </div>
+    </DevLabel>
   );
 }

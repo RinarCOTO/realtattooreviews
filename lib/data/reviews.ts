@@ -3,6 +3,7 @@ import {
   getMultiLocationBrands,
   brandToSlug,
   getProvidersByBrand,
+  getProviderByBrandAndLocation,
   getSingleLocationProviders,
 } from "@/lib/providers";
 import { buildReviewTags } from "@/lib/tagging";
@@ -369,6 +370,45 @@ export async function getReviewsByProvider(providerSlug: string): Promise<Review
 
   if (error) {
     console.error("getReviewsByProvider error:", error.message);
+    return [];
+  }
+  return (data ?? []).map(dbReviewToReview);
+}
+
+/**
+ * Fetch reviews for a single location of a multi-location brand.
+ *
+ * brandSlug:    "removery", "inkout"
+ * locationSlug: "lincoln-square", "austin"
+ *
+ * Disambiguates inkOUT (all locations share provider_name "inkOUT") via
+ * location_city + location_state. For brands like Removery where each
+ * location has a unique provider_name (e.g. "Removery (Lincoln Square)"),
+ * the city/state filter is a safety net.
+ */
+export async function getReviewsByProviderLocation(
+  brandSlug: string,
+  locationSlug: string
+): Promise<Review[]> {
+  const provider = getProviderByBrandAndLocation(brandSlug, locationSlug);
+  if (!provider) return [];
+
+  const [city, state] = provider.market.split(",").map((s) => s.trim());
+  const isInkout = brandSlug === "inkout";
+
+  const { data, error } = await applyPublicFilters(
+    supabase
+      .from(TABLE)
+      .select("*")
+      .eq("provider_name", provider.name)
+      .eq("location_city", city)
+      .eq("location_state", state)
+      .order("star_rating", { ascending: false }),
+    isInkout ? "inkout" : "competitor"
+  );
+
+  if (error) {
+    console.error("getReviewsByProviderLocation error:", error.message);
     return [];
   }
   return (data ?? []).map(dbReviewToReview);

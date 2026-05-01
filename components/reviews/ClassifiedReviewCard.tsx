@@ -1,5 +1,7 @@
 import type { Review } from "@/types/review";
-import { USE_CASE_DISPLAY, SENTIMENT_STYLE, generateFindingText } from "@/lib/review-evidence";
+import { USE_CASE_DISPLAY, generateFindingText } from "@/lib/review-evidence";
+import DevLabel from "@/components/dev/DevLabel";
+import ProviderPill from "@/components/ui/ProviderPill";
 
 
 function StarRating({ rating }: { rating: number }) {
@@ -16,10 +18,9 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function ClassifiedReviewCard({ review }: { review: Review }) {
   const useCaseLabel = review.useCase
-    ? (USE_CASE_DISPLAY[review.useCase] ?? "GENERAL")
+    ? (USE_CASE_DISPLAY[review.useCase] ?? "General")
     : null;
   const sentiment = review.resultRating ?? "Neutral";
-  const sentimentStyle = SENTIMENT_STYLE[sentiment] ?? SENTIMENT_STYLE["Neutral"];
   const location = [review.city, review.state].filter(Boolean).join(", ");
 
   // Use RTR paraphrase from DB if available; fall back to template-generated text
@@ -30,24 +31,17 @@ export default function ClassifiedReviewCard({ review }: { review: Review }) {
   if (!summaryText) return null;
 
   return (
+    <DevLabel name="ClassifiedReviewCard">
     <article
       className="flex flex-col gap-3 rounded-xl border border-(--line) bg-white p-5 transition-shadow hover:shadow-md"
     >
 
       {/* Classification badges + star rating on one row */}
       <div className="flex flex-wrap items-center gap-2">
-        {useCaseLabel && (
-          <span className="border border-(--line) px-2 py-0.5 font-sans text-[10px] uppercase tracking-widest text-(--muted)">
-            {useCaseLabel}
-          </span>
-        )}
-        <span className={`rounded-sm px-2 py-0.5 font-sans text-[10px] uppercase tracking-widest ${sentimentStyle}`}>
-          {sentiment}
-        </span>
+        {useCaseLabel && <ProviderPill tag={useCaseLabel} />}
+        <ProviderPill tag={sentiment} />
         {review.methodUsed && review.methodUsed !== "Other" && (
-          <span className="border border-(--line) px-2 py-0.5 font-sans text-[10px] uppercase tracking-widest text-(--muted)">
-            {review.methodUsed}
-          </span>
+          <ProviderPill tag={review.methodUsed} />
         )}
         {review.rating != null && <StarRating rating={review.rating} />}
       </div>
@@ -75,5 +69,6 @@ export default function ClassifiedReviewCard({ review }: { review: Review }) {
       </div>
 
     </article>
+    </DevLabel>
   );
 }

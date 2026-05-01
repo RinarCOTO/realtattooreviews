@@ -18,6 +18,7 @@ import {
   summarizeSources,
 } from "@/lib/provider-analysis";
 import { getLocationSlug } from "@/lib/providers";
+import LocationsSection from "./LocationsSection";
 
 interface Props {
   review: SanityProviderReview;
@@ -47,7 +48,7 @@ function VerdictTable({ review }: { review: SanityProviderReview }) {
         <tbody>
           {rows.map(({ label, value }) =>
             value ? (
-              <tr key={label} className="border-b border-(--line) last:border-0">
+              <tr key={label} className="last:border-0">
                 <td className="py-3 px-5 font-sans text-[11px] uppercase tracking-widest text-(--muted) whitespace-nowrap w-55 bg-(--surface)">
                   {label}
                 </td>
@@ -118,7 +119,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       <JumpNav items={jumpItems} />
 
       {/* Verdict */}
-      <section id="verdict" className="border-b border-(--line) py-22">
+      <section id="verdict" className="py-22">
         <Container>
           <BlockHeading
             title={`${review.providerName} Verdict`}
@@ -139,7 +140,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
 
       {/* What Reviewers Say */}
       {reviews.length > 0 && (
-        <section id="reviews" className="border-b border-(--line) py-22">
+        <section id="reviews" className="py-22">
           <Container>
             <BlockHeading
               title="What Reviewers Say"
@@ -151,7 +152,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       )}
 
       {/* What the Provider Does Well */}
-      <section id="does-well" className="border-b border-(--line) py-22">
+      <section id="does-well" className="py-22">
         <Container>
           <BlockHeading title={`What ${review.providerName} Does Well`} body="" />
           <ul className="flex flex-col gap-3 mt-2">
@@ -169,7 +170,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* Where Users Hesitate */}
-      <section id="hesitations" className="border-b border-(--line) py-22">
+      <section id="hesitations" className="py-22">
         <Container>
           <BlockHeading title="Where Users Hesitate" body="" />
           <ul className="flex flex-col gap-3 mt-2">
@@ -187,7 +188,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* What Makes Different */}
-      <section id="different" className="border-b border-(--line) py-22">
+      <section id="different" className="py-22">
         <Container>
           <BlockHeading
             title={`What Makes ${review.providerName} Different`}
@@ -206,7 +207,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="border-b border-(--line) py-22">
+      <section id="pricing" className="py-22">
         <Container>
           <BlockHeading title={`${review.providerName} Pricing`} body="" />
           <div className="max-w-prose">
@@ -227,7 +228,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* Comparison */}
-      <section id="comparison" className="border-b border-(--line) py-22">
+      <section id="comparison" className="py-22">
         <Container>
           <BlockHeading
             title={`How ${review.providerName} Compares`}
@@ -247,68 +248,20 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* Locations */}
-      {locations.length > 0 && (
-        <section id="locations" className="border-b border-(--line) py-22">
-          <Container>
-            <BlockHeading
-              title={`${review.providerName} Locations`}
-              body={
-                locations.length === 1
-                  ? "This provider operates at a single location."
-                  : `${review.providerName} has ${locations.length} locations. Individual location ratings differ from the aggregate shown above. See each location below.`
-              }
-            />
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {locations.map((location) => (
-                <div
-                  key={location.id}
-                  className="flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl transition-shadow hover:shadow-md"
-                >
-                  <div className="flex items-start justify-between">
-                    <p className="font-semibold text-(--ink) text-[15px]">
-                      {location.market}
-                    </p>
-                    <div className="text-right shrink-0">
-                      <p className="font-sans font-semibold text-[13px] text-(--accent)">
-                        {location.rating}
-                      </p>
-                      <p className="text-[11px] text-(--muted)">
-                        {location.rating >= 4.5 ? "Strong" : location.rating >= 4.0 ? "Solid" : "Mixed"}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-[13px] leading-relaxed text-(--muted) line-clamp-3">
-                    {location.summary}
-                  </p>
-                  <div className="mt-auto flex items-center justify-between border-t border-(--line) pt-3">
-                    <span className="text-[13px] text-(--muted)">{location.reviewCount} reviews</span>
-                    {location.googleBusinessUrl ? (
-                      <a
-                        href={location.googleBusinessUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[12px] font-medium text-(--accent) hover:underline"
-                      >
-                        Google reviews →
-                      </a>
-                    ) : (
-                      <Link
-                        href={`/reviews/${slug}#${getLocationSlug(location)}`}
-                        className="text-[12px] font-medium text-(--accent) hover:underline"
-                      >
-                        View location →
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+      <LocationsSection
+        title={`${review.providerName} Locations`}
+        body={
+          locations.length === 1
+            ? "This provider operates at a single location."
+            : `${review.providerName} has ${locations.length} locations. Individual location ratings differ from the aggregate shown above. See each location below.`
+        }
+        locations={locations}
+        slug={slug}
+        websiteHref={locations[0]?.website}
+      />
 
       {/* Who It Is Best For */}
-      <section id="best-for" className="border-b border-(--line) py-22">
+      <section id="best-for" className="py-22">
         <Container>
           <BlockHeading
             title={`Who ${review.providerName} Is Best For`}

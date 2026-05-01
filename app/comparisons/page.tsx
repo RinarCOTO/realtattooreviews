@@ -100,7 +100,7 @@ function ComparisonCard({
 }) {
   if (!live) {
     return (
-      <div className="flex flex-col rounded-xl border border-(--line) bg-(--surface) p-6 opacity-60">
+      <div className="flex flex-col rounded-xl bg-white p-6 opacity-60">
         <div className="mb-3 flex items-center gap-2">
           <span className="rounded-full border border-(--line) px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-(--subtle)">
             Coming soon
@@ -115,7 +115,7 @@ function ComparisonCard({
   return (
     <Link
       href={href!}
-      className="group flex flex-col rounded-xl border border-(--line) bg-(--surface) p-6 transition hover:border-(--accent)"
+      className="group flex flex-col rounded-xl bg-white p-6 transition"
     >
       <h3 className="mb-2 text-[17px] font-semibold leading-snug text-(--ink) group-hover:text-(--accent)">
         {title}
@@ -133,7 +133,7 @@ export default function ComparisonsPage() {
   ]);
 
   return (
-    <main className="comparison-page min-h-screen bg-(--bg)">
+    <main className="comparison-page min-h-screen">
       <Script
         id="breadcrumb-schema"
         type="application/ld+json"
@@ -147,7 +147,7 @@ export default function ComparisonsPage() {
       />
 
       {/* Body */}
-      <PageSection bg="bg">
+      <PageSection>
         <div className="space-y-14">
 
             {/* Intro */}
@@ -224,7 +224,7 @@ export default function ComparisonsPage() {
                     body: "Comparison pages show aggregate signals. Provider profile pages show location-specific detail, best-for and not-ideal-for summaries, and city context. Use both.",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="flex gap-4 rounded-xl border border-(--line) bg-(--surface) p-5">
+                  <div key={item.title} className="flex gap-4 rounded-xl bg-white p-5">
                     <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-(--accent)" />
                     <div>
                       <p className="text-[15px] font-semibold text-(--ink)">{item.title}</p>
@@ -248,7 +248,7 @@ export default function ComparisonsPage() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="flex items-center justify-between rounded-lg border border-(--line) bg-(--surface) px-4 py-3 text-[14px] font-medium text-(--ink) transition hover:border-(--accent) hover:text-(--accent)"
+                    className="flex items-center justify-between rounded-lg bg-white px-4 py-3 text-[14px] font-medium text-(--ink) transition hover:text-(--accent)"
                   >
                     {link.label}
                     <span className="text-(--muted)">→</span>
@@ -258,17 +258,16 @@ export default function ComparisonsPage() {
             </div>
 
             {/* Editorial note */}
-            <div className="rounded-xl border border-(--line) bg-(--surface) p-5 text-[14px] leading-relaxed text-(--muted)">
+            <div className="rounded-xl bg-white p-5 text-[14px] leading-relaxed text-(--muted)">
               <p className="font-semibold text-(--ink)">Editorial note</p>
               <p className="mt-2">
                 Comparison pages on RealTattooReviews use live review evidence, not editorial
                 opinion. Rankings and win counts are produced by our scoring framework applied
-                consistently across all providers. inkOUT is a current advertising client and is
-                evaluated under the same framework as every other provider. See the{" "}
+                consistently across all providers. See the{" "}
                 <Link href="/editorial-policy" className="font-medium text-(--accent) hover:underline">
                   editorial policy
                 </Link>{" "}
-                for full disclosure.
+                for full details.
               </p>
             </div>
 

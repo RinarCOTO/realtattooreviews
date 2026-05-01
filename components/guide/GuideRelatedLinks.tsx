@@ -17,12 +17,12 @@ export default function GuideRelatedLinks({ links }: Props) {
       <MonoLabel color="accent" size="sm" className="mb-5">
         Related guides
       </MonoLabel>
-      <div className="flex flex-col divide-y divide-(--line) border border-(--line) rounded-xl overflow-hidden bg-white">
+      <div className="flex flex-col gap-3">
         {links.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="flex items-center justify-between px-6 py-4 bg-white no-underline text-inherit hover:bg-(--surface) transition-colors"
+            className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4 no-underline text-inherit hover:border-(--accent) transition-colors"
           >
             <div className="min-w-0 pr-4">
               <p className="font-sans font-medium text-(--ink) text-[15px] m-0 mb-0.5">

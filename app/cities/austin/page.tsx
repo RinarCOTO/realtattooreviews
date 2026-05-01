@@ -8,7 +8,7 @@ import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
-import PageHero from "@/components/layout/PageHero";
+import BlobBackground from "@/components/ui/BlobBackground";
 import FAQSection from "@/components/sections/FAQSection";
 import CityProviderRanking from "@/components/city/CityProviderRanking";
 import CityProviderComparisonTable from "@/components/city/CityProviderComparisonTable";
@@ -164,6 +164,7 @@ export default function AustinPage() {
   const faqJsonLd = faqSchema(faqs);
 
   return (
+    <BlobBackground>
     <div className="reviews-page">
       <script
         type="application/ld+json"
@@ -179,30 +180,31 @@ export default function AustinPage() {
       />
 
       {/* Hero */}
-      <PageHero
-        label={
-          <>
-            <Link href="/cities" className="hover:text-(--ink) transition-colors">
-              Cities
-            </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
-              Austin
-            </span>
-          </>
-        }
-        title={<>Best Tattoo Removal <span className="text-(--accent)">in Austin</span></>}
-        subtitle="Compare tattoo removal clinics in Austin, explore reviews and provider differences, and see which local options are worth considering before you book."
-      />
+      <section className="bg-canvas py-6 px-4 sm:px-6">
+        <div className="rounded-3xl pt-18 pb-16" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
+          <Container>
+            <div className="flex items-center gap-2.5 mb-7 font-sans text-[11px] tracking-[0.14em] uppercase text-(--accent)">
+              <span className="inline-block w-6 h-px bg-(--accent) shrink-0" />
+              <Link href="/cities" className="hover:opacity-70 transition-opacity">Cities</Link>
+              <span className="opacity-40">·</span>
+              <span>Austin</span>
+            </div>
+            <h1 className="font-sans font-bold text-[clamp(40px,6vw,72px)] leading-none tracking-[-0.03em] m-0 text-(--ink) max-w-[20ch]">
+              Best Tattoo Removal <span className="text-(--accent)">in Austin</span>
+            </h1>
+            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-(--muted) max-w-130">
+              Compare tattoo removal clinics in Austin, explore reviews and provider differences, and see which local options are worth considering before you book.
+            </p>
+          </Container>
+        </div>
+      </section>
 
       {/* Body */}
-      <section className="bg-(--bg)">
+      <section>
         <Container>
-          <div className="mx-auto max-w-2xl">
 
             {/* Intro */}
             <div className="py-12">
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
                 <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
                   Tattoo removal Austin TX has more good options than most Texas cities of
                   comparable size. Specialist laser studios, dermatology practices, med spas, and
@@ -233,10 +235,10 @@ export default function AustinPage() {
                   </Link>
                   .
                 </p>
-              </div>
             </div>
 
             {/* Dynamic ranking */}
+            <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <GuideSection heading="Best Tattoo Removal Clinics in Austin">
               <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
                 The ranked list below is generated from our review-sample analysis. Sentiment
@@ -252,6 +254,7 @@ export default function AustinPage() {
                 <CityProviderRanking city="Austin" staticProviders={AUSTIN_PROVIDERS} />
               </Suspense>
             </GuideSection>
+            </div>
 
             {/* Static editorial profiles */}
             <GuideSection heading="Austin Provider Profiles">
@@ -554,11 +557,11 @@ export default function AustinPage() {
               ]}
             />
 
-          </div>
         </Container>
       </section>
 
       <FAQSection faqs={faqs} />
     </div>
+    </BlobBackground>
   );
 }

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import BlobBackground from "@/components/ui/BlobBackground";
 import AlternativesSection from "./AlternativesSection";
 import BlockHeading from "./BlockHeading";
 import InfoCard from "./InfoCard";
 import JumpNav from "./JumpNav";
-import ProsCons from "./ProsCons";
 import ProviderHero from "./ProviderHero";
 import ResultsSnapshot from "./ResultsSnapshot";
 import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
@@ -13,6 +13,8 @@ import VerdictSidebar from "./VerdictSidebar";
 import type { Review } from "@/types/review";
 import type { Provider } from "@/types/provider";
 import BottomLineSection from "./BottomLineSection";
+import BestForSection from "./BestForSection";
+import OverviewSection from "./OverviewSection";
 import FAQSection from "@/components/sections/FAQSection";
 import {
   buildBestFor,
@@ -31,9 +33,20 @@ import {
 interface SingleProviderReviewsPageProps {
   provider: Provider;
   reviews: Review[];
+  /**
+   * Path used in BreadcrumbList structured data and as the canonical "self"
+   * URL. Defaults to `/reviews/{provider.slug}/`. Pass an explicit value when
+   * the page lives at a non-default URL (e.g. a per-location route like
+   * `/reviews/removery/lincoln-square/`).
+   */
+  canonicalPath?: string;
+  /**
+   * Breadcrumb override. Defaults to ["Reviews", provider.name, city].
+   */
+  breadcrumb?: string[];
 }
 
-export default function SingleProviderReviewsPage({ provider, reviews }: SingleProviderReviewsPageProps) {
+export default function SingleProviderReviewsPage({ provider, reviews, canonicalPath, breadcrumb }: SingleProviderReviewsPageProps) {
   const realCount = reviews.length || provider.reviewCount;
   const realAvgRating = reviews.length > 0
     ? reviews.reduce((s, r) => s + (r.rating ?? 0), 0) / reviews.length
@@ -62,9 +75,10 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
   ];
 
   return (
-    <main className="reviews-page min-h-screen bg-(--bg)">
+    <BlobBackground>
+    <main className="reviews-page min-h-screen">
       <ProviderHero
-        breadcrumb={["Reviews", provider.name, city]}
+        breadcrumb={breadcrumb ?? ["Reviews", provider.name, city]}
         nameNode={<>{provider.name},{" "}<em className="italic text-[oklch(0.55_0.15_35)]">{city}.</em></>}
         body={`in ${provider.market}. See how ${provider.name} compares on ratings, pricing, treatment approach, and overall reputation before you book.`}
         tags={provider.tags ?? []}
@@ -86,40 +100,34 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
 
       <JumpNav items={jumpItems} />
 
-      <section className="border-b border-(--line) bg-(--surface) py-10">
+      <section className="py-10">
         <Container>
           <VerdictSidebar rows={buildOverviewStats(reviews)} />
         </Container>
       </section>
 
-      <section id="overview" className="border-b border-(--line) bg-(--surface) py-22">
-        <Container>
-          <BlockHeading title={`Is ${provider.name} Worth It?`} body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and local consistency make it a good fit for your tattoo, budget, and goals." />
-          <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
-            If you are already researching {provider.name} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common patient patterns look like, and which alternatives are worth comparing before you commit.
-          </p>
-          <ProsCons pros={pros} cons={cons} />
-          <p className="mt-6 font-sans text-[13px] leading-relaxed text-(--muted) border-t border-(--line) pt-5">
-            The important question is not whether every review is positive. It is whether the negatives feel isolated or repeated.
-          </p>
-        </Container>
-      </section>
+      <OverviewSection
+        providerName={provider.name}
+        intro={`If you are already researching ${provider.name} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common patient patterns look like, and which alternatives are worth comparing before you commit.`}
+        pros={pros}
+        cons={cons}
+      />
 
-      <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="reviews" className="py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
           <WhatReviewersSay reviews={reviews} providerName={provider.name} />
         </Container>
       </section>
 
-      <section id="results" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="results" className="py-22">
         <Container>
           <BlockHeading title="Rating Summary" body="Start with the biggest signals first. These do not tell the whole story, but they tell you where to look closer." />
           <ResultsSnapshot {...resultsSummary} />
         </Container>
       </section>
 
-      <section id="pricing" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="pricing" className="py-22">
         <Container>
           <BlockHeading title="Pricing" body="Pricing is one of the first things users want to know and one of the hardest things to compare cleanly. Look at session count expectations and total treatment path, not just the starting price." />
           <InfoCard
@@ -132,14 +140,14 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         </Container>
       </section>
 
-      <section id="treatment" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="treatment" className="py-22">
         <Container>
           <BlockHeading title="Treatment Approach and Technology" body="Brand reputation matters, but treatment fit matters more. A provider can look strong overall and still be a weak fit for a specific tattoo or skin profile." />
           <InfoCard label="Method and technology" body={buildTreatmentOverview([provider])} link="See our method comparison guide" linkHref="/comparisons/best-tattoo-removal-method" />
         </Container>
       </section>
 
-      <section id="local-context" className="border-b border-(--line) bg-(--bg) py-22">
+      <section id="local-context" className="py-22">
         <Container className="grid gap-6 lg:grid-cols-2">
           <div className="border border-(--line) bg-white p-6 rounded-xl">
             <p className="font-sans font-semibold text-[22px] leading-[1.1] tracking-[-0.02em] text-(--ink) mb-3">
@@ -162,11 +170,23 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
                 <span key={tag} className="border border-(--line) bg-(--surface) px-3 py-1 font-sans text-[11px] tracking-widest uppercase text-(--muted)">{tag}</span>
               ))}
             </div>
+            {provider.website ? (
+              <div className="mt-5 border-t border-(--line) pt-4">
+                <a
+                  href={provider.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[13px] font-medium text-(--accent) hover:underline"
+                >
+                  Visit official website ↗
+                </a>
+              </div>
+            ) : null}
           </div>
         </Container>
       </section>
 
-      <section id="alternatives" className="border-b border-(--line) bg-(--surface) py-22">
+      <section id="alternatives" className="py-22">
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${provider.name}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
@@ -176,36 +196,11 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         </Container>
       </section>
 
-      {/* ── Who it fits ──────────────────────────────────────────────────── */}
-      <section id="best-for" className="border-b border-(--line) bg-(--bg) py-22">
-        <Container>
-          <BlockHeading title={`Who ${provider.name} Is Best For`} body="Use this section to quickly judge whether this provider fits your situation before going deeper." />
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
-              <p className="mb-4 text-[15px] font-semibold text-(--ink)">{provider.name} may be a strong option if you:</p>
-              <ul className="flex flex-col gap-2">
-                {bestForData.bestFor.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
-                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#5A7A5A" }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
-              <p className="mb-4 text-[15px] font-semibold text-(--ink)">You should compare more carefully if you:</p>
-              <ul className="flex flex-col gap-2">
-                {bestForData.lessIdealFor.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
-                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <BestForSection
+        providerName={provider.name}
+        bestFor={bestForData.bestFor}
+        lessIdealFor={bestForData.lessIdealFor}
+      />
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
       <FAQSection
@@ -229,7 +224,7 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: "https://realtattooreviews.com/" },
               { "@type": "ListItem", position: 2, name: "Reviews", item: "https://realtattooreviews.com/reviews/" },
-              { "@type": "ListItem", position: 3, name: provider.name, item: `https://realtattooreviews.com/reviews/${provider.slug}/` },
+              { "@type": "ListItem", position: 3, name: provider.name, item: `https://realtattooreviews.com${canonicalPath ?? `/reviews/${provider.slug}/`}` },
             ],
           }),
         }}
@@ -253,5 +248,6 @@ export default function SingleProviderReviewsPage({ provider, reviews }: SingleP
         }}
       />
     </main>
+    </BlobBackground>
   );
 }

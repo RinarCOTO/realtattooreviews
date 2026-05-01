@@ -6,6 +6,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
+import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import MonoLabel from "@/components/reviews/MonoLabel";
 import FAQSection from "@/components/sections/FAQSection";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
@@ -167,7 +168,7 @@ export default function InkoutVsLaserawayPage() {
       />
 
       {/* Intro */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
             inkOUT and LaserAway represent two fundamentally different approaches to tattoo
             removal. LaserAway is a large multi-service aesthetics chain. It offers tattoo
@@ -194,7 +195,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* At a glance */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>inkOUT vs LaserAway at a Glance</SectionHeading>
         <div className="space-y-4">
           <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -219,7 +220,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* TEPR vs PicoSure */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading label="Key Difference">The Key Difference: TEPR vs PicoSure</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -227,7 +228,7 @@ export default function InkoutVsLaserawayPage() {
               LaserAway comparison.
             </p>
 
-            <div className="space-y-3">
+            <div className="grid sm:grid-cols-2 gap-3">
               {[
                 {
                   title: "PicoSure",
@@ -261,7 +262,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Specialist vs Chain */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>Specialist vs Chain: What Type of Provider Fits Your Needs?</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -305,7 +306,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Pricing */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>inkOUT vs LaserAway: Pricing and Cost Comparison</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -353,7 +354,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Results, scarring, pain */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>inkOUT vs LaserAway: Results, Scarring, and Pain</SectionHeading>
         <div className="space-y-4">
             <div className="space-y-3">
@@ -392,7 +393,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Use cases */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>inkOUT vs LaserAway: Best for Dark Skin, Color Ink, and Complete Removal</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -429,7 +430,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Cross-city evidence */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>Cross-City Review Evidence</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -441,7 +442,7 @@ export default function InkoutVsLaserawayPage() {
             </p>
             <Suspense
               fallback={
-                <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+                <div className="rounded-xl bg-white p-8 text-center">
                   <p className="font-sans text-[14px] text-(--muted) m-0">
                     Loading evidence table&hellip;
                   </p>
@@ -461,7 +462,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Pros and cons of inkOUT */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>Pros and Cons of inkOUT</SectionHeading>
         <div className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
@@ -494,7 +495,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Pros and cons of LaserAway */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <SectionHeading>Pros and Cons of LaserAway</SectionHeading>
         <div className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
@@ -526,7 +527,7 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Verdict */}
-      <PageSection bg="bg" className="verdict-bg">
+      <PageSection bg="none" noBorder className="verdict-bg">
         <SectionHeading label="Verdict">Our Verdict: inkOUT or LaserAway?</SectionHeading>
         <div className="space-y-4">
             <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
@@ -591,16 +592,14 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Editorial note */}
-      <PageSection bg="bg">
+      <PageSection bg="none" noBorder>
         <div className="space-y-4">
           <GuideCallout label="Editorial note">
               PicoSure details are drawn from Cynosure Lutronic product documentation and
               PMC4859414 (Torbeck et al, JCAD 2016). LaserAway review data is pending scrape
               backfill; the evidence table will populate as confirmed locations are captured.
-              inkOUT is a current advertising client of RealTattooReviews and is evaluated under
-              the same framework as every other provider. Individual outcomes vary by tattoo,
-              skin type, ink density, and provider skill. Consult both providers before deciding.
-              See our{" "}
+              Individual outcomes vary by tattoo, skin type, ink density, and provider skill.
+              Consult both providers before deciding. See our{" "}
               <Link href="/methodology" className="text-(--accent) hover:underline">
                 methodology
               </Link>{" "}
@@ -614,25 +613,16 @@ export default function InkoutVsLaserawayPage() {
       </PageSection>
 
       {/* Related links */}
-      <PageSection bg="surface">
-        <p className="font-sans text-[12px] font-semibold uppercase tracking-wider text-(--muted) mb-4">
-          Related Pages
-        </p>
-        <div className="space-y-2">
-          {[
-            { href: "/comparisons/best-tattoo-removal-method", title: "Best Tattoo Removal Method" },
-            { href: "/comparisons/inkout-vs-removery", title: "inkOUT vs Removery" },
-            { href: "/comparisons/removery-vs-laseraway", title: "Removery vs LaserAway" },
-            { href: "/reviews/inkout", title: "inkOUT Reviews" },
-            { href: "/reviews/laseraway", title: "LaserAway Reviews" },
-          ].map((link) => (
-            <div key={link.href}>
-              <Link href={link.href} className="font-sans text-[14px] text-(--accent) hover:underline">
-                {link.title}
-              </Link>
-            </div>
-          ))}
-        </div>
+      <PageSection bg="none" noBorder>
+        <GuideRelatedLinks
+          links={[
+            { href: "/comparisons/best-tattoo-removal-method", title: "Best Tattoo Removal Method", desc: "Side-by-side comparison of all major removal methods by effectiveness, cost, and risk." },
+            { href: "/comparisons/inkout-vs-removery", title: "inkOUT vs Removery", desc: "TEPR vs laser specialist: two non-chain providers compared across cities." },
+            { href: "/comparisons/removery-vs-laseraway", title: "Removery vs LaserAway", desc: "Two national laser chains compared by city, sentiment, and use-case fit." },
+            { href: "/reviews/inkout", title: "inkOUT Reviews", desc: "Full review sample and provider profiles for inkOUT across all markets." },
+            { href: "/reviews/laseraway", title: "LaserAway Reviews", desc: "Full review sample and provider profiles for LaserAway across all markets." },
+          ]}
+        />
       </PageSection>
 
       <FAQSection faqs={faqs} />

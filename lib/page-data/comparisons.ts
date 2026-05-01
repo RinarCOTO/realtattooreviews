@@ -13,6 +13,18 @@ export type SanityComparisonFAQ = {
     answer: string
 }
 
+export type SanityChoiceCard = {
+    title: string
+    body: string
+    bullets: string[]
+}
+
+export type SanityRelatedLink = {
+    label: string
+    href: string
+    description: string
+}
+
 export type SanityComparison = {
     title: string
     slug: string
@@ -20,6 +32,13 @@ export type SanityComparison = {
     providerA?: string | null
     providerB?: string | null
     verdict?: string | null
+    intro?: string[] | null
+    choiceCards?: SanityChoiceCard[] | null
+    criteriaTitle?: string | null
+    criteriaPoints?: string[] | null
+    consultQuestions?: string[] | null
+    sourceNote?: string | null
+    relatedLinks?: SanityRelatedLink[] | null
     tableRows?: SanityComparisonTableRow[] | null
     prosA?: string[] | null
     consA?: string[] | null
@@ -47,6 +66,21 @@ const SINGLE_COMPARISON_QUERY = `*[_type == "comparison" && slug.current == $slu
     providerA,
     providerB,
     verdict,
+    intro,
+    choiceCards[] {
+        title,
+        body,
+        bullets
+    },
+    criteriaTitle,
+    criteriaPoints,
+    consultQuestions,
+    sourceNote,
+    relatedLinks[] {
+        label,
+        href,
+        description
+    },
     tableRows[] {
         criteria,
         valueA,

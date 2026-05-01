@@ -1,19 +1,8 @@
 import type { ReactNode } from "react";
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
-
-const METHOD_TAGS = new Set([
-  "TEPR", "Non-Laser", "Laser", "PicoWay", "PicoSure", "Q-Switch", "Spectra", "Enlighten", "RevLite",
-]);
-const SIGNAL_TAGS = new Set([
-  "Top Rated", "High Rated", "Most Reviewed",
-]);
-
-function pillClass(tag: string): string {
-  if (METHOD_TAGS.has(tag)) return "bg-(--accent) text-white";
-  if (SIGNAL_TAGS.has(tag)) return "bg-[#F0D5CF] text-(--accent)";
-  return "border border-(--line) bg-white text-(--muted)";
-}
+import DevLabel from "@/components/dev/DevLabel";
+import ProviderPill from "@/components/ui/ProviderPill";
 
 interface ProviderHeroProps {
   breadcrumb: string[];
@@ -22,6 +11,8 @@ interface ProviderHeroProps {
   tags: string[];
   reviewCount: number;
   reviewsHref?: string;
+  providerHref?: string;
+  providerLinkLabel?: string;
   card?: ReactNode;
 }
 
@@ -32,10 +23,13 @@ export default function ProviderHero({
   tags,
   reviewCount,
   reviewsHref = "#reviews",
+  providerHref,
+  providerLinkLabel = "View provider profile",
   card,
 }: ProviderHeroProps) {
   return (
-    <section className="bg-canvas border-b border-(--line) py-6 px-4 sm:px-6">
+    <DevLabel name="ProviderHero">
+    <section className="bg-canvas py-6 px-4 sm:px-6">
       <div className="rounded-3xl pt-18 pb-16" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
       <Container>
           {/* Breadcrumb */}
@@ -64,12 +58,7 @@ export default function ProviderHero({
               {tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-5">
                   {tags.slice(0, 6).map((tag) => (
-                    <span
-                      key={tag}
-                      className={`inline-flex items-center px-3 py-1 rounded-full font-sans text-[10px] tracking-widest uppercase ${pillClass(tag)}`}
-                    >
-                      {tag}
-                    </span>
+                    <ProviderPill key={tag} tag={tag} />
                   ))}
                 </div>
               )}
@@ -85,10 +74,22 @@ export default function ProviderHero({
             </div>
 
             {/* Right: rating card */}
-            {card && <div className="shrink-0">{card}</div>}
+            {card && (
+              <div className="shrink-0">
+                {card}
+                {providerHref ? (
+                  <div className="mt-3 text-right">
+                    <Button href={providerHref} variant="ghost" size="sm">
+                      {providerLinkLabel}
+                    </Button>
+                  </div>
+                ) : null}
+              </div>
+            )}
           </div>
       </Container>
       </div>
     </section>
+    </DevLabel>
   );
 }

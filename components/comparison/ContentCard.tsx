@@ -40,7 +40,7 @@ export default function ContentCard({
 
   return (
     <ContentCardContext.Provider value={{ useIcons: titleSize === "sm" }}>
-      <div className={`rounded-xl border border-(--line) ${bgClass} shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 ${className}`}>
+      <div className={`rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 ${className}`}>
         {badge && (
           <span className="inline-block mb-2 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-widest bg-(--accent) text-white">
             {badge}

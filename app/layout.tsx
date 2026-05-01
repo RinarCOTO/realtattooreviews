@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { organizationSchema } from "@/lib/seo/schema";
 import { getDataFreshness } from "@/lib/data/reviews";
+import { DevProvider } from "@/components/dev/DevContext";
 
 const satoshi = localFont({
   src: "../public/fonts/satoshi/Satoshi-Variable.woff2",
@@ -96,9 +97,19 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
         />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer dataLastUpdated={dataLastUpdated} />
+        {process.env.NODE_ENV === "development" ? (
+          <DevProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer dataLastUpdated={dataLastUpdated} />
+          </DevProvider>
+        ) : (
+          <>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer dataLastUpdated={dataLastUpdated} />
+          </>
+        )}
       </body>
     </html>
   );

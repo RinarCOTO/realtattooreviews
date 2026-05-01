@@ -158,7 +158,7 @@ export default function RemoveryVsLaserawayPage() {
       />
 
       {/* Intro */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
             Removery and LaserAway are both national brands offering laser tattoo removal.
             That is where the similarity ends. The Removery vs LaserAway decision comes down
@@ -200,7 +200,7 @@ export default function RemoveryVsLaserawayPage() {
       </PageSection>
 
       {/* Pricing */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Removery vs LaserAway: Pricing and Packages
         </SectionHeading>
@@ -294,7 +294,7 @@ export default function RemoveryVsLaserawayPage() {
       </PageSection>
 
       {/* Locations */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Removery vs LaserAway: Locations and Convenience
         </SectionHeading>
@@ -348,7 +348,7 @@ export default function RemoveryVsLaserawayPage() {
           </div>
           <Suspense
             fallback={
-              <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
+              <div className="rounded-xl bg-white p-8 text-center">
                 <p className="font-sans text-[14px] text-(--muted) m-0">Loading evidence table&hellip;</p>
               </div>
             }
@@ -367,7 +367,7 @@ export default function RemoveryVsLaserawayPage() {
       </PageSection>
 
       {/* Pros and cons of Removery */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <SectionHeading>
           Pros and Cons of Removery
         </SectionHeading>
@@ -522,7 +522,7 @@ export default function RemoveryVsLaserawayPage() {
       </PageSection>
 
       {/* Related links */}
-      <PageSection bg="surface">
+      <PageSection bg="none" noBorder>
         <GuideRelatedLinks
           links={[
             {

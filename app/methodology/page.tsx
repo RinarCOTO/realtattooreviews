@@ -5,7 +5,10 @@ import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
 import PageSection from "@/components/reviews/PageSection";
 import SectionHeading from "@/components/guide/SectionHeading";
+import GuideCallout from "@/components/guide/GuideCallout";
 import FAQSection from "@/components/sections/FAQSection";
+import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
+import Card from "@/components/ui/Card";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = {
@@ -51,7 +54,7 @@ const faqs = [
   {
     question: "Do providers pay to be listed or ranked higher?",
     answer:
-      "No. No provider can pay for listing, ranking, or favorable treatment. inkOUT is a current advertising client and is evaluated under the same scoring framework as every other provider. See the editorial policy for full disclosure.",
+      "No. No provider can pay for listing, ranking, or favorable treatment. The scoring framework applies equally to every provider. See the editorial policy for full details.",
   },
   {
     question: "How do I report incorrect information?",
@@ -105,7 +108,7 @@ export default function MethodologyPage() {
   ]);
 
   return (
-    <main className="min-h-screen bg-bg">
+    <main className="min-h-screen bg-white">
       <Script
         id="breadcrumb-schema"
         type="application/ld+json"
@@ -129,8 +132,8 @@ export default function MethodologyPage() {
       />
 
       {/* Body */}
-      <PageSection bg="bg">
-          <div className="mx-auto max-w-2xl space-y-12">
+      <PageSection className="bg-white!">
+          <div className="mx-auto max-w-4xl space-y-12">
 
             {/* Intro */}
             <div className="space-y-4">
@@ -141,7 +144,7 @@ export default function MethodologyPage() {
                 This is not a marketing page. It is an operating document. The goal is to make our scoring system understandable, consistent, and defensible. Every provider page, city page, category page, and comparison page on this site is built on the same framework described here.
               </p>
               <p className="text-[15px] leading-relaxed text-muted">
-                If you want to know our editorial standards and advertising disclosures, see the{" "}
+                If you want to know our editorial standards, see the{" "}
                 <Link href="/editorial-policy" className="font-medium text-accent hover:underline">editorial policy</Link>.
                 If you want to contact us about an error or dispute, see the{" "}
                 <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>.
@@ -155,9 +158,9 @@ export default function MethodologyPage() {
                 Provider rankings on RealTattooReviews are generated from structured analysis of public review data. Rankings are not pay-for-placement. No provider can pay to rank higher. Rankings are not editorial opinion. They are produced from a scoring framework applied consistently across all providers.
               </p>
               <p className="text-[15px] font-semibold text-heading">The ranking framework uses six weighted factors:</p>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {RANKING_FACTORS.map((f) => (
-                  <div key={f.number} className="flex gap-4 rounded-xl border border-border bg-surface p-5">
+                  <Card key={f.number} className="flex gap-4 p-5">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-bold text-accent">
                       {f.number}
                     </div>
@@ -165,7 +168,7 @@ export default function MethodologyPage() {
                       <p className="text-[15px] font-semibold text-heading">{f.title}</p>
                       <p className="mt-1 text-[14px] leading-relaxed text-muted">{f.body}</p>
                     </div>
-                  </div>
+                  </Card>
                 ))}
               </div>
             </div>
@@ -177,7 +180,7 @@ export default function MethodologyPage() {
                 Review scores on RealTattooReviews are not simple star averages. They are composite scores built from multiple data points extracted from each review.
               </p>
 
-              <div className="rounded-xl border border-border bg-surface p-5">
+              <div className="rounded-xl border border-border bg-white p-5">
                 <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-muted">Data points per review</p>
                 <ul className="space-y-2">
                   {[
@@ -225,7 +228,7 @@ export default function MethodologyPage() {
               </p>
 
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-xl border border-border bg-surface p-5">
+                <div className="rounded-xl border border-border p-5">
                   <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-accent">What we use</p>
                   <ul className="space-y-2">
                     {[
@@ -241,14 +244,13 @@ export default function MethodologyPage() {
                     ))}
                   </ul>
                 </div>
-                <div className="rounded-xl border border-border bg-surface p-5">
+                <div className="rounded-xl border border-border p-5">
                   <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-muted">What we do not use</p>
                   <ul className="space-y-2">
                     {[
                       "Reviews from provider-owned websites (potential selection bias)",
                       "Reviews from affiliate platforms",
                       "Reviews submitted directly to RealTattooReviews",
-                      "Reviews from Yelp, RealSelf, or other platforms (not currently in scope)",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-[13px] leading-relaxed text-body">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-border" />
@@ -284,7 +286,7 @@ export default function MethodologyPage() {
                     Provider information (name, address, technology used, services offered) is verified against Google Places data and, where available, the provider's own published materials. Addresses are cross-referenced with Google Places listings. Technology claims are verified against published provider information and review text mentions.
                   </p>
                 </div>
-                <div className="rounded-xl border border-border bg-surface p-5">
+                <div className="rounded-xl border border-border bg-white p-5">
                   <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-muted">What we do not verify</p>
                   <ul className="space-y-2">
                     {[
@@ -370,7 +372,7 @@ export default function MethodologyPage() {
                 Review data is refreshed periodically through automated scraping of public Google business listings. The current update cadence is not real-time. Data refreshes occur on a rolling basis, with the most recently refreshed timestamp displayed at the bottom of each dynamic data component on the site.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-xl border border-border bg-surface p-5">
+                <div className="rounded-xl border border-border bg-white p-5">
                   <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-accent">What triggers an update</p>
                   <ul className="space-y-2">
                     {[
@@ -385,12 +387,12 @@ export default function MethodologyPage() {
                     ))}
                   </ul>
                 </div>
-                <div className="rounded-xl border border-border bg-surface p-5">
+                <div className="rounded-xl border border-border bg-white p-5">
                   <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-muted">What does not trigger an update</p>
                   <ul className="space-y-2">
                     {[
                       "Provider requests for immediate re-scoring",
-                      "Advertising relationship changes",
+                      "Provider disagreement with the framework itself",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-[13px] leading-relaxed text-body">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-border" />
@@ -409,17 +411,9 @@ export default function MethodologyPage() {
             <div className="space-y-5">
               <SectionHeading>Editorial Independence and Corrections</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
-                RealTattooReviews maintains editorial independence from all providers, including advertising clients. The scoring framework, ranking methodology, and review classification process described on this page apply equally to every provider regardless of advertising relationship.
+                RealTattooReviews maintains editorial independence from all providers. The scoring framework, ranking methodology, and review classification process described on this page apply equally to every provider.
               </p>
               <div className="space-y-4">
-                <div>
-                  <p className="text-[15px] font-semibold text-heading">Advertising disclosure</p>
-                  <p className="mt-1 text-[15px] leading-relaxed text-body">
-                    inkOUT (operated by Rejuvatek Medical) is a current advertising client of RealTattooReviews. This relationship is fully disclosed on the{" "}
-                    <Link href="/editorial-policy" className="font-medium text-accent hover:underline">editorial policy page</Link>.
-                    inkOUT is evaluated using the same scoring framework as every other provider. Advertising clients cannot pay for higher rankings, favorable review classifications, or preferential positioning in city pages or comparison pages.
-                  </p>
-                </div>
                 <div>
                   <p className="text-[15px] font-semibold text-heading">No pay-for-placement</p>
                   <p className="mt-1 text-[15px] leading-relaxed text-body">
@@ -431,7 +425,7 @@ export default function MethodologyPage() {
                   <p className="mt-1 text-[15px] leading-relaxed text-body">
                     If you believe any information on the site is incorrect, outdated, or unfair, you can report it through the{" "}
                     <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>.
-                    We review all correction requests and update the site when errors are confirmed. Providers, users, and third parties can all submit corrections. The corrections process is the same regardless of whether the submitter is an advertising client.
+                    We review all correction requests and update the site when errors are confirmed. Providers, users, and third parties can all submit corrections. The corrections process is the same for every submitter.
                   </p>
                 </div>
                 <div>
@@ -445,17 +439,13 @@ export default function MethodologyPage() {
               </div>
             </div>
 
-            {/* Editorial note */}
-            <div className="rounded-xl border border-border bg-surface p-5 text-[14px] leading-relaxed text-muted">
-              <p className="font-semibold text-heading">Editorial note</p>
-              <p className="mt-2">
-                This page describes the scoring and review methodology used across RealTattooReviews as of the publication date. The methodology may evolve as data sources expand, classification methods improve, and user feedback is incorporated. Any material changes to the methodology will be reflected on this page. See our{" "}
-                <Link href="/editorial-policy" className="font-medium text-accent hover:underline">editorial policy</Link>{" "}
-                for advertising disclosures and our{" "}
-                <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>{" "}
-                for corrections.
-              </p>
-            </div>
+            <GuideCallout label="Editorial note">
+              This page describes the scoring and review methodology used across RealTattooReviews as of the publication date. The methodology may evolve as data sources expand, classification methods improve, and user feedback is incorporated. Any material changes to the methodology will be reflected on this page. See our{" "}
+              <Link href="/editorial-policy" className="font-medium text-accent hover:underline">editorial policy</Link>{" "}
+              for full details and our{" "}
+              <Link href="/contact" className="font-medium text-accent hover:underline">contact page</Link>{" "}
+              for corrections.
+            </GuideCallout>
 
           </div>
       </PageSection>

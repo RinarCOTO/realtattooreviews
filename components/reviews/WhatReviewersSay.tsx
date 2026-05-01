@@ -5,7 +5,8 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import type { Review } from "@/types/review";
 import ClassifiedReviewCard from "./ClassifiedReviewCard";
-import { buildPatternSummary, sortClassifiedReviews, type SortKey } from "@/lib/review-evidence";
+import { sortClassifiedReviews, type SortKey } from "@/lib/review-evidence";
+import DevLabel from "@/components/dev/DevLabel";
 
 type Props = {
   reviews: Review[];
@@ -53,7 +54,6 @@ function ReviewsDisplay({
 }) {
   const [showAll, setShowAll] = useState(false);
 
-  const patterns = buildPatternSummary(reviews);
   const classified = sortClassifiedReviews(reviews, sortKey);
   const visible = showAll ? classified : classified.slice(0, initialShow);
   const activeOption = SORT_OPTIONS.find((o) => o.key === sortKey) ?? SORT_OPTIONS[0];
@@ -63,54 +63,7 @@ function ReviewsDisplay({
   return (
     <div>
 
-      {/* Layer 1: Pattern summary grouped by use case */}
-      {patterns.length > 0 ? (
-        <div className="mb-10">
-          <p className="text-[13px] text-(--muted) mb-4">
-            Patterns across {classified.length} classified {classified.length === 1 ? "review" : "reviews"}
-          </p>
-          {patterns.some((p) => p.count >= 5) && (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4">
-              {patterns.filter((p) => p.count >= 5).map((p) => (
-                <div key={p.useCase} className="border border-border bg-white p-4 rounded-xl transition-shadow hover:shadow-md">
-                  <p className="text-[14px] font-semibold text-(--ink) mb-2">
-                    {p.label}
-                  </p>
-                  <p className="text-[13px] font-semibold text-(--ink) mb-1">
-                    {p.count} {p.count === 1 ? "review" : "reviews"}
-                    {p.avgStars != null ? ` · ${p.avgStars} avg stars` : ""}
-                  </p>
-                  <p className="text-[13px] font-semibold text-(--ink) mb-1">
-                    {p.positives} positive, {p.negatives} negative
-                  </p>
-                  {(p.cities.length > 0 || p.scarringSignal) && (
-                    <p className="text-[12px] text-(--muted)">
-                      {p.cities.slice(0, 2).join(", ")}
-                      {p.scarringSignal === "praised" ? `${p.cities.length > 0 ? " · " : ""}Minimal scarring noted` : ""}
-                      {p.scarringSignal === "reported" ? `${p.cities.length > 0 ? " · " : ""}Scarring concerns noted` : ""}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-          {patterns.some((p) => p.count < 5) && (
-            <div className="flex flex-col gap-1">
-              {patterns.filter((p) => p.count < 5).map((p) => (
-                <p key={p.useCase} className="text-sm text-(--muted)">
-                  {p.label} · {p.count} {p.count === 1 ? "review" : "reviews"} · Insufficient data
-                </p>
-              ))}
-            </div>
-          )}
-        </div>
-      ) : (
-        <p className="mb-10 text-[13px] text-(--muted) italic">
-          Reviews not yet classified by use case.
-        </p>
-      )}
-
-      {/* Layer 2: Classified review summaries */}
+      {/* Classified review summaries */}
       {classified.length > 0 && (
         <div>
           <p className="font-sans text-[11px] uppercase tracking-widest text-(--muted) mb-4">
@@ -202,8 +155,10 @@ function ReviewsWithSort(props: Props) {
 
 export default function WhatReviewersSay(props: Props) {
   return (
-    <Suspense fallback={<ReviewsDisplay {...props} sortKey="most_useful" onSort={() => {}} />}>
-      <ReviewsWithSort {...props} />
-    </Suspense>
+    <DevLabel name="WhatReviewersSay">
+      <Suspense fallback={<ReviewsDisplay {...props} sortKey="most_useful" onSort={() => {}} />}>
+        <ReviewsWithSort {...props} />
+      </Suspense>
+    </DevLabel>
   );
 }

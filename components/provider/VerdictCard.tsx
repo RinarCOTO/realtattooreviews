@@ -1,4 +1,5 @@
 import StarsFull from "./StarsFull";
+import DevLabel from "@/components/dev/DevLabel";
 
 interface VerdictCardProps {
   verdictLabel: string;
@@ -22,6 +23,7 @@ export default function VerdictCard({
   lessIdealFor,
 }: VerdictCardProps) {
   return (
+    <DevLabel name="VerdictCard">
     <div className="flex flex-col p-[24px_28px] border border-(--line) bg-white min-w-65 rounded-xl">
       <span className="font-sans text-[10px] tracking-[0.14em] uppercase text-(--accent)">
         Our Verdict
@@ -61,5 +63,6 @@ export default function VerdictCard({
         </div>
       )}
     </div>
+    </DevLabel>
   );
 }
