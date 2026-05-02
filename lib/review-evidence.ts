@@ -177,10 +177,18 @@ export function sortClassifiedReviews(reviews: Review[], sortKey: SortKey = "mos
   }
 
   if (sortKey === "critical_first") {
-    return filtered.sort((a, b) => {
-      const diff = (a.rating ?? 5) - (b.rating ?? 5);
-      return diff !== 0 ? diff : compareDateDesc(a.dateISO, b.dateISO);
-    });
+    // "Critical first" filters to actually-critical reviews (rating <= 3),
+    // not just an ascending sort. Earlier behavior was to sort ascending and
+    // page through the results, which silently mixed in 4- and 5-star cards
+    // once the small pool of low-rated reviews was exhausted — confusing for
+    // users who tap "Critical first" and then see a 5-star card on the same
+    // screen. Filtering reflects the editorial intent of the label.
+    return filtered
+      .filter((r) => (r.rating ?? 5) <= 3)
+      .sort((a, b) => {
+        const diff = (a.rating ?? 5) - (b.rating ?? 5);
+        return diff !== 0 ? diff : compareDateDesc(a.dateISO, b.dateISO);
+      });
   }
 
   // most_useful: usefulness score then recency

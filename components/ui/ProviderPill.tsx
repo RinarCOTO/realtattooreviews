@@ -23,10 +23,10 @@ const TAG_STYLES: Record<string, { bg: string; color: string }> = {
   // Provider type
   "Medical Spa":    { bg: "#D7EDEC", color: "#3A7A78" },
   "National Chain": { bg: "#A8D5D3", color: "#2E6A68" },
-  // Signal tags
-  "Top Rated":     { bg: "#F5DDD0", color: "#B05C42" },
-  "High Rated":    { bg: "#EDE3C4", color: "#8A7340" },
-  "Most Reviewed": { bg: "#F5DDD0", color: "#B05C42" },
+  // NOTE: Promo-style "Top Rated" / "High Rated" / "Most Reviewed" tags were
+  // intentionally removed. They read as advertising rather than editorial
+  // signal, and the verdict card already conveys rating context with
+  // grounded, data-derived language.
 };
 
 const DEFAULT_STYLE = { bg: "#F0EDE8", color: "#8A8178" };

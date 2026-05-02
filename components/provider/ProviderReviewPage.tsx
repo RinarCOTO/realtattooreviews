@@ -72,7 +72,12 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
   const avgRating = avgRatingValue.toFixed(1);
   const totalReviews =
     reviews.length || locations.reduce((s, l) => s + l.reviewCount, 0);
-  const verdict = getVerdictFromRating(avgRatingValue);
+  // Pass reviews so the verdict composer uses the multi-signal path. Without
+  // this, the function falls into the legacy three-bucket branch and emits
+  // older comparative phrasing like "above most covered providers in this
+  // category" — which we no longer produce on BrandReviewsPage or
+  // SingleProviderReviewsPage.
+  const verdict = getVerdictFromRating(avgRatingValue, reviews);
   const alternatives = getAlternativeProviders(locations, slug);
   const providerTags = locations
     .flatMap((l) => l.tags ?? [])

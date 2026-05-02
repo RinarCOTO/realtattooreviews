@@ -12,7 +12,7 @@ export const brands: Brand[] = [
     markets: ["Austin, TX", "Chicago, IL", "Houston, TX", "Tampa, FL", "Draper, UT"],
     totalReviews: 194,
     avgRating: 4.4,
-    tags: ["TEPR", "Non-Laser", "Top Rated"],
+    tags: ["TEPR", "Non-Laser"],
     featured: true,
   },
   {
@@ -40,7 +40,7 @@ export const brands: Brand[] = [
     markets: ["Houston, TX"],
     totalReviews: 36,
     avgRating: 4.4,
-    tags: ["Medical", "Laser", "PicoSure", "High Rated"],
+    tags: ["Medical", "Laser", "PicoSure"],
     featured: true,
   },
   {

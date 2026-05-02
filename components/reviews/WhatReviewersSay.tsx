@@ -33,7 +33,7 @@ const SORT_OPTIONS: { key: SortKey; label: string; description: string }[] = [
   {
     key: "critical_first",
     label: "Critical first",
-    description: "Showing lowest-rated reviews first.",
+    description: "Showing only reviews rated 3 stars or lower, lowest-rated first.",
   },
 ];
 
@@ -58,16 +58,24 @@ function ReviewsDisplay({
   const visible = showAll ? classified : classified.slice(0, initialShow);
   const activeOption = SORT_OPTIONS.find((o) => o.key === sortKey) ?? SORT_OPTIONS[0];
 
+  // Total classified pool, for the count label. When "critical_first" is
+  // active, sortClassifiedReviews filters out non-critical reviews — we still
+  // want to tell the user how big the underlying pool is so the empty state
+  // ("0 of 90 are critical") reads honestly.
+  const totalClassified = sortClassifiedReviews(reviews, "most_useful").length;
+
   if (reviews.length === 0) return null;
 
   return (
     <div>
 
       {/* Classified review summaries */}
-      {classified.length > 0 && (
+      {(classified.length > 0 || sortKey === "critical_first") && (
         <div>
           <p className="font-sans text-[11px] uppercase tracking-widest text-(--muted) mb-4">
-            {classified.length} classified {classified.length === 1 ? "review" : "reviews"}
+            {sortKey === "critical_first"
+              ? `${classified.length} critical ${classified.length === 1 ? "review" : "reviews"} (of ${totalClassified} classified)`
+              : `${classified.length} classified ${classified.length === 1 ? "review" : "reviews"}`}
           </p>
 
           {/* Sort controls */}
@@ -90,11 +98,18 @@ function ReviewsDisplay({
             <p className="mt-2 text-sm text-muted">{activeOption.description}</p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {visible.map((r) => (
-              <ClassifiedReviewCard key={r.id} review={r} />
-            ))}
-          </div>
+          {classified.length === 0 && sortKey === "critical_first" ? (
+            <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-[14px] leading-relaxed text-(--muted)">
+              No reviews on file rate this provider 3 stars or lower. The full
+              classified pool is available under the other sort options.
+            </div>
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {visible.map((r) => (
+                <ClassifiedReviewCard key={r.id} review={r} />
+              ))}
+            </div>
+          )}
 
           {classified.length > initialShow && !showAll && (
             <button

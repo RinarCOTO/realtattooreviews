@@ -19,7 +19,7 @@ export const providers: Provider[] = [
     featuredScore: 94,
     summary:
       "inkOUT's Austin location leads the brand in review volume. Strong patient communication and consistent session planning. High satisfaction across ink types.",
-    tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain", "Top Rated"],
+    tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain"],
     website: "https://inkout.io",
     webSummary: "inkOUT performs tattoo and permanent makeup removal using its patented TEPRderm device, which applies a dot-pattern template called tegulae and delivers a proprietary TEPRsol solution through precision superficial dermabrasion. Ink is then expelled through the skin surface as crusting during natural healing rather than fragmented into the lymphatic system, with each session removing up to 35 percent of ink. The brand reports over 30,000 treatments and 10,000 tattoos removed, with most complete removals taking three to five sessions over ten to fifteen months.",
     googleBusinessUrl: "",
@@ -40,7 +40,7 @@ export const providers: Provider[] = [
     featuredScore: 89,
     summary:
       "Well-reviewed Chicago location with consistent fading outcomes. Reviewers note clear session expectations and responsive aftercare support.",
-    tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain", "High Rated"],
+    tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain"],
     website: "https://inkout.io",
     webSummary: "inkOUT performs tattoo and permanent makeup removal using its patented TEPRderm device, which applies a dot-pattern template called tegulae and delivers a proprietary TEPRsol solution through precision superficial dermabrasion. Ink is then expelled through the skin surface as crusting during natural healing rather than fragmented into the lymphatic system, with each session removing up to 35 percent of ink. The brand reports over 30,000 treatments and 10,000 tattoos removed, with most complete removals taking three to five sessions over ten to fifteen months.",
     googleBusinessUrl: "",
@@ -61,7 +61,7 @@ export const providers: Provider[] = [
     featuredScore: 85,
     summary:
       "Solid regional performer with above-average ratings. Patients report clear timelines and good results across standard ink types.",
-    tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain", "High Rated"],
+    tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain"],
     website: "https://inkout.io",
     webSummary: "inkOUT performs tattoo and permanent makeup removal using its patented TEPRderm device, which applies a dot-pattern template called tegulae and delivers a proprietary TEPRsol solution through precision superficial dermabrasion. Ink is then expelled through the skin surface as crusting during natural healing rather than fragmented into the lymphatic system, with each session removing up to 35 percent of ink. The brand reports over 30,000 treatments and 10,000 tattoos removed, with most complete removals taking three to five sessions over ten to fifteen months.",
     googleBusinessUrl: "",
@@ -82,7 +82,7 @@ export const providers: Provider[] = [
     featuredScore: 83,
     summary:
       "Strong Tampa presence with consistently high ratings. Reviewers highlight knowledgeable staff and transparent pricing.",
-    tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain", "High Rated"],
+    tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain"],
     website: "https://inkout.io",
     webSummary: "inkOUT performs tattoo and permanent makeup removal using its patented TEPRderm device, which applies a dot-pattern template called tegulae and delivers a proprietary TEPRsol solution through precision superficial dermabrasion. Ink is then expelled through the skin surface as crusting during natural healing rather than fragmented into the lymphatic system, with each session removing up to 35 percent of ink. The brand reports over 30,000 treatments and 10,000 tattoos removed, with most complete removals taking three to five sessions over ten to fifteen months.",
     googleBusinessUrl: "",
@@ -239,7 +239,7 @@ export const providers: Provider[] = [
     featuredScore: 81,
     summary:
       "Inkfree, MD is a physician and family-owned laser clinic in Northwest Houston, established in 2012 and led by medical director Dr. Adaeze Okeke. The clinic positions itself as a dedicated laser clinic rather than a medical spa, with tattoo removal, hair removal, and SculpSure body contouring as its three core service lines.",
-    tags: ["Laser", "Medical", "Affordable", "High Rated"],
+    tags: ["Laser", "Medical", "Affordable"],
     website: "https://www.inkfreemd.com",
     webSummary: "Inkfree, MD operates the Lutronic PicoPlus, a picosecond Nd:YAG laser with four wavelengths (532 nm, 595 nm, 660 nm, and 1064 nm) and a 450 picosecond pulse width, alongside the Lutronic Spectra, a hybrid picosecond and nanosecond Nd:YAG system. The clinic claims to have been the first in the United States to commercially operate the PicoPlus. Its positioning emphasizes affordability, transparent pricing, and a physician-owned independent operating model that differentiates it from medical spas and franchise-style tattoo removal chains. Its client base is described as evenly split between female and male patients, including those preparing for military service.",
   },
@@ -575,7 +575,7 @@ export const providers: Provider[] = [
     featuredScore: 90,
     summary:
       "LaserAway's Chicago Bucktown location is among the brand's highest-rated locations nationally. Reviewers consistently cite clean facilities, knowledgeable technicians, and strong fading results.",
-    tags: ["Laser", "PicoSure", "National Chain", "High Rated"],
+    tags: ["Laser", "PicoSure", "National Chain"],
     website: "https://laseraway.com",
     webSummary: "LaserAway performs laser tattoo removal using Cynosure PicoSure picosecond technology alongside Nd:YAG systems, positioning the chain as a full-spectrum laser aesthetic provider. The brand operates across more than 150 locations nationally and emphasizes staff training, standardized protocols, and medical oversight. Tattoo removal is one of several core service lines alongside laser hair removal, skin rejuvenation, and body contouring. Financing is available through CareCredit and Alphaeon Credit.",
   },
@@ -595,7 +595,7 @@ export const providers: Provider[] = [
     featuredScore: 91,
     summary:
       "LaserAway's Houston Galleria location holds a perfect average across its published reviews. One of the top-rated providers in the Houston market by raw score.",
-    tags: ["Laser", "PicoSure", "National Chain", "High Rated"],
+    tags: ["Laser", "PicoSure", "National Chain"],
     website: "https://laseraway.com",
     webSummary: "LaserAway performs laser tattoo removal using Cynosure PicoSure picosecond technology alongside Nd:YAG systems, positioning the chain as a full-spectrum laser aesthetic provider. The brand operates across more than 150 locations nationally and emphasizes staff training, standardized protocols, and medical oversight. Tattoo removal is one of several core service lines alongside laser hair removal, skin rejuvenation, and body contouring. Financing is available through CareCredit and Alphaeon Credit.",
   },

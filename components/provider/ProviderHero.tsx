@@ -4,6 +4,20 @@ import Button from "@/components/ui/Button";
 import DevLabel from "@/components/dev/DevLabel";
 import ProviderPill from "@/components/ui/ProviderPill";
 
+/**
+ * Promo-style tags that should never render in the hero.
+ *
+ * These read as advertising-style accolades ("Top Rated", "High Rated",
+ * "Most Reviewed") rather than descriptive editorial signal. The verdict
+ * card and rating block already convey rating context in grounded language.
+ *
+ * Filtering happens at render time so any stray legacy CMS document or
+ * mock-data row that still carries one of these strings gets stripped
+ * before it reaches the user, without us having to chase down every
+ * source of the data.
+ */
+const PROMO_TAGS = new Set(["Top Rated", "High Rated", "Most Reviewed"]);
+
 interface ProviderHeroProps {
   breadcrumb: string[];
   nameNode: ReactNode;
@@ -55,13 +69,16 @@ export default function ProviderHero({
                 {body}
               </p>
 
-              {tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-5">
-                  {tags.slice(0, 6).map((tag) => (
-                    <ProviderPill key={tag} tag={tag} />
-                  ))}
-                </div>
-              )}
+              {(() => {
+                const editorialTags = tags.filter((t) => !PROMO_TAGS.has(t));
+                return editorialTags.length > 0 ? (
+                  <div className="flex flex-wrap gap-2 mt-5">
+                    {editorialTags.slice(0, 6).map((tag) => (
+                      <ProviderPill key={tag} tag={tag} />
+                    ))}
+                  </div>
+                ) : null;
+              })()}
 
               <div className="flex flex-wrap gap-2.5 mt-8">
                 <Button href={reviewsHref} variant="primary" size="lg">

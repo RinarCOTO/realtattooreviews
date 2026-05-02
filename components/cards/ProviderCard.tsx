@@ -32,7 +32,7 @@ export default function ProviderCard({ provider }: Props) {
 
       {/* Logo */}
       <div className="relative mb-4">
-        <div className="relative h-20 w-20 overflow-hidden rounded-full border-2 border-border bg-bg p-2.5">
+        <div className="relative h-20 w-20 overflow-hidden rounded-full border-2 border-border bg-white p-2.5">
           <ProviderLogo
             slug={logoSlug}
             name={provider.name}

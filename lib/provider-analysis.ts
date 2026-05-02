@@ -49,12 +49,16 @@ export function getVerdictFromRating(
   const total = reviews.length;
 
   // Legacy path: no reviews supplied, return rating-only verdict.
+  // Phrasing is intentionally self-referential — there is no category-wide
+  // comparison model behind these labels, so claims like "above most
+  // covered providers in this category" or "less consistent than
+  // higher-rated providers" overreach on what the rating alone supports.
   if (total === 0) {
     if (rating >= 4.4)
       return {
         label: "Above-average review profile",
         summary:
-          "Review volume and signal consistency sit above most covered providers in this category. Cautions are still present and should be reviewed before booking.",
+          "Average rating sits in the higher tier of the rating range. Cautions are still present and should be reviewed before booking.",
       };
     if (rating >= 4.0)
       return {
@@ -65,7 +69,7 @@ export function getVerdictFromRating(
     return {
       label: "Limited-confidence review profile",
       summary:
-        "Review signals are less consistent than higher-rated providers in this category. Negative signals are present and deserve a closer look.",
+        "Average rating sits in the lower tier of the rating range. Negative signals are present and deserve a closer look.",
     };
   }
 
@@ -84,35 +88,40 @@ export function getVerdictFromRating(
   // Volume tier.
   const volumeTier = total >= 30 ? "heavy" : total >= 15 ? "moderate" : "light";
 
-  // Compose label.
+  // Compose label. Labels describe this provider's own review profile — they
+  // are not relative rankings against other providers in any "category."
+  // The tiers come from threshold buckets on rating + volume + scarring rate.
   let label: string;
   if (ratingTier === "strong" && volumeTier === "heavy" && scarringPct < 5)
-    label = "Strong, well-documented review profile";
+    label = "Consistently positive, full review base";
   else if (ratingTier === "strong" && volumeTier === "heavy")
-    label = "Strong overall, scarring caveat present";
+    label = "Consistently positive with a scarring caveat";
   else if (ratingTier === "strong" && volumeTier === "moderate")
-    label = "Strong but moderately sourced review profile";
+    label = "Positive pattern on a moderate review base";
   else if (ratingTier === "strong")
-    label = "Strong but lightly sourced review profile";
+    label = "Positive pattern on a light review base";
   else if (ratingTier === "mixed" && volumeTier === "heavy")
-    label = "Mixed-to-positive, well-documented review profile";
+    label = "Mixed-to-positive on a full review base";
   else if (ratingTier === "mixed")
-    label = "Mixed-to-positive review profile";
+    label = "Mixed-to-positive review pattern";
   else if (ratingTier === "uneven" && volumeTier !== "light")
-    label = "Uneven review profile, real cautions present";
-  else label = "Limited-confidence review profile";
+    label = "Uneven review pattern with real cautions";
+  else label = "Limited-confidence review pattern";
 
-  // Compose summary from signal pieces.
+  // Compose summary from signal pieces. Phrasing avoids cross-provider
+  // comparative claims because there is no explicit category-wide comparison
+  // model behind these labels — the tiers come from rating + volume thresholds
+  // applied to this provider's own data, not against a computed median.
   const ratingSentence = (() => {
     if (ratingTier === "strong" && volumeTier === "heavy")
-      return `Average rating of ${rating.toFixed(1)} across ${total} reviews places this provider above most others in the category.`;
+      return `Average rating of ${rating.toFixed(1)} across ${total} reviews is consistently positive on a sample large enough to read patterns from.`;
     if (ratingTier === "strong")
-      return `Average rating of ${rating.toFixed(1)} is strong, though the sample size of ${total} review${total === 1 ? "" : "s"} keeps confidence narrower than higher-volume providers.`;
+      return `Average rating of ${rating.toFixed(1)} is strong, though a sample size of ${total} review${total === 1 ? "" : "s"} keeps confidence narrower than a heavier review base would support.`;
     if (ratingTier === "mixed" && volumeTier === "heavy")
       return `Average rating of ${rating.toFixed(1)} across ${total} reviews shows positive signals outweighing negative ones, with consistency that varies by case.`;
     if (ratingTier === "mixed")
       return `Average rating of ${rating.toFixed(1)} across ${total} review${total === 1 ? "" : "s"} is positive on balance but uneven enough that comparison against alternatives is worth doing.`;
-    return `Average rating of ${rating.toFixed(1)} across ${total} review${total === 1 ? "" : "s"} sits below most other providers in the category. Negative signals deserve a close look.`;
+    return `Average rating of ${rating.toFixed(1)} across ${total} review${total === 1 ? "" : "s"} sits in the lower tier of the rating range. Negative signals deserve a close look.`;
   })();
 
   const cautionPieces: string[] = [];
@@ -143,10 +152,43 @@ export function getVerdictFromRating(
   return { label, summary: `${ratingSentence} ${caveat}` };
 }
 
+/**
+ * Map a verdict label to badge and border colors.
+ *
+ * Used by DBOnlyProviderPage. VerdictCard does not call this function.
+ *
+ * Three tiers:
+ *   - secondary (positive)  → "Consistently positive…" / "Positive pattern…"
+ *   - warning   (mixed)     → "Mixed-to-positive…"
+ *   - danger    (cautions)  → "Uneven…" / "Limited-confidence…"
+ *
+ * Legacy label strings ("Above-average review profile", "Mixed-to-positive
+ * review profile") are still recognised so older renders that cached an
+ * older label do not regress.
+ */
 export function verdictColors(label: string) {
-  if (label === "Above-average review profile") return { badge: "bg-secondary text-white", border: "border-t-4 border-secondary" };
-  if (label === "Mixed-to-positive review profile") return { badge: "bg-warning text-white", border: "border-t-4 border-warning" };
-  return { badge: "bg-danger text-white", border: "border-t-4 border-danger" };
+  const SECONDARY = { badge: "bg-secondary text-white", border: "border-t-4 border-secondary" };
+  const WARNING = { badge: "bg-warning text-white", border: "border-t-4 border-warning" };
+  const DANGER = { badge: "bg-danger text-white", border: "border-t-4 border-danger" };
+
+  // Positive tier: new labels start with "Consistently positive" or
+  // "Positive pattern"; legacy label is "Above-average review profile".
+  if (
+    label.startsWith("Consistently positive") ||
+    label.startsWith("Positive pattern") ||
+    label === "Above-average review profile"
+  ) {
+    return SECONDARY;
+  }
+
+  // Mixed tier: new labels start with "Mixed-to-positive"; legacy label is
+  // "Mixed-to-positive review profile".
+  if (label.startsWith("Mixed-to-positive")) {
+    return WARNING;
+  }
+
+  // Caution tier: "Uneven…", "Limited-confidence…", and any unknown label.
+  return DANGER;
 }
 
 export function buildProsConsFromReviews(reviews: Review[]): { pros: string[]; cons: string[] } {
@@ -164,7 +206,7 @@ export function buildProsConsFromReviews(reviews: Review[]): { pros: string[]; c
   if (highPct >= 80) pros.push(`${highPct}% of reviewers gave 4 or 5 stars (${highRated} of ${total}).`);
   else if (highPct >= 65) pros.push(`${highPct}% of reviewers gave 4 or 5 stars.`);
 
-  if (total >= 30) pros.push(`Broader review footprint than most providers in this set (${total} reviews).`);
+  if (total >= 30) pros.push(`Substantial review footprint (${total} reviews), enough to read patterns from confidently.`);
   else if (total >= 15) pros.push(`Review volume (${total}) is sufficient to identify recurring patterns.`);
 
   const staffCount = reviews.filter((r) => r.tags?.includes("Staff praised")).length;
@@ -203,21 +245,32 @@ export function buildProsConsFromReviews(reviews: Review[]): { pros: string[]; c
   if (total < 15)
     cons.push(`Limited review volume (${total} reviews) makes consistent patterns harder to confirm.`);
 
-  // Structural fallbacks to always reach 3 cautions. Strings here are written
-  // to be safe whether they appear standalone or get interpolated downstream.
-  if (cons.length < 3)
-    cons.push("Pain and session experience reporting varies inconsistently across reviewers.");
-  if (cons.length < 3)
-    cons.push("Mixed signals warrant a second opinion before committing to a treatment plan.");
+  // No "fill to 3 cautions" fallback. If the review evidence does not support
+  // additional cautions, we render fewer rather than fabricate them. Earlier
+  // versions of this function pushed generic strings like "Mixed signals
+  // warrant a second opinion" or "Pain and session experience varies"
+  // regardless of evidence; that produced misleading cautions on high-rated,
+  // high-volume providers and has been removed.
 
   return { pros: pros.slice(0, 4), cons: cons.slice(0, 4) };
 }
 
+/**
+ * Pricing context paragraph.
+ *
+ * NOTE: this is editorial logic, not review-data composition. The three
+ * brand-specific branches below (Removery, inkOUT, LaserAway) are hand-
+ * written paragraphs hardcoded by brand name to surface each brand's
+ * documented pricing model. The fallback branches read provider tags +
+ * specialty + tenure to compose a generic paragraph. None of this is
+ * derived from review records. Any framing on the rendered page should
+ * describe this section as editorial, not as auto-generated from reviews.
+ */
 export function buildPricingContext(providers: Provider[]): string {
   const brandNames = unique(providers.map((p) => p.brand ?? p.name));
   const primary = providers[0];
 
-  // Brand-specific paragraphs.
+  // Brand-specific editorial paragraphs (hand-written, not data-composed).
   if (brandNames.includes("Removery"))
     return "Removery offers a Complete Removal Package: a single flat fee covers all sessions until the tattoo is fully removed. This fits users who want cost predictability and expect a longer treatment path, but the upfront cost is higher than per-session pricing at most clinics. See the cost guide for a calibrated comparison.";
   if (brandNames.includes("inkOUT"))
@@ -276,15 +329,19 @@ export function buildTreatmentOverview(providers: Provider[]): string {
   const opener = `${methodLine}${techLine}${clinicLine}${countLine}.`;
 
   // Weave in webSummary if available so the auto-section is differentiated.
+  // webSummary text is paraphrased from each provider's published materials,
+  // so the rendered paragraph mixes (a) editorial method/technology framing
+  // and (b) provider-published technology descriptions. Be honest about that
+  // composition rather than claim a "review-only" source.
   const webSummary = primary?.webSummary?.trim();
   if (webSummary) {
     // Take the first 1-2 sentences of webSummary to enrich the opener.
     const sentences = webSummary.split(/(?<=\.)\s+/);
     const seedClause = sentences.slice(0, Math.min(2, sentences.length)).join(" ");
-    return `${opener} ${seedClause} Review signals and provider profile data are the sources used here, not provider marketing claims.`;
+    return `${opener} ${seedClause}`;
   }
 
-  return `${opener} Review signals and provider profile data are the sources used here, not provider marketing claims.`;
+  return opener;
 }
 
 /**
@@ -466,12 +523,23 @@ function pickShape<T>(seed: number, shapes: T[], offset = 0): T {
 }
 
 /**
- * Evidence-aware FAQ with variant sentence shapes.
+ * Hybrid FAQ composer with variant sentence shapes.
  *
- * Each answer is composed from multiple candidate sentence skeletons, picked
- * deterministically per provider via a slug-based seed. Combined with the
- * data interpolation, this avoids the page-to-page sameness of single-template
- * answers across the 22 provider pages.
+ * Pulls inputs from THREE different sources and combines them:
+ *
+ *   1. Review signals — total, avgRating, highRatedPct, useCaseDist,
+ *      scarringCount, costMentions. Numerical evidence from the review record.
+ *   2. Provider profile — yearsActive, market, tags, specialty (chain /
+ *      medical / non-laser / specialist flags). Editorial classification
+ *      data from `lib/mock-data/providers.ts`.
+ *   3. Editorial sentence templates — story buckets per question, with
+ *      multiple variant phrasings per bucket selected deterministically by
+ *      slug-seeded hash.
+ *
+ * The output is therefore a hybrid: numbers from reviews, framing from tags,
+ * sentence shape from editorial templates. Anywhere this site describes the
+ * FAQ as "auto-generated," that description should acknowledge the hybrid
+ * composition rather than imply pure review-data output.
  */
 export function buildFAQ(
   providerName: string,
@@ -521,7 +589,7 @@ export function buildFAQ(
     legitLeads = [
       `With ${yearsActive} years operating in ${market}, ${providerName} sits among the more established practices in its market.`,
       `${providerName} has ${yearsActive} years of local operating tenure in ${market}.`,
-      `Operating tenure for ${providerName} runs ${yearsActive} years, which is above the local median.`,
+      `Operating tenure for ${providerName} runs ${yearsActive} years, which puts it on the established side of the market.`,
     ];
   } else if (yearsActive && yearsActive >= 5 && isSpecialist) {
     legitLeads = [
@@ -603,7 +671,7 @@ export function buildFAQ(
   } else if (highRatedPct != null && highRatedPct >= 80 && total >= 15) {
     worthLeads = [
       `${highRatedPct}% of ${total} reviewers gave ${providerName} 4 or 5 stars, which is a strong but not uniform signal.`,
-      `${providerName} pulls ${highRatedPct}% positive across ${total} reviews, putting it well above the median for the category.`,
+      `${providerName} pulls ${highRatedPct}% positive across ${total} reviews, which is a strong consistency pattern on this provider's own data.`,
       `Across ${total} sourced reviews, ${providerName} runs ${highRatedPct}% at 4 or 5 stars.`,
     ];
   } else if (highRatedPct != null && highRatedPct >= 65) {
