@@ -150,7 +150,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
 
-  return [
+  // Dedupe by URL. Several blocks above intentionally overlap (e.g., the
+  // hardcoded blog post in `staticPages` and the Sanity blog query) so each
+  // source can be reasoned about independently. Without a final dedupe pass,
+  // a slug that exists in two sources renders twice in the sitemap output,
+  // which reads as sloppy to crawlers and humans inspecting the XML. The
+  // first occurrence wins, preserving the priority/changeFrequency the
+  // earliest source intended.
+  const allEntries: MetadataRoute.Sitemap = [
     ...staticPages,
     ...blogUrls,
     ...guideUrls,
@@ -162,4 +169,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...locationUrls,
     ...mockComparisonUrls,
   ];
+  const seen = new Set<string>();
+  const deduped: MetadataRoute.Sitemap = [];
+  for (const entry of allEntries) {
+    if (seen.has(entry.url)) continue;
+    seen.add(entry.url);
+    deduped.push(entry);
+  }
+  return deduped;
 }
