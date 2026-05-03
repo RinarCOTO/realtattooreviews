@@ -8,6 +8,7 @@ import {
 } from "@/lib/providers";
 import { buildReviewTags } from "@/lib/tagging";
 import type { DbReview, Review } from "@/types/review";
+import type { Provider } from "@/types/provider";
 
 // ── Table ────────────────────────────────────────────────────────────────────
 
@@ -657,6 +658,117 @@ export async function getAllProviderAggregates(): Promise<
       reviewCount: count,
     };
   }
+  return result;
+}
+
+export type LocationAggregate = {
+  totalReviews: number;
+  avgRating: number;
+  resultsMentioned: number;
+  sourceCount: number;
+};
+
+const EMPTY_LOCATION_AGGREGATE: LocationAggregate = {
+  totalReviews: 0,
+  avgRating: 0,
+  resultsMentioned: 0,
+  sourceCount: 0,
+};
+
+function locationAggregateLookupKey(location: Provider): string {
+  const [city = "", state = ""] = location.market.split(",").map((part) => part.trim());
+  const brandSlug = location.brand ? brandToSlug(location.brand) : location.slug;
+  const bucket = brandSlug === "inkout" ? "inkout" : "competitor";
+  return [location.name, city, state, bucket].join("|");
+}
+
+/**
+ * Fetch per-location review aggregates from the public Supabase review sample.
+ *
+ * Return keys match each input Provider `slug`. Locations with zero public rows
+ * return an empty aggregate so callers can fall back to mock-data values. The
+ * same public bucket gate used by review pages applies here, so Tatt2Away rows
+ * never reach public render.
+ */
+export async function getLocationAggregates(
+  locations: Provider[]
+): Promise<Map<string, LocationAggregate>> {
+  const result = new Map<string, LocationAggregate>();
+  for (const location of locations) {
+    result.set(location.slug, { ...EMPTY_LOCATION_AGGREGATE });
+  }
+  if (locations.length === 0) return result;
+
+  const providerNames = [...new Set(locations.map((location) => location.name))];
+  const data = await fetchAllPages(() =>
+    applyPublicFilters(
+      supabase
+        .from(TABLE)
+        .select("provider_name, location_city, location_state, bucket, star_rating, result_rating, verified_source")
+        .in("provider_name", providerNames),
+      "any"
+    )
+  );
+  if (!data.length) return result;
+
+  type LocationRow = {
+    provider_name: string;
+    location_city: string | null;
+    location_state: string | null;
+    bucket: string | null;
+    star_rating: number | null;
+    result_rating: string | null;
+    verified_source: string | null;
+  };
+
+  const locationByLookup = new Map(
+    locations.map((location) => [locationAggregateLookupKey(location), location])
+  );
+  const acc = new Map<
+    string,
+    { totalReviews: number; ratingSum: number; ratingCount: number; resultsMentioned: number; sources: Set<string> }
+  >();
+
+  for (const row of data as LocationRow[]) {
+    const lookup = [
+      row.provider_name,
+      row.location_city ?? "",
+      row.location_state ?? "",
+      row.bucket ?? "",
+    ].join("|");
+    const location = locationByLookup.get(lookup);
+    if (!location) continue;
+
+    const current =
+      acc.get(location.slug) ??
+      { totalReviews: 0, ratingSum: 0, ratingCount: 0, resultsMentioned: 0, sources: new Set<string>() };
+
+    current.totalReviews += 1;
+    if (row.star_rating != null) {
+      current.ratingSum += row.star_rating;
+      current.ratingCount += 1;
+    }
+    if (row.result_rating && row.result_rating !== "unknown") {
+      current.resultsMentioned += 1;
+    }
+    if (row.verified_source) {
+      current.sources.add(row.verified_source);
+    }
+    acc.set(location.slug, current);
+  }
+
+  for (const [slug, aggregate] of acc) {
+    result.set(slug, {
+      totalReviews: aggregate.totalReviews,
+      avgRating:
+        aggregate.ratingCount > 0
+          ? Math.round((aggregate.ratingSum / aggregate.ratingCount) * 10) / 10
+          : 0,
+      resultsMentioned: aggregate.resultsMentioned,
+      sourceCount: aggregate.sources.size,
+    });
+  }
+
   return result;
 }
 

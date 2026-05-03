@@ -490,6 +490,10 @@ export function buildDifferentiator(
 
 export function buildResultsSummary(reviews: Review[]) {
   return {
+    // Denominator for the Results Snapshot card. Without it, the card displays
+    // raw counts (473 / 0 / 1) with no context, which reads as confusing
+    // because "473 results mentioned" is meaningless without "out of how many."
+    totalReviews: reviews.length,
     resultsMentioned: reviews.filter((r) => r.resultsMentioned).length,
     painMentioned: reviews.filter((r) => r.painLevel != null).length,
     scarringMentioned: reviews.filter((r) => r.scarringReported === true).length,
