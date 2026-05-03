@@ -89,7 +89,7 @@ export default async function CityPage({ params }: Props) {
               Tattoo Removal in {city.name}
             </h1>
             <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-heading max-w-130">
-              {providerCount} providers · {reviewCount} verified reviews
+              {providerCount} providers · {reviewCount} sourced reviews
             </p>
           </Container>
         </div>

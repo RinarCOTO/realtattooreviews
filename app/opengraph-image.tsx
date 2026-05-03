@@ -92,7 +92,7 @@ export default async function OpenGraphImage() {
               maxWidth: 920,
             }}
           >
-            Real patient reviews, evidence-based comparisons, no clinic marketing.
+            Real reviews, evidence-based comparisons, no clinic marketing.
           </div>
         </div>
 

@@ -11,14 +11,14 @@ import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 export const metadata: Metadata = {
   title: "Tattoo Removal Comparisons: Methods, Brands, and Technology Compared | RealTattooReviews",
   description:
-    "Side-by-side comparisons of tattoo removal providers and methods. inkOUT vs Removery, Removery vs LaserAway, saline vs laser, pico vs Q-switch, and more. Based on real patient reviews.",
+    "Side-by-side comparisons of tattoo removal providers and methods. inkOUT vs Removery, Removery vs LaserAway, saline vs laser, pico vs Q-switch, and more. Based on real Google reviews.",
   alternates: {
     canonical: "https://realtattooreviews.com/comparisons",
   },
   openGraph: {
     title: "Tattoo Removal Comparisons: Methods, Brands, and Technology Compared",
     description:
-      "Side-by-side provider and method comparisons based on real patient reviews. Brands, lasers, and techniques compared by city.",
+      "Side-by-side provider and method comparisons based on real Google reviews. Brands, lasers, and techniques compared by city.",
   },
 };
 
@@ -36,7 +36,7 @@ const faqs = [
   {
     question: "How are these comparisons built?",
     answer:
-      "Each comparison page pulls live review evidence from our Supabase dataset of classified Google reviews. Sample sizes, sentiment scores, scarring signals, and use-case win counts are calculated from real patient review text, not editorial opinion. See our methodology page for the full scoring framework.",
+      "Each comparison page pulls live review evidence from our Supabase dataset of classified Google reviews. Sample sizes, sentiment scores, scarring signals, and use-case win counts are calculated from real review text, not editorial opinion. See our methodology page for the full scoring framework.",
   },
 ];
 
@@ -82,7 +82,7 @@ const TECH_COMPARISONS = [
   {
     title: "Picosecond vs Q-Switched Laser",
     description:
-      "Pico and Q-switch laser technologies compared on ink types, skin tones, treatment count expectations, and real patient outcomes. Coming soon.",
+      "Pico and Q-switch laser technologies compared on ink types, skin tones, treatment count expectations, and outcomes reported in real reviews. Coming soon.",
     href: "/comparisons/picoway-vs-q-switch",
     live: true,
   },

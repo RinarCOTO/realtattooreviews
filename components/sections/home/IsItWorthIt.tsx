@@ -10,7 +10,7 @@ const guidesListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Tattoo Removal Treatment Guides",
-  description: "Patient-written guides on tattoo removal aftercare, healing, side effects, and more.",
+  description: "Editorial guides on tattoo removal aftercare, healing, side effects, and more.",
   numberOfItems: guides.length,
   itemListElement: guides.map((guide, index) => ({
     "@type": "ListItem",
@@ -49,7 +49,7 @@ export default function IsItWorthIt() {
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-heading">
               What to expect before, during, and after tattoo removal, written
-              from real patient experiences, not clinic marketing.
+              from public review patterns, not clinic marketing.
             </p>
           </div>
           <Link
@@ -177,7 +177,7 @@ export default function IsItWorthIt() {
 
         {/* Footer note */}
         <p className="mt-8 text-center text-xs text-heading">
-          Guides are based on patterns from sourced patient reviews, not clinical claims.{" "}
+          Guides are based on patterns from sourced public reviews, not clinical claims.{" "}
           <Link href="/methodology" className="inline-flex items-center gap-1 text-accent hover:underline">
             How we evaluate outcomes <ChevronRightIcon className="size-3.5" />
           </Link>

@@ -33,16 +33,16 @@ import { getBrandLocationAggregates } from "@/lib/data/reviews";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "LaserAway Tattoo Removal Reviews | Real Patient Data | RealTattooReviews",
+  title: "LaserAway Tattoo Removal Reviews | Public Review Data | RealTattooReviews",
   description:
-    "LaserAway tattoo removal reviews aggregated from real patients. Covers PicoSure technology, pricing model, tracked locations in Austin, Chicago, Houston, and Tampa, and how LaserAway compares to specialists.",
+    "LaserAway tattoo removal reviews aggregated from public Google sources. Covers PicoSure technology, pricing model, tracked locations in Austin, Chicago, Houston, and Tampa, and how LaserAway compares to specialists.",
   alternates: {
     canonical: "https://realtattooreviews.com/reviews/laseraway",
   },
   openGraph: {
-    title: "LaserAway Tattoo Removal Reviews | Real Patient Data",
+    title: "LaserAway Tattoo Removal Reviews | Public Review Data",
     description:
-      "LaserAway tattoo removal reviews aggregated from real patients. Covers PicoSure technology, pricing model, tracked locations in Austin, Chicago, Houston, and Tampa.",
+      "LaserAway tattoo removal reviews aggregated from public Google sources. Covers PicoSure technology, pricing model, tracked locations in Austin, Chicago, Houston, and Tampa.",
   },
 };
 
@@ -141,9 +141,9 @@ export default async function LaserAwayReviewsPage() {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "LaserAway Tattoo Removal Reviews | Real Patient Data",
+    headline: "LaserAway Tattoo Removal Reviews | Public Review Data",
     description:
-      "LaserAway tattoo removal reviews aggregated from real patients across Austin, Chicago, Houston, and Tampa. Covers PicoSure technology, pricing, and provider comparisons.",
+      "LaserAway tattoo removal reviews aggregated from public Google sources across Austin, Chicago, Houston, and Tampa. Covers PicoSure technology, pricing, and provider comparisons.",
     mainEntityOfPage: `${SITE_URL}${PAGE_PATH}`,
     author: { "@type": "Organization", name: "RealTattooReviews" },
     publisher: { "@type": "Organization", name: "RealTattooReviews" },
