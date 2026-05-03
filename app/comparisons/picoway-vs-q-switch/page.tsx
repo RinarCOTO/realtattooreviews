@@ -167,8 +167,8 @@ export default function PicoLaserVsQSwitchPage() {
               <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
                 Comparisons
               </Link>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">
+              <span className="text-heading font-normal normal-case tracking-normal">/</span>
+              <span className="text-heading font-normal normal-case tracking-normal">
                 Pico Laser vs Q-Switch
               </span>
             </span>

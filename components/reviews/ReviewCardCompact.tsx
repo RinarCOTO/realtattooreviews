@@ -2,6 +2,7 @@ import Link from "next/link";
 import { resolveProviderHref } from "@/lib/providers";
 import Stars from "@/components/reviews/ui/Stars";
 import SourceBadge from "@/components/reviews/ui/SourceBadge";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import type { Review } from "@/types/review";
 
 type Props = { review: Review };
@@ -47,7 +48,7 @@ export default function ReviewCardCompact({ review }: Props) {
           >
             {review.provider}
           </Link>
-          <p className="mt-0.5 text-xs text-muted">{locationLine}</p>
+          <p className="mt-0.5 text-xs text-heading">{locationLine}</p>
         </div>
 
         <div className="flex shrink-0 flex-col items-end gap-1.5">
@@ -71,7 +72,7 @@ export default function ReviewCardCompact({ review }: Props) {
           {review.tags.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center rounded-full bg-bg px-2 py-0.5 text-[11px] text-muted"
+              className="inline-flex items-center rounded-full bg-bg px-2 py-0.5 text-[11px] text-heading"
             >
               {tag}
             </span>
@@ -82,16 +83,16 @@ export default function ReviewCardCompact({ review }: Props) {
       {/* ── Footer ──────────────────────────────────────────────────────── */}
       <div className="flex items-center justify-between border-t border-divider pt-3 text-xs">
         <div className="flex items-center gap-2">
-          {review.date && <span className="text-muted">{review.date}</span>}
+          {review.date && <span className="text-heading">{review.date}</span>}
           {review.source && <SourceBadge source={review.source} />}
         </div>
 
         <Link
           href={providerHref}
-          className="font-medium text-accent hover:underline"
+          className="inline-flex items-center gap-1 font-medium text-accent hover:underline"
           aria-label={`View all reviews for ${review.provider}, ${locationLine}`}
         >
-          View provider →
+          View provider <ChevronRightIcon className="size-3.5" />
         </Link>
       </div>
     </article>

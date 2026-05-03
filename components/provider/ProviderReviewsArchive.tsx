@@ -34,7 +34,7 @@ export default function ProviderReviewsArchive({
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-(--accent)">
             All Reviews
           </p>
-          <p className="mt-1 text-[14px] leading-relaxed text-(--muted)">
+          <p className="mt-1 text-[14px] leading-relaxed text-heading">
             Showing {visibleReviews.length} of {remainingReviews.length} additional sourced reviews beyond the featured evidence above.
           </p>
         </div>

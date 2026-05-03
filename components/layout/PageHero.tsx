@@ -10,8 +10,8 @@ type Props = {
    *   label={
    *     <>
    *       <Link href="/cities" className="hover:text-(--ink) transition-colors">Cities</Link>
-   *       <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-   *       <span className="text-(--muted) font-normal normal-case tracking-normal">Austin</span>
+   *       <span className="text-heading font-normal normal-case tracking-normal">/</span>
+   *       <span className="text-heading font-normal normal-case tracking-normal">Austin</span>
    *     </>
    *   }
    *

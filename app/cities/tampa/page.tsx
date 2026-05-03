@@ -67,7 +67,7 @@ const faqs = [
   {
     question: "Does tattoo removal hurt?",
     answer:
-      "Most users describe laser tattoo removal as similar to a thick rubber band snapping against the skin. The sensation repeats for the duration of the treatment area. Sessions for small tattoos last under 10 minutes. Most Tampa providers use cooling devices or ice packs before and after to reduce discomfort. TEPR (non-laser, used by inkOUT) feels different and is usually described as moderate, similar to a tattoo session, rather than sharp.",
+      "Most users describe laser tattoo removal as similar to a thick rubber band snapping against the skin. The sensation repeats for the duration of the treatment area. Sessions for small tattoos last under 10 minutes. Most Tampa providers use cooling devices or ice packs before and after to reduce discomfort. TEPR non-laser treatment feels different and is usually described as moderate, similar to a tattoo session, rather than sharp.",
   },
   {
     question: "Are there non-laser tattoo removal options in Tampa?",
@@ -210,7 +210,7 @@ export default async function TampaPage() {
             <h1 className="font-sans font-bold text-[clamp(40px,6vw,72px)] leading-none tracking-[-0.03em] m-0 text-(--ink) max-w-[20ch]">
               Best Tattoo Removal <span className="text-(--accent)">in Tampa Bay</span>
             </h1>
-            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-(--muted) max-w-130">
+            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-heading max-w-130">
               Compare Tampa Bay tattoo removal clinics across Tampa, St. Petersburg, and Clearwater. See provider differences across method, reviews, and pricing.
             </p>
           </Container>
@@ -223,7 +223,7 @@ export default async function TampaPage() {
 
             {/* Intro */}
             <div className="py-12">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   Tattoo removal Tampa Bay is a metro-wide market, not a single-city market.
                   Providers serve users from Tampa, St. Petersburg, Clearwater, Pinellas Park,
                   Largo, and the broader Tampa Bay area. Most users in the metro can reach two
@@ -231,7 +231,7 @@ export default async function TampaPage() {
                   for tattoo removal Tampa typically surface clinics from one part of the bay
                   and miss the metro picture.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   This page is the metro-wide comparison. It covers Tampa, St. Petersburg, and
                   Clearwater together as a single tattoo removal Tampa Bay market because that
                   is how users actually shop. Specialist studios cluster in central Tampa and on
@@ -239,7 +239,7 @@ export default async function TampaPage() {
                   across both sides of the bay. The non-laser TEPR option (inkOUT) serves the
                   Tampa Bay area on a flexible-location basis.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
                   <Link
                     href="/comparisons/best-tattoo-removal-method"
@@ -263,7 +263,7 @@ export default async function TampaPage() {
             {/* Dynamic ranking */}
             <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <GuideSection heading="Best Tattoo Removal Clinics in Tampa Bay">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The ranked list below is generated from our review-sample analysis. Sentiment
                 scores, sample sizes, and use-case wins reflect the most recent reviews captured
                 in our internal review dataset. Lifetime Google review counts are higher than the
@@ -272,7 +272,7 @@ export default async function TampaPage() {
               <Suspense
                 fallback={
                   <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
-                    <p className="font-sans text-[14px] text-(--muted) m-0">
+                    <p className="font-sans text-[14px] text-heading m-0">
                       Loading provider data&hellip;
                     </p>
                   </div>
@@ -285,7 +285,7 @@ export default async function TampaPage() {
 
             {/* Static editorial profiles */}
             <GuideSection heading="Tampa Bay Provider Profiles">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds of
                 cases it handles. Current performance metrics and rankings appear in the section
                 above and update as our scrape refreshes.
@@ -304,7 +304,7 @@ export default async function TampaPage() {
                         </Link>
                       ) : p.name}
                     </h3>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">
+                    <p className="font-sans text-[14px] leading-relaxed text-heading mb-4">
                       {p.body}
                     </p>
                     <div className="grid sm:grid-cols-2 gap-4">
@@ -328,7 +328,7 @@ export default async function TampaPage() {
 
             {/* Dynamic comparison table */}
             <GuideSection heading="Compare Tampa Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The table below summarizes the best tattoo removal Tampa Bay options at a glance.
                 Use it for orientation, then read the profiles above for fit-based detail. Sample
                 size shows the number of recent reviews analyzed for sentiment scoring. Total
@@ -337,7 +337,7 @@ export default async function TampaPage() {
               <Suspense
                 fallback={
                   <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
-                    <p className="font-sans text-[14px] text-(--muted) m-0">
+                    <p className="font-sans text-[14px] text-heading m-0">
                       Loading comparison table&hellip;
                     </p>
                   </div>
@@ -349,7 +349,7 @@ export default async function TampaPage() {
 
             {/* Tampa-specific: St. Pete & Clearwater */}
             <GuideSection heading="Tattoo Removal in St. Petersburg & Clearwater">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 St. Petersburg and Clearwater serve the Pinellas County side of the Tampa Bay
                 metro. The bay separates the two sides physically, but users on the St. Pete side
                 regularly cross to Tampa for higher-volume specialists, and Tampa-side users
@@ -378,7 +378,7 @@ export default async function TampaPage() {
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
                       {item.title}
                     </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
                       {item.body}
                     </p>
                   </div>
@@ -388,7 +388,7 @@ export default async function TampaPage() {
 
             {/* Technology section */}
             <GuideSection heading="Laser Tattoo Removal Options in Tampa">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Laser tattoo removal Tampa providers run several different systems. Laser tattoo
                 removal Tampa Bay coverage extends across Pinellas as well, with similar technology
                 distribution. The system matters because pulse width, available wavelengths, and
@@ -411,7 +411,7 @@ export default async function TampaPage() {
                   },
                   {
                     title: "Non-laser (TEPR)",
-                    body: "inkOUT uses TEPR, a non-laser method that avoids wavelength-versus-color limitations entirely. It lifts ink physically through the skin rather than shattering it with light. This is a different category of treatment, not a laser variant.",
+                    body: "inkOUT uses TEPR, a non-laser method that is not wavelength-based. It lifts ink physically through the skin rather than shattering it with light. This is a different category of treatment, not a laser variant, and should be evaluated with its own healing and aftercare considerations.",
                   },
                 ].map((item) => (
                   <div
@@ -421,7 +421,7 @@ export default async function TampaPage() {
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
                       {item.title}
                     </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
                       {item.body}
                     </p>
                   </div>
@@ -431,7 +431,7 @@ export default async function TampaPage() {
 
             {/* Pricing section */}
             <GuideSection heading="How Much Does Tattoo Removal Cost in Tampa?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Tattoo removal Tampa cost ranges generally run $100 to $500 per session. Most
                 standard cases land in the $150 to $400 range. The big variables are tattoo size,
                 ink density, and the provider&rsquo;s pricing model.
@@ -447,7 +447,7 @@ export default async function TampaPage() {
                     key={tier.label}
                     className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
-                    <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
+                    <p className="font-sans text-[14px] text-heading m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">
                       {tier.price}
                     </p>
@@ -455,7 +455,7 @@ export default async function TampaPage() {
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Most tattoos need three to twelve sessions for complete removal. Three to eight
                 sessions is typical for cover-up fading. Total cost for a standard tattoo across
                 the Tampa Bay metro typically falls between $1,000 and $5,000. Package pricing
@@ -467,7 +467,7 @@ export default async function TampaPage() {
                 <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
                   Financing and guarantees
                 </p>
-                <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
                   Most Tampa Bay providers offer free consultations. Removery includes monthly
                   payment plans within its Complete Removal Package and effectively guarantees
                   results across unlimited sessions for the package price. Owner-operated St. Pete
@@ -478,7 +478,7 @@ export default async function TampaPage() {
                 </p>
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For a national pricing breakdown by method and size, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   cost guide
@@ -489,7 +489,7 @@ export default async function TampaPage() {
 
             {/* Ranking methodology */}
             <GuideSection heading="How We Ranked Tampa Bay Tattoo Removal Clinics">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The ranked list above is generated from a structured analysis of the most recent
                 public reviews per provider. Tampa Bay is a metro-wide market with ten tracked
                 providers spread across both sides of the bay, from national chains like Removery
@@ -501,12 +501,12 @@ export default async function TampaPage() {
                   "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone. Arviv Medical Aesthetics and Erasable Med Spa carry established Tampa-side review histories. Pinellas-side specialists like St Pete Tattoo Removal and Tampa Bay Tattoo Removal have smaller but focused removal-specific review bases.",
                   "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. St Pete Tattoo Removal shows notable cosmetic tattoo removal signals in its review base.",
                   "Method specialization. Tattoo-removal-only specialists (ReversaTatt, St Pete Tattoo Removal, EradiTatt, Tampa Bay Tattoo Removal, Removery) generally outperform multi-service med spas like Arviv and Erasable on complex or high-session-count cases.",
-                  "Technology fit for the case. Picosecond systems (Arviv and Erasable's PicoWay, Removery's PicoWay) suit difficult colors and stubborn ink. Other Tampa Bay providers use Q-switched or multi-application systems for standard cases. inkOUT's TEPR suits cosmetic tattoos, darker skin tones, and users avoiding laser entirely.",
+                  "Technology fit for the case. Picosecond systems (Arviv and Erasable's PicoWay, Removery's PicoWay) suit difficult colors and stubborn ink. Other Tampa Bay providers use Q-switched or multi-application systems for standard cases. inkOUT's TEPR is worth comparing for cosmetic tattoos, darker skin tones, and users who prefer a non-laser option.",
                   "Pricing transparency and access. Providers with published pricing rank above those that withhold it until consultation. Providers with payment plans rank for users who need spread cost.",
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For the full review and ranking framework used across the site, see the{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page

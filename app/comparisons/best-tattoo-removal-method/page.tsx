@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "What is the best tattoo removal method?",
     answer:
-      "There is no single best method. Picosecond laser is the most effective for standard body tattoos. Saline is the safest for cosmetic tattoos with iron-oxide or titanium-dioxide pigments. Non-laser methods (TEPR, saline) are structurally lower-risk for darker skin types. Match the method to your case.",
+      "There is no single best method. Picosecond laser is usually the most efficient option for standard body tattoos. Saline is often used first for cosmetic tattoos with iron-oxide or titanium-dioxide pigments. Non-laser methods (TEPR, saline) have a different risk profile because they do not use light energy, but scarring and healing risk still depend on technique, aftercare, and the individual case. Match the method to your case.",
   },
   {
     question: "What is the best laser for tattoo removal?",
@@ -54,22 +54,22 @@ const faqs = [
   {
     question: "What tattoo removal method works best for dark skin?",
     answer:
-      "Non-laser methods (TEPR, saline) are structurally lower-risk because they do not interact with melanin. Picosecond laser at 1064nm is the safest laser option for Fitzpatrick IV through VI.",
+      "Non-laser methods (TEPR, saline) do not use light energy, so they avoid laser-specific melanin interaction. Picosecond laser at 1064nm is generally the safest laser option for Fitzpatrick IV through VI. The right choice still depends on provider skill, skin response, tattoo type, and aftercare.",
   },
   {
     question: "What method is best for microblading removal?",
     answer:
-      "Saline removal is the lowest-risk starting point. It avoids iron-oxide paradoxical darkening. TEPR is also well-suited.",
+      "Saline removal is often a conservative starting point because it avoids laser-triggered iron-oxide darkening. TEPR may also be worth comparing. Laser can still work in experienced hands with patch testing and careful wavelength selection.",
   },
   {
     question: "Does non-laser tattoo removal work?",
     answer:
-      "Yes. TEPR and saline removal are established methods with documented results. They are not fringe techniques.",
+      "Yes. TEPR and saline removal are commercially available non-laser methods with real-world use. Evidence depth, provider availability, healing expectations, and scarring risk vary, so they should be compared case by case rather than treated as a universal replacement for laser.",
   },
   {
     question: "What is the safest tattoo removal method?",
     answer:
-      "Safety depends on the case. Picosecond laser is safe for most users. Non-laser methods carry lower thermal and melanin-interaction risk. Saline is safest for cosmetic tattoos with iron-oxide pigments.",
+      "Safety depends on the case. Picosecond laser is safe for many users when settings match the skin type and ink. Non-laser methods avoid laser-specific thermal and melanin-interaction risks but create their own healing and scarring considerations. Saline is often considered for cosmetic tattoos with iron-oxide pigments.",
   },
   {
     question: "What is the most effective tattoo removal option?",
@@ -95,7 +95,7 @@ const METHOD_TYPES = [
   },
   {
     title: "Non-laser mechanical",
-    body: "Uses a physical mechanism to lift or extract ink. Two main subtypes: TEPR (Trans-Epidermal Pigment Release, used by inkOUT) lifts ink out through the skin surface. Saline removal uses osmotic lift to draw pigment into a scab. Neither depends on ink color or interacts with melanin.",
+    body: "Uses a physical mechanism to lift or extract ink. Two main subtypes: TEPR (Trans-Epidermal Pigment Release) lifts ink out through the skin surface. Saline removal uses osmotic lift to draw pigment into a scab. Neither is light-based, so their risk profile differs from laser; healing and scarring risk still depend on technique and aftercare.",
   },
   {
     title: "Surgical excision",
@@ -173,8 +173,8 @@ const COMPARISON_ROWS: React.ReactNode[][] = [
     "Scarring risk",
     "Low",
     "Moderate (higher at aggressive settings)",
-    "Low",
-    "Low (if no picking)",
+    "Technique-dependent",
+    "Technique-dependent",
     "Guaranteed scar",
   ],
   [
@@ -202,11 +202,11 @@ const EFFECTIVENESS_CASES = [
   },
   {
     title: "Multi-color tattoos",
-    body: "Picosecond laser with multi-wavelength platforms (PicoWay, PicoSure Pro) handles the broadest color range among laser options. Non-laser methods (TEPR, saline) are not color-dependent and handle all colors without wavelength limitations.",
+    body: "Picosecond laser with multi-wavelength platforms (PicoWay, PicoSure Pro) handles the broadest color range among laser options. Non-laser methods (TEPR, saline) are not wavelength-dependent, but results still depend on ink depth, treatment area, technique, and healing response.",
   },
   {
     title: "Cosmetic tattoos (microblading, PMU)",
-    body: "Saline removal is often more effective than laser because it avoids the iron-oxide oxidation risk. TEPR is also well-suited. Laser can work but carries paradoxical darkening risk on iron-oxide pigments.",
+    body: "Saline removal is often considered before laser because it avoids laser-triggered iron-oxide oxidation risk. TEPR may also be worth comparing. Laser can work but carries paradoxical darkening risk on iron-oxide pigments.",
   },
   {
     title: "Complete removal (no trace)",
@@ -231,7 +231,7 @@ const COLOR_ROWS = [
   },
   {
     ink: "Non-laser (TEPR, saline)",
-    body: "Not wavelength-dependent. Performance does not vary by color.",
+    body: "Not wavelength-dependent. Color is not the same constraint it is for laser, but ink depth, placement, technique, and healing still affect results.",
   },
 ];
 
@@ -248,13 +248,13 @@ const PROS_CONS = [
   },
   {
     method: "TEPR",
-    pros: "Not color-dependent, no melanin interaction, positioned for complete removal, suited for cosmetic tattoos and dark skin.",
-    cons: "Fewer providers, newer market presence, smaller public review base.",
+    pros: "Not wavelength-dependent, no laser-specific melanin interaction, may suit cosmetic tattoos and users comparing non-laser options.",
+    cons: "Fewer providers, newer market presence, smaller public review base, wound-healing dependent.",
   },
   {
     method: "Saline",
-    pros: "Not color-dependent, no melanin interaction, lowest risk for PMU pigments, generally cheapest per session.",
-    cons: "Limited to small treatment areas, not practical for large body tattoos, requires conservative technician to avoid scarring.",
+    pros: "Not wavelength-dependent, no laser-specific melanin interaction, often considered for PMU pigments, generally cheaper per session.",
+    cons: "Limited to small treatment areas, not practical for large body tattoos, requires conservative technique and aftercare to reduce scarring risk.",
   },
   {
     method: "Surgical excision",
@@ -331,8 +331,8 @@ export default function BestTattooRemovalMethodPage() {
               <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
                 Comparisons
               </Link>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">
+              <span className="text-heading font-normal normal-case tracking-normal">/</span>
+              <span className="text-heading font-normal normal-case tracking-normal">
                 Best Tattoo Removal Method
               </span>
             </span>
@@ -498,7 +498,7 @@ export default function BestTattooRemovalMethodPage() {
                       },
                       {
                         title: "Non-laser methods (TEPR, saline)",
-                        body: "Do not interact with melanin because they do not use light energy. For users who want to eliminate any laser-melanin interaction, non-laser is the structurally lower-risk option.",
+                        body: "Do not use light energy, so they avoid laser-specific melanin interaction. That makes them worth comparing for darker skin, but they are still wound-healing procedures where technique, aftercare, and individual skin response matter.",
                       },
                     ].map((item) => (
                       <ContentCard

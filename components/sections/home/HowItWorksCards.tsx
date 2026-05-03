@@ -46,7 +46,7 @@ export default function HowItWorksCards({ steps }: Props) {
           }}
         >
           <h3 className="font-(family-name:--font-satoshi) text-[14px] font-semibold leading-5 text-heading">{step.title}</h3>
-          <div className="mt-2 font-(family-name:--font-inter) text-[13px] font-normal leading-5 text-muted">
+          <div className="mt-2 font-(family-name:--font-inter) text-[13px] font-normal leading-5 text-heading">
             {typeof step.body === "string"
               ? step.body
               : <PortableText value={step.body} />}

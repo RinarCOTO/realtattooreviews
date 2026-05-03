@@ -2,6 +2,7 @@ import Link from "next/link";
 import Container from "@/components/layout/Container";
 import { type PortableTextBlock } from "@portabletext/react";
 import HowItWorksCards from "./HowItWorksCards";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 // What this component can receive from the outside
 type Props = {
@@ -62,8 +63,8 @@ export default function HowItWorks({ steps }: Props) {
           <p className="mt-1 font-(family-name:--font-inter) text-sm font-medium text-heading">
             Google reviews, structured for faster clinic comparison.
           </p>
-          <Link href="/methodology" className="absolute right-0 top-0 hidden font-(family-name:--font-inter) text-sm font-medium text-accent hover:underline sm:block">
-            Our methodology →
+          <Link href="/methodology" className="absolute right-0 top-0 hidden items-center gap-1 font-(family-name:--font-inter) text-sm font-medium text-accent hover:underline sm:inline-flex">
+            Our methodology <ChevronRightIcon className="size-4" />
           </Link>
         </div>
 
@@ -80,7 +81,7 @@ export default function HowItWorks({ steps }: Props) {
           <svg className="mt-0.5 h-4 w-4 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <p className="text-sm text-muted">
+          <p className="text-sm text-heading">
             No paid placement. No hidden negatives.{" "}
             <Link href="/editorial-policy" className="font-medium text-accent hover:underline">
               Read our editorial policy

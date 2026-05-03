@@ -67,12 +67,12 @@ const faqs = [
   {
     question: "Which is better for microblading removal?",
     answer:
-      "Saline is generally the lower-risk starting point for microblading removal. Microblading pigments typically contain iron oxides that can darken paradoxically under laser. Saline avoids this risk entirely. For saline vs laser microblading removal, saline is structurally safer.",
+      "Saline is often a conservative starting point for microblading removal. Microblading pigments typically contain iron oxides that can darken paradoxically under laser. Saline avoids laser-triggered oxidation risk, but scarring and healing still depend on technique and aftercare.",
   },
   {
     question: "Which is better for dark skin?",
     answer:
-      "Saline does not interact with melanin because it does not use light. Laser carries a wavelength-versus-melanin interaction that increases risk on darker Fitzpatrick skin types. For darker skin, saline is structurally lower-risk. Laser is viable with experienced providers and conservative settings.",
+      "Saline does not interact with melanin because it does not use light. Laser carries a wavelength-versus-melanin interaction that increases risk on darker Fitzpatrick skin types. For darker skin, saline is worth comparing alongside conservative laser protocols, but healing and scarring risk still need case-specific assessment.",
   },
   {
     question: "Which is cheaper, saline or laser?",
@@ -164,8 +164,8 @@ export default function SalineVsLaserPage() {
               <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
                 Comparisons
               </Link>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">
+              <span className="text-heading font-normal normal-case tracking-normal">/</span>
+              <span className="text-heading font-normal normal-case tracking-normal">
                 Saline vs Laser
               </span>
             </span>
@@ -337,7 +337,7 @@ export default function SalineVsLaserPage() {
                       },
                       {
                         title: "Bottom line for PMU",
-                        body: "Saline is the structurally safer method for microblading removal, powder brow removal, lip liner removal, and eyeliner removal when the pigment contains iron oxides or titanium dioxide. Laser can work but carries a real oxidation risk that saline avoids entirely.",
+                        body: "Saline is often a conservative option for microblading removal, powder brow removal, lip liner removal, and eyeliner removal when the pigment contains iron oxides or titanium dioxide. Laser can work but carries a real oxidation risk that saline avoids because it is not light-based.",
                       },
                     ].map((item) => (
                       <ContentCard
@@ -360,7 +360,7 @@ export default function SalineVsLaserPage() {
                     {[
                       {
                         title: "Scarring risk",
-                        body: "Both methods carry low scarring risk when performed correctly. Saline removal's main scarring risk comes from overworking the skin (going too deep or too many passes) or from clients picking at scabs during healing. Laser removal's scarring risk comes from thermal damage, especially with Q-switched lasers at aggressive settings or on darker skin types. Picosecond lasers carry lower scarring risk than Q-switched. Saline's mechanism does not involve heat, which eliminates thermal scarring as a risk category.",
+                        body: "Both methods can have manageable scarring risk when performed correctly, but neither is risk-free. Saline removal's main scarring risk comes from overworking the skin (going too deep or too many passes) or from clients picking at scabs during healing. Laser removal's scarring risk comes from thermal damage, especially with Q-switched lasers at aggressive settings or on darker skin types. Picosecond lasers generally reduce that thermal-risk profile versus Q-switched. Saline's mechanism does not involve heat, but it still creates a wound that must heal cleanly.",
                       },
                       {
                         title: "Pain",
@@ -401,11 +401,11 @@ export default function SalineVsLaserPage() {
                     {[
                       {
                         title: "Color ink",
-                        body: "Saline removal is not color-specific. It lifts all pigment colors equally because the mechanism is osmotic, not light-based. Laser performance on color ink depends on which wavelengths the laser offers. Black and dark blue respond well to 1064nm. Red and orange respond to 532nm. Green and blue-green respond to 785nm (PicoWay) or 755nm (PicoSure). Yellow and white inks are difficult for all laser platforms. For tattoos with multiple colors including hard-to-laser shades, saline is a structurally simpler method because it does not depend on color absorption.",
+                        body: "Saline removal is not wavelength-specific because the mechanism is osmotic, not light-based. Laser performance on color ink depends on which wavelengths the laser offers. Black and dark blue respond well to 1064nm. Red and orange respond to 532nm. Green and blue-green respond to 785nm (PicoWay) or 755nm (PicoSure). Yellow and white inks are difficult for all laser platforms. For tattoos with multiple colors including hard-to-laser shades, saline is worth comparing, but results still depend on pigment depth, area size, technique, and healing.",
                       },
                       {
                         title: "Dark skin",
-                        body: "Laser tattoo removal on darker Fitzpatrick skin types (IV through VI) carries a wavelength-versus-melanin interaction. The laser does not distinguish between tattoo pigment and natural melanin. Aggressive settings on darker skin can cause post-inflammatory hyperpigmentation or hypopigmentation. Picosecond lasers reduce this risk versus Q-switched, and 1064nm is safer than 532nm or 755nm for darker skin. Saline removal does not interact with melanin because it does not use light. For darker skin types, saline is structurally lower-risk. Laser is viable with experienced providers and conservative settings.",
+                        body: "Laser tattoo removal on darker Fitzpatrick skin types (IV through VI) carries a wavelength-versus-melanin interaction. The laser does not distinguish between tattoo pigment and natural melanin. Aggressive settings on darker skin can cause post-inflammatory hyperpigmentation or hypopigmentation. Picosecond lasers reduce this risk versus Q-switched, and 1064nm is generally safer than 532nm or 755nm for darker skin. Saline removal does not interact with melanin because it does not use light. For darker skin types, saline is worth comparing alongside conservative laser protocols, but healing and scarring risk still need case-specific assessment.",
                       },
                       {
                         title: "Difficult cases",

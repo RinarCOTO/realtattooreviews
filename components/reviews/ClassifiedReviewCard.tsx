@@ -53,7 +53,7 @@ export default function ClassifiedReviewCard({ review }: { review: Review }) {
 
       {/* Attribution and per-review Google Maps link */}
       <div className="flex flex-wrap items-center justify-between gap-2 border-t border-(--line) pt-3">
-        <p className="font-sans text-[11px] text-(--muted)">
+        <p className="font-sans text-[11px] text-heading">
           Sourced from Google Reviews{location ? `, ${location}` : ""}
         </p>
         {review.reviewUrl && (

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Container from "./Container";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 const nav = [
   {
@@ -210,7 +211,7 @@ export default function Header() {
                         ? "bg-accent-light text-accent"
                         : active
                         ? "text-accent"
-                        : "text-muted hover:bg-accent-light hover:text-accent"
+                        : "text-heading hover:bg-accent-light hover:text-accent"
                     }`}
                   >
                     {item.label}
@@ -263,7 +264,7 @@ export default function Header() {
                                               ? "font-semibold text-accent"
                                               : isNeedSection
                                               ? "font-medium text-heading hover:text-accent"
-                                              : "text-muted hover:text-accent"
+                                              : "text-heading hover:text-accent"
                                           }`}
                                           onClick={() => setOpenMega(null)}
                                         >
@@ -271,7 +272,7 @@ export default function Header() {
                                             <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
                                           )}
                                           {isBestRemovalMethod && (
-                                            <span className="mr-1 text-accent">→</span>
+                                            <ChevronRightIcon className="mr-1 inline size-3.5 text-accent" />
                                           )}
                                           {link.label}
                                         </Link>
@@ -299,16 +300,16 @@ export default function Header() {
                                 <p className="text-sm font-semibold text-heading">
                                   {item.mega.featured.label}
                                 </p>
-                                <p className="mt-1.5 text-xs leading-relaxed text-muted">
+                                <p className="mt-1.5 text-xs leading-relaxed text-heading">
                                   {item.mega.featured.description}
                                 </p>
                               </div>
                               <span
-                                className={`mt-4 text-xs font-medium text-accent ${
+                                className={`mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent ${
                                   isCompareMenu ? "group-hover:underline" : ""
                                 }`}
                               >
-                                Go →
+                                Go <ChevronRightIcon className="size-3.5" />
                               </span>
                             </Link>
                           </div>
@@ -325,7 +326,7 @@ export default function Header() {
                   className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
                     active
                       ? "text-accent"
-                      : "text-muted hover:bg-accent-light hover:text-accent"
+                      : "text-heading hover:bg-accent-light hover:text-accent"
                   }`}
                 >
                   {item.label}
@@ -349,7 +350,7 @@ export default function Header() {
 
           {/* Mobile toggle */}
           <button
-            className="flex items-center justify-center rounded-md p-2 text-muted hover:bg-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 lg:hidden"
+            className="flex items-center justify-center rounded-md p-2 text-heading hover:bg-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 lg:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -394,7 +395,7 @@ export default function Header() {
                           aria-expanded={sectionOpen}
                           aria-label={`${sectionOpen ? "Collapse" : "Expand"} ${item.label} links`}
                           onClick={() => setOpenMobileSection(sectionOpen ? null : item.label)}
-                          className="flex h-9 w-9 items-center justify-center rounded-md text-muted transition-colors hover:bg-accent-light hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                          className="flex h-9 w-9 items-center justify-center rounded-md text-heading transition-colors hover:bg-accent-light hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                         >
                           <svg
                             aria-hidden="true"
@@ -423,7 +424,7 @@ export default function Header() {
                       <div className="mb-1 ml-3 border-l-2 border-border pl-3">
                         {item.mega.sections.map((section) => (
                           <div key={section.heading} className="mb-3 last:mb-1">
-                            <p className="mb-1.5 px-1 text-xs font-semibold uppercase tracking-wider text-muted">
+                            <p className="mb-1.5 px-1 text-xs font-semibold uppercase tracking-wider text-heading">
                               {section.heading}
                             </p>
                             {section.links.map((link) => {
@@ -435,7 +436,7 @@ export default function Header() {
                                   className={`block rounded px-1 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
                                     linkActive
                                       ? "font-semibold text-accent"
-                                      : "text-muted hover:text-accent"
+                                      : "text-heading hover:text-accent"
                                   }`}
                                   onClick={closeMobile}
                                 >

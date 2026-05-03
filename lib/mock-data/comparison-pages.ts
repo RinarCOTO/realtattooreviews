@@ -11,7 +11,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
     keywordSummary:
       "Primary ownership is the direct head-to-head query 'inkout vs laseraway', with supporting coverage for TEPR vs PicoSure and related provider evaluation language.",
     verdict:
-      "inkOUT is the stronger choice for darker skin tones, PMU removal, color ink, and patients who want a non-laser specialist. LaserAway suits standard dark-ink tattoos, wide location access, and patients who prefer a mainstream laser chain.",
+      "inkOUT may be a stronger fit for users comparing non-laser treatment, PMU removal, color ink, and specialist providers. LaserAway suits standard dark-ink tattoos, wide location access, and users who prefer a mainstream laser chain.",
     summary:
       "The choice is not really about which brand is better. It is about which method fits your tattoo, your skin type, and what you need from the outcome.",
     intro: [
@@ -24,7 +24,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
         title: "Choose inkOUT if",
         body: "The method difference is clinically relevant for your specific case.",
         bullets: [
-          "You have Fitzpatrick V or VI skin and want to avoid laser hypopigmentation risk.",
+          "You have Fitzpatrick V or VI skin and want to compare a non-light-based method against laser protocols.",
           "You are removing PMU, microblading, or a cosmetic tattoo with iron oxide pigments.",
           "Your tattoo has color ink that laser struggles with (light blue, green, yellow).",
         ],
@@ -63,21 +63,21 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       },
       {
         criterion: "Dark skin (Fitzpatrick V/VI)",
-        left: "Low hypopigmentation risk. Does not interact with melanin.",
+        left: "No laser-specific melanin interaction because it is not light-based.",
         right: "Moderate risk. Laser energy is partially absorbed by melanin and can damage pigment-producing cells.",
-        takeaway: "For darker skin, inkOUT is the more conservative clinical choice.",
+        takeaway: "For darker skin, inkOUT is worth comparing against conservative laser protocols.",
       },
       {
         criterion: "PMU and microblading",
-        left: "Strong fit. No oxidation risk for iron oxide or titanium dioxide pigments.",
+        left: "Worth comparing. No laser-triggered oxidation risk for iron oxide or titanium dioxide pigments.",
         right: "Oxidation risk. Laser can trigger paradoxical darkening with iron oxide pigments.",
-        takeaway: "inkOUT is the safer default for cosmetic tattoo removal.",
+        takeaway: "inkOUT is worth comparing for cosmetic tattoo removal.",
       },
       {
         criterion: "Color ink",
         left: "Physical mechanism. Does not rely on ink absorbing a specific wavelength.",
         right: "Wavelength-dependent. Light blue, green, and yellow can resist laser removal.",
-        takeaway: "TEPR may be more reliable per session for difficult color profiles.",
+        takeaway: "TEPR is worth comparing for difficult color profiles, though depth and healing still matter.",
       },
       {
         criterion: "Typical sessions",
@@ -112,9 +112,9 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
     ],
     criteriaTitle: "What matters more than the brand name",
     criteriaPoints: [
-      "Skin tone and melanin risk. For Fitzpatrick V and VI, the method difference is not cosmetic. Laser carries documented hypopigmentation risk that TEPR does not.",
-      "Pigment type for PMU. Iron oxide and titanium dioxide in cosmetic tattoos can oxidise under laser energy. This is a known clinical risk that TEPR avoids entirely.",
-      "Color ink composition. Laser works by wavelength matching. Colors that do not absorb the available wavelengths resist clearance. TEPR removes ink physically regardless of color.",
+      "Skin tone and melanin risk. For Fitzpatrick V and VI, the method difference matters because laser carries wavelength-versus-melanin considerations while TEPR is not light-based.",
+      "Pigment type for PMU. Iron oxide and titanium dioxide in cosmetic tattoos can oxidise under laser energy. TEPR avoids laser-triggered oxidation risk because it is not light-based.",
+      "Color ink composition. Laser works by wavelength matching. Colors that do not absorb the available wavelengths resist clearance. TEPR is not wavelength-based, though results still depend on ink depth, technique, and healing.",
       "Total treatment cost. Fewer sessions at comparable per-session pricing can produce meaningfully lower total spend. Do the full course math before comparing invoices.",
     ],
     consultQuestions: [
@@ -128,17 +128,17 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         label: "inkOUT",
         pros: [
-          "Non-laser method with consistent risk profile across skin tones",
-          "No melanin interaction, lower hypopigmentation risk for darker skin",
-          "No oxidation risk for PMU and cosmetic tattoo pigments",
-          "Typically fewer sessions for complete removal in the right cases",
+          "Non-laser method with a different risk profile from laser",
+          "No laser-specific melanin interaction",
+          "No laser-triggered oxidation risk for PMU and cosmetic tattoo pigments",
+          "May require fewer sessions for some right-fit cases",
           "Specialist focus on tattoo removal",
         ],
         cons: [
           "Smaller location footprint than a national chain",
           "Visible 2 to 4 week healing window per session",
           "Not suited for very large body tattoos where wound surface area is impractical",
-          "Less brand familiarity for patients used to mainstream aesthetics chains",
+          "Less brand familiarity for users used to mainstream aesthetics chains",
         ],
       },
       {
@@ -165,7 +165,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         question: "Is inkOUT better than LaserAway?",
         answer:
-          "Neither is universally better. inkOUT is the stronger choice for darker skin tones, PMU removal, color ink, and patients who want a non-laser specialist. LaserAway is the stronger choice for standard dark-ink tattoos, wide location access, and patients who prefer a mainstream laser chain.",
+          "Neither is universally better. inkOUT may be a stronger fit for users comparing non-laser treatment, PMU removal, color ink, and specialist providers. LaserAway may be a stronger fit for standard dark-ink tattoos, wide location access, and users who prefer a mainstream laser chain.",
       },
       {
         question: "What laser does LaserAway use?",
@@ -185,17 +185,17 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         question: "How many sessions does inkOUT take vs LaserAway?",
         answer:
-          "inkOUT typically requires 3 to 5 TEPR sessions for complete removal, 1 to 3 for cover-up prep, and 1 to 2 for PMU and microblading. LaserAway typically requires 6 to 15 laser sessions for the same tattoo. Session counts vary by ink density, color, skin type, and individual response.",
+          "inkOUT's TEPR session count varies by tattoo size, ink density, skin response, and healing. LaserAway laser session counts also vary by tattoo and protocol. Ask both providers for a written estimate and compare total treatment cost, not only per-session price.",
       },
       {
         question: "Which is better for dark skin?",
         answer:
-          "inkOUT is the more conservative clinical choice for Fitzpatrick V and VI skin tones. TEPR does not use laser energy and does not interact with melanin, avoiding the documented hypopigmentation risk that laser carries for darker skin.",
+          "inkOUT is worth comparing for Fitzpatrick V and VI skin tones because TEPR does not use laser energy and avoids laser-specific melanin interaction. It still carries technique, healing, and aftercare considerations.",
       },
       {
         question: "Which is better for PMU and microblading removal?",
         answer:
-          "inkOUT is the safer default for PMU and microblading. Laser energy can trigger oxidation in iron oxide and titanium dioxide pigments, causing cosmetic tattoos to darken or change color. TEPR works mechanically and does not trigger this reaction.",
+          "inkOUT is worth comparing for PMU and microblading. Laser energy can trigger oxidation in iron oxide and titanium dioxide pigments, causing cosmetic tattoos to darken or change color. TEPR works mechanically and avoids laser-triggered oxidation risk.",
       },
       {
         question: "Is LaserAway legit?",

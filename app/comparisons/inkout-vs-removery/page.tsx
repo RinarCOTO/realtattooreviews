@@ -37,7 +37,7 @@ const faqs = [
   {
     question: "Is inkOUT better than Removery?",
     answer:
-      "Neither brand is universally better. inkOUT is structurally better suited for cosmetic tattoo removal, darker skin tones avoiding laser-pigment risk, and users wanting a non-laser method for any reason. Removery is structurally better suited for users wanting a national chain with package pricing on standard body tattoos and the deepest public review history in the laser tattoo removal market. The cross-city evidence table on this page shows current review-sample evidence per brand per city to support fit-by-fit comparison rather than a single winner.",
+      "Neither brand is universally better. inkOUT may be a better fit for users comparing non-laser treatment, cosmetic tattoo removal, darker skin tones where laser-pigment risk is a concern, or a specialist provider model. Removery may be a better fit for users wanting a national chain with package pricing on standard body tattoos and the deepest public review history in the laser tattoo removal market. The cross-city evidence table on this page supports fit-by-fit comparison rather than a single winner.",
   },
   {
     question: "Is inkOUT cheaper than Removery?",
@@ -57,7 +57,7 @@ const faqs = [
   {
     question: "Which is better for dark skin?",
     answer:
-      "For darker Fitzpatrick skin types specifically prioritizing avoidance of any laser-pigment-change risk, TEPR (inkOUT) is the structurally lower-risk option because the mechanism does not interact with melanin. Removery's PicoWay is on the lower-risk side of the laser spectrum and many providers handle darker skin successfully with conservative protocols, but the wavelength-versus-melanin interaction is structural to laser treatment.",
+      "For darker Fitzpatrick skin types, TEPR (inkOUT) avoids laser-specific melanin interaction because it is not light-based. That makes it worth comparing, but it does not remove wound-healing or scarring considerations. Removery's PicoWay is on the lower-risk side of the laser spectrum and many providers handle darker skin successfully with conservative protocols.",
   },
   {
     question: "Which is better for color ink?",
@@ -70,9 +70,9 @@ const faqs = [
       "Both brands target complete removal. inkOUT positions TEPR around complete removal as the primary outcome. Removery's Complete Removal Package is the laser-side equivalent: a capped-cost commitment to full removal across unlimited sessions. The cross-city evidence table on this page shows positive complete-removal outcomes for both brands. The choice on this dimension is mechanism preference more than outcome difference.",
   },
   {
-    question: "Is inkOUT worth it?",
+    question: "When is inkOUT worth including in the comparison?",
     answer:
-      "For users in inkOUT's structural fit zone (non-laser preference, cosmetic tattoo removal, darker skin avoiding laser-melanin interaction, complete-removal focus): yes. For users with standard body tattoos in markets without inkOUT access, the answer is to compare to local laser providers including Removery rather than a default yes.",
+      "For users comparing non-laser treatment, cosmetic tattoo removal, darker skin where laser-pigment risk is a concern, or a complete-removal-focused provider model, inkOUT is worth including in the consultation set. For standard body tattoos in markets without inkOUT access, compare local laser providers including Removery rather than treating any brand as a default yes.",
   },
   {
     question: "Is Removery worth it?",
@@ -154,8 +154,8 @@ export default function InkoutVsRemoveryPage() {
               <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
                 Comparisons
               </Link>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">
+              <span className="text-heading font-normal normal-case tracking-normal">/</span>
+              <span className="text-heading font-normal normal-case tracking-normal">
                 inkOUT vs Removery
               </span>
             </>
@@ -197,7 +197,7 @@ export default function InkoutVsRemoveryPage() {
               <div id="glance" className="py-12">
                 <SectionHeading>inkOUT vs Removery at a Glance</SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                  <p className="font-sans text-[15px] leading-relaxed text-heading">
                     The most useful one-screen view of inkOUT vs Removery is the structural difference
                     between the two brands. The table below summarizes the categorical differences.
                     Quantitative review evidence appears further down in the cross-city evidence section.
@@ -211,7 +211,7 @@ export default function InkoutVsRemoveryPage() {
                     rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
                     winners={[null, null, null, 1, 1, 2, 2, null, null]}
                   />
-                  <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+                  <p className="font-sans text-[15px] leading-relaxed text-heading">
                     The structural comparison sets the frame. The use-case comparison further down
                     translates these structural differences into who each brand actually serves best.
                   </p>
@@ -322,7 +322,7 @@ export default function InkoutVsRemoveryPage() {
                       },
                       {
                         title: "Scarring risk",
-                        body: "Scarring is method-sensitive and skin-sensitive. Removery's PicoWay is on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by using a non-laser mechanical mechanism, a structural difference relevant to scarring risk. Provider conservatism with intensity, technique, and session spacing matters more than the brand label. Both brands offer free consultations where you can ask about starting intensity, scarring rate, and what the studio does when a tattoo responds aggressively.",
+                        body: "Scarring is method-sensitive and skin-sensitive. Removery's PicoWay is on the lower-risk side of the laser spectrum. TEPR is not light-based, so it avoids laser-specific melanin interaction, but it has its own wound-healing and aftercare risks. Provider conservatism with intensity, technique, and session spacing matters more than the brand label. Both brands offer free consultations where you can ask about starting intensity, scarring rate, and what the studio does when a tattoo responds aggressively.",
                       },
                       {
                         title: "Pain",
@@ -363,7 +363,7 @@ export default function InkoutVsRemoveryPage() {
                     {[
                       {
                         title: "Dark skin",
-                        body: "Laser tattoo removal is safe for darker Fitzpatrick skin types in experienced hands. The wavelength-versus-melanin interaction is real. Aggressive laser settings on darker skin carry elevated risk of post-inflammatory hyperpigmentation or hypopigmentation. PicoWay is on the lower-risk side of the laser spectrum compared to Q-switched. Removery providers are typically experienced with adjusting protocols by skin tone. TEPR (inkOUT) avoids the wavelength-versus-melanin interaction by mechanism. For users prioritizing avoidance of any laser-pigment-change risk, TEPR is the structurally lower-risk option.",
+                        body: "Laser tattoo removal is safe for darker Fitzpatrick skin types in experienced hands. The wavelength-versus-melanin interaction is real. Aggressive laser settings on darker skin carry elevated risk of post-inflammatory hyperpigmentation or hypopigmentation. PicoWay is on the lower-risk side of the laser spectrum compared to Q-switched. Removery providers are typically experienced with adjusting protocols by skin tone. TEPR (inkOUT) is not light-based, so it avoids laser-specific melanin interaction, while still requiring careful technique, healing, and aftercare.",
                       },
                       {
                         title: "Color ink",
@@ -375,7 +375,7 @@ export default function InkoutVsRemoveryPage() {
                       },
                       {
                         title: "PMU and microblading removal",
-                        body: "Cosmetic tattoo removal (microblading, powder brows, lip blush, eyeliner) is harder than body tattoo removal. Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser, a known consideration for any laser removal of cosmetic tattoos. TEPR avoids this risk because it does not use light. inkOUT is structurally well-suited to PMU and microblading cases. Removery handles cosmetic cases as well. Ask specifically about the studio's cosmetic-tattoo experience at consultation.",
+                        body: "Cosmetic tattoo removal (microblading, powder brows, lip blush, eyeliner) is harder than body tattoo removal. Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser, a known consideration for any laser removal of cosmetic tattoos. TEPR does not use light, so it avoids laser-triggered oxidation risk, while still carrying wound-healing considerations. Removery handles cosmetic cases as well. Ask specifically about the studio's cosmetic-tattoo experience at consultation.",
                       },
                     ].map((item) => (
                       <ContentCard
@@ -402,7 +402,7 @@ export default function InkoutVsRemoveryPage() {
                   <Suspense
                     fallback={
                       <div className="rounded-xl bg-white border border-(--line) p-8 text-center">
-                        <p className="font-sans text-[14px] text-(--muted) m-0">
+                        <p className="font-sans text-[14px] text-heading m-0">
                           Loading evidence table&hellip;
                         </p>
                       </div>
@@ -430,11 +430,11 @@ export default function InkoutVsRemoveryPage() {
                     <ContentCard title="Pros" titleSize="sm">
                       <GuideBulletList
                         items={[
-                          "Only major non-laser tattoo removal brand at scale in the US market",
+                          "Multi-location non-laser tattoo removal brand with a focused TEPR model",
                           "Mechanism does not depend on wavelength-versus-color interaction, so color ink performance is not bound by laser color limitations",
-                          "Mechanism does not interact with melanin in the way laser does, lowering the structural pigment-change risk for darker skin tones",
-                          "Positioned around complete removal as the primary outcome rather than fading",
-                          "Well-suited to cosmetic tattoo removal cases where iron-oxide pigments can darken paradoxically under laser",
+                          "Mechanism does not use light, avoiding laser-specific melanin interaction",
+                          "Positions complete removal as the primary outcome rather than fading",
+                          "Worth comparing for cosmetic tattoo removal cases where iron-oxide pigments can darken paradoxically under laser",
                           "Free consultations to confirm fit before committing",
                         ]}
                       />

@@ -23,7 +23,7 @@ export default function CityCard({ city }: CityCardProps) {
         </div>
         <span className="text-sm font-semibold text-heading">{city.name}</span>
       </div>
-      <div className="flex items-center gap-3 text-xs text-muted">
+      <div className="flex items-center gap-3 text-xs text-heading">
         <span><CountUp end={city.reviewCount} /> reviews</span>
         <span className="text-border">·</span>
         <span><CountUp end={city.providerCount} /> providers</span>

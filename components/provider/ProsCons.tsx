@@ -22,16 +22,16 @@ export default function ProsCons({ pros, cons }: ProsConsProps) {
       <div className="relative z-1 border border-(--line) bg-white p-5 rounded-xl shadow-card">
         <div className="flex items-center gap-2 mb-4">
           <DotGreen />
-          <span className="font-sans text-[13px] font-bold tracking-widest uppercase text-(--muted)">What They Do Well</span>
+          <span className="font-sans text-[13px] font-bold tracking-widest uppercase text-heading">What They Do Well</span>
         </div>
         {pros.length === 0 ? (
-          <p className="text-[13px] text-(--muted)">Not enough review data to identify consistent positives.</p>
+          <p className="text-[13px] text-heading">Not enough review data to identify consistent positives.</p>
         ) : (
           <ul>
             {pros.map((pro, i) => (
               <li key={pro} className="flex items-start gap-4 border-t border-(--line) py-3">
                 <span className="font-sans text-[11px] text-secondary shrink-0 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-[13px] leading-relaxed text-(--muted)">{pro}</span>
+                <span className="text-[13px] leading-relaxed text-heading">{pro}</span>
               </li>
             ))}
           </ul>
@@ -41,16 +41,16 @@ export default function ProsCons({ pros, cons }: ProsConsProps) {
       <div className="relative z-1 border border-(--line) bg-white p-5 rounded-xl shadow-card">
         <div className="flex items-center gap-2 mb-4">
           <DotRed />
-          <span className="font-sans text-[13px] font-bold tracking-widest uppercase text-(--muted)">Where Users Hesitate</span>
+          <span className="font-sans text-[13px] font-bold tracking-widest uppercase text-heading">Where Users Hesitate</span>
         </div>
         {cons.length === 0 ? (
-          <p className="text-[13px] text-(--muted)">No consistent negative signals in the current review dataset.</p>
+          <p className="text-[13px] text-heading">No consistent negative signals in the current review dataset.</p>
         ) : (
           <ul>
             {cons.map((con, i) => (
               <li key={con} className="flex items-start gap-4 border-t border-(--line) py-3">
                 <span className="font-sans text-[11px] text-accent shrink-0 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-[13px] leading-relaxed text-(--muted)">{con}</span>
+                <span className="text-[13px] leading-relaxed text-heading">{con}</span>
               </li>
             ))}
           </ul>

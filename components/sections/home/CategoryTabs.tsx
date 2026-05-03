@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 const categories = [
   {
@@ -67,10 +68,10 @@ export default function CategoryTabs() {
         <div className="mb-6 flex items-end justify-between">
           <div>
             <h2 className="text-[32px] font-bold text-heading">Browse by treatment type</h2>
-            <p className="mt-1 text-sm text-muted">Filter reviews by what matters to your situation.</p>
+            <p className="mt-1 text-sm text-heading">Filter reviews by what matters to your situation.</p>
           </div>
-          <Link href="/categories" className="hidden text-sm font-medium text-accent hover:underline sm:block">
-            View all categories →
+          <Link href="/categories" className="hidden items-center gap-1 text-sm font-medium text-accent hover:underline sm:inline-flex">
+            View all categories <ChevronRightIcon className="size-4" />
           </Link>
         </div>
 
@@ -109,12 +110,12 @@ export default function CategoryTabs() {
             <h3 className={`text-base font-semibold ${current.image ? "text-white" : "text-heading"}`}>
               {current.label}
             </h3>
-            <p className={`mt-1 text-sm ${current.image ? "text-white/80" : "text-muted"}`}>
+            <p className={`mt-1 text-sm ${current.image ? "text-white/80" : "text-heading"}`}>
               {current.description}
             </p>
           </div>
           <div className="relative z-10 flex items-center gap-4">
-            <span className={`flex items-center gap-1 text-sm ${current.image ? "text-white/80" : "text-muted"}`}>
+            <span className={`flex items-center gap-1 text-sm ${current.image ? "text-white/80" : "text-heading"}`}>
               <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.95 2.678c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z" />
               </svg>
@@ -122,13 +123,13 @@ export default function CategoryTabs() {
             </span>
             <Link
               href={`/categories/${current.slug}`}
-              className={`rounded-full border px-5 py-2 text-sm font-medium transition-colors ${
+              className={`inline-flex items-center gap-1 rounded-full border px-5 py-2 text-sm font-medium transition-colors ${
                 current.image
                   ? "border-white text-white hover:bg-white hover:text-accent"
                   : "border-accent text-accent hover:bg-accent hover:text-white"
               }`}
             >
-              Browse →
+              Browse <ChevronRightIcon className="size-4" />
             </Link>
           </div>
         </div>

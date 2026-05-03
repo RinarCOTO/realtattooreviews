@@ -2,6 +2,7 @@ import Link from "next/link";
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import ReviewCardCompact from "@/components/reviews/ReviewCardCompact";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import type { Review } from "@/types/review";
 
 type Props = {
@@ -32,16 +33,16 @@ export default function RecentReviewsSection({ reviews }: Props) {
             <h2 className="text-[32px] font-bold text-heading">
               Recent sourced reviews
             </h2>
-            <p className="mt-1 max-w-lg text-sm text-muted">
+            <p className="mt-1 max-w-lg text-sm text-heading">
               Sourced from public platforms. Not curated for sentiment: positive, mixed,
               and negative submissions are all included.
             </p>
           </div>
           <Link
             href="/reviews"
-            className="hidden shrink-0 text-sm font-medium text-accent hover:underline sm:block"
+            className="hidden shrink-0 items-center gap-1 text-sm font-medium text-accent hover:underline sm:inline-flex"
           >
-            Browse all reviews →
+            Browse all reviews <ChevronRightIcon className="size-4" />
           </Link>
         </div>
 

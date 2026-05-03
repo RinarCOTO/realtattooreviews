@@ -37,12 +37,12 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
         {
             name: "inkOUT (West Austin)",
             href: "/reviews/inkout/austin",
-            body: "inkOUT's Austin location is at 7101 State Hwy 71 in West Austin. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. It is the non-laser option in the Austin metro for users avoiding laser-based treatment.",
+            body: "inkOUT's Austin location is at 7101 State Hwy 71 in West Austin. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. It is the non-laser option currently tracked by RealTattooReviews in the Austin metro; users should still compare it against laser providers by tattoo type, skin response, pricing, and consultation fit.",
             bestFor: [
                 "Users who want a non-laser method",
                 "Users with cosmetic tattoos like microblading or lip blush",
                 "Users with concerns about laser interaction with darker skin tones",
-                "Users seeking complete removal without typical laser-clearance limitations on certain ink colors",
+                "Users comparing non-laser removal for colors that may be difficult for wavelength-based systems",
             ],
             lessIdealFor: [
                 "Users with very large tattoos who prefer the per-session speed of laser",
@@ -176,12 +176,12 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
         {
             name: "inkOUT (Lincoln Park)",
             href: "/reviews/inkout/chicago",
-            body: "inkOUT's Chicago location is at 2724 N Lincoln Ave Suite 6 in Lincoln Park. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin rather than shattering it with light. It is the non-laser option in Chicago for users avoiding laser-based treatment.",
+            body: "inkOUT's Chicago location is at 2724 N Lincoln Ave Suite 6 in Lincoln Park. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin rather than shattering it with light. It is the non-laser option currently tracked by RealTattooReviews in Chicago; users should still compare method fit, review depth, and consultation-specific risk against local laser providers.",
             bestFor: [
                 "Users who want a non-laser method",
                 "Users with cosmetic tattoos like microblading or lip blush",
-                "Users with darker skin tones who want to avoid laser pigment-change risk",
-                "Users seeking complete removal without laser-clearance limitations on certain ink colors",
+                "Users with darker skin tones comparing non-laser options against conservative laser protocols",
+                "Users comparing non-laser removal for colors that may be difficult for wavelength-based systems",
             ],
             lessIdealFor: [
                 "Users with very large tattoos who prefer the per-session speed of laser",
@@ -230,13 +230,13 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
         {
             name: "inkOUT (Heights)",
             href: "/reviews/inkout/houston",
-            body: "inkOUT's Houston location is at 2200 Edwards St Suite 107, near the Heights and convenient to River Oaks, the Galleria, and central Houston. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. It is the non-laser option in the Houston metro for users avoiding laser-based treatment.",
+            body: "inkOUT's Houston location is at 2200 Edwards St Suite 107, near the Heights and convenient to River Oaks, the Galleria, and central Houston. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. It is the non-laser option currently tracked by RealTattooReviews in the Houston metro; users should compare it with laser specialists by skin type, ink color, price quote, and review evidence.",
             bestFor: [
                 "Users seeking complete removal rather than fading",
-                "Users who want a lower-pain alternative to laser",
-                "Users prioritizing lower scarring risk",
+                "Users comparing the pain profile of non-laser treatment against laser",
+                "Users who want to discuss scarring risk outside a laser-based protocol",
                 "Users with cosmetic tattoos like microblading or lip blush",
-                "Users with darker skin tones who want to avoid laser pigment-change risk",
+                "Users with darker skin tones comparing non-laser options against conservative laser protocols",
             ],
             lessIdealFor: [
                 "Users with very large tattoos who prefer the per-session speed of laser",
@@ -291,13 +291,13 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
         {
             name: "Rejuvatek Aesthetics providing inkOUT (Draper)",
             href: "/reviews/inkout/draper",
-            body: "This is the Draper location for inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. TEPR avoids the wavelength-versus-color limitations that affect laser systems and sidesteps the wavelength-versus-melanin interaction that elevates pigment-change risk on darker skin tones. This is the only non-laser tattoo removal option tracked by RealTattooReviews in the Draper and south Salt Lake Valley area.",
+            body: "This is the Draper location for inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. Because TEPR is not light-based, its risk profile differs from wavelength-based laser systems; scarring, pigment change, healing, and aftercare still need case-specific assessment. This is the only non-laser tattoo removal option currently tracked by RealTattooReviews in the Draper and south Salt Lake Valley area, not necessarily the only option available in the market.",
             bestFor: [
                 "Users seeking complete removal rather than fading",
                 "Users who want a non-laser method",
                 "Users with cosmetic tattoos like microblading, powder brows, or lip blush",
-                "Users with darker skin tones who want to avoid laser pigment-change risk",
-                "Users whose tattoo contains colors that resist laser clearance (certain greens, whites, pastels)",
+                "Users with darker skin tones comparing non-laser options against conservative laser protocols",
+                "Users whose tattoo contains colors that may be difficult for wavelength-based systems",
             ],
             lessIdealFor: [
                 "Users with very large tattoos who prefer the per-session speed of laser",
@@ -352,14 +352,14 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
         {
             name: "inkOUT (Tampa Bay Metro)",
             href: "/reviews/inkout/tampa",
-            body: "inkOUT serves the Tampa Bay metro as the non-laser TEPR brand. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. It is the non-laser option in the Tampa Bay area for users who want to avoid laser-based treatment entirely.",
+            body: "inkOUT serves the Tampa Bay metro as a non-laser TEPR brand. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. It is the non-laser option currently tracked by RealTattooReviews in the Tampa Bay area; users should compare consultation quotes, healing expectations, and review evidence against local laser providers.",
             bestFor: [
                 "Users seeking complete removal rather than fading",
-                "Users prioritizing a lower-pain method",
-                "Users prioritizing lower scarring risk",
+                "Users comparing the pain profile of non-laser treatment against laser",
+                "Users who want to discuss scarring risk outside a laser-based protocol",
                 "Users with cosmetic tattoos like microblading or lip blush",
-                "Users with darker skin tones who want to avoid laser pigment-change risk",
-                "Users seeking complete removal without laser-clearance limitations on certain ink colors",
+                "Users with darker skin tones comparing non-laser options against conservative laser protocols",
+                "Users comparing non-laser removal for colors that may be difficult for wavelength-based systems",
             ],
             lessIdealFor: [
                 "Users with very large tattoos who prefer the per-session speed of laser",

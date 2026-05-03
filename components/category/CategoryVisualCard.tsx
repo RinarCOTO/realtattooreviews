@@ -16,6 +16,8 @@ export default function CategoryVisualCard({ src, alt }: Props) {
           height={597}
           className="h-full w-full object-cover"
           sizes="(max-width: 768px) 100vw, 448px"
+          loading="eager"
+          priority
         />
       </div>
     </div>

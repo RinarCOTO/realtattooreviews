@@ -52,21 +52,20 @@ export const metadata: Metadata = {
     description:
       "Compare tattoo removal clinics, read real reviews, and explore clear ratings, provider profiles, and location-based research before you book.",
     url: siteUrl,
-    images: [
-      {
-        url: "/images/image-test.jpg",
-        width: 1200,
-        height: 630,
-        alt: "RealTattooReviews: Compare Tattoo Removal Clinics",
-      },
-    ],
+    // The OG image is generated at build time by app/opengraph-image.tsx
+    // (Next.js App Router file convention). No `images` entry is needed
+    // here — Next.js merges the generated image into the metadata. Adding
+    // a manual entry would override the dynamic version with a stale
+    // static asset.
   },
   twitter: {
     card: "summary_large_image",
     title: "RealTattooReviews | Compare Tattoo Removal Clinics Before You Book",
     description:
       "Compare tattoo removal clinics, read real reviews, and explore clear ratings, provider profiles, and location-based research before you book.",
-    images: ["/images/image-test.jpg"],
+    // Twitter card image is also handled by app/opengraph-image.tsx via
+    // the file convention; an explicit `images` entry would override the
+    // generated card, so it is intentionally omitted.
   },
   robots: {
     index: true,

@@ -15,6 +15,7 @@ import CTASection from "@/components/sections/home/CTASection";
 import FAQSection, { type FAQItem } from "@/components/sections/FAQSection";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
 import HorizontalScrollWithBar from "@/components/ui/HorizontalScrollWithBar";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import { providers } from "@/lib/mock-data/providers";
 import type { Provider } from "@/types/provider";
 import { getHighestRatedProviders } from "@/lib/data/reviews";
@@ -152,8 +153,8 @@ export default async function HomePage() {
                 <h2 className="text-[28px] font-bold text-heading">Compare Methods and Brands</h2>
                 <p className="mt-1 text-sm font-medium text-heading">Not sure which method is right? Start here.</p>
               </div>
-              <Link href="/comparisons" className="hidden text-sm font-medium text-accent hover:underline sm:block">
-                All comparisons →
+              <Link href="/comparisons" className="hidden items-center gap-1 text-sm font-medium text-accent hover:underline sm:inline-flex">
+                All comparisons <ChevronRightIcon className="size-4" />
               </Link>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -188,7 +189,9 @@ export default async function HomePage() {
                   Minimum 48 reviews. Sorted by average rating. Updated as new reviews are added.
                 </p>
               </div>
-              <Link href="/providers" className="hidden text-sm font-medium text-accent hover:underline sm:block">View all →</Link>
+              <Link href="/providers" className="hidden items-center gap-1 text-sm font-medium text-accent hover:underline sm:inline-flex">
+                View all <ChevronRightIcon className="size-4" />
+              </Link>
             </div>
             <div className="flex justify-center">
               <HorizontalScrollWithBar>
@@ -213,8 +216,8 @@ export default async function HomePage() {
                   Provider availability varies by metro. Each city page ranks every tracked provider using the same scoring framework.
                 </p>
               </div>
-              <Link href="/cities" className="hidden text-sm font-medium text-accent hover:underline sm:block">
-                All cities →
+              <Link href="/cities" className="hidden items-center gap-1 text-sm font-medium text-accent hover:underline sm:inline-flex">
+                All cities <ChevronRightIcon className="size-4" />
               </Link>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

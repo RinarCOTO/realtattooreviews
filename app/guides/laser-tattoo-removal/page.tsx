@@ -76,10 +76,10 @@ export default function LaserTattooRemovalGuidePage() {
       path={PAGE_PATH}
     >
       <GuideSection heading="How laser tattoo removal works">
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Laser tattoo removal uses a series of very short, very intense pulses of light at wavelengths that the tattoo ink absorbs. Each pulse delivers enough energy to heat the ink particle for a fraction of a billionth of a second, but not long enough to heat the surrounding skin. That sudden temperature spike creates a microscopic pressure wave inside the ink particle (the photoacoustic effect), which fragments it into smaller pieces.
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           The fragments are then carried away by the lymphatic system over the following weeks. The tattoo fades because there is less ink left in the dermis, not because the ink has been bleached or burned out. This is why laser removal happens over many sessions: the body can only clear so much fragmented ink at a time, and each session adds incremental clearance.
         </p>
         <GuideCallout label="In one line">
@@ -88,7 +88,7 @@ export default function LaserTattooRemovalGuidePage() {
       </GuideSection>
 
       <GuideSection heading="Q-switched vs. picosecond lasers">
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Two generations of pulse technology dominate the market today. Both create the photoacoustic effect that fragments ink. The difference is pulse duration, and the practical consequence is how efficiently each pulse breaks ink down.
         </p>
         <GuideTable
@@ -102,10 +102,10 @@ export default function LaserTattooRemovalGuidePage() {
           ]}
           winners={[null, null, null, null, null]}
         />
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Picosecond is not always required. Many Q-switched providers produce excellent results, especially on standard black ink. The most reliable signal is operator skill and protocol fit, not which generation of device the clinic owns.
         </p>
-        <p className="font-sans text-[14px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[14px] leading-relaxed text-heading">
           See also:{" "}
           <Link href="/comparisons/picoway-vs-q-switch" className="text-(--accent) hover:underline">
             PicoWay vs. Q-Switch
@@ -115,23 +115,23 @@ export default function LaserTattooRemovalGuidePage() {
       </GuideSection>
 
       <GuideSection heading="Wavelengths and ink color">
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Different ink colors absorb different wavelengths. A clinic using a single-wavelength laser cannot fully clear a multi-color tattoo. The most common wavelengths in tattoo removal practice:
         </p>
         <ul className="space-y-2 m-0 p-0 list-none">
-          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-(--muted)">
+          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-heading">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
             <span><span className="font-semibold text-(--ink)">1064nm Nd:YAG.</span> Black, dark brown, dark blue. Lower melanin absorption makes it the safer baseline wavelength for Fitzpatrick IV through VI skin tones.</span>
           </li>
-          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-(--muted)">
+          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-heading">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
             <span><span className="font-semibold text-(--ink)">532nm KTP (frequency-doubled).</span> Red, orange, and warm yellow ink. Higher melanin absorption means more caution required on medium and darker skin.</span>
           </li>
-          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-(--muted)">
+          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-heading">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
             <span><span className="font-semibold text-(--ink)">755nm alexandrite.</span> Green, light blue, and certain teal pigments. Some absorption in melanin, so still requires careful settings on darker skin.</span>
           </li>
-          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-(--muted)">
+          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-heading">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
             <span><span className="font-semibold text-(--ink)">694nm ruby.</span> Older platform, still effective on green and dark blue. Less common today.</span>
           </li>
@@ -142,7 +142,7 @@ export default function LaserTattooRemovalGuidePage() {
       </GuideSection>
 
       <GuideSection heading="What affects how many sessions you need">
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           The same tattoo on two patients can take a different number of sessions because removal depends on more than the device. The variables that move the count up or down:
         </p>
         <GuideBulletList
@@ -159,13 +159,13 @@ export default function LaserTattooRemovalGuidePage() {
       </GuideSection>
 
       <GuideSection heading="Session pacing and what to expect each visit">
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Sessions are typically spaced 6 to 8 weeks apart. The interval is not arbitrary. The body needs time to clear the fragmented ink from the previous session, and the skin needs time to heal fully before another round of trauma. Going faster than 6 weeks generally raises the risk of side effects without speeding up the timeline.
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           A typical session lasts 5 to 30 minutes depending on tattoo size. Patients usually describe the sensation as a hot rubber-band snap, repeated rapidly. Most clinics offer topical numbing or, for larger pieces, a Zimmer cooling air device. Immediately after the pulse, the area frosts white (a normal reaction as the ink fragments expand under the skin). Frosting fades within 20 to 60 minutes.
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Cost-wise, expect to budget for the full course, not the first session. Many clinics quote per session or in packages. See the{" "}
           <Link href="/cost" className="text-(--accent) hover:underline">
             cost guide
@@ -175,13 +175,13 @@ export default function LaserTattooRemovalGuidePage() {
       </GuideSection>
 
       <GuideSection heading="Side effects, healing, and aftercare">
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Most patients experience mild swelling, redness, and pinpoint bleeding immediately after a session. Blistering and scabbing are common over the first 1 to 2 weeks and are part of normal healing. Hypopigmentation (skin lightening) and hyperpigmentation (darkening) can occur, especially on medium and darker skin tones, and are usually temporary.
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Scarring is uncommon when sessions are spaced correctly and aftercare is followed. The strongest predictors of scarring are over-aggressive settings, sessions spaced too close together, and picking at scabs.
         </p>
-        <p className="font-sans text-[14px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[14px] leading-relaxed text-heading">
           Detail in:{" "}
           <Link href="/guides/tattoo-removal-side-effects" className="text-(--accent) hover:underline">
             Tattoo Removal Side Effects
@@ -224,7 +224,7 @@ export default function LaserTattooRemovalGuidePage() {
             "Active eczema, psoriasis, or recent sunburn in the treatment area.",
           ]}
         />
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           If laser is the right fit, see provider reviews for{" "}
           <Link href="/reviews/laseraway" className="text-(--accent) hover:underline">
             LaserAway
@@ -243,7 +243,7 @@ export default function LaserTattooRemovalGuidePage() {
           </Link>
           .
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           If laser is not the fit, the alternatives are covered in the{" "}
           <Link href="/guides/saline-tattoo-removal" className="text-(--accent) hover:underline">
             saline guide

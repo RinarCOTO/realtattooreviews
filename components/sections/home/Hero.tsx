@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 type Props = {
   headline?:    string | null;
@@ -39,7 +40,7 @@ export default function Hero({headline, subheadline}: Props) {
       <div className="mx-auto max-w-4xl px-4 text-center">
 
         {/* Eyebrow */}
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3.5 py-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[20px] text-muted">
+        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3.5 py-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[20px] text-heading">
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
           <span>Independent reviews</span>
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
@@ -77,7 +78,7 @@ export default function Hero({headline, subheadline}: Props) {
           className="mx-auto mt-10 flex max-w-xl overflow-hidden rounded-full border border-border bg-white shadow-md shadow-black/5 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20 transition-all"
         >
           <div className="relative flex flex-1 items-center gap-2 px-5">
-            <svg className="h-4 w-4 shrink-0 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-4 w-4 shrink-0 text-heading" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
             </svg>
             <div className="relative flex-1">
@@ -89,7 +90,7 @@ export default function Hero({headline, subheadline}: Props) {
                 className="w-full bg-transparent py-3.5 font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[20px] text-heading outline-none"
               />
               {!query && (
-                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center font-[family-name:var(--font-inter)] text-[14px] leading-[20px] text-subtle">
+                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center font-[family-name:var(--font-inter)] text-[14px] leading-[20px] text-heading">
                   Search by{" "}
                   <span
                     key={wordIndex}
@@ -116,16 +117,16 @@ export default function Hero({headline, subheadline}: Props) {
         <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <Link
             href="/cities"
-            className="font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[22.4px] text-muted transition-colors hover:text-accent"
+            className="inline-flex items-center gap-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[22.4px] text-heading transition-colors hover:text-accent"
           >
-            Find providers in your city →
+            Find providers in your city <ChevronRightIcon className="size-3.5" />
           </Link>
-          <span className="text-subtle" aria-hidden="true">·</span>
+          <span className="text-heading" aria-hidden="true">·</span>
           <Link
             href="/comparisons/best-tattoo-removal-method"
-            className="font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[22.4px] text-muted transition-colors hover:text-accent"
+            className="inline-flex items-center gap-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[22.4px] text-heading transition-colors hover:text-accent"
           >
-            Compare methods →
+            Compare methods <ChevronRightIcon className="size-3.5" />
           </Link>
         </div>
       </div>

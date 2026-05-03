@@ -17,7 +17,7 @@ export default function ComparisonTable({
         <table className="min-w-full border-collapse">
           <thead>
             <tr className="bg-hero-bg text-left">
-              <th className="px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
+              <th className="px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-heading">
                 Criteria
               </th>
               <th className="px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--ink)">
@@ -26,7 +26,7 @@ export default function ComparisonTable({
               <th className="px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--ink)">
                 {rightLabel}
               </th>
-              <th className="hidden md:table-cell px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
+              <th className="hidden md:table-cell px-5 py-4 font-mono text-[11px] font-medium tracking-widest uppercase text-heading">
                 Why it matters
               </th>
             </tr>
@@ -37,13 +37,13 @@ export default function ComparisonTable({
                 <th className="px-5 py-4 text-left text-[13px] font-semibold text-(--ink)">
                   {row.criterion}
                 </th>
-                <td className="px-5 py-4 text-[13px] leading-relaxed text-(--muted)">
+                <td className="px-5 py-4 text-[13px] leading-relaxed text-heading">
                   {row.left}
                 </td>
-                <td className="px-5 py-4 text-[13px] leading-relaxed text-(--muted)">
+                <td className="px-5 py-4 text-[13px] leading-relaxed text-heading">
                   {row.right}
                 </td>
-                <td className="hidden md:table-cell px-5 py-4 text-[13px] leading-relaxed text-(--muted)">
+                <td className="hidden md:table-cell px-5 py-4 text-[13px] leading-relaxed text-heading">
                   {row.takeaway ?? "Compare this against your tattoo type, skin tone, and expected session count."}
                 </td>
               </tr>

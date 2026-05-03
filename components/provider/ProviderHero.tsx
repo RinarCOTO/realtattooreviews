@@ -3,6 +3,7 @@ import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import DevLabel from "@/components/dev/DevLabel";
 import ProviderPill from "@/components/ui/ProviderPill";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 /**
  * Promo-style tags that should never render in the hero.
@@ -64,7 +65,7 @@ export default function ProviderHero({
                 {nameNode}
               </h1>
 
-              <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-(--muted) max-w-130">
+              <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-heading max-w-130">
                 <span className="text-(--ink) font-medium">{reviewCount} sourced reviews</span>{" "}
                 {body}
               </p>
@@ -82,7 +83,9 @@ export default function ProviderHero({
 
               <div className="flex flex-wrap gap-2.5 mt-8">
                 <Button href={reviewsHref} variant="primary" size="lg">
-                  See Reviews and Complaints →
+                  <span className="inline-flex items-center gap-1">
+                    See Reviews and Complaints <ChevronRightIcon className="size-4" />
+                  </span>
                 </Button>
                 <Button href="#alternatives" variant="secondary" size="lg">
                   Compare Alternatives

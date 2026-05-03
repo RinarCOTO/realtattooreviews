@@ -75,7 +75,7 @@ const faqs = [
   {
     question: "Is tattoo removal safe for dark skin?",
     answer:
-      "Yes, with the right provider and the right method. Q-switched and picosecond lasers can both treat darker skin tones safely when used by experienced operators with appropriate intensity settings, but darker skin carries elevated risk of post-inflammatory hyperpigmentation if treatment is too aggressive. Houston providers experienced with Fitzpatrick IV-VI skin tend to start at lower intensity and adjust upward across sessions. inkOUT's TEPR method, being non-laser, avoids the wavelength-versus-melanin interaction entirely and is one option for users with darker skin who prefer to avoid the laser-pigment risk.",
+      "Yes, with the right provider and the right method. Q-switched and picosecond lasers can both treat darker skin tones safely when used by experienced operators with appropriate intensity settings, but darker skin carries elevated risk of post-inflammatory hyperpigmentation if treatment is too aggressive. Houston providers experienced with Fitzpatrick IV-VI skin tend to start at lower intensity and adjust upward across sessions. inkOUT's TEPR method is not light-based, so it avoids laser-specific melanin interaction, but it still requires case-specific assessment of healing and scarring risk.",
   },
   {
     question: "Where can I get affordable tattoo removal in Houston?",
@@ -212,7 +212,7 @@ export default async function HoustonPage() {
             <h1 className="font-sans font-bold text-[clamp(40px,6vw,72px)] leading-none tracking-[-0.03em] m-0 text-(--ink) max-w-[20ch]">
               Best Tattoo Removal <span className="text-(--accent)">in Houston</span>
             </h1>
-            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-(--muted) max-w-130">
+            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-heading max-w-130">
               Compare Houston tattoo removal clinics on outcomes, pain, scarring, and cost. See provider differences across the metro before you book.
             </p>
           </Container>
@@ -225,7 +225,7 @@ export default async function HoustonPage() {
 
             {/* Intro */}
             <div className="py-12">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   Tattoo removal Houston is a deeper market than most people realize. National
                   chains like Removery and LaserAway run multiple locations across the metro.
                   Owner-operated specialists like InkFree, MD focus on tattoo removal as a
@@ -233,14 +233,14 @@ export default async function HoustonPage() {
                   removal alongside other skin work. inkOUT, the non-laser TEPR option, operates
                   a Houston location near the Heights convenient to River Oaks and the Galleria.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   The metro is geographically large. A central Houston user has different
                   practical options than a Sugar Land, The Woodlands, Katy, Cypress, Spring, or
                   Friendswood user. This page covers what laser technology each provider uses,
                   where they are located, and what kinds of cases each handles best. The goal is
                   to help you narrow down a shortlist before booking a consultation.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
                   <Link href="/comparisons/best-tattoo-removal-method" className="text-(--accent) hover:underline">
                     best tattoo removal method comparison
@@ -261,7 +261,7 @@ export default async function HoustonPage() {
             {/* Dynamic ranking */}
             <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <GuideSection heading="Best Tattoo Removal Clinics in Houston">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The ranked list below is generated from our review-sample analysis. Sentiment
                 scores, sample sizes, and use-case wins reflect the most recent reviews captured
                 in our internal review dataset. Lifetime Google review counts are higher than
@@ -269,7 +269,7 @@ export default async function HoustonPage() {
               </p>
               <Suspense fallback={
                 <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
-                  <p className="font-sans text-[14px] text-(--muted) m-0">Loading provider data&hellip;</p>
+                  <p className="font-sans text-[14px] text-heading m-0">Loading provider data&hellip;</p>
                 </div>
               }>
                 <CityProviderRanking city="Houston" staticProviders={HOUSTON_PROVIDERS} />
@@ -279,7 +279,7 @@ export default async function HoustonPage() {
 
             {/* Static editorial profiles */}
             <GuideSection heading="Houston Provider Profiles">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds
                 of cases it handles. Current performance metrics and rankings appear in the
                 section above and update as our scrape refreshes.
@@ -295,7 +295,7 @@ export default async function HoustonPage() {
                         </Link>
                       ) : p.name}
                     </h3>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">{p.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading mb-4">{p.body}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <p className="font-sans text-[12px] font-semibold text-(--ink) mb-1.5">Best for</p>
@@ -313,7 +313,7 @@ export default async function HoustonPage() {
 
             {/* Dynamic comparison table */}
             <GuideSection heading="Compare Houston Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The table below summarizes the best tattoo removal Houston options at a glance.
                 Use it for orientation, then read the profiles above for fit-based detail.
                 Sample size shows the number of recent reviews analyzed for sentiment scoring.
@@ -321,7 +321,7 @@ export default async function HoustonPage() {
               </p>
               <Suspense fallback={
                 <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
-                  <p className="font-sans text-[14px] text-(--muted) m-0">Loading comparison table&hellip;</p>
+                  <p className="font-sans text-[14px] text-heading m-0">Loading comparison table&hellip;</p>
                 </div>
               }>
                 <CityProviderComparisonTable city="Houston" staticProviders={HOUSTON_PROVIDERS} />
@@ -330,7 +330,7 @@ export default async function HoustonPage() {
 
             {/* Houston-specific: Outcomes, Pain, Scarring */}
             <GuideSection heading="Outcomes, Pain, and Scarring in Houston">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The Houston comparison stands out for how varied the provider mix is across
                 three dimensions that matter most to users: outcome consistency, pain experience,
                 and scarring risk.
@@ -348,12 +348,12 @@ export default async function HoustonPage() {
                   },
                   {
                     title: "Scarring risk",
-                    body: "Method-sensitive and skin-sensitive. Q-switched laser at high intensity carries higher scarring risk than picosecond at the same intensity. Darker skin tones face elevated risk of pigment change with any laser modality. TEPR avoids the wavelength-versus-melanin interaction by using a non-laser mechanical mechanism. Provider conservatism with intensity settings and session spacing matters more than the laser brand label. Six to eight weeks between sessions is standard and is one of the better proxies for scarring-aware practice.",
+                    body: "Method-sensitive and skin-sensitive. Q-switched laser at high intensity carries higher scarring risk than picosecond at the same intensity. Darker skin tones face elevated risk of pigment change with any laser modality. TEPR is not light-based, so it avoids laser-specific melanin interaction, but it has its own wound-healing and aftercare risks. Provider conservatism with intensity settings and session spacing matters more than the laser brand label. Six to eight weeks between sessions is standard and is one of the better proxies for scarring-aware practice.",
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -366,7 +366,7 @@ export default async function HoustonPage() {
 
             {/* Technology section */}
             <GuideSection heading="Laser Tattoo Removal Options in Houston">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Laser tattoo removal Houston providers run several different systems. The system
                 matters because pulse width, available wavelengths, and provider experience
                 together determine which ink colors and skin types respond best.
@@ -388,12 +388,12 @@ export default async function HoustonPage() {
                   },
                   {
                     title: "Non-laser (TEPR)",
-                    body: "inkOUT uses TEPR, a non-laser method that avoids wavelength-versus-color limitations entirely. It lifts ink physically through the skin rather than shattering it with light. This is a different category of treatment, not a laser variant.",
+                    body: "inkOUT uses TEPR, a non-laser method that is not wavelength-based. It lifts ink physically through the skin rather than shattering it with light. This is a different category of treatment, not a laser variant, and should be evaluated with its own healing and aftercare considerations.",
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -401,7 +401,7 @@ export default async function HoustonPage() {
 
             {/* Pricing section */}
             <GuideSection heading="How Much Does Tattoo Removal Cost in Houston?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Tattoo removal prices Houston providers charge generally run $100 to $500 per
                 session. Most standard cases land in the $200 to $400 range. The big variables
                 are tattoo size, ink density, and the provider&rsquo;s pricing model.
@@ -417,13 +417,13 @@ export default async function HoustonPage() {
                     key={tier.label}
                     className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
-                    <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
+                    <p className="font-sans text-[14px] text-heading m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Most tattoos need three to twelve sessions for complete removal, putting total
                 tattoo removal cost Houston TX users can expect for a standard tattoo typically
                 between $1,000 and $5,000. Package pricing (Removery&rsquo;s Complete Removal
@@ -432,7 +432,7 @@ export default async function HoustonPage() {
 
               <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                 <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">Financing and payment plans</p>
-                <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
                   Most Houston providers offer payment plans. Removery splits package totals into
                   monthly installments. LaserAway promotes monthly payment plans in its standard
                   pricing pitch. InkFree, MD offers discount programs and free consultation.
@@ -441,7 +441,7 @@ export default async function HoustonPage() {
                 </p>
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For a national pricing breakdown by method and size, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   cost guide
@@ -452,7 +452,7 @@ export default async function HoustonPage() {
 
             {/* Ranking methodology */}
             <GuideSection heading="How We Ranked Houston Tattoo Removal Clinics">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The ranked list above is generated from a structured analysis of the most recent
                 public reviews per provider. Houston is one of the deepest markets we track, with
                 eleven providers spanning owner-operated specialists, national chains running
@@ -464,12 +464,12 @@ export default async function HoustonPage() {
                   "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification, not from star averages alone. InkFree, MD and DermSurgery Associates carry established Houston-specific review histories. Removery and LaserAway contribute high volume across their three locations each.",
                   "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color). Providers showing repeated positive outcomes in a specific use case get credit for that fit. InkFree, MD shows notable cosmetic and microblading removal signals.",
                   "Method specialization. Owner-operated specialists like InkFree, MD and dedicated removal chains like Removery generally outperform multi-service practices like DermSurgery on session-count efficiency and outcome consistency.",
-                  "Technology fit for the case. Picosecond systems (Removery's PicoWay, LaserAway's PicoSure) suit difficult colors and stubborn ink. Q-switched systems (DermSurgery, InkFree, MD) suit standard black work and have deep track records in the Houston market. inkOUT's TEPR suits cosmetic tattoos, darker skin tones, and users avoiding laser entirely.",
+                  "Technology fit for the case. Picosecond systems (Removery's PicoWay, LaserAway's PicoSure) suit difficult colors and stubborn ink. Q-switched systems (DermSurgery, InkFree, MD) suit standard black work and have deep track records in the Houston market. inkOUT's TEPR is worth comparing for cosmetic tattoos, darker skin tones, and users who prefer a non-laser option.",
                   "Pricing transparency and access. Providers with published pricing rank above those that withhold it until consultation. Providers with payment plans rank for users who need spread cost.",
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For the full review and ranking framework used across the site, see the{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page

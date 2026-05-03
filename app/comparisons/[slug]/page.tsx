@@ -182,13 +182,13 @@ export default async function ComparisonPage({ params }: Props) {
       <main className="min-h-screen">
         <section className="py-14">
           <Container>
-            <p className="mb-2 text-sm text-muted">
+            <p className="mb-2 text-sm text-heading">
               <Link href="/comparisons" className="hover:text-accent">Comparisons</Link>
               {" / "}
               <span className="text-heading">{comparison.title}</span>
             </p>
             <h1 className="text-[36px] font-bold text-heading">{comparison.title}</h1>
-            <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
+            <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-heading">
               {comparison.description}
             </p>
           </Container>
@@ -196,7 +196,7 @@ export default async function ComparisonPage({ params }: Props) {
 
         <section className="py-12">
           <Container>
-            <p className="text-sm text-subtle">Full comparison content coming soon.</p>
+            <p className="text-sm text-heading">Full comparison content coming soon.</p>
           </Container>
         </section>
       </main>
@@ -293,8 +293,8 @@ export default async function ComparisonPage({ params }: Props) {
             <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
               Comparisons
             </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
+            <span className="text-heading font-normal normal-case tracking-normal">/</span>
+            <span className="text-heading font-normal normal-case tracking-normal">
               {comparison.title}
             </span>
           </>
@@ -336,10 +336,10 @@ export default async function ComparisonPage({ params }: Props) {
                 className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 rounded-xl"
               >
                 <p className="text-[15px] font-semibold text-(--ink)">{card.title}</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">{card.body}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-heading">{card.body}</p>
                 <ul className="mt-5 flex flex-col gap-2">
                   {card.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                    <li key={bullet} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
                       <span>{bullet}</span>
                     </li>
@@ -358,7 +358,7 @@ export default async function ComparisonPage({ params }: Props) {
             ? `${activeBrandA} vs ${activeBrandB} at a Glance`
             : `${comparison.title} at a Glance`}
         </SectionHeading>
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl mb-8">
+        <p className="font-sans text-[15px] leading-relaxed text-heading max-w-3xl mb-8">
           The most useful one-screen view of this comparison is the structural difference between
           the two providers. The table below summarizes the categorical differences. Quantitative
           review evidence appears further down in the cross-city evidence section.
@@ -389,7 +389,7 @@ export default async function ComparisonPage({ params }: Props) {
             rows={activeTableRows}
           />
         )}
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl mt-6">
+        <p className="font-sans text-[15px] leading-relaxed text-heading max-w-3xl mt-6">
           The structural comparison sets the frame. The use-case sections below translate these
           differences into who each provider serves best.
         </p>
@@ -406,7 +406,7 @@ export default async function ComparisonPage({ params }: Props) {
               return (
                 <div key={point} className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 rounded-xl">
                   <p className="text-[14px] font-semibold text-(--ink)">{label}</p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-(--muted)">{body}</p>
+                  <p className="mt-2 text-[13px] leading-relaxed text-heading">{body}</p>
                 </div>
               );
             })}
@@ -425,7 +425,7 @@ export default async function ComparisonPage({ params }: Props) {
             <Suspense
               fallback={
                 <div className="rounded-xl bg-white border border-(--line) p-8 text-center">
-                  <p className="font-sans text-[14px] text-(--muted) m-0">Loading evidence table&hellip;</p>
+                  <p className="font-sans text-[14px] text-heading m-0">Loading evidence table&hellip;</p>
                 </div>
               }
             >
@@ -436,7 +436,7 @@ export default async function ComparisonPage({ params }: Props) {
                 brandBPendingCities={activeBrandBPendingCities}
               />
             </Suspense>
-            <p className="font-sans text-[13px] text-(--muted) mt-4">
+            <p className="font-sans text-[13px] text-heading mt-4">
               The table updates as our scrape refreshes. Use the cross-city evidence as a reference, not a verdict.
             </p>
           </Container>
@@ -458,7 +458,7 @@ export default async function ComparisonPage({ params }: Props) {
                   </p>
                   <ul className="mt-3 flex flex-col gap-2">
                     {block.pros.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                      <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
                         <span>{item}</span>
                       </li>
@@ -467,12 +467,12 @@ export default async function ComparisonPage({ params }: Props) {
                 </div>
 
                 <div className="mt-5 pt-5">
-                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)">
+                  <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-heading">
                     Cons
                   </p>
                   <ul className="mt-3 flex flex-col gap-2">
                     {block.cons.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                      <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warning" />
                         <span>{item}</span>
                       </li>
@@ -495,7 +495,7 @@ export default async function ComparisonPage({ params }: Props) {
                 {activeConsultQuestions.map((question, index) => (
                   <li
                     key={question}
-                    className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 rounded-xl text-[13px] leading-relaxed text-(--muted)"
+                    className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 rounded-xl text-[13px] leading-relaxed text-heading"
                   >
                     <span className="mr-2 font-semibold text-(--ink)">{index + 1}.</span>
                     {question}
@@ -508,7 +508,7 @@ export default async function ComparisonPage({ params }: Props) {
               <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
                 Source transparency
               </p>
-              <p className="mt-4 text-[13px] leading-relaxed text-(--muted)">
+              <p className="mt-4 text-[13px] leading-relaxed text-heading">
                 {activeSourceNote}
               </p>
             </aside>
@@ -519,7 +519,7 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Related links */}
       <PageSection id="next-steps" bg="none" noBorder>
         <SectionHeading>Where to go next</SectionHeading>
-        <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl mb-2">
+        <p className="font-sans text-[15px] leading-relaxed text-heading max-w-3xl mb-2">
           Comparison intent stays here. Once you know which type of clinic or method you want to
           evaluate, move into the page that owns that question.
         </p>
@@ -536,7 +536,7 @@ export default async function ComparisonPage({ params }: Props) {
       {sanityComparison.body && sanityComparison.body.length > 0 && (
         <section className="py-22">
           <Container>
-            <div className="prose prose-neutral text-[15px] leading-relaxed text-(--muted)">
+            <div className="prose prose-neutral text-[15px] leading-relaxed text-heading">
               <PortableText value={sanityComparison.body} />
             </div>
           </Container>

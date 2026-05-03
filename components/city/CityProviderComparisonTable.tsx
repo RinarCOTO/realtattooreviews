@@ -39,7 +39,7 @@ export default async function CityProviderComparisonTable({ city, staticProvider
             ].map(({ label, cls }) => (
               <th
                 key={label}
-                className={`px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wider text-(--muted) whitespace-nowrap ${cls}`}
+                className={`px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wider text-heading whitespace-nowrap ${cls}`}
               >
                 {label}
               </th>
@@ -55,14 +55,14 @@ export default async function CityProviderComparisonTable({ city, staticProvider
                 <td className="px-4 py-3 font-semibold text-(--ink) whitespace-nowrap">
                   {profile.providerName}
                 </td>
-                <td className="hidden md:table-cell px-4 py-3 text-(--muted) whitespace-nowrap">
+                <td className="hidden md:table-cell px-4 py-3 text-heading whitespace-nowrap">
                   {profile.neighborhood}
                 </td>
-                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">
+                <td className="px-4 py-3 text-heading whitespace-nowrap">
                   {profile.staticMethod}
                 </td>
                 {isPending ? (
-                  <td colSpan={3} className="px-4 py-3 text-(--muted) italic">
+                  <td colSpan={3} className="px-4 py-3 text-heading italic">
                     Review sample pending
                   </td>
                 ) : (
@@ -78,7 +78,7 @@ export default async function CityProviderComparisonTable({ city, staticProvider
                     </td>
                   </>
                 )}
-                <td className="hidden md:table-cell px-4 py-3 text-(--muted)">
+                <td className="hidden md:table-cell px-4 py-3 text-heading">
                   {live ? computeStandoutFit(live) : "-"}
                 </td>
               </tr>
@@ -86,7 +86,7 @@ export default async function CityProviderComparisonTable({ city, staticProvider
           })}
         </tbody>
       </table>
-      <p className="px-4 py-2 text-[11px] text-(--muted) bg-(--surface) border-t border-(--line)">
+      <p className="px-4 py-2 text-[11px] text-heading bg-(--surface) border-t border-(--line)">
         Sample capped at 50 per provider. Lifetime Google review counts are higher.
       </p>
     </div>

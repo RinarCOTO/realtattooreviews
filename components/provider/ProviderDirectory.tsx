@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import Card from "@/components/ui/Card";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 type Method = "Laser" | "Non-laser";
 type Footprint = "National chain" | "Regional" | "Single-market";
@@ -92,7 +93,7 @@ export default function ProviderDirectory({
       {/* Controls */}
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2">
-          <label className="text-[12px] font-medium text-muted">Method</label>
+          <label className="text-[12px] font-medium text-heading">Method</label>
           <select value={methodFilter} onChange={(e) => setMethodFilter(e.target.value)} className={selectClass}>
             <option>All</option>
             <option>Laser</option>
@@ -100,7 +101,7 @@ export default function ProviderDirectory({
           </select>
         </div>
         <div className="flex items-center gap-2">
-          <label className="text-[12px] font-medium text-muted">Footprint</label>
+          <label className="text-[12px] font-medium text-heading">Footprint</label>
           <select value={footprintFilter} onChange={(e) => setFootprintFilter(e.target.value)} className={selectClass}>
             <option>All</option>
             <option value="National chain">National chain</option>
@@ -108,7 +109,7 @@ export default function ProviderDirectory({
           </select>
         </div>
         <div className="flex items-center gap-2">
-          <label className="text-[12px] font-medium text-muted">Sort</label>
+          <label className="text-[12px] font-medium text-heading">Sort</label>
           <select
             value={`${sortKey}-${sortDir}`}
             onChange={(e) => handleSortChange(e.target.value)}
@@ -133,7 +134,7 @@ export default function ProviderDirectory({
 
       {/* Provider cards */}
       {filtered.length === 0 ? (
-        <p className="py-8 text-center text-muted">No providers match the selected filters.</p>
+        <p className="py-8 text-center text-heading">No providers match the selected filters.</p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p) => (
@@ -159,10 +160,10 @@ export default function ProviderDirectory({
               </div>
 
               {/* Technology */}
-              <p className="text-[12px] text-muted">{p.technology}</p>
+              <p className="text-[12px] text-heading">{p.technology}</p>
 
               {/* Stats row */}
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-muted">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-heading">
                 <span>{p.locations}</span>
                 {p.reviews != null && (
                   <>
@@ -179,17 +180,19 @@ export default function ProviderDirectory({
               </div>
 
               {/* Best for */}
-              <p className="text-[12px] leading-relaxed text-muted">{p.bestFor}</p>
+              <p className="text-[12px] leading-relaxed text-heading">{p.bestFor}</p>
 
               {/* CTA */}
-              <p className="mt-auto pt-1 text-[13px] font-semibold text-accent">Read review →</p>
+              <p className="mt-auto inline-flex items-center gap-1 pt-1 text-[13px] font-semibold text-accent">
+                Read review <ChevronRightIcon className="size-3.5" />
+              </p>
             </Link>
           ))}
         </div>
       )}
 
       {/* Footer note */}
-      <p className="mt-4 text-[11px] text-subtle">
+      <p className="mt-4 text-[11px] text-heading">
         Review counts reflect our internal review sample, not lifetime Google totals. Data refreshed: {refreshedAt}
       </p>
 
@@ -200,15 +203,15 @@ export default function ProviderDirectory({
       {pendingProviders.length > 0 && (
         <Card className="mt-4 p-6">
           <h3 className="mb-1 text-[15px] font-semibold text-heading">Coverage pending</h3>
-          <p className="mb-4 text-[13px] leading-relaxed text-muted">
+          <p className="mb-4 text-[13px] leading-relaxed text-heading">
             Providers tracked in our coverage plan that do not yet have a review sample in our dataset.
           </p>
-          <p className="text-[13px] leading-relaxed text-subtle">
+          <p className="text-[13px] leading-relaxed text-heading">
             {pendingProviders.map((p, i) => (
               <span key={p.name}>
                 {i > 0 && <span className="mx-2 text-border">·</span>}
                 <span className="font-medium">{p.name}</span>
-                {p.markets && <span className="text-[12px] text-muted"> ({p.markets})</span>}
+                {p.markets && <span className="text-[12px] text-heading"> ({p.markets})</span>}
               </span>
             ))}
           </p>

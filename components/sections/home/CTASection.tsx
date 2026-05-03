@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 export default function CTASection() {
   return (
@@ -17,13 +18,15 @@ export default function CTASection() {
               </svg>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted">Cost Guide</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-heading">Cost Guide</p>
               <p className="mt-1 text-base font-semibold text-heading">How much does tattoo removal cost?</p>
-              <p className="mt-1.5 text-sm text-muted">
+              <p className="mt-1.5 text-sm text-heading">
                 Session pricing, package deals, what affects cost, and what to ask before you book.
               </p>
             </div>
-            <span className="mt-auto text-sm font-medium text-accent group-hover:underline">Read the cost guide →</span>
+            <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:underline">
+              Read the cost guide <ChevronRightIcon className="size-4" />
+            </span>
           </Link>
 
           <Link
@@ -36,13 +39,15 @@ export default function CTASection() {
               </svg>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted">Before &amp; After</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-heading">Before &amp; After</p>
               <p className="mt-1 text-base font-semibold text-heading">Real removal results from real patients</p>
-              <p className="mt-1.5 text-sm text-muted">
+              <p className="mt-1.5 text-sm text-heading">
                 Browse patient-submitted before and after photos across providers and ink types.
               </p>
             </div>
-            <span className="mt-auto text-sm font-medium text-accent group-hover:underline">Browse results →</span>
+            <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:underline">
+              Browse results <ChevronRightIcon className="size-4" />
+            </span>
           </Link>
 
         </div>

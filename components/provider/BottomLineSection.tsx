@@ -29,7 +29,7 @@ export default function BottomLineSection({
           </h2>
           <p className="text-[15px] leading-[1.6] text-(--body)">{copy}</p>
         </div>
-        <p className="-mt-4 mb-10 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
+        <p className="-mt-4 mb-10 font-sans text-[14px] leading-relaxed text-heading max-w-prose">
           {actionLine}
         </p>
         <div className="flex flex-wrap gap-3">

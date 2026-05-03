@@ -15,7 +15,7 @@ export default function JumpNav({ items }: JumpNavProps) {
             <a
               key={item.href}
               href={item.href}
-              className="shrink-0 px-3 py-1.5 font-sans text-[11px] font-medium tracking-widest uppercase text-(--muted) transition-colors hover:text-(--accent)"
+              className="shrink-0 px-3 py-1.5 font-sans text-[11px] font-medium tracking-widest uppercase text-heading transition-colors hover:text-(--accent)"
             >
               {item.label}
             </a>

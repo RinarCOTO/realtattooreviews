@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Brand } from "@/types/brand";
 import ProviderLogo from "@/components/ui/ProviderLogo";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 type Props = {
   brand: Brand;
@@ -30,12 +31,12 @@ export default function BrandCard({ brand }: Props) {
         </div>
         <div className="min-w-0">
           <p className="truncate text-[15px] font-bold text-heading">{brand.name}</p>
-          <p className="text-[11px] text-muted">{brand.footprint}</p>
+          <p className="text-[11px] text-heading">{brand.footprint}</p>
         </div>
       </div>
 
       {/* Descriptor */}
-      <p className="mt-3 text-sm leading-relaxed text-muted">{brand.descriptor}</p>
+      <p className="mt-3 text-sm leading-relaxed text-heading">{brand.descriptor}</p>
 
       {/* Divider */}
       <div className="my-4 border-t border-divider" />
@@ -44,23 +45,23 @@ export default function BrandCard({ brand }: Props) {
       <div className="flex items-center gap-4 text-[13px]">
         <div className="flex flex-col items-center">
           <span className="font-bold text-heading">{brand.totalReviews}</span>
-          <span className="text-[11px] text-muted">reviews</span>
+          <span className="text-[11px] text-heading">reviews</span>
         </div>
         <div className="h-7 w-px bg-divider" />
         <div className="flex flex-col items-center">
           <span className="font-bold text-heading">{brand.avgRating.toFixed(1)}</span>
-          <span className="text-[11px] text-muted">avg rating</span>
+          <span className="text-[11px] text-heading">avg rating</span>
         </div>
         <div className="h-7 w-px bg-divider" />
         <div className="flex flex-col items-center">
           <span className="font-bold text-heading">{brand.locationCount}</span>
-          <span className="text-[11px] text-muted">{brand.locationCount === 1 ? "location" : "locations"}</span>
+          <span className="text-[11px] text-heading">{brand.locationCount === 1 ? "location" : "locations"}</span>
         </div>
       </div>
 
       {/* Markets */}
-      <p className="mt-3 text-[12px] text-muted">
-        <span className="font-medium text-subtle">Markets: </span>
+      <p className="mt-3 text-[12px] text-heading">
+        <span className="font-medium text-heading">Markets: </span>
         {brand.markets.join(" · ")}
       </p>
 
@@ -74,9 +75,9 @@ export default function BrandCard({ brand }: Props) {
         </span>
         <Link
           href={`/reviews/${brand.slug}`}
-          className="rounded-full bg-accent px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-accent-hover"
+          className="inline-flex items-center gap-1 rounded-full bg-accent px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-accent-hover"
         >
-          View reviews →
+          View reviews <ChevronRightIcon className="size-3.5" />
         </Link>
       </div>
     </div>

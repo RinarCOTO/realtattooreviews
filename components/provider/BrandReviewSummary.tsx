@@ -20,7 +20,7 @@ export default async function BrandReviewSummary({ brand }: Props) {
   if (ranked.length === 0) {
     return (
       <div className="rounded-xl border border-dashed border-(--line) bg-(--bg) p-5">
-        <p className="font-sans text-[13px] text-(--muted) m-0">
+        <p className="font-sans text-[13px] text-heading m-0">
           No published reviews for {brand} are in our dataset yet. Sample is building.
         </p>
       </div>
@@ -52,7 +52,7 @@ export default async function BrandReviewSummary({ brand }: Props) {
 
           <div className="grid grid-cols-3 gap-3 ml-8">
             <div className="rounded-lg bg-(--bg) border border-(--line) p-3 text-center">
-              <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
+              <p className="font-sans text-[11px] uppercase tracking-wider text-heading mb-0.5">
                 Sample
               </p>
               <p className="font-sans text-[18px] font-bold text-(--ink) leading-none">
@@ -60,7 +60,7 @@ export default async function BrandReviewSummary({ brand }: Props) {
               </p>
             </div>
             <div className="rounded-lg bg-(--bg) border border-(--line) p-3 text-center">
-              <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
+              <p className="font-sans text-[11px] uppercase tracking-wider text-heading mb-0.5">
                 Positive
               </p>
               <p className="font-sans text-[18px] font-bold text-(--ink) leading-none">
@@ -68,7 +68,7 @@ export default async function BrandReviewSummary({ brand }: Props) {
               </p>
             </div>
             <div className="rounded-lg bg-(--bg) border border-(--line) p-3 text-center">
-              <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
+              <p className="font-sans text-[11px] uppercase tracking-wider text-heading mb-0.5">
                 Negative
               </p>
               <p className="font-sans text-[18px] font-bold text-(--ink) leading-none">
@@ -80,7 +80,7 @@ export default async function BrandReviewSummary({ brand }: Props) {
       ))}
 
       {lastRefreshed && (
-        <p className="font-sans text-[12px] text-(--muted) text-right">
+        <p className="font-sans text-[12px] text-heading text-right">
           Data refreshed: {lastRefreshed} &middot; Sample capped at 50 per location
         </p>
       )}

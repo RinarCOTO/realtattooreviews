@@ -49,7 +49,7 @@ export default function GuideBulletList({ items, variant = "accent" }: Props) {
       {items.map((item) => (
         <li
           key={item}
-          className="flex items-start gap-2.5 font-sans text-[13px] leading-snug text-(--muted)"
+          className="flex items-start gap-2.5 font-sans text-[13px] leading-snug text-heading"
         >
           {useIcons ? (
             isWarning ? <MinusIcon /> : <PlusIcon />

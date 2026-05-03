@@ -73,8 +73,8 @@ export default function GuideLayout({
               <Link href="/guides" className="hover:text-(--ink) transition-colors">
                 Guides
               </Link>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">
+              <span className="text-heading font-normal normal-case tracking-normal">/</span>
+              <span className="text-heading font-normal normal-case tracking-normal">
                 {breadcrumb}
               </span>
             </>
@@ -101,10 +101,10 @@ export default function GuideLayout({
         <section className="border-t border-(--line) py-10 bg-(--bg)">
           <Container>
             <div className="mx-auto max-w-4xl">
-              <p className="font-mono text-[11px] tracking-widest uppercase text-(--muted) mb-2">
+              <p className="font-mono text-[11px] tracking-widest uppercase text-heading mb-2">
                 Sources
               </p>
-              <p className="font-sans text-[13px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[13px] leading-relaxed text-heading">
                 {sources}
               </p>
             </div>

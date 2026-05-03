@@ -85,7 +85,7 @@ export default function FAQSection({
           {title}
         </h2>
         {description && (
-          <p className="text-[15px] leading-relaxed text-(--muted) max-w-2xl m-0 mb-10">
+          <p className="text-[15px] leading-relaxed text-heading max-w-2xl m-0 mb-10">
             {description}
           </p>
         )}
@@ -105,7 +105,7 @@ export default function FAQSection({
                   +
                 </span>
               </summary>
-              <div className="mt-3 max-w-2xl text-[14px] leading-relaxed text-(--muted)">
+              <div className="mt-3 max-w-2xl text-[14px] leading-relaxed text-heading">
                 {item.answer}
               </div>
             </details>

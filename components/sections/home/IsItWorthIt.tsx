@@ -4,6 +4,7 @@ import Script from "next/script";
 import Container from "@/components/layout/Container";
 import { guides } from "@/lib/mock-data/guides";
 import { assetPath } from "@/lib/utils/asset";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 const guidesListSchema = {
   "@context": "https://schema.org",
@@ -21,11 +22,13 @@ const guidesListSchema = {
 };
 
 const PILL_LABELS: Record<string, string> = {
-  "tattoo-removal-aftercare":     "BETWEEN SESSIONS",
+  "saline-tattoo-removal":        "METHOD",
+  "laser-tattoo-removal":         "METHOD",
+  "non-laser-tattoo-removal":     "METHOD",
+  "tattoo-removal-aftercare":     "WHAT TO EXPECT",
   "tattoo-removal-healing-process": "WHAT TO EXPECT",
   "tattoo-removal-side-effects":  "RISKS",
   "tattoo-removal-scarring":      "RISKS",
-  "saline-tattoo-removal":        "METHOD",
 };
 
 export default function IsItWorthIt() {
@@ -44,16 +47,16 @@ export default function IsItWorthIt() {
             <h2 className="text-[32px] font-bold text-heading">
               Treatment Guides
             </h2>
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-heading">
               What to expect before, during, and after tattoo removal, written
               from real patient experiences, not clinic marketing.
             </p>
           </div>
           <Link
             href="/guides"
-            className="shrink-0 text-sm font-medium text-accent hover:underline"
+            className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-accent hover:underline"
           >
-            Browse all guides →
+            Browse all guides <ChevronRightIcon className="size-4" />
           </Link>
         </div>
 
@@ -87,7 +90,7 @@ export default function IsItWorthIt() {
                 {/* Pill badge, top right */}
                 <div className="ml-auto rounded-full bg-black/60 px-3 py-1 backdrop-blur-sm">
                   <span className="text-xs font-semibold uppercase tracking-wider text-white/80">
-                    {PILL_LABELS[guide.slug] ?? "GUIDE"}
+                    {PILL_LABELS[guide.slug] ?? "WHAT TO EXPECT"}
                   </span>
                 </div>
 
@@ -106,10 +109,10 @@ export default function IsItWorthIt() {
                     {guide.description}
                   </p>
                   <p
-                    className="mt-3 text-xs font-semibold"
+                    className="mt-3 inline-flex items-center gap-1 text-xs font-semibold"
                     style={{ color: "rgba(255,255,255,0.9)" }}
                   >
-                    Read guide →
+                    Read guide <ChevronRightIcon className="size-3.5" />
                   </p>
                 </div>
               </div>
@@ -147,7 +150,7 @@ export default function IsItWorthIt() {
                 {/* Pill badge, top right */}
                 <div className="ml-auto rounded-full bg-black/60 px-3 py-1 backdrop-blur-sm">
                   <span className="text-xs font-semibold uppercase tracking-wider text-white/80">
-                    {PILL_LABELS[guide.slug] ?? "GUIDE"}
+                    {PILL_LABELS[guide.slug] ?? "WHAT TO EXPECT"}
                   </span>
                 </div>
 
@@ -161,10 +164,10 @@ export default function IsItWorthIt() {
                   </h3>
                   <span className="sr-only">{guide.description}</span>
                   <p
-                    className="mt-2.5 text-xs font-semibold"
+                    className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold"
                     style={{ color: "rgba(255,255,255,0.9)" }}
                   >
-                    Read guide →
+                    Read guide <ChevronRightIcon className="size-3.5" />
                   </p>
                 </div>
               </div>
@@ -173,10 +176,10 @@ export default function IsItWorthIt() {
         </div>
 
         {/* Footer note */}
-        <p className="mt-8 text-center text-xs text-subtle">
+        <p className="mt-8 text-center text-xs text-heading">
           Guides are based on patterns from sourced patient reviews, not clinical claims.{" "}
-          <Link href="/methodology" className="text-accent hover:underline">
-            How we evaluate outcomes →
+          <Link href="/methodology" className="inline-flex items-center gap-1 text-accent hover:underline">
+            How we evaluate outcomes <ChevronRightIcon className="size-3.5" />
           </Link>
         </p>
 

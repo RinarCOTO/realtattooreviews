@@ -86,14 +86,14 @@ export default function ReviewListWithFilters({ reviews, showProvider = true }: 
           <option value="3">3 stars and up</option>
         </select>
 
-        <span className="ml-auto text-sm text-muted">
+        <span className="ml-auto text-sm text-heading">
           {filtered.length} review{filtered.length !== 1 ? "s" : ""}
         </span>
       </div>
 
       {/* ── Review grid ─────────────────────────────────────────────────────── */}
       {visible.length === 0 ? (
-        <p className="py-12 text-center text-sm text-muted">No reviews match your filters.</p>
+        <p className="py-12 text-center text-sm text-heading">No reviews match your filters.</p>
       ) : (
         <>
           <div className="grid gap-4 sm:grid-cols-2">

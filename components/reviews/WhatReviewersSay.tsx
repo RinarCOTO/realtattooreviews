@@ -72,7 +72,7 @@ function ReviewsDisplay({
       {/* Classified review summaries */}
       {(classified.length > 0 || sortKey === "critical_first") && (
         <div>
-          <p className="font-sans text-[11px] uppercase tracking-widest text-(--muted) mb-4">
+          <p className="font-sans text-[11px] uppercase tracking-widest text-heading mb-4">
             {sortKey === "critical_first"
               ? `${classified.length} critical ${classified.length === 1 ? "review" : "reviews"} (of ${totalClassified} classified)`
               : `${classified.length} classified ${classified.length === 1 ? "review" : "reviews"}`}
@@ -95,11 +95,11 @@ function ReviewsDisplay({
                 </button>
               ))}
             </div>
-            <p className="mt-2 text-sm text-muted">{activeOption.description}</p>
+            <p className="mt-2 text-sm text-heading">{activeOption.description}</p>
           </div>
 
           {classified.length === 0 && sortKey === "critical_first" ? (
-            <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-[14px] leading-relaxed text-(--muted)">
+            <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-[14px] leading-relaxed text-heading">
               No reviews on file rate this provider 3 stars or lower. The full
               classified pool is available under the other sort options.
             </div>
@@ -120,7 +120,7 @@ function ReviewsDisplay({
             </button>
           )}
 
-          <p className="mt-4 font-sans text-[11px] text-(--muted) border-t border-(--line) pt-4">
+          <p className="mt-4 font-sans text-[11px] text-heading border-t border-(--line) pt-4">
             Source: Reviews sourced from Google Maps and summarized by RTR in our own words.
             We classify each review for removal type, outcome, and scarring mentions.
             Original reviews available on Google Maps.{" "}

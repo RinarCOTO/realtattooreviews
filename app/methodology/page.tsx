@@ -121,8 +121,8 @@ export default function MethodologyPage() {
             <Link href="/" className="hover:text-(--ink) transition-colors">
               Home
             </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
+            <span className="text-heading font-normal normal-case tracking-normal">/</span>
+            <span className="text-heading font-normal normal-case tracking-normal">
               Methodology
             </span>
           </>
@@ -143,7 +143,7 @@ export default function MethodologyPage() {
               <p className="text-[15px] leading-relaxed text-body">
                 This is not a marketing page. It is an operating document. The goal is to make our scoring system understandable, consistent, and defensible. Every provider page, city page, category page, and comparison page on this site is built on the same framework described here.
               </p>
-              <p className="text-[15px] leading-relaxed text-muted">
+              <p className="text-[15px] leading-relaxed text-heading">
                 If you want to know our editorial standards, see the{" "}
                 <Link href="/editorial-policy" className="font-medium text-accent hover:underline">editorial policy</Link>.
               </p>
@@ -164,7 +164,7 @@ export default function MethodologyPage() {
                     </div>
                     <div>
                       <p className="text-[15px] font-semibold text-heading">{f.title}</p>
-                      <p className="mt-1 text-[14px] leading-relaxed text-muted">{f.body}</p>
+                      <p className="mt-1 text-[14px] leading-relaxed text-heading">{f.body}</p>
                     </div>
                   </Card>
                 ))}
@@ -179,7 +179,7 @@ export default function MethodologyPage() {
               </p>
 
               <div className="rounded-xl border border-border bg-white p-5">
-                <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-muted">Data points per review</p>
+                <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-heading">Data points per review</p>
                 <ul className="space-y-2">
                   {[
                     "Star rating (1 to 5)",
@@ -243,7 +243,7 @@ export default function MethodologyPage() {
                   </ul>
                 </div>
                 <div className="rounded-xl border border-border p-5">
-                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-muted">What we do not use</p>
+                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-heading">What we do not use</p>
                   <ul className="space-y-2">
                     {[
                       "Reviews from provider-owned websites (potential selection bias)",
@@ -285,7 +285,7 @@ export default function MethodologyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-border bg-white p-5">
-                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-muted">What we do not verify</p>
+                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-heading">What we do not verify</p>
                   <ul className="space-y-2">
                     {[
                       "Whether individual reviewers actually received treatment at the provider",
@@ -386,7 +386,7 @@ export default function MethodologyPage() {
                   </ul>
                 </div>
                 <div className="rounded-xl border border-border bg-white p-5">
-                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-muted">What does not trigger an update</p>
+                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-heading">What does not trigger an update</p>
                   <ul className="space-y-2">
                     {[
                       "Provider requests for immediate re-scoring",

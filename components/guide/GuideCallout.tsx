@@ -12,7 +12,7 @@ export default function GuideCallout({ label = "Note", children }: Props) {
         background: "linear-gradient(white, white) padding-box, linear-gradient(135deg, #C8E6E4, #F5DDD0, #C8E6E4) border-box",
       }}
     >
-      <p className="font-sans text-[13px] leading-relaxed text-(--muted) m-0">
+      <p className="font-sans text-[13px] leading-relaxed text-heading m-0">
         <span className="font-semibold text-(--ink)">{label}: </span>
         {children}
       </p>

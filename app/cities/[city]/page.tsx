@@ -10,6 +10,7 @@ import { cities as mockCities } from "@/lib/mock-data/cities";
 import { providers } from "@/lib/mock-data/providers";
 import { getReviewsByCity, getAllProviderAggregates } from "@/lib/data/reviews";
 import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import type { Review } from "@/types/review";
 
 type Props = { params: Promise<{ city: string }> };
@@ -75,8 +76,8 @@ export default async function CityPage({ params }: Props) {
     <main className="min-h-screen">
 
       {/* Hero */}
-      <section className="bg-canvas py-6 px-4 sm:px-6">
-        <div className="rounded-3xl pt-18 pb-16" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
+      <section className="bg-canvas py-6">
+        <div className="pt-18 pb-16 w-full" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
           <Container>
             <div className="flex items-center gap-2.5 mb-7 font-sans text-[11px] tracking-[0.14em] uppercase text-(--accent)">
               <span className="inline-block w-6 h-px bg-(--accent) shrink-0" />
@@ -87,7 +88,7 @@ export default async function CityPage({ params }: Props) {
             <h1 className="font-sans font-bold text-[clamp(40px,6vw,72px)] leading-none tracking-[-0.03em] m-0 text-(--ink) max-w-[20ch]">
               Tattoo Removal in {city.name}
             </h1>
-            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-(--muted) max-w-130">
+            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-heading max-w-130">
               {providerCount} providers · {reviewCount} verified reviews
             </p>
           </Container>
@@ -117,16 +118,18 @@ export default async function CityPage({ params }: Props) {
                       {(liveAggregates[provider.slug]?.rating ?? provider.rating).toFixed(1)}
                     </span>
                   </div>
-                  <p className="text-[13px] leading-relaxed text-(--muted) line-clamp-2">{provider.summary}</p>
+                  <p className="text-[13px] leading-relaxed text-heading line-clamp-2">{provider.summary}</p>
                   <div className="mt-auto flex items-center justify-between pt-3">
-                    <span className="text-[12px] text-(--muted)">{liveAggregates[provider.slug]?.reviewCount ?? provider.reviewCount} reviews</span>
-                    <span className="text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">View reviews →</span>
+                    <span className="text-[12px] text-heading">{liveAggregates[provider.slug]?.reviewCount ?? provider.reviewCount} reviews</span>
+                    <span className="inline-flex items-center gap-1 text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">
+                      View reviews <ChevronRightIcon className="size-3.5" />
+                    </span>
                   </div>
                 </Link>
               ))}
             </div>
           ) : (
-            <p className="text-(--muted)">No providers listed for this city yet.</p>
+            <p className="text-heading">No providers listed for this city yet.</p>
           )}
         </Container>
       </section>
@@ -167,7 +170,7 @@ export default async function CityPage({ params }: Props) {
                         ) : (
                           <span className="text-[17px] font-semibold text-(--ink)">{group.name}</span>
                         )}
-                        <span className="text-[13px] text-(--muted)">{group.reviews.length} reviews</span>
+                        <span className="text-[13px] text-heading">{group.reviews.length} reviews</span>
                       </div>
                       <WhatReviewersSay
                         reviews={group.reviews}

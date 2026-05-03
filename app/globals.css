@@ -9,7 +9,7 @@
   --bg:               oklch(0.97 0.002 265);
   --surface:          oklch(0.96 0.003 265);
   --text:             oklch(0.24 0.018 30);
-  --text-soft:        oklch(0.52 0.012 36);
+  --text-soft:        oklch(0.24 0.018 30);
 
   --primary:          #243746;
   --primary-strong:   #1C2C38;
@@ -41,13 +41,13 @@
   --color-cloud-gray:      oklch(0.972 0.004 240);
   --color-feathering-mist: oklch(0.975 0.009 62);
   --color-background:      oklch(0.97 0.002 265);
-  --color-foreground:      oklch(0.52 0.012 36);
+  --color-foreground:      oklch(0.24 0.018 30);
 
   /* Text */
   --color-heading:         oklch(0.24 0.018 30);
-  --color-body:            oklch(0.52 0.012 36);
-  --color-muted:           oklch(0.52 0.012 36);
-  --color-subtle:          oklch(0.62 0.008 42);
+  --color-body:            oklch(0.24 0.018 30);
+  --color-muted:           oklch(0.24 0.018 30);
+  --color-subtle:          oklch(0.24 0.018 30);
 
   /* Primary (dark navy) */
   --color-primary:         #243746;

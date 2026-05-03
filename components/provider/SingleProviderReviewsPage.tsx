@@ -16,6 +16,7 @@ import BottomLineSection from "./BottomLineSection";
 import BestForSection from "./BestForSection";
 import OverviewSection from "./OverviewSection";
 import FAQSection from "@/components/sections/FAQSection";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import {
   buildBestFor,
   buildBottomLine,
@@ -65,6 +66,29 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
   const useCaseFocus = buildUseCaseFocus(reviews);
   const city = provider.market.split(",")[0].trim();
   const citySlug = city.toLowerCase().replace(/\s+/g, "-");
+  const selfPath = canonicalPath ?? `/reviews/${provider.slug}/`;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    articleSection: "Reviews",
+    headline: `${provider.name} Tattoo Removal Reviews`,
+    description: `${realCount} sourced reviews for ${provider.name}. Editorial review summary covering outcomes, pricing context, treatment approach, and local fit before booking.`,
+    mainEntityOfPage: `https://realtattooreviews.com${selfPath}`,
+    author: {
+      "@type": "Organization",
+      name: "RealTattooReviews",
+      url: "https://realtattooreviews.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "RealTattooReviews",
+      url: "https://realtattooreviews.com",
+    },
+    about: {
+      "@type": "Organization",
+      name: provider.name,
+    },
+  };
   const jumpItems = [
     { label: "Overview",      href: "#overview" },
     { label: "Reviews",       href: "#reviews" },
@@ -120,7 +144,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
                 </p>
               )}
               {useCaseFocus && (
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   {useCaseFocus}
                 </p>
               )}
@@ -176,21 +200,21 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
             <p className="font-sans font-semibold text-[22px] leading-[1.1] tracking-[-0.02em] text-(--ink) mb-3">
               Local and City Context
             </p>
-            <p className="text-[14px] leading-relaxed text-(--muted)">
+            <p className="text-[14px] leading-relaxed text-heading">
               {provider.name} operates in {provider.market}. If you already know your city, move next to the local comparison page before making a decision. A national reputation can be directionally useful, but local execution still matters.
             </p>
-            <Link href={`/cities/${citySlug}`} className="mt-4 inline-block text-[13px] font-medium text-(--accent) hover:underline">
-              See local comparison coverage →
+            <Link href={`/cities/${citySlug}`} className="mt-4 inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline">
+              See local comparison coverage <ChevronRightIcon className="size-3.5" />
             </Link>
           </div>
           <div className="border border-(--line) bg-white p-6 rounded-xl">
             <p className="font-sans font-semibold text-[22px] leading-[1.1] tracking-[-0.02em] text-(--ink) mb-3">
               Provider Snapshot
             </p>
-            <p className="text-[14px] leading-relaxed text-(--muted)">{provider.summary}</p>
+            <p className="text-[14px] leading-relaxed text-heading">{provider.summary}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {provider.tags.map((tag) => (
-                <span key={tag} className="border border-(--line) bg-(--surface) px-3 py-1 font-sans text-[11px] tracking-widest uppercase text-(--muted)">{tag}</span>
+                <span key={tag} className="border border-(--line) bg-(--surface) px-3 py-1 font-sans text-[11px] tracking-widest uppercase text-heading">{tag}</span>
               ))}
             </div>
             {provider.website ? (
@@ -213,7 +237,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${provider.name}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
-          <p className="mt-8 font-sans text-[14px] leading-relaxed text-(--muted)">
+          <p className="mt-8 font-sans text-[14px] leading-relaxed text-heading">
             The right outcome is not choosing the most familiar brand. It is choosing the provider whose strengths match your case most closely.
           </p>
         </Container>
@@ -247,10 +271,15 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: "https://realtattooreviews.com/" },
               { "@type": "ListItem", position: 2, name: "Reviews", item: "https://realtattooreviews.com/reviews/" },
-              { "@type": "ListItem", position: 3, name: provider.name, item: `https://realtattooreviews.com${canonicalPath ?? `/reviews/${provider.slug}/`}` },
+              { "@type": "ListItem", position: 3, name: provider.name, item: `https://realtattooreviews.com${selfPath}` },
             ],
           }),
         }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
 
       <script

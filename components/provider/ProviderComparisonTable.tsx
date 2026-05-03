@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useMemo } from "react";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 type Method = "Laser" | "Non-laser";
 type Footprint = "National chain" | "Regional" | "Single-market";
@@ -68,7 +69,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
   }, [providers, methodFilter, footprintFilter, settingFilter, sortKey, sortDir]);
 
   function SortIcon({ col }: { col: SortKey }) {
-    if (sortKey !== col) return <span className="ml-1 text-muted opacity-40">↕</span>;
+    if (sortKey !== col) return <span className="ml-1 text-heading opacity-40">↕</span>;
     return <span className="ml-1 text-accent">{sortDir === "asc" ? "↑" : "↓"}</span>;
   }
 
@@ -80,7 +81,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
       {/* Filters */}
       <div className="mb-5 flex flex-wrap gap-3">
         <div className="flex items-center gap-2">
-          <label className="text-[12px] font-medium text-muted">Method</label>
+          <label className="text-[12px] font-medium text-heading">Method</label>
           <select value={methodFilter} onChange={(e) => setMethodFilter(e.target.value)} className={selectClass}>
             <option>All</option>
             <option>Laser</option>
@@ -88,7 +89,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
           </select>
         </div>
         <div className="flex items-center gap-2">
-          <label className="text-[12px] font-medium text-muted">Footprint</label>
+          <label className="text-[12px] font-medium text-heading">Footprint</label>
           <select value={footprintFilter} onChange={(e) => setFootprintFilter(e.target.value)} className={selectClass}>
             <option>All</option>
             <option value="National chain">National chain</option>
@@ -97,7 +98,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
           </select>
         </div>
         <div className="flex items-center gap-2">
-          <label className="text-[12px] font-medium text-muted">Setting</label>
+          <label className="text-[12px] font-medium text-heading">Setting</label>
           <select value={settingFilter} onChange={(e) => setSettingFilter(e.target.value)} className={selectClass}>
             <option>All</option>
             <option value="Tattoo removal specialist">Tattoo removal specialist</option>
@@ -149,7 +150,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
           <tbody>
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-4 py-8 text-center text-muted">
+                <td colSpan={8} className="px-4 py-8 text-center text-heading">
                   No providers match the selected filters.
                 </td>
               </tr>
@@ -171,18 +172,18 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
                     {p.method}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-muted">{p.technology}</td>
-                <td className="px-4 py-3 text-muted">{p.locations}</td>
-                <td className="px-4 py-3 text-muted">
-                  {p.reviews != null ? p.reviews : <span className="text-subtle">-</span>}
+                <td className="px-4 py-3 text-heading">{p.technology}</td>
+                <td className="px-4 py-3 text-heading">{p.locations}</td>
+                <td className="px-4 py-3 text-heading">
+                  {p.reviews != null ? p.reviews : <span className="text-heading">-</span>}
                 </td>
-                <td className="px-4 py-3 text-muted">
-                  {p.yearsActive != null ? `${p.yearsActive} yrs` : <span className="text-subtle">-</span>}
+                <td className="px-4 py-3 text-heading">
+                  {p.yearsActive != null ? `${p.yearsActive} yrs` : <span className="text-heading">-</span>}
                 </td>
-                <td className="px-4 py-3 text-muted">{p.bestFor}</td>
+                <td className="px-4 py-3 text-heading">{p.bestFor}</td>
                 <td className="px-4 py-3">
-                  <Link href={`/reviews/${p.slug}`} className="whitespace-nowrap text-accent hover:underline">
-                    Read review →
+                  <Link href={`/reviews/${p.slug}`} className="inline-flex items-center gap-1 whitespace-nowrap text-accent hover:underline">
+                    Read review <ChevronRightIcon className="size-3.5" />
                   </Link>
                 </td>
               </tr>
@@ -191,14 +192,14 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
         </table>
       </div>
       <div className="mt-4 flex items-center justify-between">
-        <p className="text-[11px] text-subtle">
+        <p className="text-[11px] text-heading">
           Review counts marked - are pending verification. Years active blanks indicate unverified founding dates. Default sort: alphabetical.
         </p>
         <Link
           href="/reviews"
-          className="shrink-0 ml-4 text-[13px] font-medium text-accent hover:underline"
+          className="ml-4 inline-flex shrink-0 items-center gap-1 text-[13px] font-medium text-accent hover:underline"
         >
-          Read all patient reviews →
+          Read all patient reviews <ChevronRightIcon className="size-3.5" />
         </Link>
       </div>
     </div>

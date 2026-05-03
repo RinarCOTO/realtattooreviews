@@ -75,11 +75,11 @@ export default function AboutPage() {
             {/* What this site is */}
             <div className="py-12">
               <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   RealTattooReviews is a review and comparison site for tattoo removal. It covers
                   providers, methods, and the practical decisions people face when removing a tattoo.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   The site publishes provider reviews built from public Google review data. City
                   pages rank providers in each metro. Comparison pages put methods and brands side
                   by side. Category pages organize by use case. Guides cover healing, aftercare,
@@ -96,17 +96,17 @@ export default function AboutPage() {
             {/* Why it exists */}
             <GuideSection heading="Why It Exists">
               <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
                   Most people researching tattoo removal are working from provider websites and
                   scattered forum posts. Provider marketing is designed to sell. Forum advice is
                   inconsistent. Pricing is hidden behind consultations. Method comparisons barely
                   exist, and the ones that do usually favor whatever the writer sells.
                 </p>
-                <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0 mt-3">
+                <p className="font-sans text-[14px] leading-relaxed text-heading m-0 mt-3">
                   The result is that people make a decision involving months of treatment, thousands
                   of dollars, and real risk to their skin based on incomplete or biased information.
                 </p>
-                <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0 mt-3">
+                <p className="font-sans text-[14px] leading-relaxed text-heading m-0 mt-3">
                   This site exists because that gap is real and nobody was filling it well. The goal
                   is straightforward: help people match the right method and provider to their
                   specific tattoo, skin type, and budget. Not push a single answer. Not rank one
@@ -119,12 +119,12 @@ export default function AboutPage() {
             {/* Who runs it */}
             <GuideSection heading="Who Runs It">
               <div className="rounded-xl border border-(--line) bg-(--surface) p-5">
-                <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
                   The site is operated independently. Editorial decisions, scoring, and publication
                   are handled by the team that built it. No tattoo removal provider, laser
                   manufacturer, or device company has ownership or editorial control.
                 </p>
-                <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0 mt-3">
+                <p className="font-sans text-[14px] leading-relaxed text-heading m-0 mt-3">
                   For how the site handles funding, editorial independence, and corrections,
                   see the{" "}
                   <Link href="/editorial-policy" className="text-(--accent) hover:underline">
@@ -137,7 +137,7 @@ export default function AboutPage() {
 
             {/* How it works */}
             <GuideSection heading="How It Works">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page
@@ -166,7 +166,7 @@ export default function AboutPage() {
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
                       {item.title}
                     </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
                       {item.body}
                     </p>
                   </div>

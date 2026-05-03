@@ -21,12 +21,12 @@ export default function OverviewSection({ providerName, intro, pros, cons, stats
           title={`Is ${providerName} Worth It?`}
           body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and location consistency make it a good fit for your tattoo, budget, and goals."
         />
-        <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-(--muted) max-w-prose">
+        <p className="-mt-4 mb-8 font-sans text-[14px] leading-relaxed text-heading max-w-prose">
           {intro}
         </p>
         {statsRows && <VerdictSidebar rows={statsRows} />}
         <ProsCons pros={pros} cons={cons} />
-        <p className="mt-6 font-sans text-[13px] leading-relaxed text-(--muted) border-t border-(--line) pt-5">
+        <p className="mt-6 font-sans text-[13px] leading-relaxed text-heading border-t border-(--line) pt-5">
           The important question is not whether every review is positive. It is whether the negatives feel isolated or repeated.
         </p>
       </Container>

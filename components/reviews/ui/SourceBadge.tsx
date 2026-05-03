@@ -4,7 +4,7 @@ type Props = {
 
 export default function SourceBadge({ source }: Props) {
   return (
-    <span className="flex items-center gap-1 text-muted">
+    <span className="flex items-center gap-1 text-heading">
       <svg
         className="h-3 w-3 text-accent"
         fill="none"

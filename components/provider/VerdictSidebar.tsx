@@ -19,7 +19,7 @@ export default function VerdictSidebar({ rows }: VerdictSidebarProps) {
           <p className="text-[42px] font-black leading-none tracking-[-0.03em] text-(--ink)">
             <CountUp end={stat.numeric} decimals={stat.decimals ?? 0} duration={1600} />
           </p>
-          <p className="mt-1.5 font-sans text-[10px] font-medium tracking-widest uppercase text-(--muted)">
+          <p className="mt-1.5 font-sans text-[10px] font-medium tracking-widest uppercase text-heading">
             {stat.label}
           </p>
         </div>

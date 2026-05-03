@@ -6,19 +6,20 @@ import GuideSection from "@/components/guide/GuideSection";
 import GuideCallout from "@/components/guide/GuideCallout";
 import FAQSection from "@/components/sections/FAQSection";
 import PageHero from "@/components/layout/PageHero";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 export const metadata: Metadata = {
   title:
-    "Tattoo Removal Guides: Scarring, Healing, Aftercare, and Saline Removal | RealTattooReviews",
+    "Tattoo Removal Guides: Methods, Scarring, Healing, and Aftercare | RealTattooReviews",
   description:
-    "Practical tattoo removal guides covering scarring risk, the healing process, aftercare instructions, and saline removal. What to expect before, during, and after treatment.",
+    "Practical tattoo removal guides covering laser, non-laser, saline, scarring risk, healing, aftercare, and side effects. What to expect before, during, and after treatment.",
   alternates: {
     canonical: "https://realtattooreviews.com/guides",
   },
   openGraph: {
-    title: "Tattoo Removal Guides: Scarring, Healing, Aftercare, and Saline Removal",
+    title: "Tattoo Removal Guides: Methods, Scarring, Healing, and Aftercare",
     description:
-      "Practical tattoo removal guides covering scarring risk, the healing process, aftercare instructions, and saline removal. What to expect before, during, and after treatment.",
+      "Practical tattoo removal guides covering method choice, scarring risk, healing, aftercare, and side effects.",
   },
 };
 
@@ -26,12 +27,12 @@ const faqs = [
   {
     question: "Which guide should I read first?",
     answer:
-      "If you have not started treatment yet, read the saline tattoo removal guide or the saline vs laser comparison to decide on method. If you have already had a session and want to know what to expect, read the healing process guide. If you are between sessions, read the aftercare guide.",
+      "If you have not started treatment yet, start with the method guides: laser, non-laser, and saline. If you have already had a session and want to know what to expect, read the healing process guide. If you are between sessions, read the aftercare guide.",
   },
   {
     question: "Are these guides specific to a method or provider?",
     answer:
-      "The saline guide is method-specific. The healing, aftercare, and scarring guides apply across both laser and saline methods, with method-specific sections where instructions differ.",
+      "The laser, non-laser, and saline guides are method-specific. The healing, aftercare, side-effects, and scarring guides apply across methods, with method-specific notes where instructions differ.",
   },
   {
     question: "Do these guides replace medical advice?",
@@ -44,7 +45,20 @@ const METHOD_GUIDES = [
   {
     href: "/guides/saline-tattoo-removal",
     title: "Saline Tattoo Removal",
-    desc: "The complete guide to saline removal. How osmotic lift works, which cases it handles best (microblading, PMU, cosmetic tattoos), product brands (Li-FT, A+Ocean, Rejuvi, Botched Ink), cost, sessions, aftercare, and realistic before-and-after expectations.",
+    badge: "METHOD",
+    desc: "How saline removal works, which cosmetic tattoo and microblading cases it suits, and how it compares to laser in outcomes, cost, and healing time.",
+  },
+  {
+    href: "/guides/non-laser-tattoo-removal",
+    title: "Non-Laser Tattoo Removal",
+    badge: "METHOD",
+    desc: "How non-laser methods work, where dermabrasion-based tissue expulsion and chemical extraction fit, and how to weigh them against laser.",
+  },
+  {
+    href: "/guides/laser-tattoo-removal",
+    title: "Laser Tattoo Removal",
+    badge: "METHOD",
+    desc: "How laser tattoo removal works, how Q-switched and picosecond lasers differ, and what affects outcomes by ink color and skin tone.",
   },
 ];
 
@@ -52,20 +66,29 @@ const HEALING_GUIDES = [
   {
     href: "/guides/tattoo-removal-healing-process",
     title: "Tattoo Removal Healing Process",
+    badge: "WHAT TO EXPECT",
     desc: "Stage-by-stage healing timeline from frosting through full recovery. Covers the five healing stages, what is normal versus what is not at each stage, and how long each phase lasts.",
   },
   {
     href: "/guides/tattoo-removal-aftercare",
     title: "Tattoo Removal Aftercare",
+    badge: "WHAT TO EXPECT",
     desc: "Step-by-step aftercare instructions for laser and saline methods. Covers the first 24 hours, Saniderm and Tegaderm removal timing, product recommendations, what to avoid, and warning signs that mean you should call your provider.",
   },
 ];
 
 const RISK_GUIDES = [
   {
+    href: "/guides/tattoo-removal-side-effects",
+    title: "Tattoo Removal Side Effects",
+    badge: "RISKS",
+    desc: "Common and uncommon side effects across all removal methods: hypopigmentation, hyperpigmentation, blistering, swelling, and infection risk.",
+  },
+  {
     href: "/guides/tattoo-removal-scarring",
     title: "Tattoo Removal Scarring",
-    desc: "Does tattoo removal leave scars? Separates normal healing reactions (blistering, pigment changes) from actual scarring (hypertrophic, keloid, atrophic). Covers causes, prevention, treatment options, and when to see a dermatologist.",
+    badge: "RISKS",
+    desc: "A focused look at scarring specifically: when it happens, why it happens, and what your skin type means for the risk.",
   },
 ];
 
@@ -76,20 +99,23 @@ const ELSEWHERE_LINKS = [
   { href: "/providers", label: "Provider pages", desc: "Full review picture for individual brands." },
 ];
 
-function GuideCard({ href, title, desc }: { href: string; title: string; desc: string }) {
+function GuideCard({ href, title, desc, badge }: { href: string; title: string; desc: string; badge: string }) {
   return (
     <Link
       href={href}
       className="group flex flex-col rounded-xl border border-(--line) bg-(--surface) p-5 transition hover:border-(--accent)"
     >
+      <span className="mb-3 w-fit rounded-full border border-(--line) bg-white px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-heading">
+        {badge}
+      </span>
       <p className="font-sans text-[15px] font-semibold text-(--ink) m-0 leading-snug group-hover:text-(--accent) transition-colors">
         {title}
       </p>
-      <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0 mt-2 flex-1">
+      <p className="font-sans text-[14px] leading-relaxed text-heading m-0 mt-2 flex-1">
         {desc}
       </p>
-      <span className="font-sans text-[13px] font-medium text-(--accent) mt-3">
-        Read guide →
+      <span className="mt-3 inline-flex items-center gap-1 font-sans text-[13px] font-medium text-(--accent)">
+        Read guide <ChevronRightIcon className="size-3.5" />
       </span>
     </Link>
   );
@@ -115,7 +141,7 @@ export default function GuidesIndexPage() {
       <PageHero
         label="Guides"
         title={<>Tattoo Removal <span className="text-(--accent)">Guides</span></>}
-        subtitle="Practical knowledge for before, during, and after treatment — based on clinical literature, not clinic marketing."
+        subtitle="Practical knowledge for before, during, and after treatment. Based on clinical literature, not clinic marketing."
       />
 
       {/* Body */}
@@ -126,13 +152,13 @@ export default function GuidesIndexPage() {
             {/* Intro */}
             <div className="py-12">
               <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   Tattoo removal is a multi-session process that spans months. The treatment itself
-                  is only part of the equation. What happens between sessions — healing, aftercare,
-                  scar prevention — determines how well each session builds on the last and whether
-                  you end up with clean skin or complications.
+                  is only part of the equation. What happens between sessions, including healing,
+                  aftercare, and scar prevention, determines how well each session builds on the
+                  last and whether you end up with clean skin or complications.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   The guides below cover the practical knowledge that providers often assume you
                   already have. Each guide is based on peer-reviewed clinical literature, published
                   aftercare protocols, and professional-practice consensus. They are not
@@ -170,7 +196,7 @@ export default function GuidesIndexPage() {
 
             {/* How guides connect */}
             <GuideSection heading="How Guides Connect to the Rest of the Site">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Guides cover practical knowledge that applies across all providers and methods.
                 From here:
               </p>
@@ -180,17 +206,17 @@ export default function GuidesIndexPage() {
                     key={item.href}
                     className="flex items-center justify-between rounded-xl border border-(--line) bg-(--surface) px-5 py-4"
                   >
-                    <p className="font-sans text-[14px] text-(--muted) m-0">{item.desc}</p>
+                    <p className="font-sans text-[14px] text-heading m-0">{item.desc}</p>
                     <Link
                       href={item.href}
-                      className="font-sans text-[13px] font-medium text-(--accent) hover:underline shrink-0 ml-4"
+                      className="ml-4 inline-flex shrink-0 items-center gap-1 font-sans text-[13px] font-medium text-(--accent) hover:underline"
                     >
-                      {item.label} →
+                      {item.label} <ChevronRightIcon className="size-3.5" />
                     </Link>
                   </div>
                 ))}
               </div>
-              <p className="font-sans text-[14px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[14px] leading-relaxed text-heading">
                 Every guide is based on the same clinical sources and editorial standards described
                 in our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">

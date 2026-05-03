@@ -4,6 +4,7 @@ import BlockHeading from "./BlockHeading";
 import DevLabel from "@/components/dev/DevLabel";
 import type { Provider } from "@/types/provider";
 import { getLocationSlug } from "@/lib/providers";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 interface LocationsSectionProps {
   title: string;
@@ -49,29 +50,29 @@ export default function LocationsSection({
                 <p className="font-semibold text-(--ink) text-[15px]">{location.market}</p>
                 <div className="text-right shrink-0">
                   <p className="font-sans font-semibold text-[13px] text-(--accent)">{location.rating}</p>
-                  <p className="text-[11px] text-(--muted)">
+                  <p className="text-[11px] text-heading">
                     {location.rating >= 4.5 ? "Strong" : location.rating >= 4.0 ? "Solid" : "Mixed"}
                   </p>
                 </div>
               </div>
-              <p className="text-[13px] leading-relaxed text-(--muted) line-clamp-3">{location.summary}</p>
+              <p className="text-[13px] leading-relaxed text-heading line-clamp-3">{location.summary}</p>
               <div className="mt-auto flex items-center justify-between border-t border-(--line) pt-3">
-                <span className="text-[13px] text-(--muted)">{location.reviewCount} reviews</span>
+                <span className="text-[13px] text-heading">{location.reviewCount} reviews</span>
                 {location.googleBusinessUrl ? (
                   <a
                     href={location.googleBusinessUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[12px] font-medium text-(--accent) hover:underline"
+                    className="inline-flex items-center gap-1 text-[12px] font-medium text-(--accent) hover:underline"
                   >
-                    Google reviews →
+                    Google reviews <ChevronRightIcon className="size-3.5" />
                   </a>
                 ) : (
                   <Link
                     href={`/reviews/${slug}/${getLocationSlug(location)}/`}
-                    className="text-[12px] font-medium text-(--accent) hover:underline"
+                    className="inline-flex items-center gap-1 text-[12px] font-medium text-(--accent) hover:underline"
                   >
-                    View location →
+                    View location <ChevronRightIcon className="size-3.5" />
                   </Link>
                 )}
               </div>

@@ -95,7 +95,7 @@ const DEFAULT_CARD: CardData = {
 const ptComponents = {
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="font-sans text-[15px] leading-relaxed text-(--muted)">{children}</p>
+      <p className="font-sans text-[15px] leading-relaxed text-heading">{children}</p>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
       <h3 className="font-sans font-semibold text-[16px] text-(--ink) mt-4 mb-1">{children}</h3>
@@ -108,7 +108,7 @@ const ptComponents = {
   },
   listItem: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="flex items-start gap-3 font-sans text-[14px] leading-relaxed text-(--muted)">
+      <li className="flex items-start gap-3 font-sans text-[14px] leading-relaxed text-heading">
         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
         <span>{children}</span>
       </li>
@@ -180,8 +180,8 @@ export default async function CategoryPage({ params }: Props) {
           <Link href="/categories" className="hover:text-(--ink) transition-colors">
             Categories
           </Link>
-          <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-          <span className="text-(--muted) font-normal normal-case tracking-normal">
+          <span className="text-heading font-normal normal-case tracking-normal">/</span>
+          <span className="text-heading font-normal normal-case tracking-normal">
             {category.title}
           </span>
         </>
@@ -209,7 +209,7 @@ export default async function CategoryPage({ params }: Props) {
       {/* Intro */}
       {category.intro && (
         <div className="py-12">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+          <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
             {category.intro}
           </p>
         </div>
@@ -228,7 +228,7 @@ export default async function CategoryPage({ params }: Props) {
       {/* Empty state */}
       {!hasSections && (
         <div className="py-10">
-          <p className="text-(--muted) text-[14px] italic">Content coming soon.</p>
+          <p className="text-heading text-[14px] italic">Content coming soon.</p>
         </div>
       )}
 

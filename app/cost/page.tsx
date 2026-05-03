@@ -134,8 +134,8 @@ export default function CostPage() {
             <Link href="/" className="hover:text-(--ink) transition-colors">
               Home
             </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
+            <span className="text-heading font-normal normal-case tracking-normal">/</span>
+            <span className="text-heading font-normal normal-case tracking-normal">
               Tattoo Removal Cost
             </span>
           </>
@@ -152,12 +152,12 @@ export default function CostPage() {
 
             {/* Intro */}
             <div className="py-12 space-y-4">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Tattoo removal cost ranges from $100 to $500 per session for most tattoos. Total
                 cost for complete removal typically falls between $1,000 and $10,000 depending on
                 the tattoo's size, ink density, color complexity, and how many sessions it takes.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 That range is wide because every tattoo is different. A small black ankle tattoo
                 and a full-color half-sleeve are not the same job. This page breaks down what
                 drives tattoo removal pricing, how session count multiplies the total, how
@@ -172,7 +172,7 @@ export default function CostPage() {
 
             {/* How Much Does It Cost */}
             <GuideSection id="how-much" heading="How Much Does Tattoo Removal Cost?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The average cost of tattoo removal per session in the United States falls between
                 $200 and $400 for a medium-sized tattoo. Here is how pricing breaks down by size:
               </p>
@@ -207,7 +207,7 @@ export default function CostPage() {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-sans text-[14px] font-medium text-(--ink) m-0">{tier.size}</p>
-                        <p className="font-sans text-[12px] text-(--muted) m-0 mt-0.5">{tier.note}</p>
+                        <p className="font-sans text-[12px] text-heading m-0 mt-0.5">{tier.note}</p>
                       </div>
                       <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 shrink-0">{tier.price}</p>
                     </div>
@@ -215,7 +215,7 @@ export default function CostPage() {
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 These ranges reflect national averages across laser and non-laser providers. Local
                 pricing varies by city and provider type. For city-specific pricing, see the city
                 comparison pages for{" "}
@@ -232,22 +232,22 @@ export default function CostPage() {
 
             {/* Per Session vs Total */}
             <GuideSection id="per-session" heading="Tattoo Removal Cost Per Session vs Total Cost">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The per-session price is not the number that matters most. Total cost is per-session
                 price multiplied by session count. A $150 session that takes 10 sessions costs
                 $1,500. A $300 session that takes 5 sessions costs the same.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Most tattoos need 3 to 12 sessions for complete removal. Three to eight sessions is
                 typical for cover-up fading. Sessions are spaced six to eight weeks apart, which
                 means a full removal series takes 6 months to 2 years or longer.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The session count depends on ink color, ink density, tattoo age, skin type, body
                 location, and the provider's technology and technique. Older tattoos and faded ink
                 typically clear faster. Dense, saturated, and multi-color tattoos take longer.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For a full breakdown of what healing looks like between sessions, see the{" "}
                 <Link
                   href="/guides/tattoo-removal-healing-process"
@@ -261,7 +261,7 @@ export default function CostPage() {
 
             {/* What Affects Pricing */}
             <GuideSection id="factors" heading="What Affects Tattoo Removal Pricing?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Six factors drive most of the price variation across providers and cases.
               </p>
 
@@ -294,7 +294,7 @@ export default function CostPage() {
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -302,7 +302,7 @@ export default function CostPage() {
 
             {/* Laser Cost */}
             <GuideSection heading="Laser Tattoo Removal Cost">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Laser tattoo removal cost per session typically ranges from $150 to $500 for most
                 cases. This covers both picosecond and Q-switched laser systems.
               </p>
@@ -320,12 +320,12 @@ export default function CostPage() {
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The technology affects cost in both directions: a more expensive laser per session
                 that clears a tattoo in fewer sessions can cost less total than a cheaper laser
                 that takes more sessions. Ask providers about both per-session pricing and estimated
@@ -335,7 +335,7 @@ export default function CostPage() {
 
             {/* Cost by Method */}
             <GuideSection id="by-method" heading="Cost by Tattoo Removal Method">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Different removal methods carry different cost structures. For a full comparison of
                 methods, see the{" "}
                 <Link
@@ -368,7 +368,7 @@ export default function CostPage() {
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -376,14 +376,14 @@ export default function CostPage() {
 
             {/* Why So Expensive */}
             <GuideSection heading="Why Is Tattoo Removal So Expensive?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Tattoo removal is expensive because it is a multi-session medical or aesthetic
                 procedure using specialized equipment. The cost reflects the provider's investment
                 in laser systems (which range from $50,000 to $300,000+), the clinical training
                 required to operate them safely, the facility overhead, and the liability insurance
                 required for any procedure that affects skin tissue.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The session count is the biggest cost amplifier. A tattoo that seems small and
                 simple might still need 6 to 10 sessions at $200 each. That is $1,200 to $2,000
                 for something that felt like it should have been cheaper. The gap between
@@ -398,7 +398,7 @@ export default function CostPage() {
 
             {/* Session Count */}
             <GuideSection id="session-count" heading="How Many Sessions to Remove a Tattoo">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Session count is the most important cost variable and the hardest to predict.
                 Providers use assessment tools like the Kirby-Desai scale to estimate sessions
                 based on ink color, density, location, skin type, and scarring. These estimates
@@ -413,7 +413,7 @@ export default function CostPage() {
                   "Cosmetic tattoo removal (microblading, PMU): 2 to 6 sessions depending on method and ink type",
                 ]}
               />
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Sessions are spaced six to eight weeks apart. Some providers space sessions further
                 (eight to twelve weeks) for darker skin tones or more conservative treatment
                 protocols. For scarring risk and how spacing affects outcomes, see the{" "}
@@ -429,12 +429,12 @@ export default function CostPage() {
 
             {/* Insurance */}
             <GuideSection id="insurance" heading="Does Insurance Cover Tattoo Removal?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 In most cases, no. Tattoo removal is classified as a cosmetic procedure and is not
                 covered by standard health insurance plans. This applies to laser, non-laser, and
                 saline removal.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 There are rare exceptions. Some insurance plans may cover removal if the tattoo is
                 directly related to a medical condition, traumatic injury, or reconstructive need.
                 Documentation from a physician is typically required. HSA and FSA accounts can
@@ -449,7 +449,7 @@ export default function CostPage() {
 
             {/* Financing */}
             <GuideSection id="financing" heading="Tattoo Removal Financing and Payment Plans">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Most providers offer some form of cost management beyond pay-per-session pricing.
               </p>
 
@@ -474,7 +474,7 @@ export default function CostPage() {
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -482,7 +482,7 @@ export default function CostPage() {
 
             {/* Cost by Provider Type */}
             <GuideSection id="provider-type" heading="Tattoo Removal Cost by Provider Type">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Different provider types price differently. Understanding the model helps you
                 compare apples to apples.
               </p>
@@ -508,12 +508,12 @@ export default function CostPage() {
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For provider-specific reviews and pricing context, see the{" "}
                 <Link href="/reviews" className="text-(--accent) hover:underline">
                   provider review pages

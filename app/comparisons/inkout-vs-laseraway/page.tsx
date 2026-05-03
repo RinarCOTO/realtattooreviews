@@ -38,7 +38,7 @@ const faqs = [
   {
     question: "Is inkOUT better than LaserAway?",
     answer:
-      "Neither is universally better. inkOUT is better suited for non-laser preference, cosmetic tattoo removal, darker skin tones avoiding laser-melanin interaction, and users wanting a specialist provider. LaserAway is better suited for users wanting a mainstream aesthetics chain with wide access and the ability to bundle services. Match the provider to your case.",
+      "Neither is universally better. inkOUT may be a better fit for users specifically comparing non-laser treatment, cosmetic tattoo removal, darker skin tones where laser-pigment risk is a concern, or a tattoo-removal specialist. LaserAway may be a better fit for users wanting a mainstream aesthetics chain with wide access and the ability to bundle services. Match the provider to your case.",
   },
   {
     question: "Is inkOUT cheaper than LaserAway?",
@@ -48,7 +48,7 @@ const faqs = [
   {
     question: "Which has better tattoo removal results, inkOUT or LaserAway?",
     answer:
-      "Both target clearance. Results depend on the tattoo, the ink, the skin, and the provider's protocol more than the brand name. PicoSure has peer-reviewed evidence showing strong clearance rates. TEPR targets complete removal as the default goal. The cross-city evidence table on this page will show outcome data for both brands once LaserAway review data enters our dataset.",
+      "Both target clearance. Results depend on the tattoo, the ink, the skin, and the provider's protocol more than the brand name. PicoSure has peer-reviewed evidence showing strong clearance rates. TEPR is positioned around complete removal, but review evidence and consultation fit should guide the comparison. The cross-city evidence table on this page will show outcome data for both brands once LaserAway review data enters our dataset.",
   },
   {
     question: "What laser does LaserAway use?",
@@ -78,7 +78,7 @@ const faqs = [
   {
     question: "Which is better for dark skin?",
     answer:
-      "For darker Fitzpatrick skin types prioritizing avoidance of laser-pigment-change risk, TEPR (inkOUT) is structurally lower-risk. PicoSure's 755nm has a higher melanin absorption ratio than 1064nm. The optional 1064nm handpiece is safer for darker skin. Availability and clinician expertise vary by LaserAway location.",
+      "For darker Fitzpatrick skin types, TEPR avoids laser-specific melanin interaction because it is not light-based. That makes it worth comparing, but it does not eliminate scarring or healing risk. PicoSure's 755nm has a higher melanin absorption ratio than 1064nm. The optional 1064nm handpiece is generally safer for darker skin. Availability and clinician expertise vary by LaserAway location.",
   },
   {
     question: "Which is better for color ink?",
@@ -166,8 +166,8 @@ export default function InkoutVsLaserawayPage() {
             <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
               Comparisons
             </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
+            <span className="text-heading font-normal normal-case tracking-normal">/</span>
+            <span className="text-heading font-normal normal-case tracking-normal">
               inkOUT vs LaserAway
             </span>
           </>
@@ -367,7 +367,7 @@ export default function InkoutVsLaserawayPage() {
                     },
                     {
                       title: "Scarring risk",
-                      body: "Scarring depends on treatment intensity, provider skill, and skin type. PicoSure's picosecond pulse width reduces thermal damage compared to nanosecond Q-switched lasers, placing it on the lower-risk side of the laser spectrum. TEPR avoids the wavelength-versus-melanin interaction by mechanism. This is relevant to scarring risk for darker skin tones. Ask both providers about scarring rates and protocols at consultation.",
+                      body: "Scarring depends on treatment intensity, provider skill, and skin type. PicoSure's picosecond pulse width reduces thermal damage compared to nanosecond Q-switched lasers, placing it on the lower-risk side of the laser spectrum. TEPR is not light-based, so it avoids laser-specific melanin interaction, but it has its own wound-healing and aftercare risks. Ask both providers about scarring rates and protocols at consultation.",
                     },
                     {
                       title: "Pain",
@@ -398,7 +398,7 @@ export default function InkoutVsLaserawayPage() {
                   {[
                     {
                       title: "Dark skin",
-                      body: "PicoSure's primary 755nm alexandrite wavelength has a higher melanin absorption ratio than 1064nm. This means aggressive settings on darker Fitzpatrick skin types carry elevated risk. PicoSure Pro's optional 1064nm handpiece is safer for darker skin. Not every LaserAway location may stock all handpieces. TEPR (inkOUT) avoids melanin interaction entirely. For users prioritizing avoidance of any laser-pigment-change risk, TEPR is structurally lower-risk.",
+                      body: "PicoSure's primary 755nm alexandrite wavelength has a higher melanin absorption ratio than 1064nm. This means aggressive settings on darker Fitzpatrick skin types carry elevated risk. PicoSure Pro's optional 1064nm handpiece is generally safer for darker skin. Not every LaserAway location may stock all handpieces. TEPR (inkOUT) does not use light energy, so it avoids laser-specific melanin interaction, while still requiring careful technique and aftercare.",
                     },
                     {
                       title: "Color ink",
@@ -410,7 +410,7 @@ export default function InkoutVsLaserawayPage() {
                     },
                     {
                       title: "PMU and microblading removal",
-                      body: "Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser. This is a known consideration for any laser treatment of microblading, powder brows, lip blush, or eyeliner tattoos. TEPR avoids this risk. It does not use light. inkOUT is structurally well-suited to PMU and microblading cases. If you have cosmetic tattooing to remove, this is one of the strongest arguments for consulting inkOUT first.",
+                      body: "Cosmetic tattoo inks often contain iron oxides. These can darken paradoxically under laser. This is a known consideration for any laser treatment of microblading, powder brows, lip blush, or eyeliner tattoos. TEPR does not use light, so it avoids laser-triggered oxidation risk, while still carrying wound-healing considerations. If you have cosmetic tattooing to remove, include a non-laser consultation in your comparison rather than relying on brand positioning alone.",
                     },
                   ].map((item) => (
                     <ContentCard key={item.title} title={item.title} body={item.body} />
@@ -433,7 +433,7 @@ export default function InkoutVsLaserawayPage() {
                 <Suspense
                   fallback={
                     <div className="rounded-xl bg-white border border-(--line) p-8 text-center">
-                      <p className="font-sans text-[14px] text-(--muted) m-0">
+                      <p className="font-sans text-[14px] text-heading m-0">
                         Loading evidence table&hellip;
                       </p>
                     </div>
@@ -455,11 +455,11 @@ export default function InkoutVsLaserawayPage() {
                 <ContentCard title="Pros" titleSize="sm">
                   <GuideBulletList
                     items={[
-                      "Only major non-laser tattoo removal brand at scale in the US market",
+                      "Multi-location non-laser tattoo removal brand with a focused TEPR model",
                       "Mechanism is not bound by wavelength-versus-color limitations on any ink color",
-                      "Mechanism does not interact with melanin, lowering structural pigment-change risk for darker skin tones",
-                      "Positioned around complete removal as the primary outcome",
-                      "Well-suited to cosmetic tattoo removal cases where iron-oxide pigments darken paradoxically under laser",
+                      "Mechanism does not use light, avoiding laser-specific melanin interaction",
+                      "Positions complete removal as the primary outcome",
+                      "Worth comparing for cosmetic tattoo removal cases where iron-oxide pigments can darken paradoxically under laser",
                       "Specialist focus on tattoo removal means deeper per-clinician expertise",
                       "Free consultations at all locations",
                     ]}
@@ -534,10 +534,10 @@ export default function InkoutVsLaserawayPage() {
                       items={[
                         "You specifically want a non-laser method, by preference or by medical reason",
                         "You have microblading, powder brows, lip blush, or another cosmetic tattoo and want to avoid laser-iron-oxide darkening risk",
-                        "You have darker skin and want to avoid any laser-melanin interaction",
+                        "You have darker skin and want to compare a non-light-based method against laser protocols",
                         "You are prioritizing complete removal as the primary outcome",
                         "You want a specialist provider whose entire clinical focus is tattoo removal",
-                        "You are scarring-sensitive and want a structurally different mechanism than laser",
+                        "You are scarring-sensitive and want to compare a wound-healing-based method against laser protocols",
                       ]}
                     />
                   </ContentCard>

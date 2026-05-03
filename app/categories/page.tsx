@@ -5,6 +5,7 @@ import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
 import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 export const metadata: Metadata = {
   title: "Tattoo Removal by Category: Find the Right Method for Your Case | RealTattooReviews",
@@ -136,8 +137,8 @@ export default function CategoriesPage() {
             <Link href="/" className="hover:text-(--ink) transition-colors">
               Home
             </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
+            <span className="text-heading font-normal normal-case tracking-normal">/</span>
+            <span className="text-heading font-normal normal-case tracking-normal">
               Categories
             </span>
           </>
@@ -189,8 +190,8 @@ export default function CategoriesPage() {
                 >
                   <p className="font-semibold text-heading text-[14px] transition-colors group-hover:text-accent">{cat.title}</p>
                   <p className="text-[13px] leading-relaxed font-medium text-heading flex-1">{cat.description}</p>
-                  <span className="text-[13px] font-medium text-accent">
-                    Browse {cat.title.toLowerCase()} →
+                  <span className="inline-flex items-center gap-1 text-[13px] font-medium text-accent">
+                    Browse {cat.title.toLowerCase()} <ChevronRightIcon className="size-3.5" />
                   </span>
                 </Link>
               ))}
@@ -254,7 +255,7 @@ export default function CategoriesPage() {
               </div>
             ))}
           </div>
-          <p className="mt-6 text-[13px] leading-relaxed text-muted">
+          <p className="mt-6 text-[13px] leading-relaxed text-heading">
             Every category page, city page, comparison page, and provider page is evaluated using the same{" "}
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>.
             See our{" "}
@@ -269,7 +270,7 @@ export default function CategoriesPage() {
       {/* Editorial note */}
       <section className="py-8">
         <Container>
-          <p className="max-w-2xl text-[12px] leading-relaxed text-subtle">
+          <p className="max-w-2xl text-[12px] leading-relaxed text-heading">
             Category pages are based on the same review-sample evidence, clinical literature, and scoring methodology used across the site. See our{" "}
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>{" "}
             and{" "}

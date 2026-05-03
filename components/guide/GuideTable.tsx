@@ -17,7 +17,7 @@ export default function GuideTable({ headers, rows, winners }: Props) {
             {headers.map((h, i) => (
               <th
                 key={i}
-                className="px-4 py-3 font-mono text-[11px] font-medium tracking-widest uppercase text-(--muted)"
+                className="px-4 py-3 font-mono text-[11px] font-medium tracking-widest uppercase text-heading"
               >
                 {h}
               </th>
@@ -43,7 +43,7 @@ export default function GuideTable({ headers, rows, winners }: Props) {
                           ? "font-medium text-(--ink)"
                           : isWinnerCol
                           ? "text-(--ink) font-medium"
-                          : "text-(--muted)"
+                          : "text-heading"
                       }`}
                     >
                       {isWinnerCol ? (

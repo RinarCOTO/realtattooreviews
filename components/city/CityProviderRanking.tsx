@@ -54,7 +54,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
                   </h3>
                 </div>
                 {profile && (
-                  <p className="font-sans text-[13px] text-(--muted) ml-8">
+                  <p className="font-sans text-[13px] text-heading ml-8">
                     {profile.address} &middot; {profile.neighborhood}
                   </p>
                 )}
@@ -67,7 +67,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
             </div>
 
             <div className="flex flex-wrap gap-2 mb-4 ml-8">
-              <span className="rounded-full border border-(--line) px-2.5 py-0.5 text-[12px] font-medium text-(--muted)">
+              <span className="rounded-full border border-(--line) px-2.5 py-0.5 text-[12px] font-medium text-heading">
                 {profile?.staticMethod ?? row.methodUsed ?? "Laser"}
               </span>
               <span className="rounded-full border border-(--accent)/30 bg-(--accent)/5 px-2.5 py-0.5 text-[12px] font-medium text-(--accent)">
@@ -77,7 +77,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
 
             <div className="grid grid-cols-3 gap-2 sm:gap-3 ml-4 sm:ml-8">
               <div className="rounded-lg bg-(--surface) border border-(--line) p-3 text-center">
-                <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
+                <p className="font-sans text-[11px] uppercase tracking-wider text-heading mb-0.5">
                   Sample
                 </p>
                 <p className="font-sans text-[18px] font-bold text-(--ink) leading-none">
@@ -85,7 +85,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
                 </p>
               </div>
               <div className="rounded-lg bg-(--surface) border border-(--line) p-3 text-center">
-                <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
+                <p className="font-sans text-[11px] uppercase tracking-wider text-heading mb-0.5">
                   Positive
                 </p>
                 <p className="font-sans text-[18px] font-bold text-(--ink) leading-none">
@@ -93,7 +93,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
                 </p>
               </div>
               <div className="rounded-lg bg-(--surface) border border-(--line) p-3 text-center">
-                <p className="font-sans text-[11px] uppercase tracking-wider text-(--muted) mb-0.5">
+                <p className="font-sans text-[11px] uppercase tracking-wider text-heading mb-0.5">
                   Negative
                 </p>
                 <p className="font-sans text-[18px] font-bold text-(--ink) leading-none">
@@ -107,7 +107,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
 
       {pendingNames.size > 0 && (
         <div className="rounded-xl border border-dashed border-(--line) bg-(--bg) p-5">
-          <p className="font-sans text-[13px] text-(--muted) m-0">
+          <p className="font-sans text-[13px] text-heading m-0">
             <span className="font-semibold text-(--ink)">Review sample pending: </span>
             {[...pendingNames].join(", ")}. These providers are operating in the city but have
             not yet been captured in our review dataset. Profiles are in the section below.
@@ -116,7 +116,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
       )}
 
       {lastRefreshed && (
-        <p className="font-sans text-[12px] text-(--muted) text-right">
+        <p className="font-sans text-[12px] text-heading text-right">
           Data refreshed: {lastRefreshed} &middot; Sample capped at 50 per provider
         </p>
       )}

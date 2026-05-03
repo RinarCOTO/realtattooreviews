@@ -39,7 +39,7 @@ export default function CategoryHero({
               {title}
             </h1>
 
-            <p className="mt-5 font-sans text-[16px] leading-relaxed text-(--muted) max-w-xl m-0">
+            <p className="mt-5 font-sans text-[16px] leading-relaxed text-heading max-w-xl m-0">
               {subtitle}
             </p>
 

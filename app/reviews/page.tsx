@@ -6,9 +6,9 @@ import FAQSection from "@/components/sections/FAQSection";
 import PageSection from "@/components/reviews/PageSection";
 import ReviewCard from "@/components/reviews/ReviewCard";
 import ProvidersTable from "@/components/reviews/ProvidersTable";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import { getRecentReviews, getReviewStats, selectDiverseReviews, getAllProviderAggregates } from "@/lib/data/reviews";
 import { getAllProviders, type SanityProvider } from "@/lib/page-data/providers";
-import { brandToSlug } from "@/lib/providers";
 import { providers as mockProviders } from "@/lib/mock-data/providers";
 import type { Provider } from "@/types/provider";
 import { cities } from "@/lib/mock-data/cities";
@@ -69,8 +69,8 @@ export default async function ReviewsPage() {
     ? sanityProviders.map(sanityToProvider)
     : mockProviders;
 
-  // Overlay live DB aggregates onto every provider object so the table and
-  // inkOUT FAQ stats reflect the filtered review pool, not hardcoded values.
+  // Overlay live DB aggregates onto every provider object so the table reflects
+  // the filtered review pool, not hardcoded values.
   const allProviders: Provider[] = baseProviders.map((p) => ({
     ...p,
     rating: liveAggregates[p.slug]?.rating ?? p.rating,
@@ -83,17 +83,6 @@ export default async function ReviewsPage() {
   const interleaved = highRated.flatMap((h, i) => (lowRated[i] ? [h, lowRated[i]] : [h]));
   const mixedReviews = selectDiverseReviews(interleaved, 6);
 
-  // inkOUT stats for FAQ answer
-  const inkoutLocs = allProviders.filter(
-    (p) => brandToSlug(p.brand ?? "") === "inkout"
-  );
-  const inkoutReviews = inkoutLocs.reduce((s, p) => s + (p.reviewCount ?? 0), 0);
-  const inkoutLocCount = inkoutLocs.length;
-  const inkoutAvg =
-    inkoutLocs.length > 0
-      ? (inkoutLocs.reduce((s, p) => s + (p.rating ?? 0), 0) / inkoutLocs.length).toFixed(1)
-      : "4.4";
-
   // FAQ items built with live DB numbers
   const faqs = [
     {
@@ -105,8 +94,8 @@ export default async function ReviewsPage() {
       answer: "Look for: review count (more volume means more signal), complaint patterns (especially scarring, session count underestimates, and billing disputes), whether positive experiences are consistent or isolated, and whether the provider sets realistic expectations about pain and sessions. Single five-star reviews are easy to post. Consistent patterns across dozens of reviews are harder to fake.",
     },
     {
-      question: `Is inkOUT worth it?`,
-      answer: `inkOUT is the most-reviewed provider in our index: ${inkoutReviews} sourced reviews across ${inkoutLocCount} locations with a ${inkoutAvg} average. That volume makes it one of the more reliable providers to evaluate. Whether it is the right fit depends on your city, tattoo, and budget. Read the full inkOUT brand page to see location-level patterns before deciding.`,
+      question: "How should I compare providers?",
+      answer: "Start with providers that have enough review volume to show patterns, then compare method fit, complaint patterns, location convenience, pricing transparency, and whether the provider explains realistic session counts. A provider with a high average rating but thin review volume should be treated differently from one with a larger, more mixed review base.",
     },
     {
       question: "Are tattoo removal clinics safe?",
@@ -128,7 +117,7 @@ export default async function ReviewsPage() {
             <span className="inline-block w-6 h-px bg-(--accent)" />
             Independent Provider Reviews
             {stats.lastUpdated && (
-              <span className="text-(--muted) font-normal normal-case tracking-normal">
+              <span className="text-heading font-normal normal-case tracking-normal">
                 · Updated {stats.lastUpdated}
               </span>
             )}
@@ -138,7 +127,7 @@ export default async function ReviewsPage() {
             Tattoo Removal Reviews
           </h1>
 
-          <p className="mt-7 font-sans font-normal text-[19px] leading-normal text-(--muted) max-w-160">
+          <p className="mt-7 font-sans font-normal text-[19px] leading-normal text-heading max-w-160">
             {stats.totalReviews.toLocaleString()} sourced reviews across {stats.totalProviders} providers in {stats.totalCities} cities. Brand sites hide negative reviews. Yelp won't synthesize them across providers. This page does both.
           </p>
 
@@ -147,7 +136,7 @@ export default async function ReviewsPage() {
               href="#providers"
               className="inline-flex items-center px-6 py-3 bg-(--ink) text-(--bg) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full"
             >
-              Compare Providers →
+              Compare Providers <ChevronRightIcon />
             </Link>
             <Link
               href="/methodology"
@@ -188,11 +177,11 @@ export default async function ReviewsPage() {
             <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
               Negative reviews are included, not filtered
             </h3>
-            <p className="text-[14px] text-(--muted) m-0 mb-4 flex-1">
+            <p className="text-[14px] text-heading m-0 mb-4 flex-1">
               Every sourced review in our index is public record from Google Business Profile. We do not remove low ratings, hide complaints, or rank providers who pay us. If {stats.scarringMentions > 0 ? `${stats.scarringMentions} reviews across our index mention scarring` : "reviews mention scarring"}, that stays in.
             </p>
-            <Link href="/methodology" className="text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
-              Collection methodology →
+            <Link href="/methodology" className="inline-flex items-center gap-1 text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+              Collection methodology <ChevronRightIcon className="size-3.5" />
             </Link>
           </div>
           <div className="flex flex-col">
@@ -200,11 +189,11 @@ export default async function ReviewsPage() {
             <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
               Complaint patterns are flagged, not buried
             </h3>
-            <p className="text-[14px] text-(--muted) m-0 mb-4 flex-1">
+            <p className="text-[14px] text-heading m-0 mb-4 flex-1">
               We flag when the same complaint appears across multiple reviews or locations. Scarring mentions, billing disputes, session count underestimates, and aftercare failures all surface in provider pages. A single complaint is noise. A pattern is a signal.
             </p>
-            <Link href="/methodology" className="text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
-              Read the full methodology →
+            <Link href="/methodology" className="inline-flex items-center gap-1 text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+              Read the full methodology <ChevronRightIcon className="size-3.5" />
             </Link>
           </div>
           <div className="flex flex-col">
@@ -212,11 +201,11 @@ export default async function ReviewsPage() {
             <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
               No paid placements, no affiliate rankings
             </h3>
-            <p className="text-[14px] text-(--muted) m-0 mb-4 flex-1">
+            <p className="text-[14px] text-heading m-0 mb-4 flex-1">
               No provider pays to appear here or to rank higher. Provider order in the table below defaults to review count, not revenue. We do not accept sponsored placements.
             </p>
-            <Link href="/editorial" className="text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
-              Editorial policy →
+            <Link href="/editorial-policy" className="inline-flex items-center gap-1 text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+              Editorial policy <ChevronRightIcon className="size-3.5" />
             </Link>
           </div>
         </div>
@@ -229,7 +218,7 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             What Patients Are Actually Saying
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted) max-w-prose m-0">
+          <p className="font-sans text-[16px] leading-relaxed text-heading max-w-prose m-0">
             Positive and negative reviews side by side. One high-rated clinic and one complaint-flagged clinic appearing in the same section is intentional.
           </p>
         </div>
@@ -247,7 +236,7 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             Compare Tattoo Removal Providers
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted) max-w-prose m-0">
+          <p className="font-sans text-[16px] leading-relaxed text-heading max-w-prose m-0">
             Every provider in our index. Sort by rating, review count, or city. Click a provider name to open the full review page.
           </p>
         </div>
@@ -261,7 +250,7 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             Browse by City
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted) max-w-prose m-0">
+          <p className="font-sans text-[16px] leading-relaxed text-heading max-w-prose m-0">
             National brand ratings are a starting point. Local execution still matters. Each city page shows which providers operate there and how their reviews compare locally.
           </p>
         </div>
@@ -273,19 +262,19 @@ export default async function ReviewsPage() {
               className="flex items-center justify-between px-6 py-5 border-b border-r border-(--line) bg-(--bg) no-underline text-inherit gap-3"
             >
               <div className="flex items-baseline gap-3 min-w-0">
-                <span className="font-mono font-medium text-[12px] tracking-widest text-(--muted) shrink-0">
+                <span className="font-mono font-medium text-[12px] tracking-widest text-heading shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="min-w-0">
                   <div className="text-[15px] font-medium text-(--ink) tracking-[-0.01em] whitespace-nowrap overflow-hidden text-ellipsis">
                     {city.name}
                   </div>
-                  <div className="text-[11px] text-(--muted) mt-0.5">
+                  <div className="text-[11px] text-heading mt-0.5">
                     {city.providerCount} providers · {city.reviewCount} reviews
                   </div>
                 </div>
               </div>
-              <span className="text-(--muted) text-[14px]">→</span>
+              <ChevronRightIcon className="size-4 text-heading" />
             </Link>
           ))}
         </div>
@@ -310,7 +299,7 @@ export default async function ReviewsPage() {
               className="flex items-center justify-between px-6 py-4 no-underline text-inherit hover:bg-(--wash) transition-colors"
             >
               <span className="font-medium text-(--ink) text-[15px]">{link.label}</span>
-              <span className="text-(--accent) text-[14px] font-medium">→</span>
+              <ChevronRightIcon className="size-4 text-(--accent)" />
             </Link>
           ))}
         </div>
@@ -319,10 +308,10 @@ export default async function ReviewsPage() {
       {/* ── 8. Footer disclosure ────────────────────────────────────────── */}
       <section className="border-t border-(--line) bg-(--surface) py-12">
         <Container>
-          <p className="font-mono text-[11px] tracking-widest uppercase text-(--muted) mb-4">
+          <p className="font-mono text-[11px] tracking-widest uppercase text-heading mb-4">
             Disclosure
           </p>
-          <p className="font-sans text-[12px] leading-relaxed text-(--muted) max-w-3xl">
+          <p className="font-sans text-[12px] leading-relaxed text-heading max-w-3xl">
             realtattooreviews.com is operated by {process.env.LEGAL_ENTITY_NAME ?? "[operator]"}.
             Reviews are sourced from public Google Business Profile listings and reflect the opinions of individual patients, not RTR editorial opinion.
             RTR does not verify individual review claims and is not responsible for the accuracy of third-party reviews.

@@ -4,6 +4,7 @@ import Script from "next/script";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
 import FAQSection from "@/components/sections/FAQSection";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import ProviderDirectory, {
   type DirectoryRow,
   type PendingRow,
@@ -138,7 +139,7 @@ export default async function ProvidersPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-white">
 
         <PageHero
           label={
@@ -146,8 +147,8 @@ export default async function ProvidersPage() {
               <Link href="/" className="hover:text-(--ink) transition-colors">
                 Home
               </Link>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-              <span className="text-(--muted) font-normal normal-case tracking-normal">
+              <span className="text-heading font-normal normal-case tracking-normal">/</span>
+              <span className="text-heading font-normal normal-case tracking-normal">
                 Providers
               </span>
             </>
@@ -157,18 +158,18 @@ export default async function ProvidersPage() {
         />
 
         {/* Intro + Provider Directory */}
-        <section className="bg-surface py-14">
+        <section className="bg-white py-14">
           <Container>
             <div className="mb-8 flex items-end justify-between">
               <div>
                 <h2 className="text-[28px] font-bold text-heading">Browse and Compare Providers</h2>
-                <p className="mt-1 text-sm text-muted">Every provider evaluated under the same framework — no paid placement.</p>
+                <p className="mt-1 text-sm text-heading">Every provider evaluated under the same framework — no paid placement.</p>
               </div>
-              <Link href="/comparisons" className="hidden text-sm font-medium text-accent hover:underline sm:block">
-                All comparisons →
+              <Link href="/comparisons" className="hidden items-center gap-1 text-sm font-medium text-accent hover:underline sm:inline-flex">
+                All comparisons <ChevronRightIcon className="size-4" />
               </Link>
             </div>
-            <div className="mb-6 max-w-2xl space-y-3 text-[14px] leading-relaxed text-muted">
+            <div className="mb-6 max-w-2xl space-y-3 text-[14px] leading-relaxed text-heading">
               <p>
                 RealTattooReviews tracks tattoo removal providers across multiple US markets. Every provider listed here is evaluated using the same{" "}
                 <Link href="/methodology" className="text-accent hover:underline">scoring methodology</Link>{" "}
@@ -191,13 +192,13 @@ export default async function ProvidersPage() {
         </section>
 
         {/* How to Choose */}
-        <section className="bg-bg py-14">
+        <section className="bg-white py-14">
           <Container>
             <div className="mb-8">
               <h2 className="text-[28px] font-bold text-heading">How to Choose a Tattoo Removal Provider</h2>
-              <p className="mt-1 text-sm text-muted">Five questions that change which provider is right for your case.</p>
+              <p className="mt-1 text-sm text-heading">Five questions that change which provider is right for your case.</p>
             </div>
-            <p className="mb-8 max-w-2xl text-[14px] leading-relaxed text-muted">
+            <p className="mb-8 max-w-2xl text-[14px] leading-relaxed text-heading">
               Choosing a tattoo removal provider is mostly about matching method and protocol to your tattoo and your skin. Brand recognition and footprint matter less than they look. The five questions below cover the decisions that actually change which provider is right for you.
             </p>
 
@@ -205,7 +206,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[16px] font-bold text-heading">Decide on method first</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-muted">
+                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     Tattoo removal providers fall into two categories: laser and non-laser.
                   </p>
@@ -225,12 +226,12 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[16px] font-bold text-heading">Check fit for your skin type</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-muted">
+                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     Laser tattoo removal carries a wavelength-versus-melanin interaction for darker Fitzpatrick skin types (IV through VI). The laser does not distinguish between tattoo pigment and natural melanin. Aggressive settings on darker skin can cause post-inflammatory hyperpigmentation or hypopigmentation. Picosecond lasers at 1064nm reduce this risk compared to Q-switched systems and shorter wavelengths, but they do not eliminate it.
                   </p>
                   <p>
-                    Non-laser methods like TEPR and saline do not target melanin because they do not use light energy. For darker skin types, non-laser methods are structurally lower-risk. Laser is viable with experienced providers and conservative settings.
+                    Non-laser methods like TEPR and saline do not target melanin because they do not use light energy, so they avoid laser-specific melanin interaction. For darker skin types, they are worth comparing alongside conservative laser protocols, but they still carry technique, healing, and aftercare risks.
                   </p>
                   <p>
                     If you have Fitzpatrick V or VI skin, ask any laser provider about their specific protocol and case experience for darker tones before booking. For deeper guidance, see{" "}
@@ -241,7 +242,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[16px] font-bold text-heading">Check fit for your tattoo&apos;s colors</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-muted">
+                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     Laser performance varies by ink color. Black, dark blue, and red respond well to standard wavelengths (1064nm, 532nm). Green and blue-green require additional wavelengths (785nm on PicoWay, 755nm on PicoSure). Yellow and white inks respond poorly to all current laser wavelengths.
                   </p>
@@ -256,7 +257,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[16px] font-bold text-heading">Decide between complete removal and fading for cover-up</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-muted">
+                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     Complete removal and cover-up fading are different goals with different session counts and different pricing. Complete removal aims to eliminate the tattoo entirely. Fading reduces the ink enough that a cover-up tattoo can be applied over it, typically requiring fewer sessions.
                   </p>
@@ -269,7 +270,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[16px] font-bold text-heading">Decide between national footprint and local specialist</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-muted">
+                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     National chains like Removery and LaserAway offer standardized protocols, multi-location convenience, and (in Removery&apos;s case) package pricing that covers unlimited sessions. Local specialists and physician-led practices often offer more individualized treatment plans and direct provider continuity across your treatment series.
                   </p>
@@ -284,15 +285,15 @@ export default async function ProvidersPage() {
         </section>
 
         {/* Browse by City */}
-        <section id="browse-by-city" className="bg-surface py-14">
+        <section id="browse-by-city" className="bg-white py-14">
           <Container>
             <div className="mb-8 flex items-end justify-between">
               <div>
                 <h2 className="text-[28px] font-bold text-heading">Browse Providers by City</h2>
-                <p className="mt-1 text-sm text-muted">Provider availability varies by city. Each page ranks every tracked provider in that market.</p>
+                <p className="mt-1 text-sm text-heading">Provider availability varies by city. Each page ranks every tracked provider in that market.</p>
               </div>
             </div>
-            <p className="mb-6 text-[14px] leading-relaxed text-muted">
+            <p className="mb-6 text-[14px] leading-relaxed text-heading">
               Provider availability varies by city. The pages below compare every tracked provider in each market, including local specialists not listed in the national table above.
             </p>
             <ul className="flex flex-col gap-3 max-w-2xl">
@@ -305,31 +306,33 @@ export default async function ProvidersPage() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="group flex items-center justify-between rounded-lg border border-border bg-surface px-4 py-3 transition-all hover:border-accent/30 hover:shadow-sm"
+                    className="group flex items-center justify-between rounded-lg border border-border bg-white px-4 py-3 transition-all hover:border-accent/30 hover:shadow-sm"
                   >
                     <div>
                       <span className="font-medium text-heading">{label}</span>
-                      {note && <span className="ml-2 text-[12px] text-muted">{note}</span>}
+                      {note && <span className="ml-2 text-[12px] text-heading">{note}</span>}
                     </div>
-                    <span className="text-[13px] text-accent">Compare options →</span>
+                    <span className="inline-flex items-center gap-1 text-[13px] text-accent">
+                      Compare options <ChevronRightIcon className="size-3.5" />
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-[13px] text-muted">More cities will be added as our dataset expands.</p>
+            <p className="mt-4 text-[13px] text-heading">More cities will be added as our dataset expands.</p>
           </Container>
         </section>
 
         {/* Browse by Treatment Need */}
-        <section className="bg-bg py-14">
+        <section className="bg-white py-14">
           <Container>
             <div className="mb-8 flex items-end justify-between">
               <div>
                 <h2 className="text-[28px] font-bold text-heading">Browse by Treatment Need</h2>
-                <p className="mt-1 text-sm text-muted">Providers and methods organized by what your case actually requires.</p>
+                <p className="mt-1 text-sm text-heading">Providers and methods organized by what your case actually requires.</p>
               </div>
             </div>
-            <p className="mb-6 text-[14px] leading-relaxed text-muted">
+            <p className="mb-6 text-[14px] leading-relaxed text-heading">
               Tattoo removal needs vary by case. The pages below cover providers and methods that handle specific situations.
             </p>
             <ul className="grid gap-3 sm:grid-cols-2 max-w-2xl">
@@ -344,10 +347,12 @@ export default async function ProvidersPage() {
                 <li key={slug}>
                   <Link
                     href={`/categories/${slug}`}
-                    className="group flex flex-col gap-1 rounded-lg border border-border bg-surface px-4 py-3 transition-all hover:border-accent/30 hover:shadow-sm"
+                    className="group flex flex-col gap-1 rounded-lg border border-border bg-white px-4 py-3 transition-all hover:border-accent/30 hover:shadow-sm"
                   >
                     <span className="font-medium text-heading">{label}</span>
-                    <span className="text-[12px] text-muted">{desc} →</span>
+                    <span className="inline-flex items-center gap-1 text-[12px] text-heading">
+                      {desc} <ChevronRightIcon className="size-3.5" />
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -356,13 +361,13 @@ export default async function ProvidersPage() {
         </section>
 
         {/* How We Cover Providers */}
-        <section className="bg-surface py-14">
+        <section className="bg-white py-14">
           <Container>
             <div className="mb-6">
               <h2 className="text-[28px] font-bold text-heading">How We Cover Providers</h2>
-              <p className="mt-1 text-sm text-muted">Our standards for inclusion, evaluation, and disclosure.</p>
+              <p className="mt-1 text-sm text-heading">Our standards for inclusion, evaluation, and disclosure.</p>
             </div>
-            <div className="max-w-2xl space-y-3 text-[14px] leading-relaxed text-muted">
+            <div className="max-w-2xl space-y-3 text-[14px] leading-relaxed text-heading">
               <p>
                 RealTattooReviews tracks tattoo removal providers across the US based on coverage in their target markets, treatment method, and public review volume. Provider data is verified against each provider&apos;s published locations, public websites, and Google Business listings as of the page&apos;s last review date.
               </p>
@@ -387,7 +392,7 @@ export default async function ProvidersPage() {
       {/* Editorial note */}
       <section className="border-t border-border py-8">
         <Container>
-          <p className="text-center text-[12px] leading-relaxed text-subtle">
+          <p className="text-center text-[12px] leading-relaxed text-heading">
             Provider data is sourced from public Google business listings and verified against provider-published materials. Review counts in the table reflect our internal review sample, not lifetime Google totals. See our{" "}
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>{" "}
             and{" "}

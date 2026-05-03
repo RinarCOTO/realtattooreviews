@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    Temporary RTR favicon.
+
+    Uses warm-dark ink for the background and clay-rust accent for the
+    wordmark to match the site's color palette. The "R" mark stands in for
+    a final logo and should be replaced when brand assets are ready. Until
+    then, this gives the site a recognizable tab icon, an apple-touch-icon
+    fallback, and an OG-card identity that does not rely on `image-test.jpg`.
+
+    Why an SVG: scales cleanly across favicon, retina, and apple-touch sizes
+    without shipping multiple PNGs. Next.js automatically generates the
+    correct <link rel> tags from this file via the App Router icon
+    convention.
+  -->
+  <rect width="64" height="64" rx="14" fill="#2B2118" />
+  <text
+    x="50%"
+    y="50%"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    font-size="34"
+    font-weight="700"
+    fill="#B05C42"
+    letter-spacing="-1"
+  >R</text>
+</svg>

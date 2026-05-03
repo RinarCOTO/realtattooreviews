@@ -36,27 +36,27 @@ export default function VerdictCard({
         <span className="font-sans text-[52px] font-bold leading-none tracking-[-0.04em] text-(--ink)">
           {avgRating}
         </span>
-        <span className="text-[14px] text-(--muted) self-end mb-1">/ 5</span>
+        <span className="text-[14px] text-heading self-end mb-1">/ 5</span>
         <StarsFull rating={Math.round(avgRatingValue)} />
       </div>
-      <span className="mt-3 font-sans text-[12px] text-(--muted) leading-normal">
+      <span className="mt-3 font-sans text-[12px] text-heading leading-normal">
         Based on {reviewCount} sourced reviews · {sourcesSummary}
       </span>
 
       {verdictSummary && (
-        <p className="mt-4 text-[12px] leading-relaxed text-(--muted) border-t border-(--line) pt-4">
+        <p className="mt-4 text-[12px] leading-relaxed text-heading border-t border-(--line) pt-4">
           {verdictSummary}
         </p>
       )}
       {(bestFor || lessIdealFor) && (
         <div className="mt-4 flex flex-col gap-2 border-t border-(--line) pt-4">
           {bestFor && (
-            <p className="text-[11px] leading-relaxed text-(--muted)">
+            <p className="text-[11px] leading-relaxed text-heading">
               <span className="font-medium text-(--ink)">Best fit for:</span> {bestFor}
             </p>
           )}
           {lessIdealFor && (
-            <p className="text-[11px] leading-relaxed text-(--muted)">
+            <p className="text-[11px] leading-relaxed text-heading">
               <span className="font-medium text-(--ink)">Less ideal for:</span> {lessIdealFor}
             </p>
           )}

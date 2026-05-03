@@ -49,7 +49,7 @@ export default function ReviewCard({ review, featured = false }: ReviewCardProps
             {review.painLevel != null ? (
               <PainBar level={review.painLevel} />
             ) : (
-              <span className="text-[12px] text-(--muted) font-mono font-medium">N/A</span>
+              <span className="text-[12px] text-heading font-mono font-medium">N/A</span>
             )}
           </div>
         </div>

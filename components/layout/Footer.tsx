@@ -15,16 +15,16 @@ const links = [
 
 export default function Footer({ dataLastUpdated }: { dataLastUpdated?: string }) {
   return (
-    <footer className="relative border-t border-border bg-surface py-10" style={{ zIndex: 1 }}>
+    <footer className="relative border-t border-border bg-[#FAFAFA] py-10" style={{ zIndex: 1 }}>
       <Container>
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
 
           {/* Brand */}
           <div className="shrink-0">
             <p className="text-sm font-bold text-heading">
-              RealTattoo<span className="text-muted">Reviews</span>
+              RealTattoo<span className="text-heading">Reviews</span>
             </p>
-            <p className="mt-1.5 max-w-55 text-xs leading-relaxed text-muted">
+            <p className="mt-1.5 max-w-55 text-xs leading-relaxed text-heading">
               Independent tattoo removal clinic reviews. Not affiliated with any provider.
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function Footer({ dataLastUpdated }: { dataLastUpdated?: string }
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-xs text-muted hover:text-accent transition-colors"
+                className="text-xs text-heading hover:text-accent transition-colors"
               >
                 {link.label}
               </Link>
@@ -43,7 +43,7 @@ export default function Footer({ dataLastUpdated }: { dataLastUpdated?: string }
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border pt-6 flex flex-wrap items-center justify-between gap-y-1 text-xs text-subtle">
+        <div className="mt-8 border-t border-border pt-6 flex flex-wrap items-center justify-between gap-y-1 text-xs text-heading">
           <span>© {new Date().getFullYear()} RealTattooReviews. Independent and editorially autonomous.</span>
           {dataLastUpdated && (
             <span>Data last updated: {dataLastUpdated}</span>

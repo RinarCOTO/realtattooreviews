@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const ptComponents = {
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="font-sans text-[15px] leading-relaxed text-(--muted)">{children}</p>
+      <p className="font-sans text-[15px] leading-relaxed text-heading">{children}</p>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
       <h3 className="font-sans font-semibold text-[16px] text-(--ink) mt-4 mb-1">{children}</h3>
@@ -63,7 +63,7 @@ const ptComponents = {
   },
   listItem: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="flex items-start gap-3 font-sans text-[14px] leading-relaxed text-(--muted)">
+      <li className="flex items-start gap-3 font-sans text-[14px] leading-relaxed text-heading">
         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
         <span>{children}</span>
       </li>
@@ -105,7 +105,7 @@ export default async function GuidePage({ params }: Props) {
       {guide.intro && (
         <div className="py-12">
           <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
-            <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+            <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
               {guide.intro}
             </p>
           </div>
@@ -115,7 +115,7 @@ export default async function GuidePage({ params }: Props) {
       {/* Author */}
       {guide.author && !hasSections && (
         <div className="py-5 border-b border-(--line)">
-          <p className="font-mono text-[11px] tracking-widest uppercase text-(--muted)">
+          <p className="font-mono text-[11px] tracking-widest uppercase text-heading">
             By {guide.author}
           </p>
         </div>
@@ -141,7 +141,7 @@ export default async function GuidePage({ params }: Props) {
       {/* Empty state */}
       {!hasSections && !hasLegacyBody && (
         <div className="py-10">
-          <p className="text-(--muted) text-[14px] italic">Content coming soon.</p>
+          <p className="text-heading text-[14px] italic">Content coming soon.</p>
         </div>
       )}
 

@@ -58,7 +58,7 @@ export default function ProvidersTable({ providers }: ProvidersTableProps) {
 
   function thClass(key: SortKey) {
     return [
-      "px-4 py-3 text-left font-mono text-[11px] tracking-widest uppercase text-(--muted) cursor-pointer select-none whitespace-nowrap hover:text-(--ink) transition-colors",
+      "px-4 py-3 text-left font-mono text-[11px] tracking-widest uppercase text-heading cursor-pointer select-none whitespace-nowrap hover:text-(--ink) transition-colors",
       sortKey === key ? "text-(--ink)" : "",
     ].join(" ");
   }
@@ -80,10 +80,10 @@ export default function ProvidersTable({ providers }: ProvidersTableProps) {
             <th className={thClass("reviewCount")} onClick={() => handleSort("reviewCount")}>
               Reviews {arrow("reviewCount")}
             </th>
-            <th className="px-4 py-3 text-left font-mono text-[11px] tracking-widest uppercase text-(--muted) whitespace-nowrap">
+            <th className="px-4 py-3 text-left font-mono text-[11px] tracking-widest uppercase text-heading whitespace-nowrap">
               Method
             </th>
-            <th className="px-4 py-3 text-left font-mono text-[11px] tracking-widest uppercase text-(--muted)">
+            <th className="px-4 py-3 text-left font-mono text-[11px] tracking-widest uppercase text-heading">
               Tags
             </th>
           </tr>
@@ -109,7 +109,7 @@ export default function ProvidersTable({ providers }: ProvidersTableProps) {
                     {p.name}
                   </Link>
                 </td>
-                <td className="px-4 py-3.5 text-(--muted)">{p.market.split(",")[0]}</td>
+                <td className="px-4 py-3.5 text-heading">{p.market.split(",")[0]}</td>
                 <td className="px-4 py-3.5 min-w-[120px]">{ratingBar(p.rating)}</td>
                 <td className="px-4 py-3.5 font-mono text-(--ink)">{p.reviewCount.toLocaleString()}</td>
                 <td className="px-4 py-3.5">
@@ -129,7 +129,7 @@ export default function ProvidersTable({ providers }: ProvidersTableProps) {
                     {(p.tags ?? []).slice(0, 2).map((tag) => (
                       <span
                         key={tag}
-                        className="border border-(--line) bg-(--surface) px-2 py-0.5 font-mono text-[10px] tracking-widest uppercase text-(--muted)"
+                        className="border border-(--line) bg-(--surface) px-2 py-0.5 font-mono text-[10px] tracking-widest uppercase text-heading"
                       >
                         {tag}
                       </span>

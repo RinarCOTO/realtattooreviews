@@ -49,7 +49,7 @@ function VerdictTable({ review }: { review: SanityProviderReview }) {
           {rows.map(({ label, value }) =>
             value ? (
               <tr key={label} className="last:border-0">
-                <td className="py-3 px-5 font-sans text-[11px] uppercase tracking-widest text-(--muted) whitespace-nowrap w-55 bg-(--surface)">
+                <td className="py-3 px-5 font-sans text-[11px] uppercase tracking-widest text-heading whitespace-nowrap w-55 bg-(--surface)">
                   {label}
                 </td>
                 <td className="py-3 px-5 text-(--ink) leading-relaxed">{value}</td>
@@ -132,7 +132,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
           />
           <VerdictTable review={review} />
           {locations.length > 1 && (
-            <p className="mt-4 font-sans text-[11px] uppercase tracking-widest text-(--muted)">
+            <p className="mt-4 font-sans text-[11px] uppercase tracking-widest text-heading">
               Aggregate rating is a weighted composite across{" "}
               {locations.length} Google Business locations. Individual location ratings
               range from{" "}
@@ -203,7 +203,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             {review.whatMakesDifferent
               ?.split("\n\n")
               .map((para, i) => (
-                <p key={i} className="text-[14px] leading-relaxed text-(--muted) mb-4">
+                <p key={i} className="text-[14px] leading-relaxed text-heading mb-4">
                   {para}
                 </p>
               ))}
@@ -219,12 +219,12 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             {review.pricingBody
               ?.split("\n\n")
               .map((para, i) => (
-                <p key={i} className="text-[14px] leading-relaxed text-(--muted) mb-4">
+                <p key={i} className="text-[14px] leading-relaxed text-heading mb-4">
                   {para}
                 </p>
               ))}
           </div>
-          <p className="mt-2 text-[13px] text-(--muted)">
+          <p className="mt-2 text-[13px] text-heading">
             <Link href="/cost" className="text-(--accent) hover:underline">
               Compare against the national cost guide
             </Link>
@@ -243,7 +243,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             {review.comparisonBody
               ?.split("\n\n")
               .map((para, i) => (
-                <p key={i} className="text-[14px] leading-relaxed text-(--muted) mb-4">
+                <p key={i} className="text-[14px] leading-relaxed text-heading mb-4">
                   {para}
                 </p>
               ))}
@@ -279,7 +279,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               </p>
               <ul className="flex flex-col gap-2">
                 {(review.bestForDetails ?? review.bestFor)?.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
                     <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#5A7A5A" }} />
                     {item}
                   </li>
@@ -292,7 +292,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               </p>
               <ul className="flex flex-col gap-2">
                 {(review.lessIdealForDetails ?? review.lessIdealFor)?.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
                     <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                     {item}
                   </li>
@@ -319,7 +319,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
           <BlockHeading title={`How We Reviewed ${review.providerName}`} body="" />
           <div className="max-w-prose border border-(--line) bg-(--surface) rounded-xl p-6">
             {review.publicReviewsAnalyzed && locations.length > 0 && (
-              <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+              <p className="text-[14px] leading-relaxed text-heading mb-4">
                 This review draws on {review.publicReviewsAnalyzed} patient reviews publicly
                 posted on Google Business listings for all {locations.length}{" "}
                 {review.providerName}{" "}
@@ -327,37 +327,37 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               </p>
             )}
             {locations.length > 1 && (
-              <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+              <p className="text-[14px] leading-relaxed text-heading mb-4">
                 The aggregate rating shown on this page is a weighted composite across all{" "}
                 {locations.length} locations, calculated from the total review pool across
                 all Google Business listings. Individual location ratings differ from the
                 aggregate. The per-location breakdown is in the Locations section above.
               </p>
             )}
-            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+            <p className="text-[14px] leading-relaxed text-heading mb-4">
               We excluded non-English reviews and reviews referring to unrelated services at
               the same business address.
             </p>
-            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+            <p className="text-[14px] leading-relaxed text-heading mb-4">
               These reviews are publicly posted by patients on Google. RealTattooReviews does
               not host user-submitted reviews. All review data is sourced from public
               platforms.
             </p>
-            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+            <p className="text-[14px] leading-relaxed text-heading mb-4">
               Provider data is verified against {review.providerName}&apos;s website and
               public sources.
             </p>
-            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+            <p className="text-[14px] leading-relaxed text-heading mb-4">
               We do not accept payment from {review.providerName} or any other provider for
               inclusion, placement, or favorable coverage. Providers cannot edit, remove, or
               pre-approve their reviews on RealTattooReviews.
             </p>
-            <p className="text-[14px] leading-relaxed text-(--muted) mb-4">
+            <p className="text-[14px] leading-relaxed text-heading mb-4">
               This review will be updated as new public review data becomes available, as{" "}
               {review.providerName} adds or closes locations, or as the provider&apos;s
               methods or supporting clinical evidence changes.
             </p>
-            <p className="text-[13px] text-(--muted)">
+            <p className="text-[13px] text-heading">
               Read more in our{" "}
               <Link href="/methodology" className="text-(--accent) hover:underline">
                 methodology
@@ -369,7 +369,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               .
             </p>
             {review.lastReviewed && (
-              <p className="mt-4 font-sans text-[11px] uppercase tracking-widest text-(--muted)">
+              <p className="mt-4 font-sans text-[11px] uppercase tracking-widest text-heading">
                 Last reviewed:{" "}
                 {new Date(review.lastReviewed).toLocaleDateString("en-US", {
                   month: "long",
@@ -392,6 +392,12 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             articleSection: "Reviews",
             about: { "@type": "Organization", name: review.providerName },
             headline: `${review.providerName} Review`,
+            mainEntityOfPage: `https://realtattooreviews.com/reviews/${slug}/`,
+            author: {
+              "@type": "Organization",
+              name: "RealTattooReviews",
+              url: "https://realtattooreviews.com",
+            },
             publisher: {
               "@type": "Organization",
               name: "RealTattooReviews",

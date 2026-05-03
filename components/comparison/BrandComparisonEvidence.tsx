@@ -25,11 +25,11 @@ function Totals({ rows }: { rows: BrandComparisonRow[] }) {
       <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{totalSample}</td>
       <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{avgStars ? `${avgStars}★` : "-"}</td>
       <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{pctPositive != null ? `${pctPositive}%` : "-"}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap text-(--muted)">{totalPos}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap text-(--muted)">{totalNeg}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-heading">{totalPos}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-heading">{totalNeg}</td>
       <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{totalComplete}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap text-(--muted)">{totalMicro}</td>
-      <td className="px-4 py-2.5 whitespace-nowrap text-(--muted)">{totalScarringPos + totalScarringYes}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-heading">{totalMicro}</td>
+      <td className="px-4 py-2.5 whitespace-nowrap text-heading">{totalScarringPos + totalScarringYes}</td>
     </tr>
   );
 }
@@ -72,7 +72,7 @@ export default async function BrandComparisonEvidence({
               {headers.map((h) => (
                 <th
                   key={h}
-                  className="px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wider text-(--muted) whitespace-nowrap"
+                  className="px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wider text-heading whitespace-nowrap"
                 >
                   {h}
                 </th>
@@ -85,16 +85,16 @@ export default async function BrandComparisonEvidence({
                 <td className="px-4 py-3 font-medium text-heading whitespace-nowrap">{row.city}</td>
                 <td className="px-4 py-3 text-body whitespace-nowrap">{row.sampleSize}</td>
                 <td className="px-4 py-3 text-body whitespace-nowrap">
-                  {row.avgStars != null ? row.avgStars.toFixed(2) : <span className="text-muted">-</span>}
+                  {row.avgStars != null ? row.avgStars.toFixed(2) : <span className="text-heading">-</span>}
                 </td>
                 <td className="px-4 py-3 text-body whitespace-nowrap">
-                  {row.pctPositive != null ? `${row.pctPositive}%` : <span className="text-muted">-</span>}
+                  {row.pctPositive != null ? `${row.pctPositive}%` : <span className="text-heading">-</span>}
                 </td>
-                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">{row.positives}</td>
-                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">{row.negatives}</td>
+                <td className="px-4 py-3 text-heading whitespace-nowrap">{row.positives}</td>
+                <td className="px-4 py-3 text-heading whitespace-nowrap">{row.negatives}</td>
                 <td className="px-4 py-3 text-body whitespace-nowrap">{row.useCaseComplete}</td>
-                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">{row.useCaseMicroblading}</td>
-                <td className="px-4 py-3 text-(--muted) whitespace-nowrap">
+                <td className="px-4 py-3 text-heading whitespace-nowrap">{row.useCaseMicroblading}</td>
+                <td className="px-4 py-3 text-heading whitespace-nowrap">
                   {row.scarringPositive + row.scarringYes}
                 </td>
               </tr>
@@ -102,7 +102,7 @@ export default async function BrandComparisonEvidence({
             {pendingOnly.map((city) => (
               <tr key={city} className="bg-white">
                 <td className="px-4 py-3 font-medium text-(--ink) whitespace-nowrap">{city}</td>
-                <td colSpan={8} className="px-4 py-3 text-(--muted) italic text-[12px]">
+                <td colSpan={8} className="px-4 py-3 text-heading italic text-[12px]">
                   Review sample pending
                 </td>
               </tr>
@@ -118,7 +118,7 @@ export default async function BrandComparisonEvidence({
     <div>
       <BrandTable brand={brandA} liveRows={brandARows} pendingCities={brandAPendingCities} />
       <BrandTable brand={brandB} liveRows={brandBRows} pendingCities={brandBPendingCities} />
-      <p className="font-sans text-[11px] text-(--muted) text-right mt-2">
+      <p className="font-sans text-[11px] text-heading text-right mt-2">
         {lastRefreshed && <>Data refreshed: {lastRefreshed} &middot; </>}
         Sample sizes capped at 50 per provider location. Lifetime Google review counts are higher.
       </p>

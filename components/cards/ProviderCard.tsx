@@ -37,7 +37,7 @@ export default function ProviderCard({ provider }: Props) {
             slug={logoSlug}
             name={provider.name}
             className="h-full w-full object-contain"
-            fallbackClassName="absolute inset-0 flex items-center justify-center text-xl font-bold text-muted"
+            fallbackClassName="absolute inset-0 flex items-center justify-center text-xl font-bold text-heading"
           />
         </div>
         {/* Verified badge */}
@@ -51,7 +51,7 @@ export default function ProviderCard({ provider }: Props) {
       {/* Name & specialty */}
       <p className="text-[15px] font-bold text-heading">{provider.name}</p>
       {provider.specialty && (
-        <p className="mt-0.5 text-xs text-muted">{provider.specialty}</p>
+        <p className="mt-0.5 text-xs text-heading">{provider.specialty}</p>
       )}
 
       {/* Rating row */}
@@ -63,10 +63,10 @@ export default function ProviderCard({ provider }: Props) {
       </div>
 
       {/* Meta */}
-      <div className="mt-3 flex flex-col items-center gap-1 text-xs text-muted">
+      <div className="mt-3 flex flex-col items-center gap-1 text-xs text-heading">
         {provider.yearsActive && (
           <span className="flex items-center gap-1">
-            <svg className="h-3.5 w-3.5 text-subtle" viewBox="0 0 20 20" fill="currentColor">
+            <svg className="h-3.5 w-3.5 text-heading" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
             </svg>
             {provider.yearsActive} years active
@@ -74,7 +74,7 @@ export default function ProviderCard({ provider }: Props) {
         )}
         {provider.location && (
           <span className="flex items-center gap-1">
-            <svg className="h-3.5 w-3.5 text-subtle" viewBox="0 0 20 20" fill="currentColor">
+            <svg className="h-3.5 w-3.5 text-heading" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
             </svg>
             {provider.location}

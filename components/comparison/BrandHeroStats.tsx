@@ -71,7 +71,7 @@ function BrandCard({
   return (
     <div className="flex-1 min-w-[200px] max-w-[280px] rounded-xl border border-(--line) bg-white shadow-[0_2px_10px_0_rgb(0,0,0,0.07)] p-5">
       {/* Brand label */}
-      <p className="font-sans text-[10px] font-semibold uppercase tracking-widest text-(--muted) m-0 mb-4">
+      <p className="font-sans text-[10px] font-semibold uppercase tracking-widest text-heading m-0 mb-4">
         {brand}
       </p>
 
@@ -83,7 +83,7 @@ function BrandCard({
           </span>
           <div className="flex flex-col gap-1 pb-1">
             <StarDisplay avgStars={avgStars} />
-            <span className="font-sans text-[10px] text-(--muted) leading-none">
+            <span className="font-sans text-[10px] text-heading leading-none">
               avg rating
             </span>
           </div>
@@ -91,7 +91,7 @@ function BrandCard({
       )}
 
       {/* Review count */}
-      <p className="font-sans text-[11px] text-(--muted) m-0 mb-4">
+      <p className="font-sans text-[11px] text-heading m-0 mb-4">
         Based on {totalSample} reviews
       </p>
 
@@ -115,17 +115,17 @@ function BrandCard({
             />
           </div>
           <div className="flex justify-between mt-1.5">
-            <span className="font-sans text-[10px] text-(--muted)">
+            <span className="font-sans text-[10px] text-heading">
               4–5★{" "}
               <span className="font-semibold text-(--ink)">{pctHigh}%</span>
             </span>
             {pctMid > 0 && (
-              <span className="font-sans text-[10px] text-(--muted)">
+              <span className="font-sans text-[10px] text-heading">
                 3★{" "}
                 <span className="font-semibold text-(--ink)">{pctMid}%</span>
               </span>
             )}
-            <span className="font-sans text-[10px] text-(--muted)">
+            <span className="font-sans text-[10px] text-heading">
               1–2★{" "}
               <span className="font-semibold text-(--ink)">{pctLow}%</span>
             </span>

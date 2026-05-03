@@ -3,6 +3,7 @@ import type { Provider } from "@/types/provider";
 import { brandToSlug } from "@/lib/providers";
 import MonoLabel from "@/components/reviews/MonoLabel";
 import DevLabel from "@/components/dev/DevLabel";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 function reviewPageHref(provider: Provider): string {
   return provider.brand
@@ -31,9 +32,9 @@ export default function AlternativesSection({ alternatives }: { alternatives: Pr
               {provider.rating.toFixed(1)}
             </span>
           </div>
-          <p className="text-[13px] text-(--muted) line-clamp-3 leading-normal">{provider.summary}</p>
-          <span className="mt-auto text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">
-            Read review →
+          <p className="text-[13px] text-heading line-clamp-3 leading-normal">{provider.summary}</p>
+          <span className="mt-auto inline-flex items-center gap-1 text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">
+            Read review <ChevronRightIcon className="size-3.5" />
           </span>
         </Link>
       ))}

@@ -89,7 +89,7 @@ const faqs = [
   {
     question: "What is the difference between inkOUT and Clarity Skin for tattoo removal?",
     answer:
-      "The core difference is method. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser technique that lifts ink through the skin surface without using laser energy. It avoids the wavelength-versus-color limitations that affect laser systems and avoids the wavelength-versus-melanin risk that elevates scarring concern on darker skin tones. Clarity Skin uses Candela PicoWay, a picosecond laser that is effective across most ink colors and skin types. Laser is faster per session for large tattoos. TEPR is the better fit for cosmetic tattoos, darker skin tones, and users who want to avoid laser-based treatment entirely. Both offer consultations — book one at each to compare quoted timelines and pricing before committing.",
+      "The core difference is method. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser technique that lifts ink through the skin surface without using laser energy. It avoids laser-specific wavelength and melanin interaction, but it has its own healing and aftercare considerations. Clarity Skin uses Candela PicoWay, a picosecond laser that is effective across most ink colors and skin types. Laser is faster per session for large tattoos. TEPR is worth comparing for cosmetic tattoos, darker skin tones, and users who prefer to avoid laser-based treatment. Both offer consultations; book one at each to compare quoted timelines and pricing before committing.",
   },
   {
     question: "How much does tattoo removal cost in Draper?",
@@ -114,7 +114,7 @@ const faqs = [
   {
     question: "What is the best option for cosmetic tattoo removal in Draper?",
     answer:
-      "Both inkOUT and Clarity Skin handle cosmetic tattoo removal, including microblading and permanent makeup. inkOUT's TEPR method is particularly well-suited to cosmetic tattoos because it avoids the risk of laser interaction with iron oxide pigments common in cosmetic inks and avoids wavelength-dependent color limitations. Clarity Skin's PicoWay can also handle cosmetic cases effectively with the right settings. For microblading or powder brow removal specifically, ask each provider at consultation about their experience with cosmetic ink types before booking.",
+      "Both inkOUT and Clarity Skin handle cosmetic tattoo removal, including microblading and permanent makeup. inkOUT's TEPR method is worth comparing for cosmetic tattoos because it is not light-based and avoids laser-triggered interaction with iron oxide pigments common in cosmetic inks. Clarity Skin's PicoWay can also handle cosmetic cases effectively with the right settings. For microblading or powder brow removal specifically, ask each provider at consultation about their experience with cosmetic ink types before booking.",
   },
   {
     question: "How many sessions does tattoo removal take?",
@@ -124,7 +124,7 @@ const faqs = [
   {
     question: "Does tattoo removal hurt?",
     answer:
-      "Most users describe laser tattoo removal as similar to a thick rubber band snapping against the skin. Sessions for small tattoos last under 10 minutes. TEPR (non-laser, used by inkOUT) feels different and is usually described as moderate, similar to a tattoo session, rather than sharp.",
+      "Most users describe laser tattoo removal as similar to a thick rubber band snapping against the skin. Sessions for small tattoos last under 10 minutes. TEPR non-laser treatment feels different and is usually described as moderate, similar to a tattoo session, rather than sharp.",
   },
   {
     question: "Do Draper tattoo removal clinics offer free consultations?",
@@ -210,7 +210,7 @@ export default async function DraperPage() {
             <h1 className="font-sans font-bold text-[clamp(40px,6vw,72px)] leading-none tracking-[-0.03em] m-0 text-(--ink) max-w-[20ch]">
               Best Tattoo Removal <span className="text-(--accent)">in Draper</span>
             </h1>
-            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-(--muted) max-w-130">
+            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-heading max-w-130">
               Compare tattoo removal clinics in Draper, Utah. See provider differences across method, reviews, and pricing before you book.
             </p>
           </Container>
@@ -223,7 +223,7 @@ export default async function DraperPage() {
 
             {/* Intro */}
             <div className="py-12">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   Draper sits at the south end of the Salt Lake Valley and draws users from
                   Sandy, South Jordan, Riverton, Herriman, and the broader south metro. The
                   market is smaller than Salt Lake City proper, but it offers a genuinely
@@ -232,13 +232,13 @@ export default async function DraperPage() {
                   in the area are choosing between those two methods before they choose a
                   provider.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   This page compares the providers that handle tattoo removal in Draper. It covers
                   what technology each uses, where they are located, and which kinds of cases each
                   handles best. The goal is to help you decide which provider fits your tattoo,
                   your skin, and your priorities before booking a consultation.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
                   <Link
                     href="/comparisons/best-tattoo-removal-method"
@@ -262,7 +262,7 @@ export default async function DraperPage() {
             {/* Dynamic ranking */}
             <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <GuideSection heading="Best Tattoo Removal Clinics in Draper">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The ranked list below is generated from our review-sample analysis. Sentiment
                 scores, sample sizes, and use-case wins reflect the most recent reviews captured
                 in our internal review dataset. Lifetime Google review counts are higher than the
@@ -270,7 +270,7 @@ export default async function DraperPage() {
               </p>
               <Suspense fallback={
                 <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
-                  <p className="font-sans text-[14px] text-(--muted) m-0">Loading provider data&hellip;</p>
+                  <p className="font-sans text-[14px] text-heading m-0">Loading provider data&hellip;</p>
                 </div>
               }>
                 <CityProviderRanking city="Draper" staticProviders={DRAPER_PROVIDERS} />
@@ -280,7 +280,7 @@ export default async function DraperPage() {
 
             {/* Static editorial profiles */}
             <GuideSection heading="Draper Provider Profiles">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds of
                 cases it handles. Current performance metrics, rankings, and review breakdowns
                 appear in the section above and update as our scrape refreshes.
@@ -296,7 +296,7 @@ export default async function DraperPage() {
                         </Link>
                       ) : p.name}
                     </h3>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">{p.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading mb-4">{p.body}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <p className="font-sans text-[12px] font-semibold text-(--ink) mb-1.5">Best for</p>
@@ -314,7 +314,7 @@ export default async function DraperPage() {
 
             {/* Dynamic comparison table */}
             <GuideSection heading="Compare Draper Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The table below summarizes the Draper options at a glance. Use it for orientation,
                 then read the profiles above for fit-based detail. Sample size shows the number of
                 recent reviews analyzed for sentiment scoring. Total lifetime Google review counts
@@ -322,7 +322,7 @@ export default async function DraperPage() {
               </p>
               <Suspense fallback={
                 <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
-                  <p className="font-sans text-[14px] text-(--muted) m-0">Loading comparison table&hellip;</p>
+                  <p className="font-sans text-[14px] text-heading m-0">Loading comparison table&hellip;</p>
                 </div>
               }>
                 <CityProviderComparisonTable city="Draper" staticProviders={DRAPER_PROVIDERS} />
@@ -331,7 +331,7 @@ export default async function DraperPage() {
 
             {/* Technology section */}
             <GuideSection heading="Laser and Non-Laser Options in Draper">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The Draper market offers both laser and non-laser tattoo removal. The method
                 choice matters more here than provider choice — the two are genuinely different
                 categories of treatment, not variations on the same process.
@@ -349,17 +349,17 @@ export default async function DraperPage() {
                   },
                   {
                     title: "Non-laser TEPR (inkOUT)",
-                    body: "inkOUT uses TEPR, a non-laser method that lifts ink physically through the skin rather than shattering it with light. This avoids the wavelength-versus-color limitations that lasers face and avoids the wavelength-versus-melanin interaction that raises pigment-change risk on darker skin tones. TEPR is not faster per session than laser for large tattoos, but it is the only method in Draper that sidesteps these laser-specific constraints entirely.",
+                    body: "inkOUT uses TEPR, a non-laser method that lifts ink physically through the skin rather than shattering it with light. Because it is not light-based, it has a different risk profile from wavelength-based laser treatment. TEPR is not faster per session than laser for large tattoos, and healing, scarring risk, and aftercare should be discussed at consultation.",
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 If your tattoo includes hard-to-clear colors like green, teal, white, or pastels,
                 ask Clarity Skin which of their wavelengths addresses those pigments and what
                 their realistic session estimate is for your specific case before committing.
@@ -368,7 +368,7 @@ export default async function DraperPage() {
 
             {/* Pricing section */}
             <GuideSection heading="How Much Does Tattoo Removal Cost in Draper?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Tattoo removal in Draper generally runs $100 to $400 per session. The main
                 variables are tattoo size, ink density, and the provider&rsquo;s pricing model.
               </p>
@@ -383,23 +383,23 @@ export default async function DraperPage() {
                     key={tier.label}
                     className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
-                    <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
+                    <p className="font-sans text-[14px] text-heading m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Most tattoos need three to twelve sessions for complete removal. Three to eight
                 sessions is typical for cover-up fading. Total cost for a standard tattoo
                 typically falls between $1,000 and $4,000 in this market.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Per-session pricing suits users who want flexibility or expect to finish quickly.
                 Ask each provider about payment plans and whether they offer any package pricing
                 or session guarantees at the consultation.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For a national pricing breakdown by method and size, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   cost guide
@@ -410,14 +410,14 @@ export default async function DraperPage() {
 
             {/* Ranking methodology */}
             <GuideSection heading="How We Evaluated Draper Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Draper is a two-provider market for tracked tattoo removal. The ranked list above
                 reflects review-sample evidence — sentiment scores and use-case signals from the
                 most recent public reviews for inkOUT and Clarity Skin. Where review samples are
                 thin, the ranking reflects what the available data shows and flags low sample sizes
                 clearly so you can weigh the evidence appropriately.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Because the providers use fundamentally different methods, the ranking is less
                 about declaring a winner and more about surfacing which provider has demonstrated
                 better outcomes for specific use cases — complete removal, cover-up fading,
@@ -427,12 +427,12 @@ export default async function DraperPage() {
                 items={[
                   "Review sample size and sentiment. Larger samples carry more weight. Sentiment comes from review text classification across the most recent reviews per provider, not from star averages alone.",
                   "Use-case fit signals. Reviews are tagged for use case (Complete removal, Cover-up fading, Microblading, Color, Other). Providers showing repeated positive outcomes in a specific use case get credit for that fit.",
-                  "Method fit for the case. Picosecond laser (Clarity Skin) suits most standard ink colors and standard skin types. TEPR non-laser (inkOUT) suits cosmetic tattoos, darker skin tones, and color-limited cases where laser wavelengths fall short.",
+                  "Method fit for the case. Picosecond laser (Clarity Skin) suits most standard ink colors and standard skin types. TEPR non-laser (inkOUT) is worth comparing for cosmetic tattoos, darker skin tones, and cases where wavelength-based laser fit is uncertain.",
                   "Pricing transparency. Providers with published per-session pricing rank above those that withhold all pricing until consultation.",
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For the full review and ranking framework used across the site, see the{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page

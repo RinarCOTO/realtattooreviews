@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Tag from "@/components/ui/Tag";
+import ChevronLeftIcon from "@/components/ui/ChevronLeftIcon";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 type Post = {
   slug: string;
@@ -45,7 +47,9 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
             <p className="mb-4 flex-1 font-sans text-[14px] leading-relaxed text-(--ink)">
               {post.description}
             </p>
-            <span className="text-sm font-medium text-(--accent)">Read full article →</span>
+            <span className="inline-flex items-center gap-1 text-sm font-medium text-(--accent)">
+              Read full article <ChevronRightIcon className="size-4" />
+            </span>
           </Link>
         ))}
       </div>
@@ -57,7 +61,9 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
             disabled={currentPage === 1}
             className="rounded-md border border-(--line) px-4 py-2 text-sm text-(--ink) transition hover:border-(--accent) hover:text-(--accent) disabled:pointer-events-none disabled:opacity-40"
           >
-            ← Prev
+            <span className="inline-flex items-center gap-1">
+              <ChevronLeftIcon className="size-4" /> Prev
+            </span>
           </button>
 
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -79,7 +85,9 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
             disabled={currentPage === totalPages}
             className="rounded-md border border-(--line) px-4 py-2 text-sm text-(--ink) transition hover:border-(--accent) hover:text-(--accent) disabled:pointer-events-none disabled:opacity-40"
           >
-            Next →
+            <span className="inline-flex items-center gap-1">
+              Next <ChevronRightIcon className="size-4" />
+            </span>
           </button>
         </div>
       )}

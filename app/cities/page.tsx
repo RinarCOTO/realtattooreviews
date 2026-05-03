@@ -7,6 +7,7 @@ import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideCallout from "@/components/guide/GuideCallout";
 import PageHero from "@/components/layout/PageHero";
 import FAQSection from "@/components/sections/FAQSection";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 export const metadata: Metadata = {
   title:
@@ -131,13 +132,13 @@ export default function CitiesIndexPage() {
             {/* Intro */}
             <div className="py-12">
               <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   Tattoo removal is a local decision. The best provider for you is one you can
                   reach, afford, and trust across a treatment series that may span 6 to 18 months.
                   The city pages below compare every tracked provider in each metro area so you can
                   make that decision based on evidence.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   Each city page covers which providers operate in your market, what technology each
                   uses, how their review evidence stacks up, what each charges, and who each
                   provider serves best. Rankings are generated from our review-sample analysis and
@@ -160,15 +161,15 @@ export default function CitiesIndexPage() {
                         <p className="font-sans text-[16px] font-semibold text-(--ink) m-0 group-hover:text-(--accent) transition-colors">
                           {city.name}
                         </p>
-                        <p className="font-sans text-[12px] text-(--muted) m-0 mt-0.5 uppercase tracking-wider">
+                        <p className="font-sans text-[12px] text-heading m-0 mt-0.5 uppercase tracking-wider">
                           {city.tagline}
                         </p>
                       </div>
-                      <span className="font-sans text-[13px] font-medium text-(--accent) shrink-0 mt-0.5">
-                        View →
+                      <span className="mt-0.5 inline-flex shrink-0 items-center gap-1 font-sans text-[13px] font-medium text-(--accent)">
+                        View <ChevronRightIcon className="size-3.5" />
                       </span>
                     </div>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0 mt-3">
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0 mt-3">
                       {city.desc}
                     </p>
                   </Link>
@@ -178,7 +179,7 @@ export default function CitiesIndexPage() {
 
             {/* How City Pages Work */}
             <GuideSection heading="How City Pages Work">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Each city page follows the same structure.
               </p>
               <div className="space-y-3">
@@ -190,7 +191,7 @@ export default function CitiesIndexPage() {
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
                       {item.title}
                     </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
                       {item.body}
                     </p>
                   </div>
@@ -200,7 +201,7 @@ export default function CitiesIndexPage() {
 
             {/* Your city is not listed */}
             <GuideSection heading="Your City Is Not Listed?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 We are expanding coverage as our review dataset grows. If your city is not listed:
               </p>
               <GuideBulletList

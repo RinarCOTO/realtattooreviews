@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 type RelatedLink = {
   href: string;
@@ -28,11 +29,11 @@ export default function GuideRelatedLinks({ links }: Props) {
               <p className="font-sans font-medium text-(--ink) text-[15px] m-0 mb-0.5">
                 {link.title}
               </p>
-              <p className="font-sans text-[13px] text-(--muted) m-0 leading-snug">
+              <p className="font-sans text-[13px] text-heading m-0 leading-snug">
                 {link.desc}
               </p>
             </div>
-            <span className="text-(--accent) text-[14px] font-medium shrink-0">→</span>
+            <ChevronRightIcon className="size-4 shrink-0 text-(--accent)" />
           </Link>
         ))}
       </div>

@@ -16,7 +16,7 @@ const columnClass = {
 export default function ReviewCardGrid({ reviews, showProvider = true, columns = 2 }: Props) {
   if (reviews.length === 0) {
     return (
-      <p className="text-sm text-muted">No reviews found.</p>
+      <p className="text-sm text-heading">No reviews found.</p>
     );
   }
 

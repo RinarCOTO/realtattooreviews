@@ -20,7 +20,7 @@ export default function MonoLabel({
       className={[
         "font-sans font-bold uppercase tracking-wider",
         size === "xs" ? "text-[13px]" : "text-[14px]",
-        color === "accent" ? "text-(--accent)" : "text-(--muted)",
+        color === "accent" ? "text-(--accent)" : "text-heading",
         className,
       ]
         .filter(Boolean)

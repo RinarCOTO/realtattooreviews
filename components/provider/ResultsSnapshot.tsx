@@ -1,5 +1,6 @@
 import Link from "next/link";
 import DevLabel from "@/components/dev/DevLabel";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 interface ResultsSnapshotProps {
   resultsMentioned: number;
@@ -21,7 +22,7 @@ export default function ResultsSnapshot({ resultsMentioned, painMentioned, scarr
           {/* Results mentioned */}
           <div className="flex flex-col gap-1 pr-4">
             <p className="text-3xl font-bold text-(--ink)">{resultsMentioned}</p>
-            <p className="text-sm text-(--muted)">Results mentioned</p>
+            <p className="text-sm text-heading">Results mentioned</p>
           </div>
 
           {/* Pain signals */}
@@ -56,9 +57,9 @@ export default function ResultsSnapshot({ resultsMentioned, painMentioned, scarr
       {/* Moved outside the card */}
       <Link
         href="/before-and-after"
-        className="mt-3 inline-block text-[13px] font-medium text-(--accent) hover:underline"
+        className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline"
       >
-        Explore before-and-after research →
+        Explore before-and-after research <ChevronRightIcon className="size-3.5" />
       </Link>
     </div>
     </DevLabel>

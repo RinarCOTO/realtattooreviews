@@ -30,7 +30,7 @@ export default function EditorialBanner({ href = "/editorial-policy" }: Props) {
           />
           <circle cx="9" cy="5.5" r="0.75" fill="#2F6F6D" />
         </svg>
-        <p className="text-[14px] text-(--muted) leading-snug m-0">
+        <p className="text-[14px] text-heading leading-snug m-0">
           No paid placement. No hidden negatives.{" "}
           <Link
             href={href}

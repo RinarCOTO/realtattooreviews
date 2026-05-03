@@ -191,7 +191,7 @@ export default async function ChicagoPage() {
             <h1 className="font-sans font-bold text-[clamp(40px,6vw,72px)] leading-none tracking-[-0.03em] m-0 text-(--ink) max-w-[20ch]">
               Best Tattoo Removal <span className="text-(--accent)">in Chicago</span>
             </h1>
-            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-(--muted) max-w-130">
+            <p className="mt-5 font-sans font-normal text-[17px] leading-[1.55] text-heading max-w-130">
               Compare tattoo removal clinics in Chicago and the suburbs. See provider differences across method, reviews, and pricing before you book.
             </p>
           </Container>
@@ -204,21 +204,21 @@ export default async function ChicagoPage() {
 
             {/* Intro */}
             <div className="py-12">
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   Tattoo removal Chicago is a fragmented market. National chains, dedicated
                   removal specialists, aesthetic med spas, and a non-laser inkOUT location all
                   serve the city. Providers are spread across Bucktown, Lincoln Square, Lincoln
                   Park, Wicker Park, the South Loop, and the suburbs. The good news is choice.
                   The bad news is comparison fatigue.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   This page focuses on Chicago city locations where we have direct review
                   evidence. Suburban options like Removery in Naperville and Orland Park exist
                   and are good choices for users in those markets. The goal here is to help you
                   narrow down a shortlist before booking a consultation, not to push a single
                   winner for every situation.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
                   <Link href="/comparisons/best-tattoo-removal-method" className="text-(--accent) hover:underline">
                     best tattoo removal method comparison
@@ -239,7 +239,7 @@ export default async function ChicagoPage() {
             {/* Dynamic ranking */}
             <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <GuideSection heading="Best Tattoo Removal Clinics in Chicago">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The ranked list below is generated from our review-sample analysis. Sentiment
                 scores, sample sizes, and use-case wins reflect the most recent reviews captured
                 in our internal review dataset. Lifetime Google review counts are higher than the
@@ -247,7 +247,7 @@ export default async function ChicagoPage() {
               </p>
               <Suspense fallback={
                 <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
-                  <p className="font-sans text-[14px] text-(--muted) m-0">Loading provider data&hellip;</p>
+                  <p className="font-sans text-[14px] text-heading m-0">Loading provider data&hellip;</p>
                 </div>
               }>
                 <CityProviderRanking city="Chicago" staticProviders={CHICAGO_PROVIDERS} />
@@ -257,7 +257,7 @@ export default async function ChicagoPage() {
 
             {/* Static editorial profiles */}
             <GuideSection heading="Chicago Provider Profiles">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds
                 of cases it handles. Current performance metrics and rankings appear in the
                 section above and update as our scrape refreshes.
@@ -273,7 +273,7 @@ export default async function ChicagoPage() {
                         </Link>
                       ) : p.name}
                     </h3>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) mb-4">{p.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading mb-4">{p.body}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <p className="font-sans text-[12px] font-semibold text-(--ink) mb-1.5">Best for</p>
@@ -291,7 +291,7 @@ export default async function ChicagoPage() {
 
             {/* Dynamic comparison table */}
             <GuideSection heading="Compare Chicago Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The table below summarizes the best tattoo removal Chicago options at a glance.
                 Use it for orientation, then read the profiles above for fit-based detail.
                 Sample size shows the number of recent reviews analyzed for sentiment scoring.
@@ -299,7 +299,7 @@ export default async function ChicagoPage() {
               </p>
               <Suspense fallback={
                 <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
-                  <p className="font-sans text-[14px] text-(--muted) m-0">Loading comparison table&hellip;</p>
+                  <p className="font-sans text-[14px] text-heading m-0">Loading comparison table&hellip;</p>
                 </div>
               }>
                 <CityProviderComparisonTable city="Chicago" staticProviders={CHICAGO_PROVIDERS} />
@@ -308,7 +308,7 @@ export default async function ChicagoPage() {
 
             {/* Technology section */}
             <GuideSection heading="Laser Tattoo Removal Options in Chicago">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Laser tattoo removal Chicago providers run several different systems. The system
                 matters because pulse width, available wavelengths, and provider experience
                 together determine which ink colors and skin types respond best.
@@ -335,7 +335,7 @@ export default async function ChicagoPage() {
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
                     <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -343,7 +343,7 @@ export default async function ChicagoPage() {
 
             {/* Pricing section */}
             <GuideSection heading="How Much Does Tattoo Removal Cost in Chicago?">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Tattoo removal cost Chicago providers charge generally runs $150 to $500 per
                 session. Most cases land in the $200 to $400 range. The big variables are
                 tattoo size, ink density, and the provider&rsquo;s pricing model.
@@ -359,13 +359,13 @@ export default async function ChicagoPage() {
                     key={tier.label}
                     className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
-                    <p className="font-sans text-[14px] text-(--muted) m-0">{tier.label}</p>
+                    <p className="font-sans text-[14px] text-heading m-0">{tier.label}</p>
                     <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Most tattoos need three to twelve sessions for complete removal, putting total
                 full-removal cost for a standard Chicago tattoo typically between $1,000 and
                 $5,000. Package pricing (Removery&rsquo;s Complete Removal Package) caps that total.
@@ -374,7 +374,7 @@ export default async function ChicagoPage() {
                 usually come from these promotional windows rather than from base per-session
                 pricing.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For a national pricing breakdown by method and size, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   cost guide
@@ -385,7 +385,7 @@ export default async function ChicagoPage() {
 
             {/* Ranking methodology */}
             <GuideSection heading="How We Ranked Chicago Tattoo Removal Clinics">
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The ranked list above is generated from a structured analysis of the most recent
                 public reviews per provider. Chicago is a fragmented market with seven tracked
                 providers across national chains, dedicated removal specialists, full-service med
@@ -401,7 +401,7 @@ export default async function ChicagoPage() {
                   "Honest fit framing. No provider wins for every user. Each profile includes both a best-for and a less-ideal-for section.",
                 ]}
               />
-              <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+              <p className="font-sans text-[15px] leading-relaxed text-heading">
                 For the full review and ranking framework used across the site, see the{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page

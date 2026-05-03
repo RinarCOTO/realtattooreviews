@@ -24,7 +24,7 @@ export default function StatsCounter({ stats }: Props) {
             <p className="text-[24px] font-bold leading-none text-heading">
               <CountUp end={stat.value} duration={2500} />
             </p>
-            <p className="mt-0.5 text-xs text-muted">{stat.label}</p>
+            <p className="mt-0.5 text-xs text-heading">{stat.label}</p>
           </div>
         </div>
       ))}

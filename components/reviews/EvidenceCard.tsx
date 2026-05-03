@@ -24,10 +24,10 @@ export default function EvidenceCard({ review }: Props) {
 
       {/* Use-case + sentiment tags */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] tracking-widest uppercase text-(--muted) border border-(--line) px-2 py-0.5">
+        <span className="font-mono text-[10px] tracking-widest uppercase text-heading border border-(--line) px-2 py-0.5">
           {useCaseLabel}
         </span>
-        <span className="font-mono text-[10px] px-0.5 text-(--muted)">|</span>
+        <span className="font-mono text-[10px] px-0.5 text-heading">|</span>
         <span className={`font-mono text-[10px] tracking-widest uppercase px-2 py-0.5 rounded-sm ${sentimentStyle}`}>
           {sentiment}
         </span>
@@ -39,7 +39,7 @@ export default function EvidenceCard({ review }: Props) {
       </p>
 
       {/* Source attribution */}
-      <p className="font-mono text-[11px] text-(--muted) border-t border-(--line) pt-3">
+      <p className="font-mono text-[11px] text-heading border-t border-(--line) pt-3">
         Source: {source}{stars != null ? `, ${stars} stars` : ""}
         {location ? ` | ${location}` : ""}
       </p>

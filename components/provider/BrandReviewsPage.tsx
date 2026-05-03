@@ -58,6 +58,28 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   const brandTags = unique(locations.flatMap((l) => l.tags ?? [])).slice(0, 6);
   const differentiator = locations[0] ? buildDifferentiator(locations[0], reviews) : null;
   const useCaseFocus = buildUseCaseFocus(reviews);
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    articleSection: "Reviews",
+    headline: `${brand} Tattoo Removal Reviews`,
+    description: `${totalReviews} sourced reviews for ${brand} across ${locations.length} ${locations.length === 1 ? "location" : "locations"}. Editorial review summary covering outcomes, pricing context, treatment approach, and location-level fit before booking.`,
+    mainEntityOfPage: `https://realtattooreviews.com/reviews/${slug}/`,
+    author: {
+      "@type": "Organization",
+      name: "RealTattooReviews",
+      url: "https://realtattooreviews.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "RealTattooReviews",
+      url: "https://realtattooreviews.com",
+    },
+    about: {
+      "@type": "Organization",
+      name: brand,
+    },
+  };
   // Use first location's Google Business URL if populated; fall back to Maps search
   const jumpItems = [
     { label: "Overview",     href: "#overview" },
@@ -113,7 +135,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
                 </p>
               )}
               {useCaseFocus && (
-                <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   {useCaseFocus}
                 </p>
               )}
@@ -176,7 +198,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${brand}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
-          <p className="mt-8 font-sans text-[14px] leading-relaxed text-(--muted)">
+          <p className="mt-8 font-sans text-[14px] leading-relaxed text-heading">
             The right outcome is not choosing the most familiar brand. It is choosing the provider whose strengths match your case most closely.
           </p>
         </Container>
@@ -199,6 +221,10 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         providerName={brand}
         copy={bottomLine.copy}
         actionLine={bottomLine.actionLine}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
       <script
         type="application/ld+json"

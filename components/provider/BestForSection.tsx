@@ -24,7 +24,7 @@ export default function BestForSection({ providerName, bestFor, lessIdealFor }: 
             </p>
             <ul className="flex flex-col gap-2">
               {bestFor.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
                   <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#5A7A5A" }} />
                   {item}
                 </li>
@@ -37,7 +37,7 @@ export default function BestForSection({ providerName, bestFor, lessIdealFor }: 
             </p>
             <ul className="flex flex-col gap-2">
               {lessIdealFor.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-(--muted)">
+                <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
                   <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   {item}
                 </li>

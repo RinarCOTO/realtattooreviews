@@ -154,8 +154,8 @@ export default function RemoveryVsLaserawayPage() {
             <Link href="/comparisons" className="hover:text-(--ink) transition-colors">
               Comparisons
             </Link>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">/</span>
-            <span className="text-(--muted) font-normal normal-case tracking-normal">
+            <span className="text-heading font-normal normal-case tracking-normal">/</span>
+            <span className="text-heading font-normal normal-case tracking-normal">
               Removery vs LaserAway
             </span>
           </span>
@@ -363,7 +363,7 @@ export default function RemoveryVsLaserawayPage() {
                 <Suspense
                   fallback={
                     <div className="rounded-xl bg-white border border-(--line) p-8 text-center">
-                      <p className="font-sans text-[14px] text-(--muted) m-0">Loading evidence table&hellip;</p>
+                      <p className="font-sans text-[14px] text-heading m-0">Loading evidence table&hellip;</p>
                     </div>
                   }
                 >

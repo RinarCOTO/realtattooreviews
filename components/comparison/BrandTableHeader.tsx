@@ -17,7 +17,7 @@ export default function BrandTableHeader({ name, logoSrc, initials }: Props) {
           className="h-8 w-24 object-contain"
         />
       ) : (
-        <span className="font-mono text-[10px] font-semibold text-(--muted) tracking-wide">
+        <span className="font-mono text-[10px] font-semibold text-heading tracking-wide">
           {initials ?? name.slice(0, 2).toUpperCase()}
         </span>
       )}

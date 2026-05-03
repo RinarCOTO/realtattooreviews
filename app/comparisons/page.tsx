@@ -6,6 +6,7 @@ import PageSection from "@/components/reviews/PageSection";
 import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 import PageHero from "@/components/layout/PageHero";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 export const metadata: Metadata = {
   title: "Tattoo Removal Comparisons: Methods, Brands, and Technology Compared | RealTattooReviews",
@@ -107,7 +108,7 @@ function ComparisonCard({
           </span>
         </div>
         <h3 className="mb-2 text-[17px] font-semibold leading-snug text-(--ink)">{title}</h3>
-        <p className="flex-1 text-[14px] leading-relaxed text-(--muted)">{description}</p>
+        <p className="flex-1 text-[14px] leading-relaxed text-heading">{description}</p>
       </div>
     );
   }
@@ -120,7 +121,7 @@ function ComparisonCard({
       <h3 className="mb-2 text-[17px] font-semibold leading-snug text-(--ink) group-hover:text-(--accent)">
         {title}
       </h3>
-      <p className="mb-4 flex-1 text-[14px] leading-relaxed text-(--muted)">{description}</p>
+      <p className="mb-4 flex-1 text-[14px] leading-relaxed text-heading">{description}</p>
       <span className="text-sm font-medium text-(--accent)">Read comparison</span>
     </Link>
   );
@@ -159,7 +160,7 @@ export default function ComparisonsPage() {
                 comparisons matter even more: the right technique for microblading removal is not the
                 same as the right technique for a saturated multi-color sleeve.
               </p>
-              <p className="text-[15px] leading-relaxed text-(--muted)">
+              <p className="text-[15px] leading-relaxed text-heading">
                 The pages below use live review evidence from our classified dataset to make those
                 tradeoffs concrete. See our{" "}
                 <Link href="/methodology" className="font-medium text-(--accent) hover:underline">
@@ -173,7 +174,7 @@ export default function ComparisonsPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-[26px] font-bold text-(--ink)">Brand Comparisons</h2>
-                <p className="mt-2 text-[15px] leading-relaxed text-(--muted)">
+                <p className="mt-2 text-[15px] leading-relaxed text-heading">
                   Provider-to-provider comparisons with city-level review breakdowns. Each page shows
                   sample sizes, average star ratings, positive sentiment percentages, and use-case
                   win counts for every covered city.
@@ -190,7 +191,7 @@ export default function ComparisonsPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-[26px] font-bold text-(--ink)">Technology Comparisons</h2>
-                <p className="mt-2 text-[15px] leading-relaxed text-(--muted)">
+                <p className="mt-2 text-[15px] leading-relaxed text-heading">
                   Method-to-method comparisons covering how each technology performs by ink type,
                   skin tone, treatment count, pain, scarring risk, and documented patient outcomes.
                 </p>
@@ -228,7 +229,7 @@ export default function ComparisonsPage() {
                     <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-(--accent)" />
                     <div>
                       <p className="text-[15px] font-semibold text-(--ink)">{item.title}</p>
-                      <p className="mt-1 text-[14px] leading-relaxed text-(--muted)">{item.body}</p>
+                      <p className="mt-1 text-[14px] leading-relaxed text-heading">{item.body}</p>
                     </div>
                   </div>
                 ))}
@@ -251,14 +252,14 @@ export default function ComparisonsPage() {
                     className="flex items-center justify-between rounded-lg bg-white px-4 py-3 text-[14px] font-medium text-(--ink) transition hover:text-(--accent)"
                   >
                     {link.label}
-                    <span className="text-(--muted)">→</span>
+                    <ChevronRightIcon className="size-4 text-heading" />
                   </Link>
                 ))}
               </div>
             </div>
 
             {/* Editorial note */}
-            <div className="rounded-xl bg-white p-5 text-[14px] leading-relaxed text-(--muted)">
+            <div className="rounded-xl bg-white p-5 text-[14px] leading-relaxed text-heading">
               <p className="font-semibold text-(--ink)">Editorial note</p>
               <p className="mt-2">
                 Comparison pages on RealTattooReviews use live review evidence, not editorial

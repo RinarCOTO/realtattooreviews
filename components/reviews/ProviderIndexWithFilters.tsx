@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import type { Provider } from "@/types/provider";
+import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -122,19 +123,19 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
           <option value="3.5">3.5 and above</option>
         </select>
 
-        <span className="ml-auto text-sm text-muted">
+        <span className="ml-auto text-sm text-heading">
           {totalFiltered} provider{totalFiltered !== 1 ? "s" : ""}
         </span>
       </div>
 
       {totalFiltered === 0 && (
-        <p className="py-8 text-center text-sm text-muted">No providers match your filters.</p>
+        <p className="py-8 text-center text-sm text-heading">No providers match your filters.</p>
       )}
 
       {/* ── Tier 1: Brand cards ───────────────────────────────────────────── */}
       {filteredBrands.length > 0 && (
         <div className="mb-10">
-          <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-subtle">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-heading">
             Multi-City Brands
           </p>
           <div className="grid gap-4 sm:grid-cols-3">
@@ -152,7 +153,7 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
                     {brand.techTags.slice(0, 2).map((tag) => (
                       <span
                         key={tag}
-                        className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${TECH_TAG_COLORS[tag] ?? "bg-bg text-muted"}`}
+                        className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${TECH_TAG_COLORS[tag] ?? "bg-bg text-heading"}`}
                       >
                         {tag}
                       </span>
@@ -170,7 +171,7 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
                 </div>
 
                 {/* Stats */}
-                <div className="mt-3 flex items-center gap-3 text-xs text-muted">
+                <div className="mt-3 flex items-center gap-3 text-xs text-heading">
                   <span>{brand.totalReviews} reviews</span>
                   <span className="text-border">·</span>
                   <span>{brand.locationCount} locations</span>
@@ -181,7 +182,9 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
                   href={`/reviews/${brand.slug}`}
                   className="mt-4 block rounded-lg border border-border py-2 text-center text-xs font-semibold text-body transition-colors hover:border-accent/40 hover:text-accent"
                 >
-                  View review page →
+                  <span className="inline-flex items-center justify-center gap-1">
+                    View review page <ChevronRightIcon className="size-3.5" />
+                  </span>
                 </Link>
               </div>
             ))}
@@ -192,7 +195,7 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
       {/* ── Tier 2: Independents ──────────────────────────────────────────── */}
       {filteredIndependents.length > 0 && (
         <div>
-          <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-subtle">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-heading">
             Independent Providers
           </p>
           <div className="flex flex-col divide-y divide-divider overflow-hidden rounded-xl border border-border bg-white">
@@ -208,14 +211,14 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
 
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-heading">{p.name}</p>
-                  <p className="text-xs text-muted">{p.market}</p>
+                  <p className="text-xs text-heading">{p.market}</p>
                 </div>
 
                 <div className="hidden shrink-0 items-center gap-1.5 sm:flex">
                   {techTagsOf(p).slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${TECH_TAG_COLORS[tag] ?? "bg-bg text-muted"}`}
+                      className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${TECH_TAG_COLORS[tag] ?? "bg-bg text-heading"}`}
                     >
                       {tag}
                     </span>
@@ -224,10 +227,10 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
 
                 <div className="shrink-0 text-right">
                   <p className="text-sm font-bold text-heading">{p.rating.toFixed(1)}</p>
-                  <p className="text-[11px] text-muted">{p.reviewCount} reviews</p>
+                  <p className="text-[11px] text-heading">{p.reviewCount} reviews</p>
                 </div>
 
-                <svg className="h-4 w-4 shrink-0 text-subtle" viewBox="0 0 20 20" fill="currentColor">
+                <svg className="h-4 w-4 shrink-0 text-heading" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                 </svg>
               </Link>
@@ -237,7 +240,7 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
           {!showAllIndependents && hiddenCount > 0 && (
             <button
               onClick={() => setShowAllIndependents(true)}
-              className="mt-3 w-full rounded-lg border border-border bg-white py-2.5 text-sm font-medium text-muted transition-colors hover:border-accent/40 hover:text-accent"
+              className="mt-3 w-full rounded-lg border border-border bg-white py-2.5 text-sm font-medium text-heading transition-colors hover:border-accent/40 hover:text-accent"
             >
               Show {hiddenCount} more independent providers
             </button>

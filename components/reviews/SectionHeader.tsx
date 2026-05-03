@@ -25,7 +25,7 @@ export default function SectionHeader({
             {title}
           </h2>
           {description && (
-            <p className="mt-3 text-[15px] leading-[1.55] text-(--muted) max-w-140">
+            <p className="mt-3 text-[15px] leading-[1.55] text-heading max-w-140">
               {description}
             </p>
           )}
