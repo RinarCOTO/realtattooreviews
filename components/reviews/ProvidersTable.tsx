@@ -92,7 +92,11 @@ export default function ProvidersTable({ providers }: ProvidersTableProps) {
           {sorted.map((p, i) => {
             const slug = p.brand ? `${brandToSlug(p.brand)}/${p.slug}` : p.slug;
             const isLast = i === sorted.length - 1;
-            const isNonLaser = p.specialty?.toLowerCase().includes("non-laser");
+            const specialty = p.specialty?.toLowerCase() ?? "";
+            const tags = (p.tags ?? []).map((tag) => tag.toLowerCase());
+            const isHybrid = specialty.includes("hybrid") || specialty.includes("saline") || tags.includes("saline") || tags.includes("hybrid");
+            const isNonLaser = !isHybrid && specialty.includes("non-laser");
+            const methodLabel = isHybrid ? "Hybrid" : isNonLaser ? "Non-Laser" : "Laser";
             return (
               <tr
                 key={p.id}
@@ -116,12 +120,14 @@ export default function ProvidersTable({ providers }: ProvidersTableProps) {
                   <span
                     className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium"
                     style={
-                      isNonLaser
+                      isHybrid
+                        ? { background: "oklch(0.92 0.06 80)", color: "oklch(0.42 0.09 70)" }
+                        : isNonLaser
                         ? { background: "oklch(0.93 0.06 30)", color: "oklch(0.42 0.12 30)" }
                         : { background: "oklch(0.93 0.05 200)", color: "oklch(0.35 0.08 200)" }
                     }
                   >
-                    {isNonLaser ? "Non-Laser" : "Laser"}
+                    {methodLabel}
                   </span>
                 </td>
                 <td className="px-4 py-3.5">

@@ -5,7 +5,7 @@ import { useState, useMemo } from "react";
 import Card from "@/components/ui/Card";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
-type Method = "Laser" | "Non-laser";
+type Method = "Laser" | "Non-laser" | "Hybrid";
 type Footprint = "National chain" | "Regional" | "Single-market";
 type Setting = "Tattoo removal specialist" | "Medical spa" | "Dermatology practice";
 
@@ -98,6 +98,7 @@ export default function ProviderDirectory({
             <option>All</option>
             <option>Laser</option>
             <option>Non-laser</option>
+            <option>Hybrid</option>
           </select>
         </div>
         <div className="flex items-center gap-2">
@@ -149,11 +150,14 @@ export default function ProviderDirectory({
                   {p.name}
                 </p>
                 <span
-                  className={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+                  className={[
+                    "shrink-0 rounded-full px-2 py-0.5 text-[11px] font-semibold",
                     p.method === "Non-laser"
                       ? "bg-secondary-soft text-secondary"
-                      : "bg-accent-light text-accent"
-                  }`}
+                      : p.method === "Hybrid"
+                        ? "bg-warning-soft text-warning"
+                        : "bg-accent-light text-accent",
+                  ].join(" ")}
                 >
                   {p.method}
                 </span>

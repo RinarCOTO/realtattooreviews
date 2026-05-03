@@ -628,7 +628,7 @@ export const providers: Provider[] = [
     market: "Houston, TX",
     rating: 4.8,
     reviewCount: 50,
-    specialty: "Laser Tattoo Removal",
+    specialty: "Hybrid Laser + Saline Tattoo Removal",
     yearsActive: 6,
     location: "Houston, TX",
     photo: "/images/providers/dermaluxe-spa.jpg",
@@ -636,7 +636,7 @@ export const providers: Provider[] = [
     featuredScore: 84,
     summary:
       "Dermaluxe Spa is a boutique med spa and permanent makeup studio in Houston offering both Pico laser and saline removal for tattoos and permanent makeup. The clinic uses the Enlighten III Pico laser and Li-FT saline solution, with a particular depth of experience in cosmetic tattoo removal.",
-    tags: ["Laser", "Saline", "Medical Spa"],
+    tags: ["Laser", "Saline", "Hybrid", "Medical Spa"],
     website: "https://dermaluxespa.com",
     webSummary: "Dermaluxe Spa performs tattoo removal using the Enlighten III Pico laser — a dual-pulse-duration system from Cutera operating at 1064 nm and 532 nm — and offers Li-FT hypertonic saline removal as a non-laser alternative, particularly for permanent makeup. The spa is a boutique operation in Houston's Westheimer corridor, with a primary focus on permanent makeup services and a secondary tattoo removal offering. Sessions start at $99 per treatment area.",
   },

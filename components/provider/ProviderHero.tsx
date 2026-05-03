@@ -95,7 +95,7 @@ export default function ProviderHero({
 
             {/* Right: rating card */}
             {card && (
-              <div className="shrink-0">
+              <div className="w-full min-w-0 lg:w-[min(420px,38vw)] lg:shrink-0">
                 {card}
                 {providerHref ? (
                   <div className="mt-3 text-right">

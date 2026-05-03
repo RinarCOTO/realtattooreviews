@@ -9,6 +9,9 @@ const TAG_STYLES: Record<string, { bg: string; color: string }> = {
   "Spectra":   { bg: "#E8E0D8", color: "#8A8178" },
   "Enlighten": { bg: "#E8E0D8", color: "#8A8178" },
   "RevLite":   { bg: "#E8E0D8", color: "#8A8178" },
+  "Saline":    { bg: "#EDE3C4", color: "#8A7340" },
+  "Saline+Pico": { bg: "#EDE3C4", color: "#8A7340" },
+  "Hybrid":    { bg: "#EDE3C4", color: "#8A7340" },
   // Sentiments — clear signal colors
   "Positive": { bg: "#D4EDDA", color: "#2D6A4F" },
   "Negative": { bg: "#F5DDD0", color: "#B05C42" },

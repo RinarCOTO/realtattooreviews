@@ -14,7 +14,7 @@ export type BrandSummary = {
   totalReviews: number;
   avgRating: number;
   techTags: string[];
-  method: "Non-Laser" | "Laser";
+  method: "Non-Laser" | "Laser" | "Hybrid";
 };
 
 type Props = {
@@ -31,6 +31,9 @@ const TECH_TAG_COLORS: Record<string, string> = {
   "Q-Switch":         "bg-accent-light text-accent",
   "Fotona":           "bg-accent-light text-accent",
   "Spectra":          "bg-accent-light text-accent",
+  "Saline":           "bg-warning-soft text-warning",
+  "Saline+Pico":      "bg-warning-soft text-warning",
+  "Hybrid":           "bg-warning-soft text-warning",
   "Laser (multiple)": "bg-accent-light text-accent",
   "Medical":          "bg-warning-soft text-warning",
   "Medical Spa":      "bg-warning-soft text-warning",
@@ -42,8 +45,13 @@ function techTagsOf(p: Provider): string[] {
   return (p.tags ?? []).filter((t) => TECH_TAGS.includes(t));
 }
 
-function methodOf(p: Provider): "Non-Laser" | "Laser" {
-  return p.specialty?.toLowerCase().includes("non-laser") ? "Non-Laser" : "Laser";
+function methodOf(p: Provider): "Non-Laser" | "Laser" | "Hybrid" {
+  const specialty = p.specialty?.toLowerCase() ?? "";
+  const tags = (p.tags ?? []).map((tag) => tag.toLowerCase());
+  if (specialty.includes("hybrid") || specialty.includes("saline") || tags.includes("saline") || tags.includes("hybrid")) {
+    return "Hybrid";
+  }
+  return specialty.includes("non-laser") ? "Non-Laser" : "Laser";
 }
 
 function StarRow({ rating }: { rating: number }) {
@@ -108,6 +116,7 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
         >
           <option value="all">All methods</option>
           <option value="Non-Laser">Non-Laser (TEPR)</option>
+          <option value="Hybrid">Hybrid (laser + saline)</option>
           <option value="Laser">Laser</option>
         </select>
 

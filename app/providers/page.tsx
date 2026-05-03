@@ -35,14 +35,15 @@ const itemListSchema = {
     { "@type": "ListItem", position: 2,  name: "Clarity Skin",                url: "https://realtattooreviews.com/reviews/clarity-skin" },
     { "@type": "ListItem", position: 3,  name: "Clean Slate Ink",             url: "https://realtattooreviews.com/reviews/clean-slate-ink" },
     { "@type": "ListItem", position: 4,  name: "DermSurgery Associates",      url: "https://realtattooreviews.com/reviews/dermsurgery-associates" },
-    { "@type": "ListItem", position: 5,  name: "Enfuse Medical Spa",          url: "https://realtattooreviews.com/reviews/enfuse-medical-spa" },
-    { "@type": "ListItem", position: 6,  name: "Erasable Med Spa",            url: "https://realtattooreviews.com/reviews/erasable-med-spa" },
-    { "@type": "ListItem", position: 7,  name: "inkOUT",                      url: "https://realtattooreviews.com/reviews/inkout" },
-    { "@type": "ListItem", position: 8,  name: "Inkfree, MD",                 url: "https://realtattooreviews.com/reviews/inkfree-md" },
-    { "@type": "ListItem", position: 9,  name: "Inklifters",                  url: "https://realtattooreviews.com/reviews/inklifters-aesthetica" },
-    { "@type": "ListItem", position: 10, name: "Kovak Cosmetic Center",       url: "https://realtattooreviews.com/reviews/kovak-cosmetic-center" },
-    { "@type": "ListItem", position: 11, name: "MEDermis Laser Clinic",       url: "https://realtattooreviews.com/reviews/medermis-laser-clinic" },
-    { "@type": "ListItem", position: 12, name: "Removery",                    url: "https://realtattooreviews.com/reviews/removery-bucktown" },
+    { "@type": "ListItem", position: 5,  name: "Dermaluxe Spa",               url: "https://realtattooreviews.com/reviews/dermaluxe-spa" },
+    { "@type": "ListItem", position: 6,  name: "Enfuse Medical Spa",          url: "https://realtattooreviews.com/reviews/enfuse-medical-spa" },
+    { "@type": "ListItem", position: 7,  name: "Erasable Med Spa",            url: "https://realtattooreviews.com/reviews/erasable-med-spa" },
+    { "@type": "ListItem", position: 8,  name: "inkOUT",                      url: "https://realtattooreviews.com/reviews/inkout" },
+    { "@type": "ListItem", position: 9,  name: "Inkfree, MD",                 url: "https://realtattooreviews.com/reviews/inkfree-md" },
+    { "@type": "ListItem", position: 10, name: "Inklifters",                  url: "https://realtattooreviews.com/reviews/inklifters-aesthetica" },
+    { "@type": "ListItem", position: 11, name: "Kovak Cosmetic Center",       url: "https://realtattooreviews.com/reviews/kovak-cosmetic-center" },
+    { "@type": "ListItem", position: 12, name: "MEDermis Laser Clinic",       url: "https://realtattooreviews.com/reviews/medermis-laser-clinic" },
+    { "@type": "ListItem", position: 13, name: "Removery",                    url: "https://realtattooreviews.com/reviews/removery-bucktown" },
   ],
 };
 
@@ -62,6 +63,7 @@ const PROVIDER_STATIC: (DirectoryRow & { supabaseSlug: string })[] = [
   { name: "Clarity Skin",               slug: "clarity-skin",             supabaseSlug: "clarity-skin",             method: "Laser",     technology: "PicoWay",                      locations: "1 (Draper, UT)",                  locationCount: 1,   yearsActive: null, bestFor: "Plastic surgeon-led med spa in Utah",                    footprint: "Single-market",  setting: "Medical spa",               reviews: null, avgStars: null },
   { name: "Clean Slate Ink",            slug: "clean-slate-ink",          supabaseSlug: "clean-slate-ink",          method: "Laser",     technology: "FDA-cleared",                  locations: "2 (Austin, Round Rock)",          locationCount: 2,   yearsActive: null, bestFor: "Affordable Austin-area specialist",                      footprint: "Regional",       setting: "Tattoo removal specialist", reviews: null, avgStars: null },
   { name: "DermSurgery Associates",     slug: "dermsurgery-associates",   supabaseSlug: "dermsurgery-associates",   method: "Laser",     technology: "PicoSure + Q-Switched Nd:YAG", locations: "12 (Greater Houston)",            locationCount: 12,  yearsActive: null, bestFor: "Dermatologist-supervised treatment",                     footprint: "Regional",       setting: "Dermatology practice",      reviews: null, avgStars: null },
+  { name: "Dermaluxe Spa",              slug: "dermaluxe-spa",            supabaseSlug: "dermaluxe-spa",            method: "Hybrid",    technology: "Enlighten III Pico + Li-FT saline", locations: "1 (Houston)",                  locationCount: 1,   yearsActive: null, bestFor: "Cosmetic tattoo and PMU cases comparing saline with pico laser", footprint: "Single-market",  setting: "Medical spa",               reviews: null, avgStars: null },
   { name: "Enfuse Medical Spa",         slug: "enfuse-medical-spa",       supabaseSlug: "enfuse-medical-spa",       method: "Laser",     technology: "PicoWay",                      locations: "1 (Chicago)",                     locationCount: 1,   yearsActive: 16,   bestFor: "Inclusive med spa in Wicker Park",                       footprint: "Single-market",  setting: "Medical spa",               reviews: null, avgStars: null },
   { name: "Erasable Med Spa",           slug: "erasable-med-spa",         supabaseSlug: "erasable-med-spa",         method: "Laser",     technology: "Cutera enlighten",             locations: "1 (Tampa)",                       locationCount: 1,   yearsActive: 12,   bestFor: "Veteran-owned tattoo removal specialist",                footprint: "Single-market",  setting: "Tattoo removal specialist", reviews: null, avgStars: null },
   { name: "inkOUT",                     slug: "inkout",                   supabaseSlug: "inkout",                   method: "Non-laser", technology: "TEPR",                         locations: "5 (TX, IL, FL, UT)",              locationCount: 5,   yearsActive: 11,   bestFor: "Complete removal, all skin types, cosmetic tattoos",     footprint: "National chain", setting: "Tattoo removal specialist", reviews: null, avgStars: null },
@@ -214,7 +216,7 @@ export default async function ProvidersPage() {
                     Most clinics in the US use laser systems. The current standard is picosecond lasers like PicoWay (Candela), PicoSure (Cynosure), or PiQo4 (Lumenis). Older Q-switched Nd:YAG systems are still in use at many independent practices. Laser works by shattering ink particles with light energy. The body then clears the fragments through the lymphatic system over weeks. Laser sessions are spaced 6 to 8 weeks apart. Standard body tattoos typically clear in 4 to 12 sessions depending on the laser platform, ink colors, and skin type.
                   </p>
                   <p>
-                    A small number of providers use non-laser methods. inkOUT uses TEPR (Trans-Epidermal Pigment Release), which lifts ink out through the skin surface rather than shattering it with light. Saline removal uses osmotic lift and is most common for cosmetic tattoo and microblading cases. Neither non-laser method depends on ink color or interacts with melanin the way laser does.
+                    A small number of providers use non-laser or hybrid methods. inkOUT uses TEPR (Trans-Epidermal Pigment Release), which lifts ink out through the skin surface rather than shattering it with light. Dermaluxe Spa is tracked as a hybrid laser-plus-saline provider in Houston. Saline removal uses osmotic lift and is most common for cosmetic tattoo and microblading cases. Neither TEPR nor saline depends on ink color or interacts with melanin the way laser does.
                   </p>
                   <p>
                     Neither laser nor non-laser is universally better. The right choice depends on your tattoo, your skin type, your tolerance for the healing process, and the specific characteristics of your case. For the full method comparison, see the{" "}
