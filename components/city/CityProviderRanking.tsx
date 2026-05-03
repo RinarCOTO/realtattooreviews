@@ -117,7 +117,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
 
       {lastRefreshed && (
         <p className="font-sans text-[12px] text-heading text-right">
-          Data refreshed: {lastRefreshed} &middot; Sample capped at 50 per provider
+          Data refreshed: {lastRefreshed} &middot; Published review sample reflects RTR public filters
         </p>
       )}
     </div>

@@ -100,9 +100,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // The Sanity-only queries above miss several real, deployed pages because
   // their content lives in code (mock-data) or Supabase rather than Sanity:
   //
-  //   - /reviews/[provider]/        — auto-generated review summaries
-  //   - /reviews/[provider]/[location]/  — per-location pages (inkOUT, Removery)
-  //   - /comparisons/[slug]/        — 4 newer mock-data comparisons not yet
+  //   - /reviews/[provider]/        auto-generated review summaries
+  //   - /reviews/[provider]/[location]/  per-location pages (inkOUT, Removery)
+  //   - /comparisons/[slug]/        4 newer mock-data comparisons not yet
   //                                   migrated into Sanity
   //
   // Without these the sitemap declared roughly 60% fewer URLs than the build
@@ -129,7 +129,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     }));
 
-  // Per-location pages — only inkOUT and Removery have route coverage.
+  // Per-location pages. Only inkOUT and Removery have route coverage.
   const locationUrls: MetadataRoute.Sitemap = mockProviders
     .filter((p) => BRANDS_WITH_LOCATION_PAGES.has(p.brand ?? p.name))
     .map((p) => ({

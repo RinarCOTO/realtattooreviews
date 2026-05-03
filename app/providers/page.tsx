@@ -165,7 +165,7 @@ export default async function ProvidersPage() {
             <div className="mb-8 flex items-end justify-between">
               <div>
                 <h2 className="text-[28px] font-bold text-heading">Browse and Compare Providers</h2>
-                <p className="mt-1 text-sm text-heading">Every provider evaluated under the same framework — no paid placement.</p>
+                <p className="mt-1 text-sm text-heading">Every provider evaluated under the same framework. No paid placement.</p>
               </div>
               <Link href="/comparisons" className="hidden items-center gap-1 text-sm font-medium text-accent hover:underline sm:inline-flex">
                 All comparisons <ChevronRightIcon className="size-4" />

@@ -65,7 +65,7 @@ export default function AboutPage() {
       <PageHero
         label="About"
         title={<>About <span className="text-(--accent)">RealTattooReviews</span></>}
-        subtitle="An independent review and comparison site for tattoo removal. Providers, methods, and practical guides — all under the same scoring framework."
+        subtitle="An independent review and comparison site for tattoo removal. Providers, methods, and practical guides, all under the same scoring framework."
       />
 
       {/* Body */}

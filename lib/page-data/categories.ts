@@ -79,7 +79,7 @@ export async function getCategory(slug: string): Promise<SanityCategory | null> 
 
 export async function getAllCategorySlugs(): Promise<string[]> {
     try {
-        // Only return slugs whose doc has sections — avoids static-building empty stub docs
+        // Only return slugs whose doc has sections. Avoids static-building empty stub docs.
         // when duplicate category docs exist for the same slug (orphan or unseeded entries).
         const results = await sanity.fetch(
             `*[_type == "category" && defined(sections)]{ "slug": slug.current }`,

@@ -222,9 +222,8 @@ export default async function LaserAwayReviewsPage() {
             {/* Review data */}
             <GuideSection id="review-data" heading="Review Data by Location">
               <p className="font-sans text-[15px] leading-relaxed text-heading">
-                Aggregated from published patient reviews in RTR-tracked markets. Sample size,
-                positive rate, and negative count are shown per city. Sample is capped at 50 per
-                location.
+                Aggregated from published Google reviews in RTR-tracked markets. Published sample
+                size, positive rate, and negative count are shown per city.
               </p>
               <Suspense
                 fallback={

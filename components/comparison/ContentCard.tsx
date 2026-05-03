@@ -6,13 +6,13 @@ import { ContentCardContext } from "./ContentCardContext";
 interface ContentCardProps {
   /** Card heading */
   title: string;
-  /** Simple text body — use when there's no complex content */
+  /** Simple text body. Use when there's no complex content. */
   body?: string;
-  /** Complex content (e.g. GuideBulletList) — used instead of body */
+  /** Complex content (e.g. GuideBulletList). Used instead of body. */
   children?: ReactNode;
   /**
-   * "sm" renders the title at 12px — use for Pros / Cons labels.
-   * "md" (default) renders at 14px — use for named sections and "Choose X when" blocks.
+   * "sm" renders the title at 12px. Use for Pros / Cons labels.
+   * "md" (default) renders at 14px. Use for named sections and "Choose X when" blocks.
    */
   titleSize?: "sm" | "md";
   /**

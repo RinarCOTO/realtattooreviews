@@ -59,7 +59,7 @@ function ReviewsDisplay({
   const activeOption = SORT_OPTIONS.find((o) => o.key === sortKey) ?? SORT_OPTIONS[0];
 
   // Total classified pool, for the count label. When "critical_first" is
-  // active, sortClassifiedReviews filters out non-critical reviews — we still
+  // active, sortClassifiedReviews filters out non-critical reviews. We still
   // want to tell the user how big the underlying pool is so the empty state
   // ("0 of 90 are critical") reads honestly.
   const totalClassified = sortClassifiedReviews(reviews, "most_useful").length;
@@ -166,7 +166,7 @@ function ReviewsWithSort(props: Props) {
   return <ReviewsDisplay {...props} sortKey={sortKey} onSort={handleSort} />;
 }
 
-// ── Public export — self-contained with Suspense boundary ─────────────────────
+// Public export: self-contained with Suspense boundary
 
 export default function WhatReviewersSay(props: Props) {
   return (

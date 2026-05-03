@@ -120,7 +120,7 @@ export default async function BrandComparisonEvidence({
       <BrandTable brand={brandB} liveRows={brandBRows} pendingCities={brandBPendingCities} />
       <p className="font-sans text-[11px] text-heading text-right mt-2">
         {lastRefreshed && <>Data refreshed: {lastRefreshed} &middot; </>}
-        Sample sizes capped at 50 per provider location. Lifetime Google review counts are higher.
+        Published review sample reflects RTR public filters. Lifetime Google review counts may be higher.
       </p>
     </div>
   );

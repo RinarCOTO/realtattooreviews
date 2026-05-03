@@ -87,7 +87,7 @@ export default async function CityProviderComparisonTable({ city, staticProvider
         </tbody>
       </table>
       <p className="px-4 py-2 text-[11px] text-heading bg-(--surface) border-t border-(--line)">
-        Sample capped at 50 per provider. Lifetime Google review counts are higher.
+        Published review sample reflects RTR public filters. Lifetime Google review counts may be higher.
       </p>
     </div>
   );

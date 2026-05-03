@@ -64,13 +64,13 @@ const GROUPS = [
     id: "skin-ink",
     heading: "Skin Type and Ink Considerations",
     intro:
-      "Your skin type and ink colors change which methods and providers are safest and most effective. These pages help you filter by the characteristics that matter most.",
+      "Your skin type and ink colors change which methods and providers may be the better fit. These pages help you filter by the characteristics that matter most.",
     categories: [
       {
         slug: "dark-skin-tattoo-removal",
         title: "Dark Skin Tattoo Removal",
         description:
-          "Tattoo removal for Fitzpatrick skin types IV through VI. Covers the wavelength-versus-melanin interaction, which laser platforms are safest, non-laser alternatives that avoid melanin interaction entirely, and provider experience on darker skin tones.",
+          "Tattoo removal for Fitzpatrick skin types IV through VI. Covers the wavelength-versus-melanin interaction, laser platform fit, non-laser alternatives that avoid melanin interaction entirely, and provider experience on darker skin tones.",
       },
       {
         slug: "color-ink-removal",

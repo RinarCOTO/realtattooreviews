@@ -40,9 +40,9 @@ export default function CTASection() {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-heading">Before &amp; After</p>
-              <p className="mt-1 text-base font-semibold text-heading">Real removal results from real patients</p>
+              <p className="mt-1 text-base font-semibold text-heading">Removal outcome research by case type</p>
               <p className="mt-1.5 text-sm text-heading">
-                Browse patient-submitted before and after photos across providers and ink types.
+                Compare result context across providers, ink types, and treatment methods.
               </p>
             </div>
             <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:underline">

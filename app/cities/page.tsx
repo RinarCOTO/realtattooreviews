@@ -121,7 +121,7 @@ export default function CitiesIndexPage() {
       <PageHero
         label="Cities"
         title={<>Tattoo Removal <span className="text-(--accent)">by City</span></>}
-        subtitle="Find and compare every tracked tattoo removal provider in your metro. Rankings, review evidence, pricing, and method breakdowns — no provider pays for placement."
+        subtitle="Find and compare every tracked tattoo removal provider in your metro. Rankings, review evidence, pricing, and method breakdowns. No provider pays for placement."
       />
 
       {/* Body */}

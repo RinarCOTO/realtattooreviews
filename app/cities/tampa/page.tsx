@@ -521,8 +521,8 @@ export default async function TampaPage() {
                 Provider review samples reflect recent reviews scraped from public Google business
                 listings into our internal review dataset. The ranked list and comparison table
                 above are generated dynamically from this dataset and refresh as new reviews are
-                scraped. Sample sizes are capped at 50 per provider; total lifetime Google review
-                counts are higher. Sentiment classifications and use-case tags are derived from
+                scraped. Published review samples reflect rows that pass RTR public filters; total
+                lifetime Google review counts may be higher. Sentiment classifications and use-case tags are derived from
                 review text analysis. Pricing ranges reflect industry averages and published Tampa
                 Bay provider rates where pricing is public. Method and technology details are
                 drawn from each provider&rsquo;s published materials. Individual outcomes vary by

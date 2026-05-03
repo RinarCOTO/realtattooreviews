@@ -81,7 +81,7 @@ export default async function BrandReviewSummary({ brand }: Props) {
 
       {lastRefreshed && (
         <p className="font-sans text-[12px] text-heading text-right">
-          Data refreshed: {lastRefreshed} &middot; Sample capped at 50 per location
+          Data refreshed: {lastRefreshed} &middot; Published review sample reflects RTR public filters
         </p>
       )}
     </div>

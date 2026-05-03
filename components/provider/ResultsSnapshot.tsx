@@ -12,7 +12,7 @@ interface ResultsSnapshotProps {
 /**
  * Render a `count / total` split where the count is large and the
  * denominator sits in smaller type immediately to its right. We do not use
- * a muted color to soften the denominator (per RTR's no-muted-text rule) —
+ * a muted color to soften the denominator (per RTR's no-muted-text rule).
  * font size + weight contrast carries the visual hierarchy instead.
  */
 function CountWithDenominator({

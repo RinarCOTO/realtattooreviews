@@ -75,7 +75,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
   // Pass reviews so the verdict composer uses the multi-signal path. Without
   // this, the function falls into the legacy three-bucket branch and emits
   // older comparative phrasing like "above most covered providers in this
-  // category" — which we no longer produce on BrandReviewsPage or
+  // category", which we no longer produce on BrandReviewsPage or
   // SingleProviderReviewsPage.
   const verdict = getVerdictFromRating(avgRatingValue, reviews);
   const alternatives = getAlternativeProviders(locations, slug);

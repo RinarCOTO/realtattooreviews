@@ -1,5 +1,5 @@
 const TAG_STYLES: Record<string, { bg: string; color: string }> = {
-  // Methods — warm neutrals, quiet/technical
+  // Methods: warm neutrals, quiet/technical
   "TEPR":      { bg: "#FAF8F5", color: "#8A8178" },
   "Non-Laser": { bg: "#EDE8E1", color: "#8A8178" },
   "Laser":     { bg: "#E8E0D8", color: "#8A8178" },
@@ -12,12 +12,12 @@ const TAG_STYLES: Record<string, { bg: string; color: string }> = {
   "Saline":    { bg: "#EDE3C4", color: "#8A7340" },
   "Saline+Pico": { bg: "#EDE3C4", color: "#8A7340" },
   "Hybrid":    { bg: "#EDE3C4", color: "#8A7340" },
-  // Sentiments — clear signal colors
+  // Sentiments: clear signal colors
   "Positive": { bg: "#D4EDDA", color: "#2D6A4F" },
   "Negative": { bg: "#F5DDD0", color: "#B05C42" },
   "Mixed":    { bg: "#EDE3C4", color: "#8A7340" },
   "Neutral":  { bg: "#ECECEC", color: "#777777" },
-  // Use cases — teal family, darkest = most prominent
+  // Use cases: teal family, darkest = most prominent
   "Complete Removal": { bg: "#A8D5D3", color: "#2E6A68" },
   "Color Ink":        { bg: "#C8E6E4", color: "#3A7A78" },
   "Cover-Up":         { bg: "#D7EDEC", color: "#3A7A78" },

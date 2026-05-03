@@ -274,7 +274,7 @@ export default function InkoutVsRemoveryPage() {
                     {[
                       {
                         title: "Removery pricing",
-                        body: "Removery uses a Complete Removal Package model. The brand quotes a total cost at consultation based on tattoo size, ink density, and complexity. The package covers unlimited sessions until the tattoo is removed, regardless of how many sessions that takes. Removery also offers per-session pricing. Monthly payment plans are available within the package model. The Complete Removal Package effectively functions as a results guarantee within the package terms.",
+                        body: "Removery uses a Complete Removal Package model. The brand quotes a total cost at consultation based on tattoo size, ink density, and complexity. The package covers unlimited sessions until the tattoo is removed, subject to the provider's package terms. Removery also offers per-session pricing. Monthly payment plans are available within the package model.",
                       },
                       {
                         title: "inkOUT pricing",
@@ -463,7 +463,7 @@ export default function InkoutVsRemoveryPage() {
                       <GuideBulletList
                         items={[
                           "National footprint with multiple locations across major metros, simplifying access and follow-up",
-                          "Complete Removal Package model caps total cost regardless of session count, functioning as an effective results guarantee",
+                          "Complete Removal Package model caps total cost within provider package terms",
                           "Uses Candela PicoWay, a picosecond laser with strong color performance across most inks",
                           "Tattoo-removal-only specialist focus across all locations",
                           "Monthly payment plans within the package model for users spreading cost",
@@ -557,8 +557,8 @@ export default function InkoutVsRemoveryPage() {
                   This comparison synthesizes brand-published technology and pricing material with
                   our internal review-sample evidence dataset for both brands. The cross-city
                   evidence table renders dynamically from our internal review dataset and refreshes
-                  as new reviews are scraped. Sample sizes are capped at 50 per provider location;
-                  total lifetime Google review counts are higher. Sentiment classifications and
+                  as new reviews are scraped. Published review samples reflect rows that pass RTR
+                  public filters; total lifetime Google review counts may be higher. Sentiment classifications and
                   use-case tags are derived from review text analysis. Method and technology details
                   are drawn from each brand&rsquo;s published materials. Individual outcomes vary by
                   tattoo, skin type, ink density, and provider skill. Consult both providers before

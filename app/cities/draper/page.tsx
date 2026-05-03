@@ -30,7 +30,7 @@
  * INKOUT BUCKET AGGREGATION:
  * inkOUT in Draper may have historical rows under bucket='tatt2away' for the same place_id.
  * getCityProviderAggregates merges rows by place_id, so these are combined automatically.
- * The tatt2away bucket is excluded from all public queries — only bucket='inkout' rows
+ * The tatt2away bucket is excluded from all public queries. Only bucket='inkout' rows
  * reach the component.
  *
  * CLARITY SKIN NOTE:
@@ -38,10 +38,10 @@
  * facials, and other non-tattoo-removal services. The component should only count reviews
  * where is_tattoo_removal IS TRUE or where review text clearly references tattoo removal.
  *
- * LIFETIME VS SAMPLE COUNT:
- * scrape_sample_size is capped at 50 per provider in the current scrape. Lifetime Google
- * review counts are higher. Display "X of last Y reviews positive" language and include
- * a footer note explaining the sample cap.
+ * LIFETIME VS PUBLISHED SAMPLE COUNT:
+ * Public counts reflect rows that pass RTR public filters. Lifetime Google review counts
+ * can be higher. Display sample-base language and include a footer note explaining that
+ * the public sample is filtered.
  *
  * LAST_REVIEWED stamp:
  * At the bottom of Component 1 and Component 2, render: "Data refreshed: <timestamp>"
@@ -228,7 +228,7 @@ export default async function DraperPage() {
                   Sandy, South Jordan, Riverton, Herriman, and the broader south metro. The
                   market is smaller than Salt Lake City proper, but it offers a genuinely
                   meaningful choice: a physician-led med spa running PicoWay picosecond laser,
-                  and the south valley&rsquo;s only non-laser option using TEPR. Most users
+                  and the TEPR option currently tracked by RTR. Most users
                   in the area are choosing between those two methods before they choose a
                   provider.
                 </p>
@@ -333,7 +333,7 @@ export default async function DraperPage() {
             <GuideSection heading="Laser and Non-Laser Options in Draper">
               <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The Draper market offers both laser and non-laser tattoo removal. The method
-                choice matters more here than provider choice — the two are genuinely different
+                choice matters more here than provider choice. The two are genuinely different
                 categories of treatment, not variations on the same process.
               </p>
 
@@ -412,7 +412,7 @@ export default async function DraperPage() {
             <GuideSection heading="How We Evaluated Draper Tattoo Removal Providers">
               <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Draper is a two-provider market for tracked tattoo removal. The ranked list above
-                reflects review-sample evidence — sentiment scores and use-case signals from the
+                reflects review-sample evidence: sentiment scores and use-case signals from the
                 most recent public reviews for inkOUT and Clarity Skin. Where review samples are
                 thin, the ranking reflects what the available data shows and flags low sample sizes
                 clearly so you can weigh the evidence appropriately.
@@ -420,7 +420,7 @@ export default async function DraperPage() {
               <p className="font-sans text-[15px] leading-relaxed text-heading">
                 Because the providers use fundamentally different methods, the ranking is less
                 about declaring a winner and more about surfacing which provider has demonstrated
-                better outcomes for specific use cases — complete removal, cover-up fading,
+                better outcomes for specific use cases: complete removal, cover-up fading,
                 cosmetic tattoo removal, or color-heavy work. The factors we weighted:
               </p>
               <GuideBulletList
@@ -447,8 +447,8 @@ export default async function DraperPage() {
                 Provider review samples reflect recent reviews scraped from public Google business
                 listings into our internal review dataset. The ranked list and comparison table
                 above are generated dynamically from this dataset and refresh as new reviews are
-                scraped. Sample sizes are capped at 50 per provider; total lifetime Google review
-                counts are higher. Sentiment classifications and use-case tags are derived from
+                scraped. Published review samples reflect rows that pass RTR public filters; total
+                lifetime Google review counts may be higher. Sentiment classifications and use-case tags are derived from
                 review text analysis. Pricing ranges reflect industry averages and published Draper
                 provider rates where pricing is public. Method and technology details are drawn from
                 each provider&rsquo;s published materials. Individual outcomes vary by tattoo, skin

@@ -121,7 +121,7 @@ const nav = [
       ],
       featured: {
         label: "Before and after photos",
-        description: "Real patient results across laser and non-laser methods.",
+        description: "Outcome context across laser and non-laser methods.",
         href: "/before-and-after",
       },
     },
@@ -421,7 +421,7 @@ export default function Header() {
                     )}
 
                     {item.mega && sectionOpen && (
-                      <div className="mb-1 ml-3 border-l-2 border-border pl-3">
+                      <div className="mb-1 ml-3 pl-3">
                         {item.mega.sections.map((section) => (
                           <div key={section.heading} className="mb-3 last:mb-1">
                             <p className="mb-1.5 px-1 text-xs font-semibold uppercase tracking-wider text-heading">

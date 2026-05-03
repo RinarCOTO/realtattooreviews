@@ -49,7 +49,7 @@ export default function Hero({headline, subheadline}: Props) {
           <span>Multiple US markets</span>
         </span>
 
-        {/* Heading — Satoshi 64px / 700 / 70.4px */}
+        {/* Heading: Satoshi 64px / 700 / 70.4px */}
         <h1 className="mt-6 font-[family-name:var(--font-satoshi)] text-[64px] font-bold leading-[70.4px] tracking-tight text-heading">
           {(() => {
             const text = headline ?? "Compare Tattoo Removal Clinics Before You Book";
@@ -64,7 +64,7 @@ export default function Hero({headline, subheadline}: Props) {
           })()}
         </h1>
 
-        {/* Subheading — Inter 18px / 500 / 28.8px */}
+        {/* Subheading: Inter 18px / 500 / 28.8px */}
         <div className="mx-auto mt-6 max-w-xl font-[family-name:var(--font-inter)] text-[18px] font-medium leading-[28.8px] text-body">
           {subheadline
             ? <PortableText value={subheadline} />
@@ -104,7 +104,7 @@ export default function Hero({headline, subheadline}: Props) {
               )}
             </div>
           </div>
-          {/* CTA button — Inter 16px / 700 / 24px */}
+          {/* CTA button: Inter 16px / 700 / 24px */}
           <button
             type="submit"
             className="m-1.5 rounded-full bg-accent px-6 py-2.5 font-[family-name:var(--font-inter)] text-[16px] font-bold leading-[24px] text-white hover:bg-accent-hover transition-colors"
@@ -113,7 +113,7 @@ export default function Hero({headline, subheadline}: Props) {
           </button>
         </form>
 
-        {/* Quick links — Inter 14px / 500 */}
+        {/* Quick links: Inter 14px / 500 */}
         <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <Link
             href="/cities"

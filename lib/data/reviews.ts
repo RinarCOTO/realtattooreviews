@@ -128,11 +128,11 @@ function formatReviewDate(isoDate: string | null): string | undefined {
 // ── Provider classification ───────────────────────────────────────────────────
 //
 // Tattoo-removal-only providers: reviews with use_case = 'unknown' are still
-// tattoo removal reviews — Qwen just didn't tag a specific use case. Default to
+// tattoo removal reviews. Qwen just didn't tag a specific use case. Default to
 // 'Complete' so they surface on review pages.
 //
 // Mixed med-spa providers: reviews with use_case = 'unknown' may be about other
-// services (facials, injectables, etc.) — keep them null so they stay hidden.
+// services (facials, injectables, etc.). Keep them null so they stay hidden.
 
 const REMOVAL_ONLY_PREFIXES = [
   "Removery",
@@ -266,7 +266,7 @@ export function selectDiverseReviews(reviews: Review[], maxCards = 6): Review[] 
 //   Competitor reviews: bucket = 'competitor' (Removery, Arviv, Clean Slate, etc.)
 //   tatt2away:          bucket = 'tatt2away'  (historical classification; negatives + explicit
 //                                              Tatt2Away name mentions. EXCLUDED from all public
-//                                              pages — never shown to site visitors.)
+//                                              pages. Never shown to site visitors.)
 //   review_required:    bucket = 'review_required' (flagged for manual review, not published)
 //
 // BucketScope controls how the bucket column is filtered:
@@ -1025,7 +1025,7 @@ export async function getCityProviderAggregates(
         pctPositive,
       };
     })
-    // Exclude Tatt2Away by name — these rows may arrive with bucket='competitor' or
+    // Exclude Tatt2Away by name. These rows may arrive with bucket='competitor' or
     // bucket='inkout' and would otherwise pass the bucket filter. Tatt2Away is the
     // former brand name for inkOUT and should not appear as a public provider.
     .filter((row) => !row.providerName.toLowerCase().includes("tatt2away"))

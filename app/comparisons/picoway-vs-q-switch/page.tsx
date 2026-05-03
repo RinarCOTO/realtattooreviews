@@ -58,7 +58,7 @@ const faqs = [
   {
     question: "Which laser is safer for dark skin?",
     answer:
-      "PicoWay is the safer laser option for darker Fitzpatrick skin types (IV through VI) because its shorter pulse delivers less residual heat to the epidermis, reducing melanin disruption. 1064nm is the safest wavelength on any platform for darker skin.",
+      "PicoWay is often preferred for darker Fitzpatrick skin types (IV through VI) because its shorter pulse can deliver less residual heat to the epidermis, reducing melanin disruption. 1064nm is commonly preferred on darker skin because it has lower melanin absorption than shorter wavelengths.",
   },
   {
     question: "Which laser is better for color ink tattoos?",
@@ -349,7 +349,7 @@ export default function PicoLaserVsQSwitchPage() {
                       },
                       {
                         title: "Q-switch on dark skin",
-                        body: "Q-switched Nd:YAG at 1064nm is safe for darker skin types in experienced hands. Conservative settings, longer intervals, and careful fluence management can produce good results. The risk is higher than PicoWay at equivalent settings.",
+                        body: "Q-switched Nd:YAG at 1064nm can be used on darker skin types in experienced hands. Conservative settings, longer intervals, and careful fluence management can produce good results. The risk is higher than PicoWay at equivalent settings.",
                       },
                     ].map((item) => (
                       <ContentCard key={item.title} title={item.title} body={item.body} />

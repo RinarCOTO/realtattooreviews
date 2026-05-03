@@ -37,7 +37,7 @@ const faqs = [
   {
     question: "Is Removery better than LaserAway?",
     answer:
-      "Neither is universally better. Removery is better suited for users who want a tattoo-removal-only specialist, package pricing with total cost certainty, and an effective results guarantee. LaserAway is better suited for users who want a larger national footprint, per-session flexibility, and the ability to bundle aesthetic services.",
+      "Neither is universally better. Removery is better suited for users who want a tattoo-removal-only specialist and package pricing with more total-cost certainty within its terms. LaserAway is better suited for users who want a larger national footprint, per-session flexibility, and the ability to bundle aesthetic services.",
   },
   {
     question: "Is Removery cheaper than LaserAway?",
@@ -67,7 +67,7 @@ const faqs = [
   {
     question: "Is Removery worth it?",
     answer:
-      "For users who want total cost certainty, a results guarantee, and a tattoo-removal-only specialist, yes. See /reviews/removery for the full picture.",
+      "For users who want package-style cost certainty and a tattoo-removal-only specialist, yes. See /reviews/removery for the full picture.",
   },
   {
     question: "Is LaserAway worth it?",
@@ -77,12 +77,12 @@ const faqs = [
   {
     question: "Does Removery offer a guarantee?",
     answer:
-      "Removery's Complete Removal Package functions as an effective results guarantee. The package covers unlimited sessions until the tattoo is removed at the quoted price.",
+      "Removery's Complete Removal Package is a package-style cost cap within its terms. The package covers unlimited sessions until the tattoo is removed at the quoted price, subject to the provider's package conditions.",
   },
   {
     question: "Which is better for dark skin?",
     answer:
-      "Both platforms can treat darker Fitzpatrick skin types. The 1064nm wavelength is safest for darker skin. PicoWay includes 1064nm as standard. PicoSure Pro offers it as an optional handpiece, so confirm availability at your LaserAway location. For users who want to avoid laser-melanin interaction entirely, non-laser options exist. See the best tattoo removal method overview.",
+      "Both platforms can treat darker Fitzpatrick skin types. The 1064nm wavelength is commonly preferred because it has lower melanin absorption than shorter wavelengths. PicoWay includes 1064nm as standard. PicoSure Pro offers it as an optional handpiece, so confirm availability at your LaserAway location. For users who want to avoid laser-melanin interaction entirely, non-laser options exist. See the best tattoo removal method overview.",
   },
 ];
 
@@ -95,7 +95,7 @@ const GLANCE_ROWS: [string, string, string][] = [
   ["Wavelengths", "1064nm, 532nm, 785nm", "755nm primary; optional 532nm, 1064nm"],
   ["Green ink coverage", "785nm (strong green clearance)", "755nm (strong green and blue clearance)"],
   ["Pricing model", "Complete Removal Package (capped total cost) + per-session", "Per-session pricing"],
-  ["Guarantee", "Package functions as effective results guarantee", "No formal unlimited-sessions guarantee"],
+  ["Package terms", "Package-style cost cap within provider terms", "No formal unlimited-sessions package"],
   ["Payment plans", "Internal financing within the package", "Third-party financing options"],
   ["Service focus", "Tattoo removal only", "Tattoo removal + laser hair removal + body contouring + injectables + skin treatments"],
   ["Free consultation", "Yes", "Varies by location"],
@@ -231,7 +231,7 @@ export default function RemoveryVsLaserawayPage() {
                   {[
                     {
                       title: "Removery pricing",
-                      body: "Removery offers a Complete Removal Package. At consultation, Removery quotes a total cost based on tattoo size, ink density, and treatment complexity. The package covers unlimited sessions until the tattoo is removed, regardless of how many sessions it actually takes. The package functions as an effective results guarantee. Removery also offers per-session pricing for users who prefer flexibility, and includes internal monthly payment plans within the package model.",
+                      body: "Removery offers a Complete Removal Package. At consultation, Removery quotes a total cost based on tattoo size, ink density, and treatment complexity. The package covers unlimited sessions until the tattoo is removed, subject to the provider's package terms. Removery also offers per-session pricing for users who prefer flexibility, and includes internal monthly payment plans within the package model.",
                     },
                     {
                       title: "LaserAway pricing",
@@ -389,7 +389,7 @@ export default function RemoveryVsLaserawayPage() {
                     items={[
                       "Tattoo-removal-only specialist focus across all locations",
                       "Complete Removal Package caps total cost regardless of session count",
-                      "Package functions as an effective results guarantee",
+                      "Package-style cost cap within provider terms",
                       "Uses Candela PicoWay with three wavelengths including 785nm for green ink",
                       "Internal financing within the package model",
                       "Free consultations at all locations",
@@ -458,7 +458,7 @@ export default function RemoveryVsLaserawayPage() {
                       items={[
                         "You want a tattoo-removal-only specialist",
                         "You want package pricing that caps total cost across unlimited sessions",
-                        "You want an effective results guarantee",
+                        "You want package-style cost certainty within provider terms",
                         "You want reviews that are exclusively about tattoo removal",
                         "You have a larger or denser tattoo and want cost certainty",
                         "Green ink clearance is important and you want the 785nm wavelength as standard",

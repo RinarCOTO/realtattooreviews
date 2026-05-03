@@ -14,7 +14,7 @@ function aggregate(brandRows: BrandComparisonRow[]) {
   const avgStars =
     totalSample > 0 ? (weightedStarSum / totalSample).toFixed(1) : null;
 
-  // Star-distribution counts — aggregate raw counts so percentages are accurate
+  // Star-distribution counts: aggregate raw counts so percentages are accurate
   const totalHigh = brandRows.reduce((s, r) => s + r.starsHigh, 0);
   const totalMid  = brandRows.reduce((s, r) => s + r.starsMid,  0);
   const totalLow  = brandRows.reduce((s, r) => s + r.starsLow,  0);

@@ -49,7 +49,7 @@ export function getVerdictFromRating(
   const total = reviews.length;
 
   // Legacy path: no reviews supplied, return rating-only verdict.
-  // Phrasing is intentionally self-referential — there is no category-wide
+  // Phrasing is intentionally self-referential. There is no category-wide
   // comparison model behind these labels, so claims like "above most
   // covered providers in this category" or "less consistent than
   // higher-rated providers" overreach on what the rating alone supports.
@@ -88,7 +88,7 @@ export function getVerdictFromRating(
   // Volume tier.
   const volumeTier = total >= 30 ? "heavy" : total >= 15 ? "moderate" : "light";
 
-  // Compose label. Labels describe this provider's own review profile — they
+  // Compose label. Labels describe this provider's own review profile. They
   // are not relative rankings against other providers in any "category."
   // The tiers come from threshold buckets on rating + volume + scarring rate.
   let label: string;
@@ -110,7 +110,7 @@ export function getVerdictFromRating(
 
   // Compose summary from signal pieces. Phrasing avoids cross-provider
   // comparative claims because there is no explicit category-wide comparison
-  // model behind these labels — the tiers come from rating + volume thresholds
+  // model behind these labels. The tiers come from rating + volume thresholds
   // applied to this provider's own data, not against a computed median.
   const ratingSentence = (() => {
     if (ratingTier === "strong" && volumeTier === "heavy")
@@ -531,12 +531,12 @@ function pickShape<T>(seed: number, shapes: T[], offset = 0): T {
  *
  * Pulls inputs from THREE different sources and combines them:
  *
- *   1. Review signals — total, avgRating, highRatedPct, useCaseDist,
+ *   1. Review signals: total, avgRating, highRatedPct, useCaseDist,
  *      scarringCount, costMentions. Numerical evidence from the review record.
- *   2. Provider profile — yearsActive, market, tags, specialty (chain /
+ *   2. Provider profile: yearsActive, market, tags, specialty (chain /
  *      medical / non-laser / specialist flags). Editorial classification
  *      data from `lib/mock-data/providers.ts`.
- *   3. Editorial sentence templates — story buckets per question, with
+ *   3. Editorial sentence templates: story buckets per question, with
  *      multiple variant phrasings per bucket selected deterministically by
  *      slug-seeded hash.
  *

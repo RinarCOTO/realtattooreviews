@@ -1,6 +1,6 @@
 import { createClient, type SanityClient } from "@sanity/client";
 
-// Public read client — no token needed for a public Sanity dataset.
+// Public read client: no token needed for a public Sanity dataset.
 // SANITY_API_TOKEN is intentionally not used here; the dataset is public
 // and an expired/invalid token causes 401s that silently return null.
 //

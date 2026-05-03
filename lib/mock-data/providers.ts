@@ -516,7 +516,7 @@ export const providers: Provider[] = [
       "Think Again Tattoo Removal is an Australian-founded laser clinic with over 150,000 treatments internationally, opening its first U.S. location in South Austin. The clinic uses Quanta Discovery Pico Plus lasers and specializes exclusively in tattoo removal, including cosmetic tattoo and facial tattoo work.",
     tags: ["Laser", "Pico", "Affordable"],
     website: "https://thinkagaintattooremoval.com",
-    webSummary: "Think Again Tattoo Removal operates exclusively as a tattoo removal clinic, using the Quanta Discovery Pico Plus — a picosecond laser capable of addressing stubborn colors including blue and green pigments. The brand originated in Australia and New Zealand, reporting over 150,000 successful treatments globally before launching its first U.S. location in Austin. All staff are trained exclusively in laser tattoo removal, including cosmetic and facial tattoo work, and pricing is packaged from $720 for complete removal.",
+    webSummary: "Think Again Tattoo Removal operates exclusively as a tattoo removal clinic, using the Quanta Discovery Pico Plus, a picosecond laser capable of addressing stubborn colors including blue and green pigments. The brand originated in Australia and New Zealand, reporting over 150,000 successful treatments globally before launching its first U.S. location in Austin. All staff are trained exclusively in laser tattoo removal, including cosmetic and facial tattoo work, and pricing is packaged from $720 for complete removal.",
   },
   {
     id: "unbranded-atx",
@@ -638,7 +638,7 @@ export const providers: Provider[] = [
       "Dermaluxe Spa is a boutique med spa and permanent makeup studio in Houston offering both Pico laser and saline removal for tattoos and permanent makeup. The clinic uses the Enlighten III Pico laser and Li-FT saline solution, with a particular depth of experience in cosmetic tattoo removal.",
     tags: ["Laser", "Saline", "Hybrid", "Medical Spa"],
     website: "https://dermaluxespa.com",
-    webSummary: "Dermaluxe Spa performs tattoo removal using the Enlighten III Pico laser — a dual-pulse-duration system from Cutera operating at 1064 nm and 532 nm — and offers Li-FT hypertonic saline removal as a non-laser alternative, particularly for permanent makeup. The spa is a boutique operation in Houston's Westheimer corridor, with a primary focus on permanent makeup services and a secondary tattoo removal offering. Sessions start at $99 per treatment area.",
+    webSummary: "Dermaluxe Spa performs tattoo removal using the Enlighten III Pico laser, a dual-pulse-duration system from Cutera operating at 1064 nm and 532 nm, and offers Li-FT hypertonic saline removal as a non-laser alternative, particularly for permanent makeup. The spa is a boutique operation in Houston's Westheimer corridor, with a primary focus on permanent makeup services and a secondary tattoo removal offering. Sessions start at $99 per treatment area.",
   },
   {
     id: "houston-tattoo-removal-clinic",
@@ -657,7 +657,7 @@ export const providers: Provider[] = [
       "Houston Tattoo Removal Clinic is a long-established dedicated removal practice with over 15 years of experience. The clinic offers free consultations and spot testing and its lasers cover all skin types including difficult ink colors like blue, green, and turquoise.",
     tags: ["Laser", "Affordable"],
     website: "https://www.tattooremovalofhouston.net",
-    webSummary: "Houston Tattoo Removal Clinic is a specialist removal practice with over 15 years of clinical experience in the Houston market. The clinic provides free consultations and free spot testing before committing to treatment. Its laser systems are configured to address difficult pigments including blues, greens, and turquoise — colors that resist standard Q-switched protocols — and the clinic serves all skin types on the Fitzpatrick scale.",
+    webSummary: "Houston Tattoo Removal Clinic is a specialist removal practice with over 15 years of clinical experience in the Houston market. The clinic provides free consultations and free spot testing before committing to treatment. Its laser systems are configured to address difficult pigments including blues, greens, and turquoise, colors that resist standard Q-switched protocols, and the clinic serves all skin types on the Fitzpatrick scale.",
   },
   {
     id: "rethink-laser",
@@ -697,7 +697,7 @@ export const providers: Provider[] = [
       "EradiTatt is a dedicated laser tattoo removal clinic inside Infinity Medical Institute in Tampa's Westshore corridor. The clinic uses the PiQo4 laser with Zimmer Cryo 6 cooling and is led by Melissa, a board-certified practitioner with over 15 years of medical experience.",
     tags: ["Laser", "Medical"],
     website: "https://eraditatt.com",
-    webSummary: "EradiTatt Tampa performs laser tattoo removal using the Cynosure PiQo4 — a multi-wavelength picosecond and nanosecond laser system operating at four wavelengths — paired with Zimmer Cryo 6 cooling for patient comfort. The clinic claims PiQo4 technology reduces required sessions by 20 to 50 percent compared to older systems. Most tattoos require five to twelve sessions, with appointments spaced six to twelve weeks. EradiTatt is led by Melissa, a Florida and Texas board-certified practitioner with over 15 years of medical experience.",
+    webSummary: "EradiTatt Tampa performs laser tattoo removal using the Cynosure PiQo4, a multi-wavelength picosecond and nanosecond laser system operating at four wavelengths, paired with Zimmer Cryo 6 cooling for patient comfort. The clinic claims PiQo4 technology reduces required sessions by 20 to 50 percent compared to older systems. Most tattoos require five to twelve sessions, with appointments spaced six to twelve weeks. EradiTatt is led by Melissa, a Florida and Texas board-certified practitioner with over 15 years of medical experience.",
   },
   {
     id: "reversatatt",
@@ -732,7 +732,7 @@ export const providers: Provider[] = [
     featured: false,
     featuredScore: 87,
     summary:
-      "Skintellect Laser & Aesthetics is a Tampa med spa using the Fotona Starwalker FracTat system — a distinctive approach that creates micro-channels before the main laser pass to help ink escape more efficiently. High ratings across tattoo and permanent makeup removal.",
+      "Skintellect Laser & Aesthetics is a Tampa med spa using the Fotona Starwalker FracTat system, a distinctive approach that creates micro-channels before the main laser pass to help ink escape more efficiently. High ratings across tattoo and permanent makeup removal.",
     tags: ["Laser", "Medical Spa"],
     website: "https://skintellectonline.com",
     webSummary: "Skintellect performs tattoo and permanent makeup removal using the Fotona Starwalker FracTat system, which applies a fractional laser pre-treatment to create micro-size channels in the skin, allowing ink particles to escape via steam and gas pressure before the main ablative pass. The clinic positions this approach as requiring fewer sessions with faster results compared to standard picosecond protocols. The Sheldon Road location serves the northwest Tampa and Citrus Park area.",

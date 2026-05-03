@@ -484,8 +484,8 @@ export default async function HoustonPage() {
                 Provider review samples reflect recent reviews scraped from public Google
                 business listings into our internal review dataset. The ranked list and
                 comparison table above are generated dynamically from this dataset and refresh
-                as new reviews are scraped. Sample sizes are capped at 50 per provider; total
-                lifetime Google review counts are higher. Sentiment classifications and use-case
+                as new reviews are scraped. Published review samples reflect rows that pass RTR
+                public filters; total lifetime Google review counts may be higher. Sentiment classifications and use-case
                 tags are derived from review text analysis. Pricing ranges reflect published
                 Houston provider rates where public. Consult a qualified provider before
                 proceeding. See our{" "}

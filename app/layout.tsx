@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     // The OG image is generated at build time by app/opengraph-image.tsx
     // (Next.js App Router file convention). No `images` entry is needed
-    // here — Next.js merges the generated image into the metadata. Adding
+    // here. Next.js merges the generated image into the metadata. Adding
     // a manual entry would override the dynamic version with a stale
     // static asset.
   },

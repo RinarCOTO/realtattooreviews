@@ -32,7 +32,7 @@ type Props = {
 };
 
 /**
- * Page hero shared site-wide — guides, comparisons, cities, blog, etc.
+ * Page hero shared site-wide: guides, comparisons, cities, blog, etc.
  * Renders the breadcrumb (in MonoLabel), h1, and subtitle on the warm-textured `.page-hero` background.
  */
 export default function PageHero({ label, title, subtitle, children, heroClassName = "" }: Props) {

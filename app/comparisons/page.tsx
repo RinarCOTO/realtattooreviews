@@ -75,7 +75,7 @@ const TECH_COMPARISONS = [
   {
     title: "Saline vs Laser Tattoo Removal",
     description:
-      "When saline removal outperforms laser and when it does not. Use-case fit, pain, healing, and scar risk compared using patient review evidence.",
+      "When saline removal may fit better than laser and when it may not. Use-case fit, pain, healing, and scar risk compared using public review evidence.",
     href: "/comparisons/saline-vs-laser-tattoo-removal",
     live: true,
   },
@@ -144,7 +144,7 @@ export default function ComparisonsPage() {
       <PageHero
         label="Comparisons"
         title={<>Tattoo Removal <span className="text-(--accent)">Comparisons</span></>}
-        subtitle="Compare before you book. Each page below puts two providers or two methods side by side using real patient review evidence: sample sizes, sentiment rates, scarring signals, and use-case wins. No editorial opinion. No sponsored rankings."
+        subtitle="Compare before you book. Each page below puts two providers or two methods side by side using public review evidence: sample sizes, sentiment rates, scarring signals, and use-case wins. No editorial opinion. No sponsored rankings."
       />
 
       {/* Body */}
