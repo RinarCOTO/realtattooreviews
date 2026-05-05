@@ -62,7 +62,6 @@ export default function CategoryTabs() {
   return (
     <section className="py-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="gradient-card rounded-3xl p-8">
 
         {/* Section label */}
         <div className="mb-6 flex items-end justify-between">
@@ -132,7 +131,6 @@ export default function CategoryTabs() {
               Browse <ChevronRightIcon className="size-4" />
             </Link>
           </div>
-        </div>
         </div>
       </div>
     </section>

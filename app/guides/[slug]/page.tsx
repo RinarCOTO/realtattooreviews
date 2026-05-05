@@ -104,11 +104,9 @@ export default async function GuidePage({ params }: Props) {
       {/* Intro box */}
       {guide.intro && (
         <div className="py-12">
-          <div className="rounded-xl border border-(--line) bg-(--surface) p-6">
-            <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
-              {guide.intro}
-            </p>
-          </div>
+          <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
+            {guide.intro}
+          </p>
         </div>
       )}
 
