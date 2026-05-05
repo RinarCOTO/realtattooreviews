@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import AlternativesSection from "./AlternativesSection";
+import BalancedQuotesSection from "./BalancedQuotesSection";
 import BlockHeading from "./BlockHeading";
 import InfoCard from "./InfoCard";
 import JumpNav from "./JumpNav";
@@ -26,6 +27,7 @@ import {
   buildPricingContext,
   buildProsConsFromReviews,
   buildResultsSummary,
+  selectInkoutBalancedQuotes,
   buildTreatmentOverview,
   buildUseCaseFocus,
   getAlternativeProviders,
@@ -56,6 +58,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   const bestForData = buildBestFor(locations, reviews);
   const bottomLine = buildBottomLine(brand, locations, reviews, alternatives);
   const brandTags = unique(locations.flatMap((l) => l.tags ?? [])).slice(0, 6);
+  const balancedQuotes = slug === "inkout" ? selectInkoutBalancedQuotes(reviews) : [];
   const differentiator = locations[0] ? buildDifferentiator(locations[0], reviews) : null;
   const useCaseFocus = buildUseCaseFocus(reviews);
   const articleJsonLd = {
@@ -151,6 +154,8 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         cons={cons}
         statsRows={buildOverviewStats(reviews)}
       />
+
+      {balancedQuotes.length > 0 && <BalancedQuotesSection reviews={balancedQuotes} />}
 
       <section id="reviews" className="py-22">
         <Container>

@@ -3,8 +3,68 @@ import type { Provider } from "@/types/provider";
 import { providers as allProviders } from "@/lib/mock-data/providers";
 import { brandToSlug } from "@/lib/providers";
 
+const INKOUT_BALANCED_QUOTE_IDS = [
+  "85d6ed2f-652b-48e1-93b3-69037032df0b", // Gina Zipp
+  "728a2c3a-b533-4443-907d-b7d440329d4b", // Iown YU
+  "1d0d3e29-a822-4102-ac75-2544de2a2c63", // Reese Maupin
+  "76bc0113-1a88-45e3-956c-5d3bd26cfb00", // Cody Barton
+  "65e1fde8-c229-44f2-971e-8ba7ea47026a", // B
+] as const;
+
 export function unique<T>(values: T[]): T[] {
   return [...new Set(values)];
+}
+
+function normalizeText(value?: string | null) {
+  return (value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function isSafeInkoutQuote(review: Review): boolean {
+  const text = normalizeText(review.fullText ?? review.excerpt).toLowerCase();
+  if (!text) return false;
+  if (review.scarringReported === true) return false;
+  if (text.includes("tatt2away")) return false;
+  if (/(absolute worst|stay away|mutilat|permanent scarring|get laser|waste\.|waste$|horrible|awful)/.test(text)) {
+    return false;
+  }
+  return true;
+}
+
+function scoreInkoutQuote(review: Review): number {
+  const text = normalizeText(review.fullText ?? review.excerpt).toLowerCase();
+  let score = 0;
+
+  if (review.resultRating === "Negative") score += 5;
+  if (/(not fun|not easy|skeptical|painful|uncomfortable|honest|not a good fit|little more painful)/.test(text)) {
+    score += 4;
+  }
+  if (/(process|consultation|questions|follow up|progress|results)/.test(text)) {
+    score += 2;
+  }
+  if (text.length > 90 && text.length < 380) score += 1;
+
+  return score;
+}
+
+export function selectInkoutBalancedQuotes(reviews: Review[], limit = 5): Review[] {
+  const inkoutReviews = reviews.filter((review) => review.providerSlug === "inkout" || review.provider === "inkOUT");
+  const safePool = inkoutReviews.filter(isSafeInkoutQuote);
+  const byId = new Map(safePool.map((review) => [review.id, review]));
+
+  const picked: Review[] = [];
+  for (const id of INKOUT_BALANCED_QUOTE_IDS) {
+    const review = byId.get(id);
+    if (review) picked.push(review);
+    if (picked.length >= limit) return picked;
+  }
+
+  const seenIds = new Set(picked.map((review) => review.id));
+  const fallback = [...safePool]
+    .filter((review) => !seenIds.has(review.id))
+    .sort((a, b) => scoreInkoutQuote(b) - scoreInkoutQuote(a))
+    .slice(0, Math.max(0, limit - picked.length));
+
+  return [...picked, ...fallback];
 }
 
 export function buildOverviewStats(reviews: Review[]): Array<{ label: string; value: string; numeric: number; decimals?: number }> {

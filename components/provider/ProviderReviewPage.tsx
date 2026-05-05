@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import AlternativesSection from "./AlternativesSection";
+import BalancedQuotesSection from "./BalancedQuotesSection";
 import BlockHeading from "./BlockHeading";
 import JumpNav from "./JumpNav";
 import ProviderHero from "./ProviderHero";
@@ -15,6 +16,7 @@ import BlobBackground from "@/components/ui/BlobBackground";
 import {
   getAlternativeProviders,
   getVerdictFromRating,
+  selectInkoutBalancedQuotes,
   summarizeSources,
 } from "@/lib/provider-analysis";
 import { getLocationSlug } from "@/lib/providers";
@@ -79,6 +81,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
   // SingleProviderReviewsPage.
   const verdict = getVerdictFromRating(avgRatingValue, reviews);
   const alternatives = getAlternativeProviders(locations, slug);
+  const balancedQuotes = slug === "inkout" ? selectInkoutBalancedQuotes(reviews) : [];
   const providerTags = locations
     .flatMap((l) => l.tags ?? [])
     .filter((v, i, a) => a.indexOf(v) === i)
@@ -144,6 +147,8 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* What Reviewers Say */}
+      {balancedQuotes.length > 0 && <BalancedQuotesSection reviews={balancedQuotes} />}
+
       {reviews.length > 0 && (
         <section id="reviews" className="py-22">
           <Container>

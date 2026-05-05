@@ -15,7 +15,7 @@ type Props = {
 type FallbackStep = { stepNumber: string; title: string; body: string };
 const DEFAULT_STEPS: FallbackStep[] = [
   { stepNumber: "01", title: "We source public Google reviews",             body: "Reviews are collected from Google business listings for every provider and location we track. We do not accept reviews submitted to us. We do not use provider-owned testimonials." },
-  { stepNumber: "02", title: "We classify each review for signals that matter", body: "Every review is tagged for sentiment (positive, negative, mixed), use case (complete removal, cover-up, microblading, color), and scarring mentions. This turns a star rating into a structured comparison." },
+  { stepNumber: "02", title: "We classify each review for signals that matter", body: "Every review is tagged for sentiment (positive, negative, mixed), use case (complete removal, cover-up, microblading, color), and signals like pain, healing, staff experience, pricing, and complaints. This turns a star rating into a structured comparison." },
   { stepNumber: "03", title: "You compare before you book",                  body: "City pages rank providers. Comparison pages put methods and brands side by side. Category pages filter by your specific case. Guides cover healing, aftercare, and scarring. You make the decision." },
 ];
 
