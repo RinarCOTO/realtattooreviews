@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import { sanity } from '@/lib/sanity'
 import type { PortableTextBlock } from '@portabletext/react'
 
@@ -59,7 +60,7 @@ const SINGLE_CATEGORY_QUERY = `*[_type == "category" && slug.current == $slug] |
     }
 }`
 
-export async function getAllCategories(): Promise<SanityCategory[]> {
+async function getAllCategoriesRaw(): Promise<SanityCategory[]> {
     try {
         const categories = await sanity.fetch(ALL_CATEGORIES_QUERY)
         return categories ?? []
@@ -68,7 +69,13 @@ export async function getAllCategories(): Promise<SanityCategory[]> {
     }
 }
 
-export async function getCategory(slug: string): Promise<SanityCategory | null> {
+export const getAllCategories = unstable_cache(
+    getAllCategoriesRaw,
+    ['all-categories'],
+    { revalidate: 3600 },
+)
+
+async function getCategoryRaw(slug: string): Promise<SanityCategory | null> {
     try {
         const category = await sanity.fetch(SINGLE_CATEGORY_QUERY, { slug })
         return category ?? null
@@ -77,7 +84,13 @@ export async function getCategory(slug: string): Promise<SanityCategory | null> 
     }
 }
 
-export async function getAllCategorySlugs(): Promise<string[]> {
+export const getCategory = unstable_cache(
+    getCategoryRaw,
+    ['category-by-slug'],
+    { revalidate: 3600 },
+)
+
+async function getAllCategorySlugsRaw(): Promise<string[]> {
     try {
         // Only return slugs whose doc has sections. Avoids static-building empty stub docs.
         // when duplicate category docs exist for the same slug (orphan or unseeded entries).
@@ -90,3 +103,9 @@ export async function getAllCategorySlugs(): Promise<string[]> {
         return []
     }
 }
+
+export const getAllCategorySlugs = unstable_cache(
+    getAllCategorySlugsRaw,
+    ['all-category-slugs'],
+    { revalidate: 3600 },
+)

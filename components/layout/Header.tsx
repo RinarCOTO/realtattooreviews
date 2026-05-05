@@ -119,11 +119,7 @@ const nav = [
           ],
         },
       ],
-      featured: {
-        label: "Before and after photos",
-        description: "Outcome context across laser and non-laser methods.",
-        href: "/before-and-after",
-      },
+      featured: null,
     },
   },
   { label: "Cost", href: "/cost" },
@@ -284,35 +280,37 @@ export default function Header() {
                             ))}
                           </div>
 
-                          {/* Featured card: always a different destination than the nav label */}
-                          <div className="w-56 shrink-0">
-                            <Link
-                              href={item.mega.featured.href}
-                              className="group flex h-full flex-col justify-between rounded-lg bg-[#FAF7F4] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 border border-[#E8D8D0]"
-                              onClick={() => setOpenMega(null)}
-                            >
-                              <div>
-                                {isCompareMenu && (
-                                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-accent">
-                                    MOST COMPARED
-                                  </p>
-                                )}
-                                <p className="text-sm font-semibold text-heading">
-                                  {item.mega.featured.label}
-                                </p>
-                                <p className="mt-1.5 text-xs leading-relaxed text-heading">
-                                  {item.mega.featured.description}
-                                </p>
-                              </div>
-                              <span
-                                className={`mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent ${
-                                  isCompareMenu ? "group-hover:underline" : ""
-                                }`}
+                          {/* Featured card: only rendered when featured is set */}
+                          {item.mega.featured && (
+                            <div className="w-56 shrink-0">
+                              <Link
+                                href={item.mega.featured.href}
+                                className="group flex h-full flex-col justify-between rounded-lg bg-[#FAF7F4] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 border border-[#E8D8D0]"
+                                onClick={() => setOpenMega(null)}
                               >
-                                Go <ChevronRightIcon className="size-3.5" />
-                              </span>
-                            </Link>
-                          </div>
+                                <div>
+                                  {isCompareMenu && (
+                                    <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-accent">
+                                      MOST COMPARED
+                                    </p>
+                                  )}
+                                  <p className="text-sm font-semibold text-heading">
+                                    {item.mega.featured.label}
+                                  </p>
+                                  <p className="mt-1.5 text-xs leading-relaxed text-heading">
+                                    {item.mega.featured.description}
+                                  </p>
+                                </div>
+                                <span
+                                  className={`mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent ${
+                                    isCompareMenu ? "group-hover:underline" : ""
+                                  }`}
+                                >
+                                  Go <ChevronRightIcon className="size-3.5" />
+                                </span>
+                              </Link>
+                            </div>
+                          )}
                         </div>
                       </Container>
                     </div>

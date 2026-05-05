@@ -6,7 +6,6 @@ const links = [
   { label: "Providers", href: "/providers" },
   { label: "Compare", href: "/comparisons" },
   { label: "Cost Guide", href: "/cost" },
-  { label: "Before & After", href: "/before-and-after" },
   { label: "Guides", href: "/guides" },
   { label: "Methodology", href: "/methodology" },
   { label: "Editorial Policy", href: "/editorial-policy" },

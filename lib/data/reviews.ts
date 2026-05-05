@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { supabase } from "@/lib/supabase";
 import {
   getMultiLocationBrands,
@@ -419,7 +420,7 @@ export async function getReviewsByProviderLocation(
  * Return all unique canonical page slugs present in the published review set.
  * Multi-location sub-names collapse to the brand slug (e.g. "Removery (Bucktown)" → "removery").
  */
-export async function getUniqueProviderSlugs(): Promise<string[]> {
+async function getUniqueProviderSlugsRaw(): Promise<string[]> {
   const { data, error } = await applyPublicFilters(
     supabase.from(TABLE).select("provider_name"),
     "any"
@@ -431,6 +432,12 @@ export async function getUniqueProviderSlugs(): Promise<string[]> {
   const canonical = [...new Set(rawNames)].map((name) => resolveProviderMeta(name, "").providerSlug);
   return [...new Set(canonical)];
 }
+
+export const getUniqueProviderSlugs = unstable_cache(
+  getUniqueProviderSlugsRaw,
+  ["unique-provider-slugs"],
+  { revalidate: 3600 }
+);
 
 /** Fetch all public reviews for a given city slug. */
 export async function getReviewsByCity(citySlug: string): Promise<Review[]> {
@@ -541,7 +548,7 @@ export type DirectoryAggregate = {
  * Returns review count, average star rating, and distinct tracked cities per brand slug.
  * Structurally the same as getBrandStats but also computes avgStars and cityList.
  */
-export async function getProviderDirectoryAggregates(
+async function getProviderDirectoryAggregatesRaw(
   brandSlugs: string[]
 ): Promise<Record<string, DirectoryAggregate>> {
   if (brandSlugs.length === 0) return {};
@@ -604,6 +611,19 @@ export async function getProviderDirectoryAggregates(
   return result;
 }
 
+const getProviderDirectoryAggregatesCached = unstable_cache(
+  async (brandSlugsKey: string) =>
+    getProviderDirectoryAggregatesRaw(brandSlugsKey.split("|").filter(Boolean)),
+  ["provider-directory-aggregates"],
+  { revalidate: 3600 }
+);
+
+export async function getProviderDirectoryAggregates(
+  brandSlugs: string[]
+): Promise<Record<string, DirectoryAggregate>> {
+  return getProviderDirectoryAggregatesCached([...brandSlugs].sort().join("|"));
+}
+
 /**
  * Compute live avg rating and review count per individual provider location slug.
  *
@@ -618,7 +638,7 @@ export async function getProviderDirectoryAggregates(
  * Option B pattern: pages call this function and overlay the live values onto
  * mock-data provider objects. The providers.ts file is never modified.
  */
-export async function getAllProviderAggregates(): Promise<
+async function getAllProviderAggregatesRaw(): Promise<
   Record<string, { rating: number; reviewCount: number }>
 > {
   const { data, error } = await applyPublicFilters(
@@ -660,6 +680,12 @@ export async function getAllProviderAggregates(): Promise<
   }
   return result;
 }
+
+export const getAllProviderAggregates = unstable_cache(
+  getAllProviderAggregatesRaw,
+  ["all-provider-aggregates"],
+  { revalidate: 3600 }
+);
 
 export type LocationAggregate = {
   totalReviews: number;
@@ -778,7 +804,7 @@ export async function getLocationAggregates(
  * Falls back to the current date (build date for static export) if the column
  * is null on all rows.
  */
-export async function getDataFreshness(): Promise<string> {
+async function getDataFreshnessRaw(): Promise<string> {
   const { data, error } = await applyPublicFilters(
     supabase
       .from(TABLE)
@@ -802,8 +828,14 @@ export async function getDataFreshness(): Promise<string> {
   });
 }
 
+export const getDataFreshness = unstable_cache(
+  getDataFreshnessRaw,
+  ["data-freshness"],
+  { revalidate: 3600 }
+);
+
 /** Aggregate site-wide stats used on the reviews hub page. */
-export async function getReviewStats(): Promise<{
+async function getReviewStatsRaw(): Promise<{
   totalReviews: number;
   totalProviders: number;
   totalCities: number;
@@ -850,6 +882,12 @@ export async function getReviewStats(): Promise<{
   };
 }
 
+export const getReviewStats = unstable_cache(
+  getReviewStatsRaw,
+  ["review-stats"],
+  { revalidate: 3600 }
+);
+
 /**
  * Aggregate reviews by brand from Supabase and return the highest-rated brands
  * that meet the minimum review threshold.
@@ -858,7 +896,7 @@ export async function getReviewStats(): Promise<{
  * "(Bucktown)" from provider_name. Filters to minReviews, sorts by avg rating
  * DESC then brand name ASC, and returns up to `limit` results.
  */
-export async function getHighestRatedProviders(
+async function getHighestRatedProvidersRaw(
   limit = 6,
   minReviews = 48
 ): Promise<{ brandName: string; avgRating: number; reviewCount: number }[]> {
@@ -895,6 +933,12 @@ export async function getHighestRatedProviders(
     .sort((a, b) => b.avgRating - a.avgRating || a.brandName.localeCompare(b.brandName))
     .slice(0, limit);
 }
+
+export const getHighestRatedProviders = unstable_cache(
+  getHighestRatedProvidersRaw,
+  ["highest-rated-providers"],
+  { revalidate: 3600 }
+);
 
 // ── City provider aggregates ──────────────────────────────────────────────────
 

@@ -30,23 +30,23 @@ export default function CTASection() {
           </Link>
 
           <Link
-            href="/before-and-after"
+            href="/guides"
             className="group flex flex-col gap-3 rounded-2xl border border-border bg-white p-6 transition-all hover:border-accent hover:shadow-sm"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-light text-accent">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-heading">Before &amp; After</p>
-              <p className="mt-1 text-base font-semibold text-heading">Removal outcome research by case type</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-heading">Treatment Guides</p>
+              <p className="mt-1 text-base font-semibold text-heading">How tattoo removal actually works</p>
               <p className="mt-1.5 text-sm text-heading">
-                Compare result context across providers, ink types, and treatment methods.
+                Laser, saline, aftercare, scarring, and side effects explained in plain language.
               </p>
             </div>
             <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:underline">
-              Browse results <ChevronRightIcon className="size-4" />
+              Read the guides <ChevronRightIcon className="size-4" />
             </span>
           </Link>
 
