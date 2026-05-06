@@ -42,7 +42,7 @@ export default function Hero({headline, subheadline}: Props) {
         {/* Eyebrow */}
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3.5 py-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[20px] text-heading">
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-          <span>Independent reviews</span>
+          <span>Independent review analysis</span>
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
           <span>Sourced from Google</span>
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />

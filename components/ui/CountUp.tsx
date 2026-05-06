@@ -16,6 +16,10 @@ export default function CountUp({ end, duration = 1200, decimals = 0 }: Props) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
+  const formattedCount = count.toLocaleString("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
 
   useEffect(() => {
     const el = ref.current;
@@ -42,5 +46,5 @@ export default function CountUp({ end, duration = 1200, decimals = 0 }: Props) {
     return () => observer.disconnect();
   }, [end, duration]);
 
-  return <span ref={ref}>{count.toFixed(decimals)}</span>;
+  return <span ref={ref}>{formattedCount}</span>;
 }
