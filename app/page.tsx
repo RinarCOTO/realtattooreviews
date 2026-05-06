@@ -75,7 +75,7 @@ const HOMEPAGE_FAQ_DEFAULTS: FAQItem[] = [
   },
   {
     question: "How are provider ratings calculated?",
-    answer: "Ratings are based on a scored methodology covering result outcomes, session consistency, pricing transparency, and patient communication. The full scoring model is published on our methodology page.",
+    answer: "Ratings are based on a scored methodology covering reported outcomes, session consistency, pricing transparency, and staff communication. The full scoring model is published on our methodology page.",
   },
   {
     question: "Why do some providers have low ratings?",
@@ -83,7 +83,7 @@ const HOMEPAGE_FAQ_DEFAULTS: FAQItem[] = [
   },
   {
     question: "How often is coverage updated?",
-    answer: "Provider pages and ratings are reviewed on a rolling basis as new reviews are submitted. The last update date is shown on each provider page.",
+    answer: "Provider pages and ratings are reviewed on a rolling basis as new public Google reviews are collected and classified. The last update date is shown on each provider page.",
   },
 ];
 

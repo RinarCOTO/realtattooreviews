@@ -18,6 +18,7 @@ import LocationsSection from "./LocationsSection";
 import OverviewSection from "./OverviewSection";
 import FAQSection from "@/components/sections/FAQSection";
 import BlobBackground from "@/components/ui/BlobBackground";
+import { breadcrumbSchema } from "@/lib/seo/schema";
 import {
   buildBestFor,
   buildBottomLine,
@@ -83,6 +84,10 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       name: brand,
     },
   };
+  const breadcrumbJsonLd = breadcrumbSchema([
+    { name: "Reviews", href: "/reviews" },
+    { name: brand, href: `/reviews/${slug}/` },
+  ]);
   // Use first location's Google Business URL if populated; fall back to Maps search
   const jumpItems = [
     { label: "Overview",     href: "#overview" },
@@ -100,6 +105,10 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   return (
     <BlobBackground>
     <main className="reviews-page min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <ProviderHero
         breadcrumb={["Reviews", brand]}
         nameNode={

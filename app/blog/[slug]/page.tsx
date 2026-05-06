@@ -9,6 +9,7 @@ import Tag from "@/components/ui/Tag";
 import { getBlogPost, getAllBlogSlugs } from "@/lib/page-data/blog";
 import { blogPosts as mockPosts } from "@/lib/mock-data/blog-posts";
 import FAQSection from "@/components/sections/FAQSection";
+import { breadcrumbSchema } from "@/lib/seo/schema";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -50,10 +51,40 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const isSanity = !!sanityPost;
+  const pagePath = `/blog/${slug}`;
+  const breadcrumbJsonLd = breadcrumbSchema([
+    { name: "Blog", href: "/blog" },
+    { name: post.title, href: pagePath },
+  ]);
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    mainEntityOfPage: `https://realtattooreviews.com${pagePath}`,
+    author: {
+      "@type": "Organization",
+      name: "RealTattooReviews",
+      url: "https://realtattooreviews.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "RealTattooReviews",
+      url: "https://realtattooreviews.com",
+    },
+  };
 
   return (
     <BlobBackground>
       <main className="min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
         <PageHero
           label={
             <>

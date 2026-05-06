@@ -12,6 +12,7 @@ import { getReviewsByCity, getAllProviderAggregates } from "@/lib/data/reviews";
 import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import type { Review } from "@/types/review";
+import { breadcrumbSchema } from "@/lib/seo/schema";
 
 type Props = { params: Promise<{ city: string }> };
 
@@ -70,10 +71,19 @@ export default async function CityPage({ params }: Props) {
     { label: "Providers", href: "#providers" },
     ...(cityReviews.length > 0 ? [{ label: "Reviews", href: "#reviews" }] : []),
   ];
+  const pagePath = `/cities/${citySlug}`;
+  const breadcrumbJsonLd = breadcrumbSchema([
+    { name: "Cities", href: "/cities" },
+    { name: city.name, href: pagePath },
+  ]);
 
   return (
     <BlobBackground>
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
 
       {/* Hero */}
       <section className="bg-canvas py-6">

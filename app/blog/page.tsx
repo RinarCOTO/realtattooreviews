@@ -5,6 +5,9 @@ import BlogGrid from "@/components/blog/BlogGrid";
 import BlobBackground from "@/components/ui/BlobBackground";
 import { getAllBlogPosts } from "@/lib/page-data/blog";
 import { blogPosts as mockPosts } from "@/lib/mock-data/blog-posts";
+import { breadcrumbSchema } from "@/lib/seo/schema";
+
+const PAGE_PATH = "/blog";
 
 export const metadata: Metadata = {
   title: "Blog: Tattoo Removal Research & Updates",
@@ -16,17 +19,22 @@ export const metadata: Metadata = {
       "Editorial articles on tattoo removal research, provider trends, and patient outcomes.",
   },
   alternates: {
-    canonical: "https://realtattooreviews.com/blog",
+    canonical: `https://realtattooreviews.com${PAGE_PATH}`,
   },
 };
 
 export default async function BlogPage() {
   const sanityPosts = await getAllBlogPosts();
   const posts = sanityPosts.length > 0 ? sanityPosts : mockPosts;
+  const breadcrumbJsonLd = breadcrumbSchema([{ name: "Blog", href: PAGE_PATH }]);
 
   return (
     <BlobBackground>
       <main className="min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
         <PageHero
           label="Blog"
           title={<>RealTattooReviews <span className="text-(--accent)">Blog</span></>}
