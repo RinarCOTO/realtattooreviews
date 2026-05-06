@@ -51,21 +51,11 @@ export default function ClassifiedReviewCard({ review }: { review: Review }) {
         {summaryText}
       </p>
 
-      {/* Attribution and per-review Google Maps link */}
+      {/* Attribution: no reviewer identity, no copied review host UI. */}
       <div className="flex flex-wrap items-center justify-between gap-2 border-t border-(--line) pt-3">
         <p className="font-sans text-[11px] text-heading">
-          Sourced from Google Reviews{location ? `, ${location}` : ""}
+          Source: Google Business Profile{location ? `, ${location}` : ""}
         </p>
-        {review.reviewUrl && (
-          <a
-            href={review.reviewUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 font-sans text-[11px] text-(--accent) hover:underline"
-          >
-            Read original on Google Maps
-          </a>
-        )}
       </div>
 
     </article>

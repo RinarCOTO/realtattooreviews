@@ -3,6 +3,7 @@ import MonoLabel from "./MonoLabel";
 import RatingPill from "./RatingPill";
 import PainBar from "./PainBar";
 import ReviewTag from "./ReviewTag";
+import { generateFindingText } from "@/lib/review-evidence";
 
 interface ReviewCardProps {
   review: Review;
@@ -10,9 +11,11 @@ interface ReviewCardProps {
 }
 
 export default function ReviewCard({ review, featured = false }: ReviewCardProps) {
-  const excerpt = review.excerpt ?? "";
-  const clipped =
-    excerpt.length > 200 ? excerpt.slice(0, 200) + "\u2026" : excerpt;
+  const summary =
+    review.reviewSummary ??
+    (review.useCase && review.resultRating ? generateFindingText(review) : null);
+
+  if (!summary) return null;
 
   return (
     <article
@@ -29,12 +32,12 @@ export default function ReviewCard({ review, featured = false }: ReviewCardProps
         {review.rating != null && <RatingPill value={review.rating} />}
       </div>
 
-      <blockquote
-        className="m-0 leading-[1.4] text-(--ink) italic flex-1"
+      <p
+        className="m-0 leading-[1.4] text-(--ink) flex-1"
         style={{ fontSize: featured ? 20 : 16.5 }}
       >
-        &ldquo;{clipped}&rdquo;
-      </blockquote>
+        {summary}
+      </p>
 
       <div className="grid grid-cols-2 gap-3 py-3 border-t border-b border-(--line)">
         <div>
@@ -63,10 +66,10 @@ export default function ReviewCard({ review, featured = false }: ReviewCardProps
 
       <div className="flex justify-between items-center gap-2">
         <div className="text-[13px] font-medium text-(--ink)">
-          {review.reviewer ?? review.date ?? "Verified reviewer"}
+          {review.date ?? "Date not listed"}
         </div>
         <span className="font-mono font-medium text-[12px] tracking-[0.12em] uppercase text-(--accent)">
-          {review.source}
+          {review.source?.toLowerCase().includes("google") ? "Google Business Profile" : review.source}
         </span>
       </div>
 

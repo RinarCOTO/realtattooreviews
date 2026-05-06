@@ -4,6 +4,7 @@ import Stars from "@/components/reviews/ui/Stars";
 import SourceBadge from "@/components/reviews/ui/SourceBadge";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import type { Review } from "@/types/review";
+import { generateFindingText } from "@/lib/review-evidence";
 
 type Props = { review: Review };
 
@@ -35,6 +36,11 @@ export default function ReviewCardCompact({ review }: Props) {
   const locationLine = review.locationName ?? (
     `${review.city ?? ""}${review.state ? `, ${review.state}` : ""}`
   );
+  const summary =
+    review.reviewSummary ??
+    (review.useCase && review.resultRating ? generateFindingText(review) : null);
+
+  if (!summary) return null;
 
   return (
     <article className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-4 transition-shadow hover:shadow-sm">
@@ -63,7 +69,7 @@ export default function ReviewCardCompact({ review }: Props) {
 
       {/* ── Excerpt ─────────────────────────────────────────────────────── */}
       <p className="text-sm leading-relaxed text-body line-clamp-2">
-        {review.excerpt ?? review.fullText}
+        {summary}
       </p>
 
       {/* ── Tags ────────────────────────────────────────────────────────── */}
