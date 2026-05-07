@@ -77,7 +77,7 @@ const CITIES = [
 const HOW_IT_WORKS = [
   {
     title: "Dynamic provider ranking",
-    body: "A ranked list generated from our review-sample data. Rankings update as new reviews are scraped. Sentiment scores, sample sizes, and use-case wins are shown per provider.",
+    body: "A ranked list generated from our review-sample data. Rankings update as new public reviews are collected. Sentiment scores, sample sizes, and use-case wins are shown per provider.",
   },
   {
     title: "Provider profiles",
@@ -237,7 +237,7 @@ export default function CitiesIndexPage() {
             <div className="py-12">
               <GuideCallout label="Editorial note">
                 City pages are generated from our internal review dataset (Supabase) and verified
-                against Google Places data. Provider rankings refresh as new reviews are scraped.
+                against Google Places data. Provider rankings refresh as new public reviews are collected.
                 See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology

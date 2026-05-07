@@ -222,7 +222,7 @@ export default function MethodologyPage() {
             <div className="space-y-5">
               <SectionHeading>Review Sources</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
-                RealTattooReviews currently sources review data from public Google business listings. Reviews are scraped from each provider's Google business profile and stored in our internal review dataset.
+                RealTattooReviews collects review data from publicly available Google Business Profile listings and classifies it internally for comparison, safety, and outcome signals.
               </p>
 
               <div className="grid gap-4 sm:grid-cols-2">

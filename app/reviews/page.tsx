@@ -43,8 +43,9 @@ const RESEARCH_LINKS = [
 
 export async function generateMetadata(): Promise<Metadata> {
   const stats = await getReviewStats();
-  const title = `Tattoo Removal Reviews: ${stats.totalReviews} Sourced Reviews Across ${stats.totalProviders} Providers`;
-  const description = `Compare tattoo removal providers using ${stats.totalReviews} sourced reviews across ${stats.totalCities} cities. Ratings, complaint patterns, session expectations, and cost signals before you book.`;
+  const totalReviewsLabel = stats.totalReviews.toLocaleString("en-US");
+  const title = `Tattoo Removal Reviews: ${totalReviewsLabel} Sourced Reviews Across ${stats.totalProviders} Providers`;
+  const description = `Compare tattoo removal providers using ${totalReviewsLabel} sourced reviews across ${stats.totalCities} cities. Ratings, complaint patterns, session expectations, and cost signals before you book.`;
   return {
     title,
     description,
@@ -82,12 +83,13 @@ export default async function ReviewsPage() {
   const lowRated  = allReviewsPool.filter((r) => (r.rating ?? 0) <= 3);
   const interleaved = highRated.flatMap((h, i) => (lowRated[i] ? [h, lowRated[i]] : [h]));
   const mixedReviews = selectDiverseReviews(interleaved, 6);
+  const totalReviewsLabel = stats.totalReviews.toLocaleString("en-US");
 
   // FAQ items built with live DB numbers
   const faqs = [
     {
       question: "Are tattoo removal reviews trustworthy?",
-      answer: `They can be, if you read patterns rather than single quotes. One glowing review and one complaint both tell you almost nothing. ${stats.totalReviews} sourced reviews across ${stats.totalProviders} providers tell you a great deal. This page is designed to surface those patterns, not promote individual clinics.`,
+      answer: `They can be, if you read patterns rather than single quotes. One glowing review and one complaint both tell you almost nothing. ${totalReviewsLabel} sourced reviews across ${stats.totalProviders} providers tell you a great deal. This page is designed to surface those patterns, not promote individual clinics.`,
     },
     {
       question: "What should I look for in tattoo removal reviews?",
@@ -99,7 +101,7 @@ export default async function ReviewsPage() {
     },
     {
       question: "Are tattoo removal clinics safe?",
-      answer: `Most are, when operated correctly. Of ${stats.totalReviews} reviews in our index, ${stats.scarringMentions} mention scarring or skin damage. That is a small percentage, but it is not zero. Scarring risk increases with undertrained operators, overly aggressive settings, and poor aftercare. Look for providers who discuss aftercare explicitly and have consistent safety signals across their reviews.`,
+      answer: `Most are, when operated correctly. Of ${totalReviewsLabel} reviews in our index, ${stats.scarringMentions} mention scarring or skin damage. That is a small percentage, but it is not zero. Scarring risk increases with undertrained operators, overly aggressive settings, and poor aftercare. Look for providers who discuss aftercare explicitly and have consistent safety signals across their reviews.`,
     },
     {
       question: "How many sessions does tattoo removal take?",
@@ -216,7 +218,7 @@ export default async function ReviewsPage() {
         <div className="mb-10">
           <MonoLabel color="accent" size="sm" className="mb-4">03 · Recent reviews</MonoLabel>
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
-            What Patients Are Actually Saying
+            What Public Reviewers Are Reporting
           </h2>
           <p className="font-sans text-[16px] leading-relaxed text-heading max-w-prose m-0">
             Positive and negative reviews side by side. One high-rated clinic and one complaint-flagged clinic appearing in the same section is intentional.

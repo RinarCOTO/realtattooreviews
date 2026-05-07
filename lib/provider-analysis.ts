@@ -195,10 +195,10 @@ export function getVerdictFromRating(
   const positivePieces: string[] = [];
   if (resultsPct >= 50) {
     if (resultsCount === total)
-      positivePieces.push(`every reviewer describes a visible result`);
+      positivePieces.push(`all ${total} classified reviews in this sample include a result signal`);
     else
       positivePieces.push(
-        `${resultsCount} of ${total} reviewers (${Math.round(resultsPct)}%) describe a visible result`
+        `${resultsCount} of ${total} classified reviews (${Math.round(resultsPct)}%) include a result signal`
       );
   }
 
@@ -729,7 +729,7 @@ export function buildFAQ(
   if (highRatedPct != null && highRatedPct >= 90 && total >= 15) {
     worthLeads = [
       `${highRatedPct}% of ${total} reviewers landed at 4 or 5 stars for ${providerName}, which is a high-consistency signal.`,
-      `Out of ${total} sourced reviews, ${highRatedPct}% rate ${providerName} 4 or 5 stars; consistency is unusually high.`,
+      `Out of ${total} sourced reviews, ${highRatedPct}% rate ${providerName} 4 or 5 stars; that is high within this review sample.`,
       `Review consistency for ${providerName} sits at ${highRatedPct}% positive across ${total} entries.`,
     ];
   } else if (highRatedPct != null && highRatedPct >= 80 && total >= 15) {

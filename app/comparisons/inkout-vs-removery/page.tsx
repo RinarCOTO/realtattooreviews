@@ -557,7 +557,7 @@ export default function InkoutVsRemoveryPage() {
                   This comparison synthesizes brand-published technology and pricing material with
                   our internal review-sample evidence dataset for both brands. The cross-city
                   evidence table renders dynamically from our internal review dataset and refreshes
-                  as new reviews are scraped. Published review samples reflect rows that pass RTR
+                  as new public reviews are collected. Published review samples reflect rows that pass RTR
                   public filters; total lifetime Google review counts may be higher. Sentiment classifications and
                   use-case tags are derived from review text analysis. Method and technology details
                   are drawn from each brand&rsquo;s published materials. Individual outcomes vary by

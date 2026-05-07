@@ -269,9 +269,7 @@ export default async function DraperPage() {
                 sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
-                  <p className="font-sans text-[14px] text-heading m-0">Loading provider data&hellip;</p>
-                </div>
+                <div aria-hidden="true" className="h-40 rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)]" />
               }>
                 <CityProviderRanking city="Draper" staticProviders={DRAPER_PROVIDERS} />
               </Suspense>
@@ -321,9 +319,7 @@ export default async function DraperPage() {
                 are higher than sample sizes shown.
               </p>
               <Suspense fallback={
-                <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 text-center">
-                  <p className="font-sans text-[14px] text-heading m-0">Loading comparison table&hellip;</p>
-                </div>
+                <div aria-hidden="true" className="h-32 rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)]" />
               }>
                 <CityProviderComparisonTable city="Draper" staticProviders={DRAPER_PROVIDERS} />
               </Suspense>
@@ -444,10 +440,10 @@ export default async function DraperPage() {
             {/* Editorial note */}
             <div className="py-12">
               <GuideCallout label="Editorial note">
-                Provider review samples reflect recent reviews scraped from public Google business
-                listings into our internal review dataset. The ranked list and comparison table
-                above are generated dynamically from this dataset and refresh as new reviews are
-                scraped. Published review samples reflect rows that pass RTR public filters; total
+                Provider review samples reflect recent reviews collected from publicly available
+                Google Business Profile listings into our internal review dataset. The ranked list and comparison table
+                above are generated dynamically from this dataset and refresh as new public reviews are
+                collected. Published review samples reflect rows that pass RTR public filters; total
                 lifetime Google review counts may be higher. Sentiment classifications and use-case tags are derived from
                 review text analysis. Pricing ranges reflect industry averages and published Draper
                 provider rates where pricing is public. Method and technology details are drawn from

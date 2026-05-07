@@ -121,9 +121,8 @@ function ReviewsDisplay({
           )}
 
           <p className="mt-4 font-sans text-[11px] text-heading border-t border-(--line) pt-4">
-            Source: Reviews sourced from Google Maps and summarized by RTR in our own words.
+            Source: Reviews are collected from publicly available Google Business Profile listings and summarized by RTR in our own words.
             We classify each review for removal type, outcome, and scarring mentions.
-            Original reviews available on Google Maps.{" "}
             <Link href="/methodology" className="text-(--accent) hover:underline">
               Read our methodology
             </Link>
