@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Provider } from "@/types/provider";
-import { brandToSlug } from "@/lib/providers";
+import { brandToSlug, getLocationSlug, isBlockedProviderLocationPage } from "@/lib/providers";
 
 interface ProvidersTableProps {
   providers: Provider[];
@@ -90,7 +90,21 @@ export default function ProvidersTable({ providers }: ProvidersTableProps) {
         </thead>
         <tbody>
           {sorted.map((p, i) => {
-            const slug = p.brand ? `${brandToSlug(p.brand)}/${p.slug}` : p.slug;
+            // Multi-location brand entries route via /reviews/{brand}/{location}.
+            // Use the location-only segment, not the full provider slug, since
+            // provider slugs are stored as "{brand}-{location}" (e.g. "inkout-austin").
+            // Fall back to the brand hub URL when the brand-location pair is
+            // explicitly blocked (see isBlockedProviderLocationPage).
+            let slug: string;
+            if (p.brand) {
+              const brandSlug = brandToSlug(p.brand);
+              const locationSlug = getLocationSlug(p);
+              slug = isBlockedProviderLocationPage(brandSlug, locationSlug)
+                ? brandSlug
+                : `${brandSlug}/${locationSlug}`;
+            } else {
+              slug = p.slug;
+            }
             const isLast = i === sorted.length - 1;
             const specialty = p.specialty?.toLowerCase() ?? "";
             const tags = (p.tags ?? []).map((tag) => tag.toLowerCase());

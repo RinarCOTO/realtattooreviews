@@ -42,7 +42,7 @@ const itemListSchema = {
     { "@type": "ListItem", position: 10, name: "Inklifters",                  url: "https://realtattooreviews.com/reviews/inklifters-aesthetica" },
     { "@type": "ListItem", position: 11, name: "Kovak Cosmetic Center",       url: "https://realtattooreviews.com/reviews/kovak-cosmetic-center" },
     { "@type": "ListItem", position: 12, name: "MEDermis Laser Clinic",       url: "https://realtattooreviews.com/reviews/medermis-laser-clinic" },
-    { "@type": "ListItem", position: 13, name: "Removery",                    url: "https://realtattooreviews.com/reviews/removery-bucktown" },
+    { "@type": "ListItem", position: 13, name: "Removery",                    url: "https://realtattooreviews.com/reviews/removery/bucktown" },
   ],
 };
 

@@ -33,6 +33,7 @@ import {
   summarizeSources,
 } from "@/lib/provider-analysis";
 import { toPublicReviews } from "@/lib/review-evidence";
+import { cities } from "@/lib/mock-data/cities";
 
 interface SingleProviderReviewsPageProps {
   provider: Provider;
@@ -68,6 +69,10 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
   const publicReviews = toPublicReviews(reviews, { brand: provider.brand ?? provider.name });
   const city = provider.market.split(",")[0].trim();
   const citySlug = city.toLowerCase().replace(/\s+/g, "-");
+  // Only link to the city page when one actually exists. Removery's per-location
+  // pages cover sub-cities (Friendswood, Katy, Round Rock, Sugar Land,
+  // Shenandoah) that do not have their own city page yet.
+  const cityHasPage = cities.some((c) => c.slug === citySlug);
   const selfPath = canonicalPath ?? `/reviews/${provider.slug}/`;
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -205,9 +210,11 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
             <p className="text-[14px] leading-relaxed text-heading">
               {provider.name} operates in {provider.market}. If you already know your city, move next to the local comparison page before making a decision. A national reputation can be directionally useful, but local execution still matters.
             </p>
-            <Link href={`/cities/${citySlug}`} className="mt-4 inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline">
-              See local comparison coverage <ChevronRightIcon className="size-3.5" />
-            </Link>
+            {cityHasPage && (
+              <Link href={`/cities/${citySlug}`} className="mt-4 inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline">
+                See local comparison coverage <ChevronRightIcon className="size-3.5" />
+              </Link>
+            )}
           </div>
           <div className="border border-(--line) bg-white p-6 rounded-xl">
             <p className="font-sans font-semibold text-[22px] leading-[1.1] tracking-[-0.02em] text-(--ink) mb-3">

@@ -80,11 +80,18 @@ export function getFeaturedProviders(limit = 6): Provider[] {
 /**
  * Return the canonical href for a review card CTA.
  *
- * Multi-location:  /reviews/{providerSlug}
- * Single-location: /reviews/{providerSlug}
+ * Multi-location brand entry:  /reviews/{brand}/{location}
+ *   e.g. provider slug "inkout-austin" with brand "inkOUT" -> /reviews/inkout/austin
+ * Single-location or brand hub: /reviews/{providerSlug}
+ *   e.g. "medermis-laser-clinic" -> /reviews/medermis-laser-clinic
  *
- * Reviews hub cards and sourced review cards should route into branded review pages,
- * not provider directory pages.
+ * Multi-location provider slugs like "inkout-austin", "removery-bucktown", and
+ * "laseraway-houston" do not resolve at /reviews/{slug} because the route tree
+ * routes those to /reviews/{brand}/{location}. This helper splits the slug
+ * before returning so callers do not need to know the convention.
+ *
+ * Blocked brand-location pairs (see BLOCKED_PROVIDER_LOCATION_PAGES) fall back
+ * to the brand hub URL.
  */
 export function resolveProviderHref({
   providerSlug,
@@ -92,5 +99,16 @@ export function resolveProviderHref({
   providerSlug?: string;
 }): string {
   if (!providerSlug) return "/reviews";
+  const provider = providers.find((p) => p.slug === providerSlug);
+  if (provider?.brand) {
+    const brandSlug = brandToSlug(provider.brand);
+    const locationSlug = getLocationSlug(provider);
+    if (brandSlug && locationSlug && locationSlug !== providerSlug) {
+      if (isBlockedProviderLocationPage(brandSlug, locationSlug)) {
+        return `/reviews/${brandSlug}`;
+      }
+      return `/reviews/${brandSlug}/${locationSlug}`;
+    }
+  }
   return `/reviews/${providerSlug}`;
 }
