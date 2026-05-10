@@ -289,9 +289,9 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
 
     draper: [
         {
-            name: "Rejuvatek Aesthetics providing inkOUT (Draper)",
+            name: "inkOUT (Draper)",
             href: "/reviews/inkout/draper",
-            body: "This is the Draper location for inkOUT, the non-laser tattoo removal brand operated by Rejuvatek Medical. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. Because TEPR is not light-based, its risk profile differs from wavelength-based laser systems; scarring, pigment change, healing, and aftercare still need case-specific assessment. This is the only non-laser tattoo removal option currently tracked by RealTattooReviews in the Draper and south Salt Lake Valley area, not necessarily the only option available in the market.",
+            body: "This is the Draper location for inkOUT, a non-laser tattoo removal brand. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. Because TEPR is not light-based, its risk profile differs from wavelength-based laser systems; scarring, pigment change, healing, and aftercare still need case-specific assessment. This is the only non-laser tattoo removal option currently tracked by RealTattooReviews in the Draper and south Salt Lake Valley area, not necessarily the only option available in the market.",
             bestFor: [
                 "Users seeking complete removal rather than fading",
                 "Users who want a non-laser method",

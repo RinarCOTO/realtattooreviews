@@ -23,12 +23,18 @@ const QUERY = `
 
 function toProfile(s: SanityCityProviderProfile): CityProviderProfile {
     return {
-        name: s.name,
+        name: sanitizeCityProviderCopy(s.name),
         href: s.href ?? undefined,
-        body: s.body,
+        body: sanitizeCityProviderCopy(s.body),
         bestFor: s.bestFor ?? [],
         lessIdealFor: s.lessIdealFor ?? [],
     }
+}
+
+function sanitizeCityProviderCopy(value: string): string {
+    return value
+        .replace(/Rejuvatek Aesthetics providing inkOUT \(Draper\)/gi, "inkOUT (Draper)")
+        .replace(/the non-laser tattoo removal brand operated by Rejuvatek Medical/gi, "a non-laser tattoo removal brand")
 }
 
 export async function getCityProviderProfiles(city: string): Promise<CityProviderProfile[]> {
