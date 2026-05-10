@@ -1,4 +1,11 @@
 import type { Review } from "@/types/review";
+import type {
+  PainSignal,
+  PublicReview,
+  RatingTier,
+  ResultTier,
+  ScarringSignal,
+} from "@/types/public-review";
 
 // Priority order for evidence card sorting (CC spec)
 const USE_CASE_ORDER = ["Complete", "Microblading", "Color", "Cover-up", "Other", null] as const;
@@ -220,4 +227,134 @@ export function sortClassifiedReviews(reviews: Review[], sortKey: SortKey = "mos
 
 export function selectClassifiedReviews(reviews: Review[]): Review[] {
   return sortClassifiedReviews(reviews, "most_useful");
+}
+
+const PUBLIC_TAG_WHITELIST = new Set([
+  "Staff praised",
+  "Pricing concern",
+  "Quick healing",
+  "Multiple sessions completed",
+  "Color removal",
+  "Cover-up prep",
+]);
+
+type PublicReviewOptions = {
+  brand?: string | null;
+};
+
+function isInkoutBrand(brand?: string | null) {
+  return (brand ?? "").toLowerCase().includes("inkout");
+}
+
+function ratingTierFromStars(rating?: number): RatingTier {
+  if (rating == null) return "neutral";
+  if (rating >= 4) return "positive";
+  if (rating >= 3) return "mixed";
+  return "negative";
+}
+
+function painSignalFromLevel(painLevel?: number | null): PainSignal {
+  if (painLevel == null) return null;
+  if (painLevel <= 2) return "low";
+  if (painLevel === 3) return "moderate";
+  return "high";
+}
+
+function resultTierFromReview(review: Review): ResultTier {
+  if (review.resultRating === "Negative") return "no-result";
+  if (review.resultRating === "Mixed" || review.resultRating === "Neutral") return "mixed";
+  if (review.resultRating !== "Positive") return null;
+  if (review.useCase === "Complete") return "complete";
+  if (review.useCase === "Cover-up" || review.useCase === "Color" || review.useCase === "Microblading") {
+    return "fade";
+  }
+  return "mixed";
+}
+
+function scarringSignalFromReview(review: Review): ScarringSignal {
+  if (review.scarringPraised) return "praised";
+  if (review.scarringReported) return "mentioned";
+  return "none";
+}
+
+function monthLabelFromISO(dateISO?: string | null): string | null {
+  if (!dateISO) return null;
+  const date = new Date(dateISO);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+}
+
+function evidenceLabelFromReview(review: Review, hidePainSignal = false): string {
+  if (review.resultRating === "Negative") return "Mild downside";
+  if (!hidePainSignal && review.painLevel != null) return "Pain signal";
+  if (review.resultRating === "Mixed") return "Mixed signal";
+  if (review.costMentioned) return "Pricing signal";
+  if (review.staffMentioned) return "Staff signal";
+  return "Balanced review";
+}
+
+export function sortPublicReviews(
+  reviews: PublicReview[],
+  sortKey: SortKey = "most_useful"
+): PublicReview[] {
+  const filtered = [...reviews].filter((review) => review.summary.trim().length > 0);
+
+  if (sortKey === "most_recent") {
+    // Preserve the server-provided date order without exposing raw dates to the client.
+    return filtered;
+  }
+
+  if (sortKey === "highest_rated") {
+    const score = { positive: 3, mixed: 2, neutral: 1, negative: 0 } satisfies Record<RatingTier, number>;
+    return filtered.sort((a, b) => score[b.ratingTier] - score[a.ratingTier]);
+  }
+
+  if (sortKey === "critical_first") {
+    return filtered.filter((review) => review.ratingTier === "negative");
+  }
+
+  const score = { negative: 4, mixed: 3, positive: 2, neutral: 1 } satisfies Record<RatingTier, number>;
+  return filtered.sort((a, b) => {
+    const scoreDiff = score[b.ratingTier] - score[a.ratingTier];
+    if (scoreDiff !== 0) return scoreDiff;
+    return (b.monthLabel ?? "").localeCompare(a.monthLabel ?? "");
+  });
+}
+
+export function toPublicReview(
+  review: Review,
+  options: PublicReviewOptions = {}
+): PublicReview | null {
+  const summary = review.reviewSummary ?? (
+    review.useCase && review.resultRating ? generateFindingText(review) : null
+  );
+
+  if (!summary?.trim()) return null;
+  const hidePainSignal = isInkoutBrand(options.brand);
+
+  return {
+    id: review.id,
+    ratingTier: ratingTierFromStars(review.rating),
+    summary,
+    evidenceLabel: evidenceLabelFromReview(review, hidePainSignal),
+    city: review.city ?? null,
+    state: review.state ?? null,
+    monthLabel: monthLabelFromISO(review.dateISO),
+    sourceLabel: "Google Business Profile",
+    visibleTags: (review.tags ?? []).filter((tag) => PUBLIC_TAG_WHITELIST.has(tag)),
+    resultTier: resultTierFromReview(review),
+    painSignal: hidePainSignal ? null : painSignalFromLevel(review.painLevel),
+    scarringSignal: scarringSignalFromReview(review),
+    costMentioned: Boolean(review.costMentioned),
+    staffMentioned: Boolean(review.staffMentioned),
+  };
+}
+
+export function toPublicReviews(
+  reviews: Review[],
+  options: PublicReviewOptions = {}
+): PublicReview[] {
+  return reviews
+    .map((review) => toPublicReview(review, options))
+    .filter((review): review is PublicReview => Boolean(review));
 }

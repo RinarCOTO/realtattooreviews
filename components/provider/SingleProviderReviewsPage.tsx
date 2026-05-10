@@ -32,6 +32,7 @@ import {
   getVerdictFromRating,
   summarizeSources,
 } from "@/lib/provider-analysis";
+import { toPublicReviews } from "@/lib/review-evidence";
 
 interface SingleProviderReviewsPageProps {
   provider: Provider;
@@ -64,6 +65,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
   const bottomLine = buildBottomLine(provider.name, [provider], reviews, alternatives);
   const differentiator = buildDifferentiator(provider, reviews);
   const useCaseFocus = buildUseCaseFocus(reviews);
+  const publicReviews = toPublicReviews(reviews, { brand: provider.brand ?? provider.name });
   const city = provider.market.split(",")[0].trim();
   const citySlug = city.toLowerCase().replace(/\s+/g, "-");
   const selfPath = canonicalPath ?? `/reviews/${provider.slug}/`;
@@ -163,7 +165,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
       <section id="reviews" className="py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
-          <WhatReviewersSay reviews={reviews} providerName={provider.name} />
+          <WhatReviewersSay reviews={publicReviews} providerName={provider.name} />
         </Container>
       </section>
 

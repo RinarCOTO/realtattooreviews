@@ -12,6 +12,7 @@ import { getAllProviders, type SanityProvider } from "@/lib/page-data/providers"
 import { providers as mockProviders } from "@/lib/mock-data/providers";
 import type { Provider } from "@/types/provider";
 import { cities } from "@/lib/mock-data/cities";
+import { toPublicReviews } from "@/lib/review-evidence";
 
 function sanityToProvider(p: SanityProvider): Provider {
   return {
@@ -83,6 +84,7 @@ export default async function ReviewsPage() {
   const lowRated  = allReviewsPool.filter((r) => (r.rating ?? 0) <= 3);
   const interleaved = highRated.flatMap((h, i) => (lowRated[i] ? [h, lowRated[i]] : [h]));
   const mixedReviews = selectDiverseReviews(interleaved, 6);
+  const publicMixedReviews = toPublicReviews(mixedReviews);
   const totalReviewsLabel = stats.totalReviews.toLocaleString("en-US");
 
   // FAQ items built with live DB numbers
@@ -225,7 +227,7 @@ export default async function ReviewsPage() {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
-          {mixedReviews.map((r) => (
+          {publicMixedReviews.map((r) => (
             <ReviewCard key={r.id} review={r} />
           ))}
         </div>

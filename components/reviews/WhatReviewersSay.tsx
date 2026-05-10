@@ -3,13 +3,13 @@
 import { useState, Suspense } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import type { Review } from "@/types/review";
+import type { PublicReview } from "@/types/public-review";
 import ClassifiedReviewCard from "./ClassifiedReviewCard";
-import { sortClassifiedReviews, type SortKey } from "@/lib/review-evidence";
+import { sortPublicReviews, type SortKey } from "@/lib/review-evidence";
 import DevLabel from "@/components/dev/DevLabel";
 
 type Props = {
-  reviews: Review[];
+  reviews: PublicReview[];
   providerName: string;
   initialShow?: number;
 };
@@ -18,22 +18,22 @@ const SORT_OPTIONS: { key: SortKey; label: string; description: string }[] = [
   {
     key: "most_useful",
     label: "Most useful",
-    description: "Showing reviews with outcomes and use cases tagged first.",
+    description: "Showing the most decision-relevant review evidence first.",
   },
   {
     key: "most_recent",
     label: "Most recent",
-    description: "Showing most recently submitted reviews first. Some reviews have no date on record.",
+    description: "Showing the newest public-source review evidence first when a month is available.",
   },
   {
     key: "highest_rated",
     label: "Highest rated",
-    description: "Showing 5-star reviews first.",
+    description: "Showing positive-tier review evidence first.",
   },
   {
     key: "critical_first",
     label: "Critical first",
-    description: "Showing only reviews rated 3 stars or lower, lowest-rated first.",
+    description: "Showing only critical-tier review evidence.",
   },
 ];
 
@@ -47,22 +47,21 @@ function ReviewsDisplay({
   sortKey,
   onSort,
 }: {
-  reviews: Review[];
+  reviews: PublicReview[];
   initialShow?: number;
   sortKey: SortKey;
   onSort: (key: SortKey) => void;
 }) {
   const [showAll, setShowAll] = useState(false);
 
-  const classified = sortClassifiedReviews(reviews, sortKey);
+  const classified = sortPublicReviews(reviews, sortKey);
   const visible = showAll ? classified : classified.slice(0, initialShow);
   const activeOption = SORT_OPTIONS.find((o) => o.key === sortKey) ?? SORT_OPTIONS[0];
 
-  // Total classified pool, for the count label. When "critical_first" is
-  // active, sortClassifiedReviews filters out non-critical reviews. We still
-  // want to tell the user how big the underlying pool is so the empty state
-  // ("0 of 90 are critical") reads honestly.
-  const totalClassified = sortClassifiedReviews(reviews, "most_useful").length;
+  // Total public evidence pool, for the count label. When "critical_first" is
+  // active, the sorter filters out non-critical evidence. We still want to tell
+  // the user how big the underlying pool is so the empty state reads honestly.
+  const totalClassified = sortPublicReviews(reviews, "most_useful").length;
 
   if (reviews.length === 0) return null;
 
@@ -100,8 +99,8 @@ function ReviewsDisplay({
 
           {classified.length === 0 && sortKey === "critical_first" ? (
             <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-[14px] leading-relaxed text-heading">
-              No reviews on file rate this provider 3 stars or lower. The full
-              classified pool is available under the other sort options.
+              No critical-tier review evidence is currently shown for this provider.
+              The full classified pool is available under the other sort options.
             </div>
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

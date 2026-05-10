@@ -3,10 +3,10 @@ import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import ReviewCardCompact from "@/components/reviews/ReviewCardCompact";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
-import type { Review } from "@/types/review";
+import type { PublicReview } from "@/types/public-review";
 
 type Props = {
-  reviews: Review[];
+  reviews: PublicReview[];
 };
 
 /**

@@ -36,6 +36,7 @@ import {
   summarizeSources,
   unique,
 } from "@/lib/provider-analysis";
+import { toPublicReviews } from "@/lib/review-evidence";
 import MonoLabel from "@/components/reviews/MonoLabel";
 
 interface BrandReviewsPageProps {
@@ -60,6 +61,8 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
   const bottomLine = buildBottomLine(brand, locations, reviews, alternatives);
   const brandTags = unique(locations.flatMap((l) => l.tags ?? [])).slice(0, 6);
   const balancedQuotes = slug === "inkout" ? selectInkoutBalancedQuotes(reviews) : [];
+  const publicReviews = toPublicReviews(reviews, { brand });
+  const publicBalancedQuotes = toPublicReviews(balancedQuotes, { brand });
   const differentiator = locations[0] ? buildDifferentiator(locations[0], reviews) : null;
   const useCaseFocus = buildUseCaseFocus(reviews);
   const articleJsonLd = {
@@ -164,12 +167,12 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         statsRows={buildOverviewStats(reviews)}
       />
 
-      {balancedQuotes.length > 0 && <BalancedQuotesSection reviews={balancedQuotes} />}
+      {publicBalancedQuotes.length > 0 && <BalancedQuotesSection reviews={publicBalancedQuotes} />}
 
       <section id="reviews" className="py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
-          <WhatReviewersSay reviews={reviews} providerName={brand} />
+          <WhatReviewersSay reviews={publicReviews} providerName={brand} />
         </Container>
       </section>
 

@@ -19,6 +19,7 @@ import {
   selectInkoutBalancedQuotes,
   summarizeSources,
 } from "@/lib/provider-analysis";
+import { toPublicReviews } from "@/lib/review-evidence";
 import { getLocationSlug } from "@/lib/providers";
 import LocationsSection from "./LocationsSection";
 
@@ -82,6 +83,8 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
   const verdict = getVerdictFromRating(avgRatingValue, reviews);
   const alternatives = getAlternativeProviders(locations, slug);
   const balancedQuotes = slug === "inkout" ? selectInkoutBalancedQuotes(reviews) : [];
+  const publicReviews = toPublicReviews(reviews, { brand: review.providerName });
+  const publicBalancedQuotes = toPublicReviews(balancedQuotes, { brand: review.providerName });
   const providerTags = locations
     .flatMap((l) => l.tags ?? [])
     .filter((v, i, a) => a.indexOf(v) === i)
@@ -147,7 +150,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       </section>
 
       {/* What Reviewers Say */}
-      {balancedQuotes.length > 0 && <BalancedQuotesSection reviews={balancedQuotes} />}
+      {publicBalancedQuotes.length > 0 && <BalancedQuotesSection reviews={publicBalancedQuotes} />}
 
       {reviews.length > 0 && (
         <section id="reviews" className="py-22">
@@ -156,7 +159,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               title="What Reviewers Say"
               body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top."
             />
-            <WhatReviewersSay reviews={reviews} providerName={review.providerName} />
+            <WhatReviewersSay reviews={publicReviews} providerName={review.providerName} />
           </Container>
         </section>
       )}

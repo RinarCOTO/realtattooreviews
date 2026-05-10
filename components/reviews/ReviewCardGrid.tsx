@@ -1,8 +1,8 @@
-import type { Review } from "@/types/review";
+import type { PublicReview } from "@/types/public-review";
 import ReviewEvidenceCard from "./ReviewEvidenceCard";
 
 type Props = {
-  reviews: Review[];
+  reviews: PublicReview[];
   showProvider?: boolean;
   columns?: 1 | 2 | 3;
 };

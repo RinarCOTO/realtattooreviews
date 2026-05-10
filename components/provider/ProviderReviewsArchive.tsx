@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import ReviewEvidenceCard from "@/components/reviews/ReviewEvidenceCard";
-import type { Review } from "@/types/review";
+import type { PublicReview } from "@/types/public-review";
 
 const DEFAULT_PAGE_SIZE = 12;
 
 interface ProviderReviewsArchiveProps {
-  reviews: Review[];
+  reviews: PublicReview[];
   featuredCount?: number;
   pageSize?: number;
   showProvider?: boolean;

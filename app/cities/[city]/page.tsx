@@ -13,6 +13,7 @@ import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import type { Review } from "@/types/review";
 import { breadcrumbSchema } from "@/lib/seo/schema";
+import { toPublicReviews } from "@/lib/review-evidence";
 
 type Props = { params: Promise<{ city: string }> };
 
@@ -186,7 +187,7 @@ export default async function CityPage({ params }: Props) {
                         <span className="text-[13px] text-heading">{group.reviews.length} reviews</span>
                       </div>
                       <WhatReviewersSay
-                        reviews={group.reviews}
+                        reviews={toPublicReviews(group.reviews, { brand: group.name })}
                         providerName={group.name}
                         initialShow={5}
                       />

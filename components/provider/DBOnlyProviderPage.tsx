@@ -19,6 +19,7 @@ import {
   getVerdictFromRating,
   verdictColors,
 } from "@/lib/provider-analysis";
+import { toPublicReviews } from "@/lib/review-evidence";
 
 interface DBOnlyProviderPageProps {
   slug: string;
@@ -37,6 +38,7 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
   const resultsSummary = buildResultsSummary(reviews);
   const faqItems = buildFAQ(providerName, market || undefined, reviews, null);
   const bestForData = buildBestFor([], reviews);
+  const publicReviews = toPublicReviews(reviews, { brand: providerName });
   return (
     <main className="reviews-page min-h-screen bg-(--bg)">
       <section className="relative overflow-hidden border-b border-primary-strong bg-primary py-14">
@@ -100,7 +102,7 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
       <section id="reviews" className="border-b border-(--line) bg-(--bg) py-22">
         <Container>
           <BlockHeading title="What Reviewers Say" body="Public reviews are most useful when treated as patterns, not isolated quotes. Negative-first ordering shows the most decision-relevant signals at the top." />
-          <WhatReviewersSay reviews={reviews} providerName={providerName} />
+          <WhatReviewersSay reviews={publicReviews} providerName={providerName} />
         </Container>
       </section>
 

@@ -2,18 +2,17 @@
 
 import { useState, useMemo } from "react";
 import ReviewEvidenceCard from "@/components/reviews/ReviewEvidenceCard";
-import type { Review } from "@/types/review";
+import type { PublicReview } from "@/types/public-review";
 
 const PAGE_SIZE = 24;
 
 type Props = {
-  reviews: Review[];
+  reviews: PublicReview[];
   showProvider?: boolean;
 };
 
 export default function ReviewListWithFilters({ reviews, showProvider = true }: Props) {
   const [cityFilter, setCityFilter] = useState("all");
-  const [providerFilter, setProviderFilter] = useState("all");
   const [ratingFilter, setRatingFilter] = useState("all");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
@@ -23,20 +22,14 @@ export default function ReviewListWithFilters({ reviews, showProvider = true }: 
     return Array.from(set).sort();
   }, [reviews]);
 
-  const providerNames = useMemo(() => {
-    const set = new Set(reviews.map((r) => r.provider).filter(Boolean));
-    return Array.from(set).sort();
-  }, [reviews]);
-
   // Apply filters
   const filtered = useMemo(() => {
     return reviews.filter((r) => {
       if (cityFilter !== "all" && r.city !== cityFilter) return false;
-      if (providerFilter !== "all" && r.provider !== providerFilter) return false;
-      if (ratingFilter !== "all" && (r.rating ?? 0) < Number(ratingFilter)) return false;
+      if (ratingFilter !== "all" && r.ratingTier !== ratingFilter) return false;
       return true;
     });
-  }, [reviews, cityFilter, providerFilter, ratingFilter]);
+  }, [reviews, cityFilter, ratingFilter]);
 
   const visible = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
@@ -63,27 +56,16 @@ export default function ReviewListWithFilters({ reviews, showProvider = true }: 
         </select>
 
         <select
-          value={providerFilter}
-          onChange={(e) => { setProviderFilter(e.target.value); handleFilterChange(); }}
-          className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-body focus:outline-none focus:ring-2 focus:ring-accent/30"
-          aria-label="Filter by provider"
-        >
-          <option value="all">All providers</option>
-          {providerNames.map((name) => (
-            <option key={name} value={name}>{name}</option>
-          ))}
-        </select>
-
-        <select
           value={ratingFilter}
           onChange={(e) => { setRatingFilter(e.target.value); handleFilterChange(); }}
           className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-body focus:outline-none focus:ring-2 focus:ring-accent/30"
-          aria-label="Filter by minimum rating"
+          aria-label="Filter by review evidence tier"
         >
-          <option value="all">All ratings</option>
-          <option value="5">5 stars only</option>
-          <option value="4">4 stars and up</option>
-          <option value="3">3 stars and up</option>
+          <option value="all">All tiers</option>
+          <option value="positive">Positive</option>
+          <option value="mixed">Mixed</option>
+          <option value="negative">Critical</option>
+          <option value="neutral">Neutral</option>
         </select>
 
         <span className="ml-auto text-sm text-heading">
