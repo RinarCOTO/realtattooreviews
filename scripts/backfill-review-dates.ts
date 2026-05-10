@@ -10,8 +10,10 @@
 import { createClient } from "@supabase/supabase-js";
 
 const SUPABASE_URL = "https://rxrhvbfutjahgwaambqd.supabase.co";
-const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cmh2YmZ1dGphaGd3YWFtYnFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzNTE3MDcsImV4cCI6MjA5MTkyNzcwN30.d9juaTC-mzWsxtej5MbK0neIZ6bKv73BgtGrMydhLsA";
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+if (!SUPABASE_ANON_KEY) {
+  throw new Error("NEXT_PUBLIC_SUPABASE_ANON_KEY is required. Add it to .env.local.");
+}
 
 // The date the reviews were scraped
 const SCRAPE_DATE = new Date("2026-03-29T12:00:00.000Z");
@@ -89,7 +91,7 @@ function parseRelativeDate(raw: string | null): string | null {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   console.log("Fetching all reviews...");
   const { data, error } = await supabase

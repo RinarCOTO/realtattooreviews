@@ -17,8 +17,10 @@ const CSV_PATH = path.resolve(
 );
 
 const SUPABASE_URL = "https://rxrhvbfutjahgwaambqd.supabase.co";
-const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cmh2YmZ1dGphaGd3YWFtYnFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzNTE3MDcsImV4cCI6MjA5MTkyNzcwN30.d9juaTC-mzWsxtej5MbK0neIZ6bKv73BgtGrMydhLsA";
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+if (!SUPABASE_ANON_KEY) {
+  throw new Error("NEXT_PUBLIC_SUPABASE_ANON_KEY is required. Add it to .env.local.");
+}
 
 const BATCH_SIZE = 100;
 
@@ -91,7 +93,7 @@ async function main() {
   // Map column names to indexes
   const col = (name: string) => header.indexOf(name);
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const now = new Date().toISOString();
   let inserted = 0;
