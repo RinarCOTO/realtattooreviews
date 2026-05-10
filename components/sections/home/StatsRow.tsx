@@ -1,9 +1,10 @@
 import Container from "@/components/layout/Container";
 import { getReviewStats } from "@/lib/data/reviews";
+import { cities } from "@/lib/mock-data/cities";
 import StatsCounter from "./StatsCounter";
 
 export default async function StatsRow() {
-  const { totalReviews, totalProviders, totalCities } = await getReviewStats();
+  const { totalReviews, totalProviders } = await getReviewStats();
 
   const stats = [
     {
@@ -25,7 +26,7 @@ export default async function StatsRow() {
       ),
     },
     {
-      value: totalCities,
+      value: cities.length,
       label: "Cities covered",
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

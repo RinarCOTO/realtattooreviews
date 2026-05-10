@@ -83,7 +83,7 @@ const homepageContent = {
       _key: k(),
       stepNumber: "03",
       title: "You compare before you book",
-      body: [block("See ratings, read review excerpts, and compare providers side by side with more context.")],
+      body: [block("See ratings, read review evidence summaries, and compare providers side by side with more context.")],
     },
   ],
   faqItems: [
@@ -103,7 +103,7 @@ const homepageContent = {
       _type: "object",
       _key: k(),
       question: "How are provider ratings calculated?",
-      answer: [block("Ratings are based on a scored methodology covering result outcomes, session consistency, pricing transparency, and patient communication. The full scoring model is published on our methodology page.")],
+      answer: [block("Ratings are based on a scored methodology covering reported outcomes, session consistency, pricing transparency, and staff communication. The full scoring model is published on our methodology page.")],
     },
     {
       _type: "object",
@@ -115,7 +115,7 @@ const homepageContent = {
       _type: "object",
       _key: k(),
       question: "How often is coverage updated?",
-      answer: [block("Provider pages and ratings are reviewed on a rolling basis as new reviews are submitted. The last update date is shown on each provider page.")],
+      answer: [block("Provider pages and ratings are reviewed on a rolling basis as new public Google reviews are collected and classified. The last update date is shown on each provider page.")],
     },
   ],
   seoTitle: "RealTattooReviews: Compare Tattoo Removal Clinics Before You Book",

@@ -1,9 +1,15 @@
 import { providers } from "@/lib/mock-data/providers";
 import type { Provider } from "@/types/provider";
 
+const BLOCKED_PROVIDER_LOCATION_PAGES = new Set(["inkout/tampa"]);
+
 /** "inkOUT" → "inkout", "Removery" → "removery" */
 export function brandToSlug(brand: string): string {
   return brand.toLowerCase().replace(/\s+/g, "-");
+}
+
+export function isBlockedProviderLocationPage(brandSlug: string, locationSlug: string): boolean {
+  return BLOCKED_PROVIDER_LOCATION_PAGES.has(`${brandSlug}/${locationSlug}`);
 }
 
 /** All unique brands that have more than one location */

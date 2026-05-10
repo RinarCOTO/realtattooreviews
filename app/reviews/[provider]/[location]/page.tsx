@@ -7,6 +7,7 @@ import {
   getProviderByBrandAndLocation,
   getProvidersByBrand,
   getLocationSlug,
+  isBlockedProviderLocationPage,
 } from "@/lib/providers";
 import { getReviewsByProviderLocation } from "@/lib/data/reviews";
 
@@ -26,7 +27,7 @@ type Props = { params: Promise<{ provider: string; location: string }> };
  */
 export async function generateStaticParams() {
   const targetBrands = ["inkOUT", "Removery"];
-  return getMultiLocationBrands()
+  const candidates = getMultiLocationBrands()
     .filter((brand) => targetBrands.includes(brand))
     .flatMap((brand) => {
       const brandSlug = brandToSlug(brand);
@@ -35,14 +36,24 @@ export async function generateStaticParams() {
         location: getLocationSlug(p),
       }));
     });
+
+  const params: Array<{ provider: string; location: string }> = [];
+  for (const candidate of candidates) {
+    if (isBlockedProviderLocationPage(candidate.provider, candidate.location)) continue;
+    const reviews = await getReviewsByProviderLocation(candidate.provider, candidate.location);
+    if (reviews.length > 0) params.push(candidate);
+  }
+  return params;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { provider: brandSlug, location: locationSlug } = await params;
+  if (isBlockedProviderLocationPage(brandSlug, locationSlug)) return {};
   const provider = getProviderByBrandAndLocation(brandSlug, locationSlug);
   if (!provider) return {};
 
   const reviews = await getReviewsByProviderLocation(brandSlug, locationSlug);
+  if (reviews.length === 0) return {};
   const count = reviews.length || provider.reviewCount;
   const avg =
     reviews.length > 0
@@ -62,10 +73,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProviderLocationPage({ params }: Props) {
   const { provider: brandSlug, location: locationSlug } = await params;
+  if (isBlockedProviderLocationPage(brandSlug, locationSlug)) notFound();
   const provider = getProviderByBrandAndLocation(brandSlug, locationSlug);
   if (!provider) notFound();
 
   const reviews = await getReviewsByProviderLocation(brandSlug, locationSlug);
+  if (reviews.length === 0) notFound();
   const city = provider.market.split(",")[0].trim();
   const canonicalPath = `/reviews/${brandSlug}/${locationSlug}/`;
 

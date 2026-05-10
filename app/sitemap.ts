@@ -8,8 +8,9 @@ import {
   getSingleLocationProviders,
   getProvidersByBrand,
   getLocationSlug,
+  isBlockedProviderLocationPage,
 } from "@/lib/providers";
-import { getUniqueProviderSlugs } from "@/lib/data/reviews";
+import { getReviewsByProviderLocation, getUniqueProviderSlugs } from "@/lib/data/reviews";
 
 const BASE_URL = "https://realtattooreviews.com";
 
@@ -130,13 +131,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
   // Per-location pages. Only inkOUT and Removery have route coverage.
-  const locationUrls: MetadataRoute.Sitemap = mockProviders
-    .filter((p) => BRANDS_WITH_LOCATION_PAGES.has(p.brand ?? p.name))
-    .map((p) => ({
-      url: `${BASE_URL}/reviews/${brandToSlug(p.brand ?? p.name)}/${getLocationSlug(p)}`,
+  const locationUrls: MetadataRoute.Sitemap = [];
+  for (const p of mockProviders.filter((provider) => BRANDS_WITH_LOCATION_PAGES.has(provider.brand ?? provider.name))) {
+    const brandSlug = brandToSlug(p.brand ?? p.name);
+    const locationSlug = getLocationSlug(p);
+    if (isBlockedProviderLocationPage(brandSlug, locationSlug)) continue;
+    const reviews = await getReviewsByProviderLocation(brandSlug, locationSlug);
+    if (reviews.length === 0) continue;
+    locationUrls.push({
+      url: `${BASE_URL}/reviews/${brandSlug}/${locationSlug}`,
       changeFrequency: "weekly",
       priority: 0.8,
-    }));
+    });
+  }
 
   // Mock-data comparisons not yet in Sanity. Dedupe against the Sanity slugs
   // already listed above so a comparison that exists in both sources is

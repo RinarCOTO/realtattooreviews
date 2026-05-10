@@ -351,7 +351,6 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
         },
         {
             name: "inkOUT (Tampa Bay Metro)",
-            href: "/reviews/inkout/tampa",
             body: "inkOUT serves the Tampa Bay metro as a non-laser TEPR brand. inkOUT uses TEPR (Trans-Epidermal Pigment Release), a non-laser method that lifts ink out through the skin surface rather than shattering it with laser pulses. It is the non-laser option currently tracked by RealTattooReviews in the Tampa Bay area; users should compare consultation quotes, healing expectations, and review evidence against local laser providers.",
             bestFor: [
                 "Users seeking complete removal rather than fading",
