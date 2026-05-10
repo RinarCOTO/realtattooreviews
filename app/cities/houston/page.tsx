@@ -280,7 +280,7 @@ export default async function HoustonPage() {
               <p className="font-sans text-[15px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds
                 of cases it handles. Current performance metrics and rankings appear in the
-                section above and update as our scrape refreshes.
+                section above and update as our review evidence refreshes.
               </p>
 
               <div className="space-y-4">

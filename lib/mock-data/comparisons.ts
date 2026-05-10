@@ -2,7 +2,7 @@ export const comparisons = [
   {
     slug: "removery-vs-laseraway",
     title: "Removery vs LaserAway",
-    description: "Side-by-side comparison of two national chains: pricing, session spacing, patient outcomes, and which performs better by market.",
+    description: "Side-by-side comparison of two national chains: pricing, session spacing, review outcomes, and which performs better by market.",
   },
   {
     slug: "inkout-vs-removery",
@@ -12,12 +12,12 @@ export const comparisons = [
   {
     slug: "inkout-vs-laseraway",
     title: "inkOUT vs LaserAway",
-    description: "inkOUT's non-laser TEPR method compared to LaserAway's laser approach. Review-backed comparison across outcomes, pricing, and patient experience.",
+    description: "inkOUT's non-laser TEPR method compared to LaserAway's laser approach. Review-backed comparison across outcomes, pricing, and user experience.",
   },
   {
     slug: "picoway-vs-q-switch",
     title: "PicoWay vs Q-Switch Laser",
-    description: "How PicoWay and Q-Switch lasers differ in mechanism, ink types treated, session requirements, and what patient reviews say about each.",
+    description: "How PicoWay and Q-Switch lasers differ in mechanism, ink types treated, session requirements, and what public reviews say about each.",
   },
   {
     slug: "saline-vs-laser-tattoo-removal",

@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "How often is provider data updated?",
     answer:
-      "Review data is refreshed through periodic scraping of Google business listings. The Data refreshed timestamp on each page shows the most recent update. Updates are not real-time.",
+      "Review data is refreshed periodically from publicly available Google Business Profile listings. The Data refreshed timestamp on each page shows the most recent update. Updates are not real-time.",
   },
   {
     question: "Do providers pay to be listed or ranked higher?",
@@ -261,7 +261,7 @@ export default function MethodologyPage() {
 
               <p className="text-[15px] leading-relaxed text-body">
                 <span className="font-semibold text-heading">Sample-size cap.</span>{" "}
-                The current scrape captures up to 50 of the most recent reviews per provider location. Total lifetime review counts on Google are higher than the sample sizes shown on our pages. We display sample sizes transparently alongside all provider scores.
+                The current review-evidence sample includes up to 50 of the most recent reviews per provider location. Total lifetime review counts on Google are higher than the sample sizes shown on our pages. We display sample sizes transparently alongside all provider scores.
               </p>
             </div>
 
@@ -367,16 +367,16 @@ export default function MethodologyPage() {
             <div className="space-y-5">
               <SectionHeading>Update Frequency and Data Freshness</SectionHeading>
               <p className="text-[15px] leading-relaxed text-body">
-                Review data is refreshed periodically through automated scraping of public Google business listings. The current update cadence is not real-time. Data refreshes occur on a rolling basis, with the most recently refreshed timestamp displayed at the bottom of each dynamic data component on the site.
+                Review data is refreshed periodically from publicly available Google Business Profile listings. The current update cadence is not real-time. Data refreshes occur on a rolling basis, with the most recently refreshed timestamp displayed at the bottom of each dynamic data component on the site.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border bg-white p-5">
                   <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-accent">What triggers an update</p>
                   <ul className="space-y-2">
                     {[
-                      "Scheduled scrape cycle (the primary refresh mechanism)",
+                      "Scheduled review evidence refresh",
                       "Manual refresh when a provider or user reports outdated information",
-                      "New provider added to coverage (initial scrape)",
+                      "New provider added to coverage",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-[13px] leading-relaxed text-body">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
@@ -401,7 +401,7 @@ export default function MethodologyPage() {
                 </div>
               </div>
               <p className="text-[15px] leading-relaxed text-body">
-                Provider scores, rankings, and review evidence on the site reflect the most recent scrape data available. Users should check the "Data refreshed" timestamp on each page for the date of the most recent data.
+                Provider scores, rankings, and review evidence on the site reflect the most recent review evidence available. Users should check the "Data refreshed" timestamp on each page for the date of the most recent data.
               </p>
             </div>
 

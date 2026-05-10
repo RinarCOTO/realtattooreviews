@@ -12,11 +12,11 @@ const PAGE_PATH = "/blog";
 export const metadata: Metadata = {
   title: "Blog: Tattoo Removal Research & Updates",
   description:
-    "Editorial articles on tattoo removal research, provider trends, method comparisons, and patient outcomes. Written by the RealTattooReviews team.",
+    "Editorial articles on tattoo removal research, provider trends, method comparisons, and review outcomes. Written by the RealTattooReviews team.",
   openGraph: {
     title: "Blog: Tattoo Removal Research & Updates",
     description:
-      "Editorial articles on tattoo removal research, provider trends, and patient outcomes.",
+      "Editorial articles on tattoo removal research, provider trends, and review outcomes.",
   },
   alternates: {
     canonical: `https://realtattooreviews.com${PAGE_PATH}`,

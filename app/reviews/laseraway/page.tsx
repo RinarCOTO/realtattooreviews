@@ -70,7 +70,7 @@ const faqs = [
   {
     question: "What do LaserAway reviews say most often?",
     answer:
-      "Recurring themes across LaserAway reviews include consistent equipment and standardized protocols across locations, and accessibility through a large location network. Recurring complaints include per-session pricing leaving patients with unexpected total costs when more sessions are needed, and the multi-service clinic model meaning tattoo removal is not the primary focus of each location.",
+      "Recurring themes across LaserAway reviews include consistent equipment and standardized protocols across locations, and accessibility through a large location network. Recurring complaints include per-session pricing leaving users with unexpected total costs when more sessions are needed, and the multi-service clinic model meaning tattoo removal is not the primary focus of each location.",
   },
   {
     question: "How does LaserAway compare to a local specialist?",
@@ -174,7 +174,7 @@ export default async function LaserAwayReviewsPage() {
           <>LaserAway,<br />
           <em className="italic text-(--accent)">PicoSure laser chain.</em></>
         }
-        body="across 100+ locations nationwide. See how LaserAway compares on technology, pricing, and patient outcomes before you book."
+        body="across 100+ locations nationwide. See how LaserAway compares on technology, pricing, and review outcomes before you book."
         tags={["Picosecond Laser", "PicoSure", "National Chain", "Multi-Service", "Per-Session"]}
         reviewCount={totalReviews}
         reviewsHref="#review-data"
@@ -196,9 +196,9 @@ export default async function LaserAwayReviewsPage() {
               </p>
               <p className="font-sans text-[15px] leading-relaxed text-heading">
                 The multi-service model means tattoo removal is one of several offerings at each
-                location. Patients who want a tattoo-removal-only specialist or package pricing
+                location. Users who want a tattoo-removal-only specialist or package pricing
                 that caps total cost may be better served by Removery or a local independent
-                clinic. Patients who want a nationally-recognized chain, location flexibility,
+                clinic. Users who want a nationally-recognized chain, location flexibility,
                 or the ability to bundle removal with other aesthetic services may find LaserAway
                 a reasonable fit.
               </p>
@@ -316,9 +316,9 @@ export default async function LaserAwayReviewsPage() {
                   <GuideBulletList
                     items={[
                       "Standard black or blue-black tattoos on light to medium skin tones (Fitzpatrick I to III)",
-                      "Patients who want a nationally-recognized chain with many location options",
-                      "Patients who prefer per-session pricing with no upfront package commitment",
-                      "Patients who want to combine tattoo removal with laser hair removal or other services at the same location",
+                      "Users who want a nationally-recognized chain with many location options",
+                      "Users who prefer per-session pricing with no upfront package commitment",
+                      "Users who want to combine tattoo removal with laser hair removal or other services at the same location",
                       "Simple or small tattoos likely to clear in fewer sessions",
                     ]}
                   />
@@ -332,10 +332,10 @@ export default async function LaserAwayReviewsPage() {
                     items={[
                       "Darker skin tones (Fitzpatrick IV to VI) -- confirm 1064nm handpiece availability at your specific location",
                       "Complex color ink (green, yellow, purple) -- 755nm alone has limited coverage; multi-wavelength setup needed",
-                      "Patients who want a tattoo-removal-only specialist",
-                      "Patients who want package pricing that caps total cost across unlimited sessions",
-                      "Patients for whom total cost certainty is a priority (no results guarantee)",
-                      "Patients who want individualized protocol rather than standardized chain treatment",
+                      "Users who want a tattoo-removal-only specialist",
+                      "Users who want package pricing that caps total cost across unlimited sessions",
+                      "Users for whom total cost certainty is a priority (no results guarantee)",
+                      "Users who want individualized protocol rather than standardized chain treatment",
                     ]}
                   />
                 </div>
@@ -392,7 +392,7 @@ export default async function LaserAwayReviewsPage() {
                   },
                   {
                     title: "LaserAway vs local specialists",
-                    body: "A local tattoo removal specialist typically offers individualized protocol, more flexibility on technique, and often smaller patient volume. Equipment quality varies by clinic. A local specialist running a current picosecond platform can match or outperform LaserAway, particularly for complex cases like color ink or darker skin tones. The tradeoff is less brand consistency and more due diligence required.",
+                    body: "A local tattoo removal specialist typically offers individualized protocol, more flexibility on technique, and often smaller treatment volume. Equipment quality varies by clinic. A local specialist running a current picosecond platform can match or outperform LaserAway, particularly for complex cases like color ink or darker skin tones. The tradeoff is less brand consistency and more due diligence required.",
                     link: null,
                     linkText: null,
                   },
@@ -466,7 +466,7 @@ export default async function LaserAwayReviewsPage() {
                 {
                   href: "/categories/dark-skin-tattoo-removal",
                   title: "Dark Skin Tattoo Removal Reviews",
-                  desc: "Provider reviews focused on patients with deeper skin tones. Covers technique and outcomes.",
+                  desc: "Provider reviews focused on deeper skin tones. Covers technique and outcomes.",
                 },
               ]}
             />

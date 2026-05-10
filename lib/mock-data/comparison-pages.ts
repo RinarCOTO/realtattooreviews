@@ -213,7 +213,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         href: "/comparisons/best-tattoo-removal-method",
         label: "Best Tattoo Removal Method",
-        description: "Broader method hub for patients comparing laser, saline, and non-laser options before choosing a provider.",
+        description: "Broader method hub for users comparing laser, saline, and non-laser options before choosing a provider.",
         meta: "Comparison hub",
       },
       {
@@ -256,7 +256,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
     intro: [
       "PicoWay is a picosecond platform, which means it delivers much shorter pulses than traditional Q-switch systems. In practical terms, that usually translates into stronger photoacoustic impact and less leftover heat in the surrounding skin.",
       "That does not mean Q-switch is obsolete. Q-switch lasers still clear a lot of black ink successfully, they are more widely available, and experienced operators can get solid outcomes when the tattoo is straightforward.",
-      "The mistake patients make is treating the device label like the whole answer. Wavelength availability, test patches, skin-tone protocol, session spacing, and the clinician running the machine matter just as much as whether the laser is pico or nano.",
+      "The mistake users make is treating the device label like the whole answer. Wavelength availability, test patches, skin-tone protocol, session spacing, and the clinician running the machine matter just as much as whether the laser is pico or nano.",
     ],
     choiceCards: [
       {
@@ -299,7 +299,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       },
       {
         criterion: "Best use case",
-        left: "Harder removals, mixed colors, and patients trying to reduce total sessions.",
+        left: "Harder removals, mixed colors, and users trying to reduce total sessions.",
         right: "Straightforward black-ink work and budget-sensitive cases.",
         takeaway: "The more complex the tattoo, the more the pico advantage tends to matter.",
       },
@@ -307,7 +307,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
         criterion: "Color performance",
         left: "Usually stronger on stubborn blue and green when the clinic has the right wavelengths.",
         right: "Can struggle more on difficult colors depending on the platform and wavelength mix.",
-        takeaway: "Color is one of the clearest reasons patients pay for pico technology.",
+        takeaway: "Color is one of the clearest reasons users pay for pico technology.",
       },
       {
         criterion: "Black ink performance",
@@ -383,7 +383,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       },
     ],
     sourceNote:
-      "This comparison is framed as an evaluation page, not a medical recommendation. It pulls together common device characteristics, clinic disclosures, and the patterns patients usually care about most: color clearance, session count, price, and skin-safety trade-offs.",
+      "This comparison is framed as an evaluation page, not a medical recommendation. It pulls together common device characteristics, clinic disclosures, and the patterns users usually care about most: color clearance, session count, price, and skin-safety trade-offs.",
     faqs: [
       {
         question: "Is PicoWay always better than Q-switch?",
@@ -415,7 +415,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         href: "/comparisons/best-tattoo-removal-method",
         label: "Best Tattoo Removal Method",
-        description: "Broader method hub for patients comparing laser, saline, and non-laser options.",
+        description: "Broader method hub for users comparing laser, saline, and non-laser options.",
         meta: "Comparison hub",
       },
       {
@@ -427,7 +427,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         href: "/before-and-after",
         label: "Before-and-After Results",
-        description: "Visual follow-up for patients who want proof of likely fading quality and endpoint realism.",
+        description: "Visual follow-up for users who want proof of likely fading quality and endpoint realism.",
         meta: "Results",
       },
       {
@@ -565,7 +565,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       "What total session count and total cost do you project for my tattoo, and what would change that estimate?",
       "How does your pricing or guarantee structure apply if my tattoo needs more sessions than projected?",
       "Which laser device, wavelengths, and handpieces will be used on my tattoo, and why?",
-      "Can I see before-and-after photos of patients with similar ink colors and skin tone?",
+      "Can I see before-and-after photos of people with similar ink colors and skin tone?",
       "If I move or change schedule mid-treatment, how does continuity work at your clinic?",
     ],
     prosCons: [
@@ -773,7 +773,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       "Will the same technician handle my entire course, or do staff rotate across services?",
       "Which laser device and wavelengths will be used on my tattoo?",
       "How does your pricing or guarantee handle a tattoo that needs more sessions than projected?",
-      "Can I see before-and-after photos of patients with similar ink colors and tattoo placement?",
+      "Can I see before-and-after photos of people with similar ink colors and tattoo placement?",
     ],
     prosCons: [
       {
@@ -952,7 +952,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       {
         criterion: "Best for medical complexity",
         left: "Standardized, suits straightforward cases",
-        right: "Physician-led, suits patients with skin conditions or complex medical history",
+        right: "Physician-led, suits people with skin conditions or complex medical history",
         takeaway: "Medical complexity is the strongest reason to favor a physician-led practice.",
       },
       {
@@ -980,7 +980,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       "How is treatment adjusted for my medical history, skin type, and current medications?",
       "Which laser device and wavelengths will be used on my tattoo, and why?",
       "How does pricing handle a tattoo that needs more sessions than projected?",
-      "Can I see before-and-after photos of patients with similar ink colors and skin tone?",
+      "Can I see before-and-after photos of people with similar ink colors and skin tone?",
     ],
     prosCons: [
       {
@@ -1186,7 +1186,7 @@ export const comparisonPages: Record<string, DetailedComparisonPage> = {
       "How many tattoo cases per year does the technician treating me typically handle?",
       "Which laser device and wavelengths will be used on my tattoo?",
       "How does pricing handle a tattoo that needs more sessions than projected?",
-      "Can I see before-and-after photos of patients with similar ink colors and skin tone?",
+      "Can I see before-and-after photos of people with similar ink colors and skin tone?",
     ],
     prosCons: [
       {

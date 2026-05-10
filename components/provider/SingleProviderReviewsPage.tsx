@@ -157,7 +157,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
 
       <OverviewSection
         providerName={provider.name}
-        intro={`If you are already researching ${provider.name} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common patient patterns look like, and which alternatives are worth comparing before you commit.`}
+        intro={`If you are already researching ${provider.name} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common review patterns look like, and which alternatives are worth comparing before you commit.`}
         pros={pros}
         cons={cons}
       />

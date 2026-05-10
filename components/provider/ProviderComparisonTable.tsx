@@ -199,7 +199,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
           href="/reviews"
           className="ml-4 inline-flex shrink-0 items-center gap-1 text-[13px] font-medium text-accent hover:underline"
         >
-          Read all patient reviews <ChevronRightIcon className="size-3.5" />
+          Read all public reviews <ChevronRightIcon className="size-3.5" />
         </Link>
       </div>
     </div>

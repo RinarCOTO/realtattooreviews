@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : provider.rating.toFixed(1);
 
   const title = `${provider.name} ${provider.market} Tattoo Removal Reviews`;
-  const description = `${count} sourced reviews for ${provider.name} in ${provider.market}. ${avg} average rating. Patient feedback on pricing, technology, and treatment outcomes.`;
+  const description = `${count} sourced reviews for ${provider.name} in ${provider.market}. ${avg} average rating. Public review feedback on pricing, technology, and treatment outcomes.`;
 
   return {
     title,

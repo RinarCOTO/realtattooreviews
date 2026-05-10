@@ -116,7 +116,7 @@ export default async function CityPage({ params }: Props) {
         <Container>
           <BlockHeading
             title={`Providers in ${city.name}`}
-            body="Compare providers before you book. Ratings are aggregated from public patient reviews."
+            body="Compare providers before you book. Ratings are aggregated from public Google reviews."
           />
           {cityProviders.length > 0 ? (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -153,7 +153,7 @@ export default async function CityPage({ params }: Props) {
         <section id="reviews" className="py-22">
           <Container>
             <BlockHeading
-              title={`Patient Reviews in ${city.name}`}
+              title={`Review Evidence in ${city.name}`}
               body="Public reviews grouped by provider. Negative-first ordering surfaces the most decision-relevant signals at the top."
             />
             {(() => {

@@ -21,7 +21,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
 
   // Providers with live data, ranked by sample size then avg stars
   const ranked = liveRows.filter((r) => r.sampleSize > 0);
-  // Static-only providers (pending scrape)
+  // Static-only providers with pending review evidence
   const pendingNames = new Set(
     staticProviders
       .map((p) => p.providerName)

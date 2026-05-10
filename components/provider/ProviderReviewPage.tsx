@@ -328,8 +328,8 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
           <div className="max-w-prose border border-(--line) bg-(--surface) rounded-xl p-6">
             {review.publicReviewsAnalyzed && locations.length > 0 && (
               <p className="text-[14px] leading-relaxed text-heading mb-4">
-                This review draws on {review.publicReviewsAnalyzed} patient reviews publicly
-                posted on Google Business listings for all {locations.length}{" "}
+                This review draws on {review.publicReviewsAnalyzed} public Google reviews
+                posted on Google Business Profile listings for all {locations.length}{" "}
                 {review.providerName}{" "}
                 {locations.length === 1 ? "location" : "locations"}.
               </p>
@@ -347,7 +347,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               the same business address.
             </p>
             <p className="text-[14px] leading-relaxed text-heading mb-4">
-              These reviews are publicly posted by patients on Google. RealTattooReviews does
+              These reviews are publicly posted by reviewers on Google. RealTattooReviews does
               not host user-submitted reviews. All review data is sourced from public
               platforms.
             </p>

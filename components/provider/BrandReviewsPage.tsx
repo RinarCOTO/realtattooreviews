@@ -161,7 +161,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
 
       <OverviewSection
         providerName={brand}
-        intro={`If you are already researching ${brand} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common patient patterns look like, and which alternatives are worth comparing before you commit.`}
+        intro={`If you are already researching ${brand} by name, this page should help you answer three things quickly: whether the provider seems credible, what the most common review patterns look like, and which alternatives are worth comparing before you commit.`}
         pros={pros}
         cons={cons}
         statsRows={buildOverviewStats(reviews)}

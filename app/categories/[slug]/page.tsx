@@ -136,7 +136,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = await getCategory(slug);
   if (!category) return {};
   const title =
-    category.seoTitle ?? `${category.title}: Patient Reviews & Outcomes | RealTattooReviews`;
+    category.seoTitle ?? `${category.title}: Public Reviews & Outcomes | RealTattooReviews`;
   const description = category.seoDescription ?? category.description;
   const seoImage = category.seoImage;
   return {
@@ -146,7 +146,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `https://realtattooreviews.com/categories/${slug}/`,
     },
     openGraph: {
-      title: `${category.title}: Patient Reviews & Outcomes`,
+      title: `${category.title}: Public Reviews & Outcomes`,
       description,
       ...(seoImage ? { images: [{ url: seoImage.url, alt: seoImage.alt ?? "" }] } : {}),
     },

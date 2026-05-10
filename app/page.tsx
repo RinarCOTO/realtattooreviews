@@ -253,7 +253,7 @@ export default async function HomePage() {
           <Container>
             <div className="mb-8">
               <h2 className="text-[28px] font-bold text-heading">Research before you book</h2>
-              <p className="mt-1 text-sm font-medium text-heading">Two resources every patient should read first.</p>
+              <p className="mt-1 text-sm font-medium text-heading">Two resources every user should read first.</p>
             </div>
           </Container>
           <CTASection />

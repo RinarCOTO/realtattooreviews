@@ -68,7 +68,7 @@ const faqs = [
   {
     question: "Does PicoWay mean fewer sessions?",
     answer:
-      "Often yes, but not guaranteed. Session count still depends on tattoo age, depth, ink density, color mix, skin tone, and body placement. The 4-to-8 average is a peer-reviewed consensus range, not a per-patient guarantee.",
+      "Often yes, but not guaranteed. Session count still depends on tattoo age, depth, ink density, color mix, skin tone, and body placement. The 4-to-8 average is a peer-reviewed consensus range, not a per-case guarantee.",
   },
   {
     question: "Is pico laser more expensive than Q-switch?",

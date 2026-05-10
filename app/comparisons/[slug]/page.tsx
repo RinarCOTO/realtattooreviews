@@ -437,7 +437,7 @@ export default async function ComparisonPage({ params }: Props) {
               />
             </Suspense>
             <p className="font-sans text-[13px] text-heading mt-4">
-              The table updates as our scrape refreshes. Use the cross-city evidence as a reference, not a verdict.
+              The table updates as our review evidence refreshes. Use the cross-city evidence as a reference, not a verdict.
             </p>
           </Container>
         </section>

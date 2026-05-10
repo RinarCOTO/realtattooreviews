@@ -354,7 +354,7 @@ export default function RemoveryVsLaserawayPage() {
                     },
                     {
                       title: "Review quality signal",
-                      body: "The cross-city evidence table below shows tattoo-removal-specific review data from our internal dataset where available. The table updates as our scrape refreshes.",
+                      body: "The cross-city evidence table below shows tattoo-removal-specific review data from our internal dataset where available. The table updates as our review evidence refreshes.",
                     },
                   ].map((item) => (
                     <ContentCard key={item.title} title={item.title} body={item.body} />

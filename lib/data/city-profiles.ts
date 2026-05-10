@@ -249,7 +249,7 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
             body: "DermSurgery Associates is a Houston-area dermatology and laser surgery group. The Bellaire main office is at 6700 W Loop S Suite 500, with additional satellite locations across the metro. The group offers tattoo removal as one service among broader dermatologic care including Mohs surgery, skin cancer treatment, and cosmetic dermatology. Tattoo removal is performed using Q-switched laser technology under physician supervision.",
             bestFor: [
                 "Users who want tattoo removal in a full dermatology practice setting",
-                "Users who are already DermSurgery patients for other care",
+                "Users who already visit DermSurgery for other care",
                 "Users with elevated medical-history risk who want physician-led treatment",
             ],
             lessIdealFor: [
@@ -338,7 +338,7 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
         {
             name: "Erasable Med Spa (West Tampa / Armenia)",
             href: "/reviews/erasable-med-spa",
-            body: "Erasable Med Spa is at 4103 N Armenia Ave in West Tampa, near the West Tampa neighborhood and accessible to South Tampa, Hyde Park, and Westshore. The clinic offers tattoo removal alongside MOXI laser, scar treatment, HydraFacial, Botox, and other med spa services. Erasable uses Candela PicoWay, a picosecond laser that handles most ink colors and skin types. The clinic emphasizes patient comfort and runs a Teal program with discounts and savings.",
+            body: "Erasable Med Spa is at 4103 N Armenia Ave in West Tampa, near the West Tampa neighborhood and accessible to South Tampa, Hyde Park, and Westshore. The clinic offers tattoo removal alongside MOXI laser, scar treatment, HydraFacial, Botox, and other med spa services. Erasable uses Candela PicoWay, a picosecond laser that handles most ink colors and skin types. The clinic emphasizes treatment comfort and runs a Teal program with discounts and savings.",
             bestFor: [
                 "Users in central or West Tampa who want a comfortable med spa setting",
                 "Users with sensitive skin or eczema who want a methodical consultation",
@@ -407,7 +407,7 @@ const PROFILES: Record<string, CityProviderProfile[]> = {
         },
         {
             name: "St Pete Tattoo Removal (Pinellas Park)",
-            body: "St Pete Tattoo Removal is at 8130 66th St N Suite 9 in Pinellas Park, between St. Petersburg and Clearwater. The clinic is owner-operated and known for cosmetic tattoo work, including powder brows and microblading removal. The clinic emphasizes patient education and honest pre-treatment expectations.",
+            body: "St Pete Tattoo Removal is at 8130 66th St N Suite 9 in Pinellas Park, between St. Petersburg and Clearwater. The clinic is owner-operated and known for cosmetic tattoo work, including powder brows and microblading removal. The clinic emphasizes user education and honest pre-treatment expectations.",
             bestFor: [
                 "Users in St. Petersburg, Pinellas Park, or central Pinellas County",
                 "Users with cosmetic tattoo cases like powder brows, microblading, or lip blush",

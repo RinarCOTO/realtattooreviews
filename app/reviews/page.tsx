@@ -317,7 +317,7 @@ export default async function ReviewsPage() {
           </p>
           <p className="font-sans text-[12px] leading-relaxed text-heading max-w-3xl">
             realtattooreviews.com is operated by {process.env.LEGAL_ENTITY_NAME ?? "[operator]"}.
-            Reviews are sourced from public Google Business Profile listings and reflect the opinions of individual patients, not RTR editorial opinion.
+            Reviews are sourced from public Google Business Profile listings and reflect the opinions of individual reviewers, not RTR editorial opinion.
             RTR does not verify individual review claims and is not responsible for the accuracy of third-party reviews.
             This site does not provide medical advice. Consult a licensed provider before undergoing any tattoo removal procedure.
             To request removal of a review you believe is inaccurate or defamatory, contact{" "}

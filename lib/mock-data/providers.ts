@@ -18,7 +18,7 @@ export const providers: Provider[] = [
     featured: true,
     featuredScore: 94,
     summary:
-      "inkOUT's Austin location leads the brand in review volume. Strong patient communication and consistent session planning. High satisfaction across ink types.",
+      "inkOUT's Austin location leads the brand in review volume. Strong reviewer-noted communication and consistent session planning. High satisfaction across ink types.",
     tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain"],
     website: "https://inkout.io",
     webSummary: "inkOUT performs tattoo and permanent makeup removal using its patented TEPRderm device, which applies a dot-pattern template called tegulae and delivers a proprietary TEPRsol solution through precision superficial dermabrasion. Ink is then expelled through the skin surface as crusting during natural healing rather than fragmented into the lymphatic system, with each session removing up to 35 percent of ink. The brand reports over 30,000 treatments and 10,000 tattoos removed, with most complete removals taking three to five sessions over ten to fifteen months.",
@@ -60,7 +60,7 @@ export const providers: Provider[] = [
     featured: true,
     featuredScore: 85,
     summary:
-      "Solid regional performer with above-average ratings. Patients report clear timelines and good results across standard ink types.",
+      "Solid regional performer with above-average ratings. Reviewers report clear timelines and good results across standard ink types.",
     tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain"],
     website: "https://inkout.io",
     webSummary: "inkOUT performs tattoo and permanent makeup removal using its patented TEPRderm device, which applies a dot-pattern template called tegulae and delivers a proprietary TEPRsol solution through precision superficial dermabrasion. Ink is then expelled through the skin surface as crusting during natural healing rather than fragmented into the lymphatic system, with each session removing up to 35 percent of ink. The brand reports over 30,000 treatments and 10,000 tattoos removed, with most complete removals taking three to five sessions over ten to fifteen months.",
@@ -102,7 +102,7 @@ export const providers: Provider[] = [
     featured: false,
     featuredScore: 74,
     summary:
-      "inkOUT's Utah location with growing review volume. Patients report good results and clear session planning consistent with other brand locations.",
+      "inkOUT's Utah location with growing review volume. Reviewers report good results and clear session planning consistent with other brand locations.",
     tags: ["TEPR", "Non-Laser", "Medical Spa", "National Chain"],
     website: "https://inkout.io",
     webSummary: "inkOUT performs tattoo and permanent makeup removal using its patented TEPRderm device, which applies a dot-pattern template called tegulae and delivers a proprietary TEPRsol solution through precision superficial dermabrasion. Ink is then expelled through the skin surface as crusting during natural healing rather than fragmented into the lymphatic system, with each session removing up to 35 percent of ink. The brand reports over 30,000 treatments and 10,000 tattoos removed, with most complete removals taking three to five sessions over ten to fifteen months.",
@@ -241,7 +241,7 @@ export const providers: Provider[] = [
       "Inkfree, MD is a physician and family-owned laser clinic in Northwest Houston, established in 2012 and led by medical director Dr. Adaeze Okeke. The clinic positions itself as a dedicated laser clinic rather than a medical spa, with tattoo removal, hair removal, and SculpSure body contouring as its three core service lines.",
     tags: ["Laser", "Medical", "Affordable"],
     website: "https://www.inkfreemd.com",
-    webSummary: "Inkfree, MD operates the Lutronic PicoPlus, a picosecond Nd:YAG laser with four wavelengths (532 nm, 595 nm, 660 nm, and 1064 nm) and a 450 picosecond pulse width, alongside the Lutronic Spectra, a hybrid picosecond and nanosecond Nd:YAG system. The clinic claims to have been the first in the United States to commercially operate the PicoPlus. Its positioning emphasizes affordability, transparent pricing, and a physician-owned independent operating model that differentiates it from medical spas and franchise-style tattoo removal chains. Its client base is described as evenly split between female and male patients, including those preparing for military service.",
+    webSummary: "Inkfree, MD operates the Lutronic PicoPlus, a picosecond Nd:YAG laser with four wavelengths (532 nm, 595 nm, 660 nm, and 1064 nm) and a 450 picosecond pulse width, alongside the Lutronic Spectra, a hybrid picosecond and nanosecond Nd:YAG system. The clinic claims to have been the first in the United States to commercially operate the PicoPlus. Its positioning emphasizes affordability, transparent pricing, and a physician-owned independent operating model that differentiates it from medical spas and franchise-style tattoo removal chains. Its client base is described as evenly split between female and male users, including those preparing for military service.",
   },
   {
     id: "inklifters-aesthetica",
@@ -697,7 +697,7 @@ export const providers: Provider[] = [
       "EradiTatt is a dedicated laser tattoo removal clinic inside Infinity Medical Institute in Tampa's Westshore corridor. The clinic uses the PiQo4 laser with Zimmer Cryo 6 cooling and is led by Melissa, a board-certified practitioner with over 15 years of medical experience.",
     tags: ["Laser", "Medical"],
     website: "https://eraditatt.com",
-    webSummary: "EradiTatt Tampa performs laser tattoo removal using the Cynosure PiQo4, a multi-wavelength picosecond and nanosecond laser system operating at four wavelengths, paired with Zimmer Cryo 6 cooling for patient comfort. The clinic claims PiQo4 technology reduces required sessions by 20 to 50 percent compared to older systems. Most tattoos require five to twelve sessions, with appointments spaced six to twelve weeks. EradiTatt is led by Melissa, a Florida and Texas board-certified practitioner with over 15 years of medical experience.",
+    webSummary: "EradiTatt Tampa performs laser tattoo removal using the Cynosure PiQo4, a multi-wavelength picosecond and nanosecond laser system operating at four wavelengths, paired with Zimmer Cryo 6 cooling for treatment comfort. The clinic claims PiQo4 technology reduces required sessions by 20 to 50 percent compared to older systems. Most tattoos require five to twelve sessions, with appointments spaced six to twelve weeks. EradiTatt is led by Melissa, a Florida and Texas board-certified practitioner with over 15 years of medical experience.",
   },
   {
     id: "reversatatt",

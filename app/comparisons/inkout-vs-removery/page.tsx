@@ -415,9 +415,9 @@ export default function InkoutVsRemoveryPage() {
                     />
                   </Suspense>
                   <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
-                    The table updates as our scrape refreshes. Use the cross-city evidence as a
+                    The table updates as our review evidence refreshes. Use the cross-city evidence as a
                     reference, not a verdict, since both brands operate in markets not yet fully
-                    captured in our scrape.
+                    captured in our review evidence.
                   </p>
                 </div>
               </div>

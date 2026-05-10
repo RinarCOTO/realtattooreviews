@@ -62,7 +62,7 @@ const faqs = [
   {
     question: "When is laser the wrong choice?",
     answer:
-      "Laser is generally not first-line for permanent makeup or microblading because of the risk of paradoxical ink darkening (titanium dioxide and iron oxide pigments can oxidize on contact with laser energy). Saline removal or non-laser mechanical methods are usually safer for cosmetic ink. Patients prone to keloid scarring or with active skin conditions in the treatment area may also be steered toward alternatives.",
+      "Laser is generally not first-line for permanent makeup or microblading because of the risk of paradoxical ink darkening (titanium dioxide and iron oxide pigments can oxidize on contact with laser energy). Saline removal or non-laser mechanical methods are usually safer for cosmetic ink. People prone to keloid scarring or with active skin conditions in the treatment area may also be steered toward alternatives.",
   },
 ];
 
@@ -143,7 +143,7 @@ export default function LaserTattooRemovalGuidePage() {
 
       <GuideSection heading="What affects how many sessions you need">
         <p className="font-sans text-[15px] leading-relaxed text-heading">
-          The same tattoo on two patients can take a different number of sessions because removal depends on more than the device. The variables that move the count up or down:
+          The same tattoo on two people can take a different number of sessions because removal depends on more than the device. The variables that move the count up or down:
         </p>
         <GuideBulletList
           items={[
@@ -163,7 +163,7 @@ export default function LaserTattooRemovalGuidePage() {
           Sessions are typically spaced 6 to 8 weeks apart. The interval is not arbitrary. The body needs time to clear the fragmented ink from the previous session, and the skin needs time to heal fully before another round of trauma. Going faster than 6 weeks generally raises the risk of side effects without speeding up the timeline.
         </p>
         <p className="font-sans text-[15px] leading-relaxed text-heading">
-          A typical session lasts 5 to 30 minutes depending on tattoo size. Patients usually describe the sensation as a hot rubber-band snap, repeated rapidly. Most clinics offer topical numbing or, for larger pieces, a Zimmer cooling air device. Immediately after the pulse, the area frosts white (a normal reaction as the ink fragments expand under the skin). Frosting fades within 20 to 60 minutes.
+          A typical session lasts 5 to 30 minutes depending on tattoo size. Reviewers usually describe the sensation as a hot rubber-band snap, repeated rapidly. Most clinics offer topical numbing or, for larger pieces, a Zimmer cooling air device. Immediately after the pulse, the area frosts white (a normal reaction as the ink fragments expand under the skin). Frosting fades within 20 to 60 minutes.
         </p>
         <p className="font-sans text-[15px] leading-relaxed text-heading">
           Cost-wise, expect to budget for the full course, not the first session. Many clinics quote per session or in packages. See the{" "}
@@ -176,7 +176,7 @@ export default function LaserTattooRemovalGuidePage() {
 
       <GuideSection heading="Side effects, healing, and aftercare">
         <p className="font-sans text-[15px] leading-relaxed text-heading">
-          Most patients experience mild swelling, redness, and pinpoint bleeding immediately after a session. Blistering and scabbing are common over the first 1 to 2 weeks and are part of normal healing. Hypopigmentation (skin lightening) and hyperpigmentation (darkening) can occur, especially on medium and darker skin tones, and are usually temporary.
+          Most people experience mild swelling, redness, and pinpoint bleeding immediately after a session. Blistering and scabbing are common over the first 1 to 2 weeks and are part of normal healing. Hypopigmentation (skin lightening) and hyperpigmentation (darkening) can occur, especially on medium and darker skin tones, and are usually temporary.
         </p>
         <p className="font-sans text-[15px] leading-relaxed text-heading">
           Scarring is uncommon when sessions are spaced correctly and aftercare is followed. The strongest predictors of scarring are over-aggressive settings, sessions spaced too close together, and picking at scabs.
@@ -206,8 +206,8 @@ export default function LaserTattooRemovalGuidePage() {
         <GuideBulletList
           items={[
             "Standard black or dark-ink tattoos on lighter skin tones (Fitzpatrick I to III).",
-            "Patients comfortable with a 12 to 24 month timeline.",
-            "Healthy patients without active skin conditions in the treatment area.",
+            "Users comfortable with a 12 to 24 month timeline.",
+            "People without active skin conditions in the treatment area.",
             "Multi-color tattoos when the provider has multi-wavelength coverage.",
             "Cover-up prep (partial fading to allow a new tattoo over the old one) where session count can be lower.",
           ]}
@@ -220,7 +220,7 @@ export default function LaserTattooRemovalGuidePage() {
           items={[
             "Permanent makeup and microblading. Laser energy can darken titanium dioxide and iron oxide pigments through paradoxical oxidation. Saline or non-laser mechanical methods are usually safer.",
             "Some color inks (white, beige, light pink) often resist laser fragmentation entirely.",
-            "Patients with a history of keloid scarring, particularly in the treatment area.",
+            "People with a history of keloid scarring, particularly in the treatment area.",
             "Active eczema, psoriasis, or recent sunburn in the treatment area.",
           ]}
         />
@@ -265,7 +265,7 @@ export default function LaserTattooRemovalGuidePage() {
           items={[
             "Confirm device type (Q-switched vs picosecond) and the wavelengths offered. Ask which handpieces are on-site, not just listed on the website.",
             "Ask how the clinic adjusts settings for your skin type. Generic answers are a yellow flag.",
-            "Ask for before-and-after photos of patients with similar tattoos and skin tones, not just bestcase examples.",
+            "Ask for before-and-after photos of people with similar tattoos and skin tones, not just bestcase examples.",
             "Get a written estimate of total session count and total cost, not just per-session pricing.",
             "Confirm the spacing protocol. Anything closer than 5 weeks between sessions is non-standard and worth questioning.",
             "Read review patterns, not isolated reviews. Look at the negative-first signals on the provider page.",

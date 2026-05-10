@@ -35,7 +35,7 @@ const categories = [
     description: "Clinics with sourced review data for deeper skin tones.",
     count: 17,
     image: "/images/categories/dark-skin-tattoo-remoival-bg.webp",
-    alt: "Tattoo removal procedure performed on a patient with deeper skin tone",
+    alt: "Tattoo removal procedure performed on a person with deeper skin tone",
   },
   {
     label: "Microblading Removal",

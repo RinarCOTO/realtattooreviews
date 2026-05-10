@@ -75,7 +75,7 @@ const faqs = [
   {
     question: "Are there non-laser tattoo removal options in Austin?",
     answer:
-      "Yes. inkOUT at 7101 State Hwy 71 in West Austin is the non-laser TEPR option in the metro. TEPR (Trans-Epidermal Pigment Release) lifts ink out through the skin rather than fragmenting it with laser pulses. It is the option to consider when laser is not the right fit, including for microblading tattoo removal Austin patients seeking cosmetic ink clearance.",
+      "Yes. inkOUT at 7101 State Hwy 71 in West Austin is the non-laser TEPR option in the metro. TEPR (Trans-Epidermal Pigment Release) lifts ink out through the skin rather than fragmenting it with laser pulses. It is the option to consider when laser is not the right fit, including for users seeking microblading tattoo removal in Austin.",
   },
 ];
 
@@ -266,7 +266,7 @@ export default async function AustinPage() {
               <p className="font-sans text-[15px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds
                 of cases it handles. Current performance metrics and rankings appear in the
-                section above and update as our scrape refreshes.
+                section above and update as our review evidence refreshes.
               </p>
 
               <div className="space-y-4">

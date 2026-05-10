@@ -28,7 +28,7 @@ const faqs = [
   {
     question: "How do you choose which cities to cover?",
     answer:
-      "We cover cities where we have sufficient review-sample data to produce meaningful provider rankings. Coverage expands as our scraping captures additional markets.",
+      "We cover cities where we have sufficient review-sample data to produce meaningful provider rankings. Coverage expands as our review evidence captures additional markets.",
   },
   {
     question: "How many providers do you track per city?",

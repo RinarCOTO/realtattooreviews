@@ -426,7 +426,7 @@ export default function InkoutVsLaserawayPage() {
                 <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
                   The evidence below shows how inkOUT and LaserAway compare across cities where we
                   have direct review-sample data. LaserAway review data is pending in our current
-                  dataset. The component will render LaserAway evidence once scrape backfill captures
+                  dataset. The component will render LaserAway evidence once the dataset captures
                   their confirmed locations. inkOUT evidence spans the markets where we currently
                   have review-sample data.
                 </p>
@@ -574,8 +574,8 @@ export default function InkoutVsLaserawayPage() {
             <div className="py-12">
               <GuideCallout label="Editorial note">
                 PicoSure details are drawn from Cynosure Lutronic product documentation and
-                PMC4859414 (Torbeck et al, JCAD 2016). LaserAway review data is pending scrape
-                backfill; the evidence table will populate as confirmed locations are captured.
+                PMC4859414 (Torbeck et al, JCAD 2016). LaserAway review data is pending;
+                the evidence table will populate as confirmed locations are captured.
                 Individual outcomes vary by tattoo, skin type, ink density, and provider skill.
                 Consult both providers before deciding. See our{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">

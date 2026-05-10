@@ -106,7 +106,7 @@ const faqs = [
   {
     question: "How often is provider data updated?",
     answer:
-      "Provider review data is refreshed through periodic scraping of public Google business listings. The Data refreshed timestamp on the table shows the most recent update. For full details, see the methodology page.",
+      "Provider review data is refreshed periodically from publicly available Google Business Profile listings. The Data refreshed timestamp on the table shows the most recent update. For full details, see the methodology page.",
   },
   {
     question: "I am a provider. How do I request a correction or update?",
