@@ -93,6 +93,21 @@ export default async function GuidePage({ params }: Props) {
   const hasLegacyBody = guide.body && guide.body.length > 0;
   const faqs = guide.faqItems && guide.faqItems.length > 0 ? guide.faqItems : undefined;
 
+  // Use Sanity-authored relatedLinks when present; otherwise fall back to the
+  // other public guides from mock data so every dynamic guide page exposes
+  // related-content links and contributes to internal-link density.
+  const relatedLinks =
+    guide.relatedLinks && guide.relatedLinks.length > 0
+      ? guide.relatedLinks
+      : mockGuides
+          .filter((g) => g.slug !== slug)
+          .slice(0, 4)
+          .map((g) => ({
+            href: `/guides/${g.slug}`,
+            title: g.title,
+            desc: g.description,
+          }));
+
   return (
     <GuideLayout
       breadcrumb={guide.title}
@@ -144,9 +159,7 @@ export default async function GuidePage({ params }: Props) {
       )}
 
       {/* Related links */}
-      {guide.relatedLinks && guide.relatedLinks.length > 0 && (
-        <GuideRelatedLinks links={guide.relatedLinks} />
-      )}
+      {relatedLinks.length > 0 && <GuideRelatedLinks links={relatedLinks} />}
     </GuideLayout>
   );
 }
