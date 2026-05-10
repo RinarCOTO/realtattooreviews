@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import Container from "@/components/layout/Container";
 import PageSection from "@/components/reviews/PageSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -135,8 +134,7 @@ export default function ComparisonsPage() {
 
   return (
     <main className="comparison-page min-h-screen">
-      <Script
-        id="breadcrumb-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }}
       />

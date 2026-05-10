@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
 import FAQSection from "@/components/sections/FAQSection";
@@ -130,13 +129,11 @@ export default async function ProvidersPage() {
 
   return (
     <>
-      <Script
-        id="providers-item-list-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
-      <Script
-        id="providers-breadcrumb-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />

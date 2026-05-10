@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
 import PageSection from "@/components/reviews/PageSection";
@@ -109,8 +108,7 @@ export default function MethodologyPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Script
-        id="breadcrumb-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }}
       />

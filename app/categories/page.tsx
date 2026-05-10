@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
 import FAQSection from "@/components/sections/FAQSection";
@@ -123,8 +122,7 @@ export default function CategoriesPage() {
 
   return (
     <main className="min-h-screen bg-(--bg)">
-      <Script
-        id="categories-breadcrumb-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }}
       />
