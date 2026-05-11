@@ -8,7 +8,6 @@ import BlobBackground from "@/components/ui/BlobBackground";
 import Tag from "@/components/ui/Tag";
 import { getBlogPost, getAllBlogSlugs } from "@/lib/page-data/blog";
 import { blogPosts as mockPosts } from "@/lib/mock-data/blog-posts";
-import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -139,27 +138,6 @@ export default async function BlogPostPage({ params }: Props) {
           </Container>
         </section>
 
-        <FAQSection
-          id="faq"
-          faqs={[
-            {
-              question: "How many sessions does tattoo removal take?",
-              answer: "Most tattoos take 6 to 10 sessions for significant fading, though complex or colorful tattoos on darker skin tones can require 12 to 15. The Kirby-Desai scale is the best predictor. Ask your provider to score your tattoo before booking.",
-            },
-            {
-              question: "Does tattoo removal hurt?",
-              answer: "It's often described as a rubber band snap repeated over the same area. Pain varies by body location. Ribs and ankles are most sensitive, upper arms and thighs are more tolerable. Topical numbing cream is widely available and reduces surface discomfort significantly.",
-            },
-            {
-              question: "How much does tattoo removal cost?",
-              answer: "Per-session costs typically range from $150 to $300 at national chains. Multiply by your estimated session count for a realistic total. Unlimited packages ($500 to $800 flat) are worth considering for complex tattoos.",
-            },
-            {
-              question: "What's the difference between Q-switch and picosecond lasers?",
-              answer: "Picosecond lasers fire shorter pulses, which means less heat and faster clearance, especially for stubborn blue, green, and yellow inks. Q-switch lasers are effective for black ink and are more widely available. For multicolor tattoos, picosecond technology has a meaningful edge.",
-            },
-          ]}
-        />
       </main>
     </BlobBackground>
   );
