@@ -25,7 +25,7 @@ export default async function CityProviderComparisonTable({ city, staticProvider
 
   return (
     <div className="overflow-x-auto rounded-xl border border-(--line)">
-      <table className="w-full text-[13px] font-sans border-collapse">
+      <table className="w-full text-[14px] font-sans border-collapse">
         <thead>
           <tr className="bg-(--surface) border-b border-(--line)">
             {[

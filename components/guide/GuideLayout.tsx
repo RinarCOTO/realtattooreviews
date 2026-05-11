@@ -104,7 +104,7 @@ export default function GuideLayout({
               <p className="font-mono text-[11px] tracking-widest uppercase text-heading mb-2">
                 Sources
               </p>
-              <p className="font-sans text-[13px] leading-relaxed text-heading">
+              <p className="font-sans text-[14px] leading-relaxed text-heading">
                 {sources}
               </p>
             </div>

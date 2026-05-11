@@ -54,13 +54,13 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
                   </h3>
                 </div>
                 {profile && (
-                  <p className="font-sans text-[13px] text-heading ml-8">
+                  <p className="font-sans text-[14px] text-heading ml-8">
                     {profile.address} &middot; {profile.neighborhood}
                   </p>
                 )}
               </div>
               {row.avgStars != null && (
-                <span className="shrink-0 rounded-lg bg-(--feathering-mist) border border-(--line) px-3 py-1.5 text-[14px] font-bold text-(--ink)">
+                <span className="shrink-0 rounded-lg bg-(--feathering-mist) border border-(--line) px-3 py-1.5 text-[15px] font-bold text-(--ink)">
                   {row.avgStars.toFixed(2)}&#9733;
                 </span>
               )}
@@ -107,7 +107,7 @@ export default async function CityProviderRanking({ city, staticProviders }: Pro
 
       {pendingNames.size > 0 && (
         <div className="rounded-xl border border-dashed border-(--line) bg-(--bg) p-5">
-          <p className="font-sans text-[13px] text-heading m-0">
+          <p className="font-sans text-[14px] text-heading m-0">
             <span className="font-semibold text-(--ink)">Review sample pending: </span>
             {[...pendingNames].join(", ")}. These providers are operating in the city but have
             not yet been captured in our review dataset. Profiles are in the section below.

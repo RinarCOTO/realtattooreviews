@@ -29,19 +29,19 @@ export default function BottomLineSection({
           </h2>
           <p className="text-[17px] leading-[1.6] text-(--body)">{copy}</p>
         </div>
-        <p className="-mt-4 mb-10 font-sans text-[14px] leading-relaxed text-heading max-w-prose">
+        <p className="-mt-4 mb-10 font-sans text-[15px] leading-relaxed text-heading max-w-prose">
           {actionLine}
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
             href={alternativesHref}
-            className="inline-flex items-center px-5 py-2.5 bg-accent text-white font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center px-5 py-2.5 bg-accent text-white font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full hover:bg-accent-hover transition-colors"
           >
             Compare {providerName} Alternatives
           </Link>
           <Link
             href="/reviews"
-            className="inline-flex items-center px-5 py-2.5 border border-(--line) bg-white text-(--heading) font-sans text-[13px] font-medium no-underline tracking-[-0.01em] rounded-full hover:border-accent hover:text-accent transition-colors"
+            className="inline-flex items-center px-5 py-2.5 border border-(--line) bg-white text-(--heading) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full hover:border-accent hover:text-accent transition-colors"
           >
             Read Tattoo Removal Reviews
           </Link>

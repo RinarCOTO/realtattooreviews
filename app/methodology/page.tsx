@@ -162,7 +162,7 @@ export default function MethodologyPage() {
                     </div>
                     <div>
                       <p className="text-[17px] font-semibold text-heading">{f.title}</p>
-                      <p className="mt-1 text-[14px] leading-relaxed text-heading">{f.body}</p>
+                      <p className="mt-1 text-[15px] leading-relaxed text-heading">{f.body}</p>
                     </div>
                   </Card>
                 ))}
@@ -177,7 +177,7 @@ export default function MethodologyPage() {
               </p>
 
               <div className="rounded-xl border border-border bg-white p-5">
-                <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-heading">Data points per review</p>
+                <p className="mb-3 text-[15px] font-semibold uppercase tracking-wider text-heading">Data points per review</p>
                 <ul className="space-y-2">
                   {[
                     "Star rating (1 to 5)",
@@ -186,7 +186,7 @@ export default function MethodologyPage() {
                     "Use case (Complete, Cover-up, Microblading, Color, Other) classified from review text",
                     "Method used (PicoWay, PicoSure, Q-switched, TEPR, Saline, Other) classified from review text or provider records",
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-[14px] leading-relaxed text-body">
+                    <li key={item} className="flex items-start gap-2 text-[15px] leading-relaxed text-body">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                       {item}
                     </li>
@@ -225,7 +225,7 @@ export default function MethodologyPage() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border p-5">
-                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-accent">What we use</p>
+                  <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-accent">What we use</p>
                   <ul className="space-y-2">
                     {[
                       "Public Google reviews for each provider location",
@@ -233,7 +233,7 @@ export default function MethodologyPage() {
                       "Star ratings",
                       "Review dates for freshness weighting",
                     ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-[13px] leading-relaxed text-body">
+                      <li key={item} className="flex items-start gap-2 text-[14px] leading-relaxed text-body">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                         {item}
                       </li>
@@ -241,14 +241,14 @@ export default function MethodologyPage() {
                   </ul>
                 </div>
                 <div className="rounded-xl border border-border p-5">
-                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-heading">What we do not use</p>
+                  <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-heading">What we do not use</p>
                   <ul className="space-y-2">
                     {[
                       "Reviews from provider-owned websites (potential selection bias)",
                       "Reviews from affiliate platforms",
                       "Reviews submitted directly to RealTattooReviews",
                     ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-[13px] leading-relaxed text-body">
+                      <li key={item} className="flex items-start gap-2 text-[14px] leading-relaxed text-body">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-border" />
                         {item}
                       </li>
@@ -283,14 +283,14 @@ export default function MethodologyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-border bg-white p-5">
-                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-heading">What we do not verify</p>
+                  <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-heading">What we do not verify</p>
                   <ul className="space-y-2">
                     {[
                       "Whether individual reviewers actually received treatment at the provider",
                       "Whether individual reviewers have financial relationships with the provider",
                       "Whether provider-published pricing is current",
                     ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-[14px] leading-relaxed text-body">
+                      <li key={item} className="flex items-start gap-2 text-[15px] leading-relaxed text-body">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-border" />
                         {item}
                       </li>
@@ -369,14 +369,14 @@ export default function MethodologyPage() {
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border bg-white p-5">
-                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-accent">What triggers an update</p>
+                  <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-accent">What triggers an update</p>
                   <ul className="space-y-2">
                     {[
                       "Scheduled review evidence refresh",
                       "Manual refresh when a provider or user reports outdated information",
                       "New provider added to coverage",
                     ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-[13px] leading-relaxed text-body">
+                      <li key={item} className="flex items-start gap-2 text-[14px] leading-relaxed text-body">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                         {item}
                       </li>
@@ -384,13 +384,13 @@ export default function MethodologyPage() {
                   </ul>
                 </div>
                 <div className="rounded-xl border border-border bg-white p-5">
-                  <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-heading">What does not trigger an update</p>
+                  <p className="mb-3 text-[14px] font-semibold uppercase tracking-wider text-heading">What does not trigger an update</p>
                   <ul className="space-y-2">
                     {[
                       "Provider requests for immediate re-scoring",
                       "Provider disagreement with the framework itself",
                     ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-[13px] leading-relaxed text-body">
+                      <li key={item} className="flex items-start gap-2 text-[14px] leading-relaxed text-body">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-border" />
                         {item}
                       </li>

@@ -34,16 +34,16 @@ export default function ComparisonTable({
           <tbody>
             {rows.map((row) => (
               <tr key={row.criterion} className="border-t border-(--line) align-top">
-                <th className="px-5 py-4 text-left text-[13px] font-semibold text-(--ink)">
+                <th className="px-5 py-4 text-left text-[14px] font-semibold text-(--ink)">
                   {row.criterion}
                 </th>
-                <td className="px-5 py-4 text-[13px] leading-relaxed text-heading">
+                <td className="px-5 py-4 text-[14px] leading-relaxed text-heading">
                   {row.left}
                 </td>
-                <td className="px-5 py-4 text-[13px] leading-relaxed text-heading">
+                <td className="px-5 py-4 text-[14px] leading-relaxed text-heading">
                   {row.right}
                 </td>
-                <td className="hidden md:table-cell px-5 py-4 text-[13px] leading-relaxed text-heading">
+                <td className="hidden md:table-cell px-5 py-4 text-[14px] leading-relaxed text-heading">
                   {row.takeaway ?? "Compare this against your tattoo type, skin tone, and expected session count."}
                 </td>
               </tr>

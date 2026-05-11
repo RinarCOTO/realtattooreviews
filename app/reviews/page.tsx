@@ -138,13 +138,13 @@ export default async function ReviewsPage() {
           <div className="mt-10 flex flex-wrap gap-2.5">
             <Link
               href="#providers"
-              className="inline-flex items-center px-6 py-3 bg-(--ink) text-(--bg) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full"
+              className="inline-flex items-center px-6 py-3 bg-(--ink) text-(--bg) font-sans text-[15px] font-medium no-underline tracking-[-0.01em] rounded-full"
             >
               Compare Providers <ChevronRightIcon />
             </Link>
             <Link
               href="/methodology"
-              className="inline-flex items-center px-6 py-3 border border-(--line) text-(--ink) font-sans text-[14px] font-medium no-underline tracking-[-0.01em] rounded-full"
+              className="inline-flex items-center px-6 py-3 border border-(--line) text-(--ink) font-sans text-[15px] font-medium no-underline tracking-[-0.01em] rounded-full"
             >
               How We Evaluate Clinics
             </Link>
@@ -181,10 +181,10 @@ export default async function ReviewsPage() {
             <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
               Negative reviews are included, not filtered
             </h3>
-            <p className="text-[14px] text-heading m-0 mb-4 flex-1">
+            <p className="text-[15px] text-heading m-0 mb-4 flex-1">
               Every sourced review in our index is public record from Google Business Profile. We do not remove low ratings, hide complaints, or rank providers who pay us. If {stats.scarringMentions > 0 ? `${stats.scarringMentions} reviews across our index mention scarring` : "reviews mention scarring"}, that stays in.
             </p>
-            <Link href="/methodology" className="inline-flex items-center gap-1 text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+            <Link href="/methodology" className="inline-flex items-center gap-1 text-[14px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
               Collection methodology <ChevronRightIcon className="size-3.5" />
             </Link>
           </div>
@@ -193,10 +193,10 @@ export default async function ReviewsPage() {
             <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
               Complaint patterns are flagged, not buried
             </h3>
-            <p className="text-[14px] text-heading m-0 mb-4 flex-1">
+            <p className="text-[15px] text-heading m-0 mb-4 flex-1">
               We flag when the same complaint appears across multiple reviews or locations. Scarring mentions, billing disputes, session count underestimates, and aftercare failures all surface in provider pages. A single complaint is noise. A pattern is a signal.
             </p>
-            <Link href="/methodology" className="inline-flex items-center gap-1 text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+            <Link href="/methodology" className="inline-flex items-center gap-1 text-[14px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
               Read the full methodology <ChevronRightIcon className="size-3.5" />
             </Link>
           </div>
@@ -205,10 +205,10 @@ export default async function ReviewsPage() {
             <h3 className="font-normal text-[22px] leading-[1.15] text-(--ink) m-0 mb-3">
               No paid placements, no affiliate rankings
             </h3>
-            <p className="text-[14px] text-heading m-0 mb-4 flex-1">
+            <p className="text-[15px] text-heading m-0 mb-4 flex-1">
               No provider pays to appear here or to rank higher. Provider order in the table below defaults to review count, not revenue. We do not accept sponsored placements.
             </p>
-            <Link href="/editorial-policy" className="inline-flex items-center gap-1 text-[13px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
+            <Link href="/editorial-policy" className="inline-flex items-center gap-1 text-[14px] text-(--accent) font-medium no-underline border-b border-current pb-px self-start">
               Editorial policy <ChevronRightIcon className="size-3.5" />
             </Link>
           </div>

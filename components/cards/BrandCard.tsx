@@ -42,7 +42,7 @@ export default function BrandCard({ brand }: Props) {
       <div className="my-4 border-t border-divider" />
 
       {/* Stats row */}
-      <div className="flex items-center gap-4 text-[13px]">
+      <div className="flex items-center gap-4 text-[14px]">
         <div className="flex flex-col items-center">
           <span className="font-bold text-heading">{brand.totalReviews}</span>
           <span className="text-[11px] text-heading">reviews</span>

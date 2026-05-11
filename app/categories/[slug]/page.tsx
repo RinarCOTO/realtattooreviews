@@ -110,7 +110,7 @@ const ptComponents = {
   },
   listItem: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="flex items-start gap-3 font-sans text-[14px] leading-relaxed text-heading">
+      <li className="flex items-start gap-3 font-sans text-[15px] leading-relaxed text-heading">
         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
         <span>{children}</span>
       </li>
@@ -233,7 +233,7 @@ export default async function CategoryPage({ params }: Props) {
       {/* Empty state */}
       {!hasSections && (
         <div className="py-10">
-          <p className="text-heading text-[14px] italic">Content coming soon.</p>
+          <p className="text-heading text-[15px] italic">Content coming soon.</p>
         </div>
       )}
 

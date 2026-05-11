@@ -44,7 +44,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
             <h2 className="mb-2 text-[17px] font-semibold leading-snug text-(--ink) group-hover:text-(--accent)">
               {post.title}
             </h2>
-            <p className="mb-4 flex-1 font-sans text-[14px] leading-relaxed text-(--ink)">
+            <p className="mb-4 flex-1 font-sans text-[15px] leading-relaxed text-(--ink)">
               {post.description}
             </p>
             <span className="inline-flex items-center gap-1 text-sm font-medium text-(--accent)">

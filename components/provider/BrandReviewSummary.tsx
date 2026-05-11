@@ -20,7 +20,7 @@ export default async function BrandReviewSummary({ brand }: Props) {
   if (ranked.length === 0) {
     return (
       <div className="rounded-xl border border-dashed border-(--line) bg-(--bg) p-5">
-        <p className="font-sans text-[13px] text-heading m-0">
+        <p className="font-sans text-[14px] text-heading m-0">
           No published reviews for {brand} are in our dataset yet. Sample is building.
         </p>
       </div>
@@ -44,7 +44,7 @@ export default async function BrandReviewSummary({ brand }: Props) {
               </h3>
             </div>
             {row.avgStars != null && (
-              <span className="shrink-0 rounded-lg bg-(--feathering-mist) border border-(--line) px-3 py-1.5 text-[14px] font-bold text-(--ink)">
+              <span className="shrink-0 rounded-lg bg-(--feathering-mist) border border-(--line) px-3 py-1.5 text-[15px] font-bold text-(--ink)">
                 {row.avgStars.toFixed(2)}&#9733;
               </span>
             )}

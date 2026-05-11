@@ -164,7 +164,7 @@ export default async function NonLaserTattooRemovalGuidePage() {
         <p className="font-sans text-[17px] leading-relaxed text-heading">
           Do not compare only star ratings. Look for reviews that mention healing, scarring, infection, pigment change, session spacing, and whether the provider gave realistic expectations. A good consultation should make the tradeoffs clearer, not make the method sound risk-free.
         </p>
-        <p className="font-sans text-[14px] leading-relaxed text-heading">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           For direct method comparisons, see{" "}
           <Link href="/comparisons/saline-vs-laser-tattoo-removal" className="text-(--accent) hover:underline">
             saline vs. laser tattoo removal

@@ -34,7 +34,7 @@ export default function EvidenceCard({ review }: Props) {
       </div>
 
       {/* Paraphrased finding */}
-      <p className="text-[13px] leading-relaxed text-(--ink) flex-1">
+      <p className="text-[14px] leading-relaxed text-(--ink) flex-1">
         {generateFindingText(review)}
       </p>
 

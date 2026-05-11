@@ -233,7 +233,7 @@ export default function Header() {
                           <div className="flex flex-1 gap-8">
                             {item.mega.sections.map((section) => (
                               <div key={section.heading} className="min-w-0 flex-1">
-                                <p className="mb-5 text-[13px] font-bold uppercase tracking-wider text-heading">
+                                <p className="mb-5 text-[14px] font-bold uppercase tracking-wider text-heading">
                                   {section.heading}
                                 </p>
                                 <ul className="space-y-1">

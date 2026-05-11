@@ -38,7 +38,7 @@ export default async function LocationsSection({
       <Container>
         <BlockHeading title={title} body={body} />
         {websiteHref ? (
-          <div className="mb-6 flex flex-wrap gap-x-5 gap-y-2 text-[13px]">
+          <div className="mb-6 flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
             <a
               href={websiteHref}
               target="_blank"
@@ -74,16 +74,16 @@ export default async function LocationsSection({
                   <p className="font-semibold text-(--ink) text-[17px]">{location.market}</p>
                   <div className="text-right shrink-0">
                     {rating != null ? (
-                      <p className="font-sans font-semibold text-[13px] text-(--accent)">
+                      <p className="font-sans font-semibold text-[14px] text-(--accent)">
                         {rating.toFixed(1)}
                       </p>
                     ) : null}
                     <p className="text-[11px] text-heading">{locationStatus(rating)}</p>
                   </div>
                 </div>
-                <p className="text-[13px] leading-relaxed text-heading line-clamp-3">{location.summary}</p>
+                <p className="text-[14px] leading-relaxed text-heading line-clamp-3">{location.summary}</p>
                 <div className="mt-auto flex items-center justify-between gap-4 border-t border-(--line) pt-3">
-                  <span className="text-[13px] text-heading">
+                  <span className="text-[14px] text-heading">
                     {reviewCount != null ? `${reviewCount} reviews` : "Review sample pending"}
                   </span>
                   {location.googleBusinessUrl ? (

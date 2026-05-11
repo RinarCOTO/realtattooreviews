@@ -107,7 +107,7 @@ export default function LaserTattooRemovalGuidePage() {
         <p className="font-sans text-[17px] leading-relaxed text-heading">
           Picosecond is not always required. Many Q-switched providers produce excellent results, especially on standard black ink. The most reliable signal is operator skill and protocol fit, not which generation of device the clinic owns.
         </p>
-        <p className="font-sans text-[14px] leading-relaxed text-heading">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           See also:{" "}
           <Link href="/comparisons/picoway-vs-q-switch" className="text-(--accent) hover:underline">
             PicoWay vs. Q-Switch
@@ -121,19 +121,19 @@ export default function LaserTattooRemovalGuidePage() {
           Different ink colors absorb different wavelengths. A clinic using a single-wavelength laser cannot fully clear a multi-color tattoo. The most common wavelengths in tattoo removal practice:
         </p>
         <ul className="space-y-2 m-0 p-0 list-none">
-          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-heading">
+          <li className="flex items-start gap-2.5 font-sans text-[15px] leading-snug text-heading">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
             <span><span className="font-semibold text-(--ink)">1064nm Nd:YAG.</span> Black, dark brown, dark blue. Lower melanin absorption makes it the safer baseline wavelength for Fitzpatrick IV through VI skin tones.</span>
           </li>
-          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-heading">
+          <li className="flex items-start gap-2.5 font-sans text-[15px] leading-snug text-heading">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
             <span><span className="font-semibold text-(--ink)">532nm KTP (frequency-doubled).</span> Red, orange, and warm yellow ink. Higher melanin absorption means more caution required on medium and darker skin.</span>
           </li>
-          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-heading">
+          <li className="flex items-start gap-2.5 font-sans text-[15px] leading-snug text-heading">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
             <span><span className="font-semibold text-(--ink)">755nm alexandrite.</span> Green, light blue, and certain teal pigments. Some absorption in melanin, so still requires careful settings on darker skin.</span>
           </li>
-          <li className="flex items-start gap-2.5 font-sans text-[14px] leading-snug text-heading">
+          <li className="flex items-start gap-2.5 font-sans text-[15px] leading-snug text-heading">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
             <span><span className="font-semibold text-(--ink)">694nm ruby.</span> Older platform, still effective on green and dark blue. Less common today.</span>
           </li>
@@ -183,7 +183,7 @@ export default function LaserTattooRemovalGuidePage() {
         <p className="font-sans text-[17px] leading-relaxed text-heading">
           Scarring is uncommon when sessions are spaced correctly and aftercare is followed. The strongest predictors of scarring are over-aggressive settings, sessions spaced too close together, and picking at scabs.
         </p>
-        <p className="font-sans text-[14px] leading-relaxed text-heading">
+        <p className="font-sans text-[15px] leading-relaxed text-heading">
           Detail in:{" "}
           <Link href="/guides/tattoo-removal-side-effects" className="text-(--accent) hover:underline">
             Tattoo Removal Side Effects

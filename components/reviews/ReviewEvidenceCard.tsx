@@ -9,7 +9,7 @@ export default function ReviewEvidenceCard({ review }: Props) {
   return (
     <article className="flex flex-col border border-(--line) bg-white p-5 rounded-xl">
       <div className="flex items-center justify-between gap-3">
-        <span className="font-sans text-[13px] font-semibold text-(--ink)">
+        <span className="font-sans text-[14px] font-semibold text-(--ink)">
           {review.evidenceLabel}
         </span>
         <span className="border border-(--accent) px-2 py-0.5 font-mono text-[10px] tracking-widest uppercase text-(--accent)">
@@ -17,7 +17,7 @@ export default function ReviewEvidenceCard({ review }: Props) {
         </span>
       </div>
 
-      <p className="mt-4 text-[13px] leading-relaxed text-(--ink)">
+      <p className="mt-4 text-[14px] leading-relaxed text-(--ink)">
         {review.summary}
       </p>
 

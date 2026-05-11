@@ -295,7 +295,7 @@ export default async function HoustonPage() {
                         </Link>
                       ) : p.name}
                     </h3>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading mb-4">{p.body}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading mb-4">{p.body}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <p className="font-sans text-[12px] font-semibold text-(--ink) mb-1.5">Best for</p>
@@ -350,8 +350,8 @@ export default async function HoustonPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -390,8 +390,8 @@ export default async function HoustonPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -415,8 +415,8 @@ export default async function HoustonPage() {
                     key={tier.label}
                     className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
-                    <p className="font-sans text-[14px] text-heading m-0">{tier.label}</p>
-                    <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>
+                    <p className="font-sans text-[15px] text-heading m-0">{tier.label}</p>
+                    <p className="font-sans text-[15px] font-semibold text-(--ink) m-0 ml-4 shrink-0">{tier.price}</p>
                   </div>
                 ))}
               </div>
@@ -429,8 +429,8 @@ export default async function HoustonPage() {
               </p>
 
               <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">Financing and payment plans</p>
-                <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
+                <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">Financing and payment plans</p>
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   Most Houston providers offer payment plans. Removery splits package totals into
                   monthly installments. LaserAway promotes monthly payment plans in its standard
                   pricing pitch. InkFree, MD offers discount programs and free consultation.

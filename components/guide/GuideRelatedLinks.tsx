@@ -29,7 +29,7 @@ export default function GuideRelatedLinks({ links }: Props) {
               <p className="font-sans font-medium text-(--ink) text-[17px] m-0 mb-0.5">
                 {link.title}
               </p>
-              <p className="font-sans text-[13px] text-heading m-0 leading-snug">
+              <p className="font-sans text-[14px] text-heading m-0 leading-snug">
                 {link.desc}
               </p>
             </div>

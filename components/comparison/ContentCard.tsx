@@ -46,7 +46,7 @@ export default function ContentCard({
         )}
         <p className={titleClass}>{title}</p>
         {body && (
-          <p className="font-sans text-[13px] leading-relaxed text-(--ink) m-0">{body}</p>
+          <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">{body}</p>
         )}
         {children}
       </div>

@@ -28,11 +28,11 @@ export default function AlternativesSection({ alternatives }: { alternatives: Pr
               <p className="font-semibold text-(--ink) text-[17px]">{provider.name}</p>
               <MonoLabel className="mt-1">{provider.market}</MonoLabel>
             </div>
-            <span className="font-sans font-semibold text-[13px] text-(--accent) shrink-0">
+            <span className="font-sans font-semibold text-[14px] text-(--accent) shrink-0">
               {provider.rating.toFixed(1)}
             </span>
           </div>
-          <p className="text-[13px] text-heading line-clamp-3 leading-normal">{provider.summary}</p>
+          <p className="text-[14px] text-heading line-clamp-3 leading-normal">{provider.summary}</p>
           <span className="mt-auto inline-flex items-center gap-1 text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">
             Read review <ChevronRightIcon className="size-3.5" />
           </span>

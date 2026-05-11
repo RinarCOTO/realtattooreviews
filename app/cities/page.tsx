@@ -165,11 +165,11 @@ export default function CitiesIndexPage() {
                           {city.tagline}
                         </p>
                       </div>
-                      <span className="mt-0.5 inline-flex shrink-0 items-center gap-1 font-sans text-[13px] font-medium text-(--accent)">
+                      <span className="mt-0.5 inline-flex shrink-0 items-center gap-1 font-sans text-[14px] font-medium text-(--accent)">
                         View <ChevronRightIcon className="size-3.5" />
                       </span>
                     </div>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0 mt-3">
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-3">
                       {city.desc}
                     </p>
                   </Link>
@@ -188,10 +188,10 @@ export default function CitiesIndexPage() {
                     key={item.title}
                     className="rounded-xl border border-(--line) bg-(--surface) p-5"
                   >
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">
                       {item.title}
                     </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                       {item.body}
                     </p>
                   </div>
@@ -214,19 +214,19 @@ export default function CitiesIndexPage() {
               <div className="flex flex-wrap gap-3 mt-2">
                 <Link
                   href="/providers"
-                  className="inline-flex items-center rounded-lg border border-(--line) bg-(--surface) px-4 py-2 font-sans text-[13px] font-medium text-(--ink) hover:border-(--accent) hover:text-(--accent) transition-colors"
+                  className="inline-flex items-center rounded-lg border border-(--line) bg-(--surface) px-4 py-2 font-sans text-[14px] font-medium text-(--ink) hover:border-(--accent) hover:text-(--accent) transition-colors"
                 >
                   Browse providers
                 </Link>
                 <Link
                   href="/comparisons"
-                  className="inline-flex items-center rounded-lg border border-(--line) bg-(--surface) px-4 py-2 font-sans text-[13px] font-medium text-(--ink) hover:border-(--accent) hover:text-(--accent) transition-colors"
+                  className="inline-flex items-center rounded-lg border border-(--line) bg-(--surface) px-4 py-2 font-sans text-[14px] font-medium text-(--ink) hover:border-(--accent) hover:text-(--accent) transition-colors"
                 >
                   Comparison pages
                 </Link>
                 <Link
                   href="/categories"
-                  className="inline-flex items-center rounded-lg border border-(--line) bg-(--surface) px-4 py-2 font-sans text-[13px] font-medium text-(--ink) hover:border-(--accent) hover:text-(--accent) transition-colors"
+                  className="inline-flex items-center rounded-lg border border-(--line) bg-(--surface) px-4 py-2 font-sans text-[14px] font-medium text-(--ink) hover:border-(--accent) hover:text-(--accent) transition-colors"
                 >
                   Category pages
                 </Link>

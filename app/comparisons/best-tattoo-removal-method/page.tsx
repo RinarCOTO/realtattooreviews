@@ -538,10 +538,10 @@ export default function BestTattooRemovalMethodPage() {
                         key={row.ink}
                         className="flex gap-4 rounded-xl bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                       >
-                        <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 shrink-0 w-40">
+                        <p className="font-sans text-[15px] font-semibold text-(--ink) m-0 shrink-0 w-40">
                           {row.ink}
                         </p>
-                        <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
+                        <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
                           {row.body}
                         </p>
                       </div>
@@ -624,10 +624,10 @@ export default function BestTattooRemovalMethodPage() {
                         key={item.method}
                         title={item.method}
                       >
-                        <p className="font-sans text-[13px] leading-relaxed text-(--ink) m-0">
+                        <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0">
                           <span className="font-medium text-(--ink)">Pros:</span> {item.pros}
                         </p>
-                        <p className="font-sans text-[13px] leading-relaxed text-(--ink) m-0 mt-1">
+                        <p className="font-sans text-[14px] leading-relaxed text-(--ink) m-0 mt-1">
                           <span className="font-medium text-(--ink)">Cons:</span> {item.cons}
                         </p>
                       </ContentCard>

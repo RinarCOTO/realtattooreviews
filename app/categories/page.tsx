@@ -186,9 +186,9 @@ export default function CategoriesPage() {
                   href={`/categories/${cat.slug}`}
                   className="group flex flex-col gap-2 rounded-xl border border-border bg-white p-5 shadow-card transition-colors hover:border-accent hover:bg-accent/8"
                 >
-                  <p className="font-semibold text-heading text-[14px] transition-colors group-hover:text-accent">{cat.title}</p>
-                  <p className="text-[13px] leading-relaxed font-medium text-heading flex-1">{cat.description}</p>
-                  <span className="inline-flex items-center gap-1 text-[13px] font-medium text-accent">
+                  <p className="font-semibold text-heading text-[15px] transition-colors group-hover:text-accent">{cat.title}</p>
+                  <p className="text-[14px] leading-relaxed font-medium text-heading flex-1">{cat.description}</p>
+                  <span className="inline-flex items-center gap-1 text-[14px] font-medium text-accent">
                     Browse {cat.title.toLowerCase()} <ChevronRightIcon className="size-3.5" />
                   </span>
                 </Link>
@@ -237,7 +237,7 @@ export default function CategoriesPage() {
             ].map((item) => (
               <div key={item.label} className="flex gap-3 rounded-xl border border-border bg-white p-5 shadow-card">
                 <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                <p className="text-[14px] leading-relaxed text-body">
+                <p className="text-[15px] leading-relaxed text-body">
                   <span className="font-semibold text-heading">{item.label}</span>{" "}
                   {item.body}{" "}
                   {item.links.map((link, i) => (
@@ -253,7 +253,7 @@ export default function CategoriesPage() {
               </div>
             ))}
           </div>
-          <p className="mt-6 text-[13px] leading-relaxed text-heading">
+          <p className="mt-6 text-[14px] leading-relaxed text-heading">
             Every category page, city page, comparison page, and provider page is evaluated using the same{" "}
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>.
             See our{" "}

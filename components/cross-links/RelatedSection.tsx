@@ -80,7 +80,7 @@ export default function RelatedSection({ bundle, id, className }: Props) {
                       <p className="font-sans font-medium text-(--ink) text-[17px] m-0 mb-0.5">
                         {item.title}
                       </p>
-                      <p className="font-sans text-[13px] text-heading m-0 leading-snug">
+                      <p className="font-sans text-[14px] text-heading m-0 leading-snug">
                         {item.desc}
                       </p>
                     </div>

@@ -171,8 +171,8 @@ export default async function HomePage() {
                   href={link.href}
                   className="group flex flex-col gap-2 rounded-xl border border-border bg-white p-5 shadow-card transition-colors hover:border-accent hover:bg-accent/8"
                 >
-                  <p className="font-semibold text-heading text-[14px] transition-colors group-hover:text-accent">{link.title}</p>
-                  <p className="text-[13px] leading-relaxed font-medium text-heading">{link.desc}</p>
+                  <p className="font-semibold text-heading text-[15px] transition-colors group-hover:text-accent">{link.title}</p>
+                  <p className="text-[14px] leading-relaxed font-medium text-heading">{link.desc}</p>
                 </Link>
               ))}
             </div>

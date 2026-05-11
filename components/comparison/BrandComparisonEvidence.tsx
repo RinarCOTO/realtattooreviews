@@ -20,7 +20,7 @@ function Totals({ rows }: { rows: BrandComparisonRow[] }) {
   const avgStars = totalSample > 0 ? (weightedStarSum / totalSample).toFixed(2) : null;
 
   return (
-    <tr className="bg-white border-t-2 border-(--line) font-semibold text-[13px]">
+    <tr className="bg-white border-t-2 border-(--line) font-semibold text-[14px]">
       <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">Total</td>
       <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{totalSample}</td>
       <td className="px-4 py-2.5 whitespace-nowrap text-(--ink)">{avgStars ? `${avgStars}★` : "-"}</td>
@@ -66,7 +66,7 @@ export default async function BrandComparisonEvidence({
             {brand} review evidence
           </p>
         </div>
-        <table className="w-full text-[13px] font-sans border-collapse">
+        <table className="w-full text-[14px] font-sans border-collapse">
           <thead>
             <tr className="bg-white border-b border-(--line)">
               {headers.map((h) => (

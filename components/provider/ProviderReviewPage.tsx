@@ -49,7 +49,7 @@ function VerdictTable({ review }: { review: SanityProviderReview }) {
 
   return (
     <div className="overflow-x-auto border border-(--line) rounded-xl">
-      <table className="w-full border-collapse text-[13px]">
+      <table className="w-full border-collapse text-[14px]">
         <tbody>
           {rows.map(({ label, value }) =>
             value ? (
@@ -174,7 +174,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             {review.doesWell?.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 text-[14px] leading-relaxed text-(--ink)"
+                className="flex items-start gap-3 text-[15px] leading-relaxed text-(--ink)"
               >
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary mt-2 shrink-0" />
                 {item}
@@ -192,7 +192,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             {review.usersHesitate?.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 text-[14px] leading-relaxed text-(--ink)"
+                className="flex items-start gap-3 text-[15px] leading-relaxed text-(--ink)"
               >
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning mt-2 shrink-0" />
                 {item}
@@ -213,7 +213,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             {review.whatMakesDifferent
               ?.split("\n\n")
               .map((para, i) => (
-                <p key={i} className="text-[14px] leading-relaxed text-heading mb-4">
+                <p key={i} className="text-[15px] leading-relaxed text-heading mb-4">
                   {para}
                 </p>
               ))}
@@ -229,12 +229,12 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             {review.pricingBody
               ?.split("\n\n")
               .map((para, i) => (
-                <p key={i} className="text-[14px] leading-relaxed text-heading mb-4">
+                <p key={i} className="text-[15px] leading-relaxed text-heading mb-4">
                   {para}
                 </p>
               ))}
           </div>
-          <p className="mt-2 text-[13px] text-heading">
+          <p className="mt-2 text-[14px] text-heading">
             <Link href="/cost" className="text-(--accent) hover:underline">
               Compare against the national cost guide
             </Link>
@@ -253,7 +253,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             {review.comparisonBody
               ?.split("\n\n")
               .map((para, i) => (
-                <p key={i} className="text-[14px] leading-relaxed text-heading mb-4">
+                <p key={i} className="text-[15px] leading-relaxed text-heading mb-4">
                   {para}
                 </p>
               ))}
@@ -289,7 +289,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               </p>
               <ul className="flex flex-col gap-2">
                 {(review.bestForDetails ?? review.bestFor)?.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
+                  <li key={item} className="flex items-start gap-3 text-[14px] leading-relaxed text-heading">
                     <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#5A7A5A" }} />
                     {item}
                   </li>
@@ -302,7 +302,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               </p>
               <ul className="flex flex-col gap-2">
                 {(review.lessIdealForDetails ?? review.lessIdealFor)?.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
+                  <li key={item} className="flex items-start gap-3 text-[14px] leading-relaxed text-heading">
                     <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                     {item}
                   </li>
@@ -329,7 +329,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
           <BlockHeading title={`How We Reviewed ${review.providerName}`} body="" />
           <div className="max-w-prose border border-(--line) bg-(--surface) rounded-xl p-6">
             {review.publicReviewsAnalyzed && locations.length > 0 && (
-              <p className="text-[14px] leading-relaxed text-heading mb-4">
+              <p className="text-[15px] leading-relaxed text-heading mb-4">
                 This review draws on {review.publicReviewsAnalyzed} public Google reviews
                 posted on Google Business Profile listings for all {locations.length}{" "}
                 {review.providerName}{" "}
@@ -337,37 +337,37 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               </p>
             )}
             {locations.length > 1 && (
-              <p className="text-[14px] leading-relaxed text-heading mb-4">
+              <p className="text-[15px] leading-relaxed text-heading mb-4">
                 The aggregate rating shown on this page is a weighted composite across all{" "}
                 {locations.length} locations, calculated from the total review pool across
                 all Google Business listings. Individual location ratings differ from the
                 aggregate. The per-location breakdown is in the Locations section above.
               </p>
             )}
-            <p className="text-[14px] leading-relaxed text-heading mb-4">
+            <p className="text-[15px] leading-relaxed text-heading mb-4">
               We excluded non-English reviews and reviews referring to unrelated services at
               the same business address.
             </p>
-            <p className="text-[14px] leading-relaxed text-heading mb-4">
+            <p className="text-[15px] leading-relaxed text-heading mb-4">
               These reviews are publicly posted by reviewers on Google. RealTattooReviews does
               not host user-submitted reviews. All review data is sourced from public
               platforms.
             </p>
-            <p className="text-[14px] leading-relaxed text-heading mb-4">
+            <p className="text-[15px] leading-relaxed text-heading mb-4">
               Provider data is verified against {review.providerName}&apos;s website and
               public sources.
             </p>
-            <p className="text-[14px] leading-relaxed text-heading mb-4">
+            <p className="text-[15px] leading-relaxed text-heading mb-4">
               We do not accept payment from {review.providerName} or any other provider for
               inclusion, placement, or favorable coverage. Providers cannot edit, remove, or
               pre-approve their reviews on RealTattooReviews.
             </p>
-            <p className="text-[14px] leading-relaxed text-heading mb-4">
+            <p className="text-[15px] leading-relaxed text-heading mb-4">
               This review will be updated as new public review data becomes available, as{" "}
               {review.providerName} adds or closes locations, or as the provider&apos;s
               methods or supporting clinical evidence changes.
             </p>
-            <p className="text-[13px] text-heading">
+            <p className="text-[14px] text-heading">
               Read more in our{" "}
               <Link href="/methodology" className="text-(--accent) hover:underline">
                 methodology

@@ -217,7 +217,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${brand}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
-          <p className="mt-8 font-sans text-[14px] leading-relaxed text-heading">
+          <p className="mt-8 font-sans text-[15px] leading-relaxed text-heading">
             The right outcome is not choosing the most familiar brand. It is choosing the provider whose strengths match your case most closely.
           </p>
         </Container>

@@ -16,7 +16,7 @@ function ratingBar(rating: number) {
   const pct = Math.round((rating / 5) * 100);
   return (
     <div className="flex items-center gap-2">
-      <span className="font-mono text-[13px] font-semibold text-(--ink) w-8 shrink-0">
+      <span className="font-mono text-[14px] font-semibold text-(--ink) w-8 shrink-0">
         {rating.toFixed(1)}
       </span>
       <div className="h-1.5 flex-1 bg-(--line) rounded-full overflow-hidden">
@@ -65,7 +65,7 @@ export default function ProvidersTable({ providers }: ProvidersTableProps) {
 
   return (
     <div className="overflow-x-auto rounded-xl border border-(--line)">
-      <table className="w-full min-w-[640px] border-collapse bg-white text-[13px]">
+      <table className="w-full min-w-[640px] border-collapse bg-white text-[14px]">
         <thead>
           <tr className="border-b border-(--line) bg-(--surface)">
             <th className={thClass("name")} onClick={() => handleSort("name")}>

@@ -21,7 +21,7 @@ export default function ClassifiedReviewCard({ review }: { review: PublicReview 
           {review.resultTier && <ProviderPill tag={review.resultTier} />}
         </div>
 
-        <p className="flex-1 text-[13px] leading-relaxed text-(--ink)">
+        <p className="flex-1 text-[14px] leading-relaxed text-(--ink)">
           {review.summary}
         </p>
 

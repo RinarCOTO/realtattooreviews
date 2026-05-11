@@ -29,7 +29,7 @@ type SortKey = "name" | "locationCount" | "reviews" | "avgStars";
 type SortDir = "asc" | "desc";
 
 const selectClass =
-  "rounded-md border border-border bg-surface px-3 py-1.5 text-[13px] text-heading focus:outline-none focus:ring-2 focus:ring-accent/30";
+  "rounded-md border border-border bg-surface px-3 py-1.5 text-[14px] text-heading focus:outline-none focus:ring-2 focus:ring-accent/30";
 
 export default function ProviderDirectory({
   providers,
@@ -140,7 +140,7 @@ export default function ProviderDirectory({
             >
               {/* Name + method pill */}
               <div className="flex items-start justify-between gap-2">
-                <p className="font-semibold text-[14px] leading-snug text-heading transition-colors group-hover:text-accent">
+                <p className="font-semibold text-[15px] leading-snug text-heading transition-colors group-hover:text-accent">
                   {p.name}
                 </p>
                 <span
@@ -181,7 +181,7 @@ export default function ProviderDirectory({
               <p className="text-[12px] leading-relaxed text-heading">{p.bestFor}</p>
 
               {/* CTA */}
-              <p className="mt-auto inline-flex items-center gap-1 pt-1 text-[13px] font-semibold text-accent">
+              <p className="mt-auto inline-flex items-center gap-1 pt-1 text-[14px] font-semibold text-accent">
                 Read review <ChevronRightIcon className="size-3.5" />
               </p>
             </Link>

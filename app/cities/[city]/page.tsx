@@ -131,11 +131,11 @@ export default async function CityPage({ params }: Props) {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <p className="font-semibold text-(--ink) text-[17px]">{provider.name}</p>
-                    <span className="font-sans font-semibold text-[13px] text-(--accent) shrink-0">
+                    <span className="font-sans font-semibold text-[14px] text-(--accent) shrink-0">
                       {(liveAggregates[provider.slug]?.rating ?? provider.rating).toFixed(1)}
                     </span>
                   </div>
-                  <p className="text-[13px] leading-relaxed text-heading line-clamp-2">{provider.summary}</p>
+                  <p className="text-[14px] leading-relaxed text-heading line-clamp-2">{provider.summary}</p>
                   <div className="mt-auto flex items-center justify-between pt-3">
                     <span className="text-[12px] text-heading">{liveAggregates[provider.slug]?.reviewCount ?? provider.reviewCount} reviews</span>
                     <span className="inline-flex items-center gap-1 text-[12px] font-medium text-(--accent) transition-transform group-hover:translate-x-0.5">
@@ -187,7 +187,7 @@ export default async function CityPage({ params }: Props) {
                         ) : (
                           <span className="text-[17px] font-semibold text-(--ink)">{group.name}</span>
                         )}
-                        <span className="text-[13px] text-heading">{group.reviews.length} reviews</span>
+                        <span className="text-[14px] text-heading">{group.reviews.length} reviews</span>
                       </div>
                       <WhatReviewersSay
                         reviews={toPublicReviews(group.reviews, { brand: group.name })}

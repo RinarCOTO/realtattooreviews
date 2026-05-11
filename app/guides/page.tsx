@@ -110,10 +110,10 @@ function GuideCard({ href, title, desc, badge }: { href: string; title: string; 
       <p className="font-sans text-[17px] font-semibold text-(--ink) m-0 leading-snug group-hover:text-(--accent) transition-colors">
         {title}
       </p>
-      <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0 flex-1">
+      <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 flex-1">
         {desc}
       </p>
-      <span className="mt-1 inline-flex items-center gap-1 font-sans text-[13px] font-medium text-(--accent)">
+      <span className="mt-1 inline-flex items-center gap-1 font-sans text-[14px] font-medium text-(--accent)">
         Read guide <ChevronRightIcon className="size-3.5" />
       </span>
     </Link>
@@ -194,16 +194,16 @@ export default function GuidesIndexPage() {
           </p>
           {ELSEWHERE_LINKS.map((item) => (
             <div key={item.href} className="flex items-center justify-between border-b border-(--line) py-4 last:border-0">
-              <p className="font-sans text-[14px] text-(--muted) m-0">{item.desc}</p>
+              <p className="font-sans text-[15px] text-(--muted) m-0">{item.desc}</p>
               <Link
                 href={item.href}
-                className="ml-4 inline-flex shrink-0 items-center gap-1 font-sans text-[13px] font-medium text-(--accent) hover:underline"
+                className="ml-4 inline-flex shrink-0 items-center gap-1 font-sans text-[14px] font-medium text-(--accent) hover:underline"
               >
                 {item.label} <ChevronRightIcon className="size-3.5" />
               </Link>
             </div>
           ))}
-          <p className="font-sans text-[14px] leading-relaxed text-(--muted) mt-4">
+          <p className="font-sans text-[15px] leading-relaxed text-(--muted) mt-4">
             Every guide is based on the same clinical sources and editorial standards described
             in our{" "}
             <Link href="/methodology" className="text-(--accent) hover:underline">methodology</Link>

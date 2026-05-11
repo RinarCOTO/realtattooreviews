@@ -209,11 +209,11 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
             <p className="font-sans font-semibold text-[22px] leading-[1.1] tracking-[-0.02em] text-(--ink) mb-3">
               Local and City Context
             </p>
-            <p className="text-[14px] leading-relaxed text-heading">
+            <p className="text-[15px] leading-relaxed text-heading">
               {provider.name} operates in {provider.market}. If you already know your city, move next to the local comparison page before making a decision. A national reputation can be directionally useful, but local execution still matters.
             </p>
             {cityHasPage && (
-              <Link href={`/cities/${citySlug}`} className="mt-4 inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline">
+              <Link href={`/cities/${citySlug}`} className="mt-4 inline-flex items-center gap-1 text-[14px] font-medium text-(--accent) hover:underline">
                 See local comparison coverage <ChevronRightIcon className="size-3.5" />
               </Link>
             )}
@@ -222,7 +222,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
             <p className="font-sans font-semibold text-[22px] leading-[1.1] tracking-[-0.02em] text-(--ink) mb-3">
               Provider Snapshot
             </p>
-            <p className="text-[14px] leading-relaxed text-heading">{provider.summary}</p>
+            <p className="text-[15px] leading-relaxed text-heading">{provider.summary}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {provider.tags.map((tag) => (
                 <span key={tag} className="border border-(--line) bg-(--surface) px-3 py-1 font-sans text-[11px] tracking-widest uppercase text-heading">{tag}</span>
@@ -234,7 +234,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
                   href={provider.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[13px] font-medium text-(--accent) hover:underline"
+                  className="text-[14px] font-medium text-(--accent) hover:underline"
                 >
                   Visit official website ↗
                 </a>
@@ -248,7 +248,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
         <Container>
           <BlockHeading title="Best Alternatives" body={`No provider should be reviewed in isolation. If you are considering ${provider.name}, these are the alternatives worth comparing next.`} />
           <AlternativesSection alternatives={alternatives} />
-          <p className="mt-8 font-sans text-[14px] leading-relaxed text-heading">
+          <p className="mt-8 font-sans text-[15px] leading-relaxed text-heading">
             The right outcome is not choosing the most familiar brand. It is choosing the provider whose strengths match your case most closely.
           </p>
         </Container>

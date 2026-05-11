@@ -11,7 +11,7 @@ type Props = {
 export default function GuideTable({ headers, rows, winners }: Props) {
   return (
     <div className="overflow-x-auto rounded-xl border border-(--line) bg-white shadow-[0_2px_8px_0_rgb(0,0,0,0.08)]">
-      <table className="min-w-full border-collapse text-[13px]">
+      <table className="min-w-full border-collapse text-[14px]">
         <thead>
           <tr className="bg-white border-b border-(--line) text-left">
             {headers.map((h, i) => (

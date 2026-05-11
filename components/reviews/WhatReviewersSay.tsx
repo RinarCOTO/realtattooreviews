@@ -98,7 +98,7 @@ function ReviewsDisplay({
           </div>
 
           {classified.length === 0 && sortKey === "critical_first" ? (
-            <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-[14px] leading-relaxed text-heading">
+            <div className="rounded-xl border border-(--line) bg-(--surface) p-6 text-[15px] leading-relaxed text-heading">
               No critical-tier review evidence is currently shown for this provider.
               The full classified pool is available under the other sort options.
             </div>
@@ -113,7 +113,7 @@ function ReviewsDisplay({
           {classified.length > initialShow && !showAll && (
             <button
               onClick={() => setShowAll(true)}
-              className="mt-6 text-[13px] font-medium text-(--accent) hover:underline"
+              className="mt-6 text-[14px] font-medium text-(--accent) hover:underline"
             >
               Show all {classified.length} reviews
             </button>

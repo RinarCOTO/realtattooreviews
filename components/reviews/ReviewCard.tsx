@@ -24,7 +24,7 @@ export default function ReviewCard({ review, featured = false }: ReviewCardProps
       <div className="flex justify-between items-start gap-3">
         <div>
           <MonoLabel className="mb-1.5">{location || "Location not listed"}</MonoLabel>
-          <div className="text-[14px] font-semibold text-(--ink) tracking-[-0.01em] leading-[1.3]">
+          <div className="text-[15px] font-semibold text-(--ink) tracking-[-0.01em] leading-[1.3]">
             {review.evidenceLabel}
           </div>
         </div>
@@ -43,24 +43,24 @@ export default function ReviewCard({ review, featured = false }: ReviewCardProps
       <div className="grid grid-cols-2 gap-3 py-3 border-t border-b border-(--line)">
         <div>
           <MonoLabel className="mb-0.5">Result</MonoLabel>
-          <div className="text-[13px] text-(--ink)">{review.resultTier ?? "Not classified"}</div>
+          <div className="text-[14px] text-(--ink)">{review.resultTier ?? "Not classified"}</div>
         </div>
         <div>
           <MonoLabel className="mb-0.5">Pain</MonoLabel>
-          <div className="text-[13px] text-(--ink)">
+          <div className="text-[14px] text-(--ink)">
             {review.painSignal ? PAIN_LABEL[review.painSignal] : "Not shown"}
           </div>
         </div>
         {review.scarringSignal !== "none" && (
           <div className="col-span-2">
             <MonoLabel className="mb-0.5">Scarring</MonoLabel>
-            <div className="text-[13px] text-(--ink)">Scarring {review.scarringSignal}</div>
+            <div className="text-[14px] text-(--ink)">Scarring {review.scarringSignal}</div>
           </div>
         )}
       </div>
 
       <div className="flex justify-between items-center gap-2">
-        <div className="text-[13px] font-medium text-(--ink)">
+        <div className="text-[14px] font-medium text-(--ink)">
           {review.monthLabel ?? "Date not listed"}
         </div>
         <span className="font-mono font-medium text-[12px] tracking-[0.12em] uppercase text-(--accent)">

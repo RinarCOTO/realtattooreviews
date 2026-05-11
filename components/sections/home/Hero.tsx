@@ -40,7 +40,7 @@ export default function Hero({headline, subheadline}: Props) {
       <div className="mx-auto max-w-4xl px-4 text-center">
 
         {/* Eyebrow */}
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3.5 py-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[20px] text-heading">
+        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3.5 py-1 font-[family-name:var(--font-inter)] text-[15px] font-medium leading-[20px] text-heading">
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
           <span>Independent review analysis</span>
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
@@ -87,10 +87,10 @@ export default function Hero({headline, subheadline}: Props) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder=""
-                className="w-full bg-transparent py-3.5 font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[20px] text-heading outline-none"
+                className="w-full bg-transparent py-3.5 font-[family-name:var(--font-inter)] text-[15px] font-normal leading-[20px] text-heading outline-none"
               />
               {!query && (
-                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center font-[family-name:var(--font-inter)] text-[14px] leading-[20px] text-heading">
+                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center font-[family-name:var(--font-inter)] text-[15px] leading-[20px] text-heading">
                   Search by{" "}
                   <span
                     key={wordIndex}
@@ -117,14 +117,14 @@ export default function Hero({headline, subheadline}: Props) {
         <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <Link
             href="/cities"
-            className="inline-flex items-center gap-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[22.4px] text-heading transition-colors hover:text-accent"
+            className="inline-flex items-center gap-1 font-[family-name:var(--font-inter)] text-[15px] font-medium leading-[22.4px] text-heading transition-colors hover:text-accent"
           >
             Find providers in your city <ChevronRightIcon className="size-3.5" />
           </Link>
           <span className="text-heading" aria-hidden="true">·</span>
           <Link
             href="/comparisons/best-tattoo-removal-method"
-            className="inline-flex items-center gap-1 font-[family-name:var(--font-inter)] text-[14px] font-medium leading-[22.4px] text-heading transition-colors hover:text-accent"
+            className="inline-flex items-center gap-1 font-[family-name:var(--font-inter)] text-[15px] font-medium leading-[22.4px] text-heading transition-colors hover:text-accent"
           >
             Compare methods <ChevronRightIcon className="size-3.5" />
           </Link>

@@ -19,7 +19,7 @@ export default function MonoLabel({
     <div
       className={[
         "font-sans font-bold uppercase tracking-wider",
-        size === "xs" ? "text-[13px]" : "text-[14px]",
+        size === "xs" ? "text-[14px]" : "text-[15px]",
         color === "accent" ? "text-(--accent)" : "text-heading",
         className,
       ]

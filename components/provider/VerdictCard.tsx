@@ -36,7 +36,7 @@ export default function VerdictCard({
         <span className="font-sans text-[clamp(42px,13vw,52px)] font-bold leading-none tracking-[-0.04em] text-(--ink)">
           {avgRating}
         </span>
-        <span className="text-[14px] text-heading self-end mb-1">/ 5</span>
+        <span className="text-[15px] text-heading self-end mb-1">/ 5</span>
         <StarsFull rating={Math.round(avgRatingValue)} />
       </div>
       <span className="mt-3 font-sans text-[12px] text-heading leading-normal">

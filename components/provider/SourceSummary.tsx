@@ -37,11 +37,11 @@ export default function SourceSummary({ reviews }: { reviews: Review[] }) {
       <div className="flex flex-wrap gap-6">
         <div className="min-w-30">
           <MonoLabel className="mb-1">Source</MonoLabel>
-          <p className="text-[14px] font-semibold text-(--ink)">{sources}</p>
+          <p className="text-[15px] font-semibold text-(--ink)">{sources}</p>
         </div>
         <div className="min-w-20">
           <MonoLabel className="mb-1">Total</MonoLabel>
-          <p className="text-[14px] font-semibold text-(--ink)">{total} reviews</p>
+          <p className="text-[15px] font-semibold text-(--ink)">{total} reviews</p>
         </div>
         {breakdown.map((b) => (
           <div key={b.label} className="min-w-20">
@@ -49,7 +49,7 @@ export default function SourceSummary({ reviews }: { reviews: Review[] }) {
               <span className={`h-2 w-2 rounded-full ${b.dotColor}`} />
               <MonoLabel>{b.label}</MonoLabel>
             </div>
-            <p className={`text-[14px] font-semibold ${b.textColor}`}>{b.count} reviews</p>
+            <p className={`text-[15px] font-semibold ${b.textColor}`}>{b.count} reviews</p>
           </div>
         ))}
       </div>

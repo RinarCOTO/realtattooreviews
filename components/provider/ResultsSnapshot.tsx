@@ -49,7 +49,7 @@ export default function ResultsSnapshot({
         <p className="mb-1 font-sans text-[22px] font-semibold leading-[1.1] tracking-[-0.02em] text-(--ink)">
           Results Snapshot
         </p>
-        <p className="mb-4 font-sans text-[13px] text-heading">
+        <p className="mb-4 font-sans text-[14px] text-heading">
           Counts shown out of {totalReviews} sourced reviews.
         </p>
 
@@ -91,7 +91,7 @@ export default function ResultsSnapshot({
       {/* Moved outside the card */}
       <Link
         href="/before-and-after"
-        className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline"
+        className="mt-3 inline-flex items-center gap-1 text-[14px] font-medium text-(--accent) hover:underline"
       >
         Explore before-and-after research <ChevronRightIcon className="size-3.5" />
       </Link>

@@ -302,7 +302,7 @@ export default async function TampaPage() {
                         </Link>
                       ) : p.name}
                     </h3>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading mb-4">
+                    <p className="font-sans text-[15px] leading-relaxed text-heading mb-4">
                       {p.body}
                     </p>
                     <div className="grid sm:grid-cols-2 gap-4">
@@ -369,10 +369,10 @@ export default async function TampaPage() {
                     key={item.title}
                     className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5"
                   >
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">
                       {item.title}
                     </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                       {item.body}
                     </p>
                   </div>
@@ -412,10 +412,10 @@ export default async function TampaPage() {
                     key={item.title}
                     className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5"
                   >
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">
                       {item.title}
                     </p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                       {item.body}
                     </p>
                   </div>
@@ -441,8 +441,8 @@ export default async function TampaPage() {
                     key={tier.label}
                     className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4"
                   >
-                    <p className="font-sans text-[14px] text-heading m-0">{tier.label}</p>
-                    <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 ml-4 shrink-0">
+                    <p className="font-sans text-[15px] text-heading m-0">{tier.label}</p>
+                    <p className="font-sans text-[15px] font-semibold text-(--ink) m-0 ml-4 shrink-0">
                       {tier.price}
                     </p>
                   </div>
@@ -458,10 +458,10 @@ export default async function TampaPage() {
               </p>
 
               <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">
+                <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">
                   Financing and guarantees
                 </p>
-                <p className="font-sans text-[14px] leading-relaxed text-heading m-0">
+                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
                   Most Tampa Bay providers offer free consultations. Removery includes monthly
                   payment plans within its Complete Removal Package and effectively guarantees
                   results across unlimited sessions for the package price. Owner-operated St. Pete

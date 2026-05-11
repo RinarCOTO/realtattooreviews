@@ -75,7 +75,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
   }
 
   const selectClass =
-    "rounded-md border border-border bg-surface px-3 py-1.5 text-[13px] text-heading focus:outline-none focus:ring-2 focus:ring-accent/30";
+    "rounded-md border border-border bg-surface px-3 py-1.5 text-[14px] text-heading focus:outline-none focus:ring-2 focus:ring-accent/30";
 
   return (
     <div>
@@ -119,7 +119,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
 
       {/* Table */}
       <div className="overflow-x-auto rounded-xl border border-border">
-        <table className="w-full border-collapse text-[13px]">
+        <table className="w-full border-collapse text-[14px]">
           <thead>
             <tr className="border-b border-border bg-hero-bg">
               <th className="px-4 py-3 text-left">
@@ -198,7 +198,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
         </p>
         <Link
           href="/reviews"
-          className="ml-4 inline-flex shrink-0 items-center gap-1 text-[13px] font-medium text-accent hover:underline"
+          className="ml-4 inline-flex shrink-0 items-center gap-1 text-[14px] font-medium text-accent hover:underline"
         >
           Read all public reviews <ChevronRightIcon className="size-3.5" />
         </Link>

@@ -156,7 +156,7 @@ export default async function ProvidersPage() {
                 All comparisons <ChevronRightIcon className="size-4" />
               </Link>
             </div>
-            <div className="mb-6 max-w-2xl space-y-3 text-[14px] leading-relaxed text-heading">
+            <div className="mb-6 max-w-2xl space-y-3 text-[15px] leading-relaxed text-heading">
               <p>
                 RealTattooReviews tracks tattoo removal providers across multiple US markets. Every provider listed here is evaluated using the same{" "}
                 <Link href="/methodology" className="text-accent hover:underline">scoring methodology</Link>{" "}
@@ -184,7 +184,7 @@ export default async function ProvidersPage() {
               <h2 className="text-[28px] font-bold text-heading">How to Choose a Tattoo Removal Provider</h2>
               <p className="mt-1 text-sm text-heading">Five questions that change which provider is right for your case.</p>
             </div>
-            <p className="mb-8 max-w-2xl text-[14px] leading-relaxed text-heading">
+            <p className="mb-8 max-w-2xl text-[15px] leading-relaxed text-heading">
               Choosing a tattoo removal provider is mostly about matching method and protocol to your tattoo and your skin. Brand recognition and footprint matter less than they look. The five questions below cover the decisions that actually change which provider is right for you.
             </p>
 
@@ -192,7 +192,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[17px] font-bold text-heading">Decide on method first</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
+                <div className="space-y-3 text-[15px] leading-relaxed text-heading">
                   <p>
                     Tattoo removal providers fall into two categories: laser and non-laser.
                   </p>
@@ -212,7 +212,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[17px] font-bold text-heading">Check fit for your skin type</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
+                <div className="space-y-3 text-[15px] leading-relaxed text-heading">
                   <p>
                     Laser tattoo removal carries a wavelength-versus-melanin interaction for darker Fitzpatrick skin types (IV through VI). The laser does not distinguish between tattoo pigment and natural melanin. Aggressive settings on darker skin can cause post-inflammatory hyperpigmentation or hypopigmentation. Picosecond lasers at 1064nm reduce this risk compared to Q-switched systems and shorter wavelengths, but they do not eliminate it.
                   </p>
@@ -228,7 +228,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[17px] font-bold text-heading">Check fit for your tattoo&apos;s colors</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
+                <div className="space-y-3 text-[15px] leading-relaxed text-heading">
                   <p>
                     Laser performance varies by ink color. Black, dark blue, and red respond well to standard wavelengths (1064nm, 532nm). Green and blue-green require additional wavelengths (785nm on PicoWay, 755nm on PicoSure). Yellow and white inks respond poorly to all current laser wavelengths.
                   </p>
@@ -243,7 +243,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[17px] font-bold text-heading">Decide between complete removal and fading for cover-up</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
+                <div className="space-y-3 text-[15px] leading-relaxed text-heading">
                   <p>
                     Complete removal and cover-up fading are different goals with different session counts and different pricing. Complete removal aims to eliminate the tattoo entirely. Fading reduces the ink enough that a cover-up tattoo can be applied over it, typically requiring fewer sessions.
                   </p>
@@ -256,7 +256,7 @@ export default async function ProvidersPage() {
 
               <div>
                 <h3 className="mb-2 text-[17px] font-bold text-heading">Decide between national footprint and local specialist</h3>
-                <div className="space-y-3 text-[14px] leading-relaxed text-heading">
+                <div className="space-y-3 text-[15px] leading-relaxed text-heading">
                   <p>
                     National chains like Removery and LaserAway offer standardized protocols, multi-location convenience, and (in Removery&apos;s case) package pricing that covers unlimited sessions. Local specialists and physician-led practices often offer more individualized treatment plans and direct provider continuity across your treatment series.
                   </p>
@@ -279,7 +279,7 @@ export default async function ProvidersPage() {
                 <p className="mt-1 text-sm text-heading">Provider availability varies by city. Each page ranks every tracked provider in that market.</p>
               </div>
             </div>
-            <p className="mb-6 text-[14px] leading-relaxed text-heading">
+            <p className="mb-6 text-[15px] leading-relaxed text-heading">
               Provider availability varies by city. The pages below compare every tracked provider in each market, including local specialists not listed in the national table above.
             </p>
             <ul className="flex flex-col gap-3 max-w-2xl">
@@ -298,14 +298,14 @@ export default async function ProvidersPage() {
                       <span className="font-medium text-heading">{label}</span>
                       {note && <span className="ml-2 text-[12px] text-heading">{note}</span>}
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[13px] text-accent">
+                    <span className="inline-flex items-center gap-1 text-[14px] text-accent">
                       Compare options <ChevronRightIcon className="size-3.5" />
                     </span>
                   </Link>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-[13px] text-heading">More cities will be added as our dataset expands.</p>
+            <p className="mt-4 text-[14px] text-heading">More cities will be added as our dataset expands.</p>
           </Container>
         </section>
 
@@ -318,7 +318,7 @@ export default async function ProvidersPage() {
                 <p className="mt-1 text-sm text-heading">Providers and methods organized by what your case actually requires.</p>
               </div>
             </div>
-            <p className="mb-6 text-[14px] leading-relaxed text-heading">
+            <p className="mb-6 text-[15px] leading-relaxed text-heading">
               Tattoo removal needs vary by case. The pages below cover providers and methods that handle specific situations.
             </p>
             <ul className="grid gap-3 sm:grid-cols-2 max-w-2xl">
@@ -353,7 +353,7 @@ export default async function ProvidersPage() {
               <h2 className="text-[28px] font-bold text-heading">How We Cover Providers</h2>
               <p className="mt-1 text-sm text-heading">Our standards for inclusion, evaluation, and disclosure.</p>
             </div>
-            <div className="max-w-2xl space-y-3 text-[14px] leading-relaxed text-heading">
+            <div className="max-w-2xl space-y-3 text-[15px] leading-relaxed text-heading">
               <p>
                 RealTattooReviews tracks tattoo removal providers across the US based on coverage in their target markets, treatment method, and public review volume. Provider data is verified against each provider&apos;s published locations, public websites, and Google Business listings as of the page&apos;s last review date.
               </p>

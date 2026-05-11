@@ -206,10 +206,10 @@ export default function CostPage() {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="font-sans text-[14px] font-medium text-(--ink) m-0">{tier.size}</p>
+                        <p className="font-sans text-[15px] font-medium text-(--ink) m-0">{tier.size}</p>
                         <p className="font-sans text-[12px] text-heading m-0 mt-0.5">{tier.note}</p>
                       </div>
-                      <p className="font-sans text-[14px] font-semibold text-(--ink) m-0 shrink-0">{tier.price}</p>
+                      <p className="font-sans text-[15px] font-semibold text-(--ink) m-0 shrink-0">{tier.price}</p>
                     </div>
                   </div>
                 ))}
@@ -293,8 +293,8 @@ export default function CostPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -319,8 +319,8 @@ export default function CostPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -367,8 +367,8 @@ export default function CostPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -473,8 +473,8 @@ export default function CostPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -507,8 +507,8 @@ export default function CostPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>

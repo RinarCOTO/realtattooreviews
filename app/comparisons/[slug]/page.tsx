@@ -338,10 +338,10 @@ export default async function ComparisonPage({ params }: Props) {
                 className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 rounded-xl"
               >
                 <p className="text-[17px] font-semibold text-(--ink)">{card.title}</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-heading">{card.body}</p>
+                <p className="mt-2 text-[14px] leading-relaxed text-heading">{card.body}</p>
                 <ul className="mt-5 flex flex-col gap-2">
                   {card.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
+                    <li key={bullet} className="flex items-start gap-3 text-[14px] leading-relaxed text-heading">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
                       <span>{bullet}</span>
                     </li>
@@ -407,8 +407,8 @@ export default async function ComparisonPage({ params }: Props) {
               const body = rest.join(". ");
               return (
                 <div key={point} className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 rounded-xl">
-                  <p className="text-[14px] font-semibold text-(--ink)">{label}</p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-heading">{body}</p>
+                  <p className="text-[15px] font-semibold text-(--ink)">{label}</p>
+                  <p className="mt-2 text-[14px] leading-relaxed text-heading">{body}</p>
                 </div>
               );
             })}
@@ -427,7 +427,7 @@ export default async function ComparisonPage({ params }: Props) {
             <Suspense
               fallback={
                 <div className="rounded-xl bg-white border border-(--line) p-8 text-center">
-                  <p className="font-sans text-[14px] text-heading m-0">Loading evidence table&hellip;</p>
+                  <p className="font-sans text-[15px] text-heading m-0">Loading evidence table&hellip;</p>
                 </div>
               }
             >
@@ -438,7 +438,7 @@ export default async function ComparisonPage({ params }: Props) {
                 brandBPendingCities={activeBrandBPendingCities}
               />
             </Suspense>
-            <p className="font-sans text-[13px] text-heading mt-4">
+            <p className="font-sans text-[14px] text-heading mt-4">
               The table updates as our review evidence refreshes. Use the cross-city evidence as a reference, not a verdict.
             </p>
           </Container>
@@ -460,7 +460,7 @@ export default async function ComparisonPage({ params }: Props) {
                   </p>
                   <ul className="mt-3 flex flex-col gap-2">
                     {block.pros.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
+                      <li key={item} className="flex items-start gap-3 text-[14px] leading-relaxed text-heading">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
                         <span>{item}</span>
                       </li>
@@ -474,7 +474,7 @@ export default async function ComparisonPage({ params }: Props) {
                   </p>
                   <ul className="mt-3 flex flex-col gap-2">
                     {block.cons.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-[13px] leading-relaxed text-heading">
+                      <li key={item} className="flex items-start gap-3 text-[14px] leading-relaxed text-heading">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warning" />
                         <span>{item}</span>
                       </li>
@@ -497,7 +497,7 @@ export default async function ComparisonPage({ params }: Props) {
                 {activeConsultQuestions.map((question, index) => (
                   <li
                     key={question}
-                    className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 rounded-xl text-[13px] leading-relaxed text-heading"
+                    className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 rounded-xl text-[14px] leading-relaxed text-heading"
                   >
                     <span className="mr-2 font-semibold text-(--ink)">{index + 1}.</span>
                     {question}
@@ -510,7 +510,7 @@ export default async function ComparisonPage({ params }: Props) {
               <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
                 Source transparency
               </p>
-              <p className="mt-4 text-[13px] leading-relaxed text-heading">
+              <p className="mt-4 text-[14px] leading-relaxed text-heading">
                 {activeSourceNote}
               </p>
             </aside>

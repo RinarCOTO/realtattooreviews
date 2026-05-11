@@ -86,7 +86,7 @@ export default function NotFound() {
       <PageSection bg="surface">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="font-sans text-[14px] leading-relaxed text-heading">
+            <p className="font-sans text-[15px] leading-relaxed text-heading">
               If you typed or pasted the URL, double-check the spelling. If you arrived from a
               link on this site, the page may have been renamed or consolidated. Use the{" "}
               <Link href="/" className="text-(--accent) hover:underline">

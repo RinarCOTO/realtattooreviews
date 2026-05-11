@@ -107,7 +107,7 @@ function ComparisonCard({
           </span>
         </div>
         <h3 className="mb-2 text-[17px] font-semibold leading-snug text-(--ink)">{title}</h3>
-        <p className="flex-1 text-[14px] leading-relaxed text-heading">{description}</p>
+        <p className="flex-1 text-[15px] leading-relaxed text-heading">{description}</p>
       </div>
     );
   }
@@ -120,7 +120,7 @@ function ComparisonCard({
       <h3 className="mb-2 text-[17px] font-semibold leading-snug text-(--ink) group-hover:text-(--accent)">
         {title}
       </h3>
-      <p className="mb-4 flex-1 text-[14px] leading-relaxed text-heading">{description}</p>
+      <p className="mb-4 flex-1 text-[15px] leading-relaxed text-heading">{description}</p>
       <span className="text-sm font-medium text-(--accent)">Read comparison</span>
     </Link>
   );
@@ -227,7 +227,7 @@ export default function ComparisonsPage() {
                     <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-(--accent)" />
                     <div>
                       <p className="text-[17px] font-semibold text-(--ink)">{item.title}</p>
-                      <p className="mt-1 text-[14px] leading-relaxed text-heading">{item.body}</p>
+                      <p className="mt-1 text-[15px] leading-relaxed text-heading">{item.body}</p>
                     </div>
                   </div>
                 ))}
@@ -247,7 +247,7 @@ export default function ComparisonsPage() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="flex items-center justify-between rounded-lg bg-white px-4 py-3 text-[14px] font-medium text-(--ink) transition hover:text-(--accent)"
+                    className="flex items-center justify-between rounded-lg bg-white px-4 py-3 text-[15px] font-medium text-(--ink) transition hover:text-(--accent)"
                   >
                     {link.label}
                     <ChevronRightIcon className="size-4 text-heading" />
@@ -257,7 +257,7 @@ export default function ComparisonsPage() {
             </div>
 
             {/* Editorial note */}
-            <div className="rounded-xl bg-white p-5 text-[14px] leading-relaxed text-heading">
+            <div className="rounded-xl bg-white p-5 text-[15px] leading-relaxed text-heading">
               <p className="font-semibold text-(--ink)">Editorial note</p>
               <p className="mt-2">
                 Comparison pages on RealTattooReviews use live review evidence, not editorial

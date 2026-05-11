@@ -234,7 +234,7 @@ export default async function LaserAwayReviewsPage() {
               <Suspense
                 fallback={
                   <div className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-8 text-center">
-                    <p className="font-sans text-[14px] text-heading m-0">Loading review data&hellip;</p>
+                    <p className="font-sans text-[15px] text-heading m-0">Loading review data&hellip;</p>
                   </div>
                 }
               >
@@ -262,12 +262,12 @@ export default async function LaserAwayReviewsPage() {
                       <p className="font-sans font-semibold text-(--ink) text-[17px] m-0 mb-0.5">
                         {loc.city}, {loc.state}
                       </p>
-                      <p className="font-sans text-[13px] text-heading m-0">{loc.note}</p>
+                      <p className="font-sans text-[14px] text-heading m-0">{loc.note}</p>
                     </div>
                     <div className="flex shrink-0 flex-col items-end gap-1.5">
                       <Link
                         href={loc.locationHref}
-                        className="inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline"
+                        className="inline-flex items-center gap-1 text-[14px] font-medium text-(--accent) hover:underline"
                       >
                         LaserAway in {loc.city} <ChevronRightIcon className="size-3.5" />
                       </Link>
@@ -379,8 +379,8 @@ export default async function LaserAwayReviewsPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -418,12 +418,12 @@ export default async function LaserAwayReviewsPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5">
-                    <p className="font-sans mb-1 text-[14px] font-semibold text-(--ink)">{item.title}</p>
-                    <p className="font-sans text-[14px] leading-relaxed text-heading m-0">{item.body}</p>
+                    <p className="font-sans mb-1 text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                    <p className="font-sans text-[15px] leading-relaxed text-heading m-0">{item.body}</p>
                     {item.link && (
                       <Link
                         href={item.link}
-                        className="mt-2 inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline"
+                        className="mt-2 inline-flex items-center gap-1 text-[14px] font-medium text-(--accent) hover:underline"
                       >
                         {item.linkText} <ChevronRightIcon className="size-3.5" />
                       </Link>
