@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Provider } from "@/types/provider";
 import ProviderLogo from "@/components/ui/ProviderLogo";
-import { brandToSlug } from "@/lib/providers";
+import { brandToSlug, resolveProviderHref } from "@/lib/providers";
 
 type Props = {
   provider: Provider;
@@ -26,6 +26,7 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function ProviderCard({ provider }: Props) {
   const logoSlug = provider.brand ? brandToSlug(provider.brand) : provider.slug;
+  const reviewHref = resolveProviderHref({ providerSlug: provider.slug });
 
   return (
     <div className="relative flex h-full flex-col items-center rounded-2xl border border-border bg-white px-6 pb-6 pt-8 text-center shadow-card transition-all hover:border-accent hover:shadow-md">
@@ -88,13 +89,13 @@ export default function ProviderCard({ provider }: Props) {
       {/* CTAs */}
       <div className="flex w-full gap-2">
         <Link
-          href={`/reviews/${provider.slug}`}
+          href={reviewHref}
           className="flex-1 rounded-full border border-border py-2 text-xs font-semibold text-body transition-colors hover:border-accent hover:text-accent"
         >
           Reviews
         </Link>
         <Link
-          href={`/reviews/${provider.slug}`}
+          href={reviewHref}
           className="flex-1 rounded-full bg-accent py-2 text-xs font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           Profile

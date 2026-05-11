@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useMemo } from "react";
 import Card from "@/components/ui/Card";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
+import { resolveProviderHref } from "@/lib/providers";
 
 type Method = "Laser" | "Non-laser" | "Hybrid";
 type Footprint = "National chain" | "Regional" | "Single-market";
@@ -141,7 +142,7 @@ export default function ProviderDirectory({
           {filtered.map((p) => (
             <Link
               key={p.slug}
-              href={`/reviews/${p.slug}`}
+              href={resolveProviderHref({ providerSlug: p.slug })}
               className="group flex flex-col gap-2 rounded-xl border border-border bg-white p-5 shadow-card transition-all hover:border-accent hover:shadow-md"
             >
               {/* Name + method pill */}

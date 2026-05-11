@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
+import { resolveProviderHref } from "@/lib/providers";
 
 type Method = "Laser" | "Non-laser";
 type Footprint = "National chain" | "Regional" | "Single-market";
@@ -182,7 +183,7 @@ export default function ProviderComparisonTable({ providers }: { providers: Tabl
                 </td>
                 <td className="px-4 py-3 text-heading">{p.bestFor}</td>
                 <td className="px-4 py-3">
-                  <Link href={`/reviews/${p.slug}`} className="inline-flex items-center gap-1 whitespace-nowrap text-accent hover:underline">
+                  <Link href={resolveProviderHref({ providerSlug: p.slug })} className="inline-flex items-center gap-1 whitespace-nowrap text-accent hover:underline">
                     Read review <ChevronRightIcon className="size-3.5" />
                   </Link>
                 </td>

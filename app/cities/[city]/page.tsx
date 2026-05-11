@@ -14,6 +14,7 @@ import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import type { Review } from "@/types/review";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 import { toPublicReviews } from "@/lib/review-evidence";
+import { resolveProviderHref } from "@/lib/providers";
 
 type Props = { params: Promise<{ city: string }> };
 
@@ -123,7 +124,7 @@ export default async function CityPage({ params }: Props) {
               {cityProviders.map((provider) => (
                 <Link
                   key={provider.id}
-                  href={`/reviews/${provider.slug}`}
+                  href={resolveProviderHref({ providerSlug: provider.slug })}
                   className="group flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl transition-colors hover:border-(--accent)/30"
                 >
                   <div className="flex items-start justify-between gap-3">
