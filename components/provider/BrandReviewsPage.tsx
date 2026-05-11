@@ -18,6 +18,8 @@ import LocationsSection from "./LocationsSection";
 import OverviewSection from "./OverviewSection";
 import FAQSection from "@/components/sections/FAQSection";
 import BlobBackground from "@/components/ui/BlobBackground";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 import {
   buildBestFor,
@@ -257,6 +259,8 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
           }),
         }}
       />
+
+      <RelatedSection bundle={getCrossLinks(slug)} />
     </main>
     </BlobBackground>
   );

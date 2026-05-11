@@ -16,6 +16,8 @@ import SectionHeading from "@/components/guide/SectionHeading";
 import BlobBackground from "@/components/ui/BlobBackground";
 import JumpNav from "@/components/provider/JumpNav";
 import Container from "@/components/layout/Container";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 export const revalidate = 3600;
 
@@ -612,6 +614,8 @@ export default function InkoutVsRemoveryPage() {
         </section>
 
         <FAQSection id="faq" faqs={faqs} />
+
+      <RelatedSection bundle={getCrossLinks("inkout-vs-removery")} />
       </main>
     </BlobBackground>
   );

@@ -15,6 +15,8 @@ import type { Review } from "@/types/review";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 import { toPublicReviews } from "@/lib/review-evidence";
 import { resolveProviderHref } from "@/lib/providers";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 type Props = { params: Promise<{ city: string }> };
 
@@ -201,6 +203,7 @@ export default async function CityPage({ params }: Props) {
         </section>
       )}
 
+      <RelatedSection bundle={getCrossLinks(citySlug)} />
     </main>
     </BlobBackground>
   );

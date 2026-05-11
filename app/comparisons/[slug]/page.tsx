@@ -14,6 +14,8 @@ import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import SectionHeading from "@/components/guide/SectionHeading";
 import PageHero from "@/components/layout/PageHero";
 import PageSection from "@/components/reviews/PageSection";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import { getComparison, getAllComparisonSlugs } from "@/lib/page-data/comparisons";
 import type { SanityComparison } from "@/lib/page-data/comparisons";
 import { comparisons as mockComparisons } from "@/lib/mock-data/comparisons";
@@ -544,6 +546,8 @@ export default async function ComparisonPage({ params }: Props) {
       )}
 
       <FAQSection faqs={activeFaqs} />
+
+      <RelatedSection bundle={getCrossLinks(slug)} />
     </main>
   );
 }

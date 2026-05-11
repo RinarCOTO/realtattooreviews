@@ -17,6 +17,8 @@ import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 const PAGE_PATH = "/guides/laser-tattoo-removal";
 const SITE_URL = "https://realtattooreviews.com";
@@ -302,6 +304,9 @@ export default function LaserTattooRemovalGuidePage() {
           },
         ]}
       />
+
+      {/* Cross-cluster related links */}
+      <RelatedSection bundle={getCrossLinks("laser-tattoo-removal")} className="py-8" />
     </GuideLayout>
   );
 }

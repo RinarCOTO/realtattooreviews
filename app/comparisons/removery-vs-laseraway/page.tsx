@@ -16,6 +16,8 @@ import PageHero from "@/components/layout/PageHero";
 import SectionHeading from "@/components/guide/SectionHeading";
 import BlobBackground from "@/components/ui/BlobBackground";
 import JumpNav from "@/components/provider/JumpNav";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 export const revalidate = 3600;
 
@@ -533,6 +535,8 @@ export default function RemoveryVsLaserawayPage() {
       </section>
 
       <FAQSection id="faq" faqs={faqs} />
+
+    <RelatedSection bundle={getCrossLinks("removery-vs-laseraway")} />
     </main>
     </BlobBackground>
   );

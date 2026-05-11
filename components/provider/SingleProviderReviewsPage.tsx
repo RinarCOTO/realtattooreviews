@@ -34,6 +34,8 @@ import {
 } from "@/lib/provider-analysis";
 import { toPublicReviews } from "@/lib/review-evidence";
 import { cities } from "@/lib/mock-data/cities";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 interface SingleProviderReviewsPageProps {
   provider: Provider;
@@ -308,6 +310,8 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
           }),
         }}
       />
+
+      <RelatedSection bundle={getCrossLinks(provider.slug)} />
     </main>
     </BlobBackground>
   );

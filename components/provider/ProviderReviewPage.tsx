@@ -13,6 +13,8 @@ import type { Provider } from "@/types/provider";
 import type { Review } from "@/types/review";
 import FAQSection from "@/components/sections/FAQSection";
 import BlobBackground from "@/components/ui/BlobBackground";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import {
   getAlternativeProviders,
   getVerdictFromRating,
@@ -463,6 +465,8 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
           }}
         />
       )}
+
+      <RelatedSection bundle={getCrossLinks(slug)} />
     </main>
     </BlobBackground>
   );

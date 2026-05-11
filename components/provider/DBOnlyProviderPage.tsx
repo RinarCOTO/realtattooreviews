@@ -9,6 +9,8 @@ import ResultsSnapshot from "./ResultsSnapshot";
 import WhatReviewersSay from "@/components/reviews/WhatReviewersSay";
 import StarsFull from "./StarsFull";
 import VerdictSidebar from "./VerdictSidebar";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import type { Review } from "@/types/review";
 import {
   buildBestFor,
@@ -124,6 +126,8 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
         description={`Common questions from people researching ${providerName} before making a booking decision.`}
         faqs={faqItems.map((i) => ({ question: i.q, answer: i.a }))}
       />
+
+      <RelatedSection bundle={getCrossLinks(slug)} />
     </main>
   );
 }

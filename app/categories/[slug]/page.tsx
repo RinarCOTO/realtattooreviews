@@ -7,6 +7,8 @@ import GuideSection from "@/components/guide/GuideSection";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import CategoryHero from "@/components/category/CategoryHero";
 import CategoryVisualCard from "@/components/category/CategoryVisualCard";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import { getCategory, getAllCategorySlugs } from "@/lib/page-data/categories";
 
 export const dynamicParams = false;
@@ -239,6 +241,9 @@ export default async function CategoryPage({ params }: Props) {
       {category.relatedLinks && category.relatedLinks.length > 0 && (
         <GuideRelatedLinks links={category.relatedLinks} />
       )}
+
+      {/* Cross-cluster related links */}
+      <RelatedSection bundle={getCrossLinks(slug)} className="py-8" />
     </GuideLayout>
   );
 }

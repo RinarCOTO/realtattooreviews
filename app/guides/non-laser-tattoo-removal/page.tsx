@@ -15,6 +15,8 @@ import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
 import GuideCallout from "@/components/guide/GuideCallout";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import { getGuideReviewDate, formatGuideReviewDate } from "@/lib/page-data/guides";
 
 const PAGE_PATH = "/guides/non-laser-tattoo-removal";
@@ -205,6 +207,9 @@ export default async function NonLaserTattooRemovalGuidePage() {
           {lastReviewed}. This guide is educational and should be used to prepare better questions for a qualified provider. It does not replace medical advice.
         </GuideCallout>
       </div>
+
+      {/* Cross-cluster related links */}
+      <RelatedSection bundle={getCrossLinks("non-laser-tattoo-removal")} className="py-8" />
     </GuideLayout>
   );
 }

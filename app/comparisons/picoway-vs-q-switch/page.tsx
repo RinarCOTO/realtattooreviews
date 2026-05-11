@@ -12,6 +12,8 @@ import SectionHeading from "@/components/guide/SectionHeading";
 import BlobBackground from "@/components/ui/BlobBackground";
 import JumpNav from "@/components/provider/JumpNav";
 import Container from "@/components/layout/Container";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 export const metadata: Metadata = {
   title:
@@ -599,6 +601,8 @@ export default function PicoLaserVsQSwitchPage() {
         </section>
 
         <FAQSection id="faq" faqs={faqs} />
+
+      <RelatedSection bundle={getCrossLinks("picoway-vs-q-switch")} />
       </main>
     </BlobBackground>
   );

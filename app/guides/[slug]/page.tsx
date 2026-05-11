@@ -5,6 +5,8 @@ import Link from "next/link";
 import GuideLayout from "@/components/guide/GuideLayout";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import { getGuide, getAllGuideSlugs } from "@/lib/page-data/guides";
 import { guides as mockGuides } from "@/lib/mock-data/guides";
 
@@ -160,6 +162,9 @@ export default async function GuidePage({ params }: Props) {
 
       {/* Related links */}
       {relatedLinks.length > 0 && <GuideRelatedLinks links={relatedLinks} />}
+
+      {/* Cross-cluster related links */}
+      <RelatedSection bundle={getCrossLinks(slug)} className="py-8" />
     </GuideLayout>
   );
 }
