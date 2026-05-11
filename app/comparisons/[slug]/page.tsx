@@ -318,7 +318,7 @@ export default async function ComparisonPage({ params }: Props) {
         {activeIntro.map((paragraph, idx) => (
           <p
             key={idx}
-            className={`font-sans text-[17px] leading-relaxed text-(--ink) max-w-3xl m-0 ${idx > 0 ? "mt-4" : ""}`}
+            className={`font-sans text-[17px] leading-relaxed text-(--ink) max-w-4xl m-0 ${idx > 0 ? "mt-4" : ""}`}
           >
             {paragraph}
           </p>
@@ -360,7 +360,7 @@ export default async function ComparisonPage({ params }: Props) {
             ? `${activeBrandA} vs ${activeBrandB} at a Glance`
             : `${comparison.title} at a Glance`}
         </SectionHeading>
-        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-3xl mb-8">
+        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-4xl mb-8">
           The most useful one-screen view of this comparison is the structural difference between
           the two providers. The table below summarizes the categorical differences. Quantitative
           review evidence appears further down in the cross-city evidence section.
@@ -391,7 +391,7 @@ export default async function ComparisonPage({ params }: Props) {
             rows={activeTableRows}
           />
         )}
-        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-3xl mt-6">
+        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-4xl mt-6">
           The structural comparison sets the frame. The use-case sections below translate these
           differences into who each provider serves best.
         </p>
@@ -521,7 +521,7 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Related links */}
       <PageSection id="next-steps" bg="none" noBorder>
         <SectionHeading>Where to go next</SectionHeading>
-        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-3xl mb-2">
+        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-4xl mb-2">
           Comparison intent stays here. Once you know which type of clinic or method you want to
           evaluate, move into the page that owns that question.
         </p>

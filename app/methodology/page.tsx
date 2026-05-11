@@ -131,7 +131,7 @@ export default function MethodologyPage() {
 
       {/* Body */}
       <PageSection className="bg-white!">
-          <div className="mx-auto max-w-3xl space-y-12">
+          <div className="mx-auto max-w-4xl space-y-12">
 
             {/* Intro */}
             <div className="space-y-4">

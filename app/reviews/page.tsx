@@ -315,7 +315,7 @@ export default async function ReviewsPage() {
           <p className="font-mono text-[11px] tracking-widest uppercase text-heading mb-4">
             Disclosure
           </p>
-          <p className="font-sans text-[12px] leading-relaxed text-heading max-w-3xl">
+          <p className="font-sans text-[12px] leading-relaxed text-heading max-w-4xl">
             realtattooreviews.com is operated by {process.env.LEGAL_ENTITY_NAME ?? "[operator]"}.
             Reviews are sourced from public Google Business Profile listings and reflect the opinions of individual reviewers, not RTR editorial opinion.
             RTR does not verify individual review claims and is not responsible for the accuracy of third-party reviews.

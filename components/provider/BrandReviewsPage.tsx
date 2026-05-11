@@ -145,7 +145,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       {(differentiator || useCaseFocus) && (
         <section className="py-12">
           <Container>
-            <div className="max-w-3xl space-y-4">
+            <div className="max-w-4xl space-y-4">
               {differentiator && (
                 <p className="font-sans text-[17px] leading-relaxed text-(--ink) m-0">
                   {differentiator}

@@ -62,7 +62,7 @@ export default function RelatedSection({ bundle, id, className }: Props) {
   return (
     <section id={id} className={className ?? "py-12"}>
       <Container>
-        <div className="mx-auto max-w-3xl space-y-10">
+        <div className="mx-auto max-w-4xl space-y-10">
           {groups.map((group) => (
             <div key={group.label}>
               <MonoLabel color="accent" size="sm" className="mb-5">

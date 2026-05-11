@@ -183,7 +183,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <section className="py-6 bg-white">
           <Container>
-            <div className="mx-auto max-w-3xl">
+            <div className="mx-auto max-w-4xl">
               <article className="py-12">
                 {isSanity && sanityPost.body ? (
                   <PortableText

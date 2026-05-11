@@ -175,7 +175,7 @@ export default function RemoveryVsLaserawayPage() {
 
       <section className="py-6">
         <Container>
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-4xl">
 
             {/* Intro */}
             <div className="py-12 space-y-4">
