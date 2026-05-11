@@ -564,59 +564,45 @@ export const crossLinksByEntity: Record<string, CrossLinkBundle> = {
   // ── Comparisons ──────────────────────────────────────────────────────────
   "best-tattoo-removal-method": {
     categories: [CATEGORY["complete-removal"], CATEGORY["cover-up-prep"]],
-      GUIDE["non-laser-tattoo-removal"],
-      GUIDE["saline-tattoo-removal"],
-    ],
     providers: [PROVIDER_BRAND.inkout, PROVIDER_BRAND.removery],
   },
   "picoway-vs-q-switch": {
     categories: [CATEGORY["color-ink-removal"], CATEGORY["dark-skin-tattoo-removal"]],
-    guides: [GUIDE["laser-tattoo-removal"]],
     providers: [PROVIDER_BRAND.removery, PROVIDER_BRAND.laseraway],
   },
   "saline-vs-laser-tattoo-removal": {
     categories: [CATEGORY["microblading-removal"], CATEGORY["permanent-makeup-removal"]],
-      GUIDE["laser-tattoo-removal"],
-      GUIDE["non-laser-tattoo-removal"],
-    ],
     providers: [PROVIDER_BRAND.inkout],
   },
   "inkout-vs-laseraway": {
     categories: [CATEGORY["complete-removal"], CATEGORY["cover-up-prep"]],
-    guides: [GUIDE["non-laser-tattoo-removal"], GUIDE["laser-tattoo-removal"]],
     comparisons: [COMPARISON["inkout-vs-removery"], COMPARISON["removery-vs-laseraway"]],
   },
   "inkout-vs-removery": {
     categories: [CATEGORY["complete-removal"], CATEGORY["cover-up-prep"]],
-    guides: [GUIDE["non-laser-tattoo-removal"], GUIDE["laser-tattoo-removal"]],
     comparisons: [COMPARISON["inkout-vs-laseraway"], COMPARISON["removery-vs-laseraway"]],
   },
   "removery-vs-laseraway": {
     categories: [CATEGORY["complete-removal"]],
-    guides: [GUIDE["laser-tattoo-removal"]],
     comparisons: [COMPARISON["inkout-vs-removery"], COMPARISON["inkout-vs-laseraway"]],
   },
   "removery-vs-medermis-laser-clinic": {
     categories: [CATEGORY["complete-removal"], CATEGORY["color-ink-removal"]],
-    guides: [GUIDE["laser-tattoo-removal"]],
     comparisons: [COMPARISON["laseraway-vs-medermis-laser-clinic"]],
     cities: [CITY.austin],
   },
   "laseraway-vs-medermis-laser-clinic": {
     categories: [CATEGORY["complete-removal"]],
-    guides: [GUIDE["laser-tattoo-removal"]],
     comparisons: [COMPARISON["removery-vs-medermis-laser-clinic"]],
     cities: [CITY.austin],
   },
   "removery-vs-inkfree-md": {
     categories: [CATEGORY["complete-removal"]],
-    guides: [GUIDE["laser-tattoo-removal"]],
     comparisons: [COMPARISON["removery-vs-medermis-laser-clinic"]],
     cities: [CITY.houston],
   },
   "removery-vs-kovak-cosmetic-center": {
     categories: [CATEGORY["complete-removal"]],
-    guides: [GUIDE["laser-tattoo-removal"]],
     comparisons: [COMPARISON["removery-vs-laseraway"]],
     cities: [CITY.chicago],
   },
