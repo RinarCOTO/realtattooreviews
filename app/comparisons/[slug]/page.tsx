@@ -190,7 +190,7 @@ export default async function ComparisonPage({ params }: Props) {
               <span className="text-heading">{comparison.title}</span>
             </p>
             <h1 className="text-[36px] font-bold text-heading">{comparison.title}</h1>
-            <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-heading">
+            <p className="mt-3 max-w-4xl text-[17px] leading-relaxed text-heading">
               {comparison.description}
             </p>
           </Container>

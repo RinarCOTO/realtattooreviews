@@ -107,7 +107,7 @@ export default function TodoCategoryPage() {
             Tattoo Removal for{" "}
             <span className="text-(--accent)">TODO Use Case</span>
           </h1>
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-2xl">
+          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-4xl">
             TODO: One sentence describing who this page is for and what decision it helps them make.
           </p>
         </Container>

@@ -105,7 +105,7 @@ export default function TodoGuidePage() {
             TODO Guide{" "}
             <span className="text-(--accent)">Title</span>
           </h1>
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-2xl">
+          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-4xl">
             TODO: One sentence describing what this guide covers and who it helps.
           </p>
         </Container>

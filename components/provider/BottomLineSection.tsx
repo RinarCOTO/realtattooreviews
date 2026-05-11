@@ -23,7 +23,7 @@ export default function BottomLineSection({
         style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}
       >
       <Container>
-        <div className="mb-8 max-w-2xl">
+        <div className="mb-8 max-w-4xl">
           <h2 className="font-sans font-bold text-[32px] leading-[1.1] tracking-[-0.02em] text-(--heading) mb-3 m-0">
             Bottom Line on {providerName}
           </h2>
