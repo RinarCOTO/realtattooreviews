@@ -182,7 +182,7 @@ export default async function HomePage() {
         {/* ── 7. Highest rated providers ────────────── */}
         <section className="py-14 px-4 sm:px-6 lg:px-8">
           <div className="gradient-card-teal-peach rounded-3xl py-8">
-            <div className="mx-auto max-w-6xl px-8 mb-8 flex items-end justify-between">
+            <div className="mx-auto max-w-7xl px-8 mb-8 flex items-end justify-between">
               <div>
                 <h2 className="text-[28px] font-bold text-heading">Highest rated providers</h2>
                 <p className="mt-1 text-sm font-medium text-heading">
