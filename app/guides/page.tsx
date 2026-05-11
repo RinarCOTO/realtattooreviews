@@ -107,7 +107,7 @@ function GuideCard({ href, title, desc, badge }: { href: string; title: string; 
       <span className="w-fit rounded-full border border-(--line) px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-(--muted)">
         {badge}
       </span>
-      <p className="font-sans text-[15px] font-semibold text-(--ink) m-0 leading-snug group-hover:text-(--accent) transition-colors">
+      <p className="font-sans text-[16px] font-semibold text-(--ink) m-0 leading-snug group-hover:text-(--accent) transition-colors">
         {title}
       </p>
       <p className="font-sans text-[14px] leading-relaxed text-(--muted) m-0 flex-1">
@@ -145,13 +145,13 @@ export default function GuidesIndexPage() {
       >
         {/* Intro */}
         <div className="py-12">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted) m-0">
             Tattoo removal is a multi-session process that spans months. The treatment itself
             is only part of the equation. What happens between sessions, including healing,
             aftercare, and scar prevention, determines how well each session builds on the
             last and whether you end up with clean skin or complications.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0 mt-4">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted) m-0 mt-4">
             The guides below cover the practical knowledge that providers often assume you
             already have. Each guide is based on peer-reviewed clinical literature, published
             aftercare protocols, and professional-practice consensus. They are not
@@ -188,7 +188,7 @@ export default function GuidesIndexPage() {
 
         {/* How guides connect */}
         <GuideSection heading="How Guides Connect to the Rest of the Site">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Guides cover practical knowledge that applies across all providers and methods.
             From here:
           </p>

@@ -88,17 +88,17 @@ export default async function NonLaserTattooRemovalGuidePage() {
       path={PAGE_PATH}
     >
       <GuideSection heading='What "non-laser" actually covers'>
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Non-laser tattoo removal is not one single method. It is a category for approaches that do not use light energy to fragment ink. The two branches readers most often encounter are chemical extraction and dermabrasion-based tissue expulsion. They share one basic idea: instead of breaking ink into smaller particles for the body to clear gradually, they create a controlled surface pathway so pigment can move toward the skin surface during healing.
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Chemical extraction includes saline-based approaches. A solution is placed into the tattooed skin, then the treated area heals through a scabbing process. Some pigment can be lifted as the wound closes. For permanent makeup and microblading, this is often discussed because cosmetic pigments may darken or shift when hit with laser energy. See the{" "}
           <Link href="/guides/saline-tattoo-removal" className="text-(--accent) hover:underline">
             saline tattoo removal guide
           </Link>{" "}
           for the deeper version.
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Dermabrasion-based tissue expulsion uses superficial abrasion plus a topical solution to create a controlled wound over the tattooed area. The goal is to let ink exit through the skin surface as the wound heals. This is different from classic surgical excision, where skin is cut out, and different from laser, where ink is fragmented under intact skin.
         </p>
         <GuideCallout label="In one line">
@@ -107,7 +107,7 @@ export default async function NonLaserTattooRemovalGuidePage() {
       </GuideSection>
 
       <GuideSection heading="How non-laser methods compare to laser">
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Laser removal and non-laser removal aim at the same reader goal, but the mechanisms are different enough that the tradeoffs should be compared directly. Laser depends on wavelength, pulse duration, ink color, and the body's ability to clear fragmented particles. Non-laser methods depend more on wound creation, pigment movement through the surface, healing discipline, and provider control of depth.
         </p>
         <GuideTable
@@ -121,7 +121,7 @@ export default async function NonLaserTattooRemovalGuidePage() {
           ]}
           winners={[null, null, null, null, null]}
         />
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Complete removal also means something different across methods. With laser, progress is usually judged by gradual fading between sessions. With non-laser methods, progress may look more immediate in spots where pigment is expelled, but uneven surface healing can also create patchiness. Neither method guarantees perfectly clean skin.
         </p>
       </GuideSection>
@@ -139,10 +139,10 @@ export default async function NonLaserTattooRemovalGuidePage() {
       </GuideSection>
 
       <GuideSection heading="What to ask a non-laser provider">
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Non-laser consultations should be specific. If the explanation sounds like a guaranteed erase, slow down. The provider should be able to explain the mechanism, treatment depth, aftercare, expected number of sessions, and how your skin type changes risk.
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Non-laser is not automatically safer than laser. Any controlled abrasion is still a skin event, and a poor consultation is a worse signal than the method itself. If you have a history of keloids, slow healing, diabetes, active eczema, immune suppression, or a recent infection in the area, ask for medical clearance before treating.
         </p>
         <GuideBulletList
@@ -158,10 +158,10 @@ export default async function NonLaserTattooRemovalGuidePage() {
       </GuideSection>
 
       <GuideSection heading="How to compare your options before booking">
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Start with method fit, then compare providers. For black or dark professional tattoos on lighter skin, laser is usually the baseline comparison. For cosmetic pigments, difficult colors, darker skin, or stalled laser progress, non-laser options may deserve a consultation. The best answer often comes from getting two opinions from providers using different method categories.
         </p>
-        <p className="font-sans text-[15px] leading-relaxed text-heading">
+        <p className="font-sans text-[16px] leading-relaxed text-heading">
           Do not compare only star ratings. Look for reviews that mention healing, scarring, infection, pigment change, session spacing, and whether the provider gave realistic expectations. A good consultation should make the tradeoffs clearer, not make the method sound risk-free.
         </p>
         <p className="font-sans text-[14px] leading-relaxed text-heading">

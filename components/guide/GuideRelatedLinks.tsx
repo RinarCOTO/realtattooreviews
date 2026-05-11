@@ -26,7 +26,7 @@ export default function GuideRelatedLinks({ links }: Props) {
             className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4 no-underline text-inherit hover:border-(--accent) transition-colors"
           >
             <div className="min-w-0 pr-4">
-              <p className="font-sans font-medium text-(--ink) text-[15px] m-0 mb-0.5">
+              <p className="font-sans font-medium text-(--ink) text-[16px] m-0 mb-0.5">
                 {link.title}
               </p>
               <p className="font-sans text-[13px] text-heading m-0 leading-snug">

@@ -25,7 +25,7 @@ export default function AlternativesSection({ alternatives }: { alternatives: Pr
         >
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="font-semibold text-(--ink) text-[15px]">{provider.name}</p>
+              <p className="font-semibold text-(--ink) text-[16px]">{provider.name}</p>
               <MonoLabel className="mt-1">{provider.market}</MonoLabel>
             </div>
             <span className="font-sans font-semibold text-[13px] text-(--accent) shrink-0">

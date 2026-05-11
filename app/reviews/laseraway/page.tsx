@@ -194,13 +194,13 @@ export default async function LaserAwayReviewsPage() {
 
             {/* Intro */}
             <div className="py-12 space-y-4">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 LaserAway operates across more than 100 locations nationwide. Tattoo removal at
                 LaserAway uses Cynosure PicoSure, a picosecond alexandrite laser. Per-session
                 pricing applies at all locations. There is no unlimited-sessions package or formal
                 results guarantee.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The multi-service model means tattoo removal is one of several offerings at each
                 location. Users who want a tattoo-removal-only specialist or package pricing
                 that caps total cost may be better served by Removery or a local independent
@@ -208,7 +208,7 @@ export default async function LaserAwayReviewsPage() {
                 or the ability to bundle removal with other aesthetic services may find LaserAway
                 a reasonable fit.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For a direct head-to-head, see the{" "}
                 <Link href="/comparisons/removery-vs-laseraway" className="text-(--accent) hover:underline">
                   Removery vs LaserAway comparison
@@ -227,7 +227,7 @@ export default async function LaserAwayReviewsPage() {
 
             {/* Review data */}
             <GuideSection id="review-data" heading="Review Data by Location">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Aggregated from published Google reviews in RTR-tracked markets. Published sample
                 size, positive rate, and negative count are shown per city.
               </p>
@@ -240,7 +240,7 @@ export default async function LaserAwayReviewsPage() {
               >
                 <BrandReviewSummary brand="LaserAway" />
               </Suspense>
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Review coverage for LaserAway is actively building. Markets listed below are tracked
                 by RTR but may not yet have published samples.
               </p>
@@ -248,7 +248,7 @@ export default async function LaserAwayReviewsPage() {
 
             {/* Tracked locations */}
             <GuideSection id="locations" heading="Tracked Locations">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 RTR currently tracks LaserAway in four markets. Each city page shows how LaserAway
                 compares to other providers operating in that market.
               </p>
@@ -259,7 +259,7 @@ export default async function LaserAwayReviewsPage() {
                     className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-5 flex items-start justify-between gap-4"
                   >
                     <div>
-                      <p className="font-sans font-semibold text-(--ink) text-[15px] m-0 mb-0.5">
+                      <p className="font-sans font-semibold text-(--ink) text-[16px] m-0 mb-0.5">
                         {loc.city}, {loc.state}
                       </p>
                       <p className="font-sans text-[13px] text-heading m-0">{loc.note}</p>
@@ -285,7 +285,7 @@ export default async function LaserAwayReviewsPage() {
 
             {/* Technology */}
             <GuideSection id="technology" heading="LaserAway Technology: PicoSure">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 LaserAway uses Cynosure PicoSure across its locations. PicoSure was the first
                 picosecond laser to receive FDA clearance for tattoo removal. Picosecond lasers
                 deliver energy in shorter bursts than Q-switched nanosecond lasers, which improves
@@ -307,7 +307,7 @@ export default async function LaserAwayReviewsPage() {
                 </Link>
                 .
               </GuideCallout>
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For a technology comparison against Removery's PicoWay platform, see the{" "}
                 <Link href="/comparisons/removery-vs-laseraway" className="text-(--accent) hover:underline">
                   Removery vs LaserAway comparison
@@ -358,7 +358,7 @@ export default async function LaserAwayReviewsPage() {
 
             {/* Pricing */}
             <GuideSection id="pricing" heading="LaserAway Pricing">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 LaserAway does not publish pricing online. Pricing is set at consultation and varies
                 by tattoo size, location on the body, ink complexity, and market.
               </p>
@@ -385,7 +385,7 @@ export default async function LaserAwayReviewsPage() {
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For national tattoo removal pricing benchmarks and what drives session count, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   tattoo removal cost guide

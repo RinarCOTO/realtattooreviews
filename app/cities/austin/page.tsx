@@ -209,7 +209,7 @@ export default async function AustinPage() {
 
             {/* Intro */}
             <div className="py-12">
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0">
                   Tattoo removal Austin TX has more good options than most Texas cities of
                   comparable size. Specialist laser studios, dermatology practices, med spas, and
                   a non-laser inkOUT location all serve the metro. Providers span South Austin,
@@ -217,14 +217,14 @@ export default async function AustinPage() {
                   the Bee Cave area. Tattoo removal South Austin specifically is well covered, with
                   established providers on South Congress and Dickson Drive.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0 mt-4">
                   This page compares the providers that actually treat tattoos in Austin. It
                   covers what laser technology each provider uses, where they are located, and
                   which kinds of cases each is best suited to handle. The goal is to help you
                   narrow down a shortlist before booking a consultation, not to push a single
                   winner for every situation.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
                   <Link href="/comparisons/best-tattoo-removal-method" className="text-(--accent) hover:underline">
                     best tattoo removal method comparison
@@ -247,7 +247,7 @@ export default async function AustinPage() {
           <div style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <Container>
             <GuideSection heading="Best Tattoo Removal Clinics in Austin">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The ranked list below is generated from our review-sample analysis. Sentiment
                 scores, sample sizes, and use-case wins reflect the most recent reviews captured
                 in our internal review dataset. Lifetime Google review counts are higher than the
@@ -265,7 +265,7 @@ export default async function AustinPage() {
           <Container>
             {/* Static editorial profiles */}
             <GuideSection heading="Austin Provider Profiles">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds
                 of cases it handles. Current performance metrics and rankings appear in the
                 section above and update as our review evidence refreshes.
@@ -299,7 +299,7 @@ export default async function AustinPage() {
 
             {/* Dynamic comparison table */}
             <GuideSection heading="Compare Austin Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The table below summarizes the best tattoo removal Austin options at a glance.
                 Use it for orientation, then read the profiles above for fit-based detail. Sample
                 size shows the number of recent reviews analyzed for sentiment scoring. Total
@@ -314,7 +314,7 @@ export default async function AustinPage() {
 
             {/* Technology section */}
             <GuideSection heading="Laser Tattoo Removal Options in Austin">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Austin laser tattoo removal providers run several different systems. The system
                 matters because pulse width, available wavelengths, and provider experience
                 together determine which ink colors and skin types respond best.
@@ -349,7 +349,7 @@ export default async function AustinPage() {
 
             {/* Pricing section */}
             <GuideSection heading="How Much Does Tattoo Removal Cost in Austin?">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Tattoo removal Austin pricing generally runs $90 to $500 per session. Most
                 standard cases fall in the $150 to $400 range. The big variables are tattoo size,
                 ink density, and the provider&rsquo;s pricing model.
@@ -371,7 +371,7 @@ export default async function AustinPage() {
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Most tattoos need three to twelve sessions for complete removal, putting total
                 full-removal cost for a standard tattoo in Austin typically between $1,000 and
                 $5,000. Package pricing (Removery&rsquo;s Complete Removal Package, Think Again&rsquo;s
@@ -379,7 +379,7 @@ export default async function AustinPage() {
                 Pay-per-session is usually cheaper if you finish in fewer sessions. Packages are
                 usually cheaper if you need the average number or more.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For a national pricing breakdown by method and size, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   cost guide
@@ -390,7 +390,7 @@ export default async function AustinPage() {
 
             {/* Ranking methodology */}
             <GuideSection heading="How We Ranked Austin Tattoo Removal Clinics">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The ranked list above is generated from a structured analysis of the most recent
                 public reviews per provider. Austin is one of our deepest markets by provider
                 count, with nine tracked clinics spanning removal-only specialists, national
@@ -406,7 +406,7 @@ export default async function AustinPage() {
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For the full review and ranking framework used across the site, see the{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page

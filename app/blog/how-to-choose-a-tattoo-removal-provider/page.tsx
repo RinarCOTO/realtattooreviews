@@ -113,7 +113,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
 
               {/* Intro */}
               <div className="py-12 space-y-4">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Choosing a tattoo removal provider is harder than it looks because most clinics
                   present themselves the same way. Nearly all of them say they use advanced
                   technology. Many of them promise personalized plans. Almost all of them claim
@@ -121,15 +121,15 @@ export default function HowToChooseATattooRemovalProviderPage() {
                   provider is actually the right fit for your tattoo, your skin, your budget, or
                   your goals.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The better question is not &ldquo;Which provider markets themselves best?&rdquo;
                   It is &ldquo;Which tattoo removal clinic gives me the strongest overall fit for my
                   case?&rdquo;
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   If you want a short answer, use this checklist:
                 </p>
-                <ol className="list-decimal space-y-2 pl-6 font-sans text-[15px] leading-relaxed text-(--ink)">
+                <ol className="list-decimal space-y-2 pl-6 font-sans text-[16px] leading-relaxed text-(--ink)">
                   <li>Check whether the provider&rsquo;s method fits your tattoo.</li>
                   <li>Check whether their reviews describe real outcomes, not just friendliness.</li>
                   <li>Check whether pricing is clear across the full treatment path, not only the first session.</li>
@@ -141,11 +141,11 @@ export default function HowToChooseATattooRemovalProviderPage() {
               </div>
 
               <GuideSection heading="1. Start with method fit, not brand name">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Many people choose a tattoo removal clinic based on reputation alone. That is
                   usually the wrong first move.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The better first question is what type of removal method actually fits your tattoo:
                 </p>
                 <GuideBulletList
@@ -154,7 +154,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Non-laser options may matter more for complete-removal goals, cosmetic tattoo removal, or cases where the treatment tradeoffs sit outside standard laser expectations.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   You should also ask whether the clinic treats cases like yours often:
                 </p>
                 <GuideBulletList
@@ -167,17 +167,17 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Complete removal rather than partial fading",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   A provider can be well reviewed overall and still be the wrong fit for your specific
                   case.
                 </p>
               </GuideSection>
 
               <GuideSection heading="2. Read reviews for outcomes, not just customer service">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   A five-star review does not always mean a strong tattoo removal outcome.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   When you read reviews, look for details that actually help you judge the provider:
                 </p>
                 <GuideBulletList
@@ -189,12 +189,12 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Did they describe scarring, pigment change, or complications?",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Reviews that only say &ldquo;great staff&rdquo; or &ldquo;nice office&rdquo; are
                   not useless, but they are weak evidence compared with reviews that describe actual
                   treatment progress.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   If you are comparing providers on RTR, the better signal is not only the star
                   rating. It is whether the review set contains enough meaningful outcome detail to
                   trust the pattern. The full framework lives on the{" "}
@@ -206,11 +206,11 @@ export default function HowToChooseATattooRemovalProviderPage() {
               </GuideSection>
 
               <GuideSection heading="3. Compare full treatment cost, not just the first number">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Tattoo removal pricing is easy to misunderstand because many providers advertise
                   the smallest possible number.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   A tattoo removal clinic can look cheap at first and still become expensive if:
                 </p>
                 <GuideBulletList
@@ -221,7 +221,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "The package structure is confusing.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">You should ask:</p>
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">You should ask:</p>
                 <GuideBulletList
                   items={[
                     "Is pricing per session or packaged?",
@@ -231,7 +231,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Are financing or payment plans available?",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The cheapest first-session number is rarely the best comparison point. The better
                   question is whether the provider is transparent about the total treatment path. For
                   national pricing context, the{" "}
@@ -243,11 +243,11 @@ export default function HowToChooseATattooRemovalProviderPage() {
               </GuideSection>
 
               <GuideSection heading="4. Treat session-count promises carefully">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   One of the easiest ways to misread a tattoo removal provider is to trust overly
                   confident session claims.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   A clinic should be able to explain why your tattoo may take fewer or more sessions
                   based on factors like:
                 </p>
@@ -261,11 +261,11 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Whether the goal is fading or complete removal",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Be cautious if a provider gives a very confident answer immediately without
                   explaining what could change that estimate.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Good providers usually sound more like this:
                 </p>
                 <GuideBulletList
@@ -275,25 +275,25 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "We need to separate the first visible fading from full removal.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   That type of language is usually more trustworthy than a simple, overly clean
                   promise.
                 </p>
               </GuideSection>
 
               <GuideSection heading="5. Look at the negative reviews as a pattern test">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The best way to test whether a tattoo removal clinic&rsquo;s reputation is real is
                   to read the weaker reviews carefully.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   You are not looking for perfection. You are looking for patterns.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   A few bad reviews do not automatically disqualify a clinic. What matters is what
                   the bad reviews are actually about.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   More serious warning patterns include:
                 </p>
                 <GuideBulletList
@@ -306,7 +306,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Multiple mentions of scarring, burns, or pigment damage.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Less serious patterns may include:
                 </p>
                 <GuideBulletList
@@ -316,18 +316,18 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Dissatisfaction from unrealistic expectations.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The question is not whether negative reviews exist. The question is whether the
                   same problem appears often enough to matter.
                 </p>
               </GuideSection>
 
               <GuideSection heading="6. Specialist clinic vs national chain">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Some users feel safer with a large national brand. Others do better with a smaller
                   tattoo removal specialist clinic. Neither is automatically better.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">Large chains may offer:</p>
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">Large chains may offer:</p>
                 <GuideBulletList
                   items={[
                     "More locations.",
@@ -336,7 +336,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Financing or package options.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Independent specialists may offer:
                 </p>
                 <GuideBulletList
@@ -347,7 +347,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "More obvious specialization.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The real question is what matters more for your decision:
                 </p>
                 <GuideBulletList
@@ -359,21 +359,21 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Pricing model.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   If you are comparing providers in one market, city pages are often the fastest next
                   step because they let you compare chains and local specialists side by side.
                 </p>
               </GuideSection>
 
               <GuideSection heading="7. Use city pages when you are still choosing locally">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   If you do not know which clinic you want yet, a{" "}
                   <Link href="/cities" className="text-(--accent) hover:underline">
                     city comparison page
                   </Link>{" "}
                   is usually more useful than jumping into one branded review page too early.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Use a city page when you want to answer questions like:
                 </p>
                 <GuideBulletList
@@ -384,13 +384,13 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "Which ones appear strongest for complete removal, darker skin, or cover-up fading?",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Then move into a branded review page only after you have narrowed the field.
                 </p>
               </GuideSection>
 
               <GuideSection heading="8. Use branded review pages when you already know the name">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   If you are already asking about a provider by name, move directly into a branded
                   review page on{" "}
                   <Link href="/reviews" className="text-(--accent) hover:underline">
@@ -398,7 +398,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
                   </Link>
                   .
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   That is the better path when your question becomes:
                 </p>
                 <GuideBulletList
@@ -409,13 +409,13 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "How do they compare with realistic alternatives?",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   That is where RTR&rsquo;s provider review pages are strongest.
                 </p>
               </GuideSection>
 
               <GuideSection heading="Red flags to watch before booking">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Before you book any consultation, pause if you see more than one of these:
                 </p>
                 <GuideBulletList
@@ -429,15 +429,15 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     "The method seems mismatched to your actual needs.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   You do not need a perfect provider. You need a provider whose strengths match your
                   case and whose tradeoffs are visible before you commit.
                 </p>
               </GuideSection>
 
               <GuideSection heading="The best way to use RTR before booking">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">Use the site in this order:</p>
-                <ol className="list-decimal space-y-2 pl-6 font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">Use the site in this order:</p>
+                <ol className="list-decimal space-y-2 pl-6 font-sans text-[16px] leading-relaxed text-(--ink)">
                   <li>Read this page to understand how to compare providers.</li>
                   <li>
                     Go to your{" "}
@@ -468,19 +468,19 @@ export default function HowToChooseATattooRemovalProviderPage() {
                     if visible outcome expectations are still unclear.
                   </li>
                 </ol>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   That sequence is usually better than starting with provider marketing alone.
                 </p>
               </GuideSection>
 
               <GuideSection heading="Final takeaway">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The best tattoo removal clinic is usually not the one with the loudest marketing,
                   the cleanest package language, or the biggest brand recognition. It is the provider
                   whose method, review pattern, pricing logic, and treatment expectations best fit
                   your actual tattoo and your actual goal.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   If you are still narrowing the field, start with a{" "}
                   <Link href="/cities" className="text-(--accent) hover:underline">
                     city comparison page

@@ -71,7 +71,7 @@ export default async function LocationsSection({
                 className="flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl transition-shadow hover:shadow-md"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <p className="font-semibold text-(--ink) text-[15px]">{location.market}</p>
+                  <p className="font-semibold text-(--ink) text-[16px]">{location.market}</p>
                   <div className="text-right shrink-0">
                     {rating != null ? (
                       <p className="font-sans font-semibold text-[13px] text-(--accent)">

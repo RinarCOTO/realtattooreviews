@@ -270,7 +270,7 @@ export default async function ReviewsPage() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="min-w-0">
-                  <div className="text-[15px] font-medium text-(--ink) tracking-[-0.01em] whitespace-nowrap overflow-hidden text-ellipsis">
+                  <div className="text-[16px] font-medium text-(--ink) tracking-[-0.01em] whitespace-nowrap overflow-hidden text-ellipsis">
                     {city.name}
                   </div>
                   <div className="text-[11px] text-heading mt-0.5">
@@ -302,7 +302,7 @@ export default async function ReviewsPage() {
               href={link.href}
               className="flex items-center justify-between px-6 py-4 no-underline text-inherit hover:bg-(--wash) transition-colors"
             >
-              <span className="font-medium text-(--ink) text-[15px]">{link.label}</span>
+              <span className="font-medium text-(--ink) text-[16px]">{link.label}</span>
               <ChevronRightIcon className="size-4 text-(--accent)" />
             </Link>
           ))}

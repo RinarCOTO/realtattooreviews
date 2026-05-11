@@ -238,10 +238,10 @@ export default async function HomePage() {
               <h2 className="text-[28px] font-bold text-heading">The Problem This Site Solves</h2>
             </div>
             <div className="max-w-2xl">
-              <p className="text-[15px] leading-relaxed text-body mb-3">
+              <p className="text-[16px] leading-relaxed text-body mb-3">
                 Most people start with a Google search or an AI assistant. Both pull from provider marketing pages or summarize raw star ratings, neither of which tells you whether a clinic is good at complete removal or just fading.
               </p>
-              <p className="text-[15px] leading-relaxed text-body">
+              <p className="text-[16px] leading-relaxed text-body">
                 RealTattooReviews fills that gap. We classify public Google reviews by outcome so you can compare providers on what actually matters for your case.
               </p>
             </div>

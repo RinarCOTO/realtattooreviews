@@ -284,7 +284,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
           />
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
-              <p className="mb-4 text-[15px] font-semibold text-(--ink)">
+              <p className="mb-4 text-[16px] font-semibold text-(--ink)">
                 {review.providerName} is most likely the right fit if you:
               </p>
               <ul className="flex flex-col gap-2">
@@ -297,7 +297,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
               </ul>
             </div>
             <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
-              <p className="mb-4 text-[15px] font-semibold text-(--ink)">
+              <p className="mb-4 text-[16px] font-semibold text-(--ink)">
                 Compare more carefully if you:
               </p>
               <ul className="flex flex-col gap-2">

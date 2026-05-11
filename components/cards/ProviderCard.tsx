@@ -50,7 +50,7 @@ export default function ProviderCard({ provider }: Props) {
       </div>
 
       {/* Name & specialty */}
-      <p className="text-[15px] font-bold text-heading">{provider.name}</p>
+      <p className="text-[16px] font-bold text-heading">{provider.name}</p>
       {provider.specialty && (
         <p className="mt-0.5 text-xs text-heading">{provider.specialty}</p>
       )}

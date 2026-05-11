@@ -225,7 +225,7 @@ export default async function DraperPage() {
 
             {/* Intro */}
             <div className="py-12">
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0">
                   Draper sits at the south end of the Salt Lake Valley and draws users from
                   Sandy, South Jordan, Riverton, Herriman, and the broader south metro. The
                   market is smaller than Salt Lake City proper, but it offers a genuinely
@@ -234,13 +234,13 @@ export default async function DraperPage() {
                   in the area are choosing between those two methods before they choose a
                   provider.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0 mt-4">
                   This page compares the providers that handle tattoo removal in Draper. It covers
                   what technology each uses, where they are located, and which kinds of cases each
                   handles best. The goal is to help you decide which provider fits your tattoo,
                   your skin, and your priorities before booking a consultation.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
                   <Link
                     href="/comparisons/best-tattoo-removal-method"
@@ -264,7 +264,7 @@ export default async function DraperPage() {
             {/* Dynamic ranking */}
             <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <GuideSection heading="Best Tattoo Removal Clinics in Draper">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The ranked list below is generated from our review-sample analysis. Sentiment
                 scores, sample sizes, and use-case wins reflect the most recent reviews captured
                 in our internal review dataset. Lifetime Google review counts are higher than the
@@ -280,7 +280,7 @@ export default async function DraperPage() {
 
             {/* Static editorial profiles */}
             <GuideSection heading="Draper Provider Profiles">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds of
                 cases it handles. Current performance metrics, rankings, and review breakdowns
                 appear in the section above and update as our review evidence refreshes.
@@ -314,7 +314,7 @@ export default async function DraperPage() {
 
             {/* Dynamic comparison table */}
             <GuideSection heading="Compare Draper Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The table below summarizes the Draper options at a glance. Use it for orientation,
                 then read the profiles above for fit-based detail. Sample size shows the number of
                 recent reviews analyzed for sentiment scoring. Total lifetime Google review counts
@@ -329,7 +329,7 @@ export default async function DraperPage() {
 
             {/* Technology section */}
             <GuideSection heading="Laser and Non-Laser Options in Draper">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The Draper market offers both laser and non-laser tattoo removal. The method
                 choice matters more here than provider choice. The two are genuinely different
                 categories of treatment, not variations on the same process.
@@ -357,7 +357,7 @@ export default async function DraperPage() {
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 If your tattoo includes hard-to-clear colors like green, teal, white, or pastels,
                 ask Clarity Skin which of their wavelengths addresses those pigments and what
                 their realistic session estimate is for your specific case before committing.
@@ -366,7 +366,7 @@ export default async function DraperPage() {
 
             {/* Pricing section */}
             <GuideSection heading="How Much Does Tattoo Removal Cost in Draper?">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Tattoo removal in Draper generally runs $100 to $400 per session. The main
                 variables are tattoo size, ink density, and the provider&rsquo;s pricing model.
               </p>
@@ -387,17 +387,17 @@ export default async function DraperPage() {
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Most tattoos need three to twelve sessions for complete removal. Three to eight
                 sessions is typical for cover-up fading. Total cost for a standard tattoo
                 typically falls between $1,000 and $4,000 in this market.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Per-session pricing suits users who want flexibility or expect to finish quickly.
                 Ask each provider about payment plans and whether they offer any package pricing
                 or session guarantees at the consultation.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For a national pricing breakdown by method and size, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   cost guide
@@ -408,14 +408,14 @@ export default async function DraperPage() {
 
             {/* Ranking methodology */}
             <GuideSection heading="How We Evaluated Draper Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Draper is a two-provider market for tracked tattoo removal. The ranked list above
                 reflects review-sample evidence: sentiment scores and use-case signals from the
                 most recent public reviews for inkOUT and Clarity Skin. Where review samples are
                 thin, the ranking reflects what the available data shows and flags low sample sizes
                 clearly so you can weigh the evidence appropriately.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Because the providers use fundamentally different methods, the ranking is less
                 about declaring a winner and more about surfacing which provider has demonstrated
                 better outcomes for specific use cases: complete removal, cover-up fading,
@@ -430,7 +430,7 @@ export default async function DraperPage() {
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For the full review and ranking framework used across the site, see the{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page

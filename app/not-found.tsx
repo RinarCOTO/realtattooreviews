@@ -32,7 +32,7 @@ export default function NotFound() {
       <PageSection bg="bg">
         <div className="mx-auto max-w-3xl">
           <SectionHeading>Where to go from here</SectionHeading>
-          <p className="font-sans text-[15px] leading-relaxed text-heading mb-2">
+          <p className="font-sans text-[16px] leading-relaxed text-heading mb-2">
             Pick the path that fits what you were trying to do. Most users land back on a
             provider directory, a city comparison, or a method guide.
           </p>

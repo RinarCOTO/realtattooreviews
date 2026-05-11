@@ -30,7 +30,7 @@ export default function BrandCard({ brand }: Props) {
           />
         </div>
         <div className="min-w-0">
-          <p className="truncate text-[15px] font-bold text-heading">{brand.name}</p>
+          <p className="truncate text-[16px] font-bold text-heading">{brand.name}</p>
           <p className="text-[11px] text-heading">{brand.footprint}</p>
         </div>
       </div>

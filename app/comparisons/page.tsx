@@ -151,14 +151,14 @@ export default function ComparisonsPage() {
 
             {/* Intro */}
             <div className="space-y-4">
-              <p className="text-[15px] leading-relaxed text-(--ink)">
+              <p className="text-[16px] leading-relaxed text-(--ink)">
                 Choosing a tattoo removal provider or method without comparing your options is one of
                 the most common mistakes users make. Providers vary significantly by technology,
                 specialty, price, and outcome quality depending on tattoo type and skin tone. Method
                 comparisons matter even more: the right technique for microblading removal is not the
                 same as the right technique for a saturated multi-color sleeve.
               </p>
-              <p className="text-[15px] leading-relaxed text-heading">
+              <p className="text-[16px] leading-relaxed text-heading">
                 The pages below use live review evidence from our classified dataset to make those
                 tradeoffs concrete. See our{" "}
                 <Link href="/methodology" className="font-medium text-(--accent) hover:underline">
@@ -172,7 +172,7 @@ export default function ComparisonsPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-[26px] font-bold text-(--ink)">Brand Comparisons</h2>
-                <p className="mt-2 text-[15px] leading-relaxed text-heading">
+                <p className="mt-2 text-[16px] leading-relaxed text-heading">
                   Provider-to-provider comparisons with city-level review breakdowns. Each page shows
                   sample sizes, average star ratings, positive sentiment percentages, and use-case
                   win counts for every covered city.
@@ -189,7 +189,7 @@ export default function ComparisonsPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-[26px] font-bold text-(--ink)">Technology Comparisons</h2>
-                <p className="mt-2 text-[15px] leading-relaxed text-heading">
+                <p className="mt-2 text-[16px] leading-relaxed text-heading">
                   Method-to-method comparisons covering how each technology performs by ink type,
                   skin tone, treatment count, pain, scarring risk, and documented review outcomes.
                 </p>
@@ -226,7 +226,7 @@ export default function ComparisonsPage() {
                   <div key={item.title} className="flex gap-4 rounded-xl bg-white p-5">
                     <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-(--accent)" />
                     <div>
-                      <p className="text-[15px] font-semibold text-(--ink)">{item.title}</p>
+                      <p className="text-[16px] font-semibold text-(--ink)">{item.title}</p>
                       <p className="mt-1 text-[14px] leading-relaxed text-heading">{item.body}</p>
                     </div>
                   </div>

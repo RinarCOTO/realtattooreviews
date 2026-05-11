@@ -85,7 +85,7 @@ export default function FAQSection({
           {title}
         </h2>
         {description && (
-          <p className="text-[15px] leading-relaxed text-heading max-w-2xl m-0 mb-10">
+          <p className="text-[16px] leading-relaxed text-heading max-w-2xl m-0 mb-10">
             {description}
           </p>
         )}

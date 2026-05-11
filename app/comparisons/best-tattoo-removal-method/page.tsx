@@ -357,13 +357,13 @@ export default function BestTattooRemovalMethodPage() {
 
               {/* Intro */}
               <div className="py-12 space-y-4">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The best tattoo removal method depends on your tattoo, your skin, and your goal.
                   Laser is the most common. It is not always the best fit. Non-laser methods exist
                   for cases where laser carries specific risks. Saline removal exists for cosmetic
                   tattoos where laser can make things worse.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   This page compares every major method across the same criteria: how it works,
                   what it is best for, what it is worst for, effectiveness, pain, scarring risk,
                   sessions, and cost. For deeper dives into individual methods or head-to-head brand
@@ -377,7 +377,7 @@ export default function BestTattooRemovalMethodPage() {
                   Types of Tattoo Removal Methods
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     Tattoo removal methods fall into three categories: laser, non-laser mechanical, and
                     topical. Only the first two produce reliable results.
                   </p>
@@ -409,7 +409,7 @@ export default function BestTattooRemovalMethodPage() {
                   Laser vs Non-Laser Tattoo Removal
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     The laser vs non-laser decision is the first fork in the road. Everything else
                     follows from this choice.
                   </p>
@@ -435,7 +435,7 @@ export default function BestTattooRemovalMethodPage() {
                       />
                     </ContentCard>
                   </div>
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     For the head-to-head brand comparison between the largest non-laser and laser
                     providers, see{" "}
                     <Link
@@ -462,7 +462,7 @@ export default function BestTattooRemovalMethodPage() {
                   Which Tattoo Removal Method Is Most Effective?
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     Effectiveness depends on the case, not the method alone. No method removes every
                     tattoo perfectly in every situation.
                   </p>
@@ -484,7 +484,7 @@ export default function BestTattooRemovalMethodPage() {
                   Best Tattoo Removal Method for Dark Skin
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     Dark skin tattoo removal requires extra attention to the wavelength-versus-melanin
                     interaction that affects all laser methods.
                   </p>
@@ -510,7 +510,7 @@ export default function BestTattooRemovalMethodPage() {
                       />
                     ))}
                   </div>
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     See{" "}
                     <Link
                       href="/categories/dark-skin-tattoo-removal"
@@ -529,7 +529,7 @@ export default function BestTattooRemovalMethodPage() {
                   Best Tattoo Removal Method for Color Ink
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     Color ink performance under laser depends on which wavelengths the laser offers.
                   </p>
                   <div className="space-y-2">
@@ -547,7 +547,7 @@ export default function BestTattooRemovalMethodPage() {
                       </div>
                     ))}
                   </div>
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     See{" "}
                     <Link
                       href="/categories/color-ink-removal"
@@ -566,7 +566,7 @@ export default function BestTattooRemovalMethodPage() {
                   Best Method for Microblading and PMU Removal
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     Cosmetic tattoo removal is a separate category. The pigments, the depth, and the
                     risks are different from body tattoo removal.
                   </p>
@@ -592,7 +592,7 @@ export default function BestTattooRemovalMethodPage() {
                       />
                     ))}
                   </div>
-                  <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                     See{" "}
                     <Link
                       href="/categories/microblading-removal"

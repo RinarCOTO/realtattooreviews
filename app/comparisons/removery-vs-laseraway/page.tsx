@@ -179,12 +179,12 @@ export default function RemoveryVsLaserawayPage() {
 
             {/* Intro */}
             <div className="py-12 space-y-4">
-              <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                 Removery and LaserAway are both national brands offering laser tattoo removal.
                 That is where the similarity ends. The Removery vs LaserAway decision comes down
                 to three differences: technology, pricing model, and business focus.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                 Removery is a tattoo-removal-only specialist chain that uses Candela PicoWay, a
                 picosecond laser with three wavelengths (1064nm, 532nm, 785nm), and offers a
                 Complete Removal Package that caps total cost regardless of session count.
@@ -192,7 +192,7 @@ export default function RemoveryVsLaserawayPage() {
                 picosecond laser built around a 755nm alexandrite wavelength, with per-session
                 pricing.
               </p>
-              <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+              <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                 This page covers the head-to-head decision without forcing a universal winner.
               </p>
             </div>
@@ -212,7 +212,7 @@ export default function RemoveryVsLaserawayPage() {
                   rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
                   winners={[1, null, null, null, 1, 1, null, 1, 1, 2]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Both brands use picosecond lasers. Both are national chains. The differences are
                   in the details.
                 </p>
@@ -225,7 +225,7 @@ export default function RemoveryVsLaserawayPage() {
                 Removery vs LaserAway: Pricing and Packages
               </SectionHeading>
               <div className="space-y-4">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The pricing model difference is the single most impactful axis in the Removery vs
                   LaserAway decision for most users.
                 </p>
@@ -243,7 +243,7 @@ export default function RemoveryVsLaserawayPage() {
                     <ContentCard key={item.title} title={item.title} body={item.body} />
                   ))}
                 </div>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   What this means for users:
                 </p>
                 <GuideBulletList
@@ -254,7 +254,7 @@ export default function RemoveryVsLaserawayPage() {
                     "Removery vs LaserAway cost comparison requires consultations at both. Neither publishes pricing online.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   For national pricing context, see the{" "}
                   <Link href="/cost" className="text-(--accent) hover:underline">cost guide</Link>.
                 </p>
@@ -267,7 +267,7 @@ export default function RemoveryVsLaserawayPage() {
                 Removery vs LaserAway: Laser Technology and Results
               </SectionHeading>
               <div className="space-y-4">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Both brands use picosecond lasers. The platforms differ in wavelength configuration
                   and heritage.
                 </p>
@@ -285,7 +285,7 @@ export default function RemoveryVsLaserawayPage() {
                     <ContentCard key={item.title} title={item.title} body={item.body} />
                   ))}
                 </div>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Wavelength comparison:
                 </p>
                 <GuideBulletList
@@ -296,7 +296,7 @@ export default function RemoveryVsLaserawayPage() {
                     "Dark skin. The 1064nm wavelength has the lowest melanin absorption and is safest for darker Fitzpatrick skin types. PicoWay includes 1064nm as standard. PicoSure Pro offers it as an optional handpiece. Availability may vary by LaserAway location.",
                   ]}
                 />
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Both platforms have peer-reviewed evidence supporting strong clearance rates. The
                   technology difference between PicoWay and PicoSure is smaller than the difference
                   between either picosecond platform and a Q-switched laser. For the full technology
@@ -315,7 +315,7 @@ export default function RemoveryVsLaserawayPage() {
                 Removery vs LaserAway: Locations and Convenience
               </SectionHeading>
               <div className="space-y-4">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Both brands operate across major US metros.
                 </p>
                 <div className="space-y-3">
@@ -332,7 +332,7 @@ export default function RemoveryVsLaserawayPage() {
                     <ContentCard key={item.title} title={item.title} body={item.body} />
                   ))}
                 </div>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   LaserAway has more total locations. Removery has fewer but each is exclusively
                   focused on tattoo removal. Check both for availability in your metro.
                 </p>
@@ -345,7 +345,7 @@ export default function RemoveryVsLaserawayPage() {
                 Removery vs LaserAway: Reviews and Reputation
               </SectionHeading>
               <div className="space-y-4">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Both brands carry strong aggregate Google ratings across their national footprint.
                 </p>
                 <div className="space-y-3">
@@ -376,7 +376,7 @@ export default function RemoveryVsLaserawayPage() {
                     brandBPendingCities={["Austin", "Chicago", "Houston", "Tampa"]}
                   />
                 </Suspense>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Both brands have coverage gaps in the current dataset.
                 </p>
               </div>
@@ -451,7 +451,7 @@ export default function RemoveryVsLaserawayPage() {
                 Our Verdict: Removery or LaserAway?
               </SectionHeading>
               <div className="space-y-4">
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   Neither brand is universally better.
                 </p>
                 <div className="space-y-4">
@@ -489,7 +489,7 @@ export default function RemoveryVsLaserawayPage() {
                     />
                   </ContentCard>
                 </div>
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
                   The decision often narrows on geography. Use the city comparison pages to see which
                   brands operate in your metro. See{" "}
                   <Link href="/reviews/removery" className="text-(--accent) hover:underline">

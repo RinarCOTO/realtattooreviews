@@ -227,7 +227,7 @@ export default async function HoustonPage() {
 
             {/* Intro */}
             <div className="py-12">
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0">
                   Tattoo removal Houston is a deeper market than most people realize. National
                   chains like Removery and LaserAway run multiple locations across the metro.
                   Owner-operated specialists like InkFree, MD focus on tattoo removal as a
@@ -235,14 +235,14 @@ export default async function HoustonPage() {
                   removal alongside other skin work. inkOUT, the non-laser TEPR option, operates
                   a Houston location near the Heights convenient to River Oaks and the Galleria.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0 mt-4">
                   The metro is geographically large. A central Houston user has different
                   practical options than a Sugar Land, The Woodlands, Katy, Cypress, Spring, or
                   Friendswood user. This page covers what laser technology each provider uses,
                   where they are located, and what kinds of cases each handles best. The goal is
                   to help you narrow down a shortlist before booking a consultation.
                 </p>
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0 mt-4">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
                   <Link href="/comparisons/best-tattoo-removal-method" className="text-(--accent) hover:underline">
                     best tattoo removal method comparison
@@ -263,7 +263,7 @@ export default async function HoustonPage() {
             {/* Dynamic ranking */}
             <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <GuideSection heading="Best Tattoo Removal Clinics in Houston">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The ranked list below is generated from our review-sample analysis. Sentiment
                 scores, sample sizes, and use-case wins reflect the most recent reviews captured
                 in our internal review dataset. Lifetime Google review counts are higher than
@@ -279,7 +279,7 @@ export default async function HoustonPage() {
 
             {/* Static editorial profiles */}
             <GuideSection heading="Houston Provider Profiles">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds
                 of cases it handles. Current performance metrics and rankings appear in the
                 section above and update as our review evidence refreshes.
@@ -313,7 +313,7 @@ export default async function HoustonPage() {
 
             {/* Dynamic comparison table */}
             <GuideSection heading="Compare Houston Tattoo Removal Providers">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The table below summarizes the best tattoo removal Houston options at a glance.
                 Use it for orientation, then read the profiles above for fit-based detail.
                 Sample size shows the number of recent reviews analyzed for sentiment scoring.
@@ -328,7 +328,7 @@ export default async function HoustonPage() {
 
             {/* Houston-specific: Outcomes, Pain, Scarring */}
             <GuideSection heading="Outcomes, Pain, and Scarring in Houston">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The Houston comparison stands out for how varied the provider mix is across
                 three dimensions that matter most to users: outcome consistency, pain experience,
                 and scarring risk.
@@ -364,7 +364,7 @@ export default async function HoustonPage() {
 
             {/* Technology section */}
             <GuideSection heading="Laser Tattoo Removal Options in Houston">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Laser tattoo removal Houston providers run several different systems. The system
                 matters because pulse width, available wavelengths, and provider experience
                 together determine which ink colors and skin types respond best.
@@ -399,7 +399,7 @@ export default async function HoustonPage() {
 
             {/* Pricing section */}
             <GuideSection heading="How Much Does Tattoo Removal Cost in Houston?">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Tattoo removal prices Houston providers charge generally run $100 to $500 per
                 session. Most standard cases land in the $200 to $400 range. The big variables
                 are tattoo size, ink density, and the provider&rsquo;s pricing model.
@@ -421,7 +421,7 @@ export default async function HoustonPage() {
                 ))}
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 Most tattoos need three to twelve sessions for complete removal, putting total
                 tattoo removal cost Houston TX users can expect for a standard tattoo typically
                 between $1,000 and $5,000. Package pricing (Removery&rsquo;s Complete Removal
@@ -439,7 +439,7 @@ export default async function HoustonPage() {
                 </p>
               </div>
 
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For a national pricing breakdown by method and size, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   cost guide
@@ -450,7 +450,7 @@ export default async function HoustonPage() {
 
             {/* Ranking methodology */}
             <GuideSection heading="How We Ranked Houston Tattoo Removal Clinics">
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 The ranked list above is generated from a structured analysis of the most recent
                 public reviews per provider. Houston is one of the deepest markets we track, with
                 eleven providers spanning owner-operated specialists, national chains running
@@ -467,7 +467,7 @@ export default async function HoustonPage() {
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />
-              <p className="font-sans text-[15px] leading-relaxed text-heading">
+              <p className="font-sans text-[16px] leading-relaxed text-heading">
                 For the full review and ranking framework used across the site, see the{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page

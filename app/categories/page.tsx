@@ -155,10 +155,10 @@ export default function CategoriesPage() {
             </p>
           </div>
           <div className="max-w-2xl space-y-3">
-            <p className="text-[15px] leading-relaxed text-body">
+            <p className="text-[16px] leading-relaxed text-body">
               The method, provider, and protocol that work best depend on what you are removing, what your skin looks like, and what you are trying to accomplish. The category pages below organize tattoo removal by use case so you can start with your situation and find the providers and methods that fit.
             </p>
-            <p className="text-[15px] leading-relaxed text-body">
+            <p className="text-[16px] leading-relaxed text-body">
               Each category page covers which methods work best for that case type, which providers have documented positive outcomes, what the risks are, and what to ask at consultation.
             </p>
           </div>

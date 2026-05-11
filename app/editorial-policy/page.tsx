@@ -69,7 +69,7 @@ export default function EditorialPolicyPage() {
       >
         {/* Intro */}
         <div className="py-12">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted) m-0">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted) m-0">
             RealTattooReviews does not accept advertising, affiliate deals, or sponsored content.
             Every provider on the site is subject to the same scoring framework, the same evidence
             rules, and the same correction process.
@@ -78,13 +78,13 @@ export default function EditorialPolicyPage() {
 
         {/* Independence and Funding */}
         <GuideSection heading="Independence and Funding">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             The site does not accept advertising. The site does not use affiliate links. The site
             does not publish sponsored content. Provider rankings, review classifications, and
             editorial coverage are based on review-sample evidence and the scoring framework, not
             on commercial relationships.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             No provider can pay to be listed, ranked, or featured. No provider can suppress or
             pre-approve their coverage. Negative findings are published when the data supports them.
           </p>
@@ -92,12 +92,12 @@ export default function EditorialPolicyPage() {
 
         {/* Editorial Independence */}
         <GuideSection heading="Editorial Independence">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Coverage decisions are made by the editorial team based on user need, data availability,
             and topical relevance. No provider can pay to be listed, ranked, or featured. No provider
             can suppress, remove, or pre-approve their coverage.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             The same scoring framework, evidence rules, and correction process apply to every
             provider on the site.
           </p>
@@ -105,17 +105,17 @@ export default function EditorialPolicyPage() {
 
         {/* How Providers Are Reviewed */}
         <GuideSection heading="How Providers Are Reviewed">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Provider scores are generated from public Google review data using a structured scoring
             framework. The framework classifies reviews for sentiment, use case, and scarring
             signals. Scores are calculated at the location level. National chains receive separate
             scores for each location.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Every provider profile includes a "best for" and a "less ideal for" section. No provider
             is presented as the right choice for every user.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             The full framework is documented on the{" "}
             <Link href="/methodology" className="text-(--accent) hover:underline">
               methodology page
@@ -126,12 +126,12 @@ export default function EditorialPolicyPage() {
 
         {/* Negative Findings */}
         <GuideSection heading="Negative Findings">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             The site publishes negative findings. If a provider's review data contains negative
             outcomes, those negatives appear in the provider's data on city pages, comparison
             pages, and provider review pages. This applies to every provider on the site.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Factual errors are reviewed and corrected when identified. Providers cannot request
             removal of accurate negative data.
           </p>
@@ -139,12 +139,12 @@ export default function EditorialPolicyPage() {
 
         {/* Source Standards */}
         <GuideSection heading="Source Standards">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Clinical claims are sourced from peer-reviewed literature (referenced by PMC or PubMed
             ID), manufacturer documentation, and professional-practice consensus. Fact-checking is
             performed against published sources before publication.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             The site does not employ a named medical reviewer. Content is educational, not medical
             advice. Consult a qualified provider before making treatment decisions.
           </p>
@@ -152,14 +152,14 @@ export default function EditorialPolicyPage() {
 
         {/* Corrections */}
         <GuideSection heading="Corrections">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Errors are corrected when identified. The process is the same for all submitters.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Corrections are reviewed within 5 business days of identification. Each correction
             includes the page URL, the specific issue, and a verifiable source.
           </p>
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
             Provider disagreement with the scoring framework is not grounds for a correction.
             Requests to remove accurate but unfavorable information are declined.
           </p>

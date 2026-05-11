@@ -207,7 +207,7 @@ export default function ProviderDirectory({
       {/* Coverage pending */}
       {pendingProviders.length > 0 && (
         <Card className="mt-4 p-6">
-          <h3 className="mb-1 text-[15px] font-semibold text-heading">Coverage pending</h3>
+          <h3 className="mb-1 text-[16px] font-semibold text-heading">Coverage pending</h3>
           <p className="mb-4 text-[13px] leading-relaxed text-heading">
             Providers tracked in our coverage plan that do not yet have a review sample in our dataset.
           </p>

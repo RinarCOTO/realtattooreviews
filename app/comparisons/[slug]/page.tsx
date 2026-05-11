@@ -190,7 +190,7 @@ export default async function ComparisonPage({ params }: Props) {
               <span className="text-heading">{comparison.title}</span>
             </p>
             <h1 className="text-[36px] font-bold text-heading">{comparison.title}</h1>
-            <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-heading">
+            <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-heading">
               {comparison.description}
             </p>
           </Container>
@@ -318,7 +318,7 @@ export default async function ComparisonPage({ params }: Props) {
         {activeIntro.map((paragraph, idx) => (
           <p
             key={idx}
-            className={`font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0 ${idx > 0 ? "mt-4" : ""}`}
+            className={`font-sans text-[16px] leading-relaxed text-(--ink) max-w-3xl m-0 ${idx > 0 ? "mt-4" : ""}`}
           >
             {paragraph}
           </p>
@@ -337,7 +337,7 @@ export default async function ComparisonPage({ params }: Props) {
                 key={card.title}
                 className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 rounded-xl"
               >
-                <p className="text-[15px] font-semibold text-(--ink)">{card.title}</p>
+                <p className="text-[16px] font-semibold text-(--ink)">{card.title}</p>
                 <p className="mt-2 text-[13px] leading-relaxed text-heading">{card.body}</p>
                 <ul className="mt-5 flex flex-col gap-2">
                   {card.bullets.map((bullet) => (
@@ -360,7 +360,7 @@ export default async function ComparisonPage({ params }: Props) {
             ? `${activeBrandA} vs ${activeBrandB} at a Glance`
             : `${comparison.title} at a Glance`}
         </SectionHeading>
-        <p className="font-sans text-[15px] leading-relaxed text-heading max-w-3xl mb-8">
+        <p className="font-sans text-[16px] leading-relaxed text-heading max-w-3xl mb-8">
           The most useful one-screen view of this comparison is the structural difference between
           the two providers. The table below summarizes the categorical differences. Quantitative
           review evidence appears further down in the cross-city evidence section.
@@ -391,7 +391,7 @@ export default async function ComparisonPage({ params }: Props) {
             rows={activeTableRows}
           />
         )}
-        <p className="font-sans text-[15px] leading-relaxed text-heading max-w-3xl mt-6">
+        <p className="font-sans text-[16px] leading-relaxed text-heading max-w-3xl mt-6">
           The structural comparison sets the frame. The use-case sections below translate these
           differences into who each provider serves best.
         </p>
@@ -452,7 +452,7 @@ export default async function ComparisonPage({ params }: Props) {
           <div className="grid gap-5 md:grid-cols-2">
             {activeProsCons.map((block) => (
               <article key={block.label} className="bg-white border border-(--line) shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6 rounded-xl">
-                <p className="text-[15px] font-semibold text-(--ink)">{block.label}</p>
+                <p className="text-[16px] font-semibold text-(--ink)">{block.label}</p>
 
                 <div className="mt-5">
                   <p className="font-mono text-[11px] font-medium tracking-widest uppercase text-(--accent)">
@@ -521,7 +521,7 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Related links */}
       <PageSection id="next-steps" bg="none" noBorder>
         <SectionHeading>Where to go next</SectionHeading>
-        <p className="font-sans text-[15px] leading-relaxed text-heading max-w-3xl mb-2">
+        <p className="font-sans text-[16px] leading-relaxed text-heading max-w-3xl mb-2">
           Comparison intent stays here. Once you know which type of clinic or method you want to
           evaluate, move into the page that owns that question.
         </p>
@@ -538,7 +538,7 @@ export default async function ComparisonPage({ params }: Props) {
       {sanityComparison.body && sanityComparison.body.length > 0 && (
         <section className="py-22">
           <Container>
-            <div className="prose prose-neutral text-[15px] leading-relaxed text-heading">
+            <div className="prose prose-neutral text-[16px] leading-relaxed text-heading">
               <PortableText value={sanityComparison.body} />
             </div>
           </Container>

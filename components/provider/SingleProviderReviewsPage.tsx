@@ -148,12 +148,12 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
           <Container>
             <div className="max-w-3xl space-y-4">
               {differentiator && (
-                <p className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
+                <p className="font-sans text-[16px] leading-relaxed text-(--ink) m-0">
                   {differentiator}
                 </p>
               )}
               {useCaseFocus && (
-                <p className="font-sans text-[15px] leading-relaxed text-heading m-0">
+                <p className="font-sans text-[16px] leading-relaxed text-heading m-0">
                   {useCaseFocus}
                 </p>
               )}

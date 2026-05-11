@@ -14,7 +14,7 @@ export default function InfoCard({ label, body, link, linkHref, beforeBookingNot
   return (
     <DevLabel name="InfoCard">
     <div className="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
-      <p className="mb-3 text-[15px] font-bold text-(--ink)">{label}</p>
+      <p className="mb-3 text-[16px] font-bold text-(--ink)">{label}</p>
       <p className="text-[14px] leading-relaxed text-heading">{body}</p>
 
       {beforeBookingNote && (
