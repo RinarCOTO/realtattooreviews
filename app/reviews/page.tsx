@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import MonoLabel from "@/components/reviews/MonoLabel";
 import FAQSection from "@/components/sections/FAQSection";
 import PageSection from "@/components/reviews/PageSection";
@@ -222,9 +223,9 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             What Public Reviewers Are Reporting
           </h2>
-          <p className="font-sans text-[17px] leading-relaxed text-heading max-w-prose m-0">
+          <ReadableText as="p" className="font-sans text-[17px] leading-relaxed text-heading m-0">
             Positive and negative reviews side by side. One high-rated clinic and one complaint-flagged clinic appearing in the same section is intentional.
-          </p>
+          </ReadableText>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
           {publicMixedReviews.map((r) => (
@@ -240,9 +241,9 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             Compare Tattoo Removal Providers
           </h2>
-          <p className="font-sans text-[17px] leading-relaxed text-heading max-w-prose m-0">
+          <ReadableText as="p" className="font-sans text-[17px] leading-relaxed text-heading m-0">
             Every provider in our index. Sort by rating, review count, or city. Click a provider name to open the full review page.
-          </p>
+          </ReadableText>
         </div>
         <ProvidersTable providers={allProviders} />
       </PageSection>
@@ -254,9 +255,9 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             Browse by City
           </h2>
-          <p className="font-sans text-[17px] leading-relaxed text-heading max-w-prose m-0">
+          <ReadableText as="p" className="font-sans text-[17px] leading-relaxed text-heading m-0">
             National brand ratings are a starting point. Local execution still matters. Each city page shows which providers operate there and how their reviews compare locally.
-          </p>
+          </ReadableText>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] border border-(--line)">
           {cities.map((city, i) => (
@@ -315,7 +316,7 @@ export default async function ReviewsPage() {
           <p className="font-mono text-[11px] tracking-widest uppercase text-heading mb-4">
             Disclosure
           </p>
-          <p className="font-sans text-[12px] leading-relaxed text-heading max-w-4xl">
+          <ReadableText as="p" className="font-sans text-[12px] leading-relaxed text-heading">
             realtattooreviews.com is operated by {process.env.LEGAL_ENTITY_NAME ?? "[operator]"}.
             Reviews are sourced from public Google Business Profile listings and reflect the opinions of individual reviewers, not RTR editorial opinion.
             RTR does not verify individual review claims and is not responsible for the accuracy of third-party reviews.
@@ -328,7 +329,7 @@ export default async function ReviewsPage() {
               {process.env.TAKEDOWN_EMAIL ?? "legal@realtattooreviews.com"}
             </a>.
             {stats.lastUpdated && ` Reviews last pulled: ${stats.lastUpdated}.`}
-          </p>
+          </ReadableText>
         </Container>
       </section>
 

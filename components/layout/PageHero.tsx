@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import MonoLabel from "@/components/reviews/MonoLabel";
+import { HEADING_LINE } from "@/lib/layout/widths";
 
 type Props = {
   /**
@@ -44,13 +46,13 @@ export default function PageHero({ label, title, subtitle, children, heroClassNa
             {label}
           </MonoLabel>
 
-          <h1 className="font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) max-w-[22ch] m-0">
+          <h1 className={`font-sans font-bold text-[clamp(36px,6vw,64px)] leading-none tracking-[-0.03em] text-(--ink) m-0 ${HEADING_LINE}`}>
             {title}
           </h1>
 
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-4xl">
+          <ReadableText as="p" className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink)">
             {subtitle}
-          </p>
+          </ReadableText>
 
           {children && <div className="mt-8">{children}</div>}
         </Container>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
@@ -154,14 +155,14 @@ export default function CategoriesPage() {
               Not every removal case is the same. Start with your situation.
             </p>
           </div>
-          <div className="max-w-2xl space-y-3">
+          <ReadableText className="space-y-3">
             <p className="text-[17px] leading-relaxed text-body">
               The method, provider, and protocol that work best depend on what you are removing, what your skin looks like, and what you are trying to accomplish. The category pages below organize tattoo removal by use case so you can start with your situation and find the providers and methods that fit.
             </p>
             <p className="text-[17px] leading-relaxed text-body">
               Each category page covers which methods work best for that case type, which providers have documented positive outcomes, what the risks are, and what to ask at consultation.
             </p>
-          </div>
+          </ReadableText>
         </Container>
       </section>
 
@@ -173,9 +174,9 @@ export default function CategoriesPage() {
               <div>
                 <h2 className="text-[28px] font-bold text-heading">{group.heading}</h2>
                 {group.intro && (
-                  <p className="mt-1 text-sm font-medium text-heading max-w-2xl">
+                  <ReadableText as="p" className="mt-1 text-sm font-medium text-heading">
                     {group.intro}
-                  </p>
+                  </ReadableText>
                 )}
               </div>
             </div>
@@ -268,13 +269,13 @@ export default function CategoriesPage() {
       {/* Editorial note */}
       <section className="py-8">
         <Container>
-          <p className="max-w-2xl text-[12px] leading-relaxed text-heading">
+          <ReadableText as="p" className="text-[12px] leading-relaxed text-heading">
             Category pages are based on the same review-sample evidence, clinical literature, and scoring methodology used across the site. See our{" "}
             <Link href="/methodology" className="text-accent hover:underline">methodology</Link>{" "}
             and{" "}
             <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy</Link>{" "}
             for full details.
-          </p>
+          </ReadableText>
         </Container>
       </section>
     </main>

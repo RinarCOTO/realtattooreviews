@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 import BlobBackground from "@/components/ui/BlobBackground";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
@@ -109,7 +110,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
 
         <section className="py-6 bg-white">
           <Container>
-            <div className="mx-auto max-w-4xl">
+            <ReadableText className="mx-auto">
 
               {/* Intro */}
               <div className="py-12 space-y-4">
@@ -493,7 +494,7 @@ export default function HowToChooseATattooRemovalProviderPage() {
                 </p>
               </GuideSection>
 
-            </div>
+            </ReadableText>
           </Container>
         </section>
 

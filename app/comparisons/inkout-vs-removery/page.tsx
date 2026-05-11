@@ -16,6 +16,7 @@ import SectionHeading from "@/components/guide/SectionHeading";
 import BlobBackground from "@/components/ui/BlobBackground";
 import JumpNav from "@/components/provider/JumpNav";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import RelatedSection from "@/components/cross-links/RelatedSection";
 import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
@@ -174,7 +175,7 @@ export default function InkoutVsRemoveryPage() {
 
         <section className="py-6">
           <Container>
-            <div className="mx-auto max-w-4xl">
+            <ReadableText className="mx-auto">
 
               {/* Intro */}
               <div className="py-12 space-y-4">
@@ -609,7 +610,7 @@ export default function InkoutVsRemoveryPage() {
                 />
               </div>
 
-            </div>
+            </ReadableText>
           </Container>
         </section>
 

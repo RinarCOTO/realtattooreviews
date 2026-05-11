@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import BrandComparisonEvidence from "@/components/comparison/BrandComparisonEvidence";
 import BrandTableHeader from "@/components/comparison/BrandTableHeader";
 import BlockHeading from "@/components/provider/BlockHeading";
@@ -190,9 +191,9 @@ export default async function ComparisonPage({ params }: Props) {
               <span className="text-heading">{comparison.title}</span>
             </p>
             <h1 className="text-[36px] font-bold text-heading">{comparison.title}</h1>
-            <p className="mt-3 max-w-4xl text-[17px] leading-relaxed text-heading">
+            <ReadableText as="p" className="mt-3 text-[17px] leading-relaxed text-heading">
               {comparison.description}
-            </p>
+            </ReadableText>
           </Container>
         </section>
 
@@ -316,12 +317,13 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Intro */}
       <PageSection bg="none" noBorder>
         {activeIntro.map((paragraph, idx) => (
-          <p
+          <ReadableText
+            as="p"
             key={idx}
-            className={`font-sans text-[17px] leading-relaxed text-(--ink) max-w-4xl m-0 ${idx > 0 ? "mt-4" : ""}`}
+            className={`font-sans text-[17px] leading-relaxed text-(--ink) m-0 ${idx > 0 ? "mt-4" : ""}`}
           >
             {paragraph}
-          </p>
+          </ReadableText>
         ))}
       </PageSection>
 
@@ -360,11 +362,11 @@ export default async function ComparisonPage({ params }: Props) {
             ? `${activeBrandA} vs ${activeBrandB} at a Glance`
             : `${comparison.title} at a Glance`}
         </SectionHeading>
-        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-4xl mb-8">
+        <ReadableText as="p" className="font-sans text-[17px] leading-relaxed text-heading mb-8">
           The most useful one-screen view of this comparison is the structural difference between
           the two providers. The table below summarizes the categorical differences. Quantitative
           review evidence appears further down in the cross-city evidence section.
-        </p>
+        </ReadableText>
         {activeBrandA && activeBrandB ? (
           <GuideTable
             headers={[
@@ -391,10 +393,10 @@ export default async function ComparisonPage({ params }: Props) {
             rows={activeTableRows}
           />
         )}
-        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-4xl mt-6">
+        <ReadableText as="p" className="font-sans text-[17px] leading-relaxed text-heading mt-6">
           The structural comparison sets the frame. The use-case sections below translate these
           differences into who each provider serves best.
-        </p>
+        </ReadableText>
       </PageSection>
 
       {/* What matters more */}
@@ -521,10 +523,10 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Related links */}
       <PageSection id="next-steps" bg="none" noBorder>
         <SectionHeading>Where to go next</SectionHeading>
-        <p className="font-sans text-[17px] leading-relaxed text-heading max-w-4xl mb-2">
+        <ReadableText as="p" className="font-sans text-[17px] leading-relaxed text-heading mb-2">
           Comparison intent stays here. Once you know which type of clinic or method you want to
           evaluate, move into the page that owns that question.
-        </p>
+        </ReadableText>
         <GuideRelatedLinks
           links={activeRelatedLinks.map((link) => ({
             href: link.href,

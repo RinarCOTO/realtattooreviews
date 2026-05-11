@@ -19,6 +19,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 // Layout
 import Container from "@/components/layout/Container";
 import PageSection from "@/components/reviews/PageSection";
+import ReadableText from "@/components/layout/ReadableText";
 import MonoLabel from "@/components/reviews/MonoLabel";
 
 // Content primitives
@@ -105,9 +106,9 @@ export default function TodoGuidePage() {
             TODO Guide{" "}
             <span className="text-(--accent)">Title</span>
           </h1>
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-4xl">
+          <ReadableText as="p" className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink)">
             TODO: One sentence describing what this guide covers and who it helps.
-          </p>
+          </ReadableText>
         </Container>
       </section>
 
@@ -116,19 +117,19 @@ export default function TodoGuidePage() {
         <GuideCallout label="Quick answer">
           TODO: 1–2 sentence bottom line for readers who want the answer fast.
         </GuideCallout>
-        <p className="mt-4 font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+        <ReadableText as="p" className="mt-4 font-sans text-[15px] leading-relaxed text-(--ink)">
           TODO: 1–2 paragraph intro expanding on the quick answer and framing what the
           rest of the guide covers.
-        </p>
+        </ReadableText>
       </PageSection>
 
       {/* ── Main section 1 ── */}
       <PageSection bg="bg">
         <SectionHeading>TODO: First Main Section Heading</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: Section body text.
-          </p>
+          </ReadableText>
           <GuideBulletList
             items={[
               "TODO point 1",
@@ -157,9 +158,9 @@ export default function TodoGuidePage() {
       <PageSection bg="bg">
         <SectionHeading>TODO: What to Look for / Checklist Section</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: Framing sentence.
-          </p>
+          </ReadableText>
           <div className="grid sm:grid-cols-2 gap-4">
             <ContentCard title="TODO: What to look for" titleSize="sm">
               <GuideBulletList items={["TODO item 1", "TODO item 2", "TODO item 3"]} />
@@ -175,9 +176,9 @@ export default function TodoGuidePage() {
       <PageSection bg="surface">
         <SectionHeading label="Bottom line">TODO: Summary Section Heading</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: Summarise the key takeaways in 2–3 sentences.
-          </p>
+          </ReadableText>
           <GuideCallout label="Editorial note">
             TODO: Describe data sources and methodology. See our{" "}
             <Link href="/methodology" className="text-(--accent) hover:underline">methodology</Link>{" "}

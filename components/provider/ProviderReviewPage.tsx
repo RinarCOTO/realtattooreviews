@@ -14,6 +14,7 @@ import type { Review } from "@/types/review";
 import FAQSection from "@/components/sections/FAQSection";
 import BlobBackground from "@/components/ui/BlobBackground";
 import RelatedSection from "@/components/cross-links/RelatedSection";
+import ReadableText from "@/components/layout/ReadableText";
 import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import {
   getAlternativeProviders,
@@ -209,7 +210,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             title={`What Makes ${review.providerName} Different`}
             body=""
           />
-          <div className="max-w-prose">
+          <ReadableText>
             {review.whatMakesDifferent
               ?.split("\n\n")
               .map((para, i) => (
@@ -217,7 +218,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
                   {para}
                 </p>
               ))}
-          </div>
+          </ReadableText>
         </Container>
       </section>
 
@@ -225,7 +226,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       <section id="pricing" className="py-22">
         <Container>
           <BlockHeading title={`${review.providerName} Pricing`} body="" />
-          <div className="max-w-prose">
+          <ReadableText>
             {review.pricingBody
               ?.split("\n\n")
               .map((para, i) => (
@@ -233,7 +234,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
                   {para}
                 </p>
               ))}
-          </div>
+          </ReadableText>
           <p className="mt-2 text-[14px] text-heading">
             <Link href="/cost" className="text-(--accent) hover:underline">
               Compare against the national cost guide
@@ -249,7 +250,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
             title={`How ${review.providerName} Compares`}
             body=""
           />
-          <div className="max-w-prose mb-10">
+          <ReadableText className="mb-10">
             {review.comparisonBody
               ?.split("\n\n")
               .map((para, i) => (
@@ -257,7 +258,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
                   {para}
                 </p>
               ))}
-          </div>
+          </ReadableText>
           <AlternativesSection alternatives={alternatives} />
         </Container>
       </section>
@@ -327,7 +328,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
       <section id="methodology" className="py-22">
         <Container>
           <BlockHeading title={`How We Reviewed ${review.providerName}`} body="" />
-          <div className="max-w-prose border border-(--line) bg-(--surface) rounded-xl p-6">
+          <ReadableText className="border border-(--line) bg-(--surface) rounded-xl p-6">
             {review.publicReviewsAnalyzed && locations.length > 0 && (
               <p className="text-[15px] leading-relaxed text-heading mb-4">
                 This review draws on {review.publicReviewsAnalyzed} public Google reviews
@@ -388,7 +389,7 @@ export default function ProviderReviewPage({ review, locations, reviews, slug }:
                 })}
               </p>
             )}
-          </div>
+          </ReadableText>
         </Container>
       </section>
 

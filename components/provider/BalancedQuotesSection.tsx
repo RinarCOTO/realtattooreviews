@@ -1,4 +1,5 @@
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import BlockHeading from "./BlockHeading";
 import type { PublicReview } from "@/types/public-review";
 
@@ -12,11 +13,11 @@ export default function BalancedQuotesSection({ reviews }: { reviews: PublicRevi
           title="Review Evidence Summaries"
           body="RTR-authored summaries of public review signals. These are not first-party reviews and not full Google review text."
         />
-        <p className="mb-5 max-w-4xl rounded-2xl border border-border bg-surface px-5 py-4 text-[14px] leading-relaxed text-heading">
+        <ReadableText as="p" className="mb-5 rounded-2xl border border-border bg-surface px-5 py-4 text-[14px] leading-relaxed text-heading">
           Review signals are derived from publicly available Google Business Profile reviews.
           RealTattooReviews does not collect first-party reviews, does not host Google
           reviews, and is not affiliated with Google or any provider.
-        </p>
+        </ReadableText>
 
         <div className="grid gap-4 lg:grid-cols-2">
           {reviews.map((review) => (

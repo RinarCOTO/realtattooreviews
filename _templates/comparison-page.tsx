@@ -21,6 +21,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 // Layout
 import PageSection from "@/components/reviews/PageSection";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 
 // Content primitives
 import SectionHeading from "@/components/guide/SectionHeading";
@@ -126,19 +127,19 @@ export default function BrandAVsBrandBPage() {
 
       {/* ── Intro ── */}
       <PageSection bg="surface">
-        <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl m-0">
+        <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink) m-0">
           TODO: 2–3 paragraph intro. Explain what makes these two brands different and
           why the comparison matters. No winner declared here.
-        </p>
+        </ReadableText>
       </PageSection>
 
       {/* ── At a Glance table ── */}
       <PageSection bg="bg">
         <SectionHeading>TODO Brand A vs Brand B at a Glance</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--muted) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--muted)">
             TODO: One sentence framing what the table shows.
-          </p>
+          </ReadableText>
           <GuideTable
             headers={["", "TODO Brand A", "TODO Brand B"]}
             rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
@@ -153,9 +154,9 @@ export default function BrandAVsBrandBPage() {
           TODO: The Key Difference — Technology / Method / Model
         </SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: Explain the single most important structural difference between the two.
-          </p>
+          </ReadableText>
           <div className="space-y-3">
             {[
               { title: "TODO Brand A", body: "TODO: What Brand A does / how its technology works." },
@@ -192,9 +193,9 @@ export default function BrandAVsBrandBPage() {
       <PageSection bg="surface">
         <SectionHeading>Cross-City Review Evidence</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: One sentence explaining what the evidence table shows.
-          </p>
+          </ReadableText>
           <Suspense
             fallback={
               <div className="rounded-xl border border-(--line) bg-(--surface) p-8 text-center">
@@ -242,9 +243,9 @@ export default function BrandAVsBrandBPage() {
           Our Verdict: TODO Brand A or Brand B?
         </SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: One sentence framing the verdict as scenario-based, not a universal winner.
-          </p>
+          </ReadableText>
           <div className="space-y-4">
             <ContentCard title="Choose TODO Brand A when:">
               <GuideBulletList items={["TODO scenario 1", "TODO scenario 2"]} />

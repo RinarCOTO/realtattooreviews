@@ -1,4 +1,5 @@
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import BlockHeading from "./BlockHeading";
 import ProsCons from "./ProsCons";
 import VerdictSidebar from "./VerdictSidebar";
@@ -21,9 +22,9 @@ export default function OverviewSection({ providerName, intro, pros, cons, stats
           title={`Is ${providerName} Worth It?`}
           body="For some users, yes. The question is whether the reviews, treatment approach, pricing, and location consistency make it a good fit for your tattoo, budget, and goals."
         />
-        <p className="-mt-4 mb-8 font-sans text-[15px] leading-relaxed text-heading max-w-prose">
+        <ReadableText as="p" className="-mt-4 mb-8 font-sans text-[15px] leading-relaxed text-heading">
           {intro}
-        </p>
+        </ReadableText>
         {statsRows && <VerdictSidebar rows={statsRows} />}
         <ProsCons pros={pros} cons={cons} />
         <p className="mt-6 font-sans text-[14px] leading-relaxed text-heading border-t border-(--line) pt-5">

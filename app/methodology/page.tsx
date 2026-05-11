@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 import PageSection from "@/components/reviews/PageSection";
 import SectionHeading from "@/components/guide/SectionHeading";
 import GuideCallout from "@/components/guide/GuideCallout";
@@ -131,7 +132,7 @@ export default function MethodologyPage() {
 
       {/* Body */}
       <PageSection className="bg-white!">
-          <div className="mx-auto max-w-4xl space-y-12">
+          <ReadableText className="mx-auto space-y-12">
 
             {/* Intro */}
             <div className="space-y-4">
@@ -437,7 +438,7 @@ export default function MethodologyPage() {
               for full details.
             </GuideCallout>
 
-          </div>
+          </ReadableText>
       </PageSection>
 
       <FAQSection faqs={faqs} />

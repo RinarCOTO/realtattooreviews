@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 import FAQSection from "@/components/sections/FAQSection";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import ProviderDirectory, {
@@ -156,7 +157,7 @@ export default async function ProvidersPage() {
                 All comparisons <ChevronRightIcon className="size-4" />
               </Link>
             </div>
-            <div className="mb-6 max-w-2xl space-y-3 text-[15px] leading-relaxed text-heading">
+            <ReadableText className="mb-6 space-y-3 text-[15px] leading-relaxed text-heading">
               <p>
                 RealTattooReviews tracks tattoo removal providers across multiple US markets. Every provider listed here is evaluated using the same{" "}
                 <Link href="/methodology" className="text-accent hover:underline">scoring methodology</Link>{" "}
@@ -169,7 +170,7 @@ export default async function ProvidersPage() {
                 <Link href="/comparisons" className="text-accent hover:underline">comparison pages</Link>{" "}
                 give you a head-to-head breakdown.
               </p>
-            </div>
+            </ReadableText>
             <ProviderDirectory
               providers={providers}
               refreshedAt={refreshedAt}
@@ -184,11 +185,11 @@ export default async function ProvidersPage() {
               <h2 className="text-[28px] font-bold text-heading">How to Choose a Tattoo Removal Provider</h2>
               <p className="mt-1 text-sm text-heading">Five questions that change which provider is right for your case.</p>
             </div>
-            <p className="mb-8 max-w-2xl text-[15px] leading-relaxed text-heading">
+            <ReadableText as="p" className="mb-8 text-[15px] leading-relaxed text-heading">
               Choosing a tattoo removal provider is mostly about matching method and protocol to your tattoo and your skin. Brand recognition and footprint matter less than they look. The five questions below cover the decisions that actually change which provider is right for you.
-            </p>
+            </ReadableText>
 
-            <div className="flex max-w-2xl flex-col gap-8">
+            <ReadableText className="flex flex-col gap-8">
 
               <div>
                 <h3 className="mb-2 text-[17px] font-bold text-heading">Decide on method first</h3>
@@ -266,7 +267,7 @@ export default async function ProvidersPage() {
                 </div>
               </div>
 
-            </div>
+            </ReadableText>
           </Container>
         </section>
 
@@ -282,7 +283,7 @@ export default async function ProvidersPage() {
             <p className="mb-6 text-[15px] leading-relaxed text-heading">
               Provider availability varies by city. The pages below compare every tracked provider in each market, including local specialists not listed in the national table above.
             </p>
-            <ul className="flex flex-col gap-3 max-w-2xl">
+            <ul className="flex flex-col gap-3 max-w-4xl">
               {[
                 { href: "/cities/austin",  label: "Austin, TX" },
                 { href: "/cities/chicago", label: "Chicago, IL" },
@@ -321,7 +322,7 @@ export default async function ProvidersPage() {
             <p className="mb-6 text-[15px] leading-relaxed text-heading">
               Tattoo removal needs vary by case. The pages below cover providers and methods that handle specific situations.
             </p>
-            <ul className="grid gap-3 sm:grid-cols-2 max-w-2xl">
+            <ul className="grid gap-3 sm:grid-cols-2 max-w-4xl">
               {[
                 { slug: "microblading-removal",      label: "Microblading and PMU removal",  desc: "Providers and methods for cosmetic tattoo removal" },
                 { slug: "permanent-makeup-removal",  label: "Permanent makeup removal",      desc: "Eyebrow, lip, and eyeliner pigment removal" },
@@ -353,7 +354,7 @@ export default async function ProvidersPage() {
               <h2 className="text-[28px] font-bold text-heading">How We Cover Providers</h2>
               <p className="mt-1 text-sm text-heading">Our standards for inclusion, evaluation, and disclosure.</p>
             </div>
-            <div className="max-w-2xl space-y-3 text-[15px] leading-relaxed text-heading">
+            <ReadableText className="space-y-3 text-[15px] leading-relaxed text-heading">
               <p>
                 RealTattooReviews tracks tattoo removal providers across the US based on coverage in their target markets, treatment method, and public review volume. Provider data is verified against each provider&apos;s published locations, public websites, and Google Business listings as of the page&apos;s last review date.
               </p>
@@ -367,7 +368,7 @@ export default async function ProvidersPage() {
                 <Link href="/editorial-policy" className="text-accent hover:underline">editorial policy</Link>{" "}
                 for full details on review independence.
               </p>
-            </div>
+            </ReadableText>
           </Container>
         </section>
 

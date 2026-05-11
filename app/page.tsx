@@ -3,6 +3,7 @@ export const revalidate = 3600;
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import { organizationSchema } from "@/lib/seo/schema";
 import ProviderCard from "@/components/cards/ProviderCard";
 import CityCard from "@/components/cards/CityCard";
@@ -237,14 +238,14 @@ export default async function HomePage() {
             <div className="mb-8">
               <h2 className="text-[28px] font-bold text-heading">The Problem This Site Solves</h2>
             </div>
-            <div className="max-w-2xl">
+            <ReadableText>
               <p className="text-[17px] leading-relaxed text-body mb-3">
                 Most people start with a Google search or an AI assistant. Both pull from provider marketing pages or summarize raw star ratings, neither of which tells you whether a clinic is good at complete removal or just fading.
               </p>
               <p className="text-[17px] leading-relaxed text-body">
                 RealTattooReviews fills that gap. We classify public Google reviews by outcome so you can compare providers on what actually matters for your case.
               </p>
-            </div>
+            </ReadableText>
           </Container>
         </section>
 

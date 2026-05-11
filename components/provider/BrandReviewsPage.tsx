@@ -19,6 +19,7 @@ import OverviewSection from "./OverviewSection";
 import FAQSection from "@/components/sections/FAQSection";
 import BlobBackground from "@/components/ui/BlobBackground";
 import RelatedSection from "@/components/cross-links/RelatedSection";
+import ReadableText from "@/components/layout/ReadableText";
 import { getCrossLinks } from "@/lib/mock-data/cross-links";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 import {
@@ -145,7 +146,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
       {(differentiator || useCaseFocus) && (
         <section className="py-12">
           <Container>
-            <div className="max-w-4xl space-y-4">
+            <ReadableText className="space-y-4">
               {differentiator && (
                 <p className="font-sans text-[17px] leading-relaxed text-(--ink) m-0">
                   {differentiator}
@@ -156,7 +157,7 @@ export default function BrandReviewsPage({ brand, slug, locations, reviews }: Br
                   {useCaseFocus}
                 </p>
               )}
-            </div>
+            </ReadableText>
           </Container>
         </section>
       )}

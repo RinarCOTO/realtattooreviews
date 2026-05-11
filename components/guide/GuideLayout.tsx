@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 import FAQSection from "@/components/sections/FAQSection";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
@@ -87,9 +88,9 @@ export default function GuideLayout({
       {/* Body */}
       <section className="bg-white">
         <Container>
-          <div className="mx-auto max-w-4xl">
+          <ReadableText className="mx-auto">
             {children}
-          </div>
+          </ReadableText>
         </Container>
       </section>
 
@@ -100,14 +101,14 @@ export default function GuideLayout({
       {sources && (
         <section className="border-t border-(--line) py-10 bg-(--bg)">
           <Container>
-            <div className="mx-auto max-w-4xl">
+            <ReadableText className="mx-auto">
               <p className="font-mono text-[11px] tracking-widest uppercase text-heading mb-2">
                 Sources
               </p>
               <p className="font-sans text-[14px] leading-relaxed text-heading">
                 {sources}
               </p>
-            </div>
+            </ReadableText>
           </Container>
         </section>
       )}

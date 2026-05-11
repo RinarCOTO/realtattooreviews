@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 import BlobBackground from "@/components/ui/BlobBackground";
 import Tag from "@/components/ui/Tag";
 import { getBlogPost, getAllBlogSlugs } from "@/lib/page-data/blog";
@@ -183,7 +184,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <section className="py-6 bg-white">
           <Container>
-            <div className="mx-auto max-w-4xl">
+            <ReadableText className="mx-auto">
               <article className="py-12">
                 {isSanity && sanityPost.body ? (
                   <PortableText
@@ -203,7 +204,7 @@ export default async function BlogPostPage({ params }: Props) {
                   </div>
                 )}
               </article>
-            </div>
+            </ReadableText>
           </Container>
         </section>
 

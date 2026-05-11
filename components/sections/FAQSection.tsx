@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import MonoLabel from "@/components/reviews/MonoLabel";
 
 export type FAQItem = {
@@ -85,9 +86,9 @@ export default function FAQSection({
           {title}
         </h2>
         {description && (
-          <p className="text-[17px] leading-relaxed text-heading max-w-4xl m-0 mb-10">
+          <ReadableText as="p" className="text-[17px] leading-relaxed text-heading m-0 mb-10">
             {description}
-          </p>
+          </ReadableText>
         )}
         {!description && <div className="mb-10" />}
 
@@ -105,9 +106,9 @@ export default function FAQSection({
                   +
                 </span>
               </summary>
-              <div className="mt-3 max-w-4xl text-[15px] leading-relaxed text-heading">
+              <ReadableText className="mt-3 text-[15px] leading-relaxed text-heading">
                 {item.answer}
-              </div>
+              </ReadableText>
             </details>
           ))}
         </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
@@ -127,7 +128,7 @@ export default function CitiesIndexPage() {
       {/* Body */}
       <section className="bg-(--bg)">
         <Container>
-          <div className="mx-auto max-w-2xl">
+          <ReadableText className="mx-auto">
 
             {/* Intro */}
             <div className="py-12">
@@ -249,7 +250,7 @@ export default function CitiesIndexPage() {
                 for full details.
               </GuideCallout>
             </div>
-          </div>
+          </ReadableText>
         </Container>
       </section>
 

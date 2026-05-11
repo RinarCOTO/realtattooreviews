@@ -19,6 +19,7 @@
 
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import MonoLabel from "@/components/reviews/MonoLabel";
 import type { CrossLink, CrossLinkBundle } from "@/lib/mock-data/cross-links";
 
@@ -62,7 +63,7 @@ export default function RelatedSection({ bundle, id, className }: Props) {
   return (
     <section id={id} className={className ?? "py-12"}>
       <Container>
-        <div className="mx-auto max-w-4xl space-y-10">
+        <ReadableText className="mx-auto space-y-10">
           {groups.map((group) => (
             <div key={group.label}>
               <MonoLabel color="accent" size="sm" className="mb-5">
@@ -83,7 +84,7 @@ export default function RelatedSection({ bundle, id, className }: Props) {
               </ul>
             </div>
           ))}
-        </div>
+        </ReadableText>
       </Container>
     </section>
   );

@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideSection from "@/components/guide/GuideSection";
 import GuideBulletList from "@/components/guide/GuideBulletList";
@@ -148,7 +149,7 @@ export default function CostPage() {
 
       <section className="py-6">
         <Container>
-          <div className="mx-auto max-w-4xl">
+          <ReadableText className="mx-auto">
 
             {/* Intro */}
             <div className="py-12 space-y-4">
@@ -563,7 +564,7 @@ export default function CostPage() {
               ]}
             />
 
-          </div>
+          </ReadableText>
         </Container>
       </section>
 

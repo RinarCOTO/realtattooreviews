@@ -35,6 +35,7 @@ import {
 import { toPublicReviews } from "@/lib/review-evidence";
 import { cities } from "@/lib/mock-data/cities";
 import RelatedSection from "@/components/cross-links/RelatedSection";
+import ReadableText from "@/components/layout/ReadableText";
 import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 interface SingleProviderReviewsPageProps {
@@ -146,7 +147,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
       {(differentiator || useCaseFocus) && (
         <section className="py-12">
           <Container>
-            <div className="max-w-4xl space-y-4">
+            <ReadableText className="space-y-4">
               {differentiator && (
                 <p className="font-sans text-[17px] leading-relaxed text-(--ink) m-0">
                   {differentiator}
@@ -157,7 +158,7 @@ export default function SingleProviderReviewsPage({ provider, reviews, canonical
                   {useCaseFocus}
                 </p>
               )}
-            </div>
+            </ReadableText>
           </Container>
         </section>
       )}

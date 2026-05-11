@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import Container from "@/components/layout/Container";
+import ReadableText from "@/components/layout/ReadableText";
 import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 import GuideBulletList from "@/components/guide/GuideBulletList";
 import GuideTable from "@/components/guide/GuideTable";
@@ -186,7 +187,7 @@ export default function InkoutVsLaserawayPage() {
 
       <section className="py-6">
         <Container>
-          <div className="mx-auto max-w-4xl">
+          <ReadableText className="mx-auto">
 
             {/* Intro */}
             <div className="py-12 space-y-4">
@@ -600,7 +601,7 @@ export default function InkoutVsLaserawayPage() {
                 { href: "/reviews/laseraway", title: "LaserAway Reviews", desc: "Full review sample and provider profiles for LaserAway across all markets." },
               ]}
             />
-          </div>
+          </ReadableText>
         </Container>
       </section>
 

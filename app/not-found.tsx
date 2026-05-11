@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
+import ReadableText from "@/components/layout/ReadableText";
 import PageSection from "@/components/reviews/PageSection";
 import GuideRelatedLinks from "@/components/guide/GuideRelatedLinks";
 import SectionHeading from "@/components/guide/SectionHeading";
@@ -30,7 +31,7 @@ export default function NotFound() {
       />
 
       <PageSection bg="bg">
-        <div className="mx-auto max-w-4xl">
+        <ReadableText className="mx-auto">
           <SectionHeading>Where to go from here</SectionHeading>
           <p className="font-sans text-[17px] leading-relaxed text-heading mb-2">
             Pick the path that fits what you were trying to do. Most users land back on a
@@ -80,12 +81,12 @@ export default function NotFound() {
               },
             ]}
           />
-        </div>
+        </ReadableText>
       </PageSection>
 
       <PageSection bg="surface">
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
+          <ReadableText className="mx-auto text-center">
             <p className="font-sans text-[15px] leading-relaxed text-heading">
               If you typed or pasted the URL, double-check the spelling. If you arrived from a
               link on this site, the page may have been renamed or consolidated. Use the{" "}
@@ -94,7 +95,7 @@ export default function NotFound() {
               </Link>{" "}
               as a fresh starting point.
             </p>
-          </div>
+          </ReadableText>
         </Container>
       </PageSection>
     </main>

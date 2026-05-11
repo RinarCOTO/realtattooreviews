@@ -21,6 +21,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/seo/schema";
 // Layout
 import Container from "@/components/layout/Container";
 import PageSection from "@/components/reviews/PageSection";
+import ReadableText from "@/components/layout/ReadableText";
 import MonoLabel from "@/components/reviews/MonoLabel";
 
 // Content primitives
@@ -107,9 +108,9 @@ export default function TodoCategoryPage() {
             Tattoo Removal for{" "}
             <span className="text-(--accent)">TODO Use Case</span>
           </h1>
-          <p className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink) max-w-4xl">
+          <ReadableText as="p" className="mt-6 font-sans text-[18px] leading-relaxed text-(--ink)">
             TODO: One sentence describing who this page is for and what decision it helps them make.
-          </p>
+          </ReadableText>
         </Container>
       </section>
 
@@ -118,19 +119,19 @@ export default function TodoCategoryPage() {
         <GuideCallout label="Quick answer">
           TODO: 1–2 sentence bottom line — which method or provider type fits this use case and why.
         </GuideCallout>
-        <p className="mt-4 font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+        <ReadableText as="p" className="mt-4 font-sans text-[15px] leading-relaxed text-(--ink)">
           TODO: 1–2 paragraph intro. Explain why this use case is distinct, what makes it harder
           or different from standard tattoo removal, and what the reader should focus on.
-        </p>
+        </ReadableText>
       </PageSection>
 
       {/* ── Why this use case is different ── */}
       <PageSection bg="bg">
         <SectionHeading>Why TODO Use Case Requires a Different Approach</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: Explain the unique challenge. What goes wrong if you use a standard approach?
-          </p>
+          </ReadableText>
           <GuideBulletList
             items={[
               "TODO: Key risk or consideration 1",
@@ -168,9 +169,9 @@ export default function TodoCategoryPage() {
       <PageSection bg="bg">
         <SectionHeading>What to Look for in a Provider</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: Framing sentence — not all providers handle this use case well.
-          </p>
+          </ReadableText>
           <div className="grid sm:grid-cols-2 gap-4">
             <ContentCard title="Green flags" titleSize="sm">
               <GuideBulletList
@@ -198,10 +199,10 @@ export default function TodoCategoryPage() {
       <PageSection bg="surface">
         <SectionHeading>Providers That Handle TODO Use Case Well</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: Brief framing — this is not an exhaustive list, just the brands with documented
             fit for this use case.
-          </p>
+          </ReadableText>
           <div className="space-y-3">
             {[
               {
@@ -223,9 +224,9 @@ export default function TodoCategoryPage() {
       <PageSection bg="bg">
         <SectionHeading>Questions to Ask at Your Consultation</SectionHeading>
         <div className="space-y-4">
-          <p className="font-sans text-[15px] leading-relaxed text-(--ink) max-w-3xl">
+          <ReadableText as="p" className="font-sans text-[15px] leading-relaxed text-(--ink)">
             TODO: Frame why these questions matter for this specific use case.
-          </p>
+          </ReadableText>
           <GuideBulletList
             items={[
               "TODO: Specific question to ask the provider",
