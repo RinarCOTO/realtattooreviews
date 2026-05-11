@@ -178,7 +178,7 @@ export default function InkoutVsRemoveryPage() {
 
               {/* Intro */}
               <div className="py-12 space-y-4">
-                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                   inkOUT and Removery are two of the most-asked-about tattoo removal brands today.
                   They are also two of the most different. Removery is a national tattoo-removal-only
                   chain. It uses the Candela PicoWay laser. inkOUT is a non-laser brand. It uses TEPR (Trans-Epidermal Pigment Release). TEPR lifts ink
@@ -186,7 +186,7 @@ export default function InkoutVsRemoveryPage() {
                   which brand is bigger. It is about which method fits your tattoo, your skin type,
                   and your removal goal.
                 </p>
-                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                   This page is a side-by-side comparison built to support that decision. inkOUT vs
                   Removery is the right question if you are choosing between non-laser and laser
                   approaches in markets where both are available. The page does not pretend either
@@ -199,7 +199,7 @@ export default function InkoutVsRemoveryPage() {
               <div id="glance" className="py-12">
                 <SectionHeading>inkOUT vs Removery at a Glance</SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-heading">
+                  <p className="font-sans text-[17px] leading-relaxed text-heading">
                     The most useful one-screen view of inkOUT vs Removery is the structural difference
                     between the two brands. The table below summarizes the categorical differences.
                     Quantitative review evidence appears further down in the cross-city evidence section.
@@ -213,7 +213,7 @@ export default function InkoutVsRemoveryPage() {
                     rows={GLANCE_ROWS.map(([feature, a, b]) => [feature, a, b])}
                     winners={[null, null, null, 1, 1, 2, 2, null, null]}
                   />
-                  <p className="font-sans text-[16px] leading-relaxed text-heading">
+                  <p className="font-sans text-[17px] leading-relaxed text-heading">
                     The structural comparison sets the frame. The use-case comparison further down
                     translates these structural differences into who each brand actually serves best.
                   </p>
@@ -224,7 +224,7 @@ export default function InkoutVsRemoveryPage() {
               <div id="tech" className="py-12">
                 <SectionHeading label="Key Difference">The Key Difference: TEPR vs PicoWay</SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The TEPR vs PicoWay distinction is the real comparison underneath inkOUT vs
                     Removery. Almost every other difference between the two brands flows from this one
                     technical choice.
@@ -249,7 +249,7 @@ export default function InkoutVsRemoveryPage() {
                     ))}
                   </div>
 
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The implications stack up across the rest of the comparison:
                   </p>
                   <GuideBulletList
@@ -267,7 +267,7 @@ export default function InkoutVsRemoveryPage() {
               <div id="pricing" className="py-12">
                 <SectionHeading>inkOUT vs Removery: Pricing and Cost Comparison</SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     inkOUT vs Removery cost decisions hinge on the pricing model as much as on the
                     per-session price.
                   </p>
@@ -291,7 +291,7 @@ export default function InkoutVsRemoveryPage() {
                     ))}
                   </div>
 
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Useful framing for cost comparison:
                   </p>
                   <GuideBulletList
@@ -302,7 +302,7 @@ export default function InkoutVsRemoveryPage() {
                       "Consultation cost. Both brands offer free consultations, so two consultations cost nothing and produce two comparable quotes.",
                     ]}
                   />
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     For national pricing context across all methods and tattoo sizes, see the{" "}
                     <Link href="/cost" className="text-(--accent) hover:underline">
                       cost guide
@@ -338,7 +338,7 @@ export default function InkoutVsRemoveryPage() {
                       />
                     ))}
                   </div>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     For deeper context on scarring, see{" "}
                     <Link href="/guides/tattoo-removal-scarring" className="text-(--accent) hover:underline">
                       tattoo removal scarring
@@ -356,7 +356,7 @@ export default function InkoutVsRemoveryPage() {
               <div id="use-cases" className="py-12">
                 <SectionHeading>inkOUT vs Removery: Best for Dark Skin, Color Ink, and Complete Removal</SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Three high-stakes use cases drive most inkOUT vs Removery decisions. Each has a
                     clear answer based on the structural difference between TEPR and PicoWay.
                   </p>
@@ -394,7 +394,7 @@ export default function InkoutVsRemoveryPage() {
               <div id="evidence" className="py-12">
                 <SectionHeading>Cross-City Review Evidence</SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The evidence below shows how inkOUT and Removery compare across cities where we
                     have direct review-sample data. Sample sizes reflect the most recent reviews
                     captured per provider location in our internal review dataset. Lifetime Google
@@ -416,7 +416,7 @@ export default function InkoutVsRemoveryPage() {
                       brandBPendingCities={["Tampa", "Houston"]}
                     />
                   </Suspense>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The table updates as our review evidence refreshes. Use the cross-city evidence as a
                     reference, not a verdict, since both brands operate in markets not yet fully
                     captured in our review evidence.
@@ -492,7 +492,7 @@ export default function InkoutVsRemoveryPage() {
               <div id="verdict" className="py-12">
                 <SectionHeading label="Verdict">Our Verdict: inkOUT or Removery?</SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     There is no universal winner between inkOUT and Removery. The honest verdict is
                     by scenario.
                   </p>
@@ -533,7 +533,7 @@ export default function InkoutVsRemoveryPage() {
                     </ContentCard>
                   </div>
 
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The decision is not abstract. Most users have only one or two providers within
                     reasonable driving distance. Geographic constraints often narrow the choice before
                     method preference does. Use the{" "}

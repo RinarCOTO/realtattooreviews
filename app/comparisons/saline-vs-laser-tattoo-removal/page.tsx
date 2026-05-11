@@ -189,20 +189,20 @@ export default function SalineVsLaserPage() {
 
               {/* Intro */}
               <div className="py-12 space-y-4">
-                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                   Saline vs laser tattoo removal is one of the most important method comparisons
                   in cosmetic tattoo removal. Both methods remove pigment from the skin through
                   completely different mechanisms. The right choice depends on what kind of tattoo
                   you have, what your skin looks like, and what you are trying to accomplish.
                 </p>
-                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                   Laser tattoo removal uses light energy to shatter ink particles inside the skin.
                   The body's lymphatic system then clears the fragments over weeks. Saline tattoo
                   removal uses a salt-based solution tattooed into the skin to draw pigment upward
                   through osmosis. The pigment lifts into a scab that sheds naturally. Laser pushes
                   pigment in. Saline pulls pigment out.
                 </p>
-                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                   This page is a head-to-head comparison covering saline vs laser across the
                   dimensions that matter most: PMU and microblading fit, color performance, dark
                   skin safety, scarring risk, pain, downtime, sessions, and cost.
@@ -215,14 +215,14 @@ export default function SalineVsLaserPage() {
                   How Saline Tattoo Removal Works
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Saline tattoo removal is a non-laser method. A trained technician uses a tattoo
                     machine or manual tool to implant a high-concentration saline solution into the
                     tattooed skin. The saline creates an osmotic pressure gradient. Water from the
                     dermal cells is drawn upward toward the more concentrated solution. Pigment
                     particles travel with the water.
                   </p>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The treated area forms a controlled scab over the following days. The scab contains
                     lifted pigment. When the scab falls off naturally (typically within 7 to 14 days),
                     some pigment comes with it. Each session lifts a portion of the total pigment.
@@ -239,7 +239,7 @@ export default function SalineVsLaserPage() {
                       "Commonly used products include Li-FT, Botched Ink, and other professional-grade saline solutions",
                     ]}
                   />
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Saline removal is most commonly performed by PMU artists who offer both application
                     and removal services. It is less commonly offered by dermatologists or laser clinics.
                   </p>
@@ -252,14 +252,14 @@ export default function SalineVsLaserPage() {
                   How Laser Tattoo Removal Works
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Laser tattoo removal uses targeted light energy to break tattoo pigment into
                     fragments. The laser fires short pulses that pass through the epidermis and are
                     absorbed by ink particles in the dermis. The absorbed energy shatters the ink into
                     smaller fragments. The body's immune system then clears the fragments through the
                     lymphatic system over weeks following each session.
                   </p>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Two laser classes dominate tattoo removal:
                   </p>
                   <div className="space-y-3">
@@ -314,7 +314,7 @@ export default function SalineVsLaserPage() {
                   Saline vs Laser for Microblading and Permanent Makeup Removal
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     This is the comparison axis where saline vs laser tattoo removal matters most.
                     Cosmetic tattoo removal (microblading, powder brows, lip blush, eyeliner) is a
                     different category from body tattoo removal.
@@ -380,7 +380,7 @@ export default function SalineVsLaserPage() {
                       />
                     ))}
                   </div>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     For deeper scarring context, see the{" "}
                     <Link
                       href="/guides/tattoo-removal-scarring"
@@ -456,7 +456,7 @@ export default function SalineVsLaserPage() {
                       />
                     ))}
                   </div>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     For national pricing context across all methods, see the{" "}
                     <Link href="/cost" className="text-(--accent) hover:underline">
                       cost guide
@@ -472,7 +472,7 @@ export default function SalineVsLaserPage() {
                   Our Verdict: When to Choose Saline and When to Choose Laser
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     There is no universal winner. The honest verdict is by case type.
                   </p>
 

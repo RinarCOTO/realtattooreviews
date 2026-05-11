@@ -135,13 +135,13 @@ export default function MethodologyPage() {
 
             {/* Intro */}
             <div className="space-y-4">
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 RealTattooReviews ranks tattoo removal providers using a structured, repeatable process. This page explains how that process works. It covers how we collect review data, how we calculate scores, how we verify and moderate reviews, how we extract use-case signals, how often we update, and how errors are corrected.
               </p>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 This is not a marketing page. It is an operating document. The goal is to make our scoring system understandable, consistent, and defensible. Every provider page, city page, category page, and comparison page on this site is built on the same framework described here.
               </p>
-              <p className="text-[16px] leading-relaxed text-heading">
+              <p className="text-[17px] leading-relaxed text-heading">
                 If you want to know our editorial standards, see the{" "}
                 <Link href="/editorial-policy" className="font-medium text-accent hover:underline">editorial policy</Link>.
               </p>
@@ -150,10 +150,10 @@ export default function MethodologyPage() {
             {/* How We Rank */}
             <div className="space-y-6">
               <SectionHeading>How We Rank Tattoo Removal Providers</SectionHeading>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 Provider rankings on RealTattooReviews are generated from structured analysis of public review data. Rankings are not pay-for-placement. No provider can pay to rank higher. Rankings are not editorial opinion. They are produced from a scoring framework applied consistently across all providers.
               </p>
-              <p className="text-[16px] font-semibold text-heading">The ranking framework uses six weighted factors:</p>
+              <p className="text-[17px] font-semibold text-heading">The ranking framework uses six weighted factors:</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {RANKING_FACTORS.map((f) => (
                   <Card key={f.number} className="flex gap-4 p-5">
@@ -161,7 +161,7 @@ export default function MethodologyPage() {
                       {f.number}
                     </div>
                     <div>
-                      <p className="text-[16px] font-semibold text-heading">{f.title}</p>
+                      <p className="text-[17px] font-semibold text-heading">{f.title}</p>
                       <p className="mt-1 text-[14px] leading-relaxed text-heading">{f.body}</p>
                     </div>
                   </Card>
@@ -172,7 +172,7 @@ export default function MethodologyPage() {
             {/* How Scores Are Calculated */}
             <div className="space-y-5">
               <SectionHeading>How Review Scores Are Calculated</SectionHeading>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 Review scores on RealTattooReviews are not simple star averages. They are composite scores built from multiple data points extracted from each review.
               </p>
 
@@ -196,20 +196,20 @@ export default function MethodologyPage() {
 
               <div className="space-y-4">
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Sentiment classification</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Sentiment classification</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Each review's text is classified for result sentiment independently of the star rating. A 5-star review that describes a negative outcome is classified as Negative. A 3-star review that describes a positive outcome with a minor complaint is classified as Positive. Star ratings and sentiment classifications are both stored but sentiment classification drives the scoring framework.
                   </p>
                 </div>
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Sample-size confidence</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Sample-size confidence</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Providers with larger review samples produce higher-confidence scores. A provider with 50 classified reviews generates a more reliable score than a provider with 6. The scoring framework applies a confidence adjustment that reduces the weight of small-sample scores in provider rankings. Providers with fewer than 5 reviews are flagged as "Review sample pending" and are not ranked until sufficient data accumulates.
                   </p>
                 </div>
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Location-level scoring</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Location-level scoring</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Scores are calculated at the location level, not the brand level. A national chain with 10 locations receives a separate score for each location based on that location's review sample. Brand-level aggregation (used on comparison pages) sums location-level data across cities.
                   </p>
                 </div>
@@ -219,7 +219,7 @@ export default function MethodologyPage() {
             {/* Review Sources */}
             <div className="space-y-5">
               <SectionHeading>Review Sources</SectionHeading>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 RealTattooReviews collects review data from publicly available Google Business Profile listings and classifies it internally for comparison, safety, and outcome signals.
               </p>
 
@@ -257,7 +257,7 @@ export default function MethodologyPage() {
                 </div>
               </div>
 
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 <span className="font-semibold text-heading">Sample-size cap.</span>{" "}
                 The current review-evidence sample includes up to 50 of the most recent reviews per provider location. Total lifetime review counts on Google are higher than the sample sizes shown on our pages. We display sample sizes transparently alongside all provider scores.
               </p>
@@ -266,19 +266,19 @@ export default function MethodologyPage() {
             {/* Verification */}
             <div className="space-y-5">
               <SectionHeading>How We Verify Reviews and Provider Data</SectionHeading>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 Verification operates at two levels: review-level and provider-level.
               </p>
               <div className="space-y-4">
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Review-level verification</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Review-level verification</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Reviews are sourced from public Google business listings. Google has its own review moderation system. We do not independently verify the identity of each reviewer. We do classify review text for sentiment, use case, and scarring signals using a structured classification process. Reviews that appear to be spam, incentivized, or obviously fraudulent (based on text patterns, timing clusters, or content anomalies) are flagged for manual review and may be excluded from scoring.
                   </p>
                 </div>
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Provider-level verification</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Provider-level verification</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Provider information (name, address, technology used, services offered) is verified against Google Places data and, where available, the provider's own published materials. Addresses are cross-referenced with Google Places listings. Technology claims are verified against published provider information and review text mentions.
                   </p>
                 </div>
@@ -303,25 +303,25 @@ export default function MethodologyPage() {
             {/* Signals */}
             <div className="space-y-5">
               <SectionHeading>How We Analyze Scarring, Pain, and Use-Case Signals</SectionHeading>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 Review text is analyzed for three signal categories beyond basic sentiment.
               </p>
               <div className="space-y-4">
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Scarring signals</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Scarring signals</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Each review is classified for scarring mentions: "Yes" (scarring reported), "No" (no scarring mentioned), or "Positive" (reviewer explicitly praises lack of scarring or good skin outcome). Scarring signal rates per provider inform the scarring-related sections on provider profiles, category pages, and comparison pages.
                   </p>
                 </div>
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Pain signals</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Pain signals</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Pain mentions are extracted from review text where reviewers describe the treatment experience. Pain is not scored on a numeric scale. Instead, pain language is classified qualitatively and used to inform the pain-related sections on guide pages and method comparisons.
                   </p>
                 </div>
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Use-case tagging</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Use-case tagging</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Use-case tagging classifies each review with the case it describes: Complete removal, Cover-up fading, Microblading/PMU, Color ink, or Other. Use-case tags drive the "best for" fit assessments on provider profiles and the use-case win counts on city pages and comparison pages.
                   </p>
                 </div>
@@ -331,7 +331,7 @@ export default function MethodologyPage() {
             {/* Weighting */}
             <div className="space-y-5">
               <SectionHeading>Weighting and Thresholds</SectionHeading>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 The scoring framework applies review weighting rules and thresholds to prevent misleading scores.
               </p>
               <div className="space-y-4">
@@ -354,8 +354,8 @@ export default function MethodologyPage() {
                   },
                 ].map((item) => (
                   <div key={item.title}>
-                    <p className="text-[16px] font-semibold text-heading">{item.title}</p>
-                    <p className="mt-1 text-[16px] leading-relaxed text-body">{item.body}</p>
+                    <p className="text-[17px] font-semibold text-heading">{item.title}</p>
+                    <p className="mt-1 text-[17px] leading-relaxed text-body">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -364,7 +364,7 @@ export default function MethodologyPage() {
             {/* Update Frequency */}
             <div className="space-y-5">
               <SectionHeading>Update Frequency and Data Freshness</SectionHeading>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 Review data is refreshed periodically from publicly available Google Business Profile listings. The current update cadence is not real-time. Data refreshes occur on a rolling basis, with the most recently refreshed timestamp displayed at the bottom of each dynamic data component on the site.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -398,7 +398,7 @@ export default function MethodologyPage() {
                   </ul>
                 </div>
               </div>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 Provider scores, rankings, and review evidence on the site reflect the most recent review evidence available. Users should check the "Data refreshed" timestamp on each page for the date of the most recent data.
               </p>
             </div>
@@ -406,25 +406,25 @@ export default function MethodologyPage() {
             {/* Editorial Independence */}
             <div className="space-y-5">
               <SectionHeading>Editorial Independence and Corrections</SectionHeading>
-              <p className="text-[16px] leading-relaxed text-body">
+              <p className="text-[17px] leading-relaxed text-body">
                 RealTattooReviews maintains editorial independence from all providers. The scoring framework, ranking methodology, and review classification process described on this page apply equally to every provider.
               </p>
               <div className="space-y-4">
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">No pay-for-placement</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">No pay-for-placement</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     No provider can pay to be listed, ranked, or featured on RealTattooReviews. All provider inclusions are based on the presence of the provider in our review dataset or in verified Google Places data.
                   </p>
                 </div>
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Corrections process</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Corrections process</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     If you believe any information on the site is incorrect, outdated, or unfair, we review all correction requests and update the site when errors are confirmed. Providers, users, and third parties can all submit corrections. The corrections process is the same for every submitter.
                   </p>
                 </div>
                 <div>
-                  <p className="text-[16px] font-semibold text-heading">Challenge process</p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-body">
+                  <p className="text-[17px] font-semibold text-heading">Challenge process</p>
+                  <p className="mt-1 text-[17px] leading-relaxed text-body">
                     Providers who believe their score is inaccurate can request a review of their scoring data. We will share the review-sample data that produced the score (aggregated, not individual reviews) and explain how the scoring framework was applied. We will correct errors when found. We will not change scores based on provider disagreement with the framework itself.
                   </p>
                 </div>

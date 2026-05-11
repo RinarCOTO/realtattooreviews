@@ -222,7 +222,7 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             What Public Reviewers Are Reporting
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-heading max-w-prose m-0">
+          <p className="font-sans text-[17px] leading-relaxed text-heading max-w-prose m-0">
             Positive and negative reviews side by side. One high-rated clinic and one complaint-flagged clinic appearing in the same section is intentional.
           </p>
         </div>
@@ -240,7 +240,7 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             Compare Tattoo Removal Providers
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-heading max-w-prose m-0">
+          <p className="font-sans text-[17px] leading-relaxed text-heading max-w-prose m-0">
             Every provider in our index. Sort by rating, review count, or city. Click a provider name to open the full review page.
           </p>
         </div>
@@ -254,7 +254,7 @@ export default async function ReviewsPage() {
           <h2 className="font-sans font-bold text-[clamp(28px,4vw,42px)] leading-[1.05] tracking-[-0.025em] text-(--ink) m-0 mb-3">
             Browse by City
           </h2>
-          <p className="font-sans text-[16px] leading-relaxed text-heading max-w-prose m-0">
+          <p className="font-sans text-[17px] leading-relaxed text-heading max-w-prose m-0">
             National brand ratings are a starting point. Local execution still matters. Each city page shows which providers operate there and how their reviews compare locally.
           </p>
         </div>
@@ -270,7 +270,7 @@ export default async function ReviewsPage() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="min-w-0">
-                  <div className="text-[16px] font-medium text-(--ink) tracking-[-0.01em] whitespace-nowrap overflow-hidden text-ellipsis">
+                  <div className="text-[17px] font-medium text-(--ink) tracking-[-0.01em] whitespace-nowrap overflow-hidden text-ellipsis">
                     {city.name}
                   </div>
                   <div className="text-[11px] text-heading mt-0.5">
@@ -302,7 +302,7 @@ export default async function ReviewsPage() {
               href={link.href}
               className="flex items-center justify-between px-6 py-4 no-underline text-inherit hover:bg-(--wash) transition-colors"
             >
-              <span className="font-medium text-(--ink) text-[16px]">{link.label}</span>
+              <span className="font-medium text-(--ink) text-[17px]">{link.label}</span>
               <ChevronRightIcon className="size-4 text-(--accent)" />
             </Link>
           ))}

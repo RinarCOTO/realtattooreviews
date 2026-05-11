@@ -225,7 +225,7 @@ export default async function TampaPage() {
 
             {/* Intro */}
             <div className="py-12">
-                <p className="font-sans text-[16px] leading-relaxed text-heading m-0">
+                <p className="font-sans text-[17px] leading-relaxed text-heading m-0">
                   Tattoo removal Tampa Bay is a metro-wide market, not a single-city market.
                   Providers serve users from Tampa, St. Petersburg, Clearwater, Pinellas Park,
                   Largo, and the broader Tampa Bay area. Most users in the metro can reach two
@@ -233,7 +233,7 @@ export default async function TampaPage() {
                   for tattoo removal Tampa typically surface clinics from one part of the bay
                   and miss the metro picture.
                 </p>
-                <p className="font-sans text-[16px] leading-relaxed text-heading m-0 mt-4">
+                <p className="font-sans text-[17px] leading-relaxed text-heading m-0 mt-4">
                   This page is the metro-wide comparison. It covers Tampa, St. Petersburg, and
                   Clearwater together as a single tattoo removal Tampa Bay market because that
                   is how users actually shop. Specialist studios cluster in central Tampa and on
@@ -241,7 +241,7 @@ export default async function TampaPage() {
                   across both sides of the bay. The non-laser TEPR option (inkOUT) serves the
                   Tampa Bay area on a flexible-location basis.
                 </p>
-                <p className="font-sans text-[16px] leading-relaxed text-heading m-0 mt-4">
+                <p className="font-sans text-[17px] leading-relaxed text-heading m-0 mt-4">
                   If you are still deciding between methods rather than providers, the{" "}
                   <Link
                     href="/comparisons/best-tattoo-removal-method"
@@ -265,7 +265,7 @@ export default async function TampaPage() {
             {/* Dynamic ranking */}
             <div className="-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style={{ background: "linear-gradient(135deg, #C8E6E4 0%, #F0EDE8 52%, #F5DDD0 100%)" }}>
             <GuideSection heading="Best Tattoo Removal Clinics in Tampa Bay">
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 The ranked list below is generated from our review-sample analysis. Sentiment
                 scores, sample sizes, and use-case wins reflect the most recent reviews captured
                 in our internal review dataset. Lifetime Google review counts are higher than the
@@ -283,7 +283,7 @@ export default async function TampaPage() {
 
             {/* Static editorial profiles */}
             <GuideSection heading="Tampa Bay Provider Profiles">
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 These profiles describe what each clinic is, where it is located, and the kinds of
                 cases it handles. Current performance metrics and rankings appear in the section
                 above and update as our review evidence refreshes.
@@ -295,7 +295,7 @@ export default async function TampaPage() {
                     key={p.name}
                     className="rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] p-6"
                   >
-                    <h3 className="font-sans font-bold text-[16px] text-(--ink) m-0 mb-3">
+                    <h3 className="font-sans font-bold text-[17px] text-(--ink) m-0 mb-3">
                       {p.href ? (
                         <Link href={p.href} className="hover:text-(--accent) transition-colors">
                           {p.name}
@@ -326,7 +326,7 @@ export default async function TampaPage() {
 
             {/* Dynamic comparison table */}
             <GuideSection heading="Compare Tampa Tattoo Removal Providers">
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 The table below summarizes the best tattoo removal Tampa Bay options at a glance.
                 Use it for orientation, then read the profiles above for fit-based detail. Sample
                 size shows the number of recent reviews analyzed for sentiment scoring. Total
@@ -343,7 +343,7 @@ export default async function TampaPage() {
 
             {/* Tampa-specific: St. Pete & Clearwater */}
             <GuideSection heading="Tattoo Removal in St. Petersburg & Clearwater">
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 St. Petersburg and Clearwater serve the Pinellas County side of the Tampa Bay
                 metro. The bay separates the two sides physically, but users on the St. Pete side
                 regularly cross to Tampa for higher-volume specialists, and Tampa-side users
@@ -382,7 +382,7 @@ export default async function TampaPage() {
 
             {/* Technology section */}
             <GuideSection heading="Laser Tattoo Removal Options in Tampa">
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 Laser tattoo removal Tampa providers run several different systems. Laser tattoo
                 removal Tampa Bay coverage extends across Pinellas as well, with similar technology
                 distribution. The system matters because pulse width, available wavelengths, and
@@ -425,7 +425,7 @@ export default async function TampaPage() {
 
             {/* Pricing section */}
             <GuideSection heading="How Much Does Tattoo Removal Cost in Tampa?">
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 Tattoo removal Tampa cost ranges generally run $100 to $500 per session. Most
                 standard cases land in the $150 to $400 range. The big variables are tattoo size,
                 ink density, and the provider&rsquo;s pricing model.
@@ -449,7 +449,7 @@ export default async function TampaPage() {
                 ))}
               </div>
 
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 Most tattoos need three to twelve sessions for complete removal. Three to eight
                 sessions is typical for cover-up fading. Total cost for a standard tattoo across
                 the Tampa Bay metro typically falls between $1,000 and $5,000. Package pricing
@@ -472,7 +472,7 @@ export default async function TampaPage() {
                 </p>
               </div>
 
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 For a national pricing breakdown by method and size, see the{" "}
                 <Link href="/cost" className="text-(--accent) hover:underline">
                   cost guide
@@ -483,7 +483,7 @@ export default async function TampaPage() {
 
             {/* Ranking methodology */}
             <GuideSection heading="How We Ranked Tampa Bay Tattoo Removal Clinics">
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 The ranked list above is generated from a structured analysis of the most recent
                 public reviews per provider. Tampa Bay is a metro-wide market with ten tracked
                 providers spread across both sides of the bay, from national chains like Removery
@@ -500,7 +500,7 @@ export default async function TampaPage() {
                   "Honest fit framing. No provider wins for every user. Each profile above includes both a best-for and a less-ideal-for section.",
                 ]}
               />
-              <p className="font-sans text-[16px] leading-relaxed text-heading">
+              <p className="font-sans text-[17px] leading-relaxed text-heading">
                 For the full review and ranking framework used across the site, see the{" "}
                 <Link href="/methodology" className="text-(--accent) hover:underline">
                   methodology page

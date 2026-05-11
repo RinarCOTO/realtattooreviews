@@ -52,10 +52,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const ptComponents = {
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="font-sans text-[16px] leading-relaxed text-heading">{children}</p>
+      <p className="font-sans text-[17px] leading-relaxed text-heading">{children}</p>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="font-sans font-semibold text-[16px] text-(--ink) mt-4 mb-1">{children}</h3>
+      <h3 className="font-sans font-semibold text-[17px] text-(--ink) mt-4 mb-1">{children}</h3>
     ),
   },
   list: {
@@ -121,7 +121,7 @@ export default async function GuidePage({ params }: Props) {
       {/* Intro box */}
       {guide.intro && (
         <div className="py-12">
-          <p className="font-sans text-[16px] leading-relaxed text-heading m-0">
+          <p className="font-sans text-[17px] leading-relaxed text-heading m-0">
             {guide.intro}
           </p>
         </div>

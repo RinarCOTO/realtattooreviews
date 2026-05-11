@@ -20,7 +20,7 @@ type Props = { params: Promise<{ slug: string }> };
 const blogPtComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="font-sans text-[16px] leading-relaxed text-(--ink) my-4">
+      <p className="font-sans text-[17px] leading-relaxed text-(--ink) my-4">
         {children}
       </p>
     ),
@@ -40,14 +40,14 @@ const blogPtComponents: PortableTextComponents = {
       <ul className="space-y-2 my-5 pl-1">{children}</ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal space-y-2 my-5 pl-6 font-sans text-[16px] leading-relaxed text-(--ink)">
+      <ol className="list-decimal space-y-2 my-5 pl-6 font-sans text-[17px] leading-relaxed text-(--ink)">
         {children}
       </ol>
     ),
   },
   listItem: {
     bullet: ({ children }) => (
-      <li className="flex items-start gap-3 font-sans text-[16px] leading-relaxed text-(--ink)">
+      <li className="flex items-start gap-3 font-sans text-[17px] leading-relaxed text-(--ink)">
         <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
         <span>{children}</span>
       </li>
@@ -195,7 +195,7 @@ export default async function BlogPostPage({ params }: Props) {
                     {(mockPost?.body ?? []).map((paragraph, index) => (
                       <p
                         key={index}
-                        className="font-sans text-[16px] leading-relaxed text-(--ink)"
+                        className="font-sans text-[17px] leading-relaxed text-(--ink)"
                       >
                         {paragraph}
                       </p>

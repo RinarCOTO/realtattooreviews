@@ -85,7 +85,7 @@ export default function FAQSection({
           {title}
         </h2>
         {description && (
-          <p className="text-[16px] leading-relaxed text-heading max-w-2xl m-0 mb-10">
+          <p className="text-[17px] leading-relaxed text-heading max-w-2xl m-0 mb-10">
             {description}
           </p>
         )}
@@ -95,7 +95,7 @@ export default function FAQSection({
           {faqs.map((item, i) => (
             <details key={`${item.question}-${i}`} className="group py-5">
               <summary className="flex cursor-pointer list-none items-start justify-between gap-6 [&::-webkit-details-marker]:hidden">
-                <span className="text-[16px] font-semibold text-(--ink) leading-snug">
+                <span className="text-[17px] font-semibold text-(--ink) leading-snug">
                   {item.question}
                 </span>
                 <span

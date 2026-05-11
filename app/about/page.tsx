@@ -68,11 +68,11 @@ export default function AboutPage() {
       >
         {/* Intro */}
         <div className="py-12">
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted) m-0">
+          <p className="font-sans text-[17px] leading-relaxed text-(--muted) m-0">
             RealTattooReviews is a review and comparison site for tattoo removal. It covers
             providers, methods, and the practical decisions people face when removing a tattoo.
           </p>
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted) m-0 mt-4">
+          <p className="font-sans text-[17px] leading-relaxed text-(--muted) m-0 mt-4">
             The site publishes provider reviews built from public Google review data. City
             pages rank providers in each metro. Comparison pages put methods and brands side
             by side. Category pages organize by use case. Guides cover healing, aftercare,
@@ -87,17 +87,17 @@ export default function AboutPage() {
 
         {/* Why it exists */}
         <GuideSection heading="Why It Exists">
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[17px] leading-relaxed text-(--muted)">
             Most people researching tattoo removal are working from provider websites and
             scattered forum posts. Provider marketing is designed to sell. Forum advice is
             inconsistent. Pricing is hidden behind consultations. Method comparisons barely
             exist, and the ones that do usually favor whatever the writer sells.
           </p>
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[17px] leading-relaxed text-(--muted)">
             The result is that people make a decision involving months of treatment, thousands
             of dollars, and real risk to their skin based on incomplete or biased information.
           </p>
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[17px] leading-relaxed text-(--muted)">
             This site exists because that gap is real and nobody was filling it well. The goal
             is straightforward: help people match the right method and provider to their
             specific tattoo, skin type, and budget. Not push a single answer. Not rank one
@@ -108,12 +108,12 @@ export default function AboutPage() {
 
         {/* Who runs it */}
         <GuideSection heading="Who Runs It">
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[17px] leading-relaxed text-(--muted)">
             The site is operated independently. Editorial decisions, scoring, and publication
             are handled by the team that built it. No tattoo removal provider, laser
             manufacturer, or device company has ownership or editorial control.
           </p>
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[17px] leading-relaxed text-(--muted)">
             For how the site handles funding, editorial independence, and corrections,
             see the{" "}
             <Link href="/editorial-policy" className="text-(--accent) hover:underline">
@@ -125,7 +125,7 @@ export default function AboutPage() {
 
         {/* How it works */}
         <GuideSection heading="How It Works">
-          <p className="font-sans text-[16px] leading-relaxed text-(--muted)">
+          <p className="font-sans text-[17px] leading-relaxed text-(--muted)">
             The{" "}
             <Link href="/methodology" className="text-(--accent) hover:underline">
               methodology page
@@ -147,8 +147,8 @@ export default function AboutPage() {
             },
           ].map((item) => (
             <div key={item.title}>
-              <p className="font-sans text-[16px] font-semibold text-(--ink) mb-1">{item.title}</p>
-              <p className="font-sans text-[16px] leading-relaxed text-(--muted) m-0">{item.body}</p>
+              <p className="font-sans text-[17px] font-semibold text-(--ink) mb-1">{item.title}</p>
+              <p className="font-sans text-[17px] leading-relaxed text-(--muted) m-0">{item.body}</p>
             </div>
           ))}
         </GuideSection>

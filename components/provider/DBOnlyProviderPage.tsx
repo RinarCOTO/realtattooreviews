@@ -56,7 +56,7 @@ export default function DBOnlyProviderPage({ slug, reviews }: DBOnlyProviderPage
             <div className="max-w-xl">
               <h1 className="text-[40px] font-black leading-tight text-white">{providerName} Reviews</h1>
               {market && (
-                <p className="mt-3 text-[16px] leading-relaxed text-white/80">
+                <p className="mt-3 text-[17px] leading-relaxed text-white/80">
                   {reviews.length} sourced reviews from {market}. Compare outcomes, session experience, and pricing context before deciding.
                 </p>
               )}

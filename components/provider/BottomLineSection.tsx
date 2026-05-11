@@ -27,7 +27,7 @@ export default function BottomLineSection({
           <h2 className="font-sans font-bold text-[32px] leading-[1.1] tracking-[-0.02em] text-(--heading) mb-3 m-0">
             Bottom Line on {providerName}
           </h2>
-          <p className="text-[16px] leading-[1.6] text-(--body)">{copy}</p>
+          <p className="text-[17px] leading-[1.6] text-(--body)">{copy}</p>
         </div>
         <p className="-mt-4 mb-10 font-sans text-[14px] leading-relaxed text-heading max-w-prose">
           {actionLine}

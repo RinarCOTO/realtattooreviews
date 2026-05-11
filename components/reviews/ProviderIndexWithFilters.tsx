@@ -171,7 +171,7 @@ export default function ProviderIndexWithFilters({ brands, independents }: Props
                 </div>
 
                 {/* Name */}
-                <p className="mt-3 text-[16px] font-bold text-heading">{brand.name}</p>
+                <p className="mt-3 text-[17px] font-bold text-heading">{brand.name}</p>
 
                 {/* Rating */}
                 <div className="mt-2 flex items-center gap-2">

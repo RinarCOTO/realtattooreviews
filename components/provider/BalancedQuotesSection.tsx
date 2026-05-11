@@ -33,7 +33,7 @@ export default function BalancedQuotesSection({ reviews }: { reviews: PublicRevi
                 </span>
               </div>
 
-              <p className="m-0 text-[16px] leading-7 text-(--ink)">
+              <p className="m-0 text-[17px] leading-7 text-(--ink)">
                 {review.summary}
               </p>
 

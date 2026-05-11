@@ -193,20 +193,20 @@ export default function PicoLaserVsQSwitchPage() {
 
               {/* Intro */}
               <div className="py-12 space-y-4">
-                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                   The pico laser vs Q-switch decision is one of the most common questions in tattoo
                   removal research. Both are real, proven laser categories. Both remove tattoos. The
                   difference is how they do it, how fast they do it, and which cases they handle
                   better.
                 </p>
-                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                   Picosecond lasers (pico lasers) deliver pulses in the trillionths-of-a-second
                   range. Q-switched lasers deliver pulses in the billionths-of-a-second range. That
                   difference in pulse duration changes how ink particles break apart. It also changes
                   how the surrounding skin responds to treatment. The practical result is a difference
                   in session count, color performance, skin-type safety, pain, and cost.
                 </p>
-                <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                   This page covers the technology comparison between picosecond and Q-switched lasers
                   for tattoo removal. Whether you search for pico laser vs q switch, q switch laser
                   vs pico, pico laser vs q switch tattoo removal, or the branded picoway vs q switch,
@@ -224,7 +224,7 @@ export default function PicoLaserVsQSwitchPage() {
                   How Picosecond and Nanosecond Lasers Actually Work
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The difference between pico laser and Q-switch starts with pulse duration.
                   </p>
                   <div className="space-y-3">
@@ -237,7 +237,7 @@ export default function PicoLaserVsQSwitchPage() {
                       body="Picosecond lasers fire pulses measured in picoseconds (trillionths of a second). The pulse is roughly 100 times shorter than a nanosecond pulse. This shorter pulse produces a stronger photoacoustic effect relative to the photothermal effect. The result is more efficient ink particle fragmentation with less residual heat delivered to surrounding tissue. Less heat means less thermal damage. Less thermal damage typically means faster healing, fewer side effects, and fewer sessions for equivalent clearance. Picosecond platforms like PicoWay, PicoSure, and PiQo4 offer multiple wavelengths to address a wider range of ink colors."
                     />
                   </div>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The difference between picosecond and nanosecond pulse duration is not marketing
                     language. It is a physics difference that produces measurable clinical differences
                     in session count, side-effect rate, and color clearance.
@@ -251,7 +251,7 @@ export default function PicoLaserVsQSwitchPage() {
                   PicoWay vs Q-Switched Nd:YAG: Head-to-Head Comparison
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     PicoWay (Candela) and Q-switched Nd:YAG represent the two technology classes in
                     their most common commercial forms.
                   </p>
@@ -269,11 +269,11 @@ export default function PicoLaserVsQSwitchPage() {
                   Is Pico Laser Better Than Q-Switch?
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The short answer: for most cases, yes. For some cases, Q-switch is still perfectly
                     adequate.
                   </p>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Picosecond lasers outperform Q-switched lasers on three dimensions. First, session
                     count. Peer-reviewed studies show picosecond systems typically clear standard
                     tattoos in fewer sessions. Second, color clearance. The additional 785nm wavelength
@@ -281,14 +281,14 @@ export default function PicoLaserVsQSwitchPage() {
                     purple inks. Third, side-effect rate. The lower thermal profile reduces the risk of
                     blistering, scarring, and post-inflammatory pigment changes.
                   </p>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Q-switched Nd:YAG is still effective for standard cases. Black ink on lighter skin
                     types responds well at 1064nm. An experienced Q-switch operator can match pico
                     results on straightforward tattoos. The difference widens on harder cases:
                     multi-color tattoos, darker skin types, and tattoos that have already been partially
                     treated.
                   </p>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     The pico laser vs nanosecond distinction is not a matter of old versus new. It is a
                     matter of which physics produces better outcomes on which types of cases.
                   </p>
@@ -301,7 +301,7 @@ export default function PicoLaserVsQSwitchPage() {
                   PicoWay vs Q-Switch: Effectiveness
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     PicoWay's effectiveness advantage comes from pulse duration and wavelength range.
                   </p>
                   <div className="space-y-3">
@@ -318,7 +318,7 @@ export default function PicoLaserVsQSwitchPage() {
                       <ContentCard key={item.title} title={item.title} body={item.body} />
                     ))}
                   </div>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     For black ink on lighter skin, the effectiveness difference is moderate. Both clear
                     black ink well. For multi-color tattoos, the difference is significant. For
                     previously treated but not fully cleared tattoos, PicoWay's more efficient
@@ -333,11 +333,11 @@ export default function PicoLaserVsQSwitchPage() {
                   PicoWay vs Q-Switch: Dark Skin and Skin-Type Safety
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Dark skin tattoo removal is where the pico laser vs Q-switch difference matters
                     most.
                   </p>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     All laser tattoo removal carries a wavelength-versus-melanin interaction. Melanin
                     in the epidermis absorbs laser energy alongside tattoo ink. The more melanin (darker
                     Fitzpatrick skin types IV through VI), the higher the risk of post-inflammatory
@@ -357,7 +357,7 @@ export default function PicoLaserVsQSwitchPage() {
                       <ContentCard key={item.title} title={item.title} body={item.body} />
                     ))}
                   </div>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     For Fitzpatrick IV through VI, PicoWay (or any picosecond platform) is preferred
                     when available. For users who want to avoid the laser-melanin interaction entirely,
                     non-laser options exist. See the{" "}
@@ -378,7 +378,7 @@ export default function PicoLaserVsQSwitchPage() {
                   PicoWay vs Q-Switch: Color Ink Removal
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Color ink is where the gap widens most.
                   </p>
                   <div className="space-y-3">
@@ -461,7 +461,7 @@ export default function PicoLaserVsQSwitchPage() {
                       <ContentCard key={item.title} title={item.title} body={item.body} />
                     ))}
                   </div>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     For national pricing context, see the{" "}
                     <Link href="/cost" className="text-(--accent) hover:underline">cost guide</Link>.
                   </p>
@@ -492,7 +492,7 @@ export default function PicoLaserVsQSwitchPage() {
                       <ContentCard key={item.title} title={item.title} body={item.body} />
                     ))}
                   </div>
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     For city-level provider comparison, see the{" "}
                     <Link href="/cities/austin" className="text-(--accent) hover:underline">city pages</Link>.
                   </p>
@@ -505,7 +505,7 @@ export default function PicoLaserVsQSwitchPage() {
                   Our Verdict: Which Laser Is Better?
                 </SectionHeading>
                 <div className="space-y-4">
-                  <p className="font-sans text-[16px] leading-relaxed text-(--ink)">
+                  <p className="font-sans text-[17px] leading-relaxed text-(--ink)">
                     Picosecond laser is better than Q-switched for most cases. The evidence supports
                     this across session count, color clearance, dark-skin safety, and side-effect rate.
                   </p>

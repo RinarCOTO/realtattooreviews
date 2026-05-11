@@ -130,7 +130,7 @@ export default async function CityPage({ params }: Props) {
                   className="group flex flex-col gap-3 border border-(--line) bg-white p-5 rounded-xl transition-colors hover:border-(--accent)/30"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <p className="font-semibold text-(--ink) text-[16px]">{provider.name}</p>
+                    <p className="font-semibold text-(--ink) text-[17px]">{provider.name}</p>
                     <span className="font-sans font-semibold text-[13px] text-(--accent) shrink-0">
                       {(liveAggregates[provider.slug]?.rating ?? provider.rating).toFixed(1)}
                     </span>
