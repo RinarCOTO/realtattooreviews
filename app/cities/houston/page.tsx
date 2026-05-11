@@ -14,6 +14,8 @@ import CityProviderRanking from "@/components/city/CityProviderRanking";
 import CityProviderComparisonTable from "@/components/city/CityProviderComparisonTable";
 import type { StaticProviderProfile } from "@/components/city/types";
 import { getCityProviderProfiles } from "@/lib/page-data/city-profiles";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 export const revalidate = 3600;
 
@@ -551,6 +553,7 @@ export default async function HoustonPage() {
 
       <FAQSection title="Frequently Asked Questions About Tattoo Removal in Houston" faqs={faqs} />
     </div>
+    <RelatedSection bundle={getCrossLinks("houston")} />
     </BlobBackground>
   );
 }

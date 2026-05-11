@@ -29,6 +29,8 @@ import ProviderHero from "@/components/provider/ProviderHero";
 import JumpNav from "@/components/provider/JumpNav";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import { getBrandLocationAggregates } from "@/lib/data/reviews";
+import RelatedSection from "@/components/cross-links/RelatedSection";
+import { getCrossLinks } from "@/lib/mock-data/cross-links";
 
 export const revalidate = 3600;
 
@@ -488,6 +490,7 @@ export default async function LaserAwayReviewsPage() {
 
       <FAQSection id="faq" faqs={faqs} />
     </main>
+    <RelatedSection bundle={getCrossLinks("laseraway")} />
     </BlobBackground>
   );
 }
