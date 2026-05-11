@@ -564,8 +564,6 @@ export const crossLinksByEntity: Record<string, CrossLinkBundle> = {
   // ── Comparisons ──────────────────────────────────────────────────────────
   "best-tattoo-removal-method": {
     categories: [CATEGORY["complete-removal"], CATEGORY["cover-up-prep"]],
-    guides: [
-      GUIDE["laser-tattoo-removal"],
       GUIDE["non-laser-tattoo-removal"],
       GUIDE["saline-tattoo-removal"],
     ],
@@ -578,8 +576,6 @@ export const crossLinksByEntity: Record<string, CrossLinkBundle> = {
   },
   "saline-vs-laser-tattoo-removal": {
     categories: [CATEGORY["microblading-removal"], CATEGORY["permanent-makeup-removal"]],
-    guides: [
-      GUIDE["saline-tattoo-removal"],
       GUIDE["laser-tattoo-removal"],
       GUIDE["non-laser-tattoo-removal"],
     ],
