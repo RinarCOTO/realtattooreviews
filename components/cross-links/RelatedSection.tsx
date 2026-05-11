@@ -20,7 +20,6 @@
 import Link from "next/link";
 import Container from "@/components/layout/Container";
 import MonoLabel from "@/components/reviews/MonoLabel";
-import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import type { CrossLink, CrossLinkBundle } from "@/lib/mock-data/cross-links";
 
 type Group = {
@@ -69,25 +68,19 @@ export default function RelatedSection({ bundle, id, className }: Props) {
               <MonoLabel color="accent" size="sm" className="mb-5">
                 {group.label}
               </MonoLabel>
-              <div className="flex flex-col gap-3">
+              <ul className="space-y-3">
                 {group.items.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="flex items-center justify-between rounded-xl border border-(--line) bg-white shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] px-5 py-4 no-underline text-inherit hover:border-(--accent) transition-colors"
-                  >
-                    <div className="min-w-0 pr-4">
-                      <p className="font-sans font-medium text-(--ink) text-[17px] m-0 mb-0.5">
-                        {item.title}
-                      </p>
-                      <p className="font-sans text-[14px] text-heading m-0 leading-snug">
-                        {item.desc}
-                      </p>
-                    </div>
-                    <ChevronRightIcon className="size-4 shrink-0 text-(--accent)" />
-                  </Link>
+                  <li key={item.href} className="font-sans text-[17px] leading-snug text-heading">
+                    <Link
+                      href={item.href}
+                      className="font-medium text-(--ink) hover:text-(--accent) transition-colors"
+                    >
+                      {item.title}
+                    </Link>
+                    <span className="text-heading">. {item.desc}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>
