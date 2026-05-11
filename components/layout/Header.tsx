@@ -6,7 +6,12 @@ import { usePathname } from "next/navigation";
 import Container from "./Container";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 
-const nav = [
+type NavFeatured = { label: string; description: string; href: string } | null;
+type NavSection = { heading: string; links: { label: string; href: string }[] };
+type NavMega = { sections: NavSection[]; featured: NavFeatured };
+type NavItem = { label: string; href: string; mega?: NavMega };
+
+const nav: NavItem[] = [
   {
     label: "Providers",
     href: "/providers",
@@ -52,11 +57,7 @@ const nav = [
           ],
         },
       ],
-      featured: {
-        label: "What does it cost?",
-        description: "Average session pricing, package deals, and what affects your total.",
-        href: "/cost",
-      },
+      featured: null,
     },
   },
   {
@@ -86,11 +87,7 @@ const nav = [
           ],
         },
       ],
-      featured: {
-        label: "inkOUT vs Removery",
-        description: "The most-compared matchup on the site: TEPR vs PicoWay, price vs session count.",
-        href: "/comparisons/inkout-vs-removery",
-      },
+      featured: null,
     },
   },
   {
