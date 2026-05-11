@@ -52,11 +52,7 @@ const nav = [
           ],
         },
       ],
-      featured: {
-        label: "What does it cost?",
-        description: "Average session pricing, package deals, and what affects your total.",
-        href: "/cost",
-      },
+      featured: null,
     },
   },
   {
@@ -86,11 +82,7 @@ const nav = [
           ],
         },
       ],
-      featured: {
-        label: "inkOUT vs Removery",
-        description: "The most-compared matchup on the site: TEPR vs PicoWay, price vs session count.",
-        href: "/comparisons/inkout-vs-removery",
-      },
+      featured: null,
     },
   },
   {
