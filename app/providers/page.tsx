@@ -41,8 +41,9 @@ const itemListSchema = {
     { "@type": "ListItem", position: 9,  name: "Inkfree, MD",                 url: "https://realtattooreviews.com/reviews/inkfree-md" },
     { "@type": "ListItem", position: 10, name: "Inklifters",                  url: "https://realtattooreviews.com/reviews/inklifters-aesthetica" },
     { "@type": "ListItem", position: 11, name: "Kovak Cosmetic Center",       url: "https://realtattooreviews.com/reviews/kovak-cosmetic-center" },
-    { "@type": "ListItem", position: 12, name: "MEDermis Laser Clinic",       url: "https://realtattooreviews.com/reviews/medermis-laser-clinic" },
-    { "@type": "ListItem", position: 13, name: "Removery",                    url: "https://realtattooreviews.com/reviews/removery/bucktown" },
+    { "@type": "ListItem", position: 12, name: "LaserAway",                   url: "https://realtattooreviews.com/reviews/laseraway" },
+    { "@type": "ListItem", position: 13, name: "MEDermis Laser Clinic",       url: "https://realtattooreviews.com/reviews/medermis-laser-clinic" },
+    { "@type": "ListItem", position: 14, name: "Removery",                    url: "https://realtattooreviews.com/reviews/removery/bucktown" },
   ],
 };
 
@@ -69,12 +70,12 @@ const PROVIDER_STATIC: (DirectoryRow & { supabaseSlug: string })[] = [
   { name: "Inkfree, MD",               slug: "inkfree-md",               supabaseSlug: "inkfree-md",               method: "Laser",     technology: "Lutronic PicoPlus + Spectra",  locations: "1 (Houston)",                     locationCount: 1,   yearsActive: 14,   bestFor: "Physician-owned independent clinic",                     footprint: "Single-market",  setting: "Medical spa",               reviews: null, avgStars: null },
   { name: "Inklifters",                slug: "inklifters-aesthetica",     supabaseSlug: "inklifters-aesthetica",    method: "Laser",     technology: "PicoWay",                      locations: "1 (Pleasant Grove, UT)",          locationCount: 1,   yearsActive: 18,   bestFor: "Long-running Utah specialist",                           footprint: "Single-market",  setting: "Tattoo removal specialist", reviews: null, avgStars: null },
   { name: "Kovak Cosmetic Center",      slug: "kovak-cosmetic-center",    supabaseSlug: "kovak-cosmetic-center",    method: "Laser",     technology: "PicoWay",                      locations: "1 (Oakbrook Terrace, IL)",         locationCount: 1,   yearsActive: 27,   bestFor: "Established cosmetic practice, Chicago",                 footprint: "Single-market",  setting: "Medical spa",               reviews: null, avgStars: null },
+  { name: "LaserAway",                 slug: "laseraway",                supabaseSlug: "laseraway",                method: "Laser",     technology: "Cynosure PicoSure",            locations: "4 (Austin, Chicago, Houston, Tampa)", locationCount: 4, yearsActive: null, bestFor: "National chain with PicoSure availability",              footprint: "National chain", setting: "Medical spa",               reviews: null, avgStars: null },
   { name: "MEDermis Laser Clinic",      slug: "medermis-laser-clinic",    supabaseSlug: "medermis-laser-clinic",    method: "Laser",     technology: "Lutronic Spectra Pico Plus",    locations: "2 (Austin, San Antonio)",         locationCount: 2,   yearsActive: 19,   bestFor: "Tattoo-removal-only specialist, Austin/San Antonio",     footprint: "Regional",       setting: "Tattoo removal specialist", reviews: null, avgStars: null },
   { name: "Removery",                   slug: "removery-bucktown",        supabaseSlug: "removery",                 method: "Laser",     technology: "PicoWay",                      locations: "150+ (US, Canada, Australia)",     locationCount: 150, yearsActive: 7,    bestFor: "Largest US footprint, package pricing",                  footprint: "National chain", setting: "Tattoo removal specialist", reviews: null, avgStars: null },
 ];
 
 const PENDING_PROVIDERS: PendingRow[] = [
-  { name: "LaserAway",                  markets: "Houston, Chicago, Tampa" },
   { name: "Advanced Laser Aesthetics",  markets: "Chicago" },
   { name: "Pigment",                    markets: "Austin" },
   { name: "Think Again",               markets: "Austin" },
