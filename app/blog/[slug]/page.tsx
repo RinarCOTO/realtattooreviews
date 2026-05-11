@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PortableText } from "@portabletext/react";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/layout/PageHero";
 import BlobBackground from "@/components/ui/BlobBackground";
@@ -11,6 +11,69 @@ import { blogPosts as mockPosts } from "@/lib/mock-data/blog-posts";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 
 type Props = { params: Promise<{ slug: string }> };
+
+// PortableText renderers for Sanity-backed blog posts. Vertical rhythm matches
+// the static blog post template: generous top margin on H2 to create section
+// breaks, comfortable paragraph leading, and accent-bulleted unordered lists.
+// Tailwind Typography (prose) is not installed in this project, so every
+// element is styled explicitly.
+const blogPtComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <p className="font-sans text-[15px] leading-relaxed text-(--ink) my-4">
+        {children}
+      </p>
+    ),
+    h2: ({ children }) => (
+      <h2 className="font-sans font-bold text-[clamp(20px,3vw,28px)] leading-[1.15] tracking-[-0.02em] text-(--ink) mt-12 mb-5 first:mt-0">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="font-sans font-semibold text-[17px] leading-[1.25] text-(--ink) mt-7 mb-2">
+        {children}
+      </h3>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => (
+      <ul className="space-y-2 my-5 pl-1">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal space-y-2 my-5 pl-6 font-sans text-[15px] leading-relaxed text-(--ink)">
+        {children}
+      </ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="flex items-start gap-3 font-sans text-[15px] leading-relaxed text-(--ink)">
+        <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent)" />
+        <span>{children}</span>
+      </li>
+    ),
+    number: ({ children }) => <li>{children}</li>,
+  },
+  marks: {
+    strong: ({ children }) => (
+      <strong className="font-semibold text-(--ink)">{children}</strong>
+    ),
+    em: ({ children }) => <em className="italic">{children}</em>,
+    link: ({ value, children }) => {
+      const href = value?.href ?? "#";
+      const isExternal = /^https?:\/\//.test(href) && !href.includes("realtattooreviews.com");
+      return (
+        <Link
+          href={href}
+          className="text-(--accent) underline underline-offset-2 decoration-(--accent)/30 hover:decoration-(--accent)"
+          {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {children}
+        </Link>
+      );
+    },
+  },
+};
 
 const STATIC_BLOG_PAGES = new Set(["how-to-choose-a-tattoo-removal-provider"]);
 
@@ -121,19 +184,25 @@ export default async function BlogPostPage({ params }: Props) {
         <section className="py-6 bg-white">
           <Container>
             <div className="mx-auto max-w-3xl">
-              <div className="py-12 space-y-5">
+              <article className="py-12">
                 {isSanity && sanityPost.body ? (
-                  <div className="prose prose-neutral max-w-none text-[15px] leading-relaxed text-(--ink)">
-                    <PortableText value={sanityPost.body} />
-                  </div>
+                  <PortableText
+                    value={sanityPost.body}
+                    components={blogPtComponents}
+                  />
                 ) : (
-                  (mockPost?.body ?? []).map((paragraph, index) => (
-                    <p key={index} className="font-sans text-[15px] leading-relaxed text-(--ink)">
-                      {paragraph}
-                    </p>
-                  ))
+                  <div className="space-y-4">
+                    {(mockPost?.body ?? []).map((paragraph, index) => (
+                      <p
+                        key={index}
+                        className="font-sans text-[15px] leading-relaxed text-(--ink)"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 )}
-              </div>
+              </article>
             </div>
           </Container>
         </section>
