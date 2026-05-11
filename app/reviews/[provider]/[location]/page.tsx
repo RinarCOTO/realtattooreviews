@@ -19,14 +19,15 @@ type Props = { params: Promise<{ provider: string; location: string }> };
  * URL: /reviews/{brandSlug}/{locationSlug}/
  *      e.g. /reviews/removery/lincoln-square/
  *           /reviews/inkout/austin/
+ *           /reviews/laseraway/houston/
  *
- * Only emits params for brands that go through BrandReviewsPage and use
- * LocationsSection (currently inkOUT and Removery). LaserAway has its own
- * bespoke top-level page that does not link out per location, so its
- * locations are intentionally not built here.
+ * Emits params for every multi-location brand we sanction for per-location
+ * coverage. inkOUT and Removery use the dynamic LocationsSection on their
+ * brand hub. LaserAway has a bespoke static brand hub at /reviews/laseraway/
+ * that lists tracked cities; its per-location pages are still served here.
  */
 export async function generateStaticParams() {
-  const targetBrands = ["inkOUT", "Removery"];
+  const targetBrands = ["inkOUT", "Removery", "LaserAway"];
   const candidates = getMultiLocationBrands()
     .filter((brand) => targetBrands.includes(brand))
     .flatMap((brand) => {

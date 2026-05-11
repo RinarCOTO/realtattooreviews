@@ -29,7 +29,7 @@ const SITEMAP_BLOCKED_PROVIDER_SLUGS = new Set(["tatt2away"]);
 // Brands that have hand-curated per-location coverage at
 // `/reviews/[provider]/[location]/`. Only these brands get their per-location
 // URLs added to the sitemap, matching the route's actual coverage.
-const BRANDS_WITH_LOCATION_PAGES = new Set(["inkOUT", "Removery"]);
+const BRANDS_WITH_LOCATION_PAGES = new Set(["inkOUT", "Removery", "LaserAway"]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [

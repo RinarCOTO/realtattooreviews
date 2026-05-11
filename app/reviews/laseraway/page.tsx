@@ -97,24 +97,28 @@ const TRACKED_CITIES = [
     city: "Austin",
     state: "TX",
     href: "/cities/austin",
+    locationHref: "/reviews/laseraway/austin",
     note: "One tracked LaserAway location. Review sample building.",
   },
   {
     city: "Chicago",
     state: "IL",
     href: "/cities/chicago",
+    locationHref: "/reviews/laseraway/chicago",
     note: "One tracked LaserAway location. Review sample building.",
   },
   {
     city: "Houston",
     state: "TX",
     href: "/cities/houston",
+    locationHref: "/reviews/laseraway/houston",
     note: "Multiple sub-locations (Galleria, Heights, Pearland). Aggregated under Houston.",
   },
   {
     city: "Tampa",
     state: "FL",
     href: "/cities/tampa",
+    locationHref: "/reviews/laseraway/tampa",
     note: "One tracked LaserAway location. Review sample building.",
   },
 ];
@@ -258,12 +262,20 @@ export default async function LaserAwayReviewsPage() {
                       </p>
                       <p className="font-sans text-[13px] text-heading m-0">{loc.note}</p>
                     </div>
-                    <Link
-                      href={loc.href}
-                      className="inline-flex shrink-0 items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline"
-                    >
-                      City page <ChevronRightIcon className="size-3.5" />
-                    </Link>
+                    <div className="flex shrink-0 flex-col items-end gap-1.5">
+                      <Link
+                        href={loc.locationHref}
+                        className="inline-flex items-center gap-1 text-[13px] font-medium text-(--accent) hover:underline"
+                      >
+                        LaserAway in {loc.city} <ChevronRightIcon className="size-3.5" />
+                      </Link>
+                      <Link
+                        href={loc.href}
+                        className="inline-flex items-center gap-1 text-[12px] text-heading hover:text-(--accent) hover:underline"
+                      >
+                        City page <ChevronRightIcon className="size-3" />
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </div>
