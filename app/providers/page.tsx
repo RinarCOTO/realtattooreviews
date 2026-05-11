@@ -6,7 +6,6 @@ import FAQSection from "@/components/sections/FAQSection";
 import ChevronRightIcon from "@/components/ui/ChevronRightIcon";
 import ProviderDirectory, {
   type DirectoryRow,
-  type PendingRow,
 } from "@/components/provider/ProviderDirectory";
 import { getProviderDirectoryAggregates, getDataFreshness } from "@/lib/data/reviews";
 
@@ -73,18 +72,6 @@ const PROVIDER_STATIC: (DirectoryRow & { supabaseSlug: string })[] = [
   { name: "LaserAway",                 slug: "laseraway",                supabaseSlug: "laseraway",                method: "Laser",     technology: "Cynosure PicoSure",            locations: "4 (Austin, Chicago, Houston, Tampa)", locationCount: 4, yearsActive: null, bestFor: "National chain with PicoSure availability",              footprint: "National chain", setting: "Medical spa",               reviews: null, avgStars: null },
   { name: "MEDermis Laser Clinic",      slug: "medermis-laser-clinic",    supabaseSlug: "medermis-laser-clinic",    method: "Laser",     technology: "Lutronic Spectra Pico Plus",    locations: "2 (Austin, San Antonio)",         locationCount: 2,   yearsActive: 19,   bestFor: "Tattoo-removal-only specialist, Austin/San Antonio",     footprint: "Regional",       setting: "Tattoo removal specialist", reviews: null, avgStars: null },
   { name: "Removery",                   slug: "removery-bucktown",        supabaseSlug: "removery",                 method: "Laser",     technology: "PicoWay",                      locations: "150+ (US, Canada, Australia)",     locationCount: 150, yearsActive: 7,    bestFor: "Largest US footprint, package pricing",                  footprint: "National chain", setting: "Tattoo removal specialist", reviews: null, avgStars: null },
-];
-
-const PENDING_PROVIDERS: PendingRow[] = [
-  { name: "Advanced Laser Aesthetics",  markets: "Chicago" },
-  { name: "Pigment",                    markets: "Austin" },
-  { name: "Think Again",               markets: "Austin" },
-  { name: "Austin Laser Solutions",    markets: "Austin" },
-  { name: "UNBRANDED",                  markets: "Austin" },
-  { name: "ReversaTatt",               markets: "Tampa (3202 Henderson Blvd)" },
-  { name: "Tampa Bay Tattoo Removal",  markets: "Clearwater (2561 Nursery Rd)" },
-  { name: "St Pete Tattoo Removal",    markets: "Pinellas Park (8130 66th St N)" },
-  { name: "EradiTatt",                 markets: "St. Petersburg (9210 4th St N)" },
 ];
 
 const faqs = [
@@ -185,7 +172,6 @@ export default async function ProvidersPage() {
             </div>
             <ProviderDirectory
               providers={providers}
-              pendingProviders={PENDING_PROVIDERS}
               refreshedAt={refreshedAt}
             />
           </Container>
@@ -205,7 +191,7 @@ export default async function ProvidersPage() {
             <div className="flex max-w-2xl flex-col gap-8">
 
               <div>
-                <h3 className="mb-2 text-[16px] font-bold text-heading">Decide on method first</h3>
+                <h3 className="mb-2 text-[17px] font-bold text-heading">Decide on method first</h3>
                 <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     Tattoo removal providers fall into two categories: laser and non-laser.
@@ -225,7 +211,7 @@ export default async function ProvidersPage() {
               </div>
 
               <div>
-                <h3 className="mb-2 text-[16px] font-bold text-heading">Check fit for your skin type</h3>
+                <h3 className="mb-2 text-[17px] font-bold text-heading">Check fit for your skin type</h3>
                 <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     Laser tattoo removal carries a wavelength-versus-melanin interaction for darker Fitzpatrick skin types (IV through VI). The laser does not distinguish between tattoo pigment and natural melanin. Aggressive settings on darker skin can cause post-inflammatory hyperpigmentation or hypopigmentation. Picosecond lasers at 1064nm reduce this risk compared to Q-switched systems and shorter wavelengths, but they do not eliminate it.
@@ -241,7 +227,7 @@ export default async function ProvidersPage() {
               </div>
 
               <div>
-                <h3 className="mb-2 text-[16px] font-bold text-heading">Check fit for your tattoo&apos;s colors</h3>
+                <h3 className="mb-2 text-[17px] font-bold text-heading">Check fit for your tattoo&apos;s colors</h3>
                 <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     Laser performance varies by ink color. Black, dark blue, and red respond well to standard wavelengths (1064nm, 532nm). Green and blue-green require additional wavelengths (785nm on PicoWay, 755nm on PicoSure). Yellow and white inks respond poorly to all current laser wavelengths.
@@ -256,7 +242,7 @@ export default async function ProvidersPage() {
               </div>
 
               <div>
-                <h3 className="mb-2 text-[16px] font-bold text-heading">Decide between complete removal and fading for cover-up</h3>
+                <h3 className="mb-2 text-[17px] font-bold text-heading">Decide between complete removal and fading for cover-up</h3>
                 <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     Complete removal and cover-up fading are different goals with different session counts and different pricing. Complete removal aims to eliminate the tattoo entirely. Fading reduces the ink enough that a cover-up tattoo can be applied over it, typically requiring fewer sessions.
@@ -269,7 +255,7 @@ export default async function ProvidersPage() {
               </div>
 
               <div>
-                <h3 className="mb-2 text-[16px] font-bold text-heading">Decide between national footprint and local specialist</h3>
+                <h3 className="mb-2 text-[17px] font-bold text-heading">Decide between national footprint and local specialist</h3>
                 <div className="space-y-3 text-[14px] leading-relaxed text-heading">
                   <p>
                     National chains like Removery and LaserAway offer standardized protocols, multi-location convenience, and (in Removery&apos;s case) package pricing that covers unlimited sessions. Local specialists and physician-led practices often offer more individualized treatment plans and direct provider continuity across your treatment series.

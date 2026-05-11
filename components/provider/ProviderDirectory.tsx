@@ -25,11 +25,6 @@ export type DirectoryRow = {
   setting: Setting;
 };
 
-export type PendingRow = {
-  name: string;
-  markets: string;
-};
-
 type SortKey = "name" | "locationCount" | "reviews" | "avgStars";
 type SortDir = "asc" | "desc";
 
@@ -38,11 +33,9 @@ const selectClass =
 
 export default function ProviderDirectory({
   providers,
-  pendingProviders,
   refreshedAt,
 }: {
   providers: DirectoryRow[];
-  pendingProviders: PendingRow[];
   refreshedAt: string;
 }) {
   const [methodFilter, setMethodFilter] = useState("All");
@@ -203,25 +196,6 @@ export default function ProviderDirectory({
 
     </div>
     </Card>
-
-      {/* Coverage pending */}
-      {pendingProviders.length > 0 && (
-        <Card className="mt-4 p-6">
-          <h3 className="mb-1 text-[16px] font-semibold text-heading">Coverage pending</h3>
-          <p className="mb-4 text-[13px] leading-relaxed text-heading">
-            Providers tracked in our coverage plan that do not yet have a review sample in our dataset.
-          </p>
-          <p className="text-[13px] leading-relaxed text-heading">
-            {pendingProviders.map((p, i) => (
-              <span key={p.name}>
-                {i > 0 && <span className="mx-2 text-border">·</span>}
-                <span className="font-medium">{p.name}</span>
-                {p.markets && <span className="text-[12px] text-heading"> ({p.markets})</span>}
-              </span>
-            ))}
-          </p>
-        </Card>
-      )}
     </>
   );
 }
