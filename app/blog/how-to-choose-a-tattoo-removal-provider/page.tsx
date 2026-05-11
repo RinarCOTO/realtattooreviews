@@ -15,7 +15,7 @@ const POST_DESCRIPTION =
   "A practical RTR framework for choosing a tattoo removal clinic. Method fit, review quality, pricing path, red flags, and when to use a city page or a branded review page next.";
 const POST_DATE = "2026-05-02";
 const POST_CATEGORY = "Decision framework";
-const POST_AUTHOR = "RealTattooReviews Team";
+const POST_AUTHOR = "Editorial Team";
 
 export const metadata: Metadata = {
   title: `${POST_TITLE} | 7 Things to Check Before You Book`,

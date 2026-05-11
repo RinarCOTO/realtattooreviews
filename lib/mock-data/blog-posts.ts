@@ -4,7 +4,7 @@ export const blogPosts = [
     title: "How to Choose a Tattoo Removal Provider",
     description:
       "A practical RTR framework for choosing a tattoo removal clinic. Method fit, review quality, pricing path, red flags, and when to use a city page or a branded review page next.",
-    author: "RealTattooReviews Team",
+    author: "Editorial Team",
     date: "2026-05-02",
     category: "Decision framework",
     body: [
@@ -16,7 +16,7 @@ export const blogPosts = [
     title: "Is Tattoo Removal Worth It? An Evidence-Based 2026 Answer",
     description:
       "Is tattoo removal worth it? A clear-eyed look at cost, time, pain, results, and the cases where removal makes sense versus the cases where a cover-up or living with it might be the better call.",
-    author: "RealTattooReviews Team",
+    author: "Editorial Team",
     date: "2026-05-11",
     category: "Decision framework",
     body: [
@@ -28,7 +28,7 @@ export const blogPosts = [
     title: "Tattoo Regret Statistics 2026: How Many People Regret Their Tattoos",
     description:
       "How common is tattoo regret in 2026? Survey data, demographic breakdowns, the most regretted tattoo types and locations, and what people actually do about it.",
-    author: "RealTattooReviews Team",
+    author: "Editorial Team",
     date: "2026-05-11",
     category: "Research",
     body: [
@@ -40,7 +40,7 @@ export const blogPosts = [
     title: "What Does a Normal Tattoo Removal Blister Look Like? A 2026 Recovery Guide",
     description:
       "Blistering after laser tattoo removal is normal. Here's what a healthy blister looks like, when it should appear and clear, how to care for it, and the warning signs that mean call your provider.",
-    author: "RealTattooReviews Team",
+    author: "Editorial Team",
     date: "2026-05-11",
     category: "Recovery",
     body: [
